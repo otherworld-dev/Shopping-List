@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace OCA\ShoppingList\Controller;
+namespace OCA\Shopping_List\Controller;
 
-use OCA\ShoppingList\AppInfo\Application;
+use OCA\Shopping_List\AppInfo\Application;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\Attribute\NoAdminRequired;
 use OCP\AppFramework\Http\DataResponse;

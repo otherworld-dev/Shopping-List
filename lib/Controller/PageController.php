@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace OCA\ShoppingList\Controller;
+namespace OCA\Shopping_List\Controller;
 
-use OCA\ShoppingList\AppInfo\Application;
+use OCA\Shopping_List\AppInfo\Application;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\Attribute\FrontpageRoute;
 use OCP\AppFramework\Http\Attribute\NoAdminRequired;
@@ -24,8 +24,8 @@ class PageController extends Controller {
 	#[NoAdminRequired]
 	#[NoCSRFRequired]
 	public function index(): TemplateResponse {
-		Util::addScript(Application::APP_ID, 'shoppinglist-main');
-		Util::addStyle(Application::APP_ID, 'shoppinglist-main');
+		Util::addScript(Application::APP_ID, 'shopping_list-main');
+		Util::addStyle(Application::APP_ID, 'shopping_list-main');
 		return new TemplateResponse(Application::APP_ID, 'index');
 	}
 }

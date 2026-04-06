@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OCA\ShoppingList\Db;
+namespace OCA\Shopping_List\Db;
 
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\AppFramework\Db\MultipleObjectsReturnedException;
@@ -15,7 +15,7 @@ use OCP\IDBConnection;
  */
 class ShoppingListMapper extends QBMapper {
 	public function __construct(IDBConnection $db) {
-		parent::__construct($db, 'shoppinglist_lists', ShoppingList::class);
+		parent::__construct($db, 'shopping_list_lists', ShoppingList::class);
 	}
 
 	/**
@@ -50,7 +50,7 @@ class ShoppingListMapper extends QBMapper {
 	public function findSharedWithUser(string $userId): array {
 		$qb = $this->db->getQueryBuilder();
 		$qb->select('list_id', 'permission')
-			->from('shoppinglist_shares')
+			->from('shopping_list_shares')
 			->where($qb->expr()->eq('shared_with', $qb->createNamedParameter($userId)))
 			->andWhere($qb->expr()->eq('shared_with_type', $qb->createNamedParameter(0, IQueryBuilder::PARAM_INT)));
 		$result = $qb->executeQuery();
@@ -74,7 +74,7 @@ class ShoppingListMapper extends QBMapper {
 		}
 		$qb = $this->db->getQueryBuilder();
 		$qb->select('list_id', 'permission')
-			->from('shoppinglist_shares')
+			->from('shopping_list_shares')
 			->where($qb->expr()->in('shared_with', $qb->createNamedParameter($groupIds, IQueryBuilder::PARAM_STR_ARRAY)))
 			->andWhere($qb->expr()->eq('shared_with_type', $qb->createNamedParameter(1, IQueryBuilder::PARAM_INT)));
 		$result = $qb->executeQuery();

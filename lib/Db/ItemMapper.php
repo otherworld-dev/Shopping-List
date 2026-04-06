@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OCA\ShoppingList\Db;
+namespace OCA\Shopping_List\Db;
 
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\AppFramework\Db\MultipleObjectsReturnedException;
@@ -15,7 +15,7 @@ use OCP\IDBConnection;
  */
 class ItemMapper extends QBMapper {
 	public function __construct(IDBConnection $db) {
-		parent::__construct($db, 'shoppinglist_items', Item::class);
+		parent::__construct($db, 'shopping_list_items', Item::class);
 	}
 
 	/**

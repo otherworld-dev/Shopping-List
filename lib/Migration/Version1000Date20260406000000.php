@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OCA\ShoppingList\Migration;
+namespace OCA\Shopping_List\Migration;
 
 use Closure;
 use OCP\DB\ISchemaWrapper;
@@ -22,8 +22,8 @@ class Version1000Date20260406000000 extends SimpleMigrationStep {
 		$schema = $schemaClosure();
 
 		// Lists
-		if (!$schema->hasTable('shoppinglist_lists')) {
-			$table = $schema->createTable('shoppinglist_lists');
+		if (!$schema->hasTable('shopping_list_lists')) {
+			$table = $schema->createTable('shopping_list_lists');
 			$table->addColumn('id', Types::INTEGER, [
 				'autoincrement' => true,
 				'notnull' => true,
@@ -48,8 +48,8 @@ class Version1000Date20260406000000 extends SimpleMigrationStep {
 		}
 
 		// Items
-		if (!$schema->hasTable('shoppinglist_items')) {
-			$table = $schema->createTable('shoppinglist_items');
+		if (!$schema->hasTable('shopping_list_items')) {
+			$table = $schema->createTable('shopping_list_items');
 			$table->addColumn('id', Types::INTEGER, [
 				'autoincrement' => true,
 				'notnull' => true,
@@ -99,8 +99,8 @@ class Version1000Date20260406000000 extends SimpleMigrationStep {
 		}
 
 		// Shares
-		if (!$schema->hasTable('shoppinglist_shares')) {
-			$table = $schema->createTable('shoppinglist_shares');
+		if (!$schema->hasTable('shopping_list_shares')) {
+			$table = $schema->createTable('shopping_list_shares');
 			$table->addColumn('id', Types::INTEGER, [
 				'autoincrement' => true,
 				'notnull' => true,
@@ -132,8 +132,8 @@ class Version1000Date20260406000000 extends SimpleMigrationStep {
 		}
 
 		// Shop Areas
-		if (!$schema->hasTable('shoppinglist_shop_areas')) {
-			$table = $schema->createTable('shoppinglist_shop_areas');
+		if (!$schema->hasTable('shopping_list_shop_areas')) {
+			$table = $schema->createTable('shopping_list_shop_areas');
 			$table->addColumn('id', Types::INTEGER, [
 				'autoincrement' => true,
 				'notnull' => true,
@@ -162,8 +162,8 @@ class Version1000Date20260406000000 extends SimpleMigrationStep {
 		}
 
 		// Tags
-		if (!$schema->hasTable('shoppinglist_tags')) {
-			$table = $schema->createTable('shoppinglist_tags');
+		if (!$schema->hasTable('shopping_list_tags')) {
+			$table = $schema->createTable('shopping_list_tags');
 			$table->addColumn('id', Types::INTEGER, [
 				'autoincrement' => true,
 				'notnull' => true,
@@ -182,8 +182,8 @@ class Version1000Date20260406000000 extends SimpleMigrationStep {
 		}
 
 		// Item Tags (many-to-many)
-		if (!$schema->hasTable('shoppinglist_item_tags')) {
-			$table = $schema->createTable('shoppinglist_item_tags');
+		if (!$schema->hasTable('shopping_list_item_tags')) {
+			$table = $schema->createTable('shopping_list_item_tags');
 			$table->addColumn('item_id', Types::INTEGER, [
 				'notnull' => true,
 				'unsigned' => true,

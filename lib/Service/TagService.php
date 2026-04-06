@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace OCA\ShoppingList\Service;
+namespace OCA\Shopping_List\Service;
 
-use OCA\ShoppingList\Db\Tag;
-use OCA\ShoppingList\Db\TagMapper;
+use OCA\Shopping_List\Db\Tag;
+use OCA\Shopping_List\Db\TagMapper;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\IDBConnection;
 
@@ -40,7 +40,7 @@ class TagService {
 
 		// Remove item_tag links
 		$qb = $this->db->getQueryBuilder();
-		$qb->delete('shoppinglist_item_tags')
+		$qb->delete('shopping_list_item_tags')
 			->where($qb->expr()->eq('tag_id', $qb->createNamedParameter($id)))
 			->executeStatement();
 

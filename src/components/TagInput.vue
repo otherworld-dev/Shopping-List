@@ -25,7 +25,7 @@ const emit = defineEmits<{
 }>()
 
 const tagsStore = useTagsStore()
-const placeholder = t('shoppinglist', 'Add tags...')
+const placeholder = t('shopping_list', 'Add tags...')
 
 const selectedTags = ref<Tag[]>([...props.modelValue])
 

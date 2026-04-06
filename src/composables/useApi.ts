@@ -2,7 +2,7 @@ import axios from '@nextcloud/axios'
 import { generateOcsUrl } from '@nextcloud/router'
 
 function url(path: string): string {
-	return generateOcsUrl('apps/shoppinglist/api/v1/' + path)
+	return generateOcsUrl('apps/shopping_list/api/v1/' + path)
 }
 
 export const api = {

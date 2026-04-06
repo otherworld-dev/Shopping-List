@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace OCA\ShoppingList\Service;
+namespace OCA\Shopping_List\Service;
 
 use DateTime;
-use OCA\ShoppingList\Db\ShoppingList;
-use OCA\ShoppingList\Db\ShoppingListMapper;
+use OCA\Shopping_List\Db\ShoppingList;
+use OCA\Shopping_List\Db\ShoppingListMapper;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\IDBConnection;
 use OCP\IGroupManager;
@@ -187,28 +187,28 @@ class ListService {
 		$qb = $this->db->getQueryBuilder();
 		$subQuery = $this->db->getQueryBuilder();
 		$subQuery->select('id')
-			->from('shoppinglist_items')
+			->from('shopping_list_items')
 			->where($subQuery->expr()->eq('list_id', $subQuery->createNamedParameter($listId)));
 
-		$qb->delete('shoppinglist_item_tags')
+		$qb->delete('shopping_list_item_tags')
 			->where($qb->expr()->in('item_id', $qb->createFunction($subQuery->getSQL())))
 			->executeStatement();
 
 		// Delete items
 		$qb = $this->db->getQueryBuilder();
-		$qb->delete('shoppinglist_items')
+		$qb->delete('shopping_list_items')
 			->where($qb->expr()->eq('list_id', $qb->createNamedParameter($listId)))
 			->executeStatement();
 
 		// Delete shares
 		$qb = $this->db->getQueryBuilder();
-		$qb->delete('shoppinglist_shares')
+		$qb->delete('shopping_list_shares')
 			->where($qb->expr()->eq('list_id', $qb->createNamedParameter($listId)))
 			->executeStatement();
 
 		// Delete list-specific shop areas
 		$qb = $this->db->getQueryBuilder();
-		$qb->delete('shoppinglist_shop_areas')
+		$qb->delete('shopping_list_shop_areas')
 			->where($qb->expr()->eq('list_id', $qb->createNamedParameter($listId)))
 			->executeStatement();
 	}

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OCA\ShoppingList\Db;
+namespace OCA\Shopping_List\Db;
 
 use OCP\AppFramework\Db\QBMapper;
 use OCP\DB\QueryBuilder\IQueryBuilder;
@@ -13,7 +13,7 @@ use OCP\IDBConnection;
  */
 class TagMapper extends QBMapper {
 	public function __construct(IDBConnection $db) {
-		parent::__construct($db, 'shoppinglist_tags', Tag::class);
+		parent::__construct($db, 'shopping_list_tags', Tag::class);
 	}
 
 	public function find(int $id): Tag {

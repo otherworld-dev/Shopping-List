@@ -82,8 +82,8 @@ const emit = defineEmits<{
 const itemsStore = useItemsStore()
 const shopAreasStore = useShopAreasStore()
 const listsStore = useListsStore()
-const deleteTitle = t('shoppinglist', 'Delete')
-const qtyLabel = t('shoppinglist', 'Qty')
+const deleteTitle = t('shopping_list', 'Delete')
+const qtyLabel = t('shopping_list', 'Qty')
 
 const item = computed(() => {
 	const items = itemsStore.itemsByList[props.listId] ?? []

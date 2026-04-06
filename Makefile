@@ -1,4 +1,4 @@
-app_name=shoppinglist
+app_name=shopping_list
 build_dir=$(CURDIR)/build
 sign_dir=$(build_dir)/sign
 cert_dir=$(HOME)/.nextcloud/certificates

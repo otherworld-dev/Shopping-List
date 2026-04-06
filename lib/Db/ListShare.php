@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OCA\ShoppingList\Db;
+namespace OCA\Shopping_List\Db;
 
 use JsonSerializable;
 use OCP\AppFramework\Db\Entity;

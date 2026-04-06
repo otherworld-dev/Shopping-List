@@ -81,13 +81,13 @@ const itemsStore = useItemsStore()
 const listIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,4H7V8H3V4M9,5V7H21V5H9M3,10H7V14H3V10M9,11V13H21V11H9M3,16H7V20H3V16M9,17V19H21V17H9" fill="currentColor"/></svg>'
 
 // Pre-compute translations so they don't re-run DOMPurify on every render
-const newListText = t('shoppinglist', 'New list')
-const renameText = t('shoppinglist', 'Rename list')
-const deleteText = t('shoppinglist', 'Delete list')
-const sharedText = t('shoppinglist', 'Shared with me')
-const emptyName = t('shoppinglist', 'No shopping lists')
-const emptyDesc = t('shoppinglist', 'Create your first shopping list to get started')
-const settingsText = t('shoppinglist', 'Area Keywords')
+const newListText = t('shopping_list', 'New list')
+const renameText = t('shopping_list', 'Rename list')
+const deleteText = t('shopping_list', 'Delete list')
+const sharedText = t('shopping_list', 'Shared with me')
+const emptyName = t('shopping_list', 'No shopping lists')
+const emptyDesc = t('shopping_list', 'Create your first shopping list to get started')
+const settingsText = t('shopping_list', 'Area Keywords')
 
 function getUncheckedCount(listId: number): number {
 	const items = itemsStore.itemsByList[listId] ?? []
@@ -95,7 +95,7 @@ function getUncheckedCount(listId: number): number {
 }
 
 async function onNewList() {
-	await listsStore.create(t('shoppinglist', 'New shopping list'))
+	await listsStore.create(t('shopping_list', 'New shopping list'))
 }
 
 async function onRename(id: number, name: string) {

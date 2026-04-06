@@ -1,5 +1,5 @@
 {
-	"name": "nextcloud/shoppinglist",
+	"name": "nextcloud/shopping_list",
 	"description": "Shared shopping lists for Nextcloud",
 	"type": "project",
 	"license": "AGPL-3.0-or-later",
@@ -13,12 +13,12 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"OCA\\ShoppingList\\": "lib/"
+			"OCA\\Shopping_List\\": "lib/"
 		}
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"OCA\\ShoppingList\\Tests\\": "tests/"
+			"OCA\\Shopping_List\\Tests\\": "tests/"
 		}
 	},
 	"scripts": {

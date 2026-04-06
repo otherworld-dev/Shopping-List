@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace OCA\ShoppingList\Service;
+namespace OCA\Shopping_List\Service;
 
-use OCA\ShoppingList\Db\ListShareMapper;
-use OCA\ShoppingList\Db\ShoppingListMapper;
+use OCA\Shopping_List\Db\ListShareMapper;
+use OCA\Shopping_List\Db\ShoppingListMapper;
 use OCP\IGroupManager;
 
 class PushService {
@@ -27,13 +27,13 @@ class PushService {
 	}
 
 	public function notifyListUpdate(int $listId, string $excludeUserId): void {
-		$this->notify('shoppinglist_list_update', $listId, [
+		$this->notify('shopping_list_list_update', $listId, [
 			'listId' => $listId,
 		], $excludeUserId);
 	}
 
 	public function notifyItemUpdate(int $listId, int $itemId, string $action, string $excludeUserId): void {
-		$this->notify('shoppinglist_item_update', $listId, [
+		$this->notify('shopping_list_item_update', $listId, [
 			'listId' => $listId,
 			'itemId' => $itemId,
 			'action' => $action,
@@ -48,7 +48,7 @@ class PushService {
 		try {
 			$this->queue->push('notify_custom', [
 				'user' => $targetUserId,
-				'message' => 'shoppinglist_share_update',
+				'message' => 'shopping_list_share_update',
 				'body' => ['listId' => $listId, 'action' => $action],
 			]);
 		} catch (\Exception) {

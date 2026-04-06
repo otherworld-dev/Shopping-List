@@ -31,17 +31,17 @@ Search for **Shopping List** in your Nextcloud app store and click **Install**.
 1. Clone this repository into your Nextcloud `apps/` directory:
    ```bash
    cd /path/to/nextcloud/apps
-   git clone https://github.com/otherworld-dev/Shopping-List.git shoppinglist
+   git clone https://github.com/otherworld-dev/Shopping-List.git shopping_list
    ```
 2. Install JavaScript dependencies and build:
    ```bash
-   cd shoppinglist
+   cd shopping_list
    npm ci
    npm run build
    ```
 3. Enable the app:
    ```bash
-   php occ app:enable shoppinglist
+   php occ app:enable shopping_list
    ```
 
 ## Development

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace OCA\ShoppingList\Service;
+namespace OCA\Shopping_List\Service;
 
-use OCA\ShoppingList\Db\ShopArea;
-use OCA\ShoppingList\Db\ShopAreaMapper;
+use OCA\Shopping_List\Db\ShopArea;
+use OCA\Shopping_List\Db\ShopAreaMapper;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\IDBConnection;
 
@@ -111,7 +111,7 @@ class ShopAreaService {
 
 		// Nullify shop_area_id on affected items
 		$qb = $this->db->getQueryBuilder();
-		$qb->update('shoppinglist_items')
+		$qb->update('shopping_list_items')
 			->set('shop_area_id', $qb->createNamedParameter(null))
 			->where($qb->expr()->eq('shop_area_id', $qb->createNamedParameter($id)))
 			->executeStatement();

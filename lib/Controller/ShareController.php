@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace OCA\ShoppingList\Controller;
+namespace OCA\Shopping_List\Controller;
 
-use OCA\ShoppingList\Service\NoPermissionException;
-use OCA\ShoppingList\Service\NotFoundException;
-use OCA\ShoppingList\Service\ShareService;
+use OCA\Shopping_List\Service\NoPermissionException;
+use OCA\Shopping_List\Service\NotFoundException;
+use OCA\Shopping_List\Service\ShareService;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\Attribute\NoAdminRequired;
 use OCP\AppFramework\Http\DataResponse;

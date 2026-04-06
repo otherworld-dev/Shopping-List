@@ -20,17 +20,17 @@ export function usePush() {
 	if (hasPushServer) {
 		try {
 			import('@nextcloud/notify_push').then(({ listen }) => {
-				listen('shoppinglist_item_update', () => {
+				listen('shopping_list_item_update', () => {
 					if (listsStore.currentListId) {
 						itemsStore.fetchByList(listsStore.currentListId)
 					}
 				})
 
-				listen('shoppinglist_list_update', () => {
+				listen('shopping_list_list_update', () => {
 					listsStore.fetchAll()
 				})
 
-				listen('shoppinglist_share_update', (_type: string, body: { listId?: number }) => {
+				listen('shopping_list_share_update', (_type: string, body: { listId?: number }) => {
 					listsStore.fetchAll()
 					if (body.listId) {
 						sharesStore.fetchByList(body.listId)

@@ -147,13 +147,13 @@ onMounted(() => document.addEventListener('click', onCaptureClick, true))
 onUnmounted(() => document.removeEventListener('click', onCaptureClick, true))
 
 // Pre-compute translations once
-const shareText = t('shoppinglist', 'Share')
-const emptyName = t('shoppinglist', 'No items yet')
-const emptyDesc = t('shoppinglist', 'Add your first item above')
-const uncategorizedText = t('shoppinglist', 'Uncategorized')
-const boughtText = t('shoppinglist', 'Checked off')
-const uncheckAllText = t('shoppinglist', 'Restore all')
-const clearCheckedText = t('shoppinglist', 'Delete all')
+const shareText = t('shopping_list', 'Share')
+const emptyName = t('shopping_list', 'No items yet')
+const emptyDesc = t('shopping_list', 'Add your first item above')
+const uncategorizedText = t('shopping_list', 'Uncategorized')
+const boughtText = t('shopping_list', 'Checked off')
+const uncheckAllText = t('shopping_list', 'Restore all')
+const clearCheckedText = t('shopping_list', 'Delete all')
 
 const canEdit = computed(() =>
 	listsStore.currentList !== null && listsStore.currentList.permission >= Permission.WRITE,

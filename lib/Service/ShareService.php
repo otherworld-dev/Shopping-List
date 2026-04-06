@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace OCA\ShoppingList\Service;
+namespace OCA\Shopping_List\Service;
 
-use OCA\ShoppingList\Db\ListShare;
-use OCA\ShoppingList\Db\ListShareMapper;
-use OCA\ShoppingList\Db\ShoppingListMapper;
+use OCA\Shopping_List\Db\ListShare;
+use OCA\Shopping_List\Db\ListShareMapper;
+use OCA\Shopping_List\Db\ShoppingListMapper;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\IGroupManager;
 use OCP\IUserManager;

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace OCA\ShoppingList\Service;
+namespace OCA\Shopping_List\Service;
 
 use DateTime;
-use OCA\ShoppingList\Db\Item;
-use OCA\ShoppingList\Db\ItemMapper;
+use OCA\Shopping_List\Db\Item;
+use OCA\Shopping_List\Db\ItemMapper;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\IDBConnection;
 
@@ -115,7 +115,7 @@ class ItemService {
 
 		// Delete item tags
 		$qb = $this->db->getQueryBuilder();
-		$qb->delete('shoppinglist_item_tags')
+		$qb->delete('shopping_list_item_tags')
 			->where($qb->expr()->eq('item_id', $qb->createNamedParameter($id)))
 			->executeStatement();
 
@@ -140,7 +140,7 @@ class ItemService {
 		// Clean up item_tags for deleted items
 		if (!empty($deletedIds)) {
 			$qb = $this->db->getQueryBuilder();
-			$qb->delete('shoppinglist_item_tags')
+			$qb->delete('shopping_list_item_tags')
 				->where($qb->expr()->in('item_id', $qb->createNamedParameter($deletedIds, \OCP\DB\QueryBuilder\IQueryBuilder::PARAM_INT_ARRAY)))
 				->executeStatement();
 		}
