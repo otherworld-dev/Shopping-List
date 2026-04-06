@@ -51,4 +51,9 @@ export const api = {
 		create: (name: string) => axios.post(url('tags'), { name }),
 		delete: (id: number) => axios.delete(url(`tags/${id}`)),
 	},
+	preferences: {
+		getKeywords: () => axios.get(url('preferences/keywords')),
+		setKeywords: (keywords: Record<string, string[]>) =>
+			axios.put(url('preferences/keywords'), { keywords }),
+	},
 }

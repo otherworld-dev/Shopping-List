@@ -40,5 +40,9 @@ return [
 		['name' => 'tag#index', 'url' => '/api/v1/tags', 'verb' => 'GET'],
 		['name' => 'tag#create', 'url' => '/api/v1/tags', 'verb' => 'POST'],
 		['name' => 'tag#destroy', 'url' => '/api/v1/tags/{id}', 'verb' => 'DELETE'],
+
+		// Preferences
+		['name' => 'preferences#getKeywords', 'url' => '/api/v1/preferences/keywords', 'verb' => 'GET'],
+		['name' => 'preferences#setKeywords', 'url' => '/api/v1/preferences/keywords', 'verb' => 'PUT'],
 	],
 ];

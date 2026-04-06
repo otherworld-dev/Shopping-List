@@ -9,7 +9,8 @@
 				:placeholder="addItemLabel"
 				class="item-editor__input"
 				@keydown.enter.prevent="onSubmit"
-				@keydown.tab.prevent="focusQty" />
+				@keydown.tab.prevent="focusQty"
+				@paste="onPaste" />
 			<input
 				ref="qtyRef"
 				v-model="quantity"
@@ -66,6 +67,7 @@ import { t } from '@nextcloud/l10n'
 import { useItemsStore } from '../stores/items'
 import { useShopAreasStore } from '../stores/shopAreas'
 import { useListsStore } from '../stores/lists'
+import { useAreaKeywordsStore } from '../stores/areaKeywords'
 
 const props = defineProps<{
 	listId: number
@@ -74,6 +76,7 @@ const props = defineProps<{
 const itemsStore = useItemsStore()
 const shopAreasStore = useShopAreasStore()
 const listsStore = useListsStore()
+const areaKeywordsStore = useAreaKeywordsStore()
 
 const addItemLabel = t('shoppinglist', 'Add an item to list...')
 const qtyLabel = t('shoppinglist', 'Qty')
@@ -159,7 +162,6 @@ function onAreaTab() {
 	nameRef.value?.focus()
 }
 
-// Close dropdown on outside click
 function onClickOutside(e: MouseEvent) {
 	if (areaWrapperRef.value && !areaWrapperRef.value.contains(e.target as Node)) {
 		closeDropdown()
@@ -169,16 +171,190 @@ function onClickOutside(e: MouseEvent) {
 onMounted(() => document.addEventListener('mousedown', onClickOutside))
 onUnmounted(() => document.removeEventListener('mousedown', onClickOutside))
 
+// --- Ingredient parsing ---
+
+// Known units for matching
+const UNITS = [
+	'teaspoon', 'teaspoons', 'tsp',
+	'tablespoon', 'tablespoons', 'tbsp',
+	'cup', 'cups',
+	'ounce', 'ounces', 'oz',
+	'pound', 'pounds', 'lb', 'lbs',
+	'gram', 'grams', 'g',
+	'kilogram', 'kilograms', 'kg',
+	'milliliter', 'milliliters', 'ml',
+	'liter', 'liters', 'l',
+	'pinch', 'pinches',
+	'bunch', 'bunches',
+	'clove', 'cloves',
+	'can', 'cans',
+	'bottle', 'bottles',
+	'piece', 'pieces',
+	'slice', 'slices',
+	'head', 'heads',
+	'stalk', 'stalks',
+	'sprig', 'sprigs',
+	'pack', 'packs', 'packet', 'packets',
+	'bag', 'bags',
+	'fl oz',
+]
+
+// Units that can appear without a number (e.g. "Pinch of salt", "Zest of 1 lime")
+const LEADING_UNITS = ['pinch', 'pinches', 'bunch', 'bunches', 'zest', 'dash', 'handful']
+
+function matchUnit(text: string): string {
+	const lower = text.toLowerCase()
+	let best = ''
+	for (const unit of UNITS) {
+		if (lower.startsWith(unit + ' ') || lower.startsWith(unit + ',') || lower === unit) {
+			if (unit.length > best.length) best = unit
+		}
+	}
+	return best
+}
+
+/**
+ * Clean up an ingredient name:
+ * - Remove parenthetical notes: "(chopped)", "(stems removed, chopped)"
+ * - Remove trailing comma descriptions: ", finely diced"
+ * - Capitalize first letter
+ * - Collapse whitespace
+ */
+function cleanName(raw: string): string {
+	let name = raw
+
+	// Remove all parenthetical groups, including nested: (... (... ) ...)
+	// Repeat until no more parens remain (handles nesting)
+	let prev = ''
+	while (prev !== name) {
+		prev = name
+		name = name.replace(/\s*\([^)]*\)/g, '')
+	}
+
+	name = name
+		.replace(/[()]/g, '')                // remove any stray parens
+		.replace(/,\s*,/g, ',')              // collapse double commas
+		.replace(/,\s*$/, '')                // trailing comma
+		.replace(/^\s*,\s*/, '')             // leading comma
+		.replace(/\s+/g, ' ')               // collapse whitespace
+		.trim()
+
+	// Capitalize first letter
+	if (name.length > 0) {
+		name = name.charAt(0).toUpperCase() + name.slice(1)
+	}
+	return name
+}
+
+function parseIngredient(line: string): { name: string; quantity: string | null } {
+	const trimmed = line.trim()
+	if (!trimmed) return { name: '', quantity: null }
+
+	// Check for lines starting with a unit word without a number ("Pinch of salt", "Zest of 1 lime")
+	const trimmedLower = trimmed.toLowerCase()
+	for (const unit of LEADING_UNITS) {
+		if (trimmedLower.startsWith(unit + ' ') || trimmedLower.startsWith(unit + ',')) {
+			let rest = trimmed.slice(unit.length).trim()
+			rest = rest.replace(/^,\s*/, '').replace(/^of\s+/i, '').trim()
+			return { name: cleanName(rest || trimmed), quantity: '1 ' + unit }
+		}
+	}
+
+	// Match leading quantity: numbers, fractions, decimals (e.g. "2 1/2", "0.33", "1/4", "10-15")
+	const qtyPattern = /^([\d]+(?:\s+[\d]+\/[\d]+|\/[\d]+|\.\d+)?(?:\s*-\s*[\d]+(?:\/[\d]+|\.\d+)?)?)\s*/
+	const match = trimmed.match(qtyPattern)
+
+	if (!match) {
+		return { name: cleanName(trimmed), quantity: null }
+	}
+
+	const qtyStr = match[1].trim()
+	let rest = trimmed.slice(match[0].length).trim()
+
+	// Try to match a unit after the quantity
+	const matchedUnit = matchUnit(rest)
+
+	let finalQty = qtyStr
+	if (matchedUnit) {
+		finalQty = qtyStr + ' ' + matchedUnit
+		rest = rest.slice(matchedUnit.length).trim()
+		// Remove leading comma or "of"
+		rest = rest.replace(/^,\s*/, '').replace(/^of\s+/i, '').trim()
+	}
+
+	// Clean up: remove leading comma
+	rest = rest.replace(/^,\s*/, '').trim()
+
+	return {
+		name: cleanName(rest || trimmed),
+		quantity: finalQty,
+	}
+}
+
+// --- Auto-detect shop area from ingredient name (reads from editable store) ---
+
+function detectArea(ingredientName: string): number | null {
+	const lower = ingredientName.toLowerCase()
+	const areas = areaOptions.value
+
+	for (const [areaName, keywords] of Object.entries(areaKeywordsStore.keywords)) {
+		for (const keyword of keywords) {
+			if (lower.includes(keyword)) {
+				const area = areas.find(a => a.name === areaName)
+				if (area) return area.id
+			}
+		}
+	}
+	return null
+}
+
+async function onPaste(e: ClipboardEvent) {
+	const text = e.clipboardData?.getData('text') ?? ''
+	if (!text.includes('\n')) return // Single line — let default paste handle it
+
+	e.preventDefault()
+
+	const lines = text.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0)
+	if (lines.length === 0) return
+
+	// If only one line, just populate the fields
+	if (lines.length === 1) {
+		const parsed = parseIngredient(lines[0])
+		name.value = parsed.name
+		quantity.value = parsed.quantity ?? ''
+		return
+	}
+
+	// Multiple lines — create items for each
+	for (const line of lines) {
+		const parsed = parseIngredient(line)
+		if (!parsed.name) continue
+
+		const areaId = selectedAreaId.value ?? detectArea(parsed.name)
+		await itemsStore.create(props.listId, {
+			name: parsed.name,
+			quantity: parsed.quantity,
+			shopAreaId: areaId,
+		})
+	}
+
+	name.value = ''
+	quantity.value = ''
+	await nextTick()
+	nameRef.value?.focus()
+}
+
 async function onSubmit() {
 	const trimmedName = name.value.trim()
 	if (!trimmedName) return
 
 	closeDropdown()
 
+	const areaId = selectedAreaId.value ?? detectArea(trimmedName)
 	await itemsStore.create(props.listId, {
 		name: trimmedName,
 		quantity: quantity.value.trim() || null,
-		shopAreaId: selectedAreaId.value,
+		shopAreaId: areaId,
 	})
 
 	name.value = ''
@@ -190,7 +366,9 @@ async function onSubmit() {
 
 <style scoped>
 .item-editor {
+	background-color: var(--color-background-dark);
 	border-bottom: 1px solid var(--color-border);
+	padding: 10px 16px;
 }
 
 .item-editor__main {
@@ -198,17 +376,26 @@ async function onSubmit() {
 	flex-direction: row !important;
 	flex-wrap: nowrap !important;
 	align-items: center;
-	height: 44px;
-	padding: 0 12px;
-	gap: 0;
+	height: 40px;
+	gap: 8px;
+	background: var(--color-main-background);
+	border: 2px solid var(--color-border);
+	border-radius: var(--border-radius-large);
+	padding: 0 4px 0 0;
+	transition: border-color 0.15s ease;
+}
+
+.item-editor__main:focus-within {
+	border-color: var(--color-primary-element);
 }
 
 .item-editor__plus {
 	flex: 0 0 auto;
-	font-size: 1.3em;
-	color: var(--color-text-maxcontrast);
-	padding: 0 10px 0 4px;
+	font-size: 1.2em;
+	color: var(--color-primary-element);
+	padding: 0 8px 0 12px;
 	user-select: none;
+	font-weight: 700;
 }
 
 .item-editor__input {
@@ -220,19 +407,21 @@ async function onSubmit() {
 	color: var(--color-main-text);
 	font-size: 0.95em;
 	outline: none;
-	padding: 0 8px;
+	padding: 0;
 }
 
 .item-editor__input::placeholder {
 	color: var(--color-text-maxcontrast);
+	font-style: italic;
 }
 
 .item-editor__qty {
-	flex: 0 0 60px !important;
-	width: 60px;
+	flex: 0 0 50px !important;
+	width: 50px;
 	height: 28px;
-	border: 1px solid var(--color-border-dark);
-	border-radius: var(--border-radius);
+	border: none;
+	border-left: 1px solid var(--color-border);
+	border-radius: 0;
 	background: transparent;
 	color: var(--color-main-text);
 	font-size: 0.85em;
@@ -241,29 +430,26 @@ async function onSubmit() {
 	text-align: center;
 }
 
-.item-editor__qty:focus {
-	border-color: var(--color-primary-element);
-}
-
 .item-editor__qty::placeholder {
 	color: var(--color-text-maxcontrast);
+	font-style: italic;
 }
 
 /* Filterable area dropdown */
 .item-editor__area-wrapper {
 	flex: 0 0 auto !important;
 	position: relative;
-	margin-left: 6px;
 	display: flex;
 	align-items: center;
+	border-left: 1px solid var(--color-border);
 }
 
 .item-editor__area-input {
-	width: 110px;
+	width: 90px;
 	height: 28px;
-	padding: 0 24px 0 8px;
-	border: 1px solid var(--color-border-dark);
-	border-radius: var(--border-radius);
+	padding: 0 22px 0 8px;
+	border: none;
+	border-radius: 0;
 	background: transparent;
 	color: var(--color-main-text);
 	font-size: 0.85em;
@@ -272,12 +458,9 @@ async function onSubmit() {
 	box-sizing: border-box;
 }
 
-.item-editor__area-input:focus {
-	border-color: var(--color-primary-element);
-}
-
 .item-editor__area-input::placeholder {
 	color: var(--color-text-maxcontrast);
+	font-style: italic;
 }
 
 .item-editor__area-clear {

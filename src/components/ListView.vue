@@ -34,12 +34,14 @@
 
 				<!-- Items grouped by shop area -->
 				<div v-for="group in areaGroups" :key="group.areaId ?? 'none'" class="list-view__area-group">
-					<div v-if="group.areaName" class="list-view__area-header">
-						<ShopAreaBadge :name="group.areaName" :color="group.areaColor" />
+					<div v-if="group.areaName"
+						class="list-view__area-header"
+						:style="group.areaColor ? { borderLeftColor: group.areaColor } : {}">
+						<span class="list-view__area-name">{{ group.areaName }}</span>
 						<span class="list-view__area-count">{{ group.itemIds.length }}</span>
 					</div>
 					<div v-else-if="areaGroups.length > 1" class="list-view__area-header">
-						<span class="list-view__area-uncategorized">{{ uncategorizedText }}</span>
+						<span class="list-view__area-name list-view__area-name--muted">{{ uncategorizedText }}</span>
 						<span class="list-view__area-count">{{ group.itemIds.length }}</span>
 					</div>
 
@@ -104,7 +106,6 @@ import { useShopAreasStore } from '../stores/shopAreas'
 import { Permission } from '../types'
 import ItemRow from './ItemRow.vue'
 import ItemEditor from './ItemEditor.vue'
-import ShopAreaBadge from './ShopAreaBadge.vue'
 import ShareDialog from './ShareDialog.vue'
 
 const listsStore = useListsStore()
@@ -252,19 +253,27 @@ async function onUncheckAll() {
 	display: flex;
 	align-items: center;
 	gap: 8px;
-	padding: 8px 16px;
+	padding: 6px 16px;
+	border-left: 3px solid var(--color-border-dark);
 	background-color: var(--color-background-dark);
-	font-size: 0.85em;
+}
+
+.list-view__area-name {
+	font-size: 0.8em;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	color: var(--color-text-maxcontrast);
+}
+
+.list-view__area-name--muted {
+	font-weight: 500;
 }
 
 .list-view__area-count {
 	color: var(--color-text-maxcontrast);
-	font-size: 0.85em;
-}
-
-.list-view__area-uncategorized {
-	font-weight: 500;
-	color: var(--color-text-maxcontrast);
+	font-size: 0.75em;
+	opacity: 0.7;
 }
 
 .list-view__items {

@@ -3,7 +3,8 @@ import { ref, computed } from 'vue'
 import { api } from '../composables/useApi'
 import type { Item } from '../types'
 import { useListsStore } from './lists'
-import { showError } from '@nextcloud/dialogs'
+import { showError, showSuccess } from '@nextcloud/dialogs'
+import { findMatchingItem, mergeQuantities } from '../utils/itemMerge'
 
 export const useItemsStore = defineStore('items', () => {
 	const itemsByList = ref<Record<number, Item[]>>({})
@@ -54,6 +55,17 @@ export const useItemsStore = defineStore('items', () => {
 
 	async function create(listId: number, data: Record<string, unknown>) {
 		try {
+			const existingItems = itemsByList.value[listId] ?? []
+			const match = findMatchingItem(existingItems, data.name as string)
+
+			if (match) {
+				const merged = mergeQuantities(match.quantity, data.quantity as string | null)
+				await api.items.update(listId, match.id, { quantity: merged })
+				await fetchByList(listId)
+				showSuccess(`"${match.name}" updated — quantity merged`)
+				return
+			}
+
 			await api.items.create(listId, data)
 			await fetchByList(listId)
 		} catch (e) {

@@ -1,8 +1,10 @@
 <template>
-	<span
-		class="shop-area-badge"
-		:style="{ backgroundColor: color || 'var(--color-background-dark)' }">
-		{{ name }}
+	<span class="shop-area">
+		<span
+			v-if="color"
+			class="shop-area__dot"
+			:style="{ backgroundColor: color }" />
+		<span class="shop-area__name">{{ name }}</span>
 	</span>
 </template>
 
@@ -14,13 +16,22 @@ defineProps<{
 </script>
 
 <style scoped>
-.shop-area-badge {
-	display: inline-block;
-	padding: 2px 10px;
-	border-radius: var(--border-radius-pill);
-	font-size: 0.8em;
+.shop-area {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.shop-area__dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	flex-shrink: 0;
+}
+
+.shop-area__name {
+	font-size: 0.85em;
 	font-weight: 500;
-	color: #fff;
-	white-space: nowrap;
+	color: var(--color-text-maxcontrast);
 }
 </style>
