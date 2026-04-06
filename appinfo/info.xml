@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	  xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+	<id>shoppinglist</id>
+	<name>Shopping List</name>
+	<summary>Shared shopping lists for your household</summary>
+	<description><![CDATA[Manage shared shopping lists between household members. Create multiple lists, categorize items by shop area, tag items, and collaborate in real-time.]]></description>
+	<version>1.0.0</version>
+	<licence>agpl</licence>
+	<author mail="noreply@example.com">Shopping List</author>
+	<namespace>ShoppingList</namespace>
+	<category>organization</category>
+	<bugs>https://github.com/example/shoppinglist/issues</bugs>
+	<dependencies>
+		<nextcloud min-version="30" max-version="35"/>
+	</dependencies>
+	<navigations>
+		<navigation>
+			<name>Shopping List</name>
+			<route>shoppinglist.page.index</route>
+		</navigation>
+	</navigations>
+</info>

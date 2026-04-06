@@ -1,0 +1,28 @@
+{
+	"name": "nextcloud/shoppinglist",
+	"description": "Shared shopping lists for Nextcloud",
+	"type": "project",
+	"license": "AGPL-3.0-or-later",
+	"require": {
+		"php": "^8.1"
+	},
+	"require-dev": {
+		"nextcloud/ocp": "^30",
+		"phpunit/phpunit": "^10",
+		"vimeo/psalm": "^5"
+	},
+	"autoload": {
+		"psr-4": {
+			"OCA\\ShoppingList\\": "lib/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"OCA\\ShoppingList\\Tests\\": "tests/"
+		}
+	},
+	"scripts": {
+		"test": "phpunit --configuration tests/phpunit.xml",
+		"psalm": "psalm --no-cache"
+	}
+}

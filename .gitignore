@@ -1,0 +1,7 @@
+node_modules/
+vendor/
+js/
+css/
+*.map
+.php-cs-fixer.cache
+node_modules
