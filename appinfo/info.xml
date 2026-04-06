@@ -7,10 +7,10 @@
 	<description><![CDATA[Manage shared shopping lists between household members. Create multiple lists, categorize items by shop area, tag items, and collaborate in real-time.]]></description>
 	<version>1.0.0</version>
 	<licence>agpl</licence>
-	<author mail="noreply@example.com">Shopping List</author>
+	<author mail="adam@otherworld.dev">Adam</author>
 	<namespace>ShoppingList</namespace>
 	<category>organization</category>
-	<bugs>https://github.com/example/shoppinglist/issues</bugs>
+	<bugs>https://github.com/otherworld-dev/Shopping-List/issues</bugs>
 	<dependencies>
 		<nextcloud min-version="30" max-version="35"/>
 	</dependencies>

@@ -1,0 +1,13 @@
+.git
+.github
+.gitignore
+.nextcloudignore
+.php-cs-fixer.cache
+node_modules
+src
+tests
+package.json
+package-lock.json
+tsconfig.json
+vite.config.ts
+*.map
