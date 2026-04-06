@@ -17,6 +17,38 @@ class ShopAreaService {
 	) {
 	}
 
+	private const DEFAULTS = [
+		['Produce', 0, '#4CAF50'],
+		['Dairy', 1, '#2196F3'],
+		['Bakery', 2, '#FF9800'],
+		['Meat & Seafood', 3, '#F44336'],
+		['Frozen', 4, '#00BCD4'],
+		['Beverages', 5, '#9C27B0'],
+		['Snacks', 6, '#FF5722'],
+		['Household', 7, '#607D8B'],
+		['Personal Care', 8, '#E91E63'],
+		['Other', 9, '#9E9E9E'],
+	];
+
+	/**
+	 * Ensure global default shop areas exist. Idempotent.
+	 */
+	public function seedDefaults(): void {
+		$existing = $this->mapper->findGlobalDefaults();
+		if (count($existing) > 0) {
+			return;
+		}
+
+		foreach (self::DEFAULTS as [$name, $sortOrder, $color]) {
+			$area = new ShopArea();
+			$area->setListId(null);
+			$area->setName($name);
+			$area->setSortOrder($sortOrder);
+			$area->setColor($color);
+			$this->mapper->insert($area);
+		}
+	}
+
 	/**
 	 * @return ShopArea[]
 	 */

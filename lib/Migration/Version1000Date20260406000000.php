@@ -200,30 +200,7 @@ class Version1000Date20260406000000 extends SimpleMigrationStep {
 	}
 
 	public function postSchemaChange(IOutput $output, Closure $schemaClosure, array $options): void {
-		// Seed default global shop areas
-		$defaults = [
-			['Produce', 0, '#4CAF50'],
-			['Dairy', 1, '#2196F3'],
-			['Bakery', 2, '#FF9800'],
-			['Meat & Seafood', 3, '#F44336'],
-			['Frozen', 4, '#00BCD4'],
-			['Beverages', 5, '#9C27B0'],
-			['Snacks', 6, '#FF5722'],
-			['Household', 7, '#607D8B'],
-			['Personal Care', 8, '#E91E63'],
-			['Other', 9, '#9E9E9E'],
-		];
-
-		foreach ($defaults as [$name, $sortOrder, $color]) {
-			$qb = $this->db->getQueryBuilder();
-			$qb->insert('shoppinglist_shop_areas')
-				->values([
-					'list_id' => $qb->createNamedParameter(null, \OCP\DB\QueryBuilder\IQueryBuilder::PARAM_NULL),
-					'name' => $qb->createNamedParameter($name),
-					'sort_order' => $qb->createNamedParameter($sortOrder),
-					'color' => $qb->createNamedParameter($color),
-				])
-				->executeStatement();
-		}
+		// Default shop areas are now seeded by ShopAreaService::seedDefaults()
+		// on every app boot, so they survive database resets.
 	}
 }
