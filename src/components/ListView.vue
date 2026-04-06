@@ -51,7 +51,9 @@
 							:key="itemId"
 							:item-id="itemId"
 							:list-id="listsStore.currentList!.id"
-							:can-edit="canEdit" />
+							:can-edit="canEdit"
+							:editing="editingItemId === itemId"
+							@close-edit="editingItemId = null" />
 					</div>
 				</div>
 			</template>
@@ -78,7 +80,8 @@
 					:key="itemId"
 					:item-id="itemId"
 					:list-id="listsStore.currentList!.id"
-					:can-edit="canEdit" />
+					:can-edit="canEdit"
+					:editing="false" />
 			</div>
 		</div>
 
@@ -92,7 +95,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import {
 	NcEmptyContent,
 	NcIconSvgWrapper,
@@ -115,6 +118,33 @@ const shopAreasStore = useShopAreasStore()
 const showChecked = ref(true)
 const showShareDialog = ref(false)
 const currentUserId = getCurrentUser()?.uid ?? ''
+const editingItemId = ref<number | null>(null)
+
+// Capture-phase click listener to bypass Nextcloud's click interception
+// on non-interactive elements. Editable rows use a ::after overlay that
+// makes them clickable; we detect which row was hit via data-item-id.
+function onCaptureClick(e: MouseEvent) {
+	const target = e.target as HTMLElement
+
+	if (target.closest('.item-row__check') || target.closest('.item-row__delete')) return
+	if ((target as HTMLInputElement).type === 'checkbox') return
+
+	const row = target.closest('.item-row:not(.item-row--checked)') as HTMLElement | null
+	if (row) {
+		const idStr = row.getAttribute('data-item-id')
+		if (idStr) {
+			editingItemId.value = parseInt(idStr, 10)
+			return
+		}
+	}
+
+	if (editingItemId.value !== null && !target.closest('.item-row--editing')) {
+		editingItemId.value = null
+	}
+}
+
+onMounted(() => document.addEventListener('click', onCaptureClick, true))
+onUnmounted(() => document.removeEventListener('click', onCaptureClick, true))
 
 // Pre-compute translations once
 const shareText = t('shoppinglist', 'Share')
