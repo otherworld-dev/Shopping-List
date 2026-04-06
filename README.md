@@ -28,14 +28,14 @@ Search for **Shopping List** in your Nextcloud app store and click **Install**.
 
 ### Manual installation
 
-1. Clone this repository into your Nextcloud `apps/` directory:
+1. Clone this repository and copy the app into your Nextcloud `apps/` directory:
    ```bash
-   cd /path/to/nextcloud/apps
-   git clone https://github.com/otherworld-dev/Shopping-List.git shopping_list
+   git clone https://github.com/otherworld-dev/Shopping-List.git
+   cp -r Shopping-List/shopping_list /path/to/nextcloud/apps/
    ```
 2. Install JavaScript dependencies and build:
    ```bash
-   cd shopping_list
+   cd /path/to/nextcloud/apps/shopping_list
    npm ci
    npm run build
    ```
@@ -55,6 +55,7 @@ Search for **Shopping List** in your Nextcloud app store and click **Install**.
 ### Setup
 
 ```bash
+cd shopping_list
 make dev        # install deps + watch mode
 make build      # production build
 make lint       # run ESLint + Stylelint
@@ -65,6 +66,7 @@ make appstore   # build release tarball
 Or without Make:
 
 ```bash
+cd shopping_list
 npm ci
 npm run dev     # watch mode
 npm run build   # production build
@@ -73,14 +75,16 @@ npm run build   # production build
 ### Project structure
 
 ```
-appinfo/          Nextcloud app metadata and routes
-lib/              PHP backend (controllers, services, mappers, migrations)
-src/              Vue 3 + TypeScript frontend
-  components/     Vue components
-  composables/    API client, push notifications
-  stores/         Pinia state management
-  types/          TypeScript interfaces
-templates/        Server-side entry point
+shopping_list/        The Nextcloud app
+  appinfo/            App metadata and routes
+  lib/                PHP backend (controllers, services, mappers, migrations)
+  src/                Vue 3 + TypeScript frontend
+    components/       Vue components
+    composables/      API client, push notifications
+    stores/           Pinia state management
+    types/            TypeScript interfaces
+  templates/          Server-side entry point
+screenshots/          App store screenshots
 ```
 
 ## License
