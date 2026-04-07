@@ -1,5 +1,5 @@
 const appName = "shopping_list";
-const appVersion = "1.0.0";
+const appVersion = "1.0.2";
 const global$1 = globalThis || void 0 || self;
 /**
 * @vue/shared v3.5.32
@@ -9252,15 +9252,15 @@ const _export_sfc$1 = (sfc, props) => {
   }
   return target;
 };
-const _hoisted_1$s = ["aria-hidden", "aria-label"];
-const _hoisted_2$o = {
+const _hoisted_1$x = ["aria-hidden", "aria-label"];
+const _hoisted_2$s = {
   key: 0,
   viewBox: "0 0 24 24",
   xmlns: "http://www.w3.org/2000/svg"
 };
-const _hoisted_3$j = ["d"];
-const _hoisted_4$f = ["innerHTML"];
-const _sfc_main$w = /* @__PURE__ */ defineComponent({
+const _hoisted_3$n = ["d"];
+const _hoisted_4$i = ["innerHTML"];
+const _sfc_main$B = /* @__PURE__ */ defineComponent({
   __name: "NcIconSvgWrapper",
   props: {
     directional: { type: Boolean },
@@ -9300,17 +9300,17 @@ const _sfc_main$w = /* @__PURE__ */ defineComponent({
         }]),
         role: "img"
       }, [
-        !cleanSvg.value ? (openBlock(), createElementBlock("svg", _hoisted_2$o, [
-          createBaseVNode("path", { d: _ctx.path }, null, 8, _hoisted_3$j)
+        !cleanSvg.value ? (openBlock(), createElementBlock("svg", _hoisted_2$s, [
+          createBaseVNode("path", { d: _ctx.path }, null, 8, _hoisted_3$n)
         ])) : (openBlock(), createElementBlock("span", {
           key: 1,
           innerHTML: cleanSvg.value
-        }, null, 8, _hoisted_4$f))
-      ], 10, _hoisted_1$s);
+        }, null, 8, _hoisted_4$i))
+      ], 10, _hoisted_1$x);
     };
   }
 });
-const NcIconSvgWrapper = /* @__PURE__ */ _export_sfc$1(_sfc_main$w, [["__scopeId", "data-v-aaedb1c3"]]);
+const NcIconSvgWrapper = /* @__PURE__ */ _export_sfc$1(_sfc_main$B, [["__scopeId", "data-v-aaedb1c3"]]);
 const NC_ACTIONS_IS_SEMANTIC_MENU = /* @__PURE__ */ Symbol.for("NcActions:isSemanticMenu");
 const NC_ACTIONS_CLOSE_MENU = /* @__PURE__ */ Symbol.for("NcActions:closeMenu");
 const ActionGlobalMixin = {
@@ -9408,7 +9408,7 @@ const ActionTextMixin = {
     }
   }
 };
-const _sfc_main$v = {
+const _sfc_main$A = {
   name: "NcActionButton",
   components: {
     NcIconSvgWrapper
@@ -9555,24 +9555,24 @@ const _sfc_main$v = {
     }
   }
 };
-const _hoisted_1$r = ["role"];
-const _hoisted_2$n = ["aria-label", "disabled", "title", "type"];
-const _hoisted_3$i = { class: "action-button__longtext-wrapper" };
-const _hoisted_4$e = {
+const _hoisted_1$w = ["role"];
+const _hoisted_2$r = ["aria-label", "disabled", "title", "type"];
+const _hoisted_3$m = { class: "action-button__longtext-wrapper" };
+const _hoisted_4$h = {
   key: 0,
   class: "action-button__name"
 };
-const _hoisted_5$9 = ["textContent"];
-const _hoisted_6$7 = {
+const _hoisted_5$c = ["textContent"];
+const _hoisted_6$a = {
   key: 2,
   class: "action-button__text"
 };
-const _hoisted_7$6 = ["textContent"];
+const _hoisted_7$7 = ["textContent"];
 const _hoisted_8$5 = {
   key: 2,
   class: "action-button__pressed-icon material-design-icon"
 };
-function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_NcIconSvgWrapper = resolveComponent("NcIconSvgWrapper");
   return openBlock(), createElementBlock("li", {
     class: normalizeClass(["action", { "action--disabled": $props.disabled }]),
@@ -9597,18 +9597,18 @@ function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
           "aria-hidden": "true"
         }, null, 6)
       ], true),
-      createBaseVNode("span", _hoisted_3$i, [
-        _ctx.name ? (openBlock(), createElementBlock("strong", _hoisted_4$e, toDisplayString(_ctx.name), 1)) : createCommentVNode("", true),
+      createBaseVNode("span", _hoisted_3$m, [
+        _ctx.name ? (openBlock(), createElementBlock("strong", _hoisted_4$h, toDisplayString(_ctx.name), 1)) : createCommentVNode("", true),
         _ctx.isLongText ? (openBlock(), createElementBlock("span", {
           key: 1,
           class: "action-button__longtext",
           textContent: toDisplayString(_ctx.text)
-        }, null, 8, _hoisted_5$9)) : (openBlock(), createElementBlock("span", _hoisted_6$7, toDisplayString(_ctx.text), 1)),
+        }, null, 8, _hoisted_5$c)) : (openBlock(), createElementBlock("span", _hoisted_6$a, toDisplayString(_ctx.text), 1)),
         $props.description ? (openBlock(), createElementBlock("span", {
           key: 3,
           class: "action-button__description",
           textContent: toDisplayString($props.description)
-        }, null, 8, _hoisted_7$6)) : createCommentVNode("", true)
+        }, null, 8, _hoisted_7$7)) : createCommentVNode("", true)
       ]),
       $props.isMenu ? (openBlock(), createBlock(_component_NcIconSvgWrapper, {
         key: 0,
@@ -9621,17 +9621,17 @@ function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
         class: "action-button__pressed-icon"
       }, null, 8, ["path"])) : $options.isChecked === false ? (openBlock(), createElementBlock("span", _hoisted_8$5)) : createCommentVNode("", true),
       createCommentVNode("", true)
-    ], 16, _hoisted_2$n)
-  ], 10, _hoisted_1$r);
+    ], 16, _hoisted_2$r)
+  ], 10, _hoisted_1$w);
 }
-const NcActionButton = /* @__PURE__ */ _export_sfc$1(_sfc_main$v, [["render", _sfc_render$f], ["__scopeId", "data-v-6c2daf4e"]]);
+const NcActionButton = /* @__PURE__ */ _export_sfc$1(_sfc_main$A, [["render", _sfc_render$i], ["__scopeId", "data-v-6c2daf4e"]]);
 const generateOcsUrl = (url2, params, options) => {
   const allOptions = Object.assign({
     ocsVersion: 2
   }, {});
   const version2 = allOptions.ocsVersion === 1 ? 1 : 2;
   const baseURL = getBaseUrl();
-  return baseURL + "/ocs/v" + version2 + ".php" + _generateUrlPath(url2);
+  return baseURL + "/ocs/v" + version2 + ".php" + _generateUrlPath(url2, params);
 };
 const _generateUrlPath = (url2, params, options) => {
   const allOptions = Object.assign({
@@ -9654,7 +9654,7 @@ const _generateUrlPath = (url2, params, options) => {
   if (url2.charAt(0) !== "/") {
     url2 = "/" + url2;
   }
-  return _build(url2, {});
+  return _build(url2, params || {});
 };
 const generateUrl = (url2, params, options) => {
   const allOptions = Object.assign({
@@ -9662,9 +9662,9 @@ const generateUrl = (url2, params, options) => {
   }, {});
   const baseOrRootURL = getRootUrl();
   if (window?.OC?.config?.modRewriteWorking === true && !allOptions.noRewrite) {
-    return baseOrRootURL + _generateUrlPath(url2);
+    return baseOrRootURL + _generateUrlPath(url2, params);
   }
-  return baseOrRootURL + "/index.php" + _generateUrlPath(url2);
+  return baseOrRootURL + "/index.php" + _generateUrlPath(url2, params);
 };
 const imagePath = (app2, file) => {
   if (!file.includes(".")) {
@@ -15875,10 +15875,10 @@ function useNcFormBox() {
     formBoxItemClass: void 0
   });
 }
-const _hoisted_1$q = { class: "button-vue__wrapper" };
-const _hoisted_2$m = { class: "button-vue__icon" };
-const _hoisted_3$h = { class: "button-vue__text" };
-const _sfc_main$u = /* @__PURE__ */ defineComponent({
+const _hoisted_1$v = { class: "button-vue__wrapper" };
+const _hoisted_2$q = { class: "button-vue__icon" };
+const _hoisted_3$l = { class: "button-vue__text" };
+const _sfc_main$z = /* @__PURE__ */ defineComponent({
   __name: "NcButton",
   props: {
     alignment: { default: "center" },
@@ -15971,11 +15971,11 @@ const _sfc_main$u = /* @__PURE__ */ defineComponent({
         "aria-label": _ctx.ariaLabel
       }, attrs.value, { onClick }), {
         default: withCtx(() => [
-          createBaseVNode("span", _hoisted_1$q, [
-            createBaseVNode("span", _hoisted_2$m, [
+          createBaseVNode("span", _hoisted_1$v, [
+            createBaseVNode("span", _hoisted_2$q, [
               renderSlot(_ctx.$slots, "icon", {}, void 0, true)
             ]),
-            createBaseVNode("span", _hoisted_3$h, [
+            createBaseVNode("span", _hoisted_3$l, [
               renderSlot(_ctx.$slots, "default", {}, () => [
                 createTextVNode(toDisplayString(_ctx.text), 1)
               ], true)
@@ -15987,17 +15987,17 @@ const _sfc_main$u = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const NcButton = /* @__PURE__ */ _export_sfc$1(_sfc_main$u, [["__scopeId", "data-v-09093702"]]);
-const _hoisted_1$p = { class: "input-field__main-wrapper" };
-const _hoisted_2$l = ["id", "aria-describedby", "disabled", "placeholder", "type", "value"];
-const _hoisted_3$g = ["for"];
-const _hoisted_4$d = { class: "input-field__icon input-field__icon--leading" };
-const _hoisted_5$8 = {
+const NcButton = /* @__PURE__ */ _export_sfc$1(_sfc_main$z, [["__scopeId", "data-v-09093702"]]);
+const _hoisted_1$u = { class: "input-field__main-wrapper" };
+const _hoisted_2$p = ["id", "aria-describedby", "disabled", "placeholder", "type", "value"];
+const _hoisted_3$k = ["for"];
+const _hoisted_4$g = { class: "input-field__icon input-field__icon--leading" };
+const _hoisted_5$b = {
   key: 2,
   class: "input-field__icon input-field__icon--trailing"
 };
-const _hoisted_6$6 = ["id"];
-const _sfc_main$t = /* @__PURE__ */ defineComponent({
+const _hoisted_6$9 = ["id"];
+const _sfc_main$y = /* @__PURE__ */ defineComponent({
   ...{
     inheritAttrs: false
   },
@@ -16079,7 +16079,7 @@ const _sfc_main$t = /* @__PURE__ */ defineComponent({
           "input-field--legacy": unref(isLegacy)
         }, _ctx.$props.class]])
       }, [
-        createBaseVNode("div", _hoisted_1$p, [
+        createBaseVNode("div", _hoisted_1$u, [
           createBaseVNode("input", mergeProps(_ctx.$attrs, {
             id: _ctx.id,
             ref: "input",
@@ -16091,13 +16091,13 @@ const _sfc_main$t = /* @__PURE__ */ defineComponent({
             type: _ctx.type,
             value: modelValue.value.toString(),
             onInput: handleInput
-          }), null, 16, _hoisted_2$l),
+          }), null, 16, _hoisted_2$p),
           !_ctx.labelOutside && isValidLabel.value ? (openBlock(), createElementBlock("label", {
             key: 0,
             class: "input-field__label",
             for: _ctx.id
-          }, toDisplayString(_ctx.label), 9, _hoisted_3$g)) : createCommentVNode("", true),
-          withDirectives(createBaseVNode("div", _hoisted_4$d, [
+          }, toDisplayString(_ctx.label), 9, _hoisted_3$k)) : createCommentVNode("", true),
+          withDirectives(createBaseVNode("div", _hoisted_4$g, [
             renderSlot(_ctx.$slots, "icon", {}, void 0, true)
           ], 512), [
             [vShow, !!_ctx.$slots.icon]
@@ -16114,7 +16114,7 @@ const _sfc_main$t = /* @__PURE__ */ defineComponent({
               renderSlot(_ctx.$slots, "trailing-button-icon", {}, void 0, true)
             ]),
             _: 3
-          }, 8, ["aria-label", "disabled"])) : _ctx.success || _ctx.error ? (openBlock(), createElementBlock("div", _hoisted_5$8, [
+          }, 8, ["aria-label", "disabled"])) : _ctx.success || _ctx.error ? (openBlock(), createElementBlock("div", _hoisted_5$b, [
             _ctx.success ? (openBlock(), createBlock(NcIconSvgWrapper, {
               key: 0,
               path: unref(mdiCheck)
@@ -16141,12 +16141,12 @@ const _sfc_main$t = /* @__PURE__ */ defineComponent({
             inline: ""
           }, null, 8, ["path"])) : createCommentVNode("", true),
           createTextVNode(" " + toDisplayString(_ctx.helperText), 1)
-        ], 8, _hoisted_6$6)) : createCommentVNode("", true)
+        ], 8, _hoisted_6$9)) : createCommentVNode("", true)
       ], 2);
     };
   }
 });
-const NcInputField = /* @__PURE__ */ _export_sfc$1(_sfc_main$t, [["__scopeId", "data-v-fccfce00"]]);
+const NcInputField = /* @__PURE__ */ _export_sfc$1(_sfc_main$y, [["__scopeId", "data-v-fccfce00"]]);
 var LogLevel = /* @__PURE__ */ ((LogLevel2) => {
   LogLevel2[LogLevel2["Debug"] = 0] = "Debug";
   LogLevel2[LogLevel2["Info"] = 1] = "Info";
@@ -16309,6 +16309,182 @@ register(t49);
     }
   }
 });
+const _sfc_main$x = {
+  name: "NcActionLink",
+  mixins: [ActionTextMixin],
+  inject: {
+    isInSemanticMenu: {
+      from: NC_ACTIONS_IS_SEMANTIC_MENU,
+      default: false
+    }
+  },
+  props: {
+    /**
+     * destionation to link to
+     */
+    href: {
+      type: String,
+      required: true,
+      validator: (value) => {
+        try {
+          return new URL(value);
+        } catch {
+          return value.startsWith("#") || value.startsWith("/");
+        }
+      }
+    },
+    /**
+     * download the link instead of opening
+     */
+    download: {
+      type: String,
+      default: null
+    },
+    /**
+     * target to open the link
+     */
+    target: {
+      type: String,
+      default: "_self",
+      validator: (value) => {
+        return value && (!value.startsWith("_") || ["_blank", "_self", "_parent", "_top"].indexOf(value) > -1);
+      }
+    },
+    /**
+     * Declares a native tooltip when not null
+     */
+    title: {
+      type: String,
+      default: null
+    }
+  }
+};
+const _hoisted_1$t = ["role"];
+const _hoisted_2$o = ["download", "href", "aria-label", "target", "title", "role"];
+const _hoisted_3$j = {
+  key: 0,
+  class: "action-link__longtext-wrapper"
+};
+const _hoisted_4$f = { class: "action-link__name" };
+const _hoisted_5$a = ["textContent"];
+const _hoisted_6$8 = ["textContent"];
+const _hoisted_7$6 = {
+  key: 2,
+  class: "action-link__text"
+};
+function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("li", {
+    class: "action",
+    role: $options.isInSemanticMenu && "presentation"
+  }, [
+    createBaseVNode("a", {
+      download: $props.download,
+      href: $props.href,
+      "aria-label": _ctx.ariaLabel,
+      target: $props.target,
+      title: $props.title,
+      class: "action-link focusable",
+      rel: "nofollow noreferrer noopener",
+      role: $options.isInSemanticMenu && "menuitem",
+      onClick: _cache[0] || (_cache[0] = (...args) => _ctx.onClick && _ctx.onClick(...args))
+    }, [
+      renderSlot(_ctx.$slots, "icon", {}, () => [
+        createBaseVNode("span", {
+          "aria-hidden": "true",
+          class: normalizeClass(["action-link__icon", [_ctx.isIconUrl ? "action-link__icon--url" : _ctx.icon]]),
+          style: normalizeStyle({ backgroundImage: _ctx.isIconUrl ? `url(${_ctx.icon})` : null })
+        }, null, 6)
+      ], true),
+      _ctx.name ? (openBlock(), createElementBlock("span", _hoisted_3$j, [
+        createBaseVNode("strong", _hoisted_4$f, toDisplayString(_ctx.name), 1),
+        _cache[1] || (_cache[1] = createBaseVNode("br", null, null, -1)),
+        createBaseVNode("span", {
+          class: "action-link__longtext",
+          textContent: toDisplayString(_ctx.text)
+        }, null, 8, _hoisted_5$a)
+      ])) : _ctx.isLongText ? (openBlock(), createElementBlock("span", {
+        key: 1,
+        class: "action-link__longtext",
+        textContent: toDisplayString(_ctx.text)
+      }, null, 8, _hoisted_6$8)) : (openBlock(), createElementBlock("span", _hoisted_7$6, toDisplayString(_ctx.text), 1)),
+      createCommentVNode("", true)
+    ], 8, _hoisted_2$o)
+  ], 8, _hoisted_1$t);
+}
+const NcActionLink = /* @__PURE__ */ _export_sfc$1(_sfc_main$x, [["render", _sfc_render$h], ["__scopeId", "data-v-32f01b7a"]]);
+const _sfc_main$w = {
+  name: "NcActionRouter",
+  mixins: [ActionTextMixin],
+  inject: {
+    isInSemanticMenu: {
+      from: NC_ACTIONS_IS_SEMANTIC_MENU,
+      default: false
+    }
+  },
+  props: {
+    /**
+     * router-link to prop [https://router.vuejs.org/api/#to](https://router.vuejs.org/api/#to)
+     */
+    to: {
+      type: [String, Object],
+      required: true
+    }
+  }
+};
+const _hoisted_1$s = ["role"];
+const _hoisted_2$n = {
+  key: 0,
+  class: "action-router__longtext-wrapper"
+};
+const _hoisted_3$i = { class: "action-router__name" };
+const _hoisted_4$e = ["textContent"];
+const _hoisted_5$9 = ["textContent"];
+const _hoisted_6$7 = {
+  key: 2,
+  class: "action-router__text"
+};
+function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_RouterLink = resolveComponent("RouterLink");
+  return openBlock(), createElementBlock("li", {
+    class: "action",
+    role: $options.isInSemanticMenu && "presentation"
+  }, [
+    createVNode(_component_RouterLink, {
+      "aria-label": _ctx.ariaLabel,
+      class: "action-router focusable",
+      rel: "nofollow noreferrer noopener",
+      role: $options.isInSemanticMenu && "menuitem",
+      title: _ctx.title,
+      to: $props.to,
+      onClick: _ctx.onClick
+    }, {
+      default: withCtx(() => [
+        renderSlot(_ctx.$slots, "icon", {}, () => [
+          createBaseVNode("span", {
+            "aria-hidden": "true",
+            class: normalizeClass(["action-router__icon", [_ctx.isIconUrl ? "action-router__icon--url" : _ctx.icon]]),
+            style: normalizeStyle({ backgroundImage: _ctx.isIconUrl ? `url(${_ctx.icon})` : null })
+          }, null, 6)
+        ], true),
+        _ctx.name ? (openBlock(), createElementBlock("span", _hoisted_2$n, [
+          createBaseVNode("strong", _hoisted_3$i, toDisplayString(_ctx.name), 1),
+          _cache[0] || (_cache[0] = createBaseVNode("br", null, null, -1)),
+          createBaseVNode("span", {
+            class: "action-router__longtext",
+            textContent: toDisplayString(_ctx.text)
+          }, null, 8, _hoisted_4$e)
+        ])) : _ctx.isLongText ? (openBlock(), createElementBlock("span", {
+          key: 1,
+          class: "action-router__longtext",
+          textContent: toDisplayString(_ctx.text)
+        }, null, 8, _hoisted_5$9)) : (openBlock(), createElementBlock("span", _hoisted_6$7, toDisplayString(_ctx.text), 1)),
+        createCommentVNode("", true)
+      ]),
+      _: 3
+    }, 8, ["aria-label", "role", "title", "to", "onClick"])
+  ], 8, _hoisted_1$s);
+}
+const NcActionRouter = /* @__PURE__ */ _export_sfc$1(_sfc_main$w, [["render", _sfc_render$g], ["__scopeId", "data-v-87267750"]]);
 function getTrapStack() {
   window._nc_focus_trap ??= [];
   return window._nc_focus_trap;
@@ -20260,7 +20436,7 @@ const style0 = {
 };
 const theme = "nc-popover-9";
 Ht$1.themes[theme] = structuredClone(Ht$1.themes.dropdown);
-const _sfc_main$s = {
+const _sfc_main$v = {
   name: "NcPopover",
   components: {
     Dropdown: kt,
@@ -20583,7 +20759,7 @@ const _sfc_main$s = {
     }
   }
 };
-function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_NcPopoverTriggerProvider = resolveComponent("NcPopoverTriggerProvider");
   const _component_Dropdown = resolveComponent("Dropdown");
   return openBlock(), createBlock(_component_Dropdown, {
@@ -20633,7 +20809,7 @@ function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
 const cssModules = {
   "$style": style0
 };
-const NcPopover = /* @__PURE__ */ _export_sfc$1(_sfc_main$s, [["render", _sfc_render$e], ["__cssModules", cssModules]]);
+const NcPopover = /* @__PURE__ */ _export_sfc$1(_sfc_main$v, [["render", _sfc_render$f], ["__cssModules", cssModules]]);
 const _sfc_main$1$4 = {
   name: "DotsHorizontalIcon",
   emits: ["click"],
@@ -20651,11 +20827,11 @@ const _sfc_main$1$4 = {
     }
   }
 };
-const _hoisted_1$o = ["aria-hidden", "aria-label"];
-const _hoisted_2$k = ["fill", "width", "height"];
-const _hoisted_3$f = { d: "M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z" };
-const _hoisted_4$c = { key: 0 };
-function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$r = ["aria-hidden", "aria-label"];
+const _hoisted_2$m = ["fill", "width", "height"];
+const _hoisted_3$h = { d: "M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z" };
+const _hoisted_4$d = { key: 0 };
+function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("span", mergeProps(_ctx.$attrs, {
     "aria-hidden": $props.title ? null : "true",
     "aria-label": $props.title,
@@ -20670,13 +20846,13 @@ function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
       height: $props.size,
       viewBox: "0 0 24 24"
     }, [
-      createBaseVNode("path", _hoisted_3$f, [
-        $props.title ? (openBlock(), createElementBlock("title", _hoisted_4$c, toDisplayString($props.title), 1)) : createCommentVNode("", true)
+      createBaseVNode("path", _hoisted_3$h, [
+        $props.title ? (openBlock(), createElementBlock("title", _hoisted_4$d, toDisplayString($props.title), 1)) : createCommentVNode("", true)
       ])
-    ], 8, _hoisted_2$k))
-  ], 16, _hoisted_1$o);
+    ], 8, _hoisted_2$m))
+  ], 16, _hoisted_1$r);
 }
-const IconDotsHorizontal = /* @__PURE__ */ _export_sfc$1(_sfc_main$1$4, [["render", _sfc_render$d]]);
+const IconDotsHorizontal = /* @__PURE__ */ _export_sfc$1(_sfc_main$1$4, [["render", _sfc_render$e]]);
 register(t4);
 function isSlotPopulated(vnodes) {
   return Array.isArray(vnodes) && vnodes.some((node) => {
@@ -20696,7 +20872,7 @@ function isSlotPopulated(vnodes) {
   });
 }
 const focusableSelector = ".focusable";
-const _sfc_main$r = {
+const _sfc_main$u = {
   name: "NcActions",
   components: {
     NcButton,
@@ -21381,7 +21557,62 @@ const _sfc_main$r = {
     );
   }
 };
-const NcActions = /* @__PURE__ */ _export_sfc$1(_sfc_main$r, [["__scopeId", "data-v-5f7eed6b"]]);
+const NcActions = /* @__PURE__ */ _export_sfc$1(_sfc_main$u, [["__scopeId", "data-v-5f7eed6b"]]);
+const _sfc_main$t = {
+  name: "NcActionText",
+  mixins: [ActionTextMixin],
+  inject: {
+    isInSemanticMenu: {
+      from: NC_ACTIONS_IS_SEMANTIC_MENU,
+      default: false
+    }
+  }
+};
+const _hoisted_1$q = ["role"];
+const _hoisted_2$l = {
+  key: 0,
+  class: "action-text__longtext-wrapper"
+};
+const _hoisted_3$g = { class: "action-text__name" };
+const _hoisted_4$c = ["textContent"];
+const _hoisted_5$8 = ["textContent"];
+const _hoisted_6$6 = {
+  key: 2,
+  class: "action-text__text"
+};
+function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("li", {
+    class: "action",
+    role: $options.isInSemanticMenu && "presentation"
+  }, [
+    createBaseVNode("span", {
+      class: "action-text",
+      onClick: _cache[0] || (_cache[0] = (...args) => _ctx.onClick && _ctx.onClick(...args))
+    }, [
+      renderSlot(_ctx.$slots, "icon", {}, () => [
+        _ctx.icon !== "" ? (openBlock(), createElementBlock("span", {
+          key: 0,
+          "aria-hidden": "true",
+          class: normalizeClass(["action-text__icon", [_ctx.isIconUrl ? "action-text__icon--url" : _ctx.icon]]),
+          style: normalizeStyle({ backgroundImage: _ctx.isIconUrl ? `url(${_ctx.icon})` : null })
+        }, null, 6)) : createCommentVNode("", true)
+      ], true),
+      _ctx.name ? (openBlock(), createElementBlock("span", _hoisted_2$l, [
+        createBaseVNode("strong", _hoisted_3$g, toDisplayString(_ctx.name), 1),
+        createBaseVNode("span", {
+          class: "action-text__longtext",
+          textContent: toDisplayString(_ctx.text)
+        }, null, 8, _hoisted_4$c)
+      ])) : _ctx.isLongText ? (openBlock(), createElementBlock("span", {
+        key: 1,
+        class: "action-text__longtext",
+        textContent: toDisplayString(_ctx.text)
+      }, null, 8, _hoisted_5$8)) : (openBlock(), createElementBlock("span", _hoisted_6$6, toDisplayString(_ctx.text), 1)),
+      createCommentVNode("", true)
+    ])
+  ], 8, _hoisted_1$q);
+}
+const NcActionText = /* @__PURE__ */ _export_sfc$1(_sfc_main$t, [["render", _sfc_render$d], ["__scopeId", "data-v-fa684b48"]]);
 function tryOnScopeDispose(fn2, failSilently) {
   if (getCurrentScope()) {
     onScopeDispose(fn2, failSilently);
@@ -21389,6 +21620,16 @@ function tryOnScopeDispose(fn2, failSilently) {
   }
   return false;
 }
+const localProvidedStateMap = /* @__PURE__ */ new WeakMap();
+const injectLocal = /* @__NO_SIDE_EFFECTS__ */ (...args) => {
+  var _getCurrentInstance;
+  const key = args[0];
+  const instance = (_getCurrentInstance = getCurrentInstance()) === null || _getCurrentInstance === void 0 ? void 0 : _getCurrentInstance.proxy;
+  const owner = instance !== null && instance !== void 0 ? instance : getCurrentScope();
+  if (owner == null && !hasInjectionContext()) throw new Error("injectLocal must be called in setup");
+  if (owner && localProvidedStateMap.has(owner) && key in localProvidedStateMap.get(owner)) return localProvidedStateMap.get(owner)[key];
+  return inject(...args);
+};
 const isClient = typeof window !== "undefined" && typeof document !== "undefined";
 typeof WorkerGlobalScope !== "undefined" && globalThis instanceof WorkerGlobalScope;
 const notNullish = (val) => val != null;
@@ -21396,8 +21637,35 @@ const toString2 = Object.prototype.toString;
 const isObject = (val) => toString2.call(val) === "[object Object]";
 const noop$1 = () => {
 };
+function pxValue(px) {
+  return px.endsWith("rem") ? Number.parseFloat(px) * 16 : Number.parseFloat(px);
+}
 function toArray(value) {
   return Array.isArray(value) ? value : [value];
+}
+// @__NO_SIDE_EFFECTS__
+function createSharedComposable(composable) {
+  if (!isClient) return composable;
+  let subscribers = 0;
+  let state;
+  let scope;
+  const dispose = () => {
+    subscribers -= 1;
+    if (scope && subscribers <= 0) {
+      scope.stop();
+      state = void 0;
+      scope = void 0;
+    }
+  };
+  return ((...args) => {
+    subscribers += 1;
+    if (!scope) {
+      scope = effectScope(true);
+      state = scope.run(() => composable(...args));
+    }
+    tryOnScopeDispose(dispose);
+    return state;
+  });
 }
 function watchImmediate(source, cb, options) {
   return watch(source, cb, {
@@ -21436,6 +21704,85 @@ function useEventListener(...args) {
       cleanups.forEach((fn2) => fn2());
     });
   }, { flush: "post" });
+}
+function onClickOutside(target, handler, options = {}) {
+  const { window: window$1 = defaultWindow, ignore = [], capture = true, detectIframe = false, controls = false } = options;
+  if (!window$1) return controls ? {
+    stop: noop$1,
+    cancel: noop$1,
+    trigger: noop$1
+  } : noop$1;
+  let shouldListen = true;
+  const shouldIgnore = (event) => {
+    return toValue(ignore).some((target$1) => {
+      if (typeof target$1 === "string") return Array.from(window$1.document.querySelectorAll(target$1)).some((el) => el === event.target || event.composedPath().includes(el));
+      else {
+        const el = unrefElement(target$1);
+        return el && (event.target === el || event.composedPath().includes(el));
+      }
+    });
+  };
+  function hasMultipleRoots(target$1) {
+    const vm = toValue(target$1);
+    return vm && vm.$.subTree.shapeFlag === 16;
+  }
+  function checkMultipleRoots(target$1, event) {
+    const vm = toValue(target$1);
+    const children = vm.$.subTree && vm.$.subTree.children;
+    if (children == null || !Array.isArray(children)) return false;
+    return children.some((child) => child.el === event.target || event.composedPath().includes(child.el));
+  }
+  const listener = (event) => {
+    const el = unrefElement(target);
+    if (event.target == null) return;
+    if (!(el instanceof Element) && hasMultipleRoots(target) && checkMultipleRoots(target, event)) return;
+    if (!el || el === event.target || event.composedPath().includes(el)) return;
+    if ("detail" in event && event.detail === 0) shouldListen = !shouldIgnore(event);
+    if (!shouldListen) {
+      shouldListen = true;
+      return;
+    }
+    handler(event);
+  };
+  let isProcessingClick = false;
+  const cleanup = [
+    useEventListener(window$1, "click", (event) => {
+      if (!isProcessingClick) {
+        isProcessingClick = true;
+        setTimeout(() => {
+          isProcessingClick = false;
+        }, 0);
+        listener(event);
+      }
+    }, {
+      passive: true,
+      capture
+    }),
+    useEventListener(window$1, "pointerdown", (e) => {
+      const el = unrefElement(target);
+      shouldListen = !shouldIgnore(e) && !!(el && !e.composedPath().includes(el));
+    }, { passive: true }),
+    detectIframe && useEventListener(window$1, "blur", (event) => {
+      setTimeout(() => {
+        var _window$document$acti;
+        const el = unrefElement(target);
+        if (((_window$document$acti = window$1.document.activeElement) === null || _window$document$acti === void 0 ? void 0 : _window$document$acti.tagName) === "IFRAME" && !(el === null || el === void 0 ? void 0 : el.contains(window$1.document.activeElement))) handler(event);
+      }, 0);
+    }, { passive: true })
+  ].filter(Boolean);
+  const stop = () => cleanup.forEach((fn2) => fn2());
+  if (controls) return {
+    stop,
+    cancel: () => {
+      shouldListen = false;
+    },
+    trigger: (event) => {
+      shouldListen = true;
+      listener(event);
+      shouldListen = false;
+    }
+  };
+  return stop;
 }
 // @__NO_SIDE_EFFECTS__
 function useMounted() {
@@ -21550,6 +21897,46 @@ function useActiveElement(options = {}) {
   if (triggerOnRemoval) onElementRemoval(activeElement, trigger2, { document: document$1 });
   trigger2();
   return activeElement;
+}
+const ssrWidthSymbol = /* @__PURE__ */ Symbol("vueuse-ssr-width");
+// @__NO_SIDE_EFFECTS__
+function useSSRWidth() {
+  const ssrWidth = hasInjectionContext() ? /* @__PURE__ */ injectLocal(ssrWidthSymbol, null) : null;
+  return typeof ssrWidth === "number" ? ssrWidth : void 0;
+}
+function useMediaQuery(query, options = {}) {
+  const { window: window$1 = defaultWindow, ssrWidth = /* @__PURE__ */ useSSRWidth() } = options;
+  const isSupported = /* @__PURE__ */ useSupported(() => window$1 && "matchMedia" in window$1 && typeof window$1.matchMedia === "function");
+  const ssrSupport = /* @__PURE__ */ shallowRef(typeof ssrWidth === "number");
+  const mediaQuery = /* @__PURE__ */ shallowRef();
+  const matches2 = /* @__PURE__ */ shallowRef(false);
+  const handler = (event) => {
+    matches2.value = event.matches;
+  };
+  watchEffect(() => {
+    if (ssrSupport.value) {
+      ssrSupport.value = !isSupported.value;
+      matches2.value = toValue(query).split(",").some((queryString) => {
+        const not = queryString.includes("not all");
+        const minWidth = queryString.match(/\(\s*min-width:\s*(-?\d+(?:\.\d*)?[a-z]+\s*)\)/);
+        const maxWidth = queryString.match(/\(\s*max-width:\s*(-?\d+(?:\.\d*)?[a-z]+\s*)\)/);
+        let res = Boolean(minWidth || maxWidth);
+        if (minWidth && res) res = ssrWidth >= pxValue(minWidth[1]);
+        if (maxWidth && res) res = ssrWidth <= pxValue(maxWidth[1]);
+        return not ? !res : res;
+      });
+      return;
+    }
+    if (!isSupported.value) return;
+    mediaQuery.value = window$1.matchMedia(toValue(query));
+    matches2.value = mediaQuery.value.matches;
+  });
+  useEventListener(mediaQuery, "change", handler, { passive: true });
+  return computed(() => matches2.value);
+}
+// @__NO_SIDE_EFFECTS__
+function usePreferredDark(options) {
+  return useMediaQuery("(prefers-color-scheme: dark)", options);
 }
 const EVENT_FOCUS_IN = "focusin";
 const EVENT_FOCUS_OUT = "focusout";
@@ -21985,9 +22372,9 @@ const _sfc_main$1$3 = /* @__PURE__ */ defineComponent({
   }
 });
 const NcAppContentDetailsToggle = /* @__PURE__ */ _export_sfc$1(_sfc_main$1$3, [["__scopeId", "data-v-a28923a1"]]);
-const browserStorage = getBuilder("nextcloud").persist().build();
+const browserStorage$1 = getBuilder("nextcloud").persist().build();
 const instanceName = getCapabilities().theming?.name ?? "Nextcloud";
-const _sfc_main$q = {
+const _sfc_main$s = {
   name: "NcAppContent",
   components: {
     NcAppContentDetailsToggle,
@@ -22202,14 +22589,14 @@ const _sfc_main$q = {
     },
     handlePaneResize(event) {
       const listPaneSize = parseInt(event.panes[0].size, 10);
-      browserStorage.setItem(this.paneConfigID, JSON.stringify(listPaneSize));
+      browserStorage$1.setItem(this.paneConfigID, JSON.stringify(listPaneSize));
       this.listPaneSize = listPaneSize;
       this.$emit("resizeList", { size: listPaneSize });
       logger.debug("[NcAppContent] pane config", { listPaneSize });
     },
     // browserStorage is not reactive, we need to update this manually
     restorePaneConfig() {
-      const listPaneSize = parseInt(browserStorage.getItem(this.paneConfigID), 10);
+      const listPaneSize = parseInt(browserStorage$1.getItem(this.paneConfigID), 10);
       if (!isNaN(listPaneSize) && listPaneSize !== this.listPaneSize) {
         logger.debug("[NcAppContent] pane config", { listPaneSize });
         this.listPaneSize = listPaneSize;
@@ -22224,12 +22611,12 @@ const _sfc_main$q = {
     }
   }
 };
-const _hoisted_1$n = {
+const _hoisted_1$p = {
   key: 0,
   class: "hidden-visually"
 };
-const _hoisted_2$j = { class: "app-content-wrapper__list" };
-const _hoisted_3$e = {
+const _hoisted_2$k = { class: "app-content-wrapper__list" };
+const _hoisted_3$f = {
   key: 1,
   class: "app-content-wrapper"
 };
@@ -22241,7 +22628,7 @@ function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
     id: "app-content-vue",
     class: normalizeClass(["app-content no-snapper", { "app-content--has-list": !!_ctx.$slots.list }])
   }, [
-    $props.pageHeading ? (openBlock(), createElementBlock("h1", _hoisted_1$n, toDisplayString($props.pageHeading), 1)) : createCommentVNode("", true),
+    $props.pageHeading ? (openBlock(), createElementBlock("h1", _hoisted_1$p, toDisplayString($props.pageHeading), 1)) : createCommentVNode("", true),
     !!_ctx.$slots.list ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
       $setup.isMobile || $props.layout === "no-split" ? (openBlock(), createElementBlock("div", {
         key: 0,
@@ -22255,13 +22642,13 @@ function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
           key: 0,
           onClick: withModifiers($options.hideDetails, ["stop", "prevent"])
         }, null, 8, ["onClick"])) : createCommentVNode("", true),
-        withDirectives(createBaseVNode("div", _hoisted_2$j, [
+        withDirectives(createBaseVNode("div", _hoisted_2$k, [
           renderSlot(_ctx.$slots, "list", {}, void 0, true)
         ], 512), [
           [vShow, !$props.showDetails]
         ]),
         $props.showDetails ? renderSlot(_ctx.$slots, "default", { key: 1 }, void 0, true) : createCommentVNode("", true)
-      ], 2)) : $props.layout === "vertical-split" || $props.layout === "horizontal-split" ? (openBlock(), createElementBlock("div", _hoisted_3$e, [
+      ], 2)) : $props.layout === "vertical-split" || $props.layout === "horizontal-split" ? (openBlock(), createElementBlock("div", _hoisted_3$f, [
         createVNode(_component_Splitpanes, {
           horizontal: $props.layout === "horizontal-split",
           class: normalizeClass(["default-theme", {
@@ -22302,17 +22689,17 @@ function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
     !_ctx.$slots.list ? renderSlot(_ctx.$slots, "default", { key: 2 }, void 0, true) : createCommentVNode("", true)
   ], 2);
 }
-const NcAppContent = /* @__PURE__ */ _export_sfc$1(_sfc_main$q, [["render", _sfc_render$c], ["__scopeId", "data-v-ea1e6879"]]);
-const _sfc_main$p = {
+const NcAppContent = /* @__PURE__ */ _export_sfc$1(_sfc_main$s, [["render", _sfc_render$c], ["__scopeId", "data-v-ea1e6879"]]);
+const _sfc_main$r = {
   name: "NcAppNavigationList"
 };
-const _hoisted_1$m = { class: "app-navigation-list" };
+const _hoisted_1$o = { class: "app-navigation-list" };
 function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("ul", _hoisted_1$m, [
+  return openBlock(), createElementBlock("ul", _hoisted_1$o, [
     renderSlot(_ctx.$slots, "default", {}, void 0, true)
   ]);
 }
-const NcAppNavigationList = /* @__PURE__ */ _export_sfc$1(_sfc_main$p, [["render", _sfc_render$b], ["__scopeId", "data-v-d72957ed"]]);
+const NcAppNavigationList = /* @__PURE__ */ _export_sfc$1(_sfc_main$r, [["render", _sfc_render$b], ["__scopeId", "data-v-d72957ed"]]);
 /*!
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -22354,9 +22741,9 @@ const _sfc_main$1$2 = /* @__PURE__ */ defineComponent({
   }
 });
 const NcAppNavigationToggle = /* @__PURE__ */ _export_sfc$1(_sfc_main$1$2, [["__scopeId", "data-v-5a15295d"]]);
-const _hoisted_1$l = ["aria-hidden", "aria-label", "aria-labelledby", "inert"];
-const _hoisted_2$i = { class: "app-navigation__search" };
-const _sfc_main$o = /* @__PURE__ */ defineComponent({
+const _hoisted_1$n = ["aria-hidden", "aria-label", "aria-labelledby", "inert"];
+const _hoisted_2$j = { class: "app-navigation__search" };
+const _sfc_main$q = /* @__PURE__ */ defineComponent({
   __name: "NcAppNavigation",
   props: {
     ariaLabel: {},
@@ -22446,7 +22833,7 @@ const _sfc_main$o = /* @__PURE__ */ defineComponent({
           inert: !open.value || void 0,
           onKeydown: withKeys(handleEsc, ["esc"])
         }, [
-          createBaseVNode("div", _hoisted_2$i, [
+          createBaseVNode("div", _hoisted_2$j, [
             renderSlot(_ctx.$slots, "search", {}, void 0, true)
           ]),
           createBaseVNode("div", {
@@ -22464,7 +22851,7 @@ const _sfc_main$o = /* @__PURE__ */ defineComponent({
             _: 3
           })) : createCommentVNode("", true),
           renderSlot(_ctx.$slots, "footer", {}, void 0, true)
-        ], 40, _hoisted_1$l),
+        ], 40, _hoisted_1$n),
         createVNode(NcAppNavigationToggle, {
           open: open.value,
           "onUpdate:open": toggleNavigation
@@ -22473,8 +22860,8 @@ const _sfc_main$o = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const NcAppNavigation = /* @__PURE__ */ _export_sfc$1(_sfc_main$o, [["__scopeId", "data-v-d5ce90cd"]]);
-const _sfc_main$n = {
+const NcAppNavigation = /* @__PURE__ */ _export_sfc$1(_sfc_main$q, [["__scopeId", "data-v-d5ce90cd"]]);
+const _sfc_main$p = {
   name: "NcAppNavigationCaption",
   components: {
     NcActions
@@ -22531,7 +22918,7 @@ const _sfc_main$n = {
     }
   }
 };
-const _hoisted_1$k = {
+const _hoisted_1$m = {
   key: 0,
   class: "app-navigation-caption__actions"
 };
@@ -22550,7 +22937,7 @@ function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
         ]),
         _: 1
       }, 8, ["id"])),
-      !!_ctx.$slots.actions ? (openBlock(), createElementBlock("div", _hoisted_1$k, [
+      !!_ctx.$slots.actions ? (openBlock(), createElementBlock("div", _hoisted_1$m, [
         createVNode(_component_NcActions, normalizeProps(guardReactiveProps($options.actionsProps)), {
           icon: withCtx(() => [
             renderSlot(_ctx.$slots, "actionsTriggerIcon", {}, void 0, true)
@@ -22565,8 +22952,8 @@ function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
     _: 3
   }, 8, ["class"]);
 }
-const NcAppNavigationCaption = /* @__PURE__ */ _export_sfc$1(_sfc_main$n, [["render", _sfc_render$a], ["__scopeId", "data-v-21e6b451"]]);
-const _sfc_main$m = {
+const NcAppNavigationCaption = /* @__PURE__ */ _export_sfc$1(_sfc_main$p, [["render", _sfc_render$a], ["__scopeId", "data-v-21e6b451"]]);
+const _sfc_main$o = {
   name: "ChevronDownIcon",
   emits: ["click"],
   props: {
@@ -22583,9 +22970,9 @@ const _sfc_main$m = {
     }
   }
 };
-const _hoisted_1$j = ["aria-hidden", "aria-label"];
-const _hoisted_2$h = ["fill", "width", "height"];
-const _hoisted_3$d = { d: "M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" };
+const _hoisted_1$l = ["aria-hidden", "aria-label"];
+const _hoisted_2$i = ["fill", "width", "height"];
+const _hoisted_3$e = { d: "M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" };
 const _hoisted_4$b = { key: 0 };
 function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("span", mergeProps(_ctx.$attrs, {
@@ -22602,14 +22989,14 @@ function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
       height: $props.size,
       viewBox: "0 0 24 24"
     }, [
-      createBaseVNode("path", _hoisted_3$d, [
+      createBaseVNode("path", _hoisted_3$e, [
         $props.title ? (openBlock(), createElementBlock("title", _hoisted_4$b, toDisplayString($props.title), 1)) : createCommentVNode("", true)
       ])
-    ], 8, _hoisted_2$h))
-  ], 16, _hoisted_1$j);
+    ], 8, _hoisted_2$i))
+  ], 16, _hoisted_1$l);
 }
-const ChevronDown = /* @__PURE__ */ _export_sfc$1(_sfc_main$m, [["render", _sfc_render$9]]);
-const _sfc_main$l = {
+const ChevronDown = /* @__PURE__ */ _export_sfc$1(_sfc_main$o, [["render", _sfc_render$9]]);
+const _sfc_main$n = {
   name: "ChevronUpIcon",
   emits: ["click"],
   props: {
@@ -22626,9 +23013,9 @@ const _sfc_main$l = {
     }
   }
 };
-const _hoisted_1$i = ["aria-hidden", "aria-label"];
-const _hoisted_2$g = ["fill", "width", "height"];
-const _hoisted_3$c = { d: "M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" };
+const _hoisted_1$k = ["aria-hidden", "aria-label"];
+const _hoisted_2$h = ["fill", "width", "height"];
+const _hoisted_3$d = { d: "M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" };
 const _hoisted_4$a = { key: 0 };
 function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("span", mergeProps(_ctx.$attrs, {
@@ -22645,14 +23032,14 @@ function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
       height: $props.size,
       viewBox: "0 0 24 24"
     }, [
-      createBaseVNode("path", _hoisted_3$c, [
+      createBaseVNode("path", _hoisted_3$d, [
         $props.title ? (openBlock(), createElementBlock("title", _hoisted_4$a, toDisplayString($props.title), 1)) : createCommentVNode("", true)
       ])
-    ], 8, _hoisted_2$g))
-  ], 16, _hoisted_1$i);
+    ], 8, _hoisted_2$h))
+  ], 16, _hoisted_1$k);
 }
-const ChevronUp = /* @__PURE__ */ _export_sfc$1(_sfc_main$l, [["render", _sfc_render$8]]);
-const _sfc_main$k = {
+const ChevronUp = /* @__PURE__ */ _export_sfc$1(_sfc_main$n, [["render", _sfc_render$8]]);
+const _sfc_main$m = {
   name: "ArrowRightIcon",
   emits: ["click"],
   props: {
@@ -22669,9 +23056,9 @@ const _sfc_main$k = {
     }
   }
 };
-const _hoisted_1$h = ["aria-hidden", "aria-label"];
-const _hoisted_2$f = ["fill", "width", "height"];
-const _hoisted_3$b = { d: "M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" };
+const _hoisted_1$j = ["aria-hidden", "aria-label"];
+const _hoisted_2$g = ["fill", "width", "height"];
+const _hoisted_3$c = { d: "M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" };
 const _hoisted_4$9 = { key: 0 };
 function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("span", mergeProps(_ctx.$attrs, {
@@ -22688,14 +23075,14 @@ function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
       height: $props.size,
       viewBox: "0 0 24 24"
     }, [
-      createBaseVNode("path", _hoisted_3$b, [
+      createBaseVNode("path", _hoisted_3$c, [
         $props.title ? (openBlock(), createElementBlock("title", _hoisted_4$9, toDisplayString($props.title), 1)) : createCommentVNode("", true)
       ])
-    ], 8, _hoisted_2$f))
-  ], 16, _hoisted_1$h);
+    ], 8, _hoisted_2$g))
+  ], 16, _hoisted_1$j);
 }
-const IconArrowRight = /* @__PURE__ */ _export_sfc$1(_sfc_main$k, [["render", _sfc_render$7]]);
-const _sfc_main$j = {
+const IconArrowRight = /* @__PURE__ */ _export_sfc$1(_sfc_main$m, [["render", _sfc_render$7]]);
+const _sfc_main$l = {
   name: "CloseIcon",
   emits: ["click"],
   props: {
@@ -22712,9 +23099,9 @@ const _sfc_main$j = {
     }
   }
 };
-const _hoisted_1$g = ["aria-hidden", "aria-label"];
-const _hoisted_2$e = ["fill", "width", "height"];
-const _hoisted_3$a = { d: "M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" };
+const _hoisted_1$i = ["aria-hidden", "aria-label"];
+const _hoisted_2$f = ["fill", "width", "height"];
+const _hoisted_3$b = { d: "M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" };
 const _hoisted_4$8 = { key: 0 };
 function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("span", mergeProps(_ctx.$attrs, {
@@ -22731,15 +23118,15 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
       height: $props.size,
       viewBox: "0 0 24 24"
     }, [
-      createBaseVNode("path", _hoisted_3$a, [
+      createBaseVNode("path", _hoisted_3$b, [
         $props.title ? (openBlock(), createElementBlock("title", _hoisted_4$8, toDisplayString($props.title), 1)) : createCommentVNode("", true)
       ])
-    ], 8, _hoisted_2$e))
-  ], 16, _hoisted_1$g);
+    ], 8, _hoisted_2$f))
+  ], 16, _hoisted_1$i);
 }
-const IconClose = /* @__PURE__ */ _export_sfc$1(_sfc_main$j, [["render", _sfc_render$6]]);
+const IconClose = /* @__PURE__ */ _export_sfc$1(_sfc_main$l, [["render", _sfc_render$6]]);
 register(t14);
-const _sfc_main$i = {
+const _sfc_main$k = {
   name: "NcInputConfirmCancel",
   components: {
     IconArrowRight,
@@ -22802,13 +23189,13 @@ const _sfc_main$i = {
     }
   }
 };
-const _hoisted_1$f = { class: "app-navigation-input-confirm" };
-const _hoisted_2$d = ["placeholder"];
+const _hoisted_1$h = { class: "app-navigation-input-confirm" };
+const _hoisted_2$e = ["placeholder"];
 function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_IconArrowRight = resolveComponent("IconArrowRight");
   const _component_NcButton = resolveComponent("NcButton");
   const _component_IconClose = resolveComponent("IconClose");
-  return openBlock(), createElementBlock("div", _hoisted_1$f, [
+  return openBlock(), createElementBlock("div", _hoisted_1$h, [
     createBaseVNode("form", {
       onSubmit: _cache[1] || (_cache[1] = withModifiers((...args) => $options.confirm && $options.confirm(...args), ["prevent"])),
       onKeydown: _cache[2] || (_cache[2] = withKeys(withModifiers((...args) => $options.cancel && $options.cancel(...args), ["exact", "stop", "prevent"]), ["esc"])),
@@ -22821,7 +23208,7 @@ function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
         type: "text",
         class: "app-navigation-input-confirm__input",
         placeholder: $props.placeholder
-      }, null, 8, _hoisted_2$d), [
+      }, null, 8, _hoisted_2$e), [
         [vModelText, $options.valueModel]
       ]),
       createVNode(_component_NcButton, {
@@ -22849,13 +23236,13 @@ function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
     ], 32)
   ]);
 }
-const NcInputConfirmCancel = /* @__PURE__ */ _export_sfc$1(_sfc_main$i, [["render", _sfc_render$5], ["__scopeId", "data-v-dd457d48"]]);
-const _hoisted_1$e = ["aria-label"];
-const _hoisted_2$c = ["width", "height"];
-const _hoisted_3$9 = ["fill"];
+const NcInputConfirmCancel = /* @__PURE__ */ _export_sfc$1(_sfc_main$k, [["render", _sfc_render$5], ["__scopeId", "data-v-dd457d48"]]);
+const _hoisted_1$g = ["aria-label"];
+const _hoisted_2$d = ["width", "height"];
+const _hoisted_3$a = ["fill"];
 const _hoisted_4$7 = ["fill"];
 const _hoisted_5$7 = { key: 0 };
-const _sfc_main$h = /* @__PURE__ */ defineComponent({
+const _sfc_main$j = /* @__PURE__ */ defineComponent({
   __name: "NcLoadingIcon",
   props: {
     appearance: { default: "auto" },
@@ -22887,20 +23274,20 @@ const _sfc_main$h = /* @__PURE__ */ defineComponent({
           createBaseVNode("path", {
             fill: colors.value[0],
             d: "M12,4V2A10,10 0 1,0 22,12H20A8,8 0 1,1 12,4Z"
-          }, null, 8, _hoisted_3$9),
+          }, null, 8, _hoisted_3$a),
           createBaseVNode("path", {
             fill: colors.value[1],
             d: "M12,4V2A10,10 0 0,1 22,12H20A8,8 0 0,0 12,4Z"
           }, [
             _ctx.name ? (openBlock(), createElementBlock("title", _hoisted_5$7, toDisplayString(_ctx.name), 1)) : createCommentVNode("", true)
           ], 8, _hoisted_4$7)
-        ], 8, _hoisted_2$c))
-      ], 8, _hoisted_1$e);
+        ], 8, _hoisted_2$d))
+      ], 8, _hoisted_1$g);
     };
   }
 });
-const NcLoadingIcon = /* @__PURE__ */ _export_sfc$1(_sfc_main$h, [["__scopeId", "data-v-cf399190"]]);
-const _sfc_main$g = /* @__PURE__ */ defineComponent({
+const NcLoadingIcon = /* @__PURE__ */ _export_sfc$1(_sfc_main$j, [["__scopeId", "data-v-cf399190"]]);
+const _sfc_main$i = /* @__PURE__ */ defineComponent({
   name: "NcVNodes",
   props: {
     /**
@@ -22939,7 +23326,7 @@ const _hoisted_1$2$1 = ["aria-hidden", "aria-label"];
 const _hoisted_2$2$1 = ["fill", "width", "height"];
 const _hoisted_3$2$1 = { d: "M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" };
 const _hoisted_4$2$1 = { key: 0 };
-function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$3$1(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("span", mergeProps(_ctx.$attrs, {
     "aria-hidden": $props.title ? null : "true",
     "aria-label": $props.title,
@@ -22960,7 +23347,7 @@ function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
     ], 8, _hoisted_2$2$1))
   ], 16, _hoisted_1$2$1);
 }
-const Pencil = /* @__PURE__ */ _export_sfc$1(_sfc_main$3$1, [["render", _sfc_render$3]]);
+const Pencil = /* @__PURE__ */ _export_sfc$1(_sfc_main$3$1, [["render", _sfc_render$3$1]]);
 const _sfc_main$2$1 = {
   name: "UndoIcon",
   emits: ["click"],
@@ -23067,7 +23454,7 @@ function _sfc_render$1$1(_ctx, _cache, $props, $setup, $data, $options) {
 }
 const NcAppNavigationIconCollapsible = /* @__PURE__ */ _export_sfc$1(_sfc_main$1$1, [["render", _sfc_render$1$1], ["__scopeId", "data-v-e6236e50"]]);
 register(t23, t51);
-const _sfc_main$f = {
+const _sfc_main$h = {
   name: "NcAppNavigationItem",
   components: {
     NcActions,
@@ -23075,7 +23462,7 @@ const _sfc_main$f = {
     NcAppNavigationIconCollapsible,
     NcInputConfirmCancel,
     NcLoadingIcon,
-    NcVNodes: _sfc_main$g,
+    NcVNodes: _sfc_main$i,
     Pencil,
     Undo
   },
@@ -23387,9 +23774,9 @@ const _sfc_main$f = {
     }
   }
 };
-const _hoisted_1$d = ["id"];
-const _hoisted_2$b = ["aria-current", "aria-description", "aria-expanded", "href", "target", "title", "onClick"];
-const _hoisted_3$8 = {
+const _hoisted_1$f = ["id"];
+const _hoisted_2$c = ["aria-current", "aria-description", "aria-expanded", "href", "target", "title", "onClick"];
+const _hoisted_3$9 = {
   key: 0,
   class: "editingContainer"
 };
@@ -23456,7 +23843,7 @@ function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
             createBaseVNode("span", {
               class: normalizeClass(["app-navigation-entry__name", { "hidden-visually": $data.editingActive }])
             }, toDisplayString($props.name), 3),
-            $data.editingActive ? (openBlock(), createElementBlock("div", _hoisted_3$8, [
+            $data.editingActive ? (openBlock(), createElementBlock("div", _hoisted_3$9, [
               createVNode(_component_NcInputConfirmCancel, {
                 ref: "editingInput",
                 modelValue: $data.editingValue,
@@ -23467,7 +23854,7 @@ function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
                 onConfirm: $options.handleEditingDone
               }, null, 8, ["modelValue", "placeholder", "primary", "onCancel", "onConfirm"])
             ])) : createCommentVNode("", true)
-          ], 40, _hoisted_2$b)) : createCommentVNode("", true),
+          ], 40, _hoisted_2$c)) : createCommentVNode("", true),
           $props.undo ? (openBlock(), createElementBlock("div", _hoisted_4$6, [
             createBaseVNode("div", _hoisted_5$6, toDisplayString($props.name), 1)
           ])) : createCommentVNode("", true),
@@ -23538,10 +23925,10 @@ function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
     $options.canHaveChildren && !!_ctx.$slots.default ? (openBlock(), createElementBlock("ul", _hoisted_7$5, [
       renderSlot(_ctx.$slots, "default", {}, void 0, true)
     ])) : createCommentVNode("", true)
-  ], 10, _hoisted_1$d);
+  ], 10, _hoisted_1$f);
 }
-const NcAppNavigationItem = /* @__PURE__ */ _export_sfc$1(_sfc_main$f, [["render", _sfc_render$4], ["__scopeId", "data-v-f925f8d0"]]);
-const _sfc_main$e = {
+const NcAppNavigationItem = /* @__PURE__ */ _export_sfc$1(_sfc_main$h, [["render", _sfc_render$4], ["__scopeId", "data-v-f925f8d0"]]);
+const _sfc_main$g = {
   components: {
     NcButton
   },
@@ -23584,10 +23971,10 @@ const _sfc_main$e = {
   },
   emits: ["click"]
 };
-const _hoisted_1$c = { class: "app-navigation-new" };
-function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$e = { class: "app-navigation-new" };
+function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_NcButton = resolveComponent("NcButton");
-  return openBlock(), createElementBlock("div", _hoisted_1$c, [
+  return openBlock(), createElementBlock("div", _hoisted_1$e, [
     createVNode(_component_NcButton, {
       id: $props.buttonId,
       disabled: $props.disabled,
@@ -23604,7 +23991,7 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
     }, 8, ["id", "disabled", "variant"])
   ]);
 }
-const NcAppNavigationNew = /* @__PURE__ */ _export_sfc$1(_sfc_main$e, [["render", _sfc_render$2], ["__scopeId", "data-v-0ba6c9df"]]);
+const NcAppNavigationNew = /* @__PURE__ */ _export_sfc$1(_sfc_main$g, [["render", _sfc_render$3], ["__scopeId", "data-v-0ba6c9df"]]);
 register(t16, t44);
 /* @__PURE__ */ defineComponent({
   __name: "NcAppNavigationSearch",
@@ -23716,6 +24103,38 @@ function checkIfDarkTheme(el = document.body) {
   return false;
 }
 checkIfDarkTheme();
+/*!
+ * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+const INJECTION_KEY_THEME = /* @__PURE__ */ Symbol.for("nc:theme:enforced");
+/*!
+ * SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+function useIsDarkThemeElement(el) {
+  const element = computed(() => toValue(el) ?? document.body);
+  const isDarkTheme = /* @__PURE__ */ ref(checkIfDarkTheme(element.value));
+  const isDarkSystemTheme = /* @__PURE__ */ usePreferredDark();
+  function updateIsDarkTheme() {
+    isDarkTheme.value = checkIfDarkTheme(element.value);
+  }
+  useMutationObserver(element, updateIsDarkTheme, { attributes: true });
+  watch(element, updateIsDarkTheme);
+  watch(isDarkSystemTheme, updateIsDarkTheme, { immediate: true });
+  return /* @__PURE__ */ readonly(isDarkTheme);
+}
+const useInternalIsDarkTheme = /* @__PURE__ */ createSharedComposable(() => useIsDarkThemeElement());
+function useIsDarkTheme() {
+  const isDarkTheme = useInternalIsDarkTheme();
+  const enforcedTheme = inject(INJECTION_KEY_THEME, void 0);
+  return computed(() => {
+    if (enforcedTheme?.value) {
+      return enforcedTheme.value === "dark";
+    }
+    return isDarkTheme.value;
+  });
+}
 const isFullscreen = /* @__PURE__ */ ref(checkIfIsFullscreen());
 window.addEventListener("resize", () => {
   isFullscreen.value = checkIfIsFullscreen();
@@ -23726,6 +24145,25 @@ function checkIfIsFullscreen() {
 register(t19, t36);
 register(t48);
 register(t31);
+const stopClickOutsideMap = /* @__PURE__ */ new WeakMap();
+const vOnClickOutside = {
+  mounted(el, binding) {
+    const capture = !binding.modifiers.bubble;
+    let stop;
+    if (typeof binding.value === "function") stop = onClickOutside(el, binding.value, { capture });
+    else {
+      const [handler, options] = binding.value;
+      stop = onClickOutside(el, handler, Object.assign({ capture }, options));
+    }
+    stopClickOutsideMap.set(el, stop);
+  },
+  unmounted(el) {
+    const stop = stopClickOutsideMap.get(el);
+    if (stop && typeof stop === "function") stop();
+    else stop === null || stop === void 0 || stop.stop();
+    stopClickOutsideMap.delete(el);
+  }
+};
 const LOCALHOST = "LOCALHOST";
 const COLON = "COLON";
 const defaults = {
@@ -24016,13 +24454,13 @@ createTokenClass("url", {
     return tokens.length >= 2 && tokens[0].t !== LOCALHOST && tokens[1].t === COLON;
   }
 });
-const _hoisted_1$b = ["aria-labelledby"];
-const _hoisted_2$a = {
+const _hoisted_1$d = ["aria-labelledby"];
+const _hoisted_2$b = {
   key: 0,
   class: "empty-content__icon",
   "aria-hidden": "true"
 };
-const _hoisted_3$7 = ["id"];
+const _hoisted_3$8 = ["id"];
 const _hoisted_4$5 = {
   key: 2,
   class: "empty-content__description"
@@ -24031,7 +24469,7 @@ const _hoisted_5$5 = {
   key: 3,
   class: "empty-content__action"
 };
-const _sfc_main$d = /* @__PURE__ */ defineComponent({
+const _sfc_main$f = /* @__PURE__ */ defineComponent({
   __name: "NcEmptyContent",
   props: {
     description: { default: "" },
@@ -24045,7 +24483,7 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
         class: "empty-content",
         role: "note"
       }, [
-        _ctx.$slots.icon ? (openBlock(), createElementBlock("div", _hoisted_2$a, [
+        _ctx.$slots.icon ? (openBlock(), createElementBlock("div", _hoisted_2$b, [
           renderSlot(_ctx.$slots, "icon", {}, void 0, true)
         ])) : createCommentVNode("", true),
         _ctx.name !== "" || _ctx.$slots.name ? (openBlock(), createElementBlock("div", {
@@ -24056,7 +24494,7 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
           renderSlot(_ctx.$slots, "name", {}, () => [
             createTextVNode(toDisplayString(_ctx.name), 1)
           ], true)
-        ], 8, _hoisted_3$7)) : createCommentVNode("", true),
+        ], 8, _hoisted_3$8)) : createCommentVNode("", true),
         _ctx.description !== "" || _ctx.$slots.description ? (openBlock(), createElementBlock("p", _hoisted_4$5, [
           renderSlot(_ctx.$slots, "description", {}, () => [
             createTextVNode(toDisplayString(_ctx.description), 1)
@@ -24065,12 +24503,44 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
         _ctx.$slots.action ? (openBlock(), createElementBlock("div", _hoisted_5$5, [
           renderSlot(_ctx.$slots, "action", {}, void 0, true)
         ])) : createCommentVNode("", true)
-      ], 8, _hoisted_1$b);
+      ], 8, _hoisted_1$d);
     };
   }
 });
-const NcEmptyContent = /* @__PURE__ */ _export_sfc$1(_sfc_main$d, [["__scopeId", "data-v-b101d636"]]);
+const NcEmptyContent = /* @__PURE__ */ _export_sfc$1(_sfc_main$f, [["__scopeId", "data-v-b101d636"]]);
 register(t15);
+function getRoute(router, url2) {
+  const removePrefix = (str, prefix) => str.startsWith(prefix) ? str.slice(prefix.length) : str;
+  const removePrefixes = (str, ...prefixes2) => prefixes2.reduce((acc, prefix) => removePrefix(acc, prefix), str);
+  if (!router) {
+    return null;
+  }
+  const isAbsoluteURL2 = /^https?:\/\//.test(url2);
+  const isNonHttpLink = /^[a-z][a-z0-9+.-]*:.+/.test(url2);
+  if (!isAbsoluteURL2 && isNonHttpLink) {
+    return null;
+  }
+  if (isAbsoluteURL2 && !url2.startsWith(getBaseUrl())) {
+    return null;
+  }
+  if (!isAbsoluteURL2 && !url2.startsWith("/")) {
+    return null;
+  }
+  const relativeUrl = isAbsoluteURL2 ? removePrefixes(url2, getBaseUrl(), "/index.php") : url2;
+  const relativeRouterBase = removePrefixes(router.options.history.base, getRootUrl(), "/index.php");
+  const potentialRouterPath = removePrefixes(relativeUrl, relativeRouterBase) || "/";
+  const route = router.resolve(potentialRouterPath);
+  if (!route.matched.length) {
+    return null;
+  }
+  return route.fullPath;
+}
+function getEnabledContactsMenuActions(entry) {
+  if (!window._nc_contacts_menu_hooks) {
+    return [];
+  }
+  return Object.values(window._nc_contacts_menu_hooks).filter((action) => action.enabled(entry));
+}
 const c = new Int32Array(4);
 class h {
   static hashStr(i2, a2 = false) {
@@ -24264,6 +24734,25 @@ class Color {
     return `#${toHex(this.r)}${toHex(this.g)}${toHex(this.b)}`;
   }
 }
+function calculateStepIncrement(steps, color1, color2) {
+  return {
+    r: (color2.r - color1.r) / steps,
+    g: (color2.g - color1.g) / steps,
+    b: (color2.b - color1.b) / steps
+  };
+}
+function mixPalette(steps, color1, color2) {
+  const palette = [];
+  palette.push(color1);
+  const increment = calculateStepIncrement(steps, color1, color2);
+  for (let i2 = 1; i2 < steps; i2++) {
+    const r2 = Math.floor(color1.r + increment.r * i2);
+    const g2 = Math.floor(color1.g + increment.g * i2);
+    const b2 = Math.floor(color1.b + increment.b * i2);
+    palette.push(new Color(r2, g2, b2));
+  }
+  return palette;
+}
 const COLOR_RED = new Color(182, 70, 157, t("Purple"));
 const COLOR_YELLOW = new Color(221, 203, 85, t("Gold"));
 const COLOR_BLUE = new Color(0, 130, 201, t("Nextcloud blue"));
@@ -24319,6 +24808,30 @@ new Color(255, 255, 255, t("White"));
     // TRANSLATORS: A color name for RGB(136, 85, 168)
   )
 ];
+function generatePalette(steps) {
+  const palette1 = mixPalette(steps, COLOR_RED, COLOR_YELLOW);
+  const palette2 = mixPalette(steps, COLOR_YELLOW, COLOR_BLUE);
+  const palette3 = mixPalette(steps, COLOR_BLUE, COLOR_RED);
+  return palette1.concat(palette2).concat(palette3);
+}
+function hashCode(str) {
+  let hash = str;
+  if (str.match(/^([0-9a-f]{4}-?){8}$/) === null) {
+    hash = h.hashStr(str);
+  }
+  hash = hash.replace(/[^0-9a-f]/g, "");
+  let finalInt = 0;
+  for (let i2 = 0; i2 < hash.length; i2++) {
+    finalInt += parseInt(hash.charAt(i2), 16);
+  }
+  return finalInt;
+}
+function usernameToColor(username) {
+  const steps = 6;
+  const finalPalette = generatePalette(steps);
+  const hash = hashCode(username.toLocaleLowerCase());
+  return finalPalette[hash % finalPalette.length];
+}
 var striptags$1 = { exports: {} };
 var striptags = striptags$1.exports;
 var hasRequiredStriptags;
@@ -24491,10 +25004,739 @@ function requireStriptags() {
   return striptags$1.exports;
 }
 requireStriptags();
+function getAvatarUrl(user, options) {
+  const size2 = (options?.size || 64) <= 64 ? 64 : 512;
+  const guestUrl = options?.isGuest ? "/guest" : "";
+  const themeUrl = options?.isDarkTheme ?? checkIfDarkTheme(document.body) ? "/dark" : "";
+  return generateUrl(`/avatar${guestUrl}/{user}/{size}${themeUrl}`, {
+    user,
+    size: size2
+  });
+}
+const awaySvg = '<!--\n  - SPDX-FileCopyrightText: 2020 Google Inc.\n  - SPDX-License-Identifier: Apache-2.0\n-->\n<svg viewBox="0 -960 960 960" width="24px" height="24px" xmlns="http://www.w3.org/2000/svg">\n	<path\n		fill="var(--user-status-color-away, var(--color-warning, #C88800))"\n		d="m612-292 56-56-148-148v-184h-80v216l172 172ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"/>\n</svg>\n';
+const busySvg = '<!--\n  - SPDX-FileCopyrightText: 2020 Google Inc.\n  - SPDX-License-Identifier: Apache-2.0\n-->\n<svg viewBox="0 -960 960 960" width="24px" height="24px" xmlns="http://www.w3.org/2000/svg">\n	<path\n		fill="var(--user-status-color-busy, var(--color-error, #DB0606))"\n		d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"/>\n</svg>\n';
+const dndSvg = '<!--\n  - SPDX-FileCopyrightText: 2020 Google Inc.\n  - SPDX-License-Identifier: Apache-2.0\n-->\n<svg viewBox="0 -960 960 960" width="24px" height="24px" xmlns="http://www.w3.org/2000/svg">\n	<path\n		fill="var(--user-status-color-busy, var(--color-error, #DB0606))"\n		d="M280-440h400v-80H280v80ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"/>\n</svg>\n';
+const invisibleSvg = '<!--\n  - SPDX-FileCopyrightText: 2020 Google Inc.\n  - SPDX-License-Identifier: Apache-2.0\n-->\n<svg viewBox="0 -960 960 960" width="24px" height="24px" xmlns="http://www.w3.org/2000/svg">\n	<path\n		fill="var(--user-status-color-offline, var(--color-text-maxcontrast, #6B6B6B))"\n		d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/>\n</svg>\n';
+const onlineSvg = '<!--\n  - SPDX-FileCopyrightText: 2020 Google Inc.\n  - SPDX-License-Identifier: Apache-2.0\n-->\n<svg viewBox="0 -960 960 960" width="24px" height="24px" xmlns="http://www.w3.org/2000/svg">\n	<path\n		fill="var(--user-status-color-online, var(--color-success, #2D7B41))"\n		d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"/>\n</svg>\n';
 register(t52);
 register(t11);
+function getUserStatusText(status) {
+  switch (status) {
+    case "away":
+      return t("away");
+    // TRANSLATORS: User status if the user is currently away from keyboard
+    case "busy":
+      return t("busy");
+    case "dnd":
+      return t("do not disturb");
+    case "online":
+      return t("online");
+    case "invisible":
+      return t("invisible");
+    case "offline":
+      return t("offline");
+    default:
+      return status;
+  }
+}
+const _hoisted_1$c = ["aria-hidden", "aria-label", "innerHTML"];
+const _sfc_main$e = /* @__PURE__ */ defineComponent({
+  __name: "NcUserStatusIcon",
+  props: /* @__PURE__ */ mergeModels({
+    user: { default: void 0 },
+    ariaHidden: { type: [Boolean, String], default: false }
+  }, {
+    "status": {},
+    "statusModifiers": {}
+  }),
+  emits: ["update:status"],
+  setup(__props) {
+    const status = useModel(__props, "status");
+    const props = __props;
+    const isInvisible = computed(() => status.value && ["invisible", "offline"].includes(status.value));
+    const ariaLabel = computed(() => status.value && (!props.ariaHidden || props.ariaHidden === "false") ? t("User status: {status}", { status: getUserStatusText(status.value) }) : void 0);
+    watch(() => props.user, async (user) => {
+      if (!status.value && user && getCapabilities()?.user_status?.enabled) {
+        try {
+          const { data } = await cancelableClient.get(generateOcsUrl("/apps/user_status/api/v1/statuses/{user}", { user }));
+          status.value = data.ocs?.data?.status;
+        } catch (error) {
+          logger.debug("Error while fetching user status", { error });
+        }
+      }
+    }, { immediate: true });
+    const matchSvg = {
+      online: onlineSvg,
+      away: awaySvg,
+      busy: busySvg,
+      dnd: dndSvg,
+      invisible: invisibleSvg,
+      offline: invisibleSvg
+    };
+    const activeSvg = computed(() => status.value && matchSvg[status.value]);
+    return (_ctx, _cache) => {
+      return status.value ? (openBlock(), createElementBlock("span", {
+        key: 0,
+        class: normalizeClass(["user-status-icon", {
+          "user-status-icon--invisible": isInvisible.value
+        }]),
+        "aria-hidden": !ariaLabel.value || void 0,
+        "aria-label": ariaLabel.value,
+        role: "img",
+        innerHTML: activeSvg.value
+      }, null, 10, _hoisted_1$c)) : createCommentVNode("", true);
+    };
+  }
+});
+const NcUserStatusIcon = /* @__PURE__ */ _export_sfc$1(_sfc_main$e, [["__scopeId", "data-v-881a79fb"]]);
 register(t10);
-getBuilder("nextcloud").persist().build();
+const userStatus = {
+  data() {
+    return {
+      hasStatus: false,
+      userStatus: {
+        status: null,
+        message: null,
+        icon: null
+      }
+    };
+  },
+  methods: {
+    /**
+     * Fetches the user-status from the server
+     *
+     * @param {string} userId UserId of the user to fetch the status for
+     *
+     * @return {Promise<void>}
+     */
+    async fetchUserStatus(userId) {
+      if (!userId) {
+        return;
+      }
+      const capabilities = getCapabilities();
+      if (!Object.hasOwn(capabilities, "user_status") || !capabilities.user_status.enabled) {
+        return;
+      }
+      if (!getCurrentUser()) {
+        return;
+      }
+      try {
+        const { data } = await cancelableClient.get(generateOcsUrl("apps/user_status/api/v1/statuses/{userId}", { userId }));
+        this.setUserStatus(data.ocs.data);
+      } catch (e) {
+        if (e.response.status === 404 && e.response.data.ocs?.data?.length === 0) {
+          return;
+        }
+        logger.error("Failed to fetch user status", { error: e });
+      }
+    },
+    /**
+     * Sets the user status
+     *
+     * @param {string} status user's status
+     * @param {string} message user's message
+     * @param {string} icon user's icon
+     */
+    setUserStatus({ status, message: message2, icon }) {
+      this.userStatus.status = status || "";
+      this.userStatus.message = message2 || "";
+      this.userStatus.icon = icon || "";
+      this.hasStatus = !!status;
+    }
+  }
+};
+const browserStorage = getBuilder("nextcloud").persist().build();
+function getUserHasAvatar(userId) {
+  const flag = browserStorage.getItem("user-has-avatar." + userId);
+  if (typeof flag === "string") {
+    return Boolean(flag);
+  }
+  return null;
+}
+function setUserHasAvatar(userId, flag) {
+  if (userId) {
+    browserStorage.setItem("user-has-avatar." + userId, flag);
+  }
+}
+const _sfc_main$d = {
+  name: "NcAvatar",
+  directives: {
+    /** @type {import('vue').ObjectDirective} */
+    ClickOutside: vOnClickOutside
+  },
+  components: {
+    IconDotsHorizontal,
+    NcActions,
+    NcButton,
+    NcIconSvgWrapper,
+    NcLoadingIcon,
+    NcUserStatusIcon
+  },
+  mixins: [userStatus],
+  props: {
+    /**
+     * Set a custom url to the avatar image
+     * either the url, user or displayName property must be defined
+     */
+    url: {
+      type: String,
+      default: void 0
+    },
+    /**
+     * Set a css icon-class for an icon to be used instead of the avatar.
+     */
+    iconClass: {
+      type: String,
+      default: void 0
+    },
+    /**
+     * Set the user id to fetch the avatar
+     * either the url, user or displayName property must be defined
+     */
+    user: {
+      type: String,
+      default: void 0
+    },
+    /**
+     * Do not show the user status on the avatar.
+     */
+    hideStatus: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Show the verbose user status (e.g. "online" / "away") instead of just the status icon.
+     */
+    verboseStatus: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * When the user status was preloaded via another source it can be handed in with this property to save the request.
+     * If this property is not set the status will be fetched automatically.
+     * If a preloaded no-status is available provide this object with properties "status", "icon" and "message" set to null.
+     */
+    preloadedUserStatus: {
+      type: Object,
+      default: void 0
+    },
+    /**
+     * Is the user a guest user (then we have to user a different endpoint)
+     */
+    isGuest: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Set a display name that will be rendered as a tooltip
+     * either the url, user or displayName property must be defined
+     * specify just the displayname to generate a placeholder avatar without
+     * trying to fetch the avatar based on the user id
+     */
+    displayName: {
+      type: String,
+      default: void 0
+    },
+    /**
+     * Set a size in px for the rendered avatar
+     */
+    size: {
+      type: Number,
+      default: 32
+    },
+    /**
+     * Do not automatically generate a placeholder avatars if there is no real avatar is available.
+     */
+    noPlaceholder: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Disable the tooltip
+     */
+    disableTooltip: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Disable the menu
+     */
+    disableMenu: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Declares a custom tooltip when not null
+     * Fallback will be the displayName
+     *
+     * requires disableTooltip not to be set to true
+     */
+    tooltipMessage: {
+      type: String,
+      default: null
+    },
+    /**
+     * Declares username is not a user's name, when true.
+     * Prevents loading user's avatar from server and forces generating colored initials,
+     * i.e. if the user is a group
+     */
+    isNoUser: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Selector for the popover menu container
+     */
+    menuContainer: {
+      type: [Boolean, String, Object, Element],
+      default: "body"
+    }
+  },
+  setup() {
+    const isDarkTheme = useIsDarkTheme();
+    return {
+      isDarkTheme
+    };
+  },
+  data() {
+    return {
+      avatarUrlLoaded: null,
+      avatarSrcSetLoaded: null,
+      userDoesNotExist: false,
+      isAvatarLoaded: false,
+      isMenuLoaded: false,
+      contactsMenuLoading: false,
+      contactsMenuData: {},
+      contactsMenuActions: [],
+      contactsMenuOpenState: false
+    };
+  },
+  computed: {
+    avatarAriaLabel() {
+      if (!this.hasMenu) {
+        return;
+      }
+      if (this.canDisplayUserStatus || this.showUserStatusIconOnAvatar) {
+        return t("Avatar of {displayName}, {status}", { displayName: this.displayName ?? this.user, status: getUserStatusText(this.userStatus.status) });
+      }
+      return t("Avatar of {displayName}", { displayName: this.displayName ?? this.user });
+    },
+    canDisplayUserStatus() {
+      return !this.hideStatus && this.hasStatus && ["online", "away", "busy", "dnd"].includes(this.userStatus.status);
+    },
+    showUserStatusIconOnAvatar() {
+      return !this.hideStatus && !this.verboseStatus && this.hasStatus && this.userStatus.status !== "dnd" && this.userStatus.icon;
+    },
+    /**
+     * The user identifier, either the display name if set or the user property
+     * If both properties are not set an empty string is returned
+     */
+    userIdentifier() {
+      if (this.isDisplayNameDefined) {
+        return this.displayName;
+      }
+      if (this.isUserDefined) {
+        return this.user;
+      }
+      return "";
+    },
+    isUserDefined() {
+      return typeof this.user !== "undefined";
+    },
+    isDisplayNameDefined() {
+      return typeof this.displayName !== "undefined";
+    },
+    isUrlDefined() {
+      return typeof this.url !== "undefined";
+    },
+    hasMenu() {
+      if (this.disableMenu) {
+        return false;
+      }
+      if (this.isMenuLoaded) {
+        return this.menu.length > 0;
+      }
+      return !(this.user === getCurrentUser()?.uid || this.userDoesNotExist || this.url);
+    },
+    /**
+     * True if initials should be shown as the user icon fallback
+     */
+    showInitials() {
+      return !this.noPlaceholder && this.userDoesNotExist && !(this.iconClass || this.$slots.icon);
+    },
+    avatarStyle() {
+      return {
+        "--avatar-size": this.size + "px",
+        lineHeight: this.showInitials ? this.size + "px" : 0,
+        fontSize: Math.round(this.size * 0.45) + "px"
+      };
+    },
+    initialsWrapperStyle() {
+      const { r: r2, g: g2, b: b2 } = usernameToColor(this.userIdentifier);
+      return {
+        backgroundColor: `rgba(${r2}, ${g2}, ${b2}, 0.1)`
+      };
+    },
+    initialsStyle() {
+      const { r: r2, g: g2, b: b2 } = usernameToColor(this.userIdentifier);
+      return {
+        color: `rgb(${r2}, ${g2}, ${b2})`
+      };
+    },
+    tooltip() {
+      if (this.disableTooltip) {
+        return null;
+      }
+      if (this.tooltipMessage) {
+        return this.tooltipMessage;
+      }
+      return this.displayName;
+    },
+    /**
+     * Get the (max. two) initials of the user as uppcase string
+     */
+    initials() {
+      let initials = "?";
+      if (this.showInitials) {
+        const user = this.userIdentifier.trim();
+        if (user === "") {
+          return initials;
+        }
+        const filteredChars = user.match(/[\p{L}\p{N}\s]/gu);
+        if (!filteredChars) {
+          return initials;
+        }
+        const filtered = filteredChars.join("");
+        const idx = filtered.lastIndexOf(" ");
+        initials = String.fromCodePoint(filtered.codePointAt(0));
+        if (idx !== -1) {
+          initials = initials.concat(String.fromCodePoint(filtered.codePointAt(idx + 1)));
+        }
+      }
+      return initials.toLocaleUpperCase();
+    },
+    menu() {
+      const actions = this.contactsMenuActions.map((item) => {
+        const route = getRoute(this.$router, item.hyperlink);
+        return {
+          ncActionComponent: route ? NcActionRouter : NcActionLink,
+          ncActionComponentProps: route ? {
+            to: route,
+            icon: item.icon
+          } : {
+            href: item.hyperlink,
+            icon: item.icon
+          },
+          text: item.title
+        };
+      });
+      for (const action of getEnabledContactsMenuActions(this.contactsMenuData)) {
+        try {
+          actions.push({
+            ncActionComponent: NcActionButton,
+            ncActionComponentProps: {
+              onClick: () => action.callback(this.contactsMenuData)
+            },
+            text: action.displayName(this.contactsMenuData),
+            iconSvg: action.iconSvg(this.contactsMenuData)
+          });
+        } catch (error) {
+          logger.error(`Failed to render ContactsMenu action ${action.id}`, {
+            error,
+            action
+          });
+        }
+      }
+      function escape(html2) {
+        const text2 = document.createTextNode(html2);
+        const p2 = document.createElement("p");
+        p2.appendChild(text2);
+        return p2.innerHTML;
+      }
+      if (!this.hideStatus && (this.userStatus.icon || this.userStatus.message)) {
+        const emojiIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+					<text x="50%" y="50%" text-anchor="middle" style="dominant-baseline: central; font-size: 85%">${escape(this.userStatus.icon)}</text>
+				</svg>`;
+        return [{
+          ncActionComponent: NcActionText,
+          ncActionComponentProps: {},
+          iconSvg: this.userStatus.icon ? emojiIcon : void 0,
+          text: `${this.userStatus.message}`
+        }].concat(actions);
+      }
+      return actions;
+    }
+  },
+  watch: {
+    url() {
+      this.userDoesNotExist = false;
+      this.loadAvatarUrl();
+    },
+    user() {
+      this.userDoesNotExist = false;
+      this.isMenuLoaded = false;
+      this.loadAvatarUrl();
+    }
+  },
+  mounted() {
+    this.loadAvatarUrl();
+    subscribe("settings:avatar:updated", this.loadAvatarUrl);
+    subscribe("settings:display-name:updated", this.loadAvatarUrl);
+    if (!this.hideStatus && this.user && !this.isNoUser) {
+      if (!this.preloadedUserStatus) {
+        this.fetchUserStatus(this.user);
+      } else {
+        this.setUserStatus(this.preloadedUserStatus);
+      }
+      subscribe("user_status:status.updated", this.handleUserStatusUpdated);
+    } else if (!this.hideStatus && this.preloadedUserStatus) {
+      this.setUserStatus(this.preloadedUserStatus);
+    }
+  },
+  beforeUnmount() {
+    unsubscribe("settings:avatar:updated", this.loadAvatarUrl);
+    unsubscribe("settings:display-name:updated", this.loadAvatarUrl);
+    unsubscribe("user_status:status.updated", this.handleUserStatusUpdated);
+  },
+  methods: {
+    t,
+    handleUserStatusUpdated(state) {
+      if (this.user === state.userId) {
+        this.userStatus = {
+          status: state.status,
+          icon: state.icon,
+          message: state.message
+        };
+        this.hasStatus = state.status !== null;
+      }
+    },
+    /**
+     * Toggle the popover menu on click or enter
+     *
+     * @param {KeyboardEvent|MouseEvent} event the UI event
+     */
+    async toggleMenu(event) {
+      if (event.type === "keydown" && event.key !== "Enter") {
+        return;
+      }
+      if (!this.contactsMenuOpenState) {
+        await this.fetchContactsMenu();
+      }
+      this.contactsMenuOpenState = !this.contactsMenuOpenState;
+    },
+    closeMenu() {
+      this.contactsMenuOpenState = false;
+    },
+    async fetchContactsMenu() {
+      this.contactsMenuLoading = true;
+      try {
+        const user = encodeURIComponent(this.user);
+        const { data } = await cancelableClient.post(generateUrl("contactsmenu/findOne"), `shareType=0&shareWith=${user}`);
+        this.contactsMenuData = data;
+        this.contactsMenuActions = data.topAction ? [data.topAction].concat(data.actions) : data.actions;
+      } catch {
+        this.contactsMenuOpenState = false;
+      }
+      this.contactsMenuLoading = false;
+      this.isMenuLoaded = true;
+    },
+    /**
+     * Handle avatar loading if user or url defined
+     */
+    loadAvatarUrl() {
+      this.isAvatarLoaded = false;
+      if (!this.isUrlDefined && (!this.isUserDefined || this.isNoUser || this.iconClass || this.$slots.icon)) {
+        this.isAvatarLoaded = true;
+        this.userDoesNotExist = true;
+        return;
+      }
+      if (this.isUrlDefined) {
+        this.updateImageIfValid(this.url);
+        return;
+      }
+      if (this.size <= 64) {
+        const avatarUrl = this.avatarUrlGenerator(this.user, 64);
+        const srcset = [
+          avatarUrl + " 1x",
+          this.avatarUrlGenerator(this.user, 512) + " 8x"
+        ].join(", ");
+        this.updateImageIfValid(avatarUrl, srcset);
+      } else {
+        const avatarUrl = this.avatarUrlGenerator(this.user, 512);
+        this.updateImageIfValid(avatarUrl);
+      }
+    },
+    /**
+     * Generate an avatar url from the server's avatar endpoint
+     *
+     * @param {string} user the user id
+     * @param {number} size the desired size
+     * @return {string}
+     */
+    avatarUrlGenerator(user, size2) {
+      let avatarUrl = getAvatarUrl(user, {
+        size: size2,
+        isDarkTheme: this.isDarkTheme,
+        isGuest: this.isGuest
+      });
+      if (user === getCurrentUser()?.uid && typeof oc_userconfig !== "undefined") {
+        avatarUrl += "?v=" + window.oc_userconfig.avatar.version;
+      }
+      return avatarUrl;
+    },
+    /**
+     * Check if the provided url is valid and update Avatar if so
+     *
+     * @param {string} url the avatar url
+     * @param {Array} srcset the avatar srcset
+     */
+    updateImageIfValid(url2, srcset = null) {
+      const userHasAvatar = getUserHasAvatar(this.user);
+      if (this.isUserDefined && typeof userHasAvatar === "boolean") {
+        this.isAvatarLoaded = true;
+        this.avatarUrlLoaded = url2;
+        if (srcset) {
+          this.avatarSrcSetLoaded = srcset;
+        }
+        if (userHasAvatar === false) {
+          this.userDoesNotExist = true;
+        }
+        return;
+      }
+      const img = new Image();
+      img.onload = () => {
+        this.avatarUrlLoaded = url2;
+        if (srcset) {
+          this.avatarSrcSetLoaded = srcset;
+        }
+        this.isAvatarLoaded = true;
+        setUserHasAvatar(this.user, true);
+      };
+      img.onerror = (error) => {
+        logger.debug("[NcAvatar] Invalid avatar url", { error, url: url2 });
+        this.avatarUrlLoaded = null;
+        this.avatarSrcSetLoaded = null;
+        this.userDoesNotExist = true;
+        this.isAvatarLoaded = false;
+        setUserHasAvatar(this.user, false);
+      };
+      if (srcset) {
+        img.srcset = srcset;
+      }
+      img.src = url2;
+    }
+  }
+};
+const _hoisted_1$b = ["title"];
+const _hoisted_2$a = ["src", "srcset"];
+const _hoisted_3$7 = {
+  key: 2,
+  class: "avatardiv__user-status avatardiv__user-status--icon"
+};
+function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_NcLoadingIcon = resolveComponent("NcLoadingIcon");
+  const _component_IconDotsHorizontal = resolveComponent("IconDotsHorizontal");
+  const _component_NcButton = resolveComponent("NcButton");
+  const _component_NcIconSvgWrapper = resolveComponent("NcIconSvgWrapper");
+  const _component_NcActions = resolveComponent("NcActions");
+  const _component_NcUserStatusIcon = resolveComponent("NcUserStatusIcon");
+  const _directive_click_outside = resolveDirective("click-outside");
+  return withDirectives((openBlock(), createElementBlock("span", {
+    class: normalizeClass(["avatardiv popovermenu-wrapper", {
+      "avatardiv--unknown": $data.userDoesNotExist,
+      "avatardiv--with-menu": $options.hasMenu,
+      "avatardiv--with-menu-loading": $data.contactsMenuLoading
+    }]),
+    style: normalizeStyle($options.avatarStyle),
+    title: $options.tooltip
+  }, [
+    renderSlot(_ctx.$slots, "icon", {}, () => [
+      $props.iconClass ? (openBlock(), createElementBlock("span", {
+        key: 0,
+        class: normalizeClass([$props.iconClass, "avatar-class-icon"])
+      }, null, 2)) : $data.isAvatarLoaded && !$data.userDoesNotExist ? (openBlock(), createElementBlock("img", {
+        key: 1,
+        src: $data.avatarUrlLoaded,
+        srcset: $data.avatarSrcSetLoaded,
+        alt: ""
+      }, null, 8, _hoisted_2$a)) : createCommentVNode("", true)
+    ], true),
+    $options.hasMenu && $options.menu.length === 0 ? (openBlock(), createBlock(_component_NcButton, {
+      key: 0,
+      "aria-label": $options.avatarAriaLabel,
+      class: "action-item action-item__menutoggle",
+      variant: "tertiary-no-background",
+      onClick: $options.toggleMenu
+    }, {
+      icon: withCtx(() => [
+        $data.contactsMenuLoading ? (openBlock(), createBlock(_component_NcLoadingIcon, { key: 0 })) : (openBlock(), createBlock(_component_IconDotsHorizontal, {
+          key: 1,
+          size: 20
+        }))
+      ]),
+      _: 1
+    }, 8, ["aria-label", "onClick"])) : $options.hasMenu ? (openBlock(), createBlock(_component_NcActions, {
+      key: 1,
+      open: $data.contactsMenuOpenState,
+      "onUpdate:open": _cache[0] || (_cache[0] = ($event) => $data.contactsMenuOpenState = $event),
+      "aria-label": $options.avatarAriaLabel,
+      container: $props.menuContainer,
+      forceMenu: "",
+      manualOpen: "",
+      variant: "tertiary-no-background",
+      onClick: $options.toggleMenu
+    }, createSlots({
+      default: withCtx(() => [
+        (openBlock(true), createElementBlock(Fragment, null, renderList($options.menu, (item, key) => {
+          return openBlock(), createBlock(resolveDynamicComponent(item.ncActionComponent), mergeProps({ key }, { ref_for: true }, item.ncActionComponentProps), createSlots({
+            default: withCtx(() => [
+              createTextVNode(" " + toDisplayString(item.text), 1)
+            ]),
+            _: 2
+          }, [
+            item.iconSvg ? {
+              name: "icon",
+              fn: withCtx(() => [
+                createVNode(_component_NcIconSvgWrapper, {
+                  svg: item.iconSvg
+                }, null, 8, ["svg"])
+              ]),
+              key: "0"
+            } : void 0
+          ]), 1040);
+        }), 128))
+      ]),
+      _: 2
+    }, [
+      $data.contactsMenuLoading ? {
+        name: "icon",
+        fn: withCtx(() => [
+          createVNode(_component_NcLoadingIcon)
+        ]),
+        key: "0"
+      } : void 0
+    ]), 1032, ["open", "aria-label", "container", "onClick"])) : createCommentVNode("", true),
+    $options.showUserStatusIconOnAvatar ? (openBlock(), createElementBlock("span", _hoisted_3$7, toDisplayString(_ctx.userStatus.icon), 1)) : $options.canDisplayUserStatus ? (openBlock(), createBlock(_component_NcUserStatusIcon, {
+      key: 3,
+      class: "avatardiv__user-status",
+      status: _ctx.userStatus.status,
+      "aria-hidden": String($options.hasMenu)
+    }, null, 8, ["status", "aria-hidden"])) : createCommentVNode("", true),
+    $options.showInitials ? (openBlock(), createElementBlock("span", {
+      key: 4,
+      style: normalizeStyle($options.initialsWrapperStyle),
+      class: "avatardiv__initials-wrapper"
+    }, [
+      createBaseVNode("span", {
+        style: normalizeStyle($options.initialsStyle),
+        class: "avatardiv__initials"
+      }, toDisplayString($options.initials), 5)
+    ], 4)) : createCommentVNode("", true)
+  ], 14, _hoisted_1$b)), [
+    [_directive_click_outside, $options.closeMenu]
+  ]);
+}
+const NcAvatar = /* @__PURE__ */ _export_sfc$1(_sfc_main$d, [["render", _sfc_render$2], ["__scopeId", "data-v-72a1eed6"]]);
 var eventemitter3 = { exports: {} };
 var hasRequiredEventemitter3;
 function requireEventemitter3() {
@@ -39367,6 +40609,63 @@ var ShareType = /* @__PURE__ */ ((ShareType2) => {
   ShareType2[ShareType2["GROUP"] = 1] = "GROUP";
   return ShareType2;
 })(ShareType || {});
+const useSharesStore = /* @__PURE__ */ defineStore("shares", () => {
+  const sharesByList = /* @__PURE__ */ ref({});
+  async function fetchByList(listId) {
+    try {
+      const response = await api.shares.getAll(listId);
+      sharesByList.value[listId] = response.data.ocs.data;
+    } catch (e) {
+      showError("Failed to load shares");
+      console.error(e);
+    }
+  }
+  async function create2(listId, sharedWith, type, permission) {
+    try {
+      const response = await api.shares.create(listId, sharedWith, type, permission);
+      const newShare = response.data.ocs.data;
+      if (!sharesByList.value[listId]) {
+        sharesByList.value[listId] = [];
+      }
+      sharesByList.value[listId].push(newShare);
+      return newShare;
+    } catch (e) {
+      showError("Failed to share list");
+      console.error(e);
+    }
+  }
+  async function updatePermission(shareId, permission, listId) {
+    try {
+      const response = await api.shares.update(shareId, permission);
+      const updated = response.data.ocs.data;
+      const shares = sharesByList.value[listId] ?? [];
+      const index = shares.findIndex((s2) => s2.id === shareId);
+      if (index !== -1) {
+        shares[index] = updated;
+      }
+    } catch (e) {
+      showError("Failed to update share");
+      console.error(e);
+    }
+  }
+  async function remove2(shareId, listId) {
+    try {
+      await api.shares.delete(shareId);
+      const shares = sharesByList.value[listId] ?? [];
+      sharesByList.value[listId] = shares.filter((s2) => s2.id !== shareId);
+    } catch (e) {
+      showError("Failed to remove share");
+      console.error(e);
+    }
+  }
+  return {
+    sharesByList,
+    fetchByList,
+    create: create2,
+    updatePermission,
+    remove: remove2
+  };
+});
 const _hoisted_1$4 = ["data-item-id"];
 const _hoisted_2$4 = { class: "item-row__check" };
 const _hoisted_3$4 = ["checked", "disabled"];
@@ -39648,13 +40947,13 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
       closeDropdown();
       nameRef.value?.focus();
     }
-    function onClickOutside(e) {
+    function onClickOutside2(e) {
       if (areaWrapperRef.value && !areaWrapperRef.value.contains(e.target)) {
         closeDropdown();
       }
     }
-    onMounted(() => document.addEventListener("mousedown", onClickOutside));
-    onUnmounted(() => document.removeEventListener("mousedown", onClickOutside));
+    onMounted(() => document.addEventListener("mousedown", onClickOutside2));
+    onUnmounted(() => document.removeEventListener("mousedown", onClickOutside2));
     const UNITS = [
       "teaspoon",
       "teaspoons",
@@ -39908,63 +41207,6 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
   }
 });
 const ItemEditor = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-9b2b5d0b"]]);
-const useSharesStore = /* @__PURE__ */ defineStore("shares", () => {
-  const sharesByList = /* @__PURE__ */ ref({});
-  async function fetchByList(listId) {
-    try {
-      const response = await api.shares.getAll(listId);
-      sharesByList.value[listId] = response.data.ocs.data;
-    } catch (e) {
-      showError("Failed to load shares");
-      console.error(e);
-    }
-  }
-  async function create2(listId, sharedWith, type, permission) {
-    try {
-      const response = await api.shares.create(listId, sharedWith, type, permission);
-      const newShare = response.data.ocs.data;
-      if (!sharesByList.value[listId]) {
-        sharesByList.value[listId] = [];
-      }
-      sharesByList.value[listId].push(newShare);
-      return newShare;
-    } catch (e) {
-      showError("Failed to share list");
-      console.error(e);
-    }
-  }
-  async function updatePermission(shareId, permission, listId) {
-    try {
-      const response = await api.shares.update(shareId, permission);
-      const updated = response.data.ocs.data;
-      const shares = sharesByList.value[listId] ?? [];
-      const index = shares.findIndex((s2) => s2.id === shareId);
-      if (index !== -1) {
-        shares[index] = updated;
-      }
-    } catch (e) {
-      showError("Failed to update share");
-      console.error(e);
-    }
-  }
-  async function remove2(shareId, listId) {
-    try {
-      await api.shares.delete(shareId);
-      const shares = sharesByList.value[listId] ?? [];
-      sharesByList.value[listId] = shares.filter((s2) => s2.id !== shareId);
-    } catch (e) {
-      showError("Failed to remove share");
-      console.error(e);
-    }
-  }
-  return {
-    sharesByList,
-    fetchByList,
-    create: create2,
-    updatePermission,
-    remove: remove2
-  };
-});
 const _hoisted_1$2 = { class: "share-modal" };
 const _hoisted_2$2 = { class: "share-modal__header" };
 const _hoisted_3$2 = { class: "share-modal__search" };
@@ -39997,7 +41239,7 @@ const _hoisted_17$2 = {
   key: 0,
   class: "share-modal__share-type"
 };
-const _hoisted_18$1 = ["value", "onChange"];
+const _hoisted_18$2 = ["value", "onChange"];
 const _hoisted_19$1 = { value: 0 };
 const _hoisted_20$1 = { value: 1 };
 const _hoisted_21$1 = ["onClick"];
@@ -40148,7 +41390,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
                 }, [
                   createBaseVNode("option", _hoisted_19$1, toDisplayString(unref(canViewText)), 1),
                   createBaseVNode("option", _hoisted_20$1, toDisplayString(unref(canEditText)), 1)
-                ], 40, _hoisted_18$1)) : createCommentVNode("", true),
+                ], 40, _hoisted_18$2)) : createCommentVNode("", true),
                 __props.isOwner || share.sharedWith === __props.currentUserId ? (openBlock(), createElementBlock("button", {
                   key: 1,
                   class: "share-modal__remove",
@@ -40167,38 +41409,43 @@ const ShareDialog = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "dat
 const _hoisted_1$1 = { class: "list-view" };
 const _hoisted_2$1 = { class: "list-view__header" };
 const _hoisted_3$1 = { class: "list-view__actions" };
-const _hoisted_4$1 = { class: "list-view__card" };
-const _hoisted_5$1 = {
+const _hoisted_4$1 = {
+  key: 0,
+  class: "list-view__avatar-overflow"
+};
+const _hoisted_5$1 = { class: "list-view__card" };
+const _hoisted_6$1 = {
   key: 1,
   class: "list-view__loading"
 };
-const _hoisted_6$1 = {
+const _hoisted_7$1 = {
   key: 0,
   class: "list-view__empty"
 };
-const _hoisted_7$1 = { class: "list-view__area-name" };
-const _hoisted_8$1 = { class: "list-view__area-count" };
-const _hoisted_9$1 = {
+const _hoisted_8$1 = { class: "list-view__area-name" };
+const _hoisted_9$1 = { class: "list-view__area-count" };
+const _hoisted_10$1 = {
   key: 1,
   class: "list-view__area-header"
 };
-const _hoisted_10$1 = { class: "list-view__area-name list-view__area-name--muted" };
-const _hoisted_11$1 = { class: "list-view__area-count" };
-const _hoisted_12$1 = { class: "list-view__items" };
-const _hoisted_13$1 = {
+const _hoisted_11$1 = { class: "list-view__area-name list-view__area-name--muted" };
+const _hoisted_12$1 = { class: "list-view__area-count" };
+const _hoisted_13$1 = { class: "list-view__items" };
+const _hoisted_14$1 = {
   key: 0,
   class: "list-view__bought"
 };
-const _hoisted_14$1 = { class: "list-view__bought-header" };
-const _hoisted_15$1 = { class: "list-view__toggle" };
-const _hoisted_16$1 = {
+const _hoisted_15$1 = { class: "list-view__bought-header" };
+const _hoisted_16$1 = { class: "list-view__toggle" };
+const _hoisted_17$1 = {
   key: 0,
   class: "list-view__bought-actions"
 };
-const _hoisted_17$1 = {
+const _hoisted_18$1 = {
   key: 0,
   class: "list-view__bought-card"
 };
+const MAX_VISIBLE_AVATARS = 3;
 const cartIcon$1 = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.25,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.59 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z" fill="currentColor"/></svg>';
 const _sfc_main$2 = /* @__PURE__ */ defineComponent({
   __name: "ListView",
@@ -40206,6 +41453,13 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     const listsStore = useListsStore();
     const itemsStore = useItemsStore();
     const shopAreasStore = useShopAreasStore();
+    const sharesStore = useSharesStore();
+    const currentShares = computed(() => {
+      const listId = listsStore.currentListId;
+      return listId !== null ? sharesStore.sharesByList[listId] ?? [] : [];
+    });
+    const visibleShares = computed(() => currentShares.value.slice(0, MAX_VISIBLE_AVATARS));
+    const overflowCount = computed(() => Math.max(0, currentShares.value.length - MAX_VISIBLE_AVATARS));
     const showChecked = /* @__PURE__ */ ref(true);
     const showShareDialog = /* @__PURE__ */ ref(false);
     const currentUserId = getCurrentUser()?.uid ?? "";
@@ -40274,7 +41528,8 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
       if (newId !== null) {
         await Promise.all([
           itemsStore.fetchByList(newId),
-          shopAreasStore.fetchByList(newId)
+          shopAreasStore.fetchByList(newId),
+          sharesStore.fetchByList(newId)
         ]);
       }
     }, { immediate: true });
@@ -40293,22 +41548,40 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
         createBaseVNode("div", _hoisted_2$1, [
           createBaseVNode("h2", null, toDisplayString(unref(listsStore).currentList?.title), 1),
           createBaseVNode("div", _hoisted_3$1, [
-            unref(listsStore).currentList?.isOwner ? (openBlock(), createElementBlock("button", {
+            currentShares.value.length > 0 ? (openBlock(), createElementBlock("div", {
               key: 0,
-              class: "list-view__share-btn",
+              class: "list-view__avatars",
               onClick: _cache[0] || (_cache[0] = ($event) => showShareDialog.value = true)
+            }, [
+              (openBlock(true), createElementBlock(Fragment, null, renderList(visibleShares.value, (share) => {
+                return openBlock(), createBlock(unref(NcAvatar), {
+                  key: share.id,
+                  user: share.sharedWithType === unref(ShareType).USER ? share.sharedWith : void 0,
+                  "display-name": share.sharedWithDisplayName || share.sharedWith,
+                  "is-no-user": share.sharedWithType === unref(ShareType).GROUP,
+                  size: 28,
+                  "show-user-status": false,
+                  class: "list-view__avatar"
+                }, null, 8, ["user", "display-name", "is-no-user"]);
+              }), 128)),
+              overflowCount.value > 0 ? (openBlock(), createElementBlock("span", _hoisted_4$1, " +" + toDisplayString(overflowCount.value), 1)) : createCommentVNode("", true)
+            ])) : createCommentVNode("", true),
+            unref(listsStore).currentList?.isOwner ? (openBlock(), createElementBlock("button", {
+              key: 1,
+              class: "list-view__share-btn",
+              onClick: _cache[1] || (_cache[1] = ($event) => showShareDialog.value = true)
             }, toDisplayString(unref(shareText)), 1)) : createCommentVNode("", true)
           ])
         ]),
-        createBaseVNode("div", _hoisted_4$1, [
+        createBaseVNode("div", _hoisted_5$1, [
           canEdit.value ? (openBlock(), createBlock(ItemEditor, {
             key: 0,
             "list-id": unref(listsStore).currentList.id
           }, null, 8, ["list-id"])) : createCommentVNode("", true),
-          unref(itemsStore).loading ? (openBlock(), createElementBlock("div", _hoisted_5$1, [
+          unref(itemsStore).loading ? (openBlock(), createElementBlock("div", _hoisted_6$1, [
             createVNode(unref(NcLoadingIcon))
           ])) : (openBlock(), createElementBlock(Fragment, { key: 2 }, [
-            unref(itemsStore).uncheckedItems.length === 0 && unref(itemsStore).checkedItems.length === 0 ? (openBlock(), createElementBlock("div", _hoisted_6$1, [
+            unref(itemsStore).uncheckedItems.length === 0 && unref(itemsStore).checkedItems.length === 0 ? (openBlock(), createElementBlock("div", _hoisted_7$1, [
               createVNode(unref(NcEmptyContent), {
                 name: unref(emptyName),
                 description: unref(emptyDesc)
@@ -40329,13 +41602,13 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
                   class: "list-view__area-header",
                   style: normalizeStyle(group.areaColor ? { borderLeftColor: group.areaColor } : {})
                 }, [
-                  createBaseVNode("span", _hoisted_7$1, toDisplayString(group.areaName), 1),
-                  createBaseVNode("span", _hoisted_8$1, toDisplayString(group.itemIds.length), 1)
-                ], 4)) : areaGroups.value.length > 1 ? (openBlock(), createElementBlock("div", _hoisted_9$1, [
-                  createBaseVNode("span", _hoisted_10$1, toDisplayString(unref(uncategorizedText)), 1),
-                  createBaseVNode("span", _hoisted_11$1, toDisplayString(group.itemIds.length), 1)
+                  createBaseVNode("span", _hoisted_8$1, toDisplayString(group.areaName), 1),
+                  createBaseVNode("span", _hoisted_9$1, toDisplayString(group.itemIds.length), 1)
+                ], 4)) : areaGroups.value.length > 1 ? (openBlock(), createElementBlock("div", _hoisted_10$1, [
+                  createBaseVNode("span", _hoisted_11$1, toDisplayString(unref(uncategorizedText)), 1),
+                  createBaseVNode("span", _hoisted_12$1, toDisplayString(group.itemIds.length), 1)
                 ])) : createCommentVNode("", true),
-                createBaseVNode("div", _hoisted_12$1, [
+                createBaseVNode("div", _hoisted_13$1, [
                   (openBlock(true), createElementBlock(Fragment, null, renderList(group.itemIds, (itemId) => {
                     return openBlock(), createBlock(ItemRow, {
                       key: itemId,
@@ -40343,7 +41616,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
                       "list-id": unref(listsStore).currentList.id,
                       "can-edit": canEdit.value,
                       editing: editingItemId.value === itemId,
-                      onCloseEdit: _cache[1] || (_cache[1] = ($event) => editingItemId.value = null)
+                      onCloseEdit: _cache[2] || (_cache[2] = ($event) => editingItemId.value = null)
                     }, null, 8, ["item-id", "list-id", "can-edit", "editing"]);
                   }), 128))
                 ])
@@ -40351,15 +41624,15 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
             }), 128))
           ], 64))
         ]),
-        !unref(itemsStore).loading && unref(itemsStore).checkedItems.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_13$1, [
-          createBaseVNode("div", _hoisted_14$1, [
+        !unref(itemsStore).loading && unref(itemsStore).checkedItems.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_14$1, [
+          createBaseVNode("div", _hoisted_15$1, [
             createBaseVNode("h3", {
-              onClick: _cache[2] || (_cache[2] = ($event) => showChecked.value = !showChecked.value)
+              onClick: _cache[3] || (_cache[3] = ($event) => showChecked.value = !showChecked.value)
             }, [
               createTextVNode(toDisplayString(unref(boughtText)) + " (" + toDisplayString(unref(itemsStore).checkedItems.length) + ") ", 1),
-              createBaseVNode("span", _hoisted_15$1, toDisplayString(showChecked.value ? "▾" : "▸"), 1)
+              createBaseVNode("span", _hoisted_16$1, toDisplayString(showChecked.value ? "▾" : "▸"), 1)
             ]),
-            canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_16$1, [
+            canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_17$1, [
               createBaseVNode("button", {
                 class: "list-view__action-btn",
                 onClick: onUncheckAll
@@ -40370,7 +41643,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
               }, toDisplayString(unref(clearCheckedText)), 1)
             ])) : createCommentVNode("", true)
           ]),
-          showChecked.value ? (openBlock(), createElementBlock("div", _hoisted_17$1, [
+          showChecked.value ? (openBlock(), createElementBlock("div", _hoisted_18$1, [
             (openBlock(true), createElementBlock(Fragment, null, renderList(checkedItemIds.value, (itemId) => {
               return openBlock(), createBlock(ItemRow, {
                 key: itemId,
@@ -40387,13 +41660,13 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
           "list-id": unref(listsStore).currentList.id,
           "is-owner": unref(listsStore).currentList.isOwner,
           "current-user-id": unref(currentUserId),
-          onClose: _cache[3] || (_cache[3] = ($event) => showShareDialog.value = false)
+          onClose: _cache[4] || (_cache[4] = ($event) => showShareDialog.value = false)
         }, null, 8, ["list-id", "is-owner", "current-user-id"])) : createCommentVNode("", true)
       ]);
     };
   }
 });
-const ListView = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-f87b29a8"]]);
+const ListView = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-6a607e95"]]);
 const _hoisted_1 = { class: "area-settings" };
 const _hoisted_2 = { class: "area-settings__header" };
 const _hoisted_3 = { class: "area-settings__desc" };
@@ -40711,7 +41984,7 @@ function usePush() {
   if (hasPushServer) {
     try {
       __vitePreload(async () => {
-        const { listen } = await import("./index-CzeqYaZt.chunk.mjs").then((n2) => n2.i);
+        const { listen } = await import("./index-wy2wDQ5C.chunk.mjs").then((n2) => n2.i);
         return { listen };
       }, true ? [] : void 0, import.meta.url).then(({ listen }) => {
         listen("shopping_list_item_update", () => {

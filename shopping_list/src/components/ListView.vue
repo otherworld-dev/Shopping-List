@@ -3,6 +3,22 @@
 		<div class="list-view__header">
 			<h2>{{ listsStore.currentList?.title }}</h2>
 			<div class="list-view__actions">
+				<div v-if="currentShares.length > 0"
+					class="list-view__avatars"
+					@click="showShareDialog = true">
+					<NcAvatar
+						v-for="share in visibleShares"
+						:key="share.id"
+						:user="share.sharedWithType === ShareType.USER ? share.sharedWith : undefined"
+						:display-name="share.sharedWithDisplayName || share.sharedWith"
+						:is-no-user="share.sharedWithType === ShareType.GROUP"
+						:size="28"
+						:show-user-status="false"
+						class="list-view__avatar" />
+					<span v-if="overflowCount > 0" class="list-view__avatar-overflow">
+						+{{ overflowCount }}
+					</span>
+				</div>
 				<button v-if="listsStore.currentList?.isOwner"
 					class="list-view__share-btn"
 					@click="showShareDialog = true">
@@ -97,6 +113,7 @@
 <script setup lang="ts">
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import {
+	NcAvatar,
 	NcEmptyContent,
 	NcIconSvgWrapper,
 	NcLoadingIcon,
@@ -106,7 +123,8 @@ import { getCurrentUser } from '@nextcloud/auth'
 import { useListsStore } from '../stores/lists'
 import { useItemsStore } from '../stores/items'
 import { useShopAreasStore } from '../stores/shopAreas'
-import { Permission } from '../types'
+import { Permission, ShareType } from '../types'
+import { useSharesStore } from '../stores/shares'
 import ItemRow from './ItemRow.vue'
 import ItemEditor from './ItemEditor.vue'
 import ShareDialog from './ShareDialog.vue'
@@ -114,6 +132,17 @@ import ShareDialog from './ShareDialog.vue'
 const listsStore = useListsStore()
 const itemsStore = useItemsStore()
 const shopAreasStore = useShopAreasStore()
+const sharesStore = useSharesStore()
+
+const MAX_VISIBLE_AVATARS = 3
+
+const currentShares = computed(() => {
+	const listId = listsStore.currentListId
+	return listId !== null ? (sharesStore.sharesByList[listId] ?? []) : []
+})
+
+const visibleShares = computed(() => currentShares.value.slice(0, MAX_VISIBLE_AVATARS))
+const overflowCount = computed(() => Math.max(0, currentShares.value.length - MAX_VISIBLE_AVATARS))
 
 const showChecked = ref(true)
 const showShareDialog = ref(false)
@@ -216,6 +245,7 @@ watch(() => listsStore.currentListId, async (newId) => {
 		await Promise.all([
 			itemsStore.fetchByList(newId),
 			shopAreasStore.fetchByList(newId),
+			sharesStore.fetchByList(newId),
 		])
 	}
 }, { immediate: true })
@@ -309,6 +339,29 @@ async function onUncheckAll() {
 .list-view__items {
 	display: flex;
 	flex-direction: column;
+}
+
+.list-view__avatars {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+.list-view__avatar {
+	margin-left: -6px;
+	border: 2px solid var(--color-main-background);
+	border-radius: 50%;
+}
+
+.list-view__avatar:first-child {
+	margin-left: 0;
+}
+
+.list-view__avatar-overflow {
+	margin-left: 4px;
+	font-size: 0.8em;
+	color: var(--color-text-maxcontrast);
+	font-weight: 500;
 }
 
 .list-view__share-btn {
