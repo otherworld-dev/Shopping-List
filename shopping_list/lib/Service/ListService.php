@@ -11,10 +11,12 @@ use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\IDBConnection;
 use OCP\IGroupManager;
 use OCP\IUserManager;
+use OCA\Shopping_List\Service\ShopAreaService;
 
 class ListService {
 	public function __construct(
 		private ShoppingListMapper $mapper,
+		private ShopAreaService $shopAreaService,
 		private IGroupManager $groupManager,
 		private IUserManager $userManager,
 		private IDBConnection $db,
@@ -76,6 +78,9 @@ class ListService {
 	}
 
 	public function create(string $title, string $userId): ShoppingList {
+		// Seed default areas for this user if they have none yet
+		$this->shopAreaService->seedDefaults($userId);
+
 		$list = new ShoppingList();
 		$list->setUserId($userId);
 		$list->setTitle($title);
@@ -203,12 +208,6 @@ class ListService {
 		// Delete shares
 		$qb = $this->db->getQueryBuilder();
 		$qb->delete('shopping_list_shares')
-			->where($qb->expr()->eq('list_id', $qb->createNamedParameter($listId)))
-			->executeStatement();
-
-		// Delete list-specific shop areas
-		$qb = $this->db->getQueryBuilder();
-		$qb->delete('shopping_list_shop_areas')
 			->where($qb->expr()->eq('list_id', $qb->createNamedParameter($listId)))
 			->executeStatement();
 	}

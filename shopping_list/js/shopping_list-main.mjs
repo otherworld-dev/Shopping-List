@@ -38448,8 +38448,9 @@ const api = {
     delete: (id) => cancelableClient.delete(url(`shares/${id}`))
   },
   areas: {
-    getAll: (listId) => cancelableClient.get(url(`lists/${listId}/areas`)),
-    create: (listId, name, color) => cancelableClient.post(url(`lists/${listId}/areas`), { name, color }),
+    getForList: (listId) => cancelableClient.get(url(`lists/${listId}/areas`)),
+    getMine: () => cancelableClient.get(url("areas")),
+    create: (name, color, keywords) => cancelableClient.post(url("areas"), { name, color, keywords }),
     update: (id, data) => cancelableClient.put(url(`areas/${id}`), data),
     delete: (id) => cancelableClient.delete(url(`areas/${id}`))
   },
@@ -38457,10 +38458,6 @@ const api = {
     getAll: () => cancelableClient.get(url("tags")),
     create: (name) => cancelableClient.post(url("tags"), { name }),
     delete: (id) => cancelableClient.delete(url(`tags/${id}`))
-  },
-  preferences: {
-    getKeywords: () => cancelableClient.get(url("preferences/keywords")),
-    setKeywords: (keywords) => cancelableClient.put(url("preferences/keywords"), { keywords })
   }
 };
 var toastify$1 = { exports: {} };
@@ -39197,7 +39194,7 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
     const sharedText = translate("shopping_list", "Shared with me");
     const emptyName = translate("shopping_list", "No shopping lists");
     const emptyDesc = translate("shopping_list", "Create your first shopping list to get started");
-    const settingsText = translate("shopping_list", "Area Keywords");
+    const settingsText = translate("shopping_list", "Manage Areas");
     function getUncheckedCount(listId) {
       const items = itemsStore.itemsByList[listId] ?? [];
       return items.filter((i2) => !i2.checked).length;
@@ -39282,51 +39279,69 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ListSidebar = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-ace921c4"]]);
+const ListSidebar = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-df4f2048"]]);
 const useShopAreasStore = /* @__PURE__ */ defineStore("shopAreas", () => {
   const areasByList = /* @__PURE__ */ ref({});
+  const myAreas = /* @__PURE__ */ ref([]);
   async function fetchByList(listId) {
     try {
-      const response = await api.areas.getAll(listId);
+      const response = await api.areas.getForList(listId);
       areasByList.value[listId] = response.data.ocs.data;
     } catch (e) {
       showError("Failed to load shop areas");
       console.error(e);
     }
   }
-  async function create2(listId, name, color) {
+  async function fetchMine() {
     try {
-      const response = await api.areas.create(listId, name, color);
+      const response = await api.areas.getMine();
+      myAreas.value = response.data.ocs.data;
+    } catch (e) {
+      showError("Failed to load shop areas");
+      console.error(e);
+    }
+  }
+  async function create2(name, color, keywords) {
+    try {
+      const response = await api.areas.create(name, color, keywords);
       const newArea = response.data.ocs.data;
-      if (!areasByList.value[listId]) {
-        areasByList.value[listId] = [];
+      myAreas.value.push(newArea);
+      for (const listId in areasByList.value) {
+        areasByList.value[listId].push(newArea);
       }
-      areasByList.value[listId].push(newArea);
       return newArea;
     } catch (e) {
       showError("Failed to create shop area");
       console.error(e);
     }
   }
-  async function update(id, data, listId) {
+  async function update(id, data) {
     try {
       const response = await api.areas.update(id, data);
       const updated = response.data.ocs.data;
-      const areas = areasByList.value[listId] ?? [];
-      const index = areas.findIndex((a2) => a2.id === id);
-      if (index !== -1) {
-        areas[index] = updated;
+      const myIdx = myAreas.value.findIndex((a2) => a2.id === id);
+      if (myIdx !== -1) {
+        myAreas.value[myIdx] = updated;
+      }
+      for (const listId in areasByList.value) {
+        const areas = areasByList.value[listId];
+        const idx = areas.findIndex((a2) => a2.id === id);
+        if (idx !== -1) {
+          areas[idx] = updated;
+        }
       }
     } catch (e) {
       showError("Failed to update shop area");
       console.error(e);
     }
   }
-  async function remove2(id, listId) {
+  async function remove2(id) {
     try {
       await api.areas.delete(id);
-      const areas = areasByList.value[listId] ?? [];
-      areasByList.value[listId] = areas.filter((a2) => a2.id !== id);
+      myAreas.value = myAreas.value.filter((a2) => a2.id !== id);
+      for (const listId in areasByList.value) {
+        areasByList.value[listId] = areasByList.value[listId].filter((a2) => a2.id !== id);
+      }
     } catch (e) {
       showError("Failed to delete shop area");
       console.error(e);
@@ -39334,7 +39349,9 @@ const useShopAreasStore = /* @__PURE__ */ defineStore("shopAreas", () => {
   }
   return {
     areasByList,
+    myAreas,
     fetchByList,
+    fetchMine,
     create: create2,
     update,
     remove: remove2
@@ -39538,461 +39555,6 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
   }
 });
 const ItemRow = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-1d363953"]]);
-const DEFAULT_KEYWORDS = {
-  "Produce": [
-    "lettuce",
-    "tomato",
-    "tomatoes",
-    "potato",
-    "potatoes",
-    "onion",
-    "onions",
-    "garlic",
-    "ginger",
-    "carrot",
-    "carrots",
-    "celery",
-    "cucumber",
-    "pepper",
-    "peppers",
-    "broccoli",
-    "spinach",
-    "kale",
-    "cabbage",
-    "mushroom",
-    "mushrooms",
-    "avocado",
-    "corn",
-    "bean sprouts",
-    "radish",
-    "radishes",
-    "spring onion",
-    "spring onions",
-    "green onion",
-    "green onions",
-    "scallion",
-    "scallions",
-    "herbs",
-    "basil",
-    "cilantro",
-    "parsley",
-    "mint",
-    "rosemary",
-    "thyme",
-    "dill",
-    "chive",
-    "chives",
-    "lemon",
-    "lime",
-    "limes",
-    "orange",
-    "apple",
-    "banana",
-    "berries",
-    "strawberry",
-    "strawberries",
-    "blueberry",
-    "blueberries",
-    "grape",
-    "grapes",
-    "melon",
-    "watermelon",
-    "pear",
-    "peach",
-    "mango",
-    "pineapple",
-    "kiwi",
-    "plum",
-    "cherry",
-    "cherries",
-    "zucchini",
-    "courgette",
-    "aubergine",
-    "eggplant",
-    "beetroot",
-    "turnip",
-    "parsnip",
-    "leek",
-    "leeks",
-    "asparagus",
-    "artichoke",
-    "fennel",
-    "chard",
-    "rocket",
-    "arugula",
-    "watercress",
-    "endive",
-    "shallot",
-    "shallots",
-    "chilli",
-    "chili",
-    "jalapeno",
-    "habanero",
-    "squash",
-    "pumpkin",
-    "sweet potato"
-  ],
-  "Dairy": [
-    "milk",
-    "cheese",
-    "butter",
-    "cream",
-    "yoghurt",
-    "yogurt",
-    "egg",
-    "eggs",
-    "sour cream",
-    "cream cheese",
-    "cottage cheese",
-    "mozzarella",
-    "cheddar",
-    "parmesan",
-    "feta",
-    "brie",
-    "ricotta",
-    "gouda",
-    "mascarpone",
-    "whipping cream",
-    "double cream",
-    "single cream",
-    "clotted cream",
-    "buttermilk",
-    "ghee",
-    "margarine",
-    "custard"
-  ],
-  "Bakery": [
-    "bread",
-    "roll",
-    "rolls",
-    "baguette",
-    "croissant",
-    "muffin",
-    "muffins",
-    "bagel",
-    "bagels",
-    "tortilla",
-    "tortillas",
-    "pita",
-    "naan",
-    "focaccia",
-    "ciabatta",
-    "sourdough",
-    "brioche",
-    "crumpet",
-    "crumpets",
-    "scone",
-    "scones",
-    "cake",
-    "pastry",
-    "pastries",
-    "doughnut",
-    "doughnuts"
-  ],
-  "Meat & Seafood": [
-    "chicken",
-    "beef",
-    "pork",
-    "lamb",
-    "turkey",
-    "duck",
-    "veal",
-    "venison",
-    "bacon",
-    "ham",
-    "sausage",
-    "sausages",
-    "mince",
-    "ground beef",
-    "steak",
-    "ribs",
-    "chop",
-    "chops",
-    "fillet",
-    "breast",
-    "thigh",
-    "wing",
-    "wings",
-    "salmon",
-    "tuna",
-    "cod",
-    "prawns",
-    "shrimp",
-    "crab",
-    "lobster",
-    "mussel",
-    "mussels",
-    "clam",
-    "clams",
-    "oyster",
-    "oysters",
-    "anchovy",
-    "anchovies",
-    "sardine",
-    "sardines",
-    "mackerel",
-    "trout",
-    "sea bass",
-    "haddock",
-    "fish",
-    "squid",
-    "octopus",
-    "scallop",
-    "scallops"
-  ],
-  "Frozen": [
-    "frozen",
-    "ice cream",
-    "ice lolly",
-    "fish fingers",
-    "frozen peas",
-    "frozen pizza",
-    "frozen chips",
-    "frozen berries",
-    "sorbet"
-  ],
-  "Beverages": [
-    "juice",
-    "water",
-    "soda",
-    "cola",
-    "lemonade",
-    "tea",
-    "coffee",
-    "beer",
-    "wine",
-    "spirits",
-    "whisky",
-    "vodka",
-    "gin",
-    "rum",
-    "sparkling water",
-    "tonic",
-    "kombucha",
-    "smoothie",
-    "cordial",
-    "squash drink"
-  ],
-  "Snacks": [
-    "chips",
-    "crisps",
-    "popcorn",
-    "nuts",
-    "peanuts",
-    "almonds",
-    "cashews",
-    "walnuts",
-    "trail mix",
-    "granola bar",
-    "biscuit",
-    "biscuits",
-    "cookie",
-    "cookies",
-    "cracker",
-    "crackers",
-    "pretzel",
-    "pretzels",
-    "chocolate",
-    "candy",
-    "sweets",
-    "gummy",
-    "dried fruit",
-    "raisins"
-  ],
-  "Household": [
-    "toilet paper",
-    "kitchen roll",
-    "paper towel",
-    "bin bag",
-    "bin bags",
-    "trash bag",
-    "cling film",
-    "foil",
-    "aluminium foil",
-    "plastic wrap",
-    "detergent",
-    "dish soap",
-    "washing up liquid",
-    "laundry",
-    "bleach",
-    "sponge",
-    "cloth",
-    "batteries",
-    "light bulb",
-    "candle",
-    "candles",
-    "matches",
-    "air freshener"
-  ],
-  "Personal Care": [
-    "shampoo",
-    "conditioner",
-    "soap",
-    "body wash",
-    "toothpaste",
-    "toothbrush",
-    "deodorant",
-    "razor",
-    "shaving",
-    "moisturizer",
-    "moisturiser",
-    "sunscreen",
-    "lotion",
-    "tissue",
-    "tissues",
-    "cotton",
-    "plaster",
-    "plasters",
-    "paracetamol",
-    "ibuprofen",
-    "vitamins"
-  ],
-  "Other": [
-    "olive oil",
-    "vegetable oil",
-    "coconut oil",
-    "sesame oil",
-    "vinegar",
-    "soy sauce",
-    "fish sauce",
-    "worcestershire",
-    "hot sauce",
-    "ketchup",
-    "mustard",
-    "mayonnaise",
-    "mayo",
-    "salt",
-    "pepper",
-    "sugar",
-    "flour",
-    "baking powder",
-    "baking soda",
-    "yeast",
-    "cornflour",
-    "cornstarch",
-    "rice",
-    "pasta",
-    "noodles",
-    "couscous",
-    "quinoa",
-    "oats",
-    "cereal",
-    "honey",
-    "maple syrup",
-    "jam",
-    "peanut butter",
-    "nutella",
-    "stock",
-    "broth",
-    "bouillon",
-    "canned",
-    "tinned",
-    "beans",
-    "lentils",
-    "chickpeas",
-    "tomato paste",
-    "passata",
-    "chopped tomatoes",
-    "coconut milk",
-    "condensed milk",
-    "evaporated milk",
-    "olives",
-    "capers",
-    "pickles",
-    "gherkins",
-    "relish",
-    "chutney",
-    "spice",
-    "cinnamon",
-    "cumin",
-    "paprika",
-    "turmeric",
-    "oregano",
-    "sumac",
-    "cayenne",
-    "nutmeg",
-    "clove",
-    "cardamom",
-    "coriander",
-    "curry powder",
-    "chili powder",
-    "red pepper flakes",
-    "spaghetti",
-    "penne",
-    "fusilli",
-    "linguine",
-    "tagliatelle",
-    "macaroni",
-    "lasagne",
-    "risotto",
-    "polenta",
-    "breadcrumbs",
-    "panko"
-  ]
-};
-let saveTimeout = null;
-const useAreaKeywordsStore = /* @__PURE__ */ defineStore("areaKeywords", () => {
-  const keywords = /* @__PURE__ */ ref(structuredClone(DEFAULT_KEYWORDS));
-  const loaded = /* @__PURE__ */ ref(false);
-  async function fetchFromServer() {
-    try {
-      const response = await api.preferences.getKeywords();
-      const data = response.data.ocs.data;
-      if (data && typeof data === "object" && Object.keys(data).length > 0) {
-        keywords.value = data;
-      }
-    } catch {
-    }
-    loaded.value = true;
-  }
-  function saveToServer() {
-    if (saveTimeout) clearTimeout(saveTimeout);
-    saveTimeout = setTimeout(async () => {
-      try {
-        await api.preferences.setKeywords(keywords.value);
-      } catch {
-        console.error("[ShoppingList] Failed to save area keywords");
-      }
-    }, 1e3);
-  }
-  function getKeywords(areaName) {
-    return keywords.value[areaName] ?? [];
-  }
-  function setKeywords(areaName, words) {
-    keywords.value[areaName] = words.map((w2) => w2.toLowerCase().trim()).filter((w2) => w2);
-    saveToServer();
-  }
-  function addKeyword(areaName, word) {
-    if (!keywords.value[areaName]) {
-      keywords.value[areaName] = [];
-    }
-    const lower = word.toLowerCase().trim();
-    if (lower && !keywords.value[areaName].includes(lower)) {
-      keywords.value[areaName].push(lower);
-      saveToServer();
-    }
-  }
-  function removeKeyword(areaName, word) {
-    if (!keywords.value[areaName]) return;
-    const lower = word.toLowerCase().trim();
-    keywords.value[areaName] = keywords.value[areaName].filter((w2) => w2 !== lower);
-    saveToServer();
-  }
-  function resetToDefaults() {
-    keywords.value = structuredClone(DEFAULT_KEYWORDS);
-    saveToServer();
-  }
-  return {
-    keywords,
-    loaded,
-    fetchFromServer,
-    getKeywords,
-    setKeywords,
-    addKeyword,
-    removeKeyword,
-    resetToDefaults
-  };
-});
 const _hoisted_1$3 = { class: "item-editor" };
 const _hoisted_2$3 = { class: "item-editor__main" };
 const _hoisted_3$3 = ["placeholder", "onKeydown"];
@@ -40017,7 +39579,6 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     const itemsStore = useItemsStore();
     const shopAreasStore = useShopAreasStore();
     const listsStore = useListsStore();
-    const areaKeywordsStore = useAreaKeywordsStore();
     const addItemLabel = translate("shopping_list", "Add an item to list...");
     const qtyLabel = translate("shopping_list", "Qty");
     const shopAreaPlaceholder = translate("shopping_list", "Area");
@@ -40208,11 +39769,12 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     function detectArea(ingredientName) {
       const lower = ingredientName.toLowerCase();
       const areas = areaOptions.value;
-      for (const [areaName, keywords] of Object.entries(areaKeywordsStore.keywords)) {
-        for (const keyword of keywords) {
+      for (const area of areas) {
+        const fullArea = (shopAreasStore.areasByList[listsStore.currentListId] ?? []).find((a2) => a2.id === area.id);
+        if (!fullArea?.keywords) continue;
+        for (const keyword of fullArea.keywords) {
           if (lower.includes(keyword)) {
-            const area = areas.find((a2) => a2.name === areaName);
-            if (area) return area.id;
+            return area.id;
           }
         }
       }
@@ -40345,7 +39907,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ItemEditor = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-cfbd74ae"]]);
+const ItemEditor = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-9b2b5d0b"]]);
 const useSharesStore = /* @__PURE__ */ defineStore("shares", () => {
   const sharesByList = /* @__PURE__ */ ref({});
   async function fetchByList(listId) {
@@ -40435,11 +39997,11 @@ const _hoisted_17$2 = {
   key: 0,
   class: "share-modal__share-type"
 };
-const _hoisted_18 = ["value", "onChange"];
-const _hoisted_19 = { value: 0 };
-const _hoisted_20 = { value: 1 };
-const _hoisted_21 = ["onClick"];
-const _hoisted_22 = {
+const _hoisted_18$1 = ["value", "onChange"];
+const _hoisted_19$1 = { value: 0 };
+const _hoisted_20$1 = { value: 1 };
+const _hoisted_21$1 = ["onClick"];
+const _hoisted_22$1 = {
   key: 3,
   class: "share-modal__empty"
 };
@@ -40584,18 +40146,18 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
                   value: share.permission,
                   onChange: ($event) => onPermissionChange(share.id, Number($event.target.value))
                 }, [
-                  createBaseVNode("option", _hoisted_19, toDisplayString(unref(canViewText)), 1),
-                  createBaseVNode("option", _hoisted_20, toDisplayString(unref(canEditText)), 1)
-                ], 40, _hoisted_18)) : createCommentVNode("", true),
+                  createBaseVNode("option", _hoisted_19$1, toDisplayString(unref(canViewText)), 1),
+                  createBaseVNode("option", _hoisted_20$1, toDisplayString(unref(canEditText)), 1)
+                ], 40, _hoisted_18$1)) : createCommentVNode("", true),
                 __props.isOwner || share.sharedWith === __props.currentUserId ? (openBlock(), createElementBlock("button", {
                   key: 1,
                   class: "share-modal__remove",
                   onClick: ($event) => onRemoveShare(share.id)
-                }, " ✕ ", 8, _hoisted_21)) : createCommentVNode("", true)
+                }, " ✕ ", 8, _hoisted_21$1)) : createCommentVNode("", true)
               ]);
             }), 128))
           ])) : createCommentVNode("", true),
-          shares.value.length === 0 && searchQuery.value.length === 0 ? (openBlock(), createElementBlock("div", _hoisted_22, toDisplayString(unref(emptyText)), 1)) : createCommentVNode("", true)
+          shares.value.length === 0 && searchQuery.value.length === 0 ? (openBlock(), createElementBlock("div", _hoisted_22$1, toDisplayString(unref(emptyText)), 1)) : createCommentVNode("", true)
         ])
       ]);
     };
@@ -40835,72 +40397,158 @@ const ListView = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v
 const _hoisted_1 = { class: "area-settings" };
 const _hoisted_2 = { class: "area-settings__header" };
 const _hoisted_3 = { class: "area-settings__desc" };
-const _hoisted_4 = { class: "area-settings__search" };
-const _hoisted_5 = ["placeholder"];
-const _hoisted_6 = ["onClick"];
-const _hoisted_7 = { class: "area-settings__section-toggle" };
-const _hoisted_8 = { class: "area-settings__section-name" };
-const _hoisted_9 = { class: "area-settings__section-count" };
-const _hoisted_10 = {
+const _hoisted_4 = { class: "area-settings__create" };
+const _hoisted_5 = ["placeholder", "onKeydown"];
+const _hoisted_6 = ["title"];
+const _hoisted_7 = ["disabled"];
+const _hoisted_8 = { class: "area-settings__search" };
+const _hoisted_9 = ["placeholder"];
+const _hoisted_10 = ["onClick"];
+const _hoisted_11 = { class: "area-settings__section-toggle" };
+const _hoisted_12 = ["value", "title", "onInput"];
+const _hoisted_13 = ["onKeydown", "onBlur"];
+const _hoisted_14 = ["onDblclick"];
+const _hoisted_15 = ["title", "onClick"];
+const _hoisted_16 = { class: "area-settings__section-count" };
+const _hoisted_17 = ["disabled", "title", "onClick"];
+const _hoisted_18 = ["disabled", "title", "onClick"];
+const _hoisted_19 = ["title", "onClick"];
+const _hoisted_20 = {
   key: 0,
   class: "area-settings__section-body"
 };
-const _hoisted_11 = { class: "area-settings__add" };
-const _hoisted_12 = ["onUpdate:modelValue", "placeholder", "onKeydown"];
-const _hoisted_13 = ["disabled", "onClick"];
-const _hoisted_14 = { class: "area-settings__keywords" };
-const _hoisted_15 = ["onClick"];
-const _hoisted_16 = {
+const _hoisted_21 = { class: "area-settings__add" };
+const _hoisted_22 = ["onUpdate:modelValue", "placeholder", "onKeydown"];
+const _hoisted_23 = ["disabled", "onClick"];
+const _hoisted_24 = { class: "area-settings__keywords" };
+const _hoisted_25 = ["onClick"];
+const _hoisted_26 = {
   key: 0,
   class: "area-settings__empty"
 };
-const _hoisted_17 = { class: "area-settings__footer" };
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   __name: "AreaKeywordsSettings",
   emits: ["back"],
   setup(__props) {
-    const areaKeywordsStore = useAreaKeywordsStore();
     const shopAreasStore = useShopAreasStore();
-    const listsStore = useListsStore();
     const backText = translate("shopping_list", "Back to lists");
-    const title = translate("shopping_list", "Area Keywords");
-    const description = translate("shopping_list", "Keywords are used to auto-detect which shop area an item belongs to when added or pasted.");
+    const title = translate("shopping_list", "Manage Areas");
+    const description = translate("shopping_list", "Manage your shop areas, keywords, and display order. Keywords auto-detect which area an item belongs to when added or pasted.");
     const searchPlaceholder = translate("shopping_list", "Search keywords...");
     const addPlaceholder = translate("shopping_list", "Add keyword...");
     const noKeywordsText = translate("shopping_list", "No keywords");
-    const resetText = translate("shopping_list", "Reset to defaults");
+    const renameText = translate("shopping_list", "Rename");
+    const deleteText = translate("shopping_list", "Delete area");
+    const moveUpText = translate("shopping_list", "Move up");
+    const moveDownText = translate("shopping_list", "Move down");
+    const colorTitle = translate("shopping_list", "Change color");
+    const newAreaPlaceholder = translate("shopping_list", "New area name...");
+    const addAreaText = translate("shopping_list", "Add area");
     const search = /* @__PURE__ */ ref("");
     const newKeyword = /* @__PURE__ */ ref({});
     const openSections = /* @__PURE__ */ ref({});
-    const areaNames = computed(() => {
-      if (!listsStore.currentListId) return Object.keys(areaKeywordsStore.keywords);
-      const areas = shopAreasStore.areasByList[listsStore.currentListId] ?? [];
-      const names = areas.map((a2) => a2.name);
-      for (const name of Object.keys(areaKeywordsStore.keywords)) {
-        if (!names.includes(name)) names.push(name);
-      }
-      return names;
+    const renamingAreaId = /* @__PURE__ */ ref(null);
+    const renameValue = /* @__PURE__ */ ref("");
+    const renameInputRef = /* @__PURE__ */ ref(null);
+    const newAreaName = /* @__PURE__ */ ref("");
+    const newAreaColor = /* @__PURE__ */ ref("#9E9E9E");
+    let saveTimeout = {};
+    let colorTimeout = {};
+    const areas = computed(() => shopAreasStore.myAreas);
+    onMounted(() => {
+      shopAreasStore.fetchMine();
     });
-    function filteredKeywords(areaName) {
-      const words = areaKeywordsStore.getKeywords(areaName);
+    function filteredKeywords(area) {
+      const words = area.keywords ?? [];
       const q2 = search.value.toLowerCase().trim();
-      if (!q2) return words.sort();
+      if (!q2) return [...words].sort();
       return words.filter((w2) => w2.includes(q2)).sort();
     }
-    function toggleSection(areaName) {
-      openSections.value[areaName] = !openSections.value[areaName];
+    function toggleSection(areaId) {
+      openSections.value[areaId] = !openSections.value[areaId];
     }
-    function onAddKeyword(areaName) {
-      const word = newKeyword.value[areaName]?.trim();
+    function onAddKeyword(area) {
+      const word = newKeyword.value[area.id]?.trim().toLowerCase();
       if (!word) return;
-      areaKeywordsStore.addKeyword(areaName, word);
-      newKeyword.value[areaName] = "";
+      if (area.keywords.includes(word)) {
+        newKeyword.value[area.id] = "";
+        return;
+      }
+      const updated = [...area.keywords, word];
+      area.keywords = updated;
+      newKeyword.value[area.id] = "";
+      debounceSaveKeywords(area.id, updated);
     }
-    function onRemoveKeyword(areaName, word) {
-      areaKeywordsStore.removeKeyword(areaName, word);
+    function onRemoveKeyword(area, word) {
+      const updated = area.keywords.filter((w2) => w2 !== word);
+      area.keywords = updated;
+      debounceSaveKeywords(area.id, updated);
     }
-    function onReset() {
-      areaKeywordsStore.resetToDefaults();
+    function debounceSaveKeywords(areaId, keywords) {
+      if (saveTimeout[areaId]) clearTimeout(saveTimeout[areaId]);
+      saveTimeout[areaId] = setTimeout(() => {
+        shopAreasStore.update(areaId, { keywords });
+      }, 1e3);
+    }
+    async function startRename(area) {
+      renamingAreaId.value = area.id;
+      renameValue.value = area.name;
+      await nextTick();
+      if (renameInputRef.value && renameInputRef.value.length > 0) {
+        renameInputRef.value[0].focus();
+        renameInputRef.value[0].select();
+      }
+    }
+    async function saveRename(areaId) {
+      const trimmed = renameValue.value.trim();
+      if (!trimmed || renamingAreaId.value !== areaId) {
+        cancelRename();
+        return;
+      }
+      const area = areas.value.find((a2) => a2.id === areaId);
+      if (area && trimmed !== area.name) {
+        await shopAreasStore.update(areaId, { name: trimmed });
+      }
+      renamingAreaId.value = null;
+    }
+    function cancelRename() {
+      renamingAreaId.value = null;
+    }
+    function onColorChange(areaId, color) {
+      const area = areas.value.find((a2) => a2.id === areaId);
+      if (area) area.color = color;
+      if (colorTimeout[areaId]) clearTimeout(colorTimeout[areaId]);
+      colorTimeout[areaId] = setTimeout(() => {
+        shopAreasStore.update(areaId, { color });
+      }, 500);
+    }
+    async function moveArea(index, direction) {
+      const targetIndex = index + direction;
+      if (targetIndex < 0 || targetIndex >= areas.value.length) return;
+      const current = areas.value[index];
+      const target = areas.value[targetIndex];
+      const currentOrder = current.sortOrder;
+      const targetOrder = target.sortOrder;
+      const newCurrentOrder = currentOrder === targetOrder ? targetIndex : targetOrder;
+      const newTargetOrder = currentOrder === targetOrder ? index : currentOrder;
+      await Promise.all([
+        shopAreasStore.update(current.id, { sortOrder: newCurrentOrder }),
+        shopAreasStore.update(target.id, { sortOrder: newTargetOrder })
+      ]);
+      await shopAreasStore.fetchMine();
+    }
+    async function onCreateArea() {
+      const name = newAreaName.value.trim();
+      if (!name) return;
+      await shopAreasStore.create(name, newAreaColor.value);
+      newAreaName.value = "";
+      newAreaColor.value = "#9E9E9E";
+    }
+    async function onDeleteArea(area) {
+      if (!confirm(translate("shopping_list", 'Delete "{name}"? Items in this area will become uncategorized.', { name: area.name }))) {
+        return;
+      }
+      await shopAreasStore.remove(area.id);
     }
     return (_ctx, _cache) => {
       return openBlock(), createElementBlock("div", _hoisted_1, [
@@ -40914,46 +40562,123 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
         ]),
         createBaseVNode("div", _hoisted_4, [
           withDirectives(createBaseVNode("input", {
-            "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => search.value = $event),
+            "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => newAreaName.value = $event),
+            type: "text",
+            placeholder: unref(newAreaPlaceholder),
+            class: "area-settings__create-input",
+            onKeydown: withKeys(withModifiers(onCreateArea, ["prevent"]), ["enter"])
+          }, null, 40, _hoisted_5), [
+            [vModelText, newAreaName.value]
+          ]),
+          withDirectives(createBaseVNode("input", {
+            "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => newAreaColor.value = $event),
+            type: "color",
+            class: "area-settings__create-color",
+            title: unref(colorTitle)
+          }, null, 8, _hoisted_6), [
+            [vModelText, newAreaColor.value]
+          ]),
+          createBaseVNode("button", {
+            class: "area-settings__create-btn",
+            disabled: !newAreaName.value.trim(),
+            onClick: onCreateArea
+          }, toDisplayString(unref(addAreaText)), 9, _hoisted_7)
+        ]),
+        createBaseVNode("div", _hoisted_8, [
+          withDirectives(createBaseVNode("input", {
+            "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => search.value = $event),
             type: "text",
             placeholder: unref(searchPlaceholder),
             class: "area-settings__search-input"
-          }, null, 8, _hoisted_5), [
+          }, null, 8, _hoisted_9), [
             [vModelText, search.value]
           ])
         ]),
-        (openBlock(true), createElementBlock(Fragment, null, renderList(areaNames.value, (areaName) => {
+        (openBlock(true), createElementBlock(Fragment, null, renderList(areas.value, (area, index) => {
           return openBlock(), createElementBlock("div", {
-            key: areaName,
+            key: area.id,
             class: "area-settings__section"
           }, [
             createBaseVNode("div", {
               class: "area-settings__section-header",
-              onClick: ($event) => toggleSection(areaName)
+              onClick: ($event) => toggleSection(area.id)
             }, [
-              createBaseVNode("span", _hoisted_7, toDisplayString(openSections.value[areaName] ? "▾" : "▸"), 1),
-              createBaseVNode("span", _hoisted_8, toDisplayString(areaName), 1),
-              createBaseVNode("span", _hoisted_9, toDisplayString(filteredKeywords(areaName).length), 1)
-            ], 8, _hoisted_6),
-            openSections.value[areaName] ? (openBlock(), createElementBlock("div", _hoisted_10, [
-              createBaseVNode("div", _hoisted_11, [
+              createBaseVNode("span", _hoisted_11, toDisplayString(openSections.value[area.id] ? "▾" : "▸"), 1),
+              createBaseVNode("input", {
+                type: "color",
+                value: area.color || "#9E9E9E",
+                class: "area-settings__color-input",
+                title: unref(colorTitle),
+                onClick: _cache[4] || (_cache[4] = withModifiers(() => {
+                }, ["stop"])),
+                onInput: ($event) => onColorChange(area.id, $event.target.value)
+              }, null, 40, _hoisted_12),
+              renamingAreaId.value === area.id ? withDirectives((openBlock(), createElementBlock("input", {
+                key: 0,
+                ref_for: true,
+                ref_key: "renameInputRef",
+                ref: renameInputRef,
+                "onUpdate:modelValue": _cache[5] || (_cache[5] = ($event) => renameValue.value = $event),
+                type: "text",
+                class: "area-settings__rename-input",
+                onClick: _cache[6] || (_cache[6] = withModifiers(() => {
+                }, ["stop"])),
+                onKeydown: [
+                  withKeys(withModifiers(($event) => saveRename(area.id), ["prevent"]), ["enter"]),
+                  withKeys(withModifiers(cancelRename, ["prevent"]), ["escape"])
+                ],
+                onBlur: ($event) => saveRename(area.id)
+              }, null, 40, _hoisted_13)), [
+                [vModelText, renameValue.value]
+              ]) : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
+                createBaseVNode("span", {
+                  class: "area-settings__section-name",
+                  onDblclick: withModifiers(($event) => startRename(area), ["stop"])
+                }, toDisplayString(area.name), 41, _hoisted_14),
+                createBaseVNode("button", {
+                  class: "area-settings__action-btn area-settings__action-btn--rename",
+                  title: unref(renameText),
+                  onClick: withModifiers(($event) => startRename(area), ["stop"])
+                }, " ✎ ", 8, _hoisted_15)
+              ], 64)),
+              createBaseVNode("span", _hoisted_16, toDisplayString(filteredKeywords(area).length), 1),
+              createBaseVNode("button", {
+                class: "area-settings__action-btn",
+                disabled: index === 0,
+                title: unref(moveUpText),
+                onClick: withModifiers(($event) => moveArea(index, -1), ["stop"])
+              }, " ▲ ", 8, _hoisted_17),
+              createBaseVNode("button", {
+                class: "area-settings__action-btn",
+                disabled: index === areas.value.length - 1,
+                title: unref(moveDownText),
+                onClick: withModifiers(($event) => moveArea(index, 1), ["stop"])
+              }, " ▼ ", 8, _hoisted_18),
+              createBaseVNode("button", {
+                class: "area-settings__action-btn area-settings__action-btn--delete",
+                title: unref(deleteText),
+                onClick: withModifiers(($event) => onDeleteArea(area), ["stop"])
+              }, " ✕ ", 8, _hoisted_19)
+            ], 8, _hoisted_10),
+            openSections.value[area.id] ? (openBlock(), createElementBlock("div", _hoisted_20, [
+              createBaseVNode("div", _hoisted_21, [
                 withDirectives(createBaseVNode("input", {
-                  "onUpdate:modelValue": ($event) => newKeyword.value[areaName] = $event,
+                  "onUpdate:modelValue": ($event) => newKeyword.value[area.id] = $event,
                   type: "text",
                   placeholder: unref(addPlaceholder),
                   class: "area-settings__add-input",
-                  onKeydown: withKeys(withModifiers(($event) => onAddKeyword(areaName), ["prevent"]), ["enter"])
-                }, null, 40, _hoisted_12), [
-                  [vModelText, newKeyword.value[areaName]]
+                  onKeydown: withKeys(withModifiers(($event) => onAddKeyword(area), ["prevent"]), ["enter"])
+                }, null, 40, _hoisted_22), [
+                  [vModelText, newKeyword.value[area.id]]
                 ]),
                 createBaseVNode("button", {
                   class: "area-settings__add-btn",
-                  disabled: !newKeyword.value[areaName]?.trim(),
-                  onClick: ($event) => onAddKeyword(areaName)
-                }, " + ", 8, _hoisted_13)
+                  disabled: !newKeyword.value[area.id]?.trim(),
+                  onClick: ($event) => onAddKeyword(area)
+                }, " + ", 8, _hoisted_23)
               ]),
-              createBaseVNode("div", _hoisted_14, [
-                (openBlock(true), createElementBlock(Fragment, null, renderList(filteredKeywords(areaName), (word) => {
+              createBaseVNode("div", _hoisted_24, [
+                (openBlock(true), createElementBlock(Fragment, null, renderList(filteredKeywords(area), (word) => {
                   return openBlock(), createElementBlock("span", {
                     key: word,
                     class: "area-settings__keyword"
@@ -40961,26 +40686,20 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
                     createTextVNode(toDisplayString(word) + " ", 1),
                     createBaseVNode("button", {
                       class: "area-settings__keyword-remove",
-                      onClick: ($event) => onRemoveKeyword(areaName, word)
-                    }, "✕", 8, _hoisted_15)
+                      onClick: ($event) => onRemoveKeyword(area, word)
+                    }, "✕", 8, _hoisted_25)
                   ]);
                 }), 128)),
-                filteredKeywords(areaName).length === 0 ? (openBlock(), createElementBlock("span", _hoisted_16, toDisplayString(unref(noKeywordsText)), 1)) : createCommentVNode("", true)
+                filteredKeywords(area).length === 0 ? (openBlock(), createElementBlock("span", _hoisted_26, toDisplayString(unref(noKeywordsText)), 1)) : createCommentVNode("", true)
               ])
             ])) : createCommentVNode("", true)
           ]);
-        }), 128)),
-        createBaseVNode("div", _hoisted_17, [
-          createBaseVNode("button", {
-            class: "area-settings__reset",
-            onClick: onReset
-          }, toDisplayString(unref(resetText)), 1)
-        ])
+        }), 128))
       ]);
     };
   }
 });
-const AreaKeywordsSettings = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-a3f52051"]]);
+const AreaKeywordsSettings = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-3622bb14"]]);
 let initialized = false;
 function usePush() {
   if (initialized) return;
@@ -41034,15 +40753,11 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
   __name: "App",
   setup(__props) {
     const listsStore = useListsStore();
-    const areaKeywordsStore = useAreaKeywordsStore();
     const showSettings = /* @__PURE__ */ ref(false);
     const noListName = translate("shopping_list", "No list selected");
     const noListDesc = translate("shopping_list", "Select a list from the sidebar or create a new one");
     onMounted(async () => {
-      await Promise.all([
-        listsStore.fetchAll(),
-        areaKeywordsStore.fetchFromServer()
-      ]);
+      await listsStore.fetchAll();
       if (listsStore.lists.length > 0 && !listsStore.currentListId) {
         listsStore.selectList(listsStore.lists[0].id);
       }

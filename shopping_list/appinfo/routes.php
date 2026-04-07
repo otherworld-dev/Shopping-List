@@ -32,7 +32,8 @@ return [
 
 		// Shop Areas
 		['name' => 'shop_area#index', 'url' => '/api/v1/lists/{listId}/areas', 'verb' => 'GET'],
-		['name' => 'shop_area#create', 'url' => '/api/v1/lists/{listId}/areas', 'verb' => 'POST'],
+		['name' => 'shop_area#mine', 'url' => '/api/v1/areas', 'verb' => 'GET'],
+		['name' => 'shop_area#create', 'url' => '/api/v1/areas', 'verb' => 'POST'],
 		['name' => 'shop_area#update', 'url' => '/api/v1/areas/{id}', 'verb' => 'PUT'],
 		['name' => 'shop_area#destroy', 'url' => '/api/v1/areas/{id}', 'verb' => 'DELETE'],
 
@@ -40,9 +41,5 @@ return [
 		['name' => 'tag#index', 'url' => '/api/v1/tags', 'verb' => 'GET'],
 		['name' => 'tag#create', 'url' => '/api/v1/tags', 'verb' => 'POST'],
 		['name' => 'tag#destroy', 'url' => '/api/v1/tags/{id}', 'verb' => 'DELETE'],
-
-		// Preferences
-		['name' => 'preferences#getKeywords', 'url' => '/api/v1/preferences/keywords', 'verb' => 'GET'],
-		['name' => 'preferences#setKeywords', 'url' => '/api/v1/preferences/keywords', 'verb' => 'PUT'],
 	],
 ];

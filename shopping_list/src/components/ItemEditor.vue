@@ -67,7 +67,6 @@ import { t } from '@nextcloud/l10n'
 import { useItemsStore } from '../stores/items'
 import { useShopAreasStore } from '../stores/shopAreas'
 import { useListsStore } from '../stores/lists'
-import { useAreaKeywordsStore } from '../stores/areaKeywords'
 
 const props = defineProps<{
 	listId: number
@@ -76,7 +75,6 @@ const props = defineProps<{
 const itemsStore = useItemsStore()
 const shopAreasStore = useShopAreasStore()
 const listsStore = useListsStore()
-const areaKeywordsStore = useAreaKeywordsStore()
 
 const addItemLabel = t('shopping_list', 'Add an item to list...')
 const qtyLabel = t('shopping_list', 'Qty')
@@ -291,17 +289,18 @@ function parseIngredient(line: string): { name: string; quantity: string | null 
 	}
 }
 
-// --- Auto-detect shop area from ingredient name (reads from editable store) ---
+// --- Auto-detect shop area from ingredient name (reads keywords from area entities) ---
 
 function detectArea(ingredientName: string): number | null {
 	const lower = ingredientName.toLowerCase()
 	const areas = areaOptions.value
 
-	for (const [areaName, keywords] of Object.entries(areaKeywordsStore.keywords)) {
-		for (const keyword of keywords) {
+	for (const area of areas) {
+		const fullArea = (shopAreasStore.areasByList[listsStore.currentListId!] ?? []).find(a => a.id === area.id)
+		if (!fullArea?.keywords) continue
+		for (const keyword of fullArea.keywords) {
 			if (lower.includes(keyword)) {
-				const area = areas.find(a => a.name === areaName)
-				if (area) return area.id
+				return area.id
 			}
 		}
 	}

@@ -87,7 +87,7 @@ const deleteText = t('shopping_list', 'Delete list')
 const sharedText = t('shopping_list', 'Shared with me')
 const emptyName = t('shopping_list', 'No shopping lists')
 const emptyDesc = t('shopping_list', 'Create your first shopping list to get started')
-const settingsText = t('shopping_list', 'Area Keywords')
+const settingsText = t('shopping_list', 'Manage Areas')
 
 function getUncheckedCount(listId: number): number {
 	const items = itemsStore.itemsByList[listId] ?? []

@@ -35,10 +35,11 @@ export interface ListShare {
 
 export interface ShopArea {
 	id: number
-	listId: number | null
+	userId: string
 	name: string
 	sortOrder: number
 	color: string | null
+	keywords: string[]
 }
 
 export interface Tag {

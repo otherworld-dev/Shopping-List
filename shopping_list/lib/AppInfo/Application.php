@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace OCA\Shopping_List\AppInfo;
 
-use OCA\Shopping_List\Service\ShopAreaService;
 use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
@@ -21,8 +20,5 @@ class Application extends App implements IBootstrap {
 	}
 
 	public function boot(IBootContext $context): void {
-		$context->injectFn(function (ShopAreaService $shopAreaService) {
-			$shopAreaService->seedDefaults();
-		});
 	}
 }

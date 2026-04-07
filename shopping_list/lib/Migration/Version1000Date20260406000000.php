@@ -139,10 +139,9 @@ class Version1000Date20260406000000 extends SimpleMigrationStep {
 				'notnull' => true,
 				'unsigned' => true,
 			]);
-			$table->addColumn('list_id', Types::INTEGER, [
-				'notnull' => false,
-				'unsigned' => true,
-				'comment' => 'null = global default',
+			$table->addColumn('user_id', Types::STRING, [
+				'notnull' => true,
+				'length' => 64,
 			]);
 			$table->addColumn('name', Types::STRING, [
 				'notnull' => true,
@@ -157,8 +156,12 @@ class Version1000Date20260406000000 extends SimpleMigrationStep {
 				'length' => 7,
 				'comment' => 'hex color e.g. #FF5733',
 			]);
+			$table->addColumn('keywords', Types::TEXT, [
+				'notnull' => false,
+				'comment' => 'JSON array of keyword strings',
+			]);
 			$table->setPrimaryKey(['id']);
-			$table->addIndex(['list_id'], 'sl_areas_list_idx');
+			$table->addIndex(['user_id'], 'sl_areas_user_idx');
 		}
 
 		// Tags
@@ -200,7 +203,6 @@ class Version1000Date20260406000000 extends SimpleMigrationStep {
 	}
 
 	public function postSchemaChange(IOutput $output, Closure $schemaClosure, array $options): void {
-		// Default shop areas are now seeded by ShopAreaService::seedDefaults()
-		// on every app boot, so they survive database resets.
+		// Default shop areas are seeded per-user when they create their first list.
 	}
 }

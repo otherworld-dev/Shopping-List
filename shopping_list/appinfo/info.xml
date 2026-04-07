@@ -8,8 +8,10 @@
 	<version>1.0.0</version>
 	<licence>agpl</licence>
 	<author mail="adam@otherworld.dev">Adam</author>
-	<namespace>Shopping_List</namespace>
+	<funding>https://www.paypal.com/donate/?hosted_button_id=MA56N6K8FSTQ2</funding>
+    <namespace>Shopping_List</namespace>
 	<category>organization</category>
+	<screenshot>https://raw.githubusercontent.com/otherworld-dev/Shopping-List/main/screenshots/Nextcloud%20Shopping%20List%20Example.png</screenshot>
 	<bugs>https://github.com/otherworld-dev/Shopping-List/issues</bugs>
 	<dependencies>
 		<nextcloud min-version="30" max-version="35"/>

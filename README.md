@@ -1,5 +1,9 @@
 # Shopping List
 
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/P5P31KQRF1)
+
+![Shopping List Example](screenshots/Nextcloud%20Shopping%20List%20Example.png)
+
 A shared shopping list app for [Nextcloud](https://nextcloud.com). Create multiple lists, categorize items by shop area, and collaborate with your household in real-time.
 
 ## Features

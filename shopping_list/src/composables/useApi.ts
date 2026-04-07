@@ -39,9 +39,10 @@ export const api = {
 		delete: (id: number) => axios.delete(url(`shares/${id}`)),
 	},
 	areas: {
-		getAll: (listId: number) => axios.get(url(`lists/${listId}/areas`)),
-		create: (listId: number, name: string, color?: string) =>
-			axios.post(url(`lists/${listId}/areas`), { name, color }),
+		getForList: (listId: number) => axios.get(url(`lists/${listId}/areas`)),
+		getMine: () => axios.get(url('areas')),
+		create: (name: string, color?: string, keywords?: string[]) =>
+			axios.post(url('areas'), { name, color, keywords }),
 		update: (id: number, data: Record<string, unknown>) =>
 			axios.put(url(`areas/${id}`), data),
 		delete: (id: number) => axios.delete(url(`areas/${id}`)),
@@ -50,10 +51,5 @@ export const api = {
 		getAll: () => axios.get(url('tags')),
 		create: (name: string) => axios.post(url('tags'), { name }),
 		delete: (id: number) => axios.delete(url(`tags/${id}`)),
-	},
-	preferences: {
-		getKeywords: () => axios.get(url('preferences/keywords')),
-		setKeywords: (keywords: Record<string, string[]>) =>
-			axios.put(url('preferences/keywords'), { keywords }),
 	},
 }

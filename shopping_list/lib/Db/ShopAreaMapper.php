@@ -25,31 +25,30 @@ class ShopAreaMapper extends QBMapper {
 	}
 
 	/**
-	 * Get areas for a list: global defaults (list_id IS NULL) + list-specific.
+	 * Get all areas belonging to a user, ordered by sort_order.
 	 *
 	 * @return ShopArea[]
 	 */
-	public function findByList(int $listId): array {
+	public function findByUser(string $userId): array {
 		$qb = $this->db->getQueryBuilder();
 		$qb->select('*')
 			->from($this->getTableName())
-			->where($qb->expr()->orX(
-				$qb->expr()->isNull('list_id'),
-				$qb->expr()->eq('list_id', $qb->createNamedParameter($listId, IQueryBuilder::PARAM_INT))
-			))
+			->where($qb->expr()->eq('user_id', $qb->createNamedParameter($userId)))
 			->orderBy('sort_order', 'ASC');
 		return $this->findEntities($qb);
 	}
 
 	/**
-	 * @return ShopArea[]
+	 * Count areas belonging to a user.
 	 */
-	public function findGlobalDefaults(): array {
+	public function countByUser(string $userId): int {
 		$qb = $this->db->getQueryBuilder();
-		$qb->select('*')
+		$qb->select($qb->func()->count('id'))
 			->from($this->getTableName())
-			->where($qb->expr()->isNull('list_id'))
-			->orderBy('sort_order', 'ASC');
-		return $this->findEntities($qb);
+			->where($qb->expr()->eq('user_id', $qb->createNamedParameter($userId)));
+		$result = $qb->executeQuery();
+		$count = (int)$result->fetchOne();
+		$result->closeCursor();
+		return $count;
 	}
 }
