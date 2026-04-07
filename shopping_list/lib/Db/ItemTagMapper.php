@@ -13,7 +13,7 @@ use OCP\IDBConnection;
  */
 class ItemTagMapper extends QBMapper {
 	public function __construct(IDBConnection $db) {
-		parent::__construct($db, 'shopping_list_item_tags', ItemTag::class);
+		parent::__construct($db, 'shopping_list_itags', ItemTag::class);
 	}
 
 	/**

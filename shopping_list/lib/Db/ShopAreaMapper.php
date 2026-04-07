@@ -13,7 +13,7 @@ use OCP\IDBConnection;
  */
 class ShopAreaMapper extends QBMapper {
 	public function __construct(IDBConnection $db) {
-		parent::__construct($db, 'shopping_list_shop_areas', ShopArea::class);
+		parent::__construct($db, 'shopping_list_areas', ShopArea::class);
 	}
 
 	public function find(int $id): ShopArea {

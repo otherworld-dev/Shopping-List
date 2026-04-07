@@ -115,7 +115,7 @@ class ItemService {
 
 		// Delete item tags
 		$qb = $this->db->getQueryBuilder();
-		$qb->delete('shopping_list_item_tags')
+		$qb->delete('shopping_list_itags')
 			->where($qb->expr()->eq('item_id', $qb->createNamedParameter($id)))
 			->executeStatement();
 
@@ -140,7 +140,7 @@ class ItemService {
 		// Clean up item_tags for deleted items
 		if (!empty($deletedIds)) {
 			$qb = $this->db->getQueryBuilder();
-			$qb->delete('shopping_list_item_tags')
+			$qb->delete('shopping_list_itags')
 				->where($qb->expr()->in('item_id', $qb->createNamedParameter($deletedIds, \OCP\DB\QueryBuilder\IQueryBuilder::PARAM_INT_ARRAY)))
 				->executeStatement();
 		}

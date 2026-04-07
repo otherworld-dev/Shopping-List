@@ -195,7 +195,7 @@ class ListService {
 			->from('shopping_list_items')
 			->where($subQuery->expr()->eq('list_id', $subQuery->createNamedParameter($listId)));
 
-		$qb->delete('shopping_list_item_tags')
+		$qb->delete('shopping_list_itags')
 			->where($qb->expr()->in('item_id', $qb->createFunction($subQuery->getSQL())))
 			->executeStatement();
 

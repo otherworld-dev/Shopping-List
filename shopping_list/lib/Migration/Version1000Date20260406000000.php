@@ -132,8 +132,8 @@ class Version1000Date20260406000000 extends SimpleMigrationStep {
 		}
 
 		// Shop Areas
-		if (!$schema->hasTable('shopping_list_shop_areas')) {
-			$table = $schema->createTable('shopping_list_shop_areas');
+		if (!$schema->hasTable('shopping_list_areas')) {
+			$table = $schema->createTable('shopping_list_areas');
 			$table->addColumn('id', Types::INTEGER, [
 				'autoincrement' => true,
 				'notnull' => true,
@@ -185,8 +185,8 @@ class Version1000Date20260406000000 extends SimpleMigrationStep {
 		}
 
 		// Item Tags (many-to-many)
-		if (!$schema->hasTable('shopping_list_item_tags')) {
-			$table = $schema->createTable('shopping_list_item_tags');
+		if (!$schema->hasTable('shopping_list_itags')) {
+			$table = $schema->createTable('shopping_list_itags');
 			$table->addColumn('item_id', Types::INTEGER, [
 				'notnull' => true,
 				'unsigned' => true,

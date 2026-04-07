@@ -40,7 +40,7 @@ class TagService {
 
 		// Remove item_tag links
 		$qb = $this->db->getQueryBuilder();
-		$qb->delete('shopping_list_item_tags')
+		$qb->delete('shopping_list_itags')
 			->where($qb->expr()->eq('tag_id', $qb->createNamedParameter($id)))
 			->executeStatement();
 
