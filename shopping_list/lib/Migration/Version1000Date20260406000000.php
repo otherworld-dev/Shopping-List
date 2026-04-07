@@ -76,7 +76,7 @@ class Version1000Date20260406000000 extends SimpleMigrationStep {
 				'unsigned' => true,
 			]);
 			$table->addColumn('checked', Types::BOOLEAN, [
-				'notnull' => true,
+				'notnull' => false,
 				'default' => false,
 			]);
 			$table->addColumn('checked_by', Types::STRING, [
