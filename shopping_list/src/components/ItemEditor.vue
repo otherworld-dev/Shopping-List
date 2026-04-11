@@ -375,7 +375,7 @@ async function onSubmit() {
 	flex-direction: row !important;
 	flex-wrap: nowrap !important;
 	align-items: center;
-	height: 40px;
+	height: 42px;
 	gap: 8px;
 	background: var(--color-main-background);
 	border: 2px solid var(--color-border);

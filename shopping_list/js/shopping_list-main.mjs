@@ -40523,7 +40523,7 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ListSidebar = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-7fae4eba"]]);
+const ListSidebar = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-b6280b45"]]);
 const useShopAreasStore = /* @__PURE__ */ defineStore("shopAreas", () => {
   const areasByList = /* @__PURE__ */ ref({});
   async function fetchByList(listId) {
@@ -40970,13 +40970,13 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
           title: unref(deleteTitle),
           onClick: onDelete
         }, [..._cache[5] || (_cache[5] = [
-          createStaticVNode('<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-v-750d61eb><polyline points="3 6 5 6 21 6" data-v-750d61eb></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" data-v-750d61eb></path><line x1="10" y1="11" x2="10" y2="17" data-v-750d61eb></line><line x1="14" y1="11" x2="14" y2="17" data-v-750d61eb></line></svg>', 1)
+          createStaticVNode('<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-v-c8267887><polyline points="3 6 5 6 21 6" data-v-c8267887></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" data-v-c8267887></path><line x1="10" y1="11" x2="10" y2="17" data-v-c8267887></line><line x1="14" y1="11" x2="14" y2="17" data-v-c8267887></line></svg>', 1)
         ])], 8, _hoisted_11$3)) : createCommentVNode("", true)
       ], 10, _hoisted_1$4)) : createCommentVNode("", true);
     };
   }
 });
-const ItemRow = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-750d61eb"]]);
+const ItemRow = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-c8267887"]]);
 const _hoisted_1$3 = { class: "item-editor" };
 const _hoisted_2$3 = { class: "item-editor__main" };
 const _hoisted_3$3 = ["placeholder", "onKeydown"];
@@ -41329,7 +41329,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ItemEditor = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-9b2b5d0b"]]);
+const ItemEditor = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-8890c253"]]);
 const _hoisted_1$2 = { class: "share-modal" };
 const _hoisted_2$2 = { class: "share-modal__header" };
 const _hoisted_3$2 = { class: "share-modal__search" };
@@ -41528,7 +41528,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ShareDialog = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-b041cdd7"]]);
+const ShareDialog = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-7bbe8dad"]]);
 const _hoisted_1$1 = { class: "list-view" };
 const _hoisted_2$1 = { class: "list-view__header" };
 const _hoisted_3$1 = { class: "list-view__actions" };
@@ -41789,7 +41789,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ListView = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-0825548e"]]);
+const ListView = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-2d180ad1"]]);
 const _hoisted_1 = { class: "area-settings" };
 const _hoisted_2 = { class: "area-settings__header" };
 const _hoisted_3 = { class: "area-settings__desc" };
@@ -42128,7 +42128,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const AreaKeywordsSettings = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-57f3fc3f"]]);
+const AreaKeywordsSettings = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-fb8df544"]]);
 let initialized = false;
 function usePush() {
   if (initialized) return;
