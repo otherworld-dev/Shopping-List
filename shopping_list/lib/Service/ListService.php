@@ -78,9 +78,6 @@ class ListService {
 	}
 
 	public function create(string $title, string $userId): ShoppingList {
-		// Seed default areas for this user if they have none yet
-		$this->shopAreaService->seedDefaults($userId);
-
 		$list = new ShoppingList();
 		$list->setUserId($userId);
 		$list->setTitle($title);
@@ -90,6 +87,10 @@ class ListService {
 		$list = $this->mapper->insert($list);
 		$list->setIsOwner(true);
 		$list->setPermission(1);
+
+		// Seed default areas for this new list
+		$this->shopAreaService->seedDefaults($list->getId());
+
 		return $list;
 	}
 
@@ -208,6 +209,12 @@ class ListService {
 		// Delete shares
 		$qb = $this->db->getQueryBuilder();
 		$qb->delete('shopping_list_shares')
+			->where($qb->expr()->eq('list_id', $qb->createNamedParameter($listId)))
+			->executeStatement();
+
+		// Delete areas
+		$qb = $this->db->getQueryBuilder();
+		$qb->delete('shopping_list_areas')
 			->where($qb->expr()->eq('list_id', $qb->createNamedParameter($listId)))
 			->executeStatement();
 	}

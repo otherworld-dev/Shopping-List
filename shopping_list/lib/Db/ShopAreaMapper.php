@@ -25,27 +25,27 @@ class ShopAreaMapper extends QBMapper {
 	}
 
 	/**
-	 * Get all areas belonging to a user, ordered by sort_order.
+	 * Get all areas belonging to a list, ordered by sort_order.
 	 *
 	 * @return ShopArea[]
 	 */
-	public function findByUser(string $userId): array {
+	public function findByList(int $listId): array {
 		$qb = $this->db->getQueryBuilder();
 		$qb->select('*')
 			->from($this->getTableName())
-			->where($qb->expr()->eq('user_id', $qb->createNamedParameter($userId)))
+			->where($qb->expr()->eq('list_id', $qb->createNamedParameter($listId, IQueryBuilder::PARAM_INT)))
 			->orderBy('sort_order', 'ASC');
 		return $this->findEntities($qb);
 	}
 
 	/**
-	 * Count areas belonging to a user.
+	 * Count areas belonging to a list.
 	 */
-	public function countByUser(string $userId): int {
+	public function countByList(int $listId): int {
 		$qb = $this->db->getQueryBuilder();
 		$qb->select($qb->func()->count('id'))
 			->from($this->getTableName())
-			->where($qb->expr()->eq('user_id', $qb->createNamedParameter($userId)));
+			->where($qb->expr()->eq('list_id', $qb->createNamedParameter($listId, IQueryBuilder::PARAM_INT)));
 		$result = $qb->executeQuery();
 		$count = (int)$result->fetchOne();
 		$result->closeCursor();

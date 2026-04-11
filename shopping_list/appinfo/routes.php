@@ -30,12 +30,11 @@ return [
 		['name' => 'share#update', 'url' => '/api/v1/shares/{id}', 'verb' => 'PUT'],
 		['name' => 'share#destroy', 'url' => '/api/v1/shares/{id}', 'verb' => 'DELETE'],
 
-		// Shop Areas
+		// Shop Areas (list-scoped)
 		['name' => 'shop_area#index', 'url' => '/api/v1/lists/{listId}/areas', 'verb' => 'GET'],
-		['name' => 'shop_area#mine', 'url' => '/api/v1/areas', 'verb' => 'GET'],
-		['name' => 'shop_area#create', 'url' => '/api/v1/areas', 'verb' => 'POST'],
-		['name' => 'shop_area#update', 'url' => '/api/v1/areas/{id}', 'verb' => 'PUT'],
-		['name' => 'shop_area#destroy', 'url' => '/api/v1/areas/{id}', 'verb' => 'DELETE'],
+		['name' => 'shop_area#create', 'url' => '/api/v1/lists/{listId}/areas', 'verb' => 'POST'],
+		['name' => 'shop_area#update', 'url' => '/api/v1/lists/{listId}/areas/{id}', 'verb' => 'PUT'],
+		['name' => 'shop_area#destroy', 'url' => '/api/v1/lists/{listId}/areas/{id}', 'verb' => 'DELETE'],
 
 		// Tags
 		['name' => 'tag#index', 'url' => '/api/v1/tags', 'verb' => 'GET'],

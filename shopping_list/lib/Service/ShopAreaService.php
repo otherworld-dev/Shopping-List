@@ -103,16 +103,16 @@ class ShopAreaService {
 	];
 
 	/**
-	 * Seed default areas for a user. Only creates if user has zero areas.
+	 * Seed default areas for a list. Only creates if list has zero areas.
 	 */
-	public function seedDefaults(string $userId): void {
-		if ($this->mapper->countByUser($userId) > 0) {
+	public function seedDefaults(int $listId): void {
+		if ($this->mapper->countByList($listId) > 0) {
 			return;
 		}
 
 		foreach (self::DEFAULTS as [$name, $sortOrder, $color, $keywords]) {
 			$area = new ShopArea();
-			$area->setUserId($userId);
+			$area->setListId($listId);
 			$area->setName($name);
 			$area->setSortOrder($sortOrder);
 			$area->setColor($color);
@@ -122,17 +122,25 @@ class ShopAreaService {
 	}
 
 	/**
-	 * Get areas for the current user.
+	 * Get all areas for a list.
 	 *
 	 * @return ShopArea[]
 	 */
-	public function findAll(string $userId): array {
-		return $this->mapper->findByUser($userId);
+	public function findAll(int $listId): array {
+		return $this->mapper->findByList($listId);
 	}
 
-	public function create(string $name, ?string $color, ?array $keywords, string $userId): ShopArea {
+	public function find(int $id): ShopArea {
+		try {
+			return $this->mapper->find($id);
+		} catch (\OCP\AppFramework\Db\DoesNotExistException) {
+			throw new NotFoundException('Shop area not found');
+		}
+	}
+
+	public function create(int $listId, string $name, ?string $color, ?array $keywords): ShopArea {
 		$area = new ShopArea();
-		$area->setUserId($userId);
+		$area->setListId($listId);
 		$area->setName($name);
 		$area->setColor($color);
 		$area->setSortOrder(0);
@@ -143,15 +151,15 @@ class ShopAreaService {
 		return $this->mapper->insert($area);
 	}
 
-	public function update(int $id, ?string $name, ?string $color, ?int $sortOrder, ?array $keywords, string $userId): ShopArea {
+	public function update(int $id, int $listId, ?string $name, ?string $color, ?int $sortOrder, ?array $keywords): ShopArea {
 		try {
 			$area = $this->mapper->find($id);
-		} catch (DoesNotExistException) {
+		} catch (\OCP\AppFramework\Db\DoesNotExistException) {
 			throw new NotFoundException('Shop area not found');
 		}
 
-		if ($area->getUserId() !== $userId) {
-			throw new NoPermissionException('Cannot edit another user\'s areas');
+		if ($area->getListId() !== $listId) {
+			throw new NoPermissionException('Area does not belong to this list');
 		}
 
 		if ($name !== null) {
@@ -170,22 +178,23 @@ class ShopAreaService {
 		return $this->mapper->update($area);
 	}
 
-	public function delete(int $id, string $userId): void {
+	public function delete(int $id, int $listId): void {
 		try {
 			$area = $this->mapper->find($id);
-		} catch (DoesNotExistException) {
+		} catch (\OCP\AppFramework\Db\DoesNotExistException) {
 			throw new NotFoundException('Shop area not found');
 		}
 
-		if ($area->getUserId() !== $userId) {
-			throw new NoPermissionException('Cannot delete another user\'s areas');
+		if ($area->getListId() !== $listId) {
+			throw new NoPermissionException('Area does not belong to this list');
 		}
 
-		// Nullify shop_area_id on affected items
+		// Nullify shop_area_id on affected items within this list
 		$qb = $this->db->getQueryBuilder();
 		$qb->update('shopping_list_items')
-			->set('shop_area_id', $qb->createNamedParameter(null))
-			->where($qb->expr()->eq('shop_area_id', $qb->createNamedParameter($id)))
+			->set('shop_area_id', $qb->createNamedParameter(null, \OCP\DB\QueryBuilder\IQueryBuilder::PARAM_NULL))
+			->where($qb->expr()->eq('shop_area_id', $qb->createNamedParameter($id, \OCP\DB\QueryBuilder\IQueryBuilder::PARAM_INT)))
+			->andWhere($qb->expr()->eq('list_id', $qb->createNamedParameter($listId, \OCP\DB\QueryBuilder\IQueryBuilder::PARAM_INT)))
 			->executeStatement();
 
 		$this->mapper->delete($area);

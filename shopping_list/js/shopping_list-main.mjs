@@ -1,5 +1,5 @@
 const appName = "shopping_list";
-const appVersion = "1.0.2";
+const appVersion = "1.0.3";
 const global$1 = globalThis || void 0 || self;
 /**
 * @vue/shared v3.5.32
@@ -39691,10 +39691,9 @@ const api = {
   },
   areas: {
     getForList: (listId) => cancelableClient.get(url(`lists/${listId}/areas`)),
-    getMine: () => cancelableClient.get(url("areas")),
-    create: (name, color, keywords) => cancelableClient.post(url("areas"), { name, color, keywords }),
-    update: (id, data) => cancelableClient.put(url(`areas/${id}`), data),
-    delete: (id) => cancelableClient.delete(url(`areas/${id}`))
+    create: (listId, name, color, keywords) => cancelableClient.post(url(`lists/${listId}/areas`), { name, color, keywords }),
+    update: (listId, id, data) => cancelableClient.put(url(`lists/${listId}/areas/${id}`), data),
+    delete: (listId, id) => cancelableClient.delete(url(`lists/${listId}/areas/${id}`))
   },
   tags: {
     getAll: () => cancelableClient.get(url("tags")),
@@ -40422,7 +40421,10 @@ const _hoisted_2$5 = {
   key: 0,
   class: "count-bubble"
 };
-const _hoisted_3$5 = { class: "sidebar-settings" };
+const _hoisted_3$5 = {
+  key: 2,
+  class: "sidebar-settings"
+};
 const listIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,4H7V8H3V4M9,5V7H21V5H9M3,10H7V14H3V10M9,11V13H21V11H9M3,16H7V20H3V16M9,17V19H21V17H9" fill="currentColor"/></svg>';
 const _sfc_main$6 = /* @__PURE__ */ defineComponent({
   __name: "ListSidebar",
@@ -40501,14 +40503,14 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
             _: 2
           }, 1032, ["name", "active", "onClick"]);
         }), 128)),
-        createBaseVNode("div", _hoisted_3$5, [
+        unref(listsStore).currentListId !== null ? (openBlock(), createElementBlock("div", _hoisted_3$5, [
           createBaseVNode("button", {
             class: "sidebar-settings__btn",
             onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("show-settings"))
           }, " ⚙ " + toDisplayString(unref(settingsText)), 1)
-        ]),
+        ])) : createCommentVNode("", true),
         !unref(listsStore).loading && unref(listsStore).lists.length === 0 ? (openBlock(), createBlock(unref(NcEmptyContent), {
-          key: 2,
+          key: 3,
           name: unref(emptyName),
           description: unref(emptyDesc)
         }, {
@@ -40521,10 +40523,9 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ListSidebar = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-df4f2048"]]);
+const ListSidebar = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-7fae4eba"]]);
 const useShopAreasStore = /* @__PURE__ */ defineStore("shopAreas", () => {
   const areasByList = /* @__PURE__ */ ref({});
-  const myAreas = /* @__PURE__ */ ref([]);
   async function fetchByList(listId) {
     try {
       const response = await api.areas.getForList(listId);
@@ -40534,39 +40535,26 @@ const useShopAreasStore = /* @__PURE__ */ defineStore("shopAreas", () => {
       console.error(e);
     }
   }
-  async function fetchMine() {
+  async function create2(listId, name, color, keywords) {
     try {
-      const response = await api.areas.getMine();
-      myAreas.value = response.data.ocs.data;
-    } catch (e) {
-      showError("Failed to load shop areas");
-      console.error(e);
-    }
-  }
-  async function create2(name, color, keywords) {
-    try {
-      const response = await api.areas.create(name, color, keywords);
+      const response = await api.areas.create(listId, name, color, keywords);
       const newArea = response.data.ocs.data;
-      myAreas.value.push(newArea);
-      for (const listId in areasByList.value) {
-        areasByList.value[listId].push(newArea);
+      if (!areasByList.value[listId]) {
+        areasByList.value[listId] = [];
       }
+      areasByList.value[listId].push(newArea);
       return newArea;
     } catch (e) {
       showError("Failed to create shop area");
       console.error(e);
     }
   }
-  async function update(id, data) {
+  async function update(listId, id, data) {
     try {
-      const response = await api.areas.update(id, data);
+      const response = await api.areas.update(listId, id, data);
       const updated = response.data.ocs.data;
-      const myIdx = myAreas.value.findIndex((a2) => a2.id === id);
-      if (myIdx !== -1) {
-        myAreas.value[myIdx] = updated;
-      }
-      for (const listId in areasByList.value) {
-        const areas = areasByList.value[listId];
+      const areas = areasByList.value[listId];
+      if (areas) {
         const idx = areas.findIndex((a2) => a2.id === id);
         if (idx !== -1) {
           areas[idx] = updated;
@@ -40577,11 +40565,10 @@ const useShopAreasStore = /* @__PURE__ */ defineStore("shopAreas", () => {
       console.error(e);
     }
   }
-  async function remove2(id) {
+  async function remove2(listId, id) {
     try {
-      await api.areas.delete(id);
-      myAreas.value = myAreas.value.filter((a2) => a2.id !== id);
-      for (const listId in areasByList.value) {
+      await api.areas.delete(listId, id);
+      if (areasByList.value[listId]) {
         areasByList.value[listId] = areasByList.value[listId].filter((a2) => a2.id !== id);
       }
     } catch (e) {
@@ -40591,9 +40578,7 @@ const useShopAreasStore = /* @__PURE__ */ defineStore("shopAreas", () => {
   }
   return {
     areasByList,
-    myAreas,
     fetchByList,
-    fetchMine,
     create: create2,
     update,
     remove: remove2
@@ -40669,17 +40654,27 @@ const useSharesStore = /* @__PURE__ */ defineStore("shares", () => {
 const _hoisted_1$4 = ["data-item-id"];
 const _hoisted_2$4 = { class: "item-row__check" };
 const _hoisted_3$4 = ["checked", "disabled"];
-const _hoisted_4$4 = ["onKeydown"];
-const _hoisted_5$4 = ["placeholder", "onKeydown"];
-const _hoisted_6$4 = {
+const _hoisted_4$4 = ["placeholder", "onKeydown"];
+const _hoisted_5$4 = ["onKeydown"];
+const _hoisted_6$4 = ["placeholder", "onKeydown"];
+const _hoisted_7$4 = {
+  key: 1,
+  class: "item-row__dropdown"
+};
+const _hoisted_8$4 = ["onMousedown"];
+const _hoisted_9$3 = {
+  key: 0,
+  class: "item-row__dropdown-empty"
+};
+const _hoisted_10$3 = {
   key: 0,
   class: "item-row__quantity"
 };
-const _hoisted_7$4 = {
+const _hoisted_11$3 = {
   key: 2,
   class: "item-row__area"
 };
-const _hoisted_8$4 = ["title"];
+const _hoisted_12$3 = ["title"];
 const _sfc_main$5 = /* @__PURE__ */ defineComponent({
   __name: "ItemRow",
   props: {
@@ -40694,34 +40689,54 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
     const emit2 = __emit;
     const itemsStore = useItemsStore();
     const shopAreasStore = useShopAreasStore();
-    const listsStore = useListsStore();
+    useListsStore();
     const deleteTitle = translate("shopping_list", "Delete");
     const qtyLabel = translate("shopping_list", "Qty");
+    const areaPlaceholder = translate("shopping_list", "Area");
+    const noMatchText = translate("shopping_list", "No match");
     const item = computed(() => {
       const items = itemsStore.itemsByList[props.listId] ?? [];
       return items.find((i2) => i2.id === props.itemId) ?? null;
     });
+    const areaOptions = computed(() => {
+      const areas = shopAreasStore.areasByList[props.listId] ?? [];
+      return areas.map((a2) => ({ id: a2.id, name: a2.name, color: a2.color }));
+    });
     const areaName = computed(() => {
-      if (!item.value?.shopAreaId || !listsStore.currentListId) return null;
-      const areas = shopAreasStore.areasByList[listsStore.currentListId] ?? [];
-      const area = areas.find((a2) => a2.id === item.value.shopAreaId);
-      return area?.name ?? null;
+      if (!item.value?.shopAreaId) return null;
+      return areaOptions.value.find((a2) => a2.id === item.value.shopAreaId)?.name ?? null;
     });
     const areaColor = computed(() => {
-      if (!item.value?.shopAreaId || !listsStore.currentListId) return null;
-      const areas = shopAreasStore.areasByList[listsStore.currentListId] ?? [];
-      const area = areas.find((a2) => a2.id === item.value.shopAreaId);
-      return area?.color ?? null;
+      if (!item.value?.shopAreaId) return null;
+      return areaOptions.value.find((a2) => a2.id === item.value.shopAreaId)?.color ?? null;
     });
     const editName = /* @__PURE__ */ ref("");
     const editQty = /* @__PURE__ */ ref("");
+    const editAreaId = /* @__PURE__ */ ref(null);
+    const areaSearch = /* @__PURE__ */ ref("");
+    const dropdownOpen = /* @__PURE__ */ ref(false);
+    const highlightIndex = /* @__PURE__ */ ref(0);
     const nameInputRef = /* @__PURE__ */ ref(null);
     const qtyInputRef = /* @__PURE__ */ ref(null);
+    const areaInputRef = /* @__PURE__ */ ref(null);
+    const areaWrapperRef = /* @__PURE__ */ ref(null);
     let saving = false;
+    const editAreaName = computed(() => {
+      if (editAreaId.value === null) return null;
+      return areaOptions.value.find((a2) => a2.id === editAreaId.value)?.name ?? null;
+    });
+    const filteredAreas = computed(() => {
+      const q2 = areaSearch.value.toLowerCase().trim();
+      if (!q2) return areaOptions.value;
+      return areaOptions.value.filter((a2) => a2.name.toLowerCase().includes(q2));
+    });
     watch(() => props.editing, async (isEditing) => {
       if (isEditing && item.value) {
         editName.value = item.value.name;
         editQty.value = item.value.quantity ?? "";
+        editAreaId.value = item.value.shopAreaId;
+        areaSearch.value = "";
+        dropdownOpen.value = false;
         await nextTick();
         nameInputRef.value?.focus();
         nameInputRef.value?.select();
@@ -40735,6 +40750,52 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
       nameInputRef.value?.focus();
       nameInputRef.value?.select();
     }
+    function focusAreaInput() {
+      areaInputRef.value?.focus();
+    }
+    function onAreaFocus() {
+      dropdownOpen.value = true;
+      highlightIndex.value = 0;
+      areaSearch.value = "";
+    }
+    function closeDropdown() {
+      dropdownOpen.value = false;
+      areaSearch.value = "";
+    }
+    function moveHighlight(delta) {
+      const len = filteredAreas.value.length;
+      if (len === 0) return;
+      highlightIndex.value = (highlightIndex.value + delta + len) % len;
+    }
+    function selectArea(area) {
+      editAreaId.value = area.id;
+      areaSearch.value = "";
+      dropdownOpen.value = false;
+      nameInputRef.value?.focus();
+    }
+    function clearArea() {
+      editAreaId.value = null;
+      areaSearch.value = "";
+      areaInputRef.value?.focus();
+    }
+    function onAreaEnter() {
+      if (dropdownOpen.value && filteredAreas.value.length > 0) {
+        selectArea(filteredAreas.value[highlightIndex.value]);
+      } else {
+        saveEdit();
+      }
+    }
+    function onAreaTab() {
+      closeDropdown();
+      focusQtyInput();
+    }
+    function onClickOutside2(e) {
+      if (areaWrapperRef.value && !areaWrapperRef.value.contains(e.target)) {
+        closeDropdown();
+      }
+    }
+    onMounted(() => document.addEventListener("mousedown", onClickOutside2));
+    onUnmounted(() => document.removeEventListener("mousedown", onClickOutside2));
     async function saveEdit() {
       if (saving || !item.value) return;
       const trimmedName = editName.value.trim();
@@ -40745,29 +40806,27 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
       const trimmedQty = editQty.value.trim() || null;
       const nameChanged = trimmedName !== item.value.name;
       const qtyChanged = trimmedQty !== (item.value.quantity ?? null);
+      const areaChanged = editAreaId.value !== item.value.shopAreaId;
+      closeDropdown();
       emit2("closeEdit");
-      if (nameChanged || qtyChanged) {
+      if (nameChanged || qtyChanged || areaChanged) {
         saving = true;
         await itemsStore.update(props.listId, props.itemId, {
           name: trimmedName,
-          quantity: trimmedQty
+          quantity: trimmedQty,
+          shopAreaId: editAreaId.value
         });
         saving = false;
       }
     }
     function cancelEdit() {
+      closeDropdown();
       emit2("closeEdit");
     }
-    function onNameBlur(e) {
+    function onFieldBlur(e) {
       const related = e.relatedTarget;
-      if (related === qtyInputRef.value) return;
-      setTimeout(() => {
-        if (props.editing) saveEdit();
-      }, 100);
-    }
-    function onQtyBlur(e) {
-      const related = e.relatedTarget;
-      if (related === nameInputRef.value) return;
+      if (related === nameInputRef.value || related === qtyInputRef.value || related === areaInputRef.value) return;
+      if (related && areaWrapperRef.value?.contains(related)) return;
       setTimeout(() => {
         if (props.editing) saveEdit();
       }, 100);
@@ -40797,24 +40856,9 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
         ]),
         __props.editing ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
           withDirectives(createBaseVNode("input", {
-            ref_key: "nameInputRef",
-            ref: nameInputRef,
-            "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => editName.value = $event),
-            type: "text",
-            class: "item-row__edit-input item-row__edit-name",
-            onKeydown: [
-              withKeys(withModifiers(saveEdit, ["prevent"]), ["enter"]),
-              withKeys(withModifiers(cancelEdit, ["prevent"]), ["escape"]),
-              withKeys(withModifiers(focusQtyInput, ["prevent"]), ["tab"])
-            ],
-            onBlur: onNameBlur
-          }, null, 40, _hoisted_4$4), [
-            [vModelText, editName.value]
-          ]),
-          withDirectives(createBaseVNode("input", {
             ref_key: "qtyInputRef",
             ref: qtyInputRef,
-            "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => editQty.value = $event),
+            "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => editQty.value = $event),
             type: "text",
             placeholder: unref(qtyLabel),
             class: "item-row__edit-input item-row__edit-qty",
@@ -40823,17 +40867,80 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
               withKeys(withModifiers(cancelEdit, ["prevent"]), ["escape"]),
               withKeys(withModifiers(focusNameInput, ["prevent"]), ["tab"])
             ],
-            onBlur: onQtyBlur
-          }, null, 40, _hoisted_5$4), [
+            onBlur: onFieldBlur
+          }, null, 40, _hoisted_4$4), [
             [vModelText, editQty.value]
-          ])
+          ]),
+          withDirectives(createBaseVNode("input", {
+            ref_key: "nameInputRef",
+            ref: nameInputRef,
+            "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => editName.value = $event),
+            type: "text",
+            class: "item-row__edit-input item-row__edit-name",
+            onKeydown: [
+              withKeys(withModifiers(saveEdit, ["prevent"]), ["enter"]),
+              withKeys(withModifiers(cancelEdit, ["prevent"]), ["escape"]),
+              withKeys(withModifiers(focusAreaInput, ["prevent"]), ["tab"])
+            ],
+            onBlur: onFieldBlur
+          }, null, 40, _hoisted_5$4), [
+            [vModelText, editName.value]
+          ]),
+          createBaseVNode("div", {
+            ref_key: "areaWrapperRef",
+            ref: areaWrapperRef,
+            class: "item-row__area-wrapper"
+          }, [
+            withDirectives(createBaseVNode("input", {
+              ref_key: "areaInputRef",
+              ref: areaInputRef,
+              "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => areaSearch.value = $event),
+              type: "text",
+              placeholder: editAreaName.value || unref(areaPlaceholder),
+              class: "item-row__edit-input item-row__edit-area",
+              onFocus: onAreaFocus,
+              onKeydown: [
+                withKeys(withModifiers(onAreaEnter, ["prevent"]), ["enter"]),
+                withKeys(closeDropdown, ["escape"]),
+                withKeys(withModifiers(onAreaTab, ["prevent"]), ["tab"]),
+                _cache[3] || (_cache[3] = withKeys(withModifiers(($event) => moveHighlight(1), ["prevent"]), ["down"])),
+                _cache[4] || (_cache[4] = withKeys(withModifiers(($event) => moveHighlight(-1), ["prevent"]), ["up"]))
+              ],
+              onBlur: onFieldBlur
+            }, null, 40, _hoisted_6$4), [
+              [vModelText, areaSearch.value]
+            ]),
+            editAreaId.value !== null ? (openBlock(), createElementBlock("button", {
+              key: 0,
+              class: "item-row__area-clear",
+              tabindex: "-1",
+              onMousedown: withModifiers(clearArea, ["prevent"])
+            }, " ✕ ", 32)) : createCommentVNode("", true),
+            dropdownOpen.value ? (openBlock(), createElementBlock("div", _hoisted_7$4, [
+              (openBlock(true), createElementBlock(Fragment, null, renderList(filteredAreas.value, (area, i2) => {
+                return openBlock(), createElementBlock("div", {
+                  key: area.id,
+                  class: normalizeClass(["item-row__dropdown-item", { "item-row__dropdown-item--highlighted": i2 === highlightIndex.value }]),
+                  onMousedown: withModifiers(($event) => selectArea(area), ["prevent"])
+                }, [
+                  area.color ? (openBlock(), createElementBlock("span", {
+                    key: 0,
+                    class: "item-row__dropdown-dot",
+                    style: normalizeStyle({ backgroundColor: area.color })
+                  }, null, 4)) : createCommentVNode("", true),
+                  createTextVNode(" " + toDisplayString(area.name), 1)
+                ], 42, _hoisted_8$4);
+              }), 128)),
+              filteredAreas.value.length === 0 ? (openBlock(), createElementBlock("div", _hoisted_9$3, toDisplayString(unref(noMatchText)), 1)) : createCommentVNode("", true)
+            ])) : createCommentVNode("", true)
+          ], 512)
         ], 64)) : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
+          item.value.quantity ? (openBlock(), createElementBlock("span", _hoisted_10$3, toDisplayString(item.value.quantity) + toDisplayString(item.value.unit ? " " + item.value.unit : ""), 1)) : createCommentVNode("", true),
           createBaseVNode("span", {
             class: normalizeClass(["item-row__name", { "item-row__name--checked": item.value.checked }])
-          }, toDisplayString(item.value.name), 3),
-          item.value.quantity ? (openBlock(), createElementBlock("span", _hoisted_6$4, toDisplayString(item.value.quantity) + toDisplayString(item.value.unit ? " " + item.value.unit : ""), 1)) : createCommentVNode("", true)
+          }, toDisplayString(item.value.name), 3)
         ], 64)),
-        areaName.value && !__props.editing ? (openBlock(), createElementBlock("span", _hoisted_7$4, [
+        areaName.value && !__props.editing ? (openBlock(), createElementBlock("span", _hoisted_11$3, [
           areaColor.value ? (openBlock(), createElementBlock("span", {
             key: 0,
             class: "item-row__area-dot",
@@ -40846,14 +40953,14 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
           class: "item-row__delete",
           title: unref(deleteTitle),
           onClick: onDelete
-        }, [..._cache[2] || (_cache[2] = [
-          createStaticVNode('<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-v-1d363953><polyline points="3 6 5 6 21 6" data-v-1d363953></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" data-v-1d363953></path><line x1="10" y1="11" x2="10" y2="17" data-v-1d363953></line><line x1="14" y1="11" x2="14" y2="17" data-v-1d363953></line></svg>', 1)
-        ])], 8, _hoisted_8$4)) : createCommentVNode("", true)
+        }, [..._cache[5] || (_cache[5] = [
+          createStaticVNode('<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-v-1dc873ab><polyline points="3 6 5 6 21 6" data-v-1dc873ab></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" data-v-1dc873ab></path><line x1="10" y1="11" x2="10" y2="17" data-v-1dc873ab></line><line x1="14" y1="11" x2="14" y2="17" data-v-1dc873ab></line></svg>', 1)
+        ])], 8, _hoisted_12$3)) : createCommentVNode("", true)
       ], 10, _hoisted_1$4)) : createCommentVNode("", true);
     };
   }
 });
-const ItemRow = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-1d363953"]]);
+const ItemRow = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-1dc873ab"]]);
 const _hoisted_1$3 = { class: "item-editor" };
 const _hoisted_2$3 = { class: "item-editor__main" };
 const _hoisted_3$3 = ["placeholder", "onKeydown"];
@@ -41670,7 +41777,10 @@ const ListView = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v
 const _hoisted_1 = { class: "area-settings" };
 const _hoisted_2 = { class: "area-settings__header" };
 const _hoisted_3 = { class: "area-settings__desc" };
-const _hoisted_4 = { class: "area-settings__create" };
+const _hoisted_4 = {
+  key: 0,
+  class: "area-settings__create"
+};
 const _hoisted_5 = ["placeholder", "onKeydown"];
 const _hoisted_6 = ["title"];
 const _hoisted_7 = ["disabled"];
@@ -41690,7 +41800,10 @@ const _hoisted_20 = {
   key: 0,
   class: "area-settings__section-body"
 };
-const _hoisted_21 = { class: "area-settings__add" };
+const _hoisted_21 = {
+  key: 0,
+  class: "area-settings__add"
+};
 const _hoisted_22 = ["onUpdate:modelValue", "placeholder", "onKeydown"];
 const _hoisted_23 = ["disabled", "onClick"];
 const _hoisted_24 = { class: "area-settings__keywords" };
@@ -41704,9 +41817,10 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   emits: ["back"],
   setup(__props) {
     const shopAreasStore = useShopAreasStore();
-    const backText = translate("shopping_list", "Back to lists");
+    const listsStore = useListsStore();
+    const backText = translate("shopping_list", "Back to list");
     const title = translate("shopping_list", "Manage Areas");
-    const description = translate("shopping_list", "Manage your shop areas, keywords, and display order. Keywords auto-detect which area an item belongs to when added or pasted.");
+    const description = translate("shopping_list", "Manage shop areas, keywords, and display order. Keywords auto-detect which area an item belongs to when added or pasted.");
     const searchPlaceholder = translate("shopping_list", "Search keywords...");
     const addPlaceholder = translate("shopping_list", "Add keyword...");
     const noKeywordsText = translate("shopping_list", "No keywords");
@@ -41727,9 +41841,17 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     const newAreaColor = /* @__PURE__ */ ref("#9E9E9E");
     let saveTimeout = {};
     let colorTimeout = {};
-    const areas = computed(() => shopAreasStore.myAreas);
+    const listId = computed(() => listsStore.currentListId);
+    const canEdit = computed(
+      () => listsStore.currentList !== null && listsStore.currentList.permission >= Permission.WRITE
+    );
+    const areas = computed(
+      () => listId.value !== null ? shopAreasStore.areasByList[listId.value] ?? [] : []
+    );
     onMounted(() => {
-      shopAreasStore.fetchMine();
+      if (listId.value !== null) {
+        shopAreasStore.fetchByList(listId.value);
+      }
     });
     function filteredKeywords(area) {
       const words = area.keywords ?? [];
@@ -41742,7 +41864,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     }
     function onAddKeyword(area) {
       const word = newKeyword.value[area.id]?.trim().toLowerCase();
-      if (!word) return;
+      if (!word || listId.value === null) return;
       if (area.keywords.includes(word)) {
         newKeyword.value[area.id] = "";
         return;
@@ -41753,14 +41875,18 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       debounceSaveKeywords(area.id, updated);
     }
     function onRemoveKeyword(area, word) {
+      if (listId.value === null) return;
       const updated = area.keywords.filter((w2) => w2 !== word);
       area.keywords = updated;
       debounceSaveKeywords(area.id, updated);
     }
     function debounceSaveKeywords(areaId, keywords) {
       if (saveTimeout[areaId]) clearTimeout(saveTimeout[areaId]);
+      const lid = listId.value;
       saveTimeout[areaId] = setTimeout(() => {
-        shopAreasStore.update(areaId, { keywords });
+        if (lid !== null) {
+          shopAreasStore.update(lid, areaId, { keywords });
+        }
       }, 1e3);
     }
     async function startRename(area) {
@@ -41774,13 +41900,13 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     }
     async function saveRename(areaId) {
       const trimmed = renameValue.value.trim();
-      if (!trimmed || renamingAreaId.value !== areaId) {
+      if (!trimmed || renamingAreaId.value !== areaId || listId.value === null) {
         cancelRename();
         return;
       }
       const area = areas.value.find((a2) => a2.id === areaId);
       if (area && trimmed !== area.name) {
-        await shopAreasStore.update(areaId, { name: trimmed });
+        await shopAreasStore.update(listId.value, areaId, { name: trimmed });
       }
       renamingAreaId.value = null;
     }
@@ -41788,14 +41914,17 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       renamingAreaId.value = null;
     }
     function onColorChange(areaId, color) {
+      if (listId.value === null) return;
       const area = areas.value.find((a2) => a2.id === areaId);
       if (area) area.color = color;
       if (colorTimeout[areaId]) clearTimeout(colorTimeout[areaId]);
+      const lid = listId.value;
       colorTimeout[areaId] = setTimeout(() => {
-        shopAreasStore.update(areaId, { color });
+        shopAreasStore.update(lid, areaId, { color });
       }, 500);
     }
     async function moveArea(index, direction) {
+      if (listId.value === null) return;
       const targetIndex = index + direction;
       if (targetIndex < 0 || targetIndex >= areas.value.length) return;
       const current = areas.value[index];
@@ -41804,24 +41933,26 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       const targetOrder = target.sortOrder;
       const newCurrentOrder = currentOrder === targetOrder ? targetIndex : targetOrder;
       const newTargetOrder = currentOrder === targetOrder ? index : currentOrder;
+      const lid = listId.value;
       await Promise.all([
-        shopAreasStore.update(current.id, { sortOrder: newCurrentOrder }),
-        shopAreasStore.update(target.id, { sortOrder: newTargetOrder })
+        shopAreasStore.update(lid, current.id, { sortOrder: newCurrentOrder }),
+        shopAreasStore.update(lid, target.id, { sortOrder: newTargetOrder })
       ]);
-      await shopAreasStore.fetchMine();
+      await shopAreasStore.fetchByList(lid);
     }
     async function onCreateArea() {
       const name = newAreaName.value.trim();
-      if (!name) return;
-      await shopAreasStore.create(name, newAreaColor.value);
+      if (!name || listId.value === null) return;
+      await shopAreasStore.create(listId.value, name, newAreaColor.value);
       newAreaName.value = "";
       newAreaColor.value = "#9E9E9E";
     }
     async function onDeleteArea(area) {
+      if (listId.value === null) return;
       if (!confirm(translate("shopping_list", 'Delete "{name}"? Items in this area will become uncategorized.', { name: area.name }))) {
         return;
       }
-      await shopAreasStore.remove(area.id);
+      await shopAreasStore.remove(listId.value, area.id);
     }
     return (_ctx, _cache) => {
       return openBlock(), createElementBlock("div", _hoisted_1, [
@@ -41833,7 +41964,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
           createBaseVNode("h2", null, toDisplayString(unref(title)), 1),
           createBaseVNode("p", _hoisted_3, toDisplayString(unref(description)), 1)
         ]),
-        createBaseVNode("div", _hoisted_4, [
+        canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_4, [
           withDirectives(createBaseVNode("input", {
             "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => newAreaName.value = $event),
             type: "text",
@@ -41856,7 +41987,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
             disabled: !newAreaName.value.trim(),
             onClick: onCreateArea
           }, toDisplayString(unref(addAreaText)), 9, _hoisted_7)
-        ]),
+        ])) : createCommentVNode("", true),
         createBaseVNode("div", _hoisted_8, [
           withDirectives(createBaseVNode("input", {
             "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => search.value = $event),
@@ -41877,7 +42008,8 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
               onClick: ($event) => toggleSection(area.id)
             }, [
               createBaseVNode("span", _hoisted_11, toDisplayString(openSections.value[area.id] ? "▾" : "▸"), 1),
-              createBaseVNode("input", {
+              canEdit.value ? (openBlock(), createElementBlock("input", {
+                key: 0,
                 type: "color",
                 value: area.color || "#9E9E9E",
                 class: "area-settings__color-input",
@@ -41885,9 +42017,13 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
                 onClick: _cache[4] || (_cache[4] = withModifiers(() => {
                 }, ["stop"])),
                 onInput: ($event) => onColorChange(area.id, $event.target.value)
-              }, null, 40, _hoisted_12),
-              renamingAreaId.value === area.id ? withDirectives((openBlock(), createElementBlock("input", {
-                key: 0,
+              }, null, 40, _hoisted_12)) : (openBlock(), createElementBlock("span", {
+                key: 1,
+                class: "area-settings__color-swatch",
+                style: normalizeStyle({ backgroundColor: area.color || "#9E9E9E" })
+              }, null, 4)),
+              canEdit.value && renamingAreaId.value === area.id ? withDirectives((openBlock(), createElementBlock("input", {
+                key: 2,
                 ref_for: true,
                 ref_key: "renameInputRef",
                 ref: renameInputRef,
@@ -41903,38 +42039,41 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
                 onBlur: ($event) => saveRename(area.id)
               }, null, 40, _hoisted_13)), [
                 [vModelText, renameValue.value]
-              ]) : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
+              ]) : (openBlock(), createElementBlock(Fragment, { key: 3 }, [
                 createBaseVNode("span", {
                   class: "area-settings__section-name",
-                  onDblclick: withModifiers(($event) => startRename(area), ["stop"])
+                  onDblclick: withModifiers(($event) => canEdit.value && startRename(area), ["stop"])
                 }, toDisplayString(area.name), 41, _hoisted_14),
-                createBaseVNode("button", {
+                canEdit.value ? (openBlock(), createElementBlock("button", {
+                  key: 0,
                   class: "area-settings__action-btn area-settings__action-btn--rename",
                   title: unref(renameText),
                   onClick: withModifiers(($event) => startRename(area), ["stop"])
-                }, " ✎ ", 8, _hoisted_15)
+                }, " ✎ ", 8, _hoisted_15)) : createCommentVNode("", true)
               ], 64)),
               createBaseVNode("span", _hoisted_16, toDisplayString(filteredKeywords(area).length), 1),
-              createBaseVNode("button", {
-                class: "area-settings__action-btn",
-                disabled: index === 0,
-                title: unref(moveUpText),
-                onClick: withModifiers(($event) => moveArea(index, -1), ["stop"])
-              }, " ▲ ", 8, _hoisted_17),
-              createBaseVNode("button", {
-                class: "area-settings__action-btn",
-                disabled: index === areas.value.length - 1,
-                title: unref(moveDownText),
-                onClick: withModifiers(($event) => moveArea(index, 1), ["stop"])
-              }, " ▼ ", 8, _hoisted_18),
-              createBaseVNode("button", {
-                class: "area-settings__action-btn area-settings__action-btn--delete",
-                title: unref(deleteText),
-                onClick: withModifiers(($event) => onDeleteArea(area), ["stop"])
-              }, " ✕ ", 8, _hoisted_19)
+              canEdit.value ? (openBlock(), createElementBlock(Fragment, { key: 4 }, [
+                createBaseVNode("button", {
+                  class: "area-settings__action-btn",
+                  disabled: index === 0,
+                  title: unref(moveUpText),
+                  onClick: withModifiers(($event) => moveArea(index, -1), ["stop"])
+                }, " ▲ ", 8, _hoisted_17),
+                createBaseVNode("button", {
+                  class: "area-settings__action-btn",
+                  disabled: index === areas.value.length - 1,
+                  title: unref(moveDownText),
+                  onClick: withModifiers(($event) => moveArea(index, 1), ["stop"])
+                }, " ▼ ", 8, _hoisted_18),
+                createBaseVNode("button", {
+                  class: "area-settings__action-btn area-settings__action-btn--delete",
+                  title: unref(deleteText),
+                  onClick: withModifiers(($event) => onDeleteArea(area), ["stop"])
+                }, " ✕ ", 8, _hoisted_19)
+              ], 64)) : createCommentVNode("", true)
             ], 8, _hoisted_10),
             openSections.value[area.id] ? (openBlock(), createElementBlock("div", _hoisted_20, [
-              createBaseVNode("div", _hoisted_21, [
+              canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_21, [
                 withDirectives(createBaseVNode("input", {
                   "onUpdate:modelValue": ($event) => newKeyword.value[area.id] = $event,
                   type: "text",
@@ -41949,7 +42088,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
                   disabled: !newKeyword.value[area.id]?.trim(),
                   onClick: ($event) => onAddKeyword(area)
                 }, " + ", 8, _hoisted_23)
-              ]),
+              ])) : createCommentVNode("", true),
               createBaseVNode("div", _hoisted_24, [
                 (openBlock(true), createElementBlock(Fragment, null, renderList(filteredKeywords(area), (word) => {
                   return openBlock(), createElementBlock("span", {
@@ -41957,10 +42096,11 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
                     class: "area-settings__keyword"
                   }, [
                     createTextVNode(toDisplayString(word) + " ", 1),
-                    createBaseVNode("button", {
+                    canEdit.value ? (openBlock(), createElementBlock("button", {
+                      key: 0,
                       class: "area-settings__keyword-remove",
                       onClick: ($event) => onRemoveKeyword(area, word)
-                    }, "✕", 8, _hoisted_25)
+                    }, "✕", 8, _hoisted_25)) : createCommentVNode("", true)
                   ]);
                 }), 128)),
                 filteredKeywords(area).length === 0 ? (openBlock(), createElementBlock("span", _hoisted_26, toDisplayString(unref(noKeywordsText)), 1)) : createCommentVNode("", true)
@@ -41972,7 +42112,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const AreaKeywordsSettings = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-3622bb14"]]);
+const AreaKeywordsSettings = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-57f3fc3f"]]);
 let initialized = false;
 function usePush() {
   if (initialized) return;
@@ -41984,7 +42124,7 @@ function usePush() {
   if (hasPushServer) {
     try {
       __vitePreload(async () => {
-        const { listen } = await import("./index-wy2wDQ5C.chunk.mjs").then((n2) => n2.i);
+        const { listen } = await import("./index-5zskkJJ7.chunk.mjs").then((n2) => n2.i);
         return { listen };
       }, true ? [] : void 0, import.meta.url).then(({ listen }) => {
         listen("shopping_list_item_update", () => {
@@ -42049,8 +42189,8 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
           }),
           createVNode(unref(NcAppContent), null, {
             default: withCtx(() => [
-              showSettings.value ? (openBlock(), createBlock(AreaKeywordsSettings, {
-                key: 0,
+              showSettings.value && unref(listsStore).currentList ? (openBlock(), createBlock(AreaKeywordsSettings, {
+                key: unref(listsStore).currentListId,
                 onBack: _cache[1] || (_cache[1] = ($event) => showSettings.value = false)
               })) : unref(listsStore).currentList ? (openBlock(), createBlock(ListView, { key: 1 })) : (openBlock(), createBlock(unref(NcEmptyContent), {
                 key: 2,

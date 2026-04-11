@@ -40,12 +40,11 @@ export const api = {
 	},
 	areas: {
 		getForList: (listId: number) => axios.get(url(`lists/${listId}/areas`)),
-		getMine: () => axios.get(url('areas')),
-		create: (name: string, color?: string, keywords?: string[]) =>
-			axios.post(url('areas'), { name, color, keywords }),
-		update: (id: number, data: Record<string, unknown>) =>
-			axios.put(url(`areas/${id}`), data),
-		delete: (id: number) => axios.delete(url(`areas/${id}`)),
+		create: (listId: number, name: string, color?: string, keywords?: string[]) =>
+			axios.post(url(`lists/${listId}/areas`), { name, color, keywords }),
+		update: (listId: number, id: number, data: Record<string, unknown>) =>
+			axios.put(url(`lists/${listId}/areas/${id}`), data),
+		delete: (listId: number, id: number) => axios.delete(url(`lists/${listId}/areas/${id}`)),
 	},
 	tags: {
 		getAll: () => axios.get(url('tags')),

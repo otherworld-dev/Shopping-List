@@ -35,7 +35,7 @@ export interface ListShare {
 
 export interface ShopArea {
 	id: number
-	userId: string
+	listId: number
 	name: string
 	sortOrder: number
 	color: string | null

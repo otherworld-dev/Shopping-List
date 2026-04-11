@@ -17,15 +17,6 @@
 
 		<template v-if="editing">
 			<input
-				ref="nameInputRef"
-				v-model="editName"
-				type="text"
-				class="item-row__edit-input item-row__edit-name"
-				@keydown.enter.prevent="saveEdit"
-				@keydown.escape.prevent="cancelEdit"
-				@keydown.tab.prevent="focusQtyInput"
-				@blur="onNameBlur" />
-			<input
 				ref="qtyInputRef"
 				v-model="editQty"
 				type="text"
@@ -34,15 +25,63 @@
 				@keydown.enter.prevent="saveEdit"
 				@keydown.escape.prevent="cancelEdit"
 				@keydown.tab.prevent="focusNameInput"
-				@blur="onQtyBlur" />
+				@blur="onFieldBlur" />
+			<input
+				ref="nameInputRef"
+				v-model="editName"
+				type="text"
+				class="item-row__edit-input item-row__edit-name"
+				@keydown.enter.prevent="saveEdit"
+				@keydown.escape.prevent="cancelEdit"
+				@keydown.tab.prevent="focusAreaInput"
+				@blur="onFieldBlur" />
+			<div ref="areaWrapperRef" class="item-row__area-wrapper">
+				<input
+					ref="areaInputRef"
+					v-model="areaSearch"
+					type="text"
+					:placeholder="editAreaName || areaPlaceholder"
+					class="item-row__edit-input item-row__edit-area"
+					@focus="onAreaFocus"
+					@keydown.enter.prevent="onAreaEnter"
+					@keydown.escape="closeDropdown"
+					@keydown.tab.prevent="onAreaTab"
+					@keydown.down.prevent="moveHighlight(1)"
+					@keydown.up.prevent="moveHighlight(-1)"
+					@blur="onFieldBlur" />
+				<button
+					v-if="editAreaId !== null"
+					class="item-row__area-clear"
+					tabindex="-1"
+					@mousedown.prevent="clearArea">
+					✕
+				</button>
+				<div v-if="dropdownOpen" class="item-row__dropdown">
+					<div
+						v-for="(area, i) in filteredAreas"
+						:key="area.id"
+						class="item-row__dropdown-item"
+						:class="{ 'item-row__dropdown-item--highlighted': i === highlightIndex }"
+						@mousedown.prevent="selectArea(area)">
+						<span
+							v-if="area.color"
+							class="item-row__dropdown-dot"
+							:style="{ backgroundColor: area.color }" />
+						{{ area.name }}
+					</div>
+					<div v-if="filteredAreas.length === 0" class="item-row__dropdown-empty">
+						{{ noMatchText }}
+					</div>
+				</div>
+			</div>
 		</template>
 
 		<template v-else>
-			<span class="item-row__name" :class="{ 'item-row__name--checked': item.checked }">
-				{{ item.name }}
-			</span>
 			<span v-if="item.quantity" class="item-row__quantity">
 				{{ item.quantity }}{{ item.unit ? ' ' + item.unit : '' }}
+			</span>
+			<span class="item-row__name" :class="{ 'item-row__name--checked': item.checked }">
+				{{ item.name }}
 			</span>
 		</template>
 
@@ -63,7 +102,7 @@
 
 <script setup lang="ts">
 import { t } from '@nextcloud/l10n'
-import { ref, computed, watch, nextTick } from 'vue'
+import { ref, computed, watch, nextTick, onMounted, onUnmounted } from 'vue'
 import { useItemsStore } from '../stores/items'
 import { useShopAreasStore } from '../stores/shopAreas'
 import { useListsStore } from '../stores/lists'
@@ -84,36 +123,60 @@ const shopAreasStore = useShopAreasStore()
 const listsStore = useListsStore()
 const deleteTitle = t('shopping_list', 'Delete')
 const qtyLabel = t('shopping_list', 'Qty')
+const areaPlaceholder = t('shopping_list', 'Area')
+const noMatchText = t('shopping_list', 'No match')
 
 const item = computed(() => {
 	const items = itemsStore.itemsByList[props.listId] ?? []
 	return items.find(i => i.id === props.itemId) ?? null
 })
 
+const areaOptions = computed(() => {
+	const areas = shopAreasStore.areasByList[props.listId] ?? []
+	return areas.map(a => ({ id: a.id, name: a.name, color: a.color }))
+})
+
 const areaName = computed(() => {
-	if (!item.value?.shopAreaId || !listsStore.currentListId) return null
-	const areas = shopAreasStore.areasByList[listsStore.currentListId] ?? []
-	const area = areas.find(a => a.id === item.value!.shopAreaId)
-	return area?.name ?? null
+	if (!item.value?.shopAreaId) return null
+	return areaOptions.value.find(a => a.id === item.value!.shopAreaId)?.name ?? null
 })
 
 const areaColor = computed(() => {
-	if (!item.value?.shopAreaId || !listsStore.currentListId) return null
-	const areas = shopAreasStore.areasByList[listsStore.currentListId] ?? []
-	const area = areas.find(a => a.id === item.value!.shopAreaId)
-	return area?.color ?? null
+	if (!item.value?.shopAreaId) return null
+	return areaOptions.value.find(a => a.id === item.value!.shopAreaId)?.color ?? null
 })
 
 const editName = ref('')
 const editQty = ref('')
+const editAreaId = ref<number | null>(null)
+const areaSearch = ref('')
+const dropdownOpen = ref(false)
+const highlightIndex = ref(0)
+
 const nameInputRef = ref<HTMLInputElement | null>(null)
 const qtyInputRef = ref<HTMLInputElement | null>(null)
+const areaInputRef = ref<HTMLInputElement | null>(null)
+const areaWrapperRef = ref<HTMLElement | null>(null)
 let saving = false
+
+const editAreaName = computed(() => {
+	if (editAreaId.value === null) return null
+	return areaOptions.value.find(a => a.id === editAreaId.value)?.name ?? null
+})
+
+const filteredAreas = computed(() => {
+	const q = areaSearch.value.toLowerCase().trim()
+	if (!q) return areaOptions.value
+	return areaOptions.value.filter(a => a.name.toLowerCase().includes(q))
+})
 
 watch(() => props.editing, async (isEditing) => {
 	if (isEditing && item.value) {
 		editName.value = item.value.name
 		editQty.value = item.value.quantity ?? ''
+		editAreaId.value = item.value.shopAreaId
+		areaSearch.value = ''
+		dropdownOpen.value = false
 		await nextTick()
 		nameInputRef.value?.focus()
 		nameInputRef.value?.select()
@@ -130,6 +193,66 @@ function focusNameInput() {
 	nameInputRef.value?.select()
 }
 
+function focusAreaInput() {
+	areaInputRef.value?.focus()
+}
+
+// --- Area dropdown ---
+
+function onAreaFocus() {
+	dropdownOpen.value = true
+	highlightIndex.value = 0
+	areaSearch.value = ''
+}
+
+function closeDropdown() {
+	dropdownOpen.value = false
+	areaSearch.value = ''
+}
+
+function moveHighlight(delta: number) {
+	const len = filteredAreas.value.length
+	if (len === 0) return
+	highlightIndex.value = (highlightIndex.value + delta + len) % len
+}
+
+function selectArea(area: { id: number; name: string }) {
+	editAreaId.value = area.id
+	areaSearch.value = ''
+	dropdownOpen.value = false
+	nameInputRef.value?.focus()
+}
+
+function clearArea() {
+	editAreaId.value = null
+	areaSearch.value = ''
+	areaInputRef.value?.focus()
+}
+
+function onAreaEnter() {
+	if (dropdownOpen.value && filteredAreas.value.length > 0) {
+		selectArea(filteredAreas.value[highlightIndex.value])
+	} else {
+		saveEdit()
+	}
+}
+
+function onAreaTab() {
+	closeDropdown()
+	focusQtyInput()
+}
+
+function onClickOutside(e: MouseEvent) {
+	if (areaWrapperRef.value && !areaWrapperRef.value.contains(e.target as Node)) {
+		closeDropdown()
+	}
+}
+
+onMounted(() => document.addEventListener('mousedown', onClickOutside))
+onUnmounted(() => document.removeEventListener('mousedown', onClickOutside))
+
+// --- Save / Cancel ---
+
 async function saveEdit() {
 	if (saving || !item.value) return
 	const trimmedName = editName.value.trim()
@@ -141,34 +264,36 @@ async function saveEdit() {
 	const trimmedQty = editQty.value.trim() || null
 	const nameChanged = trimmedName !== item.value.name
 	const qtyChanged = trimmedQty !== (item.value.quantity ?? null)
+	const areaChanged = editAreaId.value !== item.value.shopAreaId
 
+	closeDropdown()
 	emit('closeEdit')
 
-	if (nameChanged || qtyChanged) {
+	if (nameChanged || qtyChanged || areaChanged) {
 		saving = true
 		await itemsStore.update(props.listId, props.itemId, {
 			name: trimmedName,
 			quantity: trimmedQty,
+			shopAreaId: editAreaId.value,
 		})
 		saving = false
 	}
 }
 
 function cancelEdit() {
+	closeDropdown()
 	emit('closeEdit')
 }
 
-function onNameBlur(e: FocusEvent) {
+function onFieldBlur(e: FocusEvent) {
 	const related = e.relatedTarget as HTMLElement | null
-	if (related === qtyInputRef.value) return
-	setTimeout(() => {
-		if (props.editing) saveEdit()
-	}, 100)
-}
+	// Don't save if focus is moving to another field within this row
+	if (related === nameInputRef.value
+		|| related === qtyInputRef.value
+		|| related === areaInputRef.value) return
+	// Don't save if clicking inside the area dropdown wrapper
+	if (related && areaWrapperRef.value?.contains(related)) return
 
-function onQtyBlur(e: FocusEvent) {
-	const related = e.relatedTarget as HTMLElement | null
-	if (related === nameInputRef.value) return
 	setTimeout(() => {
 		if (props.editing) saveEdit()
 	}, 100)
@@ -240,6 +365,14 @@ async function onDelete() {
 	margin: 0;
 }
 
+.item-row__quantity {
+	flex: 0 0 auto;
+	color: var(--color-text-maxcontrast);
+	font-size: 0.85em;
+	white-space: nowrap;
+	padding-right: 8px;
+}
+
 .item-row__name {
 	flex: 1 1 0%;
 	min-width: 0;
@@ -253,14 +386,6 @@ async function onDelete() {
 .item-row__name--checked {
 	text-decoration: line-through;
 	color: var(--color-text-maxcontrast);
-}
-
-.item-row__quantity {
-	flex: 0 0 auto;
-	color: var(--color-text-maxcontrast);
-	font-size: 0.85em;
-	white-space: nowrap;
-	padding: 0 8px;
 }
 
 .item-row__area {
@@ -338,5 +463,88 @@ async function onDelete() {
 .item-row__edit-qty::placeholder {
 	color: var(--color-text-maxcontrast);
 	font-style: italic;
+}
+
+/* Area picker in edit mode */
+.item-row__area-wrapper {
+	flex: 0 0 auto;
+	position: relative;
+	display: flex;
+	align-items: center;
+	z-index: 10;
+}
+
+.item-row__edit-area {
+	width: 90px;
+	font-size: 0.85em;
+	padding-right: 20px !important;
+}
+
+.item-row__edit-area::placeholder {
+	color: var(--color-text-maxcontrast);
+	font-style: italic;
+}
+
+.item-row__area-clear {
+	position: absolute;
+	right: 4px;
+	top: 50%;
+	transform: translateY(-50%);
+	background: none;
+	border: none;
+	color: var(--color-text-maxcontrast);
+	cursor: pointer;
+	font-size: 0.75em;
+	padding: 2px 4px;
+	line-height: 1;
+	z-index: 2;
+}
+
+.item-row__area-clear:hover {
+	color: var(--color-error);
+}
+
+.item-row__dropdown {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	right: 0;
+	min-width: 160px;
+	max-height: 220px;
+	overflow-y: auto;
+	background: var(--color-main-background);
+	border: 1px solid var(--color-border);
+	border-radius: var(--border-radius);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+	z-index: 100;
+	margin-top: 2px;
+}
+
+.item-row__dropdown-item {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 6px 10px;
+	font-size: 0.85em;
+	cursor: pointer;
+}
+
+.item-row__dropdown-item:hover,
+.item-row__dropdown-item--highlighted {
+	background-color: var(--color-background-hover);
+}
+
+.item-row__dropdown-dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	flex-shrink: 0;
+}
+
+.item-row__dropdown-empty {
+	padding: 8px 10px;
+	font-size: 0.85em;
+	color: var(--color-text-maxcontrast);
+	text-align: center;
 }
 </style>

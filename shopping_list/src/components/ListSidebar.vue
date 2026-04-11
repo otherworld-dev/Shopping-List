@@ -44,7 +44,7 @@
 			</template>
 		</NcAppNavigationItem>
 
-		<div class="sidebar-settings">
+		<div v-if="listsStore.currentListId !== null" class="sidebar-settings">
 			<button class="sidebar-settings__btn" @click="$emit('show-settings')">
 				⚙ {{ settingsText }}
 			</button>

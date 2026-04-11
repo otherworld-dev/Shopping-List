@@ -26,36 +26,24 @@ class ShopAreaController extends OCSController {
 	}
 
 	/**
-	 * Get areas for a list (resolves to list owner's areas).
+	 * Get all areas for a list.
 	 */
 	#[NoAdminRequired]
 	public function index(int $listId): DataResponse {
 		try {
-			$list = $this->listService->find($listId, $this->userId);
-			return new DataResponse($this->service->findAll($list->getUserId()));
+			$this->listService->assertAccess($listId, $this->userId);
+			return new DataResponse($this->service->findAll($listId));
 		} catch (NotFoundException $e) {
 			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_NOT_FOUND);
 		}
 	}
 
-	/**
-	 * Get the current user's own areas.
-	 */
 	#[NoAdminRequired]
-	public function mine(): DataResponse {
-		return new DataResponse($this->service->findAll($this->userId));
-	}
-
-	#[NoAdminRequired]
-	public function create(string $name, ?string $color = null, ?array $keywords = null): DataResponse {
-		$area = $this->service->create($name, $color, $keywords, $this->userId);
-		return new DataResponse($area, Http::STATUS_CREATED);
-	}
-
-	#[NoAdminRequired]
-	public function update(int $id, ?string $name = null, ?string $color = null, ?int $sortOrder = null, ?array $keywords = null): DataResponse {
+	public function create(int $listId, string $name, ?string $color = null, ?array $keywords = null): DataResponse {
 		try {
-			return new DataResponse($this->service->update($id, $name, $color, $sortOrder, $keywords, $this->userId));
+			$this->listService->assertWriteAccess($listId, $this->userId);
+			$area = $this->service->create($listId, $name, $color, $keywords);
+			return new DataResponse($area, Http::STATUS_CREATED);
 		} catch (NotFoundException $e) {
 			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_NOT_FOUND);
 		} catch (NoPermissionException $e) {
@@ -64,9 +52,22 @@ class ShopAreaController extends OCSController {
 	}
 
 	#[NoAdminRequired]
-	public function destroy(int $id): DataResponse {
+	public function update(int $listId, int $id, ?string $name = null, ?string $color = null, ?int $sortOrder = null, ?array $keywords = null): DataResponse {
 		try {
-			$this->service->delete($id, $this->userId);
+			$this->listService->assertWriteAccess($listId, $this->userId);
+			return new DataResponse($this->service->update($id, $listId, $name, $color, $sortOrder, $keywords));
+		} catch (NotFoundException $e) {
+			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_NOT_FOUND);
+		} catch (NoPermissionException $e) {
+			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_FORBIDDEN);
+		}
+	}
+
+	#[NoAdminRequired]
+	public function destroy(int $listId, int $id): DataResponse {
+		try {
+			$this->listService->assertWriteAccess($listId, $this->userId);
+			$this->service->delete($id, $listId);
 			return new DataResponse(null, Http::STATUS_NO_CONTENT);
 		} catch (NotFoundException $e) {
 			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_NOT_FOUND);

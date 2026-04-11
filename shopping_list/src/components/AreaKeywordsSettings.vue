@@ -9,7 +9,7 @@
 		</div>
 
 		<!-- Add new area -->
-		<div class="area-settings__create">
+		<div v-if="canEdit" class="area-settings__create">
 			<input
 				v-model="newAreaName"
 				type="text"
@@ -43,15 +43,19 @@
 
 				<!-- Color swatch -->
 				<input
+					v-if="canEdit"
 					type="color"
 					:value="area.color || '#9E9E9E'"
 					class="area-settings__color-input"
 					:title="colorTitle"
 					@click.stop
 					@input="onColorChange(area.id, ($event.target as HTMLInputElement).value)" />
+				<span v-else
+					class="area-settings__color-swatch"
+					:style="{ backgroundColor: area.color || '#9E9E9E' }" />
 
 				<!-- Name: inline rename or display -->
-				<template v-if="renamingAreaId === area.id">
+				<template v-if="canEdit && renamingAreaId === area.id">
 					<input
 						ref="renameInputRef"
 						v-model="renameValue"
@@ -63,8 +67,9 @@
 						@blur="saveRename(area.id)" />
 				</template>
 				<template v-else>
-					<span class="area-settings__section-name" @dblclick.stop="startRename(area)">{{ area.name }}</span>
+					<span class="area-settings__section-name" @dblclick.stop="canEdit && startRename(area)">{{ area.name }}</span>
 					<button
+						v-if="canEdit"
 						class="area-settings__action-btn area-settings__action-btn--rename"
 						:title="renameText"
 						@click.stop="startRename(area)">
@@ -76,32 +81,34 @@
 				<span class="area-settings__section-count">{{ filteredKeywords(area).length }}</span>
 
 				<!-- Reorder buttons -->
-				<button
-					class="area-settings__action-btn"
-					:disabled="index === 0"
-					:title="moveUpText"
-					@click.stop="moveArea(index, -1)">
-					▲
-				</button>
-				<button
-					class="area-settings__action-btn"
-					:disabled="index === areas.length - 1"
-					:title="moveDownText"
-					@click.stop="moveArea(index, 1)">
-					▼
-				</button>
+				<template v-if="canEdit">
+					<button
+						class="area-settings__action-btn"
+						:disabled="index === 0"
+						:title="moveUpText"
+						@click.stop="moveArea(index, -1)">
+						▲
+					</button>
+					<button
+						class="area-settings__action-btn"
+						:disabled="index === areas.length - 1"
+						:title="moveDownText"
+						@click.stop="moveArea(index, 1)">
+						▼
+					</button>
 
-				<!-- Delete -->
-				<button
-					class="area-settings__action-btn area-settings__action-btn--delete"
-					:title="deleteText"
-					@click.stop="onDeleteArea(area)">
-					✕
-				</button>
+					<!-- Delete -->
+					<button
+						class="area-settings__action-btn area-settings__action-btn--delete"
+						:title="deleteText"
+						@click.stop="onDeleteArea(area)">
+						✕
+					</button>
+				</template>
 			</div>
 
 			<div v-if="openSections[area.id]" class="area-settings__section-body">
-				<div class="area-settings__add">
+				<div v-if="canEdit" class="area-settings__add">
 					<input
 						v-model="newKeyword[area.id]"
 						type="text"
@@ -121,7 +128,7 @@
 						:key="word"
 						class="area-settings__keyword">
 						{{ word }}
-						<button class="area-settings__keyword-remove" @click="onRemoveKeyword(area, word)">✕</button>
+						<button v-if="canEdit" class="area-settings__keyword-remove" @click="onRemoveKeyword(area, word)">✕</button>
 					</span>
 					<span v-if="filteredKeywords(area).length === 0" class="area-settings__empty">
 						{{ noKeywordsText }}
@@ -137,14 +144,17 @@ import { ref, computed, nextTick, onMounted } from 'vue'
 import { t } from '@nextcloud/l10n'
 import { useShopAreasStore } from '../stores/shopAreas'
 import type { ShopArea } from '../types'
+import { Permission } from '../types'
+import { useListsStore } from '../stores/lists'
 
 const shopAreasStore = useShopAreasStore()
+const listsStore = useListsStore()
 
 defineEmits<{ back: [] }>()
 
-const backText = t('shopping_list', 'Back to lists')
+const backText = t('shopping_list', 'Back to list')
 const title = t('shopping_list', 'Manage Areas')
-const description = t('shopping_list', 'Manage your shop areas, keywords, and display order. Keywords auto-detect which area an item belongs to when added or pasted.')
+const description = t('shopping_list', 'Manage shop areas, keywords, and display order. Keywords auto-detect which area an item belongs to when added or pasted.')
 const searchPlaceholder = t('shopping_list', 'Search keywords...')
 const addPlaceholder = t('shopping_list', 'Add keyword...')
 const noKeywordsText = t('shopping_list', 'No keywords')
@@ -168,10 +178,18 @@ const newAreaColor = ref('#9E9E9E')
 let saveTimeout: Record<number, ReturnType<typeof setTimeout>> = {}
 let colorTimeout: Record<number, ReturnType<typeof setTimeout>> = {}
 
-const areas = computed(() => shopAreasStore.myAreas)
+const listId = computed(() => listsStore.currentListId)
+const canEdit = computed(() =>
+	listsStore.currentList !== null && listsStore.currentList.permission >= Permission.WRITE,
+)
+const areas = computed(() =>
+	listId.value !== null ? (shopAreasStore.areasByList[listId.value] ?? []) : [],
+)
 
 onMounted(() => {
-	shopAreasStore.fetchMine()
+	if (listId.value !== null) {
+		shopAreasStore.fetchByList(listId.value)
+	}
 })
 
 function filteredKeywords(area: ShopArea): string[] {
@@ -189,7 +207,7 @@ function toggleSection(areaId: number) {
 
 function onAddKeyword(area: ShopArea) {
 	const word = newKeyword.value[area.id]?.trim().toLowerCase()
-	if (!word) return
+	if (!word || listId.value === null) return
 	if (area.keywords.includes(word)) {
 		newKeyword.value[area.id] = ''
 		return
@@ -202,6 +220,7 @@ function onAddKeyword(area: ShopArea) {
 }
 
 function onRemoveKeyword(area: ShopArea, word: string) {
+	if (listId.value === null) return
 	const updated = area.keywords.filter(w => w !== word)
 	area.keywords = updated
 	debounceSaveKeywords(area.id, updated)
@@ -209,8 +228,11 @@ function onRemoveKeyword(area: ShopArea, word: string) {
 
 function debounceSaveKeywords(areaId: number, keywords: string[]) {
 	if (saveTimeout[areaId]) clearTimeout(saveTimeout[areaId])
+	const lid = listId.value
 	saveTimeout[areaId] = setTimeout(() => {
-		shopAreasStore.update(areaId, { keywords })
+		if (lid !== null) {
+			shopAreasStore.update(lid, areaId, { keywords })
+		}
 	}, 1000)
 }
 
@@ -228,14 +250,14 @@ async function startRename(area: ShopArea) {
 
 async function saveRename(areaId: number) {
 	const trimmed = renameValue.value.trim()
-	if (!trimmed || renamingAreaId.value !== areaId) {
+	if (!trimmed || renamingAreaId.value !== areaId || listId.value === null) {
 		cancelRename()
 		return
 	}
 
 	const area = areas.value.find(a => a.id === areaId)
 	if (area && trimmed !== area.name) {
-		await shopAreasStore.update(areaId, { name: trimmed })
+		await shopAreasStore.update(listId.value, areaId, { name: trimmed })
 	}
 	renamingAreaId.value = null
 }
@@ -247,20 +269,23 @@ function cancelRename() {
 // --- Color ---
 
 function onColorChange(areaId: number, color: string) {
+	if (listId.value === null) return
 	// Update locally immediately for responsiveness
 	const area = areas.value.find(a => a.id === areaId)
 	if (area) area.color = color
 
 	// Debounce the API save
 	if (colorTimeout[areaId]) clearTimeout(colorTimeout[areaId])
+	const lid = listId.value
 	colorTimeout[areaId] = setTimeout(() => {
-		shopAreasStore.update(areaId, { color })
+		shopAreasStore.update(lid, areaId, { color })
 	}, 500)
 }
 
 // --- Reorder ---
 
 async function moveArea(index: number, direction: number) {
+	if (listId.value === null) return
 	const targetIndex = index + direction
 	if (targetIndex < 0 || targetIndex >= areas.value.length) return
 
@@ -279,31 +304,33 @@ async function moveArea(index: number, direction: number) {
 		? index
 		: currentOrder
 
+	const lid = listId.value
 	await Promise.all([
-		shopAreasStore.update(current.id, { sortOrder: newCurrentOrder }),
-		shopAreasStore.update(target.id, { sortOrder: newTargetOrder }),
+		shopAreasStore.update(lid, current.id, { sortOrder: newCurrentOrder }),
+		shopAreasStore.update(lid, target.id, { sortOrder: newTargetOrder }),
 	])
 
 	// Re-fetch to get correct order
-	await shopAreasStore.fetchMine()
+	await shopAreasStore.fetchByList(lid)
 }
 
 // --- Create / Delete ---
 
 async function onCreateArea() {
 	const name = newAreaName.value.trim()
-	if (!name) return
+	if (!name || listId.value === null) return
 
-	await shopAreasStore.create(name, newAreaColor.value)
+	await shopAreasStore.create(listId.value, name, newAreaColor.value)
 	newAreaName.value = ''
 	newAreaColor.value = '#9E9E9E'
 }
 
 async function onDeleteArea(area: ShopArea) {
+	if (listId.value === null) return
 	if (!confirm(t('shopping_list', 'Delete "{name}"? Items in this area will become uncategorized.', { name: area.name }))) {
 		return
 	}
-	await shopAreasStore.remove(area.id)
+	await shopAreasStore.remove(listId.value, area.id)
 }
 </script>
 
@@ -466,6 +493,14 @@ async function onDeleteArea(area: ShopArea) {
 	border-radius: 50%;
 	background: none;
 	cursor: pointer;
+	flex: 0 0 auto;
+}
+
+.area-settings__color-swatch {
+	width: 24px;
+	height: 24px;
+	border: 1px solid var(--color-border-dark);
+	border-radius: 50%;
 	flex: 0 0 auto;
 }
 

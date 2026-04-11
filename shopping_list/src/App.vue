@@ -4,7 +4,7 @@
 			<ListSidebar @show-settings="showSettings = true" />
 		</NcAppNavigation>
 		<NcAppContent>
-			<AreaKeywordsSettings v-if="showSettings" @back="showSettings = false" />
+			<AreaKeywordsSettings v-if="showSettings && listsStore.currentList" :key="listsStore.currentListId" @back="showSettings = false" />
 			<ListView v-else-if="listsStore.currentList" />
 			<NcEmptyContent v-else
 				:name="noListName"

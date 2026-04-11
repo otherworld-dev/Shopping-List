@@ -6,7 +6,6 @@ import { showError } from '@nextcloud/dialogs'
 
 export const useShopAreasStore = defineStore('shopAreas', () => {
 	const areasByList = ref<Record<number, ShopArea[]>>({})
-	const myAreas = ref<ShopArea[]>([])
 
 	async function fetchByList(listId: number) {
 		try {
@@ -18,25 +17,14 @@ export const useShopAreasStore = defineStore('shopAreas', () => {
 		}
 	}
 
-	async function fetchMine() {
+	async function create(listId: number, name: string, color?: string, keywords?: string[]) {
 		try {
-			const response = await api.areas.getMine()
-			myAreas.value = response.data.ocs.data
-		} catch (e) {
-			showError('Failed to load shop areas')
-			console.error(e)
-		}
-	}
-
-	async function create(name: string, color?: string, keywords?: string[]) {
-		try {
-			const response = await api.areas.create(name, color, keywords)
+			const response = await api.areas.create(listId, name, color, keywords)
 			const newArea: ShopArea = response.data.ocs.data
-			myAreas.value.push(newArea)
-			// Also update any cached list views
-			for (const listId in areasByList.value) {
-				areasByList.value[listId].push(newArea)
+			if (!areasByList.value[listId]) {
+				areasByList.value[listId] = []
 			}
+			areasByList.value[listId].push(newArea)
 			return newArea
 		} catch (e) {
 			showError('Failed to create shop area')
@@ -44,18 +32,12 @@ export const useShopAreasStore = defineStore('shopAreas', () => {
 		}
 	}
 
-	async function update(id: number, data: Record<string, unknown>) {
+	async function update(listId: number, id: number, data: Record<string, unknown>) {
 		try {
-			const response = await api.areas.update(id, data)
+			const response = await api.areas.update(listId, id, data)
 			const updated: ShopArea = response.data.ocs.data
-			// Update in myAreas
-			const myIdx = myAreas.value.findIndex(a => a.id === id)
-			if (myIdx !== -1) {
-				myAreas.value[myIdx] = updated
-			}
-			// Update in any cached list views
-			for (const listId in areasByList.value) {
-				const areas = areasByList.value[listId]
+			const areas = areasByList.value[listId]
+			if (areas) {
 				const idx = areas.findIndex(a => a.id === id)
 				if (idx !== -1) {
 					areas[idx] = updated
@@ -67,12 +49,10 @@ export const useShopAreasStore = defineStore('shopAreas', () => {
 		}
 	}
 
-	async function remove(id: number) {
+	async function remove(listId: number, id: number) {
 		try {
-			await api.areas.delete(id)
-			myAreas.value = myAreas.value.filter(a => a.id !== id)
-			// Remove from any cached list views
-			for (const listId in areasByList.value) {
+			await api.areas.delete(listId, id)
+			if (areasByList.value[listId]) {
 				areasByList.value[listId] = areasByList.value[listId].filter(a => a.id !== id)
 			}
 		} catch (e) {
@@ -83,9 +63,7 @@ export const useShopAreasStore = defineStore('shopAreas', () => {
 
 	return {
 		areasByList,
-		myAreas,
 		fetchByList,
-		fetchMine,
 		create,
 		update,
 		remove,

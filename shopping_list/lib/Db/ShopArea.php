@@ -8,8 +8,8 @@ use JsonSerializable;
 use OCP\AppFramework\Db\Entity;
 
 /**
- * @method string getUserId()
- * @method void setUserId(string $userId)
+ * @method int getListId()
+ * @method void setListId(int $listId)
  * @method string getName()
  * @method void setName(string $name)
  * @method int getSortOrder()
@@ -20,7 +20,7 @@ use OCP\AppFramework\Db\Entity;
  * @method void setKeywords(?string $keywords)
  */
 class ShopArea extends Entity implements JsonSerializable {
-	protected $userId;
+	protected $listId;
 	protected $name;
 	protected $sortOrder;
 	protected $color;
@@ -28,6 +28,7 @@ class ShopArea extends Entity implements JsonSerializable {
 
 	public function __construct() {
 		$this->addType('id', 'integer');
+		$this->addType('listId', 'integer');
 		$this->addType('sortOrder', 'integer');
 	}
 
@@ -47,7 +48,7 @@ class ShopArea extends Entity implements JsonSerializable {
 	public function jsonSerialize(): array {
 		return [
 			'id' => $this->id,
-			'userId' => $this->userId,
+			'listId' => $this->listId,
 			'name' => $this->name,
 			'sortOrder' => $this->sortOrder,
 			'color' => $this->color,
