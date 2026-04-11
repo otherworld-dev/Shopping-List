@@ -56,23 +56,25 @@
 					@mousedown.prevent="clearArea">
 					✕
 				</button>
-				<div v-if="dropdownOpen" class="item-row__dropdown">
-					<div
-						v-for="(area, i) in filteredAreas"
-						:key="area.id"
-						class="item-row__dropdown-item"
-						:class="{ 'item-row__dropdown-item--highlighted': i === highlightIndex }"
-						@mousedown.prevent="selectArea(area)">
-						<span
-							v-if="area.color"
-							class="item-row__dropdown-dot"
-							:style="{ backgroundColor: area.color }" />
-						{{ area.name }}
+				<Teleport to="body">
+					<div v-if="dropdownOpen" ref="dropdownRef" class="item-row__dropdown" :style="dropdownStyle">
+						<div
+							v-for="(area, i) in filteredAreas"
+							:key="area.id"
+							class="item-row__dropdown-item"
+							:class="{ 'item-row__dropdown-item--highlighted': i === highlightIndex }"
+							@mousedown.prevent="selectArea(area)">
+							<span
+								v-if="area.color"
+								class="item-row__dropdown-dot"
+								:style="{ backgroundColor: area.color }" />
+							{{ area.name }}
+						</div>
+						<div v-if="filteredAreas.length === 0" class="item-row__dropdown-empty">
+							{{ noMatchText }}
+						</div>
 					</div>
-					<div v-if="filteredAreas.length === 0" class="item-row__dropdown-empty">
-						{{ noMatchText }}
-					</div>
-				</div>
+				</Teleport>
 			</div>
 		</template>
 
@@ -157,6 +159,7 @@ const nameInputRef = ref<HTMLInputElement | null>(null)
 const qtyInputRef = ref<HTMLInputElement | null>(null)
 const areaInputRef = ref<HTMLInputElement | null>(null)
 const areaWrapperRef = ref<HTMLElement | null>(null)
+const dropdownRef = ref<HTMLElement | null>(null)
 let saving = false
 
 const editAreaName = computed(() => {
@@ -198,6 +201,17 @@ function focusAreaInput() {
 }
 
 // --- Area dropdown ---
+
+const dropdownStyle = computed(() => {
+	if (!areaWrapperRef.value) return {}
+	const rect = areaWrapperRef.value.getBoundingClientRect()
+	return {
+		position: 'fixed' as const,
+		top: `${rect.bottom + 2}px`,
+		left: `${rect.left}px`,
+		minWidth: `${Math.max(rect.width, 160)}px`,
+	}
+})
 
 function onAreaFocus() {
 	dropdownOpen.value = true
@@ -243,9 +257,10 @@ function onAreaTab() {
 }
 
 function onClickOutside(e: MouseEvent) {
-	if (areaWrapperRef.value && !areaWrapperRef.value.contains(e.target as Node)) {
-		closeDropdown()
-	}
+	const target = e.target as Node
+	if (areaWrapperRef.value?.contains(target)) return
+	if (dropdownRef.value?.contains(target)) return
+	closeDropdown()
 }
 
 onMounted(() => document.addEventListener('mousedown', onClickOutside))
@@ -504,20 +519,18 @@ async function onDelete() {
 	color: var(--color-error);
 }
 
+</style>
+
+<!-- Unscoped styles for teleported dropdown -->
+<style>
 .item-row__dropdown {
-	position: absolute;
-	top: 100%;
-	left: 0;
-	right: 0;
-	min-width: 160px;
 	max-height: 220px;
 	overflow-y: auto;
 	background: var(--color-main-background);
 	border: 1px solid var(--color-border);
 	border-radius: var(--border-radius);
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-	z-index: 100;
-	margin-top: 2px;
+	z-index: 10000;
 }
 
 .item-row__dropdown-item {

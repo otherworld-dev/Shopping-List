@@ -40657,24 +40657,20 @@ const _hoisted_3$4 = ["checked", "disabled"];
 const _hoisted_4$4 = ["placeholder", "onKeydown"];
 const _hoisted_5$4 = ["onKeydown"];
 const _hoisted_6$4 = ["placeholder", "onKeydown"];
-const _hoisted_7$4 = {
-  key: 1,
-  class: "item-row__dropdown"
-};
-const _hoisted_8$4 = ["onMousedown"];
-const _hoisted_9$3 = {
+const _hoisted_7$4 = ["onMousedown"];
+const _hoisted_8$4 = {
   key: 0,
   class: "item-row__dropdown-empty"
 };
-const _hoisted_10$3 = {
+const _hoisted_9$3 = {
   key: 0,
   class: "item-row__quantity"
 };
-const _hoisted_11$3 = {
+const _hoisted_10$3 = {
   key: 2,
   class: "item-row__area"
 };
-const _hoisted_12$3 = ["title"];
+const _hoisted_11$3 = ["title"];
 const _sfc_main$5 = /* @__PURE__ */ defineComponent({
   __name: "ItemRow",
   props: {
@@ -40720,6 +40716,7 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
     const qtyInputRef = /* @__PURE__ */ ref(null);
     const areaInputRef = /* @__PURE__ */ ref(null);
     const areaWrapperRef = /* @__PURE__ */ ref(null);
+    const dropdownRef = /* @__PURE__ */ ref(null);
     let saving = false;
     const editAreaName = computed(() => {
       if (editAreaId.value === null) return null;
@@ -40753,6 +40750,16 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
     function focusAreaInput() {
       areaInputRef.value?.focus();
     }
+    const dropdownStyle = computed(() => {
+      if (!areaWrapperRef.value) return {};
+      const rect = areaWrapperRef.value.getBoundingClientRect();
+      return {
+        position: "fixed",
+        top: `${rect.bottom + 2}px`,
+        left: `${rect.left}px`,
+        minWidth: `${Math.max(rect.width, 160)}px`
+      };
+    });
     function onAreaFocus() {
       dropdownOpen.value = true;
       highlightIndex.value = 0;
@@ -40790,9 +40797,10 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
       focusQtyInput();
     }
     function onClickOutside2(e) {
-      if (areaWrapperRef.value && !areaWrapperRef.value.contains(e.target)) {
-        closeDropdown();
-      }
+      const target = e.target;
+      if (areaWrapperRef.value?.contains(target)) return;
+      if (dropdownRef.value?.contains(target)) return;
+      closeDropdown();
     }
     onMounted(() => document.addEventListener("mousedown", onClickOutside2));
     onUnmounted(() => document.removeEventListener("mousedown", onClickOutside2));
@@ -40916,31 +40924,39 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
               tabindex: "-1",
               onMousedown: withModifiers(clearArea, ["prevent"])
             }, " ✕ ", 32)) : createCommentVNode("", true),
-            dropdownOpen.value ? (openBlock(), createElementBlock("div", _hoisted_7$4, [
-              (openBlock(true), createElementBlock(Fragment, null, renderList(filteredAreas.value, (area, i2) => {
-                return openBlock(), createElementBlock("div", {
-                  key: area.id,
-                  class: normalizeClass(["item-row__dropdown-item", { "item-row__dropdown-item--highlighted": i2 === highlightIndex.value }]),
-                  onMousedown: withModifiers(($event) => selectArea(area), ["prevent"])
-                }, [
-                  area.color ? (openBlock(), createElementBlock("span", {
-                    key: 0,
-                    class: "item-row__dropdown-dot",
-                    style: normalizeStyle({ backgroundColor: area.color })
-                  }, null, 4)) : createCommentVNode("", true),
-                  createTextVNode(" " + toDisplayString(area.name), 1)
-                ], 42, _hoisted_8$4);
-              }), 128)),
-              filteredAreas.value.length === 0 ? (openBlock(), createElementBlock("div", _hoisted_9$3, toDisplayString(unref(noMatchText)), 1)) : createCommentVNode("", true)
-            ])) : createCommentVNode("", true)
+            (openBlock(), createBlock(Teleport, { to: "body" }, [
+              dropdownOpen.value ? (openBlock(), createElementBlock("div", {
+                key: 0,
+                ref_key: "dropdownRef",
+                ref: dropdownRef,
+                class: "item-row__dropdown",
+                style: normalizeStyle(dropdownStyle.value)
+              }, [
+                (openBlock(true), createElementBlock(Fragment, null, renderList(filteredAreas.value, (area, i2) => {
+                  return openBlock(), createElementBlock("div", {
+                    key: area.id,
+                    class: normalizeClass(["item-row__dropdown-item", { "item-row__dropdown-item--highlighted": i2 === highlightIndex.value }]),
+                    onMousedown: withModifiers(($event) => selectArea(area), ["prevent"])
+                  }, [
+                    area.color ? (openBlock(), createElementBlock("span", {
+                      key: 0,
+                      class: "item-row__dropdown-dot",
+                      style: normalizeStyle({ backgroundColor: area.color })
+                    }, null, 4)) : createCommentVNode("", true),
+                    createTextVNode(" " + toDisplayString(area.name), 1)
+                  ], 42, _hoisted_7$4);
+                }), 128)),
+                filteredAreas.value.length === 0 ? (openBlock(), createElementBlock("div", _hoisted_8$4, toDisplayString(unref(noMatchText)), 1)) : createCommentVNode("", true)
+              ], 4)) : createCommentVNode("", true)
+            ]))
           ], 512)
         ], 64)) : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
-          item.value.quantity ? (openBlock(), createElementBlock("span", _hoisted_10$3, toDisplayString(item.value.quantity) + toDisplayString(item.value.unit ? " " + item.value.unit : ""), 1)) : createCommentVNode("", true),
+          item.value.quantity ? (openBlock(), createElementBlock("span", _hoisted_9$3, toDisplayString(item.value.quantity) + toDisplayString(item.value.unit ? " " + item.value.unit : ""), 1)) : createCommentVNode("", true),
           createBaseVNode("span", {
             class: normalizeClass(["item-row__name", { "item-row__name--checked": item.value.checked }])
           }, toDisplayString(item.value.name), 3)
         ], 64)),
-        areaName.value && !__props.editing ? (openBlock(), createElementBlock("span", _hoisted_11$3, [
+        areaName.value && !__props.editing ? (openBlock(), createElementBlock("span", _hoisted_10$3, [
           areaColor.value ? (openBlock(), createElementBlock("span", {
             key: 0,
             class: "item-row__area-dot",
@@ -40954,13 +40970,13 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
           title: unref(deleteTitle),
           onClick: onDelete
         }, [..._cache[5] || (_cache[5] = [
-          createStaticVNode('<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-v-1dc873ab><polyline points="3 6 5 6 21 6" data-v-1dc873ab></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" data-v-1dc873ab></path><line x1="10" y1="11" x2="10" y2="17" data-v-1dc873ab></line><line x1="14" y1="11" x2="14" y2="17" data-v-1dc873ab></line></svg>', 1)
-        ])], 8, _hoisted_12$3)) : createCommentVNode("", true)
+          createStaticVNode('<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-v-750d61eb><polyline points="3 6 5 6 21 6" data-v-750d61eb></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" data-v-750d61eb></path><line x1="10" y1="11" x2="10" y2="17" data-v-750d61eb></line><line x1="14" y1="11" x2="14" y2="17" data-v-750d61eb></line></svg>', 1)
+        ])], 8, _hoisted_11$3)) : createCommentVNode("", true)
       ], 10, _hoisted_1$4)) : createCommentVNode("", true);
     };
   }
 });
-const ItemRow = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-1dc873ab"]]);
+const ItemRow = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-750d61eb"]]);
 const _hoisted_1$3 = { class: "item-editor" };
 const _hoisted_2$3 = { class: "item-editor__main" };
 const _hoisted_3$3 = ["placeholder", "onKeydown"];
@@ -41773,7 +41789,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ListView = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-6a607e95"]]);
+const ListView = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-0825548e"]]);
 const _hoisted_1 = { class: "area-settings" };
 const _hoisted_2 = { class: "area-settings__header" };
 const _hoisted_3 = { class: "area-settings__desc" };

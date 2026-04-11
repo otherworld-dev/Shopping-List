@@ -292,7 +292,6 @@ async function onUncheckAll() {
 	border: 1px solid var(--color-border);
 	border-radius: var(--border-radius-large);
 	background-color: var(--color-main-background);
-	overflow: hidden;
 }
 
 .list-view__loading {
