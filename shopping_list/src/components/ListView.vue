@@ -49,28 +49,39 @@
 				</div>
 
 				<!-- Items grouped by shop area -->
-				<div v-for="group in areaGroups" :key="group.areaId ?? 'none'" class="list-view__area-group">
+				<div v-for="(group, groupIndex) in localGroups" :key="group.areaId ?? 'none'" class="list-view__area-group">
 					<div v-if="group.areaName"
 						class="list-view__area-header"
 						:style="group.areaColor ? { borderLeftColor: group.areaColor } : {}">
 						<span class="list-view__area-name">{{ group.areaName }}</span>
-						<span class="list-view__area-count">{{ group.itemIds.length }}</span>
+						<span class="list-view__area-count">{{ group.items.length }}</span>
 					</div>
-					<div v-else-if="areaGroups.length > 1" class="list-view__area-header">
+					<div v-else-if="localGroups.length > 1" class="list-view__area-header">
 						<span class="list-view__area-name list-view__area-name--muted">{{ uncategorizedText }}</span>
-						<span class="list-view__area-count">{{ group.itemIds.length }}</span>
+						<span class="list-view__area-count">{{ group.items.length }}</span>
 					</div>
 
-					<div class="list-view__items">
-						<ItemRow
-							v-for="itemId in group.itemIds"
-							:key="itemId"
-							:item-id="itemId"
-							:list-id="listsStore.currentList!.id"
-							:can-edit="canEdit"
-							:editing="editingItemId === itemId"
-							@close-edit="editingItemId = null" />
-					</div>
+					<draggable
+						v-model="localGroups[groupIndex].items"
+						item-key="id"
+						:group="{ name: 'items' }"
+						:disabled="!canEdit"
+						:animation="150"
+						:delay="150"
+						:delay-on-touch-only="true"
+						class="list-view__items"
+						ghost-class="list-view__item--ghost"
+						@start="isDragging = true"
+						@end="onDragEnd">
+						<template #item="{ element }">
+							<ItemRow
+								:item-id="element.id"
+								:list-id="listsStore.currentList!.id"
+								:can-edit="canEdit"
+								:editing="editingItemId === element.id"
+								@close-edit="editingItemId = null" />
+						</template>
+					</draggable>
 				</div>
 			</template>
 		</div>
@@ -123,8 +134,10 @@ import { getCurrentUser } from '@nextcloud/auth'
 import { useListsStore } from '../stores/lists'
 import { useItemsStore } from '../stores/items'
 import { useShopAreasStore } from '../stores/shopAreas'
+import type { Item } from '../types'
 import { Permission, ShareType } from '../types'
 import { useSharesStore } from '../stores/shares'
+import draggable from 'vuedraggable'
 import ItemRow from './ItemRow.vue'
 import ItemEditor from './ItemEditor.vue'
 import ShareDialog from './ShareDialog.vue'
@@ -158,6 +171,8 @@ function onCaptureClick(e: MouseEvent) {
 	if (target.closest('.item-row__check') || target.closest('.item-row__delete')) return
 	if ((target as HTMLInputElement).type === 'checkbox') return
 
+	if (isDragging.value) return
+
 	const row = target.closest('.item-row:not(.item-row--checked)') as HTMLElement | null
 	if (row) {
 		const idStr = row.getAttribute('data-item-id')
@@ -188,26 +203,27 @@ const canEdit = computed(() =>
 	listsStore.currentList !== null && listsStore.currentList.permission >= Permission.WRITE,
 )
 
-// Primitives-only area groups to avoid passing reactive objects as props
 interface AreaGroup {
 	areaId: number | null
 	areaName: string | null
 	areaColor: string | null
-	itemIds: number[]
+	items: Item[]
 }
+
+const isDragging = ref(false)
 
 const areaGroups = computed((): AreaGroup[] => {
 	const unchecked = itemsStore.uncheckedItems
 	if (unchecked.length === 0) return []
 
-	const grouped = new Map<number | null, number[]>()
+	const grouped = new Map<number | null, Item[]>()
 
 	for (const item of unchecked) {
 		const key = item.shopAreaId
 		if (!grouped.has(key)) {
 			grouped.set(key, [])
 		}
-		grouped.get(key)!.push(item.id)
+		grouped.get(key)!.push(item)
 	}
 
 	const areas = listsStore.currentListId
@@ -216,23 +232,57 @@ const areaGroups = computed((): AreaGroup[] => {
 	const result: AreaGroup[] = []
 
 	for (const area of areas) {
-		const ids = grouped.get(area.id)
-		if (ids && ids.length > 0) {
-			result.push({ areaId: area.id, areaName: area.name, areaColor: area.color, itemIds: ids })
+		const items = grouped.get(area.id)
+		if (items && items.length > 0) {
+			result.push({ areaId: area.id, areaName: area.name, areaColor: area.color, items })
 			grouped.delete(area.id)
 		}
 	}
 
-	const uncategorizedIds: number[] = []
-	for (const [, ids] of grouped) {
-		uncategorizedIds.push(...ids)
+	const uncategorizedItems: Item[] = []
+	for (const [, items] of grouped) {
+		uncategorizedItems.push(...items)
 	}
-	if (uncategorizedIds.length > 0) {
-		result.push({ areaId: null, areaName: null, areaColor: null, itemIds: uncategorizedIds })
+	if (uncategorizedItems.length > 0) {
+		result.push({ areaId: null, areaName: null, areaColor: null, items: uncategorizedItems })
 	}
 
 	return result
 })
+
+// Local mutable copy of groups for vuedraggable to manipulate
+const localGroups = ref<AreaGroup[]>([])
+
+watch(areaGroups, (groups) => {
+	// Only sync from store when not mid-drag to avoid fighting vuedraggable
+	if (!isDragging.value) {
+		localGroups.value = groups.map(g => ({ ...g, items: [...g.items] }))
+	}
+}, { immediate: true })
+
+async function onDragEnd() {
+	isDragging.value = false
+	const listId = listsStore.currentList?.id
+	if (!listId) return
+
+	// Collect all sorted IDs and detect area changes
+	const allSortedIds: number[] = []
+	const areaUpdates: Promise<unknown>[] = []
+
+	for (const group of localGroups.value) {
+		for (const item of group.items) {
+			allSortedIds.push(item.id)
+			if (item.shopAreaId !== group.areaId) {
+				areaUpdates.push(itemsStore.update(listId, item.id, { shopAreaId: group.areaId }))
+			}
+		}
+	}
+
+	await Promise.all([
+		...areaUpdates,
+		itemsStore.reorder(listId, allSortedIds),
+	])
+}
 
 const checkedItemIds = computed(() =>
 	itemsStore.checkedItems.map(i => i.id),
@@ -338,6 +388,13 @@ async function onUncheckAll() {
 .list-view__items {
 	display: flex;
 	flex-direction: column;
+	min-height: 8px;
+}
+
+.list-view__item--ghost {
+	opacity: 0.4;
+	background-color: var(--color-primary-element-light);
+	border-radius: var(--border-radius);
 }
 
 .list-view__avatars {
