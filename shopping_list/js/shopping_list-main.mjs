@@ -12830,7 +12830,7 @@ const _hoisted_6$a = {
   class: "action-button__text"
 };
 const _hoisted_7$7 = ["textContent"];
-const _hoisted_8$5 = {
+const _hoisted_8$4 = {
   key: 2,
   class: "action-button__pressed-icon material-design-icon"
 };
@@ -12881,7 +12881,7 @@ function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
         key: 1,
         path: $setup.mdiCheck,
         class: "action-button__pressed-icon"
-      }, null, 8, ["path"])) : $options.isChecked === false ? (openBlock(), createElementBlock("span", _hoisted_8$5)) : createCommentVNode("", true),
+      }, null, 8, ["path"])) : $options.isChecked === false ? (openBlock(), createElementBlock("span", _hoisted_8$4)) : createCommentVNode("", true),
       createCommentVNode("", true)
     ], 16, _hoisted_2$r)
   ], 10, _hoisted_1$w);
@@ -43489,8 +43489,59 @@ function canonicalUnit(unit) {
   const lower = unit.toLowerCase();
   return UNIT_ALIASES[lower] ?? lower;
 }
+const SINGULAR_EXCEPTIONS = /* @__PURE__ */ new Set([
+  "asparagus",
+  "hummus",
+  "couscous",
+  "cheese",
+  "rice",
+  "juice",
+  "lettuce",
+  "sauce",
+  "produce",
+  "grease",
+  "mousse"
+]);
+function singularize(word) {
+  const lower = word.toLowerCase();
+  if (lower.length <= 2 || SINGULAR_EXCEPTIONS.has(lower)) return lower;
+  if (lower.endsWith("ies")) return lower.slice(0, -3) + "y";
+  if (lower.endsWith("ves")) {
+    const stem = lower.slice(0, -3);
+    if (stem.endsWith("l") || stem.endsWith("a") || stem.endsWith("oa")) return stem + "f";
+    return stem + "fe";
+  }
+  if (lower.endsWith("shes") || lower.endsWith("ches") || lower.endsWith("sses") || lower.endsWith("xes") || lower.endsWith("zes")) {
+    return lower.slice(0, -2);
+  }
+  if (lower.endsWith("oes") && lower !== "shoes") return lower.slice(0, -2);
+  if (lower.endsWith("s") && !lower.endsWith("ss") && !lower.endsWith("us")) return lower.slice(0, -1);
+  return lower;
+}
+function pluralizeName(name) {
+  const words = name.split(" ");
+  const last = words[words.length - 1];
+  const lower = last.toLowerCase();
+  if (lower.length <= 1 || SINGULAR_EXCEPTIONS.has(lower)) return name;
+  if (singularize(lower) !== lower) return name;
+  let plural;
+  if (lower.endsWith("y") && !/[aeiou]/.test(lower.charAt(lower.length - 2))) {
+    plural = last.slice(0, -1) + "ies";
+  } else if (lower.endsWith("fe")) {
+    plural = last.slice(0, -2) + "ves";
+  } else if (lower.endsWith("f") && !lower.endsWith("ff")) {
+    plural = last.slice(0, -1) + "ves";
+  } else if (/(?:ch|sh|ss|x|z|o)$/.test(lower)) {
+    plural = last + "es";
+  } else {
+    plural = last + "s";
+  }
+  words[words.length - 1] = plural;
+  return words.join(" ");
+}
 function normalizeName(name) {
-  return name.toLowerCase().trim().replace(/\s*\(.*?\)\s*/g, " ").replace(/,\s.*$/, "").replace(/\s+/g, " ").trim();
+  const cleaned = name.toLowerCase().trim().replace(/\s*\(.*?\)\s*/g, " ").replace(/,\s.*$/, "").replace(/\s+/g, " ").trim();
+  return cleaned.split(" ").map(singularize).join(" ");
 }
 function findMatchingItem(items, name) {
   const normalized = normalizeName(name);
@@ -43574,9 +43625,15 @@ const useItemsStore = /* @__PURE__ */ defineStore("items", () => {
       const match2 = findMatchingItem(existingItems, data.name);
       if (match2) {
         const merged = mergeQuantities(match2.quantity, data.quantity);
-        await api.items.update(listId, match2.id, { quantity: merged });
+        const updateData = { quantity: merged };
+        const oldQty = parseFloat(match2.quantity ?? "");
+        const newQty = parseFloat(merged);
+        if (oldQty <= 1 && newQty > 1) {
+          updateData.name = pluralizeName(match2.name);
+        }
+        await api.items.update(listId, match2.id, updateData);
         await fetchByList(listId);
-        showSuccess(`"${match2.name}" updated — quantity merged`);
+        showSuccess(`"${updateData.name ?? match2.name}" updated — quantity merged`);
         return;
       }
       await api.items.create(listId, data);
@@ -56837,7 +56894,7 @@ const _hoisted_4$4 = ["placeholder", "onKeydown"];
 const _hoisted_5$4 = ["onKeydown"];
 const _hoisted_6$4 = ["placeholder", "onKeydown"];
 const _hoisted_7$4 = ["onMousedown"];
-const _hoisted_8$4 = {
+const _hoisted_8$3 = {
   key: 0,
   class: "item-row__dropdown-empty"
 };
@@ -57125,7 +57182,7 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
                     createTextVNode(" " + toDisplayString(area.name), 1)
                   ], 42, _hoisted_7$4);
                 }), 128)),
-                filteredAreas.value.length === 0 ? (openBlock(), createElementBlock("div", _hoisted_8$4, toDisplayString(unref(noMatchText)), 1)) : createCommentVNode("", true)
+                filteredAreas.value.length === 0 ? (openBlock(), createElementBlock("div", _hoisted_8$3, toDisplayString(unref(noMatchText)), 1)) : createCommentVNode("", true)
               ], 4)) : createCommentVNode("", true)
             ]))
           ], 512)
@@ -57160,13 +57217,12 @@ const _hoisted_1$3 = { class: "item-editor" };
 const _hoisted_2$3 = { class: "item-editor__main" };
 const _hoisted_3$3 = ["placeholder", "onKeydown"];
 const _hoisted_4$3 = ["placeholder", "onKeydown"];
-const _hoisted_5$3 = ["placeholder", "onKeydown"];
-const _hoisted_6$3 = {
+const _hoisted_5$3 = {
   key: 1,
   class: "item-editor__dropdown"
 };
-const _hoisted_7$3 = ["onMousedown"];
-const _hoisted_8$3 = {
+const _hoisted_6$3 = ["onMousedown"];
+const _hoisted_7$3 = {
   key: 0,
   class: "item-editor__dropdown-empty"
 };
@@ -57181,15 +57237,12 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     const shopAreasStore = useShopAreasStore();
     const listsStore = useListsStore();
     const addItemLabel = translate("shopping_list", "Add an item to list...");
-    const qtyLabel = translate("shopping_list", "Qty");
     const shopAreaPlaceholder = translate("shopping_list", "Area");
     const noMatchText = translate("shopping_list", "No match");
     const nameRef = /* @__PURE__ */ ref(null);
-    const qtyRef = /* @__PURE__ */ ref(null);
     const areaRef = /* @__PURE__ */ ref(null);
     const areaWrapperRef = /* @__PURE__ */ ref(null);
     const name = /* @__PURE__ */ ref("");
-    const quantity = /* @__PURE__ */ ref("");
     const selectedAreaId = /* @__PURE__ */ ref(null);
     const areaSearch = /* @__PURE__ */ ref("");
     const dropdownOpen = /* @__PURE__ */ ref(false);
@@ -57208,9 +57261,6 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
       if (!q2) return areaOptions.value;
       return areaOptions.value.filter((a2) => a2.name.toLowerCase().includes(q2));
     });
-    function focusQty() {
-      qtyRef.value?.focus();
-    }
     function focusArea() {
       areaRef.value?.focus();
     }
@@ -57388,9 +57438,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
       const lines = text2.split(/\r?\n/).map((l2) => l2.trim()).filter((l2) => l2.length > 0);
       if (lines.length === 0) return;
       if (lines.length === 1) {
-        const parsed = parseIngredient(lines[0]);
-        name.value = parsed.name;
-        quantity.value = parsed.quantity ?? "";
+        name.value = lines[0];
         return;
       }
       for (const line of lines) {
@@ -57399,12 +57447,11 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
         const areaId = selectedAreaId.value ?? detectArea(parsed.name);
         await itemsStore.create(props.listId, {
           name: parsed.name,
-          quantity: parsed.quantity,
+          quantity: parsed.quantity || "1",
           shopAreaId: areaId
         });
       }
       name.value = "";
-      quantity.value = "";
       await nextTick();
       nameRef.value?.focus();
     }
@@ -57412,21 +57459,22 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
       const trimmedName = name.value.trim();
       if (!trimmedName) return;
       closeDropdown();
-      const areaId = selectedAreaId.value ?? detectArea(trimmedName);
+      const parsed = parseIngredient(trimmedName);
+      if (!parsed.name) return;
+      const areaId = selectedAreaId.value ?? detectArea(parsed.name);
       await itemsStore.create(props.listId, {
-        name: trimmedName,
-        quantity: quantity.value.trim() || null,
+        name: parsed.name,
+        quantity: parsed.quantity || "1",
         shopAreaId: areaId
       });
       name.value = "";
-      quantity.value = "";
       await nextTick();
       nameRef.value?.focus();
     }
     return (_ctx, _cache) => {
       return openBlock(), createElementBlock("div", _hoisted_1$3, [
         createBaseVNode("div", _hoisted_2$3, [
-          _cache[5] || (_cache[5] = createBaseVNode("span", { class: "item-editor__plus" }, "+", -1)),
+          _cache[4] || (_cache[4] = createBaseVNode("span", { class: "item-editor__plus" }, "+", -1)),
           withDirectives(createBaseVNode("input", {
             ref_key: "nameRef",
             ref: nameRef,
@@ -57436,25 +57484,11 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
             class: "item-editor__input",
             onKeydown: [
               withKeys(withModifiers(onSubmit, ["prevent"]), ["enter"]),
-              withKeys(withModifiers(focusQty, ["prevent"]), ["tab"])
+              withKeys(withModifiers(focusArea, ["prevent"]), ["tab"])
             ],
             onPaste
           }, null, 40, _hoisted_3$3), [
             [vModelText, name.value]
-          ]),
-          withDirectives(createBaseVNode("input", {
-            ref_key: "qtyRef",
-            ref: qtyRef,
-            "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => quantity.value = $event),
-            type: "text",
-            placeholder: unref(qtyLabel),
-            class: "item-editor__qty",
-            onKeydown: [
-              withKeys(withModifiers(onSubmit, ["prevent"]), ["enter"]),
-              withKeys(withModifiers(focusArea, ["prevent"]), ["tab"])
-            ]
-          }, null, 40, _hoisted_4$3), [
-            [vModelText, quantity.value]
           ]),
           createBaseVNode("div", {
             class: "item-editor__area-wrapper",
@@ -57464,7 +57498,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
             withDirectives(createBaseVNode("input", {
               ref_key: "areaRef",
               ref: areaRef,
-              "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => areaSearch.value = $event),
+              "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => areaSearch.value = $event),
               type: "text",
               placeholder: selectedAreaName.value || unref(shopAreaPlaceholder),
               class: "item-editor__area-input",
@@ -57473,10 +57507,10 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
                 withKeys(withModifiers(onAreaEnter, ["prevent"]), ["enter"]),
                 withKeys(withModifiers(onAreaTab, ["prevent"]), ["tab"]),
                 withKeys(closeDropdown, ["escape"]),
-                _cache[3] || (_cache[3] = withKeys(withModifiers(($event) => moveHighlight(1), ["prevent"]), ["down"])),
-                _cache[4] || (_cache[4] = withKeys(withModifiers(($event) => moveHighlight(-1), ["prevent"]), ["up"]))
+                _cache[2] || (_cache[2] = withKeys(withModifiers(($event) => moveHighlight(1), ["prevent"]), ["down"])),
+                _cache[3] || (_cache[3] = withKeys(withModifiers(($event) => moveHighlight(-1), ["prevent"]), ["up"]))
               ]
-            }, null, 40, _hoisted_5$3), [
+            }, null, 40, _hoisted_4$3), [
               [vModelText, areaSearch.value]
             ]),
             selectedAreaId.value !== null ? (openBlock(), createElementBlock("button", {
@@ -57485,7 +57519,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
               tabindex: "-1",
               onClick: clearArea
             }, " ✕ ")) : createCommentVNode("", true),
-            dropdownOpen.value ? (openBlock(), createElementBlock("div", _hoisted_6$3, [
+            dropdownOpen.value ? (openBlock(), createElementBlock("div", _hoisted_5$3, [
               (openBlock(true), createElementBlock(Fragment, null, renderList(filteredAreas.value, (area, i2) => {
                 return openBlock(), createElementBlock("div", {
                   key: area.id,
@@ -57498,9 +57532,9 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
                     style: normalizeStyle({ backgroundColor: area.color })
                   }, null, 4)) : createCommentVNode("", true),
                   createTextVNode(" " + toDisplayString(area.name), 1)
-                ], 42, _hoisted_7$3);
+                ], 42, _hoisted_6$3);
               }), 128)),
-              filteredAreas.value.length === 0 ? (openBlock(), createElementBlock("div", _hoisted_8$3, toDisplayString(unref(noMatchText)), 1)) : createCommentVNode("", true)
+              filteredAreas.value.length === 0 ? (openBlock(), createElementBlock("div", _hoisted_7$3, toDisplayString(unref(noMatchText)), 1)) : createCommentVNode("", true)
             ])) : createCommentVNode("", true)
           ], 512)
         ])
@@ -57508,7 +57542,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ItemEditor = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-8890c253"]]);
+const ItemEditor = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-9172cbcf"]]);
 const _hoisted_1$2 = { class: "share-modal" };
 const _hoisted_2$2 = { class: "share-modal__header" };
 const _hoisted_3$2 = { class: "share-modal__search" };
@@ -58007,7 +58041,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ListView = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-0b7497d3"]]);
+const ListView = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-9720de08"]]);
 const _hoisted_1 = { class: "area-settings" };
 const _hoisted_2 = { class: "area-settings__header" };
 const _hoisted_3 = { class: "area-settings__desc" };

@@ -9,16 +9,8 @@
 				:placeholder="addItemLabel"
 				class="item-editor__input"
 				@keydown.enter.prevent="onSubmit"
-				@keydown.tab.prevent="focusQty"
+				@keydown.tab.prevent="focusArea"
 				@paste="onPaste" />
-			<input
-				ref="qtyRef"
-				v-model="quantity"
-				type="text"
-				:placeholder="qtyLabel"
-				class="item-editor__qty"
-				@keydown.enter.prevent="onSubmit"
-				@keydown.tab.prevent="focusArea" />
 			<div class="item-editor__area-wrapper" ref="areaWrapperRef">
 				<input
 					ref="areaRef"
@@ -77,17 +69,14 @@ const shopAreasStore = useShopAreasStore()
 const listsStore = useListsStore()
 
 const addItemLabel = t('shopping_list', 'Add an item to list...')
-const qtyLabel = t('shopping_list', 'Qty')
 const shopAreaPlaceholder = t('shopping_list', 'Area')
 const noMatchText = t('shopping_list', 'No match')
 
 const nameRef = ref<HTMLInputElement | null>(null)
-const qtyRef = ref<HTMLInputElement | null>(null)
 const areaRef = ref<HTMLInputElement | null>(null)
 const areaWrapperRef = ref<HTMLElement | null>(null)
 
 const name = ref('')
-const quantity = ref('')
 const selectedAreaId = ref<number | null>(null)
 const areaSearch = ref('')
 const dropdownOpen = ref(false)
@@ -109,10 +98,6 @@ const filteredAreas = computed(() => {
 	if (!q) return areaOptions.value
 	return areaOptions.value.filter(a => a.name.toLowerCase().includes(q))
 })
-
-function focusQty() {
-	qtyRef.value?.focus()
-}
 
 function focusArea() {
 	areaRef.value?.focus()
@@ -316,11 +301,9 @@ async function onPaste(e: ClipboardEvent) {
 	const lines = text.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0)
 	if (lines.length === 0) return
 
-	// If only one line, just populate the fields
+	// If only one line, populate the name field with the full text for editing
 	if (lines.length === 1) {
-		const parsed = parseIngredient(lines[0])
-		name.value = parsed.name
-		quantity.value = parsed.quantity ?? ''
+		name.value = lines[0]
 		return
 	}
 
@@ -332,13 +315,12 @@ async function onPaste(e: ClipboardEvent) {
 		const areaId = selectedAreaId.value ?? detectArea(parsed.name)
 		await itemsStore.create(props.listId, {
 			name: parsed.name,
-			quantity: parsed.quantity,
+			quantity: parsed.quantity || '1',
 			shopAreaId: areaId,
 		})
 	}
 
 	name.value = ''
-	quantity.value = ''
 	await nextTick()
 	nameRef.value?.focus()
 }
@@ -349,15 +331,17 @@ async function onSubmit() {
 
 	closeDropdown()
 
-	const areaId = selectedAreaId.value ?? detectArea(trimmedName)
+	const parsed = parseIngredient(trimmedName)
+	if (!parsed.name) return
+
+	const areaId = selectedAreaId.value ?? detectArea(parsed.name)
 	await itemsStore.create(props.listId, {
-		name: trimmedName,
-		quantity: quantity.value.trim() || null,
+		name: parsed.name,
+		quantity: parsed.quantity || '1',
 		shopAreaId: areaId,
 	})
 
 	name.value = ''
-	quantity.value = ''
 	await nextTick()
 	nameRef.value?.focus()
 }
@@ -410,26 +394,6 @@ async function onSubmit() {
 }
 
 .item-editor__input::placeholder {
-	color: var(--color-text-maxcontrast);
-	font-style: italic;
-}
-
-.item-editor__qty {
-	flex: 0 0 50px !important;
-	width: 50px;
-	height: 28px;
-	border: none;
-	border-left: 1px solid var(--color-border);
-	border-radius: 0;
-	background: transparent;
-	color: var(--color-main-text);
-	font-size: 0.85em;
-	outline: none;
-	padding: 0 6px;
-	text-align: center;
-}
-
-.item-editor__qty::placeholder {
 	color: var(--color-text-maxcontrast);
 	font-style: italic;
 }

@@ -492,4 +492,10 @@ async function onUncheckAll() {
 .list-view__toggle {
 	margin-left: 4px;
 }
+
+@media (max-width: 1024px) {
+	.list-view__header {
+		padding-left: 44px;
+	}
+}
 </style>

@@ -4,7 +4,7 @@ import { api } from '../composables/useApi'
 import type { Item } from '../types'
 import { useListsStore } from './lists'
 import { showError, showSuccess } from '@nextcloud/dialogs'
-import { findMatchingItem, mergeQuantities } from '../utils/itemMerge'
+import { findMatchingItem, mergeQuantities, pluralizeName } from '../utils/itemMerge'
 
 export const useItemsStore = defineStore('items', () => {
 	const itemsByList = ref<Record<number, Item[]>>({})
@@ -60,9 +60,18 @@ export const useItemsStore = defineStore('items', () => {
 
 			if (match) {
 				const merged = mergeQuantities(match.quantity, data.quantity as string | null)
-				await api.items.update(listId, match.id, { quantity: merged })
+				const updateData: Record<string, unknown> = { quantity: merged }
+
+				// Pluralize name when going from qty 1 to more than 1
+				const oldQty = parseFloat(match.quantity ?? '')
+				const newQty = parseFloat(merged)
+				if (oldQty <= 1 && newQty > 1) {
+					updateData.name = pluralizeName(match.name)
+				}
+
+				await api.items.update(listId, match.id, updateData)
 				await fetchByList(listId)
-				showSuccess(`"${match.name}" updated — quantity merged`)
+				showSuccess(`"${updateData.name ?? match.name}" updated — quantity merged`)
 				return
 			}
 
