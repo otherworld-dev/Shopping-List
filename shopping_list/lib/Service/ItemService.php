@@ -40,7 +40,7 @@ class ItemService {
 		$item = new Item();
 		$item->setListId($listId);
 		$item->setName($name);
-		$item->setQuantity($quantity);
+		$item->setQuantity($quantity ?? '1');
 		$item->setUnit($unit);
 		$item->setShopAreaId($shopAreaId);
 		$item->setChecked(false);
