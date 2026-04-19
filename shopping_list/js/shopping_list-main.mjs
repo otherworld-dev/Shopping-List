@@ -1,5 +1,5 @@
 const appName = "shopping_list";
-const appVersion = "1.0.6";
+const appVersion = "1.0.7";
 const global$1 = globalThis || void 0 || self;
 /**
 * @vue/shared v3.5.32
@@ -43452,6 +43452,66 @@ const useListsStore = /* @__PURE__ */ defineStore("lists", () => {
     selectList
   };
 });
+const useShopAreasStore = /* @__PURE__ */ defineStore("shopAreas", () => {
+  const areasByList = /* @__PURE__ */ ref({});
+  async function fetchByList(listId) {
+    try {
+      const response = await api.areas.getForList(listId);
+      areasByList.value[listId] = response.data.ocs.data;
+    } catch (e) {
+      showError("Failed to load shop areas");
+      console.error(e);
+    }
+  }
+  async function create2(listId, name, color, keywords) {
+    try {
+      const response = await api.areas.create(listId, name, color, keywords);
+      const newArea = response.data.ocs.data;
+      if (!areasByList.value[listId]) {
+        areasByList.value[listId] = [];
+      }
+      areasByList.value[listId].push(newArea);
+      return newArea;
+    } catch (e) {
+      showError("Failed to create shop area");
+      console.error(e);
+    }
+  }
+  async function update(listId, id, data) {
+    try {
+      const response = await api.areas.update(listId, id, data);
+      const updated = response.data.ocs.data;
+      const areas = areasByList.value[listId];
+      if (areas) {
+        const idx = areas.findIndex((a2) => a2.id === id);
+        if (idx !== -1) {
+          areas[idx] = updated;
+        }
+      }
+    } catch (e) {
+      showError("Failed to update shop area");
+      console.error(e);
+    }
+  }
+  async function remove2(listId, id) {
+    try {
+      await api.areas.delete(listId, id);
+      if (areasByList.value[listId]) {
+        areasByList.value[listId] = areasByList.value[listId].filter((a2) => a2.id !== id);
+      }
+    } catch (e) {
+      showError("Failed to delete shop area");
+      console.error(e);
+    }
+  }
+  return {
+    areasByList,
+    fetchByList,
+    create: create2,
+    update,
+    remove: remove2
+  };
+});
 const UNIT_ALIASES = {
   cups: "cup",
   teaspoons: "teaspoon",
@@ -43638,6 +43698,10 @@ const useItemsStore = /* @__PURE__ */ defineStore("items", () => {
       }
       await api.items.create(listId, data);
       await fetchByList(listId);
+      if (data.areaExplicit) {
+        const shopAreasStore = useShopAreasStore();
+        await shopAreasStore.fetchByList(listId);
+      }
     } catch (e) {
       showError("Failed to add item");
       console.error(e);
@@ -43651,6 +43715,10 @@ const useItemsStore = /* @__PURE__ */ defineStore("items", () => {
       const index2 = items.findIndex((i2) => i2.id === id);
       if (index2 !== -1) {
         items[index2] = updated;
+      }
+      if (data.areaExplicit) {
+        const shopAreasStore = useShopAreasStore();
+        await shopAreasStore.fetchByList(listId);
       }
       return updated;
     } catch (e) {
@@ -43843,66 +43911,6 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
   }
 });
 const ListSidebar = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-b6280b45"]]);
-const useShopAreasStore = /* @__PURE__ */ defineStore("shopAreas", () => {
-  const areasByList = /* @__PURE__ */ ref({});
-  async function fetchByList(listId) {
-    try {
-      const response = await api.areas.getForList(listId);
-      areasByList.value[listId] = response.data.ocs.data;
-    } catch (e) {
-      showError("Failed to load shop areas");
-      console.error(e);
-    }
-  }
-  async function create2(listId, name, color, keywords) {
-    try {
-      const response = await api.areas.create(listId, name, color, keywords);
-      const newArea = response.data.ocs.data;
-      if (!areasByList.value[listId]) {
-        areasByList.value[listId] = [];
-      }
-      areasByList.value[listId].push(newArea);
-      return newArea;
-    } catch (e) {
-      showError("Failed to create shop area");
-      console.error(e);
-    }
-  }
-  async function update(listId, id, data) {
-    try {
-      const response = await api.areas.update(listId, id, data);
-      const updated = response.data.ocs.data;
-      const areas = areasByList.value[listId];
-      if (areas) {
-        const idx = areas.findIndex((a2) => a2.id === id);
-        if (idx !== -1) {
-          areas[idx] = updated;
-        }
-      }
-    } catch (e) {
-      showError("Failed to update shop area");
-      console.error(e);
-    }
-  }
-  async function remove2(listId, id) {
-    try {
-      await api.areas.delete(listId, id);
-      if (areasByList.value[listId]) {
-        areasByList.value[listId] = areasByList.value[listId].filter((a2) => a2.id !== id);
-      }
-    } catch (e) {
-      showError("Failed to delete shop area");
-      console.error(e);
-    }
-  }
-  return {
-    areasByList,
-    fetchByList,
-    create: create2,
-    update,
-    remove: remove2
-  };
-});
 var Permission = /* @__PURE__ */ ((Permission2) => {
   Permission2[Permission2["READ"] = 0] = "READ";
   Permission2[Permission2["WRITE"] = 1] = "WRITE";
@@ -57058,7 +57066,8 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
         await itemsStore.update(props.listId, props.itemId, {
           name: trimmedName,
           quantity: trimmedQty,
-          shopAreaId: editAreaId.value
+          shopAreaId: editAreaId.value,
+          ...areaChanged ? { areaExplicit: true } : {}
         });
         saving = false;
       }
@@ -57206,13 +57215,13 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
           title: unref(deleteTitle),
           onClick: onDelete
         }, [..._cache[5] || (_cache[5] = [
-          createStaticVNode('<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-v-c8267887><polyline points="3 6 5 6 21 6" data-v-c8267887></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" data-v-c8267887></path><line x1="10" y1="11" x2="10" y2="17" data-v-c8267887></line><line x1="14" y1="11" x2="14" y2="17" data-v-c8267887></line></svg>', 1)
+          createStaticVNode('<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-v-1e2299f0><polyline points="3 6 5 6 21 6" data-v-1e2299f0></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" data-v-1e2299f0></path><line x1="10" y1="11" x2="10" y2="17" data-v-1e2299f0></line><line x1="14" y1="11" x2="14" y2="17" data-v-1e2299f0></line></svg>', 1)
         ])], 8, _hoisted_11$3)) : createCommentVNode("", true)
       ], 10, _hoisted_1$4)) : createCommentVNode("", true);
     };
   }
 });
-const ItemRow = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-c8267887"]]);
+const ItemRow = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-1e2299f0"]]);
 const _hoisted_1$3 = { class: "item-editor" };
 const _hoisted_2$3 = { class: "item-editor__main" };
 const _hoisted_3$3 = ["placeholder", "onKeydown"];
@@ -57444,11 +57453,13 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
       for (const line of lines) {
         const parsed = parseIngredient(line);
         if (!parsed.name) continue;
+        const explicitArea = selectedAreaId.value !== null;
         const areaId = selectedAreaId.value ?? detectArea(parsed.name);
         await itemsStore.create(props.listId, {
           name: parsed.name,
           quantity: parsed.quantity || "1",
-          shopAreaId: areaId
+          shopAreaId: areaId,
+          areaExplicit: explicitArea
         });
       }
       name.value = "";
@@ -57461,11 +57472,13 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
       closeDropdown();
       const parsed = parseIngredient(trimmedName);
       if (!parsed.name) return;
+      const explicitArea = selectedAreaId.value !== null;
       const areaId = selectedAreaId.value ?? detectArea(parsed.name);
       await itemsStore.create(props.listId, {
         name: parsed.name,
         quantity: parsed.quantity || "1",
-        shopAreaId: areaId
+        shopAreaId: areaId,
+        areaExplicit: explicitArea
       });
       name.value = "";
       await nextTick();
@@ -57480,6 +57493,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
             ref: nameRef,
             "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => name.value = $event),
             type: "text",
+            enterkeyhint: "send",
             placeholder: unref(addItemLabel),
             class: "item-editor__input",
             onKeydown: [
@@ -57500,6 +57514,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
               ref: areaRef,
               "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => areaSearch.value = $event),
               type: "text",
+              enterkeyhint: "send",
               placeholder: selectedAreaName.value || unref(shopAreaPlaceholder),
               class: "item-editor__area-input",
               onFocus: onAreaFocus,
@@ -57542,7 +57557,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ItemEditor = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-9172cbcf"]]);
+const ItemEditor = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-eab5cb74"]]);
 const _hoisted_1$2 = { class: "share-modal" };
 const _hoisted_2$2 = { class: "share-modal__header" };
 const _hoisted_3$2 = { class: "share-modal__search" };
@@ -57874,7 +57889,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
         for (const item of group.items) {
           allSortedIds.push(item.id);
           if (item.shopAreaId !== group.areaId) {
-            areaUpdates.push(itemsStore.update(listId, item.id, { shopAreaId: group.areaId }));
+            areaUpdates.push(itemsStore.update(listId, item.id, { shopAreaId: group.areaId, areaExplicit: true }));
           }
         }
       }
@@ -58041,7 +58056,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ListView = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-9720de08"]]);
+const ListView = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-c48482a4"]]);
 const _hoisted_1 = { class: "area-settings" };
 const _hoisted_2 = { class: "area-settings__header" };
 const _hoisted_3 = { class: "area-settings__desc" };
@@ -58392,7 +58407,7 @@ function usePush() {
   if (hasPushServer) {
     try {
       __vitePreload(async () => {
-        const { listen } = await import("./index-19VnPVs-.chunk.mjs").then((n2) => n2.i);
+        const { listen } = await import("./index-C69PVFAe.chunk.mjs").then((n2) => n2.i);
         return { listen };
       }, true ? [] : void 0, import.meta.url).then(({ listen }) => {
         listen("shopping_list_item_update", () => {

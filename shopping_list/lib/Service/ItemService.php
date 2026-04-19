@@ -14,6 +14,7 @@ class ItemService {
 	public function __construct(
 		private ItemMapper $mapper,
 		private ListService $listService,
+		private ShopAreaService $shopAreaService,
 		private PushService $pushService,
 		private IDBConnection $db,
 	) {
@@ -34,6 +35,7 @@ class ItemService {
 		?string $unit,
 		?int $shopAreaId,
 		string $userId,
+		bool $areaExplicit = false,
 	): Item {
 		$this->listService->assertWriteAccess($listId, $userId);
 
@@ -50,6 +52,11 @@ class ItemService {
 		$item->setUpdatedAt($now);
 
 		$item = $this->mapper->insert($item);
+
+		if ($areaExplicit && $shopAreaId !== null) {
+			$this->shopAreaService->learnKeyword($listId, $shopAreaId, $name);
+		}
+
 		$this->pushService->notifyItemUpdate($listId, $item->getId(), 'created', $userId);
 		return $item;
 	}
@@ -81,6 +88,14 @@ class ItemService {
 		$item->setUpdatedAt(new DateTime());
 
 		$item = $this->mapper->update($item);
+
+		// Learn area assignment from explicit user choice
+		$areaExplicit = !empty($fields['areaExplicit']);
+		if ($areaExplicit && array_key_exists('shopAreaId', $fields) && $fields['shopAreaId'] !== null) {
+			$itemName = $fields['name'] ?? $item->getName();
+			$this->shopAreaService->learnKeyword($item->getListId(), (int)$fields['shopAreaId'], $itemName);
+		}
+
 		$this->pushService->notifyItemUpdate($item->getListId(), $id, 'updated', $userId);
 		return $item;
 	}

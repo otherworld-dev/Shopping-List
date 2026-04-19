@@ -3,6 +3,7 @@ import { ref, computed } from 'vue'
 import { api } from '../composables/useApi'
 import type { Item } from '../types'
 import { useListsStore } from './lists'
+import { useShopAreasStore } from './shopAreas'
 import { showError, showSuccess } from '@nextcloud/dialogs'
 import { findMatchingItem, mergeQuantities, pluralizeName } from '../utils/itemMerge'
 
@@ -77,6 +78,12 @@ export const useItemsStore = defineStore('items', () => {
 
 			await api.items.create(listId, data)
 			await fetchByList(listId)
+
+			// Refresh areas if keywords were learned
+			if (data.areaExplicit) {
+				const shopAreasStore = useShopAreasStore()
+				await shopAreasStore.fetchByList(listId)
+			}
 		} catch (e) {
 			showError('Failed to add item')
 			console.error(e)
@@ -92,6 +99,13 @@ export const useItemsStore = defineStore('items', () => {
 			if (index !== -1) {
 				items[index] = updated
 			}
+
+			// Refresh areas if keywords were learned
+			if (data.areaExplicit) {
+				const shopAreasStore = useShopAreasStore()
+				await shopAreasStore.fetchByList(listId)
+			}
+
 			return updated
 		} catch (e) {
 			showError('Failed to update item')

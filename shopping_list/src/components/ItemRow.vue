@@ -290,6 +290,7 @@ async function saveEdit() {
 			name: trimmedName,
 			quantity: trimmedQty,
 			shopAreaId: editAreaId.value,
+			...(areaChanged ? { areaExplicit: true } : {}),
 		})
 		saving = false
 	}
@@ -329,7 +330,7 @@ async function onDelete() {
 	flex-direction: row !important;
 	flex-wrap: nowrap !important;
 	align-items: center;
-	height: 44px;
+	min-height: 44px;
 	padding: 0 12px;
 	border-bottom: 1px solid var(--color-border);
 	transition: background-color 0.1s ease;
@@ -391,11 +392,9 @@ async function onDelete() {
 .item-row__name {
 	flex: 1 1 0%;
 	min-width: 0;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
 	font-size: 0.95em;
 	padding-right: 8px;
+	word-break: break-word;
 }
 
 .item-row__name--checked {

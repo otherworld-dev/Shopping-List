@@ -189,6 +189,37 @@ class ShopAreaService {
 		return $this->mapper->update($area);
 	}
 
+	/**
+	 * Learn a keyword from an explicit user area assignment.
+	 * Adds the normalized item name to the target area and removes it from other areas in the same list.
+	 */
+	public function learnKeyword(int $listId, int $areaId, string $itemName): void {
+		$keyword = mb_strtolower(trim($itemName));
+		if ($keyword === '') {
+			return;
+		}
+
+		$areas = $this->mapper->findByList($listId);
+		foreach ($areas as $area) {
+			$keywords = $area->getKeywordsArray();
+			if ($area->getId() === $areaId) {
+				// Add to target area if not already present
+				if (!in_array($keyword, $keywords, true)) {
+					$keywords[] = $keyword;
+					$area->setKeywordsArray($keywords);
+					$this->mapper->update($area);
+				}
+			} else {
+				// Remove from other areas
+				$filtered = array_filter($keywords, fn($k) => $k !== $keyword);
+				if (count($filtered) !== count($keywords)) {
+					$area->setKeywordsArray(array_values($filtered));
+					$this->mapper->update($area);
+				}
+			}
+		}
+	}
+
 	public function delete(int $id, int $listId): void {
 		try {
 			$area = $this->mapper->find($id);

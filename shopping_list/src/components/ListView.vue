@@ -273,7 +273,7 @@ async function onDragEnd() {
 		for (const item of group.items) {
 			allSortedIds.push(item.id)
 			if (item.shopAreaId !== group.areaId) {
-				areaUpdates.push(itemsStore.update(listId, item.id, { shopAreaId: group.areaId }))
+				areaUpdates.push(itemsStore.update(listId, item.id, { shopAreaId: group.areaId, areaExplicit: true }))
 			}
 		}
 	}

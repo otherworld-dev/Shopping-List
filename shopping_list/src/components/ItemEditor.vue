@@ -6,6 +6,7 @@
 				ref="nameRef"
 				v-model="name"
 				type="text"
+				enterkeyhint="send"
 				:placeholder="addItemLabel"
 				class="item-editor__input"
 				@keydown.enter.prevent="onSubmit"
@@ -16,6 +17,7 @@
 					ref="areaRef"
 					v-model="areaSearch"
 					type="text"
+					enterkeyhint="send"
 					:placeholder="selectedAreaName || shopAreaPlaceholder"
 					class="item-editor__area-input"
 					@focus="onAreaFocus"
@@ -312,11 +314,13 @@ async function onPaste(e: ClipboardEvent) {
 		const parsed = parseIngredient(line)
 		if (!parsed.name) continue
 
+		const explicitArea = selectedAreaId.value !== null
 		const areaId = selectedAreaId.value ?? detectArea(parsed.name)
 		await itemsStore.create(props.listId, {
 			name: parsed.name,
 			quantity: parsed.quantity || '1',
 			shopAreaId: areaId,
+			areaExplicit: explicitArea,
 		})
 	}
 
@@ -334,11 +338,13 @@ async function onSubmit() {
 	const parsed = parseIngredient(trimmedName)
 	if (!parsed.name) return
 
+	const explicitArea = selectedAreaId.value !== null
 	const areaId = selectedAreaId.value ?? detectArea(parsed.name)
 	await itemsStore.create(props.listId, {
 		name: parsed.name,
 		quantity: parsed.quantity || '1',
 		shopAreaId: areaId,
+		areaExplicit: explicitArea,
 	})
 
 	name.value = ''

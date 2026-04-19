@@ -39,9 +39,10 @@ class ItemController extends OCSController {
 		?string $quantity = null,
 		?string $unit = null,
 		?int $shopAreaId = null,
+		bool $areaExplicit = false,
 	): DataResponse {
 		try {
-			$item = $this->service->create($listId, $name, $quantity, $unit, $shopAreaId, $this->userId);
+			$item = $this->service->create($listId, $name, $quantity, $unit, $shopAreaId, $this->userId, $areaExplicit);
 			return new DataResponse($item, Http::STATUS_CREATED);
 		} catch (NotFoundException $e) {
 			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_NOT_FOUND);
@@ -55,7 +56,7 @@ class ItemController extends OCSController {
 		try {
 			$fields = [];
 			$params = $this->request->getParams();
-			foreach (['name', 'quantity', 'unit', 'shopAreaId', 'sortOrder'] as $field) {
+			foreach (['name', 'quantity', 'unit', 'shopAreaId', 'sortOrder', 'areaExplicit'] as $field) {
 				if (array_key_exists($field, $params)) {
 					$fields[$field] = $params[$field];
 				}
