@@ -5,7 +5,7 @@
 	<name>Shopping List</name>
 	<summary>Shared shopping lists for your household</summary>
 	<description><![CDATA[Manage shared shopping lists between household members. Create multiple lists, categorize items by shop area, tag items, and collaborate in real-time.]]></description>
-	<version>1.0.7</version>
+	<version>1.0.8</version>
 	<licence>agpl</licence>
 	<author mail="adam@otherworld.dev">Adam Morgan</author>
 	<funding>https://www.paypal.com/donate/?hosted_button_id=MA56N6K8FSTQ2</funding>

@@ -189,16 +189,21 @@ class ListService {
 	}
 
 	private function cascadeDelete(int $listId): void {
-		// Delete item_tags for items in this list
+		// Collect item IDs first, then delete their tags
 		$qb = $this->db->getQueryBuilder();
-		$subQuery = $this->db->getQueryBuilder();
-		$subQuery->select('id')
+		$qb->select('id')
 			->from('shopping_list_items')
-			->where($subQuery->expr()->eq('list_id', $subQuery->createNamedParameter($listId)));
+			->where($qb->expr()->eq('list_id', $qb->createNamedParameter($listId)));
+		$result = $qb->executeQuery();
+		$itemIds = array_column($result->fetchAll(), 'id');
+		$result->closeCursor();
 
-		$qb->delete('shopping_list_itags')
-			->where($qb->expr()->in('item_id', $qb->createFunction($subQuery->getSQL())))
-			->executeStatement();
+		if (!empty($itemIds)) {
+			$qb = $this->db->getQueryBuilder();
+			$qb->delete('shopping_list_itags')
+				->where($qb->expr()->in('item_id', $qb->createNamedParameter($itemIds, \OCP\DB\QueryBuilder\IQueryBuilder::PARAM_INT_ARRAY)))
+				->executeStatement();
+		}
 
 		// Delete items
 		$qb = $this->db->getQueryBuilder();

@@ -1,5 +1,5 @@
 const appName = "shopping_list";
-const appVersion = "1.0.7";
+const appVersion = "1.0.8";
 const global$1 = globalThis || void 0 || self;
 /**
 * @vue/shared v3.5.32
@@ -58407,7 +58407,7 @@ function usePush() {
   if (hasPushServer) {
     try {
       __vitePreload(async () => {
-        const { listen } = await import("./index-C69PVFAe.chunk.mjs").then((n2) => n2.i);
+        const { listen } = await import("./index-BbxNOni1.chunk.mjs").then((n2) => n2.i);
         return { listen };
       }, true ? [] : void 0, import.meta.url).then(({ listen }) => {
         listen("shopping_list_item_update", () => {

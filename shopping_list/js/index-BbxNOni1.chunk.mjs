@@ -1,5 +1,5 @@
 const appName = "shopping_list";
-const appVersion = "1.0.7";
+const appVersion = "1.0.8";
 import { g as getAugmentedNamespace, d as dist$6, r as requireMajor, a as requireValid, b as dist$7, p as process$1, c as commonjsGlobal, B as Buffer, e as getDefaultExportFromCjs } from "./shopping_list-main.mjs";
 function _mergeNamespaces(n, m) {
   for (var i = 0; i < m.length; i++) {
@@ -3284,4 +3284,4 @@ const index$1 = /* @__PURE__ */ _mergeNamespaces({
 export {
   index$1 as i
 };
-//# sourceMappingURL=index-C69PVFAe.chunk.mjs.map
+//# sourceMappingURL=index-BbxNOni1.chunk.mjs.map
