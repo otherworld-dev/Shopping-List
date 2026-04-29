@@ -34,10 +34,11 @@ class ShareService {
 			if ($share->getSharedWithType() === 0) {
 				$user = $this->userManager->get($share->getSharedWith());
 				$share->setSharedWithDisplayName($user?->getDisplayName() ?? $share->getSharedWith());
-			} else {
+			} elseif ($share->getSharedWithType() === 1) {
 				$group = $this->groupManager->get($share->getSharedWith());
 				$share->setSharedWithDisplayName($group?->getDisplayName() ?? $share->getSharedWith());
 			}
+			// type 3 (link) — no display name enrichment needed
 		}
 
 		return $shares;
@@ -131,5 +132,140 @@ class ShareService {
 		if ($share->getSharedWithType() === 0) {
 			$this->pushService->notifyShareUpdate($share->getListId(), $share->getSharedWith(), 'unshared');
 		}
+	}
+
+	// --- Public link share methods ---
+
+	public function createLinkShare(
+		int $listId,
+		int $permission,
+		?string $password,
+		?string $expiresAt,
+		string $userId,
+	): ListShare {
+		$this->listService->assertOwner($listId, $userId);
+
+		// Check if link share already exists — one per list
+		$existing = $this->shareMapper->findLinkShareByList($listId);
+		if ($existing !== null) {
+			$existing->setPermission($permission);
+			if ($password !== null) {
+				$existing->setPasswordHash(password_hash($password, PASSWORD_BCRYPT));
+			}
+			$existing->setExpiresAt($expiresAt);
+			return $this->shareMapper->update($existing);
+		}
+
+		$share = new ListShare();
+		$share->setListId($listId);
+		$share->setSharedWith('__public_link__');
+		$share->setSharedWithType(3);
+		$share->setPermission($permission);
+		$share->setSharedBy($userId);
+		$share->setToken(bin2hex(random_bytes(32)));
+		if ($password !== null) {
+			$share->setPasswordHash(password_hash($password, PASSWORD_BCRYPT));
+		}
+		$share->setExpiresAt($expiresAt);
+
+		return $this->shareMapper->insert($share);
+	}
+
+	public function updateLinkShare(
+		int $shareId,
+		?int $permission,
+		?string $password,
+		bool $removePassword,
+		?string $expiresAt,
+		bool $removeExpiry,
+		string $userId,
+	): ListShare {
+		try {
+			$share = $this->shareMapper->find($shareId);
+		} catch (DoesNotExistException) {
+			throw new NotFoundException('Share not found');
+		}
+
+		$this->listService->assertOwner($share->getListId(), $userId);
+
+		if ($share->getSharedWithType() !== 3) {
+			throw new NotFoundException('Not a link share');
+		}
+
+		if ($permission !== null) {
+			$share->setPermission($permission);
+		}
+		if ($removePassword) {
+			$share->setPasswordHash(null);
+		} elseif ($password !== null) {
+			$share->setPasswordHash(password_hash($password, PASSWORD_BCRYPT));
+		}
+		if ($removeExpiry) {
+			$share->setExpiresAt(null);
+		} elseif ($expiresAt !== null) {
+			$share->setExpiresAt($expiresAt);
+		}
+
+		return $this->shareMapper->update($share);
+	}
+
+	public function deleteLinkShare(int $shareId, string $userId): void {
+		try {
+			$share = $this->shareMapper->find($shareId);
+		} catch (DoesNotExistException) {
+			throw new NotFoundException('Share not found');
+		}
+
+		$this->listService->assertOwner($share->getListId(), $userId);
+
+		if ($share->getSharedWithType() !== 3) {
+			throw new NotFoundException('Not a link share');
+		}
+
+		$this->shareMapper->delete($share);
+	}
+
+	/**
+	 * Validate a public access token. Returns the share if valid.
+	 *
+	 * @throws NotFoundException if token not found or expired
+	 * @throws PasswordRequiredException if password-protected and no password given
+	 * @throws NoPermissionException if password is wrong
+	 */
+	public function validatePublicAccess(string $token, ?string $password = null): ListShare {
+		$share = $this->findValidShare($token);
+
+		// Check password
+		if ($share->getPasswordHash() !== null) {
+			if ($password === null) {
+				throw new PasswordRequiredException('Password required');
+			}
+			if (!password_verify($password, $share->getPasswordHash())) {
+				throw new NoPermissionException('Invalid password');
+			}
+		}
+
+		return $share;
+	}
+
+	/**
+	 * Find a share by token and verify it hasn't expired. Does NOT check password.
+	 *
+	 * @throws NotFoundException if token not found or expired
+	 */
+	public function findValidShare(string $token): ListShare {
+		$share = $this->shareMapper->findByToken($token);
+		if ($share === null) {
+			throw new NotFoundException('Share not found');
+		}
+
+		if ($share->getExpiresAt() !== null) {
+			$expires = new \DateTime($share->getExpiresAt());
+			if ($expires < new \DateTime()) {
+				throw new NotFoundException('Share has expired');
+			}
+		}
+
+		return $share;
 	}
 }

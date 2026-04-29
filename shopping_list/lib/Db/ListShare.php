@@ -18,6 +18,12 @@ use OCP\AppFramework\Db\Entity;
  * @method void setPermission(int $permission)
  * @method string getSharedBy()
  * @method void setSharedBy(string $sharedBy)
+ * @method ?string getToken()
+ * @method void setToken(?string $token)
+ * @method ?string getPasswordHash()
+ * @method void setPasswordHash(?string $hash)
+ * @method ?string getExpiresAt()
+ * @method void setExpiresAt(?string $expiresAt)
  */
 class ListShare extends Entity implements JsonSerializable {
 	protected $listId;
@@ -25,6 +31,9 @@ class ListShare extends Entity implements JsonSerializable {
 	protected $sharedWithType;
 	protected $permission;
 	protected $sharedBy;
+	protected $token;
+	protected $passwordHash;
+	protected $expiresAt;
 
 	/** @var string Transient display name */
 	private string $sharedWithDisplayName = '';
@@ -41,7 +50,7 @@ class ListShare extends Entity implements JsonSerializable {
 	}
 
 	public function jsonSerialize(): array {
-		return [
+		$data = [
 			'id' => $this->id,
 			'listId' => $this->listId,
 			'sharedWith' => $this->sharedWith,
@@ -50,5 +59,14 @@ class ListShare extends Entity implements JsonSerializable {
 			'permission' => $this->permission,
 			'sharedBy' => $this->sharedBy,
 		];
+
+		// Include link-share fields for type 3 (link)
+		if ($this->sharedWithType === 3) {
+			$data['token'] = $this->token;
+			$data['hasPassword'] = $this->passwordHash !== null;
+			$data['expiresAt'] = $this->expiresAt;
+		}
+
+		return $data;
 	}
 }

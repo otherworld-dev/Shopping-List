@@ -61,7 +61,81 @@
 				</div>
 			</div>
 
-			<div v-if="shares.length === 0 && searchQuery.length === 0" class="share-modal__empty">
+			<div v-if="isOwner" class="share-modal__link-section">
+				<div class="share-modal__section-title">{{ publicLinkText }}</div>
+
+				<div v-if="!linkShare" class="share-modal__link-create">
+					<button class="share-modal__link-btn" @click="onCreateLink">
+						{{ createLinkText }}
+					</button>
+				</div>
+
+				<div v-else class="share-modal__link-details">
+					<div class="share-modal__link-url-row">
+						<input
+							ref="linkUrlRef"
+							:value="linkUrl"
+							readonly
+							class="share-modal__link-url"
+							@focus="($event.target as HTMLInputElement).select()" />
+						<button class="share-modal__link-copy" @click="onCopyLink">
+							{{ copiedLink ? copiedText : copyText }}
+						</button>
+					</div>
+
+					<div class="share-modal__link-options">
+						<label class="share-modal__link-option">
+							{{ permissionLabel }}
+							<select
+								:value="linkShare.permission"
+								class="share-modal__permission"
+								@change="onLinkPermissionChange(Number(($event.target as HTMLSelectElement).value))">
+								<option :value="0">{{ canViewText }}</option>
+								<option :value="1">{{ canEditText }}</option>
+							</select>
+						</label>
+
+						<label class="share-modal__link-option">
+							{{ passwordLabel }}
+							<div class="share-modal__link-password-row">
+								<input
+									v-model="linkPassword"
+									type="password"
+									:placeholder="linkShare.hasPassword ? passwordSetText : passwordPlaceholder"
+									class="share-modal__link-input" />
+								<button
+									v-if="linkPassword"
+									class="share-modal__link-btn share-modal__link-btn--small"
+									@click="onSetPassword">
+									{{ saveText }}
+								</button>
+								<button
+									v-if="linkShare.hasPassword && !linkPassword"
+									class="share-modal__link-btn share-modal__link-btn--small share-modal__link-btn--danger"
+									@click="onRemovePassword">
+									{{ removeText }}
+								</button>
+							</div>
+						</label>
+
+						<label class="share-modal__link-option">
+							{{ expiryLabel }}
+							<input
+								type="date"
+								:value="linkShare.expiresAt?.split('T')[0] ?? ''"
+								:min="todayStr"
+								class="share-modal__link-input"
+								@change="onExpiryChange(($event.target as HTMLInputElement).value)" />
+						</label>
+					</div>
+
+					<button class="share-modal__link-btn share-modal__link-btn--danger" @click="onDeleteLink">
+						{{ deleteLinkText }}
+					</button>
+				</div>
+			</div>
+
+			<div v-if="shares.length === 0 && searchQuery.length === 0 && !linkShare" class="share-modal__empty">
 				{{ emptyText }}
 			</div>
 		</div>
@@ -72,9 +146,10 @@
 import { ref, computed, onMounted, nextTick } from 'vue'
 import { t } from '@nextcloud/l10n'
 import axios from '@nextcloud/axios'
-import { generateOcsUrl } from '@nextcloud/router'
+import { generateOcsUrl, generateUrl } from '@nextcloud/router'
 import { useSharesStore } from '../stores/shares'
 import { ShareType, Permission } from '../types'
+import type { ListShare } from '../types'
 
 interface ShareeOption {
 	label: string
@@ -92,6 +167,7 @@ defineEmits<{ close: [] }>()
 
 const sharesStore = useSharesStore()
 const searchRef = ref<HTMLInputElement | null>(null)
+const linkUrlRef = ref<HTMLInputElement | null>(null)
 
 const shareTitle = t('shopping_list', 'Share list')
 const searchPlaceholder = t('shopping_list', 'Search users or groups...')
@@ -102,12 +178,40 @@ const canViewText = t('shopping_list', 'Can view')
 const canEditText = t('shopping_list', 'Can edit')
 const emptyText = t('shopping_list', 'Search above to share this list with other users.')
 const groupLabel = t('shopping_list', 'group')
+const publicLinkText = t('shopping_list', 'Public link')
+const createLinkText = t('shopping_list', 'Create public link')
+const copyText = t('shopping_list', 'Copy link')
+const copiedText = t('shopping_list', 'Copied!')
+const permissionLabel = t('shopping_list', 'Permission')
+const passwordLabel = t('shopping_list', 'Password')
+const passwordSetText = t('shopping_list', 'Password set')
+const passwordPlaceholder = t('shopping_list', 'Optional')
+const saveText = t('shopping_list', 'Set')
+const removeText = t('shopping_list', 'Remove')
+const expiryLabel = t('shopping_list', 'Expires')
+const deleteLinkText = t('shopping_list', 'Delete public link')
 
 const searchQuery = ref('')
 const searching = ref(false)
 const shareeResults = ref<ShareeOption[]>([])
+const linkPassword = ref('')
+const copiedLink = ref(false)
 
-const shares = computed(() => sharesStore.sharesByList[props.listId] ?? [])
+// Filter link shares out of the regular shares list
+const shares = computed(() =>
+	(sharesStore.sharesByList[props.listId] ?? []).filter(s => s.sharedWithType !== ShareType.LINK),
+)
+
+const linkShare = computed((): ListShare | undefined =>
+	sharesStore.getLinkShare(props.listId),
+)
+
+const linkUrl = computed(() => {
+	if (!linkShare.value?.token) return ''
+	return window.location.origin + generateUrl(`/apps/shopping_list/s/${linkShare.value.token}`)
+})
+
+const todayStr = new Date().toISOString().split('T')[0]
 
 let searchTimeout: ReturnType<typeof setTimeout> | null = null
 
@@ -173,6 +277,53 @@ async function onPermissionChange(shareId: number, permission: number) {
 
 async function onRemoveShare(shareId: number) {
 	await sharesStore.remove(shareId, props.listId)
+}
+
+// --- Link share handlers ---
+
+async function onCreateLink() {
+	await sharesStore.createLinkShare(props.listId, Permission.READ)
+}
+
+async function onCopyLink() {
+	if (linkUrl.value) {
+		await navigator.clipboard.writeText(linkUrl.value)
+		copiedLink.value = true
+		setTimeout(() => { copiedLink.value = false }, 2000)
+	}
+}
+
+async function onLinkPermissionChange(permission: number) {
+	if (linkShare.value) {
+		await sharesStore.updateLinkShare(linkShare.value.id, props.listId, { permission })
+	}
+}
+
+async function onSetPassword() {
+	if (linkShare.value && linkPassword.value) {
+		await sharesStore.updateLinkShare(linkShare.value.id, props.listId, { password: linkPassword.value })
+		linkPassword.value = ''
+	}
+}
+
+async function onRemovePassword() {
+	if (linkShare.value) {
+		await sharesStore.updateLinkShare(linkShare.value.id, props.listId, { removePassword: true })
+	}
+}
+
+async function onExpiryChange(value: string) {
+	if (linkShare.value) {
+		await sharesStore.updateLinkShare(linkShare.value.id, props.listId, {
+			expiresAt: value || null,
+		})
+	}
+}
+
+async function onDeleteLink() {
+	if (linkShare.value) {
+		await sharesStore.removeLinkShare(linkShare.value.id, props.listId)
+	}
 }
 </script>
 
@@ -369,5 +520,105 @@ async function onRemoveShare(shareId: number) {
 	text-align: center;
 	color: var(--color-text-maxcontrast);
 	font-size: 0.9em;
+}
+
+/* Public link section */
+.share-modal__link-section {
+	padding: 0 20px 16px;
+}
+
+.share-modal__link-create {
+	padding: 8px 0;
+}
+
+.share-modal__link-btn {
+	background: none;
+	border: 1px solid var(--color-border-dark);
+	border-radius: var(--border-radius);
+	color: var(--color-main-text);
+	padding: 6px 12px;
+	font-size: 0.85em;
+	cursor: pointer;
+}
+
+.share-modal__link-btn:hover {
+	background: var(--color-background-hover);
+}
+
+.share-modal__link-btn--small {
+	padding: 4px 8px;
+	font-size: 0.8em;
+}
+
+.share-modal__link-btn--danger {
+	color: var(--color-error);
+	border-color: var(--color-error);
+}
+
+.share-modal__link-btn--danger:hover {
+	background: var(--color-error);
+	color: #fff;
+}
+
+.share-modal__link-url-row {
+	display: flex;
+	gap: 6px;
+	padding: 8px 0;
+}
+
+.share-modal__link-url {
+	flex: 1;
+	height: 32px;
+	padding: 0 8px;
+	border: 1px solid var(--color-border);
+	border-radius: var(--border-radius);
+	background: var(--color-background-dark);
+	color: var(--color-main-text);
+	font-size: 0.8em;
+	outline: none;
+	box-sizing: border-box;
+}
+
+.share-modal__link-copy {
+	background: var(--color-primary-element);
+	color: var(--color-primary-element-text);
+	border: none;
+	border-radius: var(--border-radius);
+	padding: 0 12px;
+	font-size: 0.8em;
+	cursor: pointer;
+	white-space: nowrap;
+}
+
+.share-modal__link-options {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	padding: 8px 0;
+}
+
+.share-modal__link-option {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font-size: 0.85em;
+	color: var(--color-text-maxcontrast);
+}
+
+.share-modal__link-input {
+	height: 28px;
+	padding: 0 8px;
+	border: 1px solid var(--color-border);
+	border-radius: var(--border-radius);
+	background: transparent;
+	color: var(--color-main-text);
+	font-size: 0.85em;
+	outline: none;
+	box-sizing: border-box;
+}
+
+.share-modal__link-password-row {
+	display: flex;
+	gap: 4px;
 }
 </style>

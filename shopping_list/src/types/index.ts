@@ -31,6 +31,9 @@ export interface ListShare {
 	sharedWithDisplayName?: string
 	permission: Permission
 	sharedBy: string
+	token?: string
+	hasPassword?: boolean
+	expiresAt?: string | null
 }
 
 export interface ShopArea {
@@ -55,4 +58,5 @@ export enum Permission {
 export enum ShareType {
 	USER = 0,
 	GROUP = 1,
+	LINK = 3,
 }

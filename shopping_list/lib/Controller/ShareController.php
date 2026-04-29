@@ -68,4 +68,53 @@ class ShareController extends OCSController {
 			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_FORBIDDEN);
 		}
 	}
+
+	// --- Link share management ---
+
+	#[NoAdminRequired]
+	public function createLink(int $listId): DataResponse {
+		$permission = (int)($this->request->getParam('permission', 0));
+		$password = $this->request->getParam('password');
+		$expiresAt = $this->request->getParam('expiresAt');
+
+		try {
+			$share = $this->service->createLinkShare($listId, $permission, $password, $expiresAt, $this->userId);
+			return new DataResponse($share, Http::STATUS_CREATED);
+		} catch (NotFoundException $e) {
+			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_NOT_FOUND);
+		} catch (NoPermissionException $e) {
+			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_FORBIDDEN);
+		}
+	}
+
+	#[NoAdminRequired]
+	public function updateLink(int $id): DataResponse {
+		$params = $this->request->getParams();
+		$permission = isset($params['permission']) ? (int)$params['permission'] : null;
+		$password = $params['password'] ?? null;
+		$removePassword = !empty($params['removePassword']);
+		$expiresAt = $params['expiresAt'] ?? null;
+		$removeExpiry = !empty($params['removeExpiry']);
+
+		try {
+			$share = $this->service->updateLinkShare($id, $permission, $password, $removePassword, $expiresAt, $removeExpiry, $this->userId);
+			return new DataResponse($share);
+		} catch (NotFoundException $e) {
+			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_NOT_FOUND);
+		} catch (NoPermissionException $e) {
+			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_FORBIDDEN);
+		}
+	}
+
+	#[NoAdminRequired]
+	public function destroyLink(int $id): DataResponse {
+		try {
+			$this->service->deleteLinkShare($id, $this->userId);
+			return new DataResponse(null, Http::STATUS_NO_CONTENT);
+		} catch (NotFoundException $e) {
+			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_NOT_FOUND);
+		} catch (NoPermissionException $e) {
+			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_FORBIDDEN);
+		}
+	}
 }
