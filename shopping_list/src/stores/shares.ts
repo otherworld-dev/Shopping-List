@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { api } from '../composables/useApi'
 import type { ListShare } from '../types'
 import { showError } from '@nextcloud/dialogs'
+import { t } from '@nextcloud/l10n'
 
 export const useSharesStore = defineStore('shares', () => {
 	const sharesByList = ref<Record<number, ListShare[]>>({})
@@ -12,7 +13,7 @@ export const useSharesStore = defineStore('shares', () => {
 			const response = await api.shares.getAll(listId)
 			sharesByList.value[listId] = response.data.ocs.data
 		} catch (e) {
-			showError('Failed to load shares')
+			showError(t('shopping_list', 'Failed to load shares'))
 			console.error(e)
 		}
 	}
@@ -27,7 +28,7 @@ export const useSharesStore = defineStore('shares', () => {
 			sharesByList.value[listId].push(newShare)
 			return newShare
 		} catch (e) {
-			showError('Failed to share list')
+			showError(t('shopping_list', 'Failed to share list'))
 			console.error(e)
 		}
 	}
@@ -42,7 +43,7 @@ export const useSharesStore = defineStore('shares', () => {
 				shares[index] = updated
 			}
 		} catch (e) {
-			showError('Failed to update share')
+			showError(t('shopping_list', 'Failed to update share'))
 			console.error(e)
 		}
 	}
@@ -53,7 +54,7 @@ export const useSharesStore = defineStore('shares', () => {
 			const shares = sharesByList.value[listId] ?? []
 			sharesByList.value[listId] = shares.filter(s => s.id !== shareId)
 		} catch (e) {
-			showError('Failed to remove share')
+			showError(t('shopping_list', 'Failed to remove share'))
 			console.error(e)
 		}
 	}
@@ -72,7 +73,7 @@ export const useSharesStore = defineStore('shares', () => {
 			sharesByList.value[listId].push(newShare)
 			return newShare
 		} catch (e) {
-			showError('Failed to create public link')
+			showError(t('shopping_list', 'Failed to create public link'))
 			console.error(e)
 		}
 	}
@@ -87,7 +88,7 @@ export const useSharesStore = defineStore('shares', () => {
 				shares[index] = updated
 			}
 		} catch (e) {
-			showError('Failed to update public link')
+			showError(t('shopping_list', 'Failed to update public link'))
 			console.error(e)
 		}
 	}
@@ -98,7 +99,7 @@ export const useSharesStore = defineStore('shares', () => {
 			const shares = sharesByList.value[listId] ?? []
 			sharesByList.value[listId] = shares.filter(s => s.id !== shareId)
 		} catch (e) {
-			showError('Failed to remove public link')
+			showError(t('shopping_list', 'Failed to remove public link'))
 			console.error(e)
 		}
 	}

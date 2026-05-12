@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { api } from '../composables/useApi'
 import type { ShopArea } from '../types'
 import { showError } from '@nextcloud/dialogs'
+import { t } from '@nextcloud/l10n'
 
 export const useShopAreasStore = defineStore('shopAreas', () => {
 	const areasByList = ref<Record<number, ShopArea[]>>({})
@@ -12,7 +13,7 @@ export const useShopAreasStore = defineStore('shopAreas', () => {
 			const response = await api.areas.getForList(listId)
 			areasByList.value[listId] = response.data.ocs.data
 		} catch (e) {
-			showError('Failed to load shop areas')
+			showError(t('shopping_list', 'Failed to load shop areas'))
 			console.error(e)
 		}
 	}
@@ -27,7 +28,7 @@ export const useShopAreasStore = defineStore('shopAreas', () => {
 			areasByList.value[listId].push(newArea)
 			return newArea
 		} catch (e) {
-			showError('Failed to create shop area')
+			showError(t('shopping_list', 'Failed to create shop area'))
 			console.error(e)
 		}
 	}
@@ -44,7 +45,7 @@ export const useShopAreasStore = defineStore('shopAreas', () => {
 				}
 			}
 		} catch (e) {
-			showError('Failed to update shop area')
+			showError(t('shopping_list', 'Failed to update shop area'))
 			console.error(e)
 		}
 	}
@@ -56,7 +57,7 @@ export const useShopAreasStore = defineStore('shopAreas', () => {
 				areasByList.value[listId] = areasByList.value[listId].filter(a => a.id !== id)
 			}
 		} catch (e) {
-			showError('Failed to delete shop area')
+			showError(t('shopping_list', 'Failed to delete shop area'))
 			console.error(e)
 		}
 	}

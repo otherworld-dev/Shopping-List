@@ -5,6 +5,7 @@ import type { Item } from '../types'
 import { useListsStore } from './lists'
 import { useShopAreasStore } from './shopAreas'
 import { showError, showSuccess } from '@nextcloud/dialogs'
+import { t } from '@nextcloud/l10n'
 import { findMatchingItem, mergeQuantities, pluralizeName } from '../utils/itemMerge'
 
 export const useItemsStore = defineStore('items', () => {
@@ -45,7 +46,7 @@ export const useItemsStore = defineStore('items', () => {
 			const response = await api.items.getAll(listId)
 			itemsByList.value[listId] = response.data.ocs.data
 		} catch (e) {
-			showError('Failed to load items')
+			showError(t('shopping_list', 'Failed to load items'))
 			console.error(e)
 		} finally {
 			if (isInitialLoad) {
@@ -72,7 +73,7 @@ export const useItemsStore = defineStore('items', () => {
 
 				await api.items.update(listId, match.id, updateData)
 				await fetchByList(listId)
-				showSuccess(`"${updateData.name ?? match.name}" updated — quantity merged`)
+				showSuccess(t('shopping_list', '"{name}" updated — quantity merged', { name: (updateData.name ?? match.name) as string }))
 				return
 			}
 
@@ -85,7 +86,7 @@ export const useItemsStore = defineStore('items', () => {
 				await shopAreasStore.fetchByList(listId)
 			}
 		} catch (e) {
-			showError('Failed to add item')
+			showError(t('shopping_list', 'Failed to add item'))
 			console.error(e)
 		}
 	}
@@ -108,7 +109,7 @@ export const useItemsStore = defineStore('items', () => {
 
 			return updated
 		} catch (e) {
-			showError('Failed to update item')
+			showError(t('shopping_list', 'Failed to update item'))
 			console.error(e)
 		}
 	}
@@ -127,7 +128,7 @@ export const useItemsStore = defineStore('items', () => {
 		} catch (e) {
 			// Revert on failure
 			item.checked = previousState
-			showError('Failed to update item')
+			showError(t('shopping_list', 'Failed to update item'))
 			console.error(e)
 		}
 	}
@@ -145,7 +146,7 @@ export const useItemsStore = defineStore('items', () => {
 		} catch (e) {
 			// Revert on failure
 			items.splice(index, 0, removed)
-			showError('Failed to delete item')
+			showError(t('shopping_list', 'Failed to delete item'))
 			console.error(e)
 		}
 	}
@@ -154,7 +155,7 @@ export const useItemsStore = defineStore('items', () => {
 		try {
 			await api.items.reorder(listId, sortedIds)
 		} catch (e) {
-			showError('Failed to reorder items')
+			showError(t('shopping_list', 'Failed to reorder items'))
 			console.error(e)
 		}
 	}
@@ -165,7 +166,7 @@ export const useItemsStore = defineStore('items', () => {
 			const items = itemsByList.value[listId] ?? []
 			itemsByList.value[listId] = items.filter(i => !i.checked)
 		} catch (e) {
-			showError('Failed to clear checked items')
+			showError(t('shopping_list', 'Failed to clear checked items'))
 			console.error(e)
 		}
 	}
@@ -176,7 +177,7 @@ export const useItemsStore = defineStore('items', () => {
 			const items = itemsByList.value[listId] ?? []
 			items.forEach(i => { i.checked = false })
 		} catch (e) {
-			showError('Failed to uncheck items')
+			showError(t('shopping_list', 'Failed to uncheck items'))
 			console.error(e)
 		}
 	}

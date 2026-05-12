@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { api } from '../composables/useApi'
 import type { Tag } from '../types'
 import { showError } from '@nextcloud/dialogs'
+import { t } from '@nextcloud/l10n'
 
 export const useTagsStore = defineStore('tags', () => {
 	const tags = ref<Tag[]>([])
@@ -12,7 +13,7 @@ export const useTagsStore = defineStore('tags', () => {
 			const response = await api.tags.getAll()
 			tags.value = response.data.ocs.data
 		} catch (e) {
-			showError('Failed to load tags')
+			showError(t('shopping_list', 'Failed to load tags'))
 			console.error(e)
 		}
 	}
@@ -24,7 +25,7 @@ export const useTagsStore = defineStore('tags', () => {
 			tags.value.push(newTag)
 			return newTag
 		} catch (e) {
-			showError('Failed to create tag')
+			showError(t('shopping_list', 'Failed to create tag'))
 			console.error(e)
 		}
 	}
@@ -34,7 +35,7 @@ export const useTagsStore = defineStore('tags', () => {
 			await api.tags.delete(id)
 			tags.value = tags.value.filter(t => t.id !== id)
 		} catch (e) {
-			showError('Failed to delete tag')
+			showError(t('shopping_list', 'Failed to delete tag'))
 			console.error(e)
 		}
 	}

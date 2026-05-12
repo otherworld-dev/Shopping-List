@@ -3,6 +3,7 @@ import { ref, computed } from 'vue'
 import { api } from '../composables/useApi'
 import type { ShoppingList } from '../types'
 import { showError } from '@nextcloud/dialogs'
+import { t } from '@nextcloud/l10n'
 
 export const useListsStore = defineStore('lists', () => {
 	const lists = ref<ShoppingList[]>([])
@@ -27,7 +28,7 @@ export const useListsStore = defineStore('lists', () => {
 			const response = await api.lists.getAll()
 			lists.value = response.data.ocs.data
 		} catch (e) {
-			showError('Failed to load shopping lists')
+			showError(t('shopping_list', 'Failed to load shopping lists'))
 			console.error(e)
 		} finally {
 			loading.value = false
@@ -42,7 +43,7 @@ export const useListsStore = defineStore('lists', () => {
 			currentListId.value = newList.id
 			return newList
 		} catch (e) {
-			showError('Failed to create list')
+			showError(t('shopping_list', 'Failed to create list'))
 			console.error(e)
 		}
 	}
@@ -57,7 +58,7 @@ export const useListsStore = defineStore('lists', () => {
 			}
 			return updated
 		} catch (e) {
-			showError('Failed to update list')
+			showError(t('shopping_list', 'Failed to update list'))
 			console.error(e)
 		}
 	}
@@ -70,7 +71,7 @@ export const useListsStore = defineStore('lists', () => {
 				currentListId.value = lists.value[0]?.id ?? null
 			}
 		} catch (e) {
-			showError('Failed to delete list')
+			showError(t('shopping_list', 'Failed to delete list'))
 			console.error(e)
 		}
 	}
