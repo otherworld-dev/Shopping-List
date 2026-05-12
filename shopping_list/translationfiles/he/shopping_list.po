@@ -1,0 +1,379 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: shopping-list-for-nextcloud\n"
+"Report-Msgid-Bugs-To: translations\\@example.com\n"
+"POT-Creation-Date: 2026-05-11 21:00+0000\n"
+"PO-Revision-Date: 2026-05-12 18:24\n"
+"Last-Translator: \n"
+"Language-Team: Hebrew\n"
+"Language: he_IL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3;\n"
+"X-Crowdin-Project: shopping-list-for-nextcloud\n"
+"X-Crowdin-Project-ID: 896886\n"
+"X-Crowdin-Language: he\n"
+"X-Crowdin-File: /main/shopping_list/translationfiles/templates/shopping_list.pot\n"
+"X-Crowdin-File-ID: 11\n"
+
+#: src/App.vue
+msgid "No list selected"
+msgstr ""
+
+#: src/App.vue
+msgid "Select a list from the sidebar or create a new one"
+msgstr ""
+
+#: src/PublicApp.vue
+msgid "Password required"
+msgstr ""
+
+#: src/PublicApp.vue
+msgid "This list is password protected."
+msgstr ""
+
+#: src/PublicApp.vue
+msgid "Enter password"
+msgstr ""
+
+#: src/PublicApp.vue
+msgid "Unlock"
+msgstr ""
+
+#: src/PublicApp.vue
+msgid "Incorrect password"
+msgstr ""
+
+#: src/PublicApp.vue
+msgid "Not found"
+msgstr ""
+
+#: src/PublicApp.vue
+msgid "This shared list does not exist or has expired."
+msgstr ""
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Back to list"
+msgstr ""
+
+#: src/components/AreaKeywordsSettings.vue src/components/ListSidebar.vue
+msgid "Manage Areas"
+msgstr ""
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Manage shop areas, keywords, and display order. Keywords auto-detect which area an item belongs to when added or pasted."
+msgstr ""
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Search keywords..."
+msgstr ""
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Add keyword..."
+msgstr ""
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "No keywords"
+msgstr ""
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Rename"
+msgstr ""
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Delete area"
+msgstr ""
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Move up"
+msgstr ""
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Move down"
+msgstr ""
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Change color"
+msgstr ""
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "New area name..."
+msgstr ""
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Add area"
+msgstr ""
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Delete \"{name}\"? Items in this area will become uncategorized."
+msgstr ""
+
+#: src/components/ItemEditor.vue src/components/PublicListView.vue
+msgid "Add an item to list..."
+msgstr ""
+
+#: src/components/ItemEditor.vue
+msgid "Area"
+msgstr ""
+
+#: src/components/ItemEditor.vue
+msgid "No match"
+msgstr ""
+
+#: src/components/ItemRow.vue
+msgid "Qty"
+msgstr ""
+
+#: src/components/ItemRow.vue
+msgid "Delete"
+msgstr ""
+
+#: src/components/ListSidebar.vue
+msgid "New list"
+msgstr ""
+
+#: src/components/ListSidebar.vue
+msgid "Rename list"
+msgstr ""
+
+#: src/components/ListSidebar.vue
+msgid "Delete list"
+msgstr ""
+
+#: src/components/ListSidebar.vue
+msgid "Shared with me"
+msgstr ""
+
+#: src/components/ListSidebar.vue
+msgid "No shopping lists"
+msgstr ""
+
+#: src/components/ListSidebar.vue
+msgid "Create your first shopping list to get started"
+msgstr ""
+
+#: src/components/ListSidebar.vue
+msgid "New shopping list"
+msgstr ""
+
+#: src/components/ListView.vue
+msgid "Share"
+msgstr ""
+
+#: src/components/ListView.vue src/components/PublicListView.vue
+msgid "No items yet"
+msgstr ""
+
+#: src/components/ListView.vue
+msgid "Add your first item above"
+msgstr ""
+
+#: src/components/ListView.vue src/components/PublicListView.vue
+msgid "Uncategorized"
+msgstr ""
+
+#: src/components/ListView.vue src/components/PublicListView.vue
+msgid "Checked off"
+msgstr ""
+
+#: src/components/ListView.vue
+msgid "Restore all"
+msgstr ""
+
+#: src/components/ListView.vue
+msgid "Delete all"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Share list"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Search users or groups..."
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "No users found"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Group"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Shared with"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Can view"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Can edit"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Search above to share this list with other users."
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "group"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Public link"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Create public link"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Copy link"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Copied!"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Permission"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Password"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Password set"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Optional"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Set"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Remove"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Expires"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Delete public link"
+msgstr ""
+
+#: src/components/TagInput.vue
+msgid "Add tags..."
+msgstr ""
+
+#: src/stores/items.ts
+msgid "Failed to load items"
+msgstr ""
+
+#: src/stores/items.ts
+msgid "\"{name}\" updated — quantity merged"
+msgstr ""
+
+#: src/stores/items.ts
+msgid "Failed to add item"
+msgstr ""
+
+#: src/stores/items.ts
+msgid "Failed to update item"
+msgstr ""
+
+#: src/stores/items.ts
+msgid "Failed to delete item"
+msgstr ""
+
+#: src/stores/items.ts
+msgid "Failed to reorder items"
+msgstr ""
+
+#: src/stores/items.ts
+msgid "Failed to clear checked items"
+msgstr ""
+
+#: src/stores/items.ts
+msgid "Failed to uncheck items"
+msgstr ""
+
+#: src/stores/lists.ts
+msgid "Failed to load shopping lists"
+msgstr ""
+
+#: src/stores/lists.ts
+msgid "Failed to create list"
+msgstr ""
+
+#: src/stores/lists.ts
+msgid "Failed to update list"
+msgstr ""
+
+#: src/stores/lists.ts
+msgid "Failed to delete list"
+msgstr ""
+
+#: src/stores/shares.ts
+msgid "Failed to load shares"
+msgstr ""
+
+#: src/stores/shares.ts
+msgid "Failed to share list"
+msgstr ""
+
+#: src/stores/shares.ts
+msgid "Failed to update share"
+msgstr ""
+
+#: src/stores/shares.ts
+msgid "Failed to remove share"
+msgstr ""
+
+#: src/stores/shares.ts
+msgid "Failed to create public link"
+msgstr ""
+
+#: src/stores/shares.ts
+msgid "Failed to update public link"
+msgstr ""
+
+#: src/stores/shares.ts
+msgid "Failed to remove public link"
+msgstr ""
+
+#: src/stores/shopAreas.ts
+msgid "Failed to load shop areas"
+msgstr ""
+
+#: src/stores/shopAreas.ts
+msgid "Failed to create shop area"
+msgstr ""
+
+#: src/stores/shopAreas.ts
+msgid "Failed to update shop area"
+msgstr ""
+
+#: src/stores/shopAreas.ts
+msgid "Failed to delete shop area"
+msgstr ""
+
+#: src/stores/tags.ts
+msgid "Failed to load tags"
+msgstr ""
+
+#: src/stores/tags.ts
+msgid "Failed to create tag"
+msgstr ""
+
+#: src/stores/tags.ts
+msgid "Failed to delete tag"
+msgstr ""
+
