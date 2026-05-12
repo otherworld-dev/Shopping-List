@@ -221,12 +221,15 @@ async function onToggleCheck(item: Item) {
 	margin: 0 0 16px;
 	font-size: 1.5em;
 	font-weight: 700;
+	color: var(--color-main-text, #fff);
 }
 
 .public-list__card {
-	border: 1px solid var(--color-border);
-	border-radius: var(--border-radius-large);
-	background-color: var(--color-main-background);
+	border: 1px solid var(--color-border, rgba(255, 255, 255, 0.15));
+	border-radius: var(--border-radius-large, 10px);
+	background-color: var(--color-main-background, rgba(0, 0, 0, 0.35));
+	backdrop-filter: blur(10px);
+	overflow: hidden;
 }
 
 .public-list__editor {
@@ -234,8 +237,8 @@ async function onToggleCheck(item: Item) {
 	align-items: center;
 	height: 42px;
 	gap: 8px;
-	background: var(--color-background-dark);
-	border-bottom: 1px solid var(--color-border);
+	background: var(--color-background-dark, rgba(0, 0, 0, 0.2));
+	border-bottom: 1px solid var(--color-border, rgba(255, 255, 255, 0.1));
 	padding: 0 4px 0 0;
 }
 
@@ -254,7 +257,7 @@ async function onToggleCheck(item: Item) {
 	height: 100%;
 	border: none;
 	background: transparent;
-	color: var(--color-main-text);
+	color: var(--color-main-text, #fff);
 	font-size: 0.95em;
 	outline: none;
 	padding: 0;
@@ -286,8 +289,8 @@ async function onToggleCheck(item: Item) {
 	align-items: center;
 	gap: 8px;
 	padding: 6px 16px;
-	border-left: 3px solid var(--color-border-dark);
-	background-color: var(--color-background-dark);
+	border-left: 3px solid var(--color-border-dark, rgba(255, 255, 255, 0.2));
+	background-color: var(--color-background-dark, rgba(0, 0, 0, 0.2));
 }
 
 .public-list__area-name {
@@ -318,8 +321,9 @@ async function onToggleCheck(item: Item) {
 	align-items: center;
 	min-height: 44px;
 	padding: 0 12px;
-	border-bottom: 1px solid var(--color-border);
+	border-bottom: 1px solid var(--color-border, rgba(255, 255, 255, 0.1));
 	gap: 0;
+	color: var(--color-main-text, #fff);
 }
 
 .public-list__item:last-child {
@@ -399,9 +403,10 @@ async function onToggleCheck(item: Item) {
 }
 
 .public-list__bought-card {
-	border: 1px solid var(--color-border);
-	border-radius: var(--border-radius-large);
-	background-color: var(--color-main-background);
+	border: 1px solid var(--color-border, rgba(255, 255, 255, 0.15));
+	border-radius: var(--border-radius-large, 10px);
+	background-color: var(--color-main-background, rgba(0, 0, 0, 0.35));
+	backdrop-filter: blur(10px);
 	overflow: hidden;
 	opacity: 0.65;
 }

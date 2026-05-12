@@ -104,14 +104,18 @@ async function onSubmitPassword() {
 </script>
 
 <style>
-/* Override Nextcloud public page layout to give our app full width */
+/* Override Nextcloud public page layout */
 #content {
-	min-height: 100vh;
+	display: flex !important;
+	justify-content: center !important;
+	min-height: 100vh !important;
+	padding: 0 !important;
 }
 
+#content-wrapper,
 #shopping_list_public {
-	width: 100%;
-	max-width: 100%;
+	width: 100% !important;
+	max-width: 100% !important;
 }
 </style>
 
@@ -119,7 +123,8 @@ async function onSubmitPassword() {
 .public-app {
 	max-width: 600px;
 	margin: 0 auto;
-	padding: 20px 20px 80px;
+	padding: 40px 20px 100px;
+	width: 100%;
 }
 
 .public-app__loading {

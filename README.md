@@ -15,6 +15,11 @@ A shared shopping list app for [Nextcloud](https://nextcloud.com). Create multip
 - **Area auto-detection** — new items are automatically assigned to a shop area based on configurable keyword mappings
 - **Duplicate merging** — adding an item that already exists merges the quantities instead of creating duplicates
 - **Sharing** — share lists with other Nextcloud users or groups with read or write permissions
+- **Public share links** — share a list via URL without requiring a Nextcloud account, with configurable permissions, optional password protection, and expiry dates
+- **Drag-and-drop reordering** — reorder items within and across shop area groups
+- **Smart area learning** — when you manually assign an item to an area, the app remembers for next time
+- **Singular/plural matching** — "radish" and "radishes" are recognised as the same item
+- **Auto-pluralization** — item names pluralize automatically when quantity goes above 1
 - **Real-time sync** — changes from other users appear via Nextcloud's notify_push or polling fallback
 - **Check off items** — tick items as you shop; checked items collapse into a separate section
 - **Bulk actions** — restore all checked items or delete them in one click
@@ -90,6 +95,10 @@ shopping_list/        The Nextcloud app
   templates/          Server-side entry point
 screenshots/          App store screenshots
 ```
+
+## Translations
+
+Translations are managed on [Crowdin](https://crowdin.com). Contributions for new languages are welcome — visit the project page to get started.
 
 ## License
 

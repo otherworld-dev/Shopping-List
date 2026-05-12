@@ -1,7 +1,7 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-Dg8AVuSG.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/index-C_pXr3hq.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/index-iLVvFKCC.chunk.css')])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-BUF68Bp0.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/index-DZKAvZnl.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/index-iLVvFKCC.chunk.css')])))=>i.map(i=>d[i]);
 const appName = "shopping_list";
-const appVersion = "1.1.0";
-import { _ as _export_sfc, N as NcButton, r as resolveComponent, o as openBlock, c as createElementBlock, a as createVNode, w as withCtx, b as createTextVNode, t as toDisplayString, d as renderSlot, e as defineComponent, f as createElementId, g as createCommentVNode, u as unref, h as getDefaultExportFromCjs, i as getGettextBuilder, j as getLoggerBuilder, k as defineStore, l as ref, m as computed, n as api, p as translate, F as Fragment, q as renderList, s as createBlock, v as NcAppNavigationItem, x as NcActionButton, y as NcAppNavigationCaption, z as createBaseVNode, A as NcIconSvgWrapper, B as _export_sfc$1, C as NOOP, D as extend$1, E as isString, G as NO, H as isSymbol, I as isBuiltInDirective, J as capitalize, K as camelize, L as EMPTY_OBJ, M as isObject, O as toHandlerKey, P as isArray, Q as isOn, R as isReservedProp, S as isVoidTag, T as isHTMLTag, U as isSVGTag, V as isMathMLTag, W as parseStringStyle, X as makeMap, Y as generateCodeFrame, Z as getAugmentedNamespace, $ as runtimeDom_esmBundler, a0 as shared_esmBundler, a1 as watch, a2 as onMounted, a3 as onUnmounted, a4 as normalizeClass, a5 as withDirectives, a6 as vModelText, a7 as withKeys, a8 as withModifiers, a9 as Teleport, aa as normalizeStyle, ab as createStaticVNode, ac as nextTick, ad as generateOcsUrl, ae as cancelableClient, af as ShareType, ag as Permission, ah as generateUrl, ai as getCurrentUser, aj as NcAvatar, ak as NcLoadingIcon, al as NcAppNavigation, am as NcAppContent, an as NcContent, ao as createApp, ap as createPinia } from "./index-C_pXr3hq.chunk.mjs";
+const appVersion = "1.1.1";
+import { _ as _export_sfc, N as NcButton, r as resolveComponent, o as openBlock, c as createElementBlock, a as createVNode, w as withCtx, b as createTextVNode, t as toDisplayString, d as renderSlot, e as defineComponent, f as createElementId, g as createCommentVNode, u as unref, h as getDefaultExportFromCjs, i as getGettextBuilder, j as getLoggerBuilder, k as defineStore, l as ref, m as computed, n as api, p as translate, F as Fragment, q as renderList, s as createBlock, v as NcAppNavigationItem, x as NcActionButton, y as NcAppNavigationCaption, z as createBaseVNode, A as NcIconSvgWrapper, B as _export_sfc$1, C as NOOP, D as extend$1, E as isString, G as NO, H as isSymbol, I as isBuiltInDirective, J as capitalize, K as camelize, L as EMPTY_OBJ, M as isObject, O as toHandlerKey, P as isArray, Q as isOn, R as isReservedProp, S as isVoidTag, T as isHTMLTag, U as isSVGTag, V as isMathMLTag, W as parseStringStyle, X as makeMap, Y as generateCodeFrame, Z as getAugmentedNamespace, $ as runtimeDom_esmBundler, a0 as shared_esmBundler, a1 as watch, a2 as onMounted, a3 as onUnmounted, a4 as normalizeClass, a5 as withDirectives, a6 as vModelText, a7 as withKeys, a8 as withModifiers, a9 as Teleport, aa as normalizeStyle, ab as createStaticVNode, ac as nextTick, ad as generateOcsUrl, ae as cancelableClient, af as ShareType, ag as Permission, ah as generateUrl, ai as getCurrentUser, aj as NcAvatar, ak as NcLoadingIcon, al as NcAppNavigation, am as NcAppContent, an as NcContent, ao as createApp, ap as createPinia } from "./index-DZKAvZnl.chunk.mjs";
 const scriptRel = "modulepreload";
 const assetsURL = function(dep, importerUrl) {
   return new URL(dep, importerUrl).href;
@@ -606,7 +606,7 @@ const useListsStore = defineStore("lists", () => {
       const response = await api.lists.getAll();
       lists.value = response.data.ocs.data;
     } catch (e) {
-      showError("Failed to load shopping lists");
+      showError(translate("shopping_list", "Failed to load shopping lists"));
       console.error(e);
     } finally {
       loading.value = false;
@@ -620,7 +620,7 @@ const useListsStore = defineStore("lists", () => {
       currentListId.value = newList.id;
       return newList;
     } catch (e) {
-      showError("Failed to create list");
+      showError(translate("shopping_list", "Failed to create list"));
       console.error(e);
     }
   }
@@ -634,7 +634,7 @@ const useListsStore = defineStore("lists", () => {
       }
       return updated;
     } catch (e) {
-      showError("Failed to update list");
+      showError(translate("shopping_list", "Failed to update list"));
       console.error(e);
     }
   }
@@ -646,7 +646,7 @@ const useListsStore = defineStore("lists", () => {
         currentListId.value = lists.value[0]?.id ?? null;
       }
     } catch (e) {
-      showError("Failed to delete list");
+      showError(translate("shopping_list", "Failed to delete list"));
       console.error(e);
     }
   }
@@ -674,7 +674,7 @@ const useShopAreasStore = defineStore("shopAreas", () => {
       const response = await api.areas.getForList(listId);
       areasByList.value[listId] = response.data.ocs.data;
     } catch (e) {
-      showError("Failed to load shop areas");
+      showError(translate("shopping_list", "Failed to load shop areas"));
       console.error(e);
     }
   }
@@ -688,7 +688,7 @@ const useShopAreasStore = defineStore("shopAreas", () => {
       areasByList.value[listId].push(newArea);
       return newArea;
     } catch (e) {
-      showError("Failed to create shop area");
+      showError(translate("shopping_list", "Failed to create shop area"));
       console.error(e);
     }
   }
@@ -704,7 +704,7 @@ const useShopAreasStore = defineStore("shopAreas", () => {
         }
       }
     } catch (e) {
-      showError("Failed to update shop area");
+      showError(translate("shopping_list", "Failed to update shop area"));
       console.error(e);
     }
   }
@@ -715,7 +715,7 @@ const useShopAreasStore = defineStore("shopAreas", () => {
         areasByList.value[listId] = areasByList.value[listId].filter((a) => a.id !== id);
       }
     } catch (e) {
-      showError("Failed to delete shop area");
+      showError(translate("shopping_list", "Failed to delete shop area"));
       console.error(e);
     }
   }
@@ -886,7 +886,7 @@ const useItemsStore = defineStore("items", () => {
       const response = await api.items.getAll(listId);
       itemsByList.value[listId] = response.data.ocs.data;
     } catch (e) {
-      showError("Failed to load items");
+      showError(translate("shopping_list", "Failed to load items"));
       console.error(e);
     } finally {
       if (isInitialLoad) {
@@ -908,7 +908,7 @@ const useItemsStore = defineStore("items", () => {
         }
         await api.items.update(listId, match.id, updateData);
         await fetchByList(listId);
-        showSuccess(`"${updateData.name ?? match.name}" updated — quantity merged`);
+        showSuccess(translate("shopping_list", '"{name}" updated — quantity merged', { name: updateData.name ?? match.name }));
         return;
       }
       await api.items.create(listId, data);
@@ -918,7 +918,7 @@ const useItemsStore = defineStore("items", () => {
         await shopAreasStore.fetchByList(listId);
       }
     } catch (e) {
-      showError("Failed to add item");
+      showError(translate("shopping_list", "Failed to add item"));
       console.error(e);
     }
   }
@@ -937,7 +937,7 @@ const useItemsStore = defineStore("items", () => {
       }
       return updated;
     } catch (e) {
-      showError("Failed to update item");
+      showError(translate("shopping_list", "Failed to update item"));
       console.error(e);
     }
   }
@@ -951,7 +951,7 @@ const useItemsStore = defineStore("items", () => {
       await api.items.check(listId, id, item.checked);
     } catch (e) {
       item.checked = previousState;
-      showError("Failed to update item");
+      showError(translate("shopping_list", "Failed to update item"));
       console.error(e);
     }
   }
@@ -964,7 +964,7 @@ const useItemsStore = defineStore("items", () => {
       await api.items.delete(listId, id);
     } catch (e) {
       items.splice(index2, 0, removed);
-      showError("Failed to delete item");
+      showError(translate("shopping_list", "Failed to delete item"));
       console.error(e);
     }
   }
@@ -972,7 +972,7 @@ const useItemsStore = defineStore("items", () => {
     try {
       await api.items.reorder(listId, sortedIds);
     } catch (e) {
-      showError("Failed to reorder items");
+      showError(translate("shopping_list", "Failed to reorder items"));
       console.error(e);
     }
   }
@@ -982,7 +982,7 @@ const useItemsStore = defineStore("items", () => {
       const items = itemsByList.value[listId] ?? [];
       itemsByList.value[listId] = items.filter((i) => !i.checked);
     } catch (e) {
-      showError("Failed to clear checked items");
+      showError(translate("shopping_list", "Failed to clear checked items"));
       console.error(e);
     }
   }
@@ -994,7 +994,7 @@ const useItemsStore = defineStore("items", () => {
         i.checked = false;
       });
     } catch (e) {
-      showError("Failed to uncheck items");
+      showError(translate("shopping_list", "Failed to uncheck items"));
       console.error(e);
     }
   }
@@ -1133,7 +1133,7 @@ const useSharesStore = defineStore("shares", () => {
       const response = await api.shares.getAll(listId);
       sharesByList.value[listId] = response.data.ocs.data;
     } catch (e) {
-      showError("Failed to load shares");
+      showError(translate("shopping_list", "Failed to load shares"));
       console.error(e);
     }
   }
@@ -1147,7 +1147,7 @@ const useSharesStore = defineStore("shares", () => {
       sharesByList.value[listId].push(newShare);
       return newShare;
     } catch (e) {
-      showError("Failed to share list");
+      showError(translate("shopping_list", "Failed to share list"));
       console.error(e);
     }
   }
@@ -1161,7 +1161,7 @@ const useSharesStore = defineStore("shares", () => {
         shares[index2] = updated;
       }
     } catch (e) {
-      showError("Failed to update share");
+      showError(translate("shopping_list", "Failed to update share"));
       console.error(e);
     }
   }
@@ -1171,7 +1171,7 @@ const useSharesStore = defineStore("shares", () => {
       const shares = sharesByList.value[listId] ?? [];
       sharesByList.value[listId] = shares.filter((s) => s.id !== shareId);
     } catch (e) {
-      showError("Failed to remove share");
+      showError(translate("shopping_list", "Failed to remove share"));
       console.error(e);
     }
   }
@@ -1188,7 +1188,7 @@ const useSharesStore = defineStore("shares", () => {
       sharesByList.value[listId].push(newShare);
       return newShare;
     } catch (e) {
-      showError("Failed to create public link");
+      showError(translate("shopping_list", "Failed to create public link"));
       console.error(e);
     }
   }
@@ -1202,7 +1202,7 @@ const useSharesStore = defineStore("shares", () => {
         shares[index2] = updated;
       }
     } catch (e) {
-      showError("Failed to update public link");
+      showError(translate("shopping_list", "Failed to update public link"));
       console.error(e);
     }
   }
@@ -1212,7 +1212,7 @@ const useSharesStore = defineStore("shares", () => {
       const shares = sharesByList.value[listId] ?? [];
       sharesByList.value[listId] = shares.filter((s) => s.id !== shareId);
     } catch (e) {
-      showError("Failed to remove public link");
+      showError(translate("shopping_list", "Failed to remove public link"));
       console.error(e);
     }
   }
@@ -15821,7 +15821,7 @@ function usePush() {
   if (hasPushServer) {
     try {
       __vitePreload(async () => {
-        const { listen } = await import("./index-Dg8AVuSG.chunk.mjs").then((n) => n.i);
+        const { listen } = await import("./index-BUF68Bp0.chunk.mjs").then((n) => n.i);
         return { listen };
       }, true ? __vite__mapDeps([0,1,2]) : void 0, import.meta.url).then(({ listen }) => {
         listen("shopping_list_item_update", () => {
