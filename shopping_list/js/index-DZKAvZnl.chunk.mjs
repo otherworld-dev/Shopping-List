@@ -1,5 +1,5 @@
 const appName = "shopping_list";
-const appVersion = "1.1.0";
+const appVersion = "1.1.1";
 const global$1 = globalThis || void 0 || self;
 /**
 * @vue/shared v3.5.32
@@ -42903,4 +42903,4 @@ export {
   NcAppNavigationCaption as y,
   createBaseVNode as z
 };
-//# sourceMappingURL=index-C_pXr3hq.chunk.mjs.map
+//# sourceMappingURL=index-DZKAvZnl.chunk.mjs.map
