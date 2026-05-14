@@ -15,6 +15,7 @@
 			</NcEmptyContent>
 		</NcAppContent>
 	</NcContent>
+	<OfflineIndicator />
 </template>
 
 <script setup lang="ts">
@@ -30,6 +31,7 @@ import { t } from '@nextcloud/l10n'
 import ListSidebar from './components/ListSidebar.vue'
 import ListView from './components/ListView.vue'
 import AreaKeywordsSettings from './components/AreaKeywordsSettings.vue'
+import OfflineIndicator from './components/OfflineIndicator.vue'
 import { useListsStore } from './stores/lists'
 import { usePush } from './composables/usePush'
 

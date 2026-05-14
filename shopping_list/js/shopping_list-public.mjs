@@ -1,6 +1,6 @@
 const appName = "shopping_list";
 const appVersion = "1.2.0";
-import { e as defineComponent, p as translate, a2 as onMounted, aq as publicApi, o as openBlock, c as createElementBlock, z as createBaseVNode, t as toDisplayString, a5 as withDirectives, a6 as vModelText, a7 as withKeys, a8 as withModifiers, u as unref, g as createCommentVNode, a as createVNode, ak as NcLoadingIcon, F as Fragment, q as renderList, aa as normalizeStyle, a4 as normalizeClass, b as createTextVNode, l as ref, m as computed, ag as Permission, B as _export_sfc, ar as loadState, s as createBlock, ao as createApp, ap as createPinia } from "./index-Be71WN-U.chunk.mjs";
+import { e as defineComponent, q as translate, a6 as onMounted, aw as publicApi, o as openBlock, c as createElementBlock, D as createBaseVNode, t as toDisplayString, a9 as withDirectives, aa as vModelText, ab as withKeys, ac as withModifiers, u as unref, g as createCommentVNode, a as createVNode, ao as NcLoadingIcon, F as Fragment, y as renderList, ad as normalizeStyle, a8 as normalizeClass, b as createTextVNode, l as ref, m as computed, ak as Permission, G as _export_sfc, ax as loadState, z as createBlock, at as createPinia, au as offlinePersistPlugin, av as createApp } from "./index-C7e42v_8.chunk.mjs";
 const _hoisted_1$1 = { class: "public-list" };
 const _hoisted_2$1 = { class: "public-list__card" };
 const _hoisted_3$1 = {
@@ -364,7 +364,9 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
   }
 });
 const PublicApp = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-093c6dcb"]]);
+const pinia = createPinia();
+pinia.use(offlinePersistPlugin);
 const app = createApp(PublicApp);
-app.use(createPinia());
+app.use(pinia);
 app.mount("#shopping_list_public");
 //# sourceMappingURL=shopping_list-public.mjs.map

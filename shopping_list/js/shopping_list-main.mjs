@@ -1,7 +1,7 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-83XqvQ2g.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/index-Be71WN-U.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/index-iLVvFKCC.chunk.css')])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-BTXKQPY9.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/index-C7e42v_8.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/index-iLVvFKCC.chunk.css')])))=>i.map(i=>d[i]);
 const appName = "shopping_list";
 const appVersion = "1.2.0";
-import { _ as _export_sfc, N as NcButton, r as resolveComponent, o as openBlock, c as createElementBlock, a as createVNode, w as withCtx, b as createTextVNode, t as toDisplayString, d as renderSlot, e as defineComponent, f as createElementId, g as createCommentVNode, u as unref, h as getDefaultExportFromCjs, i as getGettextBuilder, j as getLoggerBuilder, k as defineStore, l as ref, m as computed, n as api, p as translate, F as Fragment, q as renderList, s as createBlock, v as NcAppNavigationItem, x as NcActionButton, y as NcAppNavigationCaption, z as createBaseVNode, A as NcIconSvgWrapper, B as _export_sfc$1, C as NOOP, D as extend$1, E as isString, G as NO, H as isSymbol, I as isBuiltInDirective, J as capitalize, K as camelize, L as EMPTY_OBJ, M as isObject, O as toHandlerKey, P as isArray, Q as isOn, R as isReservedProp, S as isVoidTag, T as isHTMLTag, U as isSVGTag, V as isMathMLTag, W as parseStringStyle, X as makeMap, Y as generateCodeFrame, Z as getAugmentedNamespace, $ as runtimeDom_esmBundler, a0 as shared_esmBundler, a1 as watch, a2 as onMounted, a3 as onUnmounted, a4 as normalizeClass, a5 as withDirectives, a6 as vModelText, a7 as withKeys, a8 as withModifiers, a9 as Teleport, aa as normalizeStyle, ab as createStaticVNode, ac as nextTick, ad as generateOcsUrl, ae as cancelableClient, af as ShareType, ag as Permission, ah as generateUrl, ai as getCurrentUser, aj as NcAvatar, ak as NcLoadingIcon, al as NcAppNavigation, am as NcAppContent, an as NcContent, ao as createApp, ap as createPinia } from "./index-Be71WN-U.chunk.mjs";
+import { _ as _export_sfc, N as NcButton, r as resolveComponent, o as openBlock, c as createElementBlock, a as createVNode, w as withCtx, b as createTextVNode, t as toDisplayString, d as renderSlot, e as defineComponent, f as createElementId, g as createCommentVNode, u as unref, h as getDefaultExportFromCjs, i as getGettextBuilder, j as getLoggerBuilder, k as defineStore, l as ref, m as computed, n as api, p as markServerFetched, q as translate, s as loadValue, v as saveValue, x as readonly, F as Fragment, y as renderList, z as createBlock, A as NcActionButton, B as NcAppNavigationItem, C as NcAppNavigationCaption, D as createBaseVNode, E as NcIconSvgWrapper, G as _export_sfc$1, H as NOOP, I as extend$1, J as isString, K as NO, L as isSymbol, M as isBuiltInDirective, O as capitalize, P as camelize, Q as EMPTY_OBJ, R as isObject, S as toHandlerKey, T as isArray, U as isOn, V as isReservedProp, W as isVoidTag, X as isHTMLTag, Y as isSVGTag, Z as isMathMLTag, $ as parseStringStyle, a0 as makeMap, a1 as generateCodeFrame, a2 as getAugmentedNamespace, a3 as runtimeDom_esmBundler, a4 as shared_esmBundler, a5 as watch, a6 as onMounted, a7 as onUnmounted, a8 as normalizeClass, a9 as withDirectives, aa as vModelText, ab as withKeys, ac as withModifiers, ad as normalizeStyle, ae as Teleport, af as createStaticVNode, ag as nextTick, ah as generateOcsUrl, ai as cancelableClient, aj as ShareType, ak as Permission, al as generateUrl, am as getCurrentUser, an as NcAvatar, ao as NcLoadingIcon, ap as Transition, aq as NcAppNavigation, ar as NcAppContent, as as NcContent, at as createPinia, au as offlinePersistPlugin, av as createApp } from "./index-C7e42v_8.chunk.mjs";
 const scriptRel = "modulepreload";
 const assetsURL = function(dep, importerUrl) {
   return new URL(dep, importerUrl).href;
@@ -60,7 +60,7 @@ const __vitePreload = function preload(baseModule, deps, importerUrl) {
     return baseModule().catch(handlePreloadError);
   });
 };
-const _sfc_main$8 = {
+const _sfc_main$9 = {
   components: {
     NcButton
   },
@@ -103,10 +103,10 @@ const _sfc_main$8 = {
   },
   emits: ["click"]
 };
-const _hoisted_1$7 = { class: "app-navigation-new" };
+const _hoisted_1$8 = { class: "app-navigation-new" };
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_NcButton = resolveComponent("NcButton");
-  return openBlock(), createElementBlock("div", _hoisted_1$7, [
+  return openBlock(), createElementBlock("div", _hoisted_1$8, [
     createVNode(_component_NcButton, {
       id: $props.buttonId,
       disabled: $props.disabled,
@@ -123,23 +123,23 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     }, 8, ["id", "disabled", "variant"])
   ]);
 }
-const NcAppNavigationNew = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render], ["__scopeId", "data-v-0ba6c9df"]]);
-const _hoisted_1$6 = ["aria-labelledby"];
-const _hoisted_2$6 = {
+const NcAppNavigationNew = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render], ["__scopeId", "data-v-0ba6c9df"]]);
+const _hoisted_1$7 = ["aria-labelledby"];
+const _hoisted_2$7 = {
   key: 0,
   class: "empty-content__icon",
   "aria-hidden": "true"
 };
-const _hoisted_3$6 = ["id"];
-const _hoisted_4$5 = {
+const _hoisted_3$7 = ["id"];
+const _hoisted_4$6 = {
   key: 2,
   class: "empty-content__description"
 };
-const _hoisted_5$5 = {
+const _hoisted_5$6 = {
   key: 3,
   class: "empty-content__action"
 };
-const _sfc_main$7 = /* @__PURE__ */ defineComponent({
+const _sfc_main$8 = /* @__PURE__ */ defineComponent({
   __name: "NcEmptyContent",
   props: {
     description: { default: "" },
@@ -153,7 +153,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
         class: "empty-content",
         role: "note"
       }, [
-        _ctx.$slots.icon ? (openBlock(), createElementBlock("div", _hoisted_2$6, [
+        _ctx.$slots.icon ? (openBlock(), createElementBlock("div", _hoisted_2$7, [
           renderSlot(_ctx.$slots, "icon", {}, void 0, true)
         ])) : createCommentVNode("", true),
         _ctx.name !== "" || _ctx.$slots.name ? (openBlock(), createElementBlock("div", {
@@ -164,20 +164,20 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
           renderSlot(_ctx.$slots, "name", {}, () => [
             createTextVNode(toDisplayString(_ctx.name), 1)
           ], true)
-        ], 8, _hoisted_3$6)) : createCommentVNode("", true),
-        _ctx.description !== "" || _ctx.$slots.description ? (openBlock(), createElementBlock("p", _hoisted_4$5, [
+        ], 8, _hoisted_3$7)) : createCommentVNode("", true),
+        _ctx.description !== "" || _ctx.$slots.description ? (openBlock(), createElementBlock("p", _hoisted_4$6, [
           renderSlot(_ctx.$slots, "description", {}, () => [
             createTextVNode(toDisplayString(_ctx.description), 1)
           ], true)
         ])) : createCommentVNode("", true),
-        _ctx.$slots.action ? (openBlock(), createElementBlock("div", _hoisted_5$5, [
+        _ctx.$slots.action ? (openBlock(), createElementBlock("div", _hoisted_5$6, [
           renderSlot(_ctx.$slots, "action", {}, void 0, true)
         ])) : createCommentVNode("", true)
-      ], 8, _hoisted_1$6);
+      ], 8, _hoisted_1$7);
     };
   }
 });
-const NcEmptyContent = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__scopeId", "data-v-b101d636"]]);
+const NcEmptyContent = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["__scopeId", "data-v-b101d636"]]);
 var toastify$1 = { exports: {} };
 /*!
  * Toastify js 1.12.0
@@ -605,6 +605,7 @@ const useListsStore = defineStore("lists", () => {
     try {
       const response = await api.lists.getAll();
       lists.value = response.data.ocs.data;
+      markServerFetched("lists");
     } catch (e) {
       showError(translate("shopping_list", "Failed to load shopping lists"));
       console.error(e);
@@ -854,10 +855,77 @@ function mergeQuantities(existing, incoming) {
   }
   return `${a.raw} + ${b.raw}`;
 }
+const QUEUE_KEY = "mutation-queue";
+const queue = ref([]);
+let loaded = false;
+async function load() {
+  if (loaded) return;
+  const saved = await loadValue(QUEUE_KEY);
+  if (saved) queue.value = saved;
+  loaded = true;
+}
+async function persist() {
+  await saveValue(QUEUE_KEY, JSON.parse(JSON.stringify(queue.value)));
+}
+async function enqueue(mutation) {
+  await load();
+  queue.value.push({
+    ...mutation,
+    id: crypto.randomUUID(),
+    timestamp: Date.now(),
+    retries: 0
+  });
+  await persist();
+}
+async function peekAll() {
+  await load();
+  return queue.value;
+}
+async function removeMutation(id) {
+  await load();
+  queue.value = queue.value.filter((m) => m.id !== id);
+  await persist();
+}
+const isOnline = ref(navigator.onLine);
+let initialized$1 = false;
+const onOnlineCallbacks = /* @__PURE__ */ new Set();
+function init() {
+  if (initialized$1) return;
+  initialized$1 = true;
+  window.addEventListener("online", async () => {
+    try {
+      await api.lists.getAll();
+      isOnline.value = true;
+      onOnlineCallbacks.forEach((cb) => cb());
+    } catch {
+      isOnline.value = false;
+    }
+  });
+  window.addEventListener("offline", () => {
+    isOnline.value = false;
+  });
+}
+function useNetworkStatus() {
+  init();
+  return {
+    isOnline: readonly(isOnline),
+    onOnline(callback) {
+      onOnlineCallbacks.add(callback);
+    }
+  };
+}
+function isNetworkError(error) {
+  if (!error || typeof error !== "object") return false;
+  const err = error;
+  if (err.code === "ERR_NETWORK" || err.code === "ECONNABORTED") return true;
+  if (err.isAxiosError && !err.response) return true;
+  return false;
+}
 const useItemsStore = defineStore("items", () => {
   const itemsByList = ref({});
   const loading = ref(false);
   const listsStore = useListsStore();
+  const { isOnline: isOnline2 } = useNetworkStatus();
   const currentItems = computed(() => {
     if (!listsStore.currentListId) return [];
     return itemsByList.value[listsStore.currentListId] ?? [];
@@ -885,8 +953,11 @@ const useItemsStore = defineStore("items", () => {
     try {
       const response = await api.items.getAll(listId);
       itemsByList.value[listId] = response.data.ocs.data;
+      markServerFetched("items");
     } catch (e) {
-      showError(translate("shopping_list", "Failed to load items"));
+      if (isInitialLoad) {
+        showError(translate("shopping_list", "Failed to load items"));
+      }
       console.error(e);
     } finally {
       if (isInitialLoad) {
@@ -906,16 +977,67 @@ const useItemsStore = defineStore("items", () => {
         if (oldQty <= 1 && newQty > 1) {
           updateData.name = pluralizeName(match.name);
         }
-        await api.items.update(listId, match.id, updateData);
-        await fetchByList(listId);
+        const items = itemsByList.value[listId] ?? [];
+        const idx = items.findIndex((i) => i.id === match.id);
+        if (idx !== -1) {
+          items[idx] = { ...items[idx], ...updateData };
+        }
+        if (!isOnline2.value) {
+          await enqueue({ type: "item.update", listId, itemId: match.id, payload: updateData });
+          showSuccess(translate("shopping_list", '"{name}" updated — quantity merged', { name: updateData.name ?? match.name }));
+          return;
+        }
+        try {
+          await api.items.update(listId, match.id, updateData);
+          await fetchByList(listId);
+        } catch (e) {
+          if (isNetworkError(e)) {
+            await enqueue({ type: "item.update", listId, itemId: match.id, payload: updateData });
+          } else {
+            if (idx !== -1) items[idx] = match;
+            throw e;
+          }
+        }
         showSuccess(translate("shopping_list", '"{name}" updated — quantity merged', { name: updateData.name ?? match.name }));
         return;
       }
-      await api.items.create(listId, data);
-      await fetchByList(listId);
-      if (data.areaExplicit) {
-        const shopAreasStore = useShopAreasStore();
-        await shopAreasStore.fetchByList(listId);
+      const tempId = -Date.now();
+      const tempItem = {
+        id: tempId,
+        listId,
+        name: data.name,
+        quantity: data.quantity ?? "1",
+        unit: data.unit ?? null,
+        shopAreaId: data.shopAreaId ?? null,
+        checked: false,
+        checkedBy: null,
+        sortOrder: existingItems.length,
+        tags: [],
+        createdAt: (/* @__PURE__ */ new Date()).toISOString(),
+        updatedAt: (/* @__PURE__ */ new Date()).toISOString()
+      };
+      if (!itemsByList.value[listId]) itemsByList.value[listId] = [];
+      itemsByList.value[listId].push(tempItem);
+      if (!isOnline2.value) {
+        await enqueue({ type: "item.create", listId, payload: data, tempId: String(tempId) });
+        return;
+      }
+      try {
+        await api.items.create(listId, data);
+        await fetchByList(listId);
+        if (data.areaExplicit) {
+          const shopAreasStore = useShopAreasStore();
+          await shopAreasStore.fetchByList(listId);
+        }
+      } catch (e) {
+        if (isNetworkError(e)) {
+          await enqueue({ type: "item.create", listId, payload: data, tempId: String(tempId) });
+        } else {
+          const items = itemsByList.value[listId];
+          const tidx = items.findIndex((i) => i.id === tempId);
+          if (tidx !== -1) items.splice(tidx, 1);
+          throw e;
+        }
       }
     } catch (e) {
       showError(translate("shopping_list", "Failed to add item"));
@@ -923,11 +1045,19 @@ const useItemsStore = defineStore("items", () => {
     }
   }
   async function update(listId, id, data) {
+    const items = itemsByList.value[listId] ?? [];
+    const index2 = items.findIndex((i) => i.id === id);
+    const previous = index2 !== -1 ? { ...items[index2] } : null;
+    if (index2 !== -1) {
+      items[index2] = { ...items[index2], ...data };
+    }
+    if (!isOnline2.value) {
+      await enqueue({ type: "item.update", listId, itemId: id, payload: data });
+      return items[index2];
+    }
     try {
       const response = await api.items.update(listId, id, data);
       const updated = response.data.ocs.data;
-      const items = itemsByList.value[listId] ?? [];
-      const index2 = items.findIndex((i) => i.id === id);
       if (index2 !== -1) {
         items[index2] = updated;
       }
@@ -937,6 +1067,13 @@ const useItemsStore = defineStore("items", () => {
       }
       return updated;
     } catch (e) {
+      if (isNetworkError(e)) {
+        await enqueue({ type: "item.update", listId, itemId: id, payload: data });
+        return items[index2];
+      }
+      if (previous && index2 !== -1) {
+        items[index2] = previous;
+      }
       showError(translate("shopping_list", "Failed to update item"));
       console.error(e);
     }
@@ -947,12 +1084,20 @@ const useItemsStore = defineStore("items", () => {
     if (!item) return;
     const previousState = item.checked;
     item.checked = !item.checked;
+    if (!isOnline2.value) {
+      await enqueue({ type: "item.check", listId, itemId: id, payload: { checked: item.checked } });
+      return;
+    }
     try {
       await api.items.check(listId, id, item.checked);
     } catch (e) {
-      item.checked = previousState;
-      showError(translate("shopping_list", "Failed to update item"));
-      console.error(e);
+      if (isNetworkError(e)) {
+        await enqueue({ type: "item.check", listId, itemId: id, payload: { checked: item.checked } });
+      } else {
+        item.checked = previousState;
+        showError(translate("shopping_list", "Failed to update item"));
+        console.error(e);
+      }
     }
   }
   async function remove(listId, id) {
@@ -960,42 +1105,98 @@ const useItemsStore = defineStore("items", () => {
     const index2 = items.findIndex((i) => i.id === id);
     if (index2 === -1) return;
     const removed = items.splice(index2, 1)[0];
+    if (!isOnline2.value) {
+      if (id > 0) {
+        await enqueue({ type: "item.delete", listId, itemId: id, payload: {} });
+      }
+      return;
+    }
     try {
       await api.items.delete(listId, id);
     } catch (e) {
-      items.splice(index2, 0, removed);
-      showError(translate("shopping_list", "Failed to delete item"));
-      console.error(e);
+      if (isNetworkError(e)) {
+        if (id > 0) {
+          await enqueue({ type: "item.delete", listId, itemId: id, payload: {} });
+        }
+      } else {
+        items.splice(index2, 0, removed);
+        showError(translate("shopping_list", "Failed to delete item"));
+        console.error(e);
+      }
     }
   }
   async function reorder(listId, sortedIds) {
+    const items = itemsByList.value[listId] ?? [];
+    sortedIds.forEach((id, i) => {
+      const item = items.find((it) => it.id === id);
+      if (item) item.sortOrder = i;
+    });
+    if (!isOnline2.value) {
+      await enqueue({ type: "item.reorder", listId, payload: { sortedIds } });
+      return;
+    }
     try {
       await api.items.reorder(listId, sortedIds);
     } catch (e) {
-      showError(translate("shopping_list", "Failed to reorder items"));
-      console.error(e);
+      if (isNetworkError(e)) {
+        await enqueue({ type: "item.reorder", listId, payload: { sortedIds } });
+      } else {
+        showError(translate("shopping_list", "Failed to reorder items"));
+        console.error(e);
+      }
     }
   }
   async function clearChecked(listId) {
+    const items = itemsByList.value[listId] ?? [];
+    const previousItems = [...items];
+    itemsByList.value[listId] = items.filter((i) => !i.checked);
+    if (!isOnline2.value) {
+      await enqueue({ type: "item.clearChecked", listId, payload: {} });
+      return;
+    }
     try {
       await api.items.clearChecked(listId);
-      const items = itemsByList.value[listId] ?? [];
-      itemsByList.value[listId] = items.filter((i) => !i.checked);
     } catch (e) {
-      showError(translate("shopping_list", "Failed to clear checked items"));
-      console.error(e);
+      if (isNetworkError(e)) {
+        await enqueue({ type: "item.clearChecked", listId, payload: {} });
+      } else {
+        itemsByList.value[listId] = previousItems;
+        showError(translate("shopping_list", "Failed to clear checked items"));
+        console.error(e);
+      }
     }
   }
   async function uncheckAll(listId) {
+    const items = itemsByList.value[listId] ?? [];
+    const previousStates = items.map((i) => ({ id: i.id, checked: i.checked }));
+    items.forEach((i) => {
+      i.checked = false;
+    });
+    if (!isOnline2.value) {
+      await enqueue({ type: "item.uncheckAll", listId, payload: {} });
+      return;
+    }
     try {
       await api.items.uncheckAll(listId);
-      const items = itemsByList.value[listId] ?? [];
-      items.forEach((i) => {
-        i.checked = false;
-      });
     } catch (e) {
-      showError(translate("shopping_list", "Failed to uncheck items"));
-      console.error(e);
+      if (isNetworkError(e)) {
+        await enqueue({ type: "item.uncheckAll", listId, payload: {} });
+      } else {
+        previousStates.forEach(({ id, checked }) => {
+          const item = items.find((i) => i.id === id);
+          if (item) item.checked = checked;
+        });
+        showError(translate("shopping_list", "Failed to uncheck items"));
+        console.error(e);
+      }
+    }
+  }
+  function replaceTempId(listId, tempId, realItem) {
+    const items = itemsByList.value[listId];
+    if (!items) return;
+    const idx = items.findIndex((i) => i.id === tempId);
+    if (idx !== -1) {
+      items[idx] = realItem;
     }
   }
   return {
@@ -1012,23 +1213,24 @@ const useItemsStore = defineStore("items", () => {
     remove,
     reorder,
     clearChecked,
-    uncheckAll
+    uncheckAll,
+    replaceTempId
   };
 });
-const _hoisted_1$5 = {
+const _hoisted_1$6 = {
   key: 0,
   class: "count-bubble"
 };
-const _hoisted_2$5 = {
+const _hoisted_2$6 = {
   key: 0,
   class: "count-bubble"
 };
-const _hoisted_3$5 = {
+const _hoisted_3$6 = {
   key: 2,
   class: "sidebar-settings"
 };
 const listIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,4H7V8H3V4M9,5V7H21V5H9M3,10H7V14H3V10M9,11V13H21V11H9M3,16H7V20H3V16M9,17V19H21V17H9" fill="currentColor"/></svg>';
-const _sfc_main$6 = /* @__PURE__ */ defineComponent({
+const _sfc_main$7 = /* @__PURE__ */ defineComponent({
   __name: "ListSidebar",
   emits: ["show-settings"],
   setup(__props) {
@@ -1073,7 +1275,7 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
             "onUpdate:name": (name) => onRename(list.id, name)
           }, {
             counter: withCtx(() => [
-              getUncheckedCount(list.id) > 0 ? (openBlock(), createElementBlock("span", _hoisted_1$5, toDisplayString(getUncheckedCount(list.id)), 1)) : createCommentVNode("", true)
+              getUncheckedCount(list.id) > 0 ? (openBlock(), createElementBlock("span", _hoisted_1$6, toDisplayString(getUncheckedCount(list.id)), 1)) : createCommentVNode("", true)
             ]),
             actions: withCtx(() => [
               createVNode(unref(NcActionButton), {
@@ -1100,12 +1302,12 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
             onClick: ($event) => unref(listsStore).selectList(list.id)
           }, {
             counter: withCtx(() => [
-              getUncheckedCount(list.id) > 0 ? (openBlock(), createElementBlock("span", _hoisted_2$5, toDisplayString(getUncheckedCount(list.id)), 1)) : createCommentVNode("", true)
+              getUncheckedCount(list.id) > 0 ? (openBlock(), createElementBlock("span", _hoisted_2$6, toDisplayString(getUncheckedCount(list.id)), 1)) : createCommentVNode("", true)
             ]),
             _: 2
           }, 1032, ["name", "active", "onClick"]);
         }), 128)),
-        unref(listsStore).currentListId !== null ? (openBlock(), createElementBlock("div", _hoisted_3$5, [
+        unref(listsStore).currentListId !== null ? (openBlock(), createElementBlock("div", _hoisted_3$6, [
           createBaseVNode("button", {
             class: "sidebar-settings__btn",
             onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("show-settings"))
@@ -1125,7 +1327,7 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ListSidebar = /* @__PURE__ */ _export_sfc$1(_sfc_main$6, [["__scopeId", "data-v-b6280b45"]]);
+const ListSidebar = /* @__PURE__ */ _export_sfc$1(_sfc_main$7, [["__scopeId", "data-v-b6280b45"]]);
 const useSharesStore = defineStore("shares", () => {
   const sharesByList = ref({});
   async function fetchByList(listId) {
@@ -14145,11 +14347,11 @@ function requireVuedraggable_umd() {
 }
 var vuedraggable_umdExports = requireVuedraggable_umd();
 const draggable = /* @__PURE__ */ getDefaultExportFromCjs(vuedraggable_umdExports);
-const _hoisted_1$4 = ["data-item-id"];
-const _hoisted_2$4 = { class: "item-row__check" };
-const _hoisted_3$4 = ["checked", "disabled"];
-const _hoisted_4$4 = ["placeholder", "onKeydown"];
-const _hoisted_5$4 = ["onKeydown"];
+const _hoisted_1$5 = ["data-item-id"];
+const _hoisted_2$5 = { class: "item-row__check" };
+const _hoisted_3$5 = ["checked", "disabled"];
+const _hoisted_4$5 = ["placeholder", "onKeydown"];
+const _hoisted_5$5 = ["onKeydown"];
 const _hoisted_6$4 = ["placeholder", "onKeydown"];
 const _hoisted_7$4 = ["onMousedown"];
 const _hoisted_8$3 = {
@@ -14165,7 +14367,7 @@ const _hoisted_10$3 = {
   class: "item-row__area"
 };
 const _hoisted_11$3 = ["title"];
-const _sfc_main$5 = /* @__PURE__ */ defineComponent({
+const _sfc_main$6 = /* @__PURE__ */ defineComponent({
   __name: "ItemRow",
   props: {
     itemId: {},
@@ -14349,13 +14551,13 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
         }]),
         "data-item-id": __props.canEdit && !item.value.checked ? __props.itemId : void 0
       }, [
-        createBaseVNode("label", _hoisted_2$4, [
+        createBaseVNode("label", _hoisted_2$5, [
           createBaseVNode("input", {
             type: "checkbox",
             checked: item.value.checked,
             disabled: !__props.canEdit,
             onChange: onToggleCheck
-          }, null, 40, _hoisted_3$4)
+          }, null, 40, _hoisted_3$5)
         ]),
         __props.editing ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
           withDirectives(createBaseVNode("input", {
@@ -14371,7 +14573,7 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
               withKeys(withModifiers(focusNameInput, ["prevent"]), ["tab"])
             ],
             onBlur: onFieldBlur
-          }, null, 40, _hoisted_4$4), [
+          }, null, 40, _hoisted_4$5), [
             [vModelText, editQty.value]
           ]),
           withDirectives(createBaseVNode("input", {
@@ -14386,7 +14588,7 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
               withKeys(withModifiers(focusAreaInput, ["prevent"]), ["tab"])
             ],
             onBlur: onFieldBlur
-          }, null, 40, _hoisted_5$4), [
+          }, null, 40, _hoisted_5$5), [
             [vModelText, editName.value]
           ]),
           createBaseVNode("div", {
@@ -14467,16 +14669,16 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
         }, [..._cache[5] || (_cache[5] = [
           createStaticVNode('<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-v-1e2299f0><polyline points="3 6 5 6 21 6" data-v-1e2299f0></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" data-v-1e2299f0></path><line x1="10" y1="11" x2="10" y2="17" data-v-1e2299f0></line><line x1="14" y1="11" x2="14" y2="17" data-v-1e2299f0></line></svg>', 1)
         ])], 8, _hoisted_11$3)) : createCommentVNode("", true)
-      ], 10, _hoisted_1$4)) : createCommentVNode("", true);
+      ], 10, _hoisted_1$5)) : createCommentVNode("", true);
     };
   }
 });
-const ItemRow = /* @__PURE__ */ _export_sfc$1(_sfc_main$5, [["__scopeId", "data-v-1e2299f0"]]);
-const _hoisted_1$3 = { class: "item-editor" };
-const _hoisted_2$3 = { class: "item-editor__main" };
-const _hoisted_3$3 = ["placeholder", "onKeydown"];
-const _hoisted_4$3 = ["placeholder", "onKeydown"];
-const _hoisted_5$3 = {
+const ItemRow = /* @__PURE__ */ _export_sfc$1(_sfc_main$6, [["__scopeId", "data-v-1e2299f0"]]);
+const _hoisted_1$4 = { class: "item-editor" };
+const _hoisted_2$4 = { class: "item-editor__main" };
+const _hoisted_3$4 = ["placeholder", "onKeydown"];
+const _hoisted_4$4 = ["placeholder", "onKeydown"];
+const _hoisted_5$4 = {
   key: 1,
   class: "item-editor__dropdown"
 };
@@ -14485,7 +14687,7 @@ const _hoisted_7$3 = {
   key: 0,
   class: "item-editor__dropdown-empty"
 };
-const _sfc_main$4 = /* @__PURE__ */ defineComponent({
+const _sfc_main$5 = /* @__PURE__ */ defineComponent({
   __name: "ItemEditor",
   props: {
     listId: {}
@@ -14735,8 +14937,8 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
       nameRef.value?.focus();
     }
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$3, [
-        createBaseVNode("div", _hoisted_2$3, [
+      return openBlock(), createElementBlock("div", _hoisted_1$4, [
+        createBaseVNode("div", _hoisted_2$4, [
           _cache[4] || (_cache[4] = createBaseVNode("span", { class: "item-editor__plus" }, "+", -1)),
           withDirectives(createBaseVNode("input", {
             ref_key: "nameRef",
@@ -14751,7 +14953,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
               withKeys(withModifiers(focusArea, ["prevent"]), ["tab"])
             ],
             onPaste
-          }, null, 40, _hoisted_3$3), [
+          }, null, 40, _hoisted_3$4), [
             [vModelText, name.value]
           ]),
           createBaseVNode("div", {
@@ -14775,7 +14977,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
                 _cache[2] || (_cache[2] = withKeys(withModifiers(($event) => moveHighlight(1), ["prevent"]), ["down"])),
                 _cache[3] || (_cache[3] = withKeys(withModifiers(($event) => moveHighlight(-1), ["prevent"]), ["up"]))
               ]
-            }, null, 40, _hoisted_4$3), [
+            }, null, 40, _hoisted_4$4), [
               [vModelText, areaSearch.value]
             ]),
             selectedAreaId.value !== null ? (openBlock(), createElementBlock("button", {
@@ -14784,7 +14986,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
               tabindex: "-1",
               onClick: clearArea
             }, " ✕ ")) : createCommentVNode("", true),
-            dropdownOpen.value ? (openBlock(), createElementBlock("div", _hoisted_5$3, [
+            dropdownOpen.value ? (openBlock(), createElementBlock("div", _hoisted_5$4, [
               (openBlock(true), createElementBlock(Fragment, null, renderList(filteredAreas.value, (area, i) => {
                 return openBlock(), createElementBlock("div", {
                   key: area.id,
@@ -14807,12 +15009,12 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ItemEditor = /* @__PURE__ */ _export_sfc$1(_sfc_main$4, [["__scopeId", "data-v-eab5cb74"]]);
-const _hoisted_1$2 = { class: "share-modal" };
-const _hoisted_2$2 = { class: "share-modal__header" };
-const _hoisted_3$2 = { class: "share-modal__search" };
-const _hoisted_4$2 = ["placeholder"];
-const _hoisted_5$2 = {
+const ItemEditor = /* @__PURE__ */ _export_sfc$1(_sfc_main$5, [["__scopeId", "data-v-eab5cb74"]]);
+const _hoisted_1$3 = { class: "share-modal" };
+const _hoisted_2$3 = { class: "share-modal__header" };
+const _hoisted_3$3 = { class: "share-modal__search" };
+const _hoisted_4$3 = ["placeholder"];
+const _hoisted_5$3 = {
   key: 0,
   class: "share-modal__results"
 };
@@ -14873,7 +15075,7 @@ const _hoisted_38 = {
   key: 4,
   class: "share-modal__empty"
 };
-const _sfc_main$3 = /* @__PURE__ */ defineComponent({
+const _sfc_main$4 = /* @__PURE__ */ defineComponent({
   __name: "ShareDialog",
   props: {
     listId: {},
@@ -15025,15 +15227,15 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
         class: "share-overlay",
         onClick: _cache[6] || (_cache[6] = withModifiers(($event) => _ctx.$emit("close"), ["self"]))
       }, [
-        createBaseVNode("div", _hoisted_1$2, [
-          createBaseVNode("div", _hoisted_2$2, [
+        createBaseVNode("div", _hoisted_1$3, [
+          createBaseVNode("div", _hoisted_2$3, [
             createBaseVNode("h3", null, toDisplayString(unref(shareTitle)), 1),
             createBaseVNode("button", {
               class: "share-modal__close",
               onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("close"))
             }, "✕")
           ]),
-          createBaseVNode("div", _hoisted_3$2, [
+          createBaseVNode("div", _hoisted_3$3, [
             withDirectives(createBaseVNode("input", {
               ref_key: "searchRef",
               ref: searchRef,
@@ -15042,11 +15244,11 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
               placeholder: unref(searchPlaceholder),
               class: "share-modal__search-input",
               onInput: onSearchInput
-            }, null, 40, _hoisted_4$2), [
+            }, null, 40, _hoisted_4$3), [
               [vModelText, searchQuery.value]
             ])
           ]),
-          shareeResults.value.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_5$2, [
+          shareeResults.value.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_5$3, [
             (openBlock(true), createElementBlock(Fragment, null, renderList(shareeResults.value, (sharee) => {
               return openBlock(), createElementBlock("div", {
                 key: sharee.value + sharee.type,
@@ -15170,15 +15372,15 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ShareDialog = /* @__PURE__ */ _export_sfc$1(_sfc_main$3, [["__scopeId", "data-v-c9fb2be6"]]);
-const _hoisted_1$1 = { class: "list-view" };
-const _hoisted_2$1 = { class: "list-view__header" };
-const _hoisted_3$1 = { class: "list-view__actions" };
-const _hoisted_4$1 = {
+const ShareDialog = /* @__PURE__ */ _export_sfc$1(_sfc_main$4, [["__scopeId", "data-v-c9fb2be6"]]);
+const _hoisted_1$2 = { class: "list-view" };
+const _hoisted_2$2 = { class: "list-view__header" };
+const _hoisted_3$2 = { class: "list-view__actions" };
+const _hoisted_4$2 = {
   key: 0,
   class: "list-view__avatar-overflow"
 };
-const _hoisted_5$1 = { class: "list-view__card" };
+const _hoisted_5$2 = { class: "list-view__card" };
 const _hoisted_6$1 = {
   key: 1,
   class: "list-view__loading"
@@ -15211,7 +15413,7 @@ const _hoisted_17$1 = {
 };
 const MAX_VISIBLE_AVATARS = 3;
 const cartIcon$1 = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.25,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.59 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z" fill="currentColor"/></svg>';
-const _sfc_main$2 = /* @__PURE__ */ defineComponent({
+const _sfc_main$3 = /* @__PURE__ */ defineComponent({
   __name: "ListView",
   setup(__props) {
     const listsStore = useListsStore();
@@ -15335,10 +15537,10 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
       }
     }
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$1, [
-        createBaseVNode("div", _hoisted_2$1, [
+      return openBlock(), createElementBlock("div", _hoisted_1$2, [
+        createBaseVNode("div", _hoisted_2$2, [
           createBaseVNode("h2", null, toDisplayString(unref(listsStore).currentList?.title), 1),
-          createBaseVNode("div", _hoisted_3$1, [
+          createBaseVNode("div", _hoisted_3$2, [
             currentShares.value.length > 0 ? (openBlock(), createElementBlock("div", {
               key: 0,
               class: "list-view__avatars",
@@ -15355,7 +15557,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
                   class: "list-view__avatar"
                 }, null, 8, ["user", "display-name", "is-no-user"]);
               }), 128)),
-              overflowCount.value > 0 ? (openBlock(), createElementBlock("span", _hoisted_4$1, " +" + toDisplayString(overflowCount.value), 1)) : createCommentVNode("", true)
+              overflowCount.value > 0 ? (openBlock(), createElementBlock("span", _hoisted_4$2, " +" + toDisplayString(overflowCount.value), 1)) : createCommentVNode("", true)
             ])) : createCommentVNode("", true),
             unref(listsStore).currentList?.isOwner ? (openBlock(), createElementBlock("button", {
               key: 1,
@@ -15364,7 +15566,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
             }, toDisplayString(unref(shareText)), 1)) : createCommentVNode("", true)
           ])
         ]),
-        createBaseVNode("div", _hoisted_5$1, [
+        createBaseVNode("div", _hoisted_5$2, [
           canEdit.value ? (openBlock(), createBlock(ItemEditor, {
             key: 0,
             "list-id": unref(listsStore).currentList.id
@@ -15470,15 +15672,15 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ListView = /* @__PURE__ */ _export_sfc$1(_sfc_main$2, [["__scopeId", "data-v-c48482a4"]]);
-const _hoisted_1 = { class: "area-settings" };
-const _hoisted_2 = { class: "area-settings__header" };
-const _hoisted_3 = { class: "area-settings__desc" };
-const _hoisted_4 = {
+const ListView = /* @__PURE__ */ _export_sfc$1(_sfc_main$3, [["__scopeId", "data-v-c48482a4"]]);
+const _hoisted_1$1 = { class: "area-settings" };
+const _hoisted_2$1 = { class: "area-settings__header" };
+const _hoisted_3$1 = { class: "area-settings__desc" };
+const _hoisted_4$1 = {
   key: 0,
   class: "area-settings__create"
 };
-const _hoisted_5 = ["placeholder", "onKeydown"];
+const _hoisted_5$1 = ["placeholder", "onKeydown"];
 const _hoisted_6 = ["title"];
 const _hoisted_7 = ["disabled"];
 const _hoisted_8 = { class: "area-settings__search" };
@@ -15509,7 +15711,7 @@ const _hoisted_26 = {
   key: 0,
   class: "area-settings__empty"
 };
-const _sfc_main$1 = /* @__PURE__ */ defineComponent({
+const _sfc_main$2 = /* @__PURE__ */ defineComponent({
   __name: "AreaKeywordsSettings",
   emits: ["back"],
   setup(__props) {
@@ -15652,23 +15854,23 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       await shopAreasStore.remove(listId.value, area.id);
     }
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1, [
-        createBaseVNode("div", _hoisted_2, [
+      return openBlock(), createElementBlock("div", _hoisted_1$1, [
+        createBaseVNode("div", _hoisted_2$1, [
           createBaseVNode("button", {
             class: "area-settings__back",
             onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("back"))
           }, " ← " + toDisplayString(unref(backText)), 1),
           createBaseVNode("h2", null, toDisplayString(unref(title)), 1),
-          createBaseVNode("p", _hoisted_3, toDisplayString(unref(description)), 1)
+          createBaseVNode("p", _hoisted_3$1, toDisplayString(unref(description)), 1)
         ]),
-        canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_4, [
+        canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_4$1, [
           withDirectives(createBaseVNode("input", {
             "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => newAreaName.value = $event),
             type: "text",
             placeholder: unref(newAreaPlaceholder),
             class: "area-settings__create-input",
             onKeydown: withKeys(withModifiers(onCreateArea, ["prevent"]), ["enter"])
-          }, null, 40, _hoisted_5), [
+          }, null, 40, _hoisted_5$1), [
             [vModelText, newAreaName.value]
           ]),
           withDirectives(createBaseVNode("input", {
@@ -15809,7 +16011,184 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const AreaKeywordsSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$1, [["__scopeId", "data-v-fb8df544"]]);
+const AreaKeywordsSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$2, [["__scopeId", "data-v-fb8df544"]]);
+const syncing = ref(false);
+const pendingCount = ref(0);
+let draining = false;
+async function replayMutation(m) {
+  switch (m.type) {
+    case "item.check":
+      return api.items.check(m.listId, m.itemId, m.payload.checked);
+    case "item.create":
+      return api.items.create(m.listId, m.payload);
+    case "item.update":
+      return api.items.update(m.listId, m.itemId, m.payload);
+    case "item.delete":
+      return api.items.delete(m.listId, m.itemId);
+    case "item.reorder":
+      return api.items.reorder(m.listId, m.payload.sortedIds);
+    case "item.clearChecked":
+      return api.items.clearChecked(m.listId);
+    case "item.uncheckAll":
+      return api.items.uncheckAll(m.listId);
+    default:
+      throw new Error(`Unknown mutation type: ${m.type}`);
+  }
+}
+function getHttpStatus(error) {
+  if (!error || typeof error !== "object") return null;
+  const resp = error.response;
+  return resp?.status ?? null;
+}
+async function drain() {
+  if (draining) return;
+  draining = true;
+  syncing.value = true;
+  try {
+    const queue2 = await peekAll();
+    pendingCount.value = queue2.length;
+    if (queue2.length === 0) return;
+    const itemsStore = useItemsStore();
+    while (true) {
+      const current = await peekAll();
+      if (current.length === 0) break;
+      const mutation = current[0];
+      try {
+        const result = await replayMutation(mutation);
+        if (mutation.type === "item.create" && mutation.tempId) {
+          const realItem = result.data.ocs.data;
+          itemsStore.replaceTempId(mutation.listId, Number(mutation.tempId), realItem);
+        }
+        await removeMutation(mutation.id);
+        pendingCount.value = (await peekAll()).length;
+      } catch (error) {
+        if (isNetworkError(error)) {
+          break;
+        }
+        const status = getHttpStatus(error);
+        if (status === 404) {
+          await removeMutation(mutation.id);
+          pendingCount.value = (await peekAll()).length;
+          continue;
+        }
+        if (mutation.retries >= 2) {
+          console.error("[ShoppingList] Discarding mutation after 3 failures:", mutation, error);
+          await removeMutation(mutation.id);
+          pendingCount.value = (await peekAll()).length;
+          continue;
+        }
+        await removeMutation(mutation.id);
+        await enqueue({
+          type: mutation.type,
+          listId: mutation.listId,
+          itemId: mutation.itemId,
+          payload: mutation.payload,
+          tempId: mutation.tempId
+        });
+        const updated = await peekAll();
+        if (updated.length > 0) {
+          const last = updated[updated.length - 1];
+          last.retries = mutation.retries + 1;
+        }
+        pendingCount.value = updated.length;
+      }
+    }
+    const remaining = await peekAll();
+    if (remaining.length === 0) {
+      const listsStore = useListsStore();
+      await listsStore.fetchAll();
+      if (listsStore.currentListId) {
+        await itemsStore.fetchByList(listsStore.currentListId);
+      }
+    }
+  } finally {
+    draining = false;
+    syncing.value = false;
+    pendingCount.value = (await peekAll()).length;
+  }
+}
+function useSyncEngine() {
+  const { onOnline } = useNetworkStatus();
+  onOnline(() => {
+    drain();
+  });
+  return {
+    syncing: readonly(syncing),
+    pendingCount: readonly(pendingCount),
+    drain
+  };
+}
+const _hoisted_1 = {
+  key: 0,
+  class: "offline-indicator__icon spinning"
+};
+const _hoisted_2 = {
+  key: 1,
+  class: "offline-indicator__icon"
+};
+const _hoisted_3 = {
+  key: 2,
+  class: "offline-indicator__icon"
+};
+const _hoisted_4 = { class: "offline-indicator__text" };
+const _hoisted_5 = {
+  key: 3,
+  class: "offline-indicator__badge"
+};
+const _sfc_main$1 = /* @__PURE__ */ defineComponent({
+  __name: "OfflineIndicator",
+  setup(__props) {
+    const { isOnline: isOnline2 } = useNetworkStatus();
+    const { syncing: syncing2, pendingCount: pendingCount2 } = useSyncEngine();
+    const justSynced = ref(false);
+    let syncedTimer = null;
+    watch(syncing2, (isSyncing, wasSyncing) => {
+      if (wasSyncing && !isSyncing && pendingCount2.value === 0) {
+        justSynced.value = true;
+        if (syncedTimer) clearTimeout(syncedTimer);
+        syncedTimer = setTimeout(() => {
+          justSynced.value = false;
+        }, 3e3);
+      }
+    });
+    const visible = computed(() => {
+      return !isOnline2.value || syncing2.value || justSynced.value || pendingCount2.value > 0;
+    });
+    const statusClass = computed(() => {
+      if (syncing2.value) return "offline-indicator--syncing";
+      if (!isOnline2.value) return "offline-indicator--offline";
+      if (justSynced.value) return "offline-indicator--synced";
+      if (pendingCount2.value > 0) return "offline-indicator--pending";
+      return "";
+    });
+    const statusText = computed(() => {
+      if (syncing2.value) return translate("shopping_list", "Syncing changes…");
+      if (!isOnline2.value && pendingCount2.value > 0) {
+        return translate("shopping_list", "Offline — {count} pending", { count: pendingCount2.value });
+      }
+      if (!isOnline2.value) return translate("shopping_list", "You're offline");
+      if (justSynced.value) return translate("shopping_list", "All changes synced");
+      if (pendingCount2.value > 0) return translate("shopping_list", "{count} changes pending", { count: pendingCount2.value });
+      return "";
+    });
+    return (_ctx, _cache) => {
+      return openBlock(), createBlock(Transition, { name: "offline-fade" }, {
+        default: withCtx(() => [
+          visible.value ? (openBlock(), createElementBlock("div", {
+            key: 0,
+            class: normalizeClass(["offline-indicator", statusClass.value])
+          }, [
+            unref(syncing2) ? (openBlock(), createElementBlock("span", _hoisted_1, "↻")) : !unref(isOnline2) ? (openBlock(), createElementBlock("span", _hoisted_2, "⚠")) : (openBlock(), createElementBlock("span", _hoisted_3, "✓")),
+            createBaseVNode("span", _hoisted_4, toDisplayString(statusText.value), 1),
+            unref(pendingCount2) > 0 && !unref(syncing2) ? (openBlock(), createElementBlock("span", _hoisted_5, toDisplayString(unref(pendingCount2)), 1)) : createCommentVNode("", true)
+          ], 2)) : createCommentVNode("", true)
+        ]),
+        _: 1
+      });
+    };
+  }
+});
+const OfflineIndicator = /* @__PURE__ */ _export_sfc$1(_sfc_main$1, [["__scopeId", "data-v-f53c5bc3"]]);
 let initialized = false;
 function usePush() {
   if (initialized) return;
@@ -15817,11 +16196,13 @@ function usePush() {
   const listsStore = useListsStore();
   const itemsStore = useItemsStore();
   const sharesStore = useSharesStore();
+  const { isOnline: isOnline2 } = useNetworkStatus();
+  const { syncing: syncing2 } = useSyncEngine();
   const hasPushServer = !!window.OC?.config?.notify_push;
   if (hasPushServer) {
     try {
       __vitePreload(async () => {
-        const { listen } = await import("./index-83XqvQ2g.chunk.mjs").then((n) => n.i);
+        const { listen } = await import("./index-BTXKQPY9.chunk.mjs").then((n) => n.i);
         return { listen };
       }, true ? __vite__mapDeps([0,1,2]) : void 0, import.meta.url).then(({ listen }) => {
         listen("shopping_list_item_update", () => {
@@ -15851,12 +16232,14 @@ function usePush() {
   function startPolling() {
     console.log("[ShoppingList] Polling every 10s");
     setInterval(() => {
+      if (!isOnline2.value || syncing2.value) return;
       listsStore.fetchAll();
       if (listsStore.currentListId) {
         itemsStore.fetchByList(listsStore.currentListId);
       }
     }, 1e4);
   }
+  drain();
 }
 const cartIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.25,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.59 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z" fill="currentColor"/></svg>';
 const _sfc_main = /* @__PURE__ */ defineComponent({
@@ -15874,41 +16257,46 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
       usePush();
     });
     return (_ctx, _cache) => {
-      return openBlock(), createBlock(unref(NcContent), { "app-name": "shopping_list" }, {
-        default: withCtx(() => [
-          createVNode(unref(NcAppNavigation), null, {
-            default: withCtx(() => [
-              createVNode(ListSidebar, {
-                onShowSettings: _cache[0] || (_cache[0] = ($event) => showSettings.value = true)
-              })
-            ]),
-            _: 1
-          }),
-          createVNode(unref(NcAppContent), null, {
-            default: withCtx(() => [
-              showSettings.value && unref(listsStore).currentList ? (openBlock(), createBlock(AreaKeywordsSettings, {
-                key: unref(listsStore).currentListId,
-                onBack: _cache[1] || (_cache[1] = ($event) => showSettings.value = false)
-              })) : unref(listsStore).currentList ? (openBlock(), createBlock(ListView, { key: 1 })) : (openBlock(), createBlock(unref(NcEmptyContent), {
-                key: 2,
-                name: unref(noListName),
-                description: unref(noListDesc)
-              }, {
-                icon: withCtx(() => [
-                  createVNode(unref(NcIconSvgWrapper), { svg: cartIcon })
-                ]),
-                _: 1
-              }, 8, ["name", "description"]))
-            ]),
-            _: 1
-          })
-        ]),
-        _: 1
-      });
+      return openBlock(), createElementBlock(Fragment, null, [
+        createVNode(unref(NcContent), { "app-name": "shopping_list" }, {
+          default: withCtx(() => [
+            createVNode(unref(NcAppNavigation), null, {
+              default: withCtx(() => [
+                createVNode(ListSidebar, {
+                  onShowSettings: _cache[0] || (_cache[0] = ($event) => showSettings.value = true)
+                })
+              ]),
+              _: 1
+            }),
+            createVNode(unref(NcAppContent), null, {
+              default: withCtx(() => [
+                showSettings.value && unref(listsStore).currentList ? (openBlock(), createBlock(AreaKeywordsSettings, {
+                  key: unref(listsStore).currentListId,
+                  onBack: _cache[1] || (_cache[1] = ($event) => showSettings.value = false)
+                })) : unref(listsStore).currentList ? (openBlock(), createBlock(ListView, { key: 1 })) : (openBlock(), createBlock(unref(NcEmptyContent), {
+                  key: 2,
+                  name: unref(noListName),
+                  description: unref(noListDesc)
+                }, {
+                  icon: withCtx(() => [
+                    createVNode(unref(NcIconSvgWrapper), { svg: cartIcon })
+                  ]),
+                  _: 1
+                }, 8, ["name", "description"]))
+              ]),
+              _: 1
+            })
+          ]),
+          _: 1
+        }),
+        createVNode(OfflineIndicator)
+      ], 64);
     };
   }
 });
+const pinia = createPinia();
+pinia.use(offlinePersistPlugin);
 const app = createApp(_sfc_main);
-app.use(createPinia());
+app.use(pinia);
 app.mount("#shopping_list");
 //# sourceMappingURL=shopping_list-main.mjs.map

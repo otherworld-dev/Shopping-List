@@ -4,6 +4,7 @@ import { api } from '../composables/useApi'
 import type { ShoppingList } from '../types'
 import { showError } from '@nextcloud/dialogs'
 import { t } from '@nextcloud/l10n'
+import { markServerFetched } from '../offline/piniaPlugin'
 
 export const useListsStore = defineStore('lists', () => {
 	const lists = ref<ShoppingList[]>([])
@@ -27,6 +28,7 @@ export const useListsStore = defineStore('lists', () => {
 		try {
 			const response = await api.lists.getAll()
 			lists.value = response.data.ocs.data
+			markServerFetched('lists')
 		} catch (e) {
 			showError(t('shopping_list', 'Failed to load shopping lists'))
 			console.error(e)

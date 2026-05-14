@@ -1668,13 +1668,13 @@ function createInstrumentations(readonly2, shallow) {
           value = /* @__PURE__ */ toRaw(value);
         }
         const target = /* @__PURE__ */ toRaw(this);
-        const { has, get } = getProto(target);
+        const { has, get: get2 } = getProto(target);
         let hadKey = has.call(target, key);
         if (!hadKey) {
           key = /* @__PURE__ */ toRaw(key);
           hadKey = has.call(target, key);
         }
-        const oldValue = get.call(target, key);
+        const oldValue = get2.call(target, key);
         target.set(key, value);
         if (!hadKey) {
           trigger(target, "add", key, value);
@@ -1685,13 +1685,13 @@ function createInstrumentations(readonly2, shallow) {
       },
       delete(key) {
         const target = /* @__PURE__ */ toRaw(this);
-        const { has, get } = getProto(target);
+        const { has, get: get2 } = getProto(target);
         let hadKey = has.call(target, key);
         if (!hadKey) {
           key = /* @__PURE__ */ toRaw(key);
           hadKey = has.call(target, key);
         }
-        get ? get.call(target, key) : void 0;
+        get2 ? get2.call(target, key) : void 0;
         const result = target.delete(key);
         if (hadKey) {
           trigger(target, "delete", key, void 0);
@@ -1951,8 +1951,8 @@ class CustomRefImpl {
     this["__v_isRef"] = true;
     this._value = void 0;
     const dep = this.dep = new Dep();
-    const { get, set: set2 } = factory2(dep.track.bind(dep), dep.trigger.bind(dep));
-    this._get = get;
+    const { get: get2, set: set2 } = factory2(dep.track.bind(dep), dep.trigger.bind(dep));
+    this._get = get2;
     this._set = set2;
   }
   get value() {
@@ -5298,10 +5298,10 @@ function applyOptions(instance) {
   if (computedOptions) {
     for (const key in computedOptions) {
       const opt = computedOptions[key];
-      const get = isFunction$2(opt) ? opt.bind(publicThis, publicThis) : isFunction$2(opt.get) ? opt.get.bind(publicThis, publicThis) : NOOP;
+      const get2 = isFunction$2(opt) ? opt.bind(publicThis, publicThis) : isFunction$2(opt.get) ? opt.get.bind(publicThis, publicThis) : NOOP;
       const set2 = !isFunction$2(opt) && isFunction$2(opt.set) ? opt.set.bind(publicThis) : NOOP;
       const c2 = computed({
-        get,
+        get: get2,
         set: set2
       });
       Object.defineProperty(ctx, key, {
@@ -11239,7 +11239,7 @@ function isComputed(o2) {
 function createOptionsStore(id, options, pinia, hot) {
   const { state, actions, getters } = options;
   const initialState = pinia.state.value[id];
-  let store;
+  let store2;
   function setup() {
     if (!initialState && true) {
       {
@@ -11250,14 +11250,14 @@ function createOptionsStore(id, options, pinia, hot) {
     return assign(localState, actions, Object.keys(getters || {}).reduce((computedGetters, name) => {
       computedGetters[name] = markRaw(computed(() => {
         setActivePinia(pinia);
-        const store2 = pinia._s.get(id);
-        return getters[name].call(store2, store2);
+        const store22 = pinia._s.get(id);
+        return getters[name].call(store22, store22);
       }));
       return computedGetters;
     }, {}));
   }
-  store = createSetupStore(id, setup, options, pinia, hot, true);
-  return store;
+  store2 = createSetupStore(id, setup, options, pinia, hot, true);
+  return store2;
 }
 function createSetupStore($id, setup, options = {}, pinia, hot, isOptionsStore) {
   let scope;
@@ -11338,13 +11338,13 @@ function createSetupStore($id, setup, options = {}, pinia, hot, isOptionsStore) 
       triggerSubscriptions(actionSubscriptions, {
         args,
         name: wrappedAction[ACTION_NAME],
-        store,
+        store: store2,
         after,
         onError
       });
       let ret;
       try {
-        ret = fn2.apply(this && this.$id === $id ? this : store, args);
+        ret = fn2.apply(this && this.$id === $id ? this : store2, args);
       } catch (error) {
         triggerSubscriptions(onErrorCallbackList, error);
         throw error;
@@ -11387,8 +11387,8 @@ function createSetupStore($id, setup, options = {}, pinia, hot, isOptionsStore) 
     },
     $dispose
   };
-  const store = /* @__PURE__ */ reactive(partialStore);
-  pinia._s.set($id, store);
+  const store2 = /* @__PURE__ */ reactive(partialStore);
+  pinia._s.set($id, store2);
   const runWithContext = pinia._a && pinia._a.runWithContext || fallbackRunWithContext;
   const setupStore = runWithContext(() => pinia._e.run(() => (scope = effectScope()).run(() => setup({ action }))));
   for (const key in setupStore) {
@@ -11415,10 +11415,10 @@ function createSetupStore($id, setup, options = {}, pinia, hot, isOptionsStore) 
     } else ;
   }
   {
-    assign(store, setupStore);
-    assign(/* @__PURE__ */ toRaw(store), setupStore);
+    assign(store2, setupStore);
+    assign(/* @__PURE__ */ toRaw(store2), setupStore);
   }
-  Object.defineProperty(store, "$state", {
+  Object.defineProperty(store2, "$state", {
     get: () => pinia.state.value[$id],
     set: (state) => {
       $patch(($state) => {
@@ -11428,8 +11428,8 @@ function createSetupStore($id, setup, options = {}, pinia, hot, isOptionsStore) 
   });
   pinia._p.forEach((extender) => {
     {
-      assign(store, scope.run(() => extender({
-        store,
+      assign(store2, scope.run(() => extender({
+        store: store2,
         app: pinia._a,
         pinia,
         options: optionsForPlugin
@@ -11437,11 +11437,11 @@ function createSetupStore($id, setup, options = {}, pinia, hot, isOptionsStore) 
     }
   });
   if (initialState && isOptionsStore && options.hydrate) {
-    options.hydrate(store.$state, initialState);
+    options.hydrate(store2.$state, initialState);
   }
   isListening = true;
   isSyncListening = true;
-  return store;
+  return store2;
 }
 /*! #__NO_SIDE_EFFECTS__ */
 // @__NO_SIDE_EFFECTS__
@@ -11471,8 +11471,8 @@ function defineStore(idOrOptions, setup, setupOptions) {
         createOptionsStore(id, options, pinia);
       }
     }
-    const store = pinia._s.get(id);
-    return store;
+    const store2 = pinia._s.get(id);
+    return store2;
   }
   useStore.$id = id;
   return useStore;
@@ -35720,7 +35720,7 @@ function setMonth(date, month, options) {
   _date.setMonth(month, Math.min(day, daysInMonth));
   return _date;
 }
-function set(date, values, options) {
+function set$1(date, values, options) {
   let _date = toDate(date, options?.in);
   if (isNaN(+_date)) return constructFrom(date, NaN);
   if (values.year != null) _date.setFullYear(values.year);
@@ -36083,7 +36083,7 @@ const Fa = (e, t39) => e?.querySelector(`[data-dp-element="${t39}"]`), Ja = (e, 
   if (n2) return n2(e);
 }, _l = () => "ontouchstart" in window || navigator.maxTouchPoints > 0, On = (e, t39) => e ? Lt.MONTH_AND_YEAR : t39 ? Lt.YEAR : Lt.DATE, Bn = (e) => e < 10 ? `0${e}` : e, fn = (e, t39, l2, n2, a2, f2) => {
   const i2 = parse(e, t39.slice(0, e.length), /* @__PURE__ */ new Date(), { locale: f2 });
-  return isValid(i2) && isDate(i2) ? n2 || a2 ? i2 : set(i2, {
+  return isValid(i2) && isDate(i2) ? n2 || a2 ? i2 : set$1(i2, {
     hours: +l2.hours,
     minutes: +l2?.minutes,
     seconds: +l2?.seconds,
@@ -36116,13 +36116,13 @@ const Fa = (e, t39) => e?.querySelector(`[data-dp-element="${t39}"]`), Ja = (e, 
   );
   return new Date(n2).toISOString();
 }, Fe = (e, t39) => {
-  const l2 = H(JSON.parse(JSON.stringify(e))), n2 = set(l2, { hours: 0, minutes: 0, seconds: 0, milliseconds: 0 });
+  const l2 = H(JSON.parse(JSON.stringify(e))), n2 = set$1(l2, { hours: 0, minutes: 0, seconds: 0, milliseconds: 0 });
   return t39 ? startOfMonth(n2) : n2;
 }, Mt = (e, t39, l2, n2) => {
   let a2 = e ? H(e) : H();
   return (t39 || t39 === 0) && (a2 = setHours(a2, +t39)), (l2 || l2 === 0) && (a2 = setMinutes(a2, +l2)), (n2 || n2 === 0) && (a2 = setSeconds(a2, +n2)), setMilliseconds(a2, 0);
 }, Be = (e, t39) => !e || !t39 ? false : isBefore(Fe(e), Fe(t39)), $e = (e, t39) => !e || !t39 ? false : isEqual(Fe(e), Fe(t39)), Ee = (e, t39) => !e || !t39 ? false : isAfter(Fe(e), Fe(t39)), xt = (e, t39, l2) => e?.[0] && e?.[1] ? Ee(l2, e[0]) && Be(l2, e[1]) : e?.[0] && t39 ? Ee(l2, e[0]) && Be(l2, t39) || Be(l2, e[0]) && Ee(l2, t39) : false, it = (e) => {
-  const t39 = set(new Date(e), { date: 1 });
+  const t39 = set$1(new Date(e), { date: 1 });
   return Fe(t39);
 }, Sa = (e, t39, l2) => t39 && (l2 || l2 === 0) ? Object.fromEntries(
   ["hours", "minutes", "seconds"].map((n2) => n2 === t39 ? [n2, l2] : [n2, isNaN(+e[n2]) ? void 0 : +e[n2]])
@@ -36163,7 +36163,7 @@ const Fa = (e, t39) => e?.querySelector(`[data-dp-element="${t39}"]`), Ja = (e, 
     seconds: t39 ? getSeconds(H()) : 0
   };
   return Object.assign(l2, e);
-}, wt = (e, t39, l2) => [set(H(e), { date: 1 }), set(H(), { month: t39, year: l2, date: 1 })], pt = (e, t39, l2) => {
+}, wt = (e, t39, l2) => [set$1(H(e), { date: 1 }), set$1(H(), { month: t39, year: l2, date: 1 })], pt = (e, t39, l2) => {
   let n2 = e ? H(e) : H();
   return (t39 || t39 === 0) && (n2 = setMonth(n2, t39)), l2 && (n2 = setYear(n2, l2)), n2;
 }, Nn = (e, t39, l2, n2, a2) => {
@@ -36180,7 +36180,7 @@ const Fa = (e, t39) => e?.querySelector(`[data-dp-element="${t39}"]`), Ja = (e, 
 }, oa = (e, t39) => {
   if (t39) return e();
   throw new Error(Xa.prop("range"));
-}, za = (e) => Array.isArray(e) ? isValid(e[0]) && (e[1] ? isValid(e[1]) : true) : e ? isValid(e) : false, Fl = (e, t39) => set(t39 ?? H(), {
+}, za = (e) => Array.isArray(e) ? isValid(e[0]) && (e[1] ? isValid(e[1]) : true) : e ? isValid(e) : false, Fl = (e, t39) => set$1(t39 ?? H(), {
   hours: +e.hours || 0,
   minutes: +e.minutes || 0,
   seconds: +e.seconds || 0
@@ -36188,7 +36188,7 @@ const Fa = (e, t39) => e?.querySelector(`[data-dp-element="${t39}"]`), Ja = (e, 
   if (!e) return true;
   if (n2) {
     const a2 = l2 === "max" ? isBefore(e, t39) : isAfter(e, t39), f2 = { seconds: 0, milliseconds: 0 };
-    return a2 || isEqual(set(e, f2), set(t39, f2));
+    return a2 || isEqual(set$1(e, f2), set$1(t39, f2));
   }
   return l2 === "max" ? e.getTime() <= t39.getTime() : e.getTime() >= t39.getTime();
 }, Ra = (e, t39, l2) => e ? Fl(e, t39) : H(l2 ?? t39), vn = (e, t39, l2, n2, a2) => {
@@ -36198,12 +36198,12 @@ const Fa = (e, t39) => e?.querySelector(`[data-dp-element="${t39}"]`), Ja = (e, 
   }
   const f2 = Ra(e, n2, t39);
   return Pa(n2, f2, l2, !!t39) && a2;
-}, Ca = (e) => set(H(), Bt(e)), zl = (e, t39, l2) => {
+}, Ca = (e) => set$1(H(), Bt(e)), zl = (e, t39, l2) => {
   if (e instanceof Map) {
     const n2 = `${Bn(l2 + 1)}-${t39}`;
     return e.size ? e.has(n2) : false;
   }
-  return typeof e == "function" ? e(Fe(set(H(), { month: l2, year: t39 }), true)) : false;
+  return typeof e == "function" ? e(Fe(set$1(H(), { month: l2, year: t39 }), true)) : false;
 }, Hl = (e, t39, l2) => {
   if (e instanceof Map) {
     const n2 = `${Bn(l2 + 1)}-${t39}`;
@@ -36552,7 +36552,7 @@ const Fa = (e, t39) => e?.querySelector(`[data-dp-element="${t39}"]`), Ja = (e, 
       Mt(null, +o2[1].hours, +o2[1].minutes, o2[1].seconds)
     )
   ] : m2(o2, Mt(null, o2.hours, o2.minutes, o2.seconds)), L2 = (o2) => {
-    const X2 = set(H(), { date: 1 });
+    const X2 = set$1(H(), { date: 1 });
     return Array.isArray(o2) ? d2.value.enabled ? o2.map((B2) => m2(B2, pt(X2, +B2.month, +B2.year))) : oa(
       () => [
         m2(o2[0], pt(X2, +o2[0].month, +o2[0].year)),
@@ -36644,7 +36644,7 @@ const Fa = (e, t39) => e?.querySelector(`[data-dp-element="${t39}"]`), Ja = (e, 
     let h2 = v2;
     return l2.value.years.includes(getYear(h2)) ? (h2 = R2 ? addYears(v2, 1) : subYears(v2, 1), i2(h2, R2)) : h2;
   }, g2 = (v2, R2 = false) => {
-    const h2 = set(H(), { month: e.month, year: e.year });
+    const h2 = set$1(H(), { month: e.month, year: e.year });
     let T2 = v2 ? addMonths(h2, 1) : subMonths(h2, 1);
     e.disableYearSelect && (T2 = setYear(T2, e.year));
     let F2 = getMonth(T2), _2 = getYear(T2);
@@ -36652,7 +36652,7 @@ const Fa = (e, t39) => e?.querySelector(`[data-dp-element="${t39}"]`), Ja = (e, 
   }, d2 = (v2, R2, h2) => {
     t39("update-month-year", { month: v2, year: R2, fromNav: h2 });
   }, P2 = computed(() => (v2) => Nn(
-    set(H(), { month: e.month, year: e.year }),
+    set$1(H(), { month: e.month, year: e.year }),
     n2.value.maxDate,
     n2.value.minDate,
     e.preventMinMaxNavigation,
@@ -37299,7 +37299,7 @@ const Fa = (e, t39) => e?.querySelector(`[data-dp-element="${t39}"]`), Ja = (e, 
   emit: v2
 }) => {
   const R2 = computed(() => qa(i2.yearRange, i2.locale, i2.reverseYears)), h2 = /* @__PURE__ */ ref([false]), T2 = computed(() => (O2, J2) => {
-    const ce2 = set(it(/* @__PURE__ */ new Date()), {
+    const ce2 = set$1(it(/* @__PURE__ */ new Date()), {
       month: P2.value(O2),
       year: d2.value(O2)
     }), pe2 = J2 ? endOfYear(ce2) : startOfYear(ce2);
@@ -37320,12 +37320,12 @@ const Fa = (e, t39) => e?.querySelector(`[data-dp-element="${t39}"]`), Ja = (e, 
           year: getYear(f2.value[1])
         };
       else {
-        const J2 = set(H(), a2.value[O2 - 1]);
+        const J2 = set$1(H(), a2.value[O2 - 1]);
         a2.value[O2] = { month: getMonth(J2), year: getYear(addYears(J2, 1)) };
       }
   }, C2 = (O2) => {
     if (!O2) return _2();
-    const J2 = set(H(), a2.value[O2]);
+    const J2 = set$1(H(), a2.value[O2]);
     return a2.value[0].year = getYear(subYears(J2, e.value.count - 1)), _2();
   }, M2 = (O2, J2) => {
     const ce2 = differenceInYears(J2, O2);
@@ -37731,7 +37731,7 @@ const Fa = (e, t39) => e?.querySelector(`[data-dp-element="${t39}"]`), Ja = (e, 
     onMounted(() => {
       n2("mounted");
     });
-    const L2 = (r2) => set(/* @__PURE__ */ new Date(), {
+    const L2 = (r2) => set$1(/* @__PURE__ */ new Date(), {
       hours: r2.hours,
       minutes: r2.minutes,
       seconds: a2.enableSeconds ? r2.seconds : 0,
@@ -37744,7 +37744,7 @@ const Fa = (e, t39) => e?.querySelector(`[data-dp-element="${t39}"]`), Ja = (e, 
         return !a2.validateTime(r2, oe2);
       }
       return false;
-    }, O2 = computed(() => (r2) => !re2(+a2[r2] + +a2[`${r2}Increment`], r2) || ee2(r2, true)), J2 = computed(() => (r2) => !re2(+a2[r2] - +a2[`${r2}Increment`], r2) || ee2(r2, false)), ce2 = (r2, E2) => add(set(H(), r2), E2), pe2 = (r2, E2) => sub(set(H(), r2), E2), p2 = computed(
+    }, O2 = computed(() => (r2) => !re2(+a2[r2] + +a2[`${r2}Increment`], r2) || ee2(r2, true)), J2 = computed(() => (r2) => !re2(+a2[r2] - +a2[`${r2}Increment`], r2) || ee2(r2, false)), ce2 = (r2, E2) => add(set$1(H(), r2), E2), pe2 = (r2, E2) => sub(set$1(H(), r2), E2), p2 = computed(
       () => ({
         dp__time_col: true,
         dp__time_col_block: !a2.timePickerInline,
@@ -38243,10 +38243,10 @@ const Fa = (e, t39) => e?.querySelector(`[data-dp-element="${t39}"]`), Ja = (e, 
     if (e.startTime) {
       if (Array.isArray(e.startTime)) {
         const $2 = _2(e.startTime[0]), ee2 = _2(e.startTime[1]);
-        return [set(H(), $2), set(H(), ee2)];
+        return [set$1(H(), $2), set$1(H(), ee2)];
       }
       const U2 = _2(e.startTime);
-      return set(H(), U2);
+      return set$1(H(), U2);
     }
     return i2.value.enabled ? [null, null] : null;
   }, M2 = () => {
@@ -38892,7 +38892,7 @@ const Fa = (e, t39) => e?.querySelector(`[data-dp-element="${t39}"]`), Ja = (e, 
   }, se2 = () => Array.isArray(d2.value) && F2.value.enabled ? getMonth(d2.value[0]) === getMonth(d2.value[1] ?? d2.value[0]) : false, u2 = (b2 = /* @__PURE__ */ new Date(), ae2 = false) => {
     if ((!h2.value.count || !h2.value.static || ae2) && te2(0, getMonth(b2), getYear(b2)), h2.value.count && (!d2.value || se2() || !h2.value.solo) && (!h2.value.solo || ae2))
       for (let ve2 = 1; ve2 < h2.value.count; ve2++) {
-        const N2 = set(H(), { month: pe2.value(ve2 - 1), year: p2.value(ve2 - 1) }), ue2 = add(N2, { months: 1 });
+        const N2 = set$1(H(), { month: pe2.value(ve2 - 1), year: p2.value(ve2 - 1) }), ue2 = add(N2, { months: 1 });
         P2.value[ve2] = { month: getMonth(ue2), year: getYear(ue2) };
       }
   }, re2 = (b2, ae2) => {
@@ -38922,15 +38922,15 @@ const Fa = (e, t39) => e?.querySelector(`[data-dp-element="${t39}"]`), Ja = (e, 
     const ae2 = d2.value;
     x2(ae2, b2), h2.value.count && h2.value.solo && B2();
   }, o2 = (b2, ae2) => {
-    const ve2 = set(H(), { month: pe2.value(ae2), year: p2.value(ae2) }), N2 = b2 < 0 ? addMonths(ve2, 1) : subMonths(ve2, 1);
+    const ve2 = set$1(H(), { month: pe2.value(ae2), year: p2.value(ae2) }), N2 = b2 < 0 ? addMonths(ve2, 1) : subMonths(ve2, 1);
     m2(getMonth(N2), getYear(N2), b2 < 0, e.preventMinMaxNavigation) && (te2(ae2, getMonth(N2), getYear(N2)), t39("update-month-year", { instance: ae2, month: getMonth(N2), year: getYear(N2) }), h2.value.count && !h2.value.solo && X2(ae2), l2());
   }, X2 = (b2) => {
     for (let ae2 = b2 - 1; ae2 >= 0; ae2--) {
-      const ve2 = subMonths(set(H(), { month: pe2.value(ae2 + 1), year: p2.value(ae2 + 1) }), 1);
+      const ve2 = subMonths(set$1(H(), { month: pe2.value(ae2 + 1), year: p2.value(ae2 + 1) }), 1);
       te2(ae2, getMonth(ve2), getYear(ve2));
     }
     for (let ae2 = b2 + 1; ae2 <= h2.value.count - 1; ae2++) {
-      const ve2 = addMonths(set(H(), { month: pe2.value(ae2 - 1), year: p2.value(ae2 - 1) }), 1);
+      const ve2 = addMonths(set$1(H(), { month: pe2.value(ae2 - 1), year: p2.value(ae2 - 1) }), 1);
       te2(ae2, getMonth(ve2), getYear(ve2));
     }
   }, B2 = () => {
@@ -39022,7 +39022,7 @@ const Fa = (e, t39) => e?.querySelector(`[data-dp-element="${t39}"]`), Ja = (e, 
     if (te2(0, ae2, ve2), h2.value.count > 0)
       for (let N2 = 1; N2 < h2.value.count; N2++) {
         const ue2 = El(
-          set(H(b2), { year: p2.value(N2 - 1), month: pe2.value(N2 - 1) })
+          set$1(H(b2), { year: p2.value(N2 - 1), month: pe2.value(N2 - 1) })
         );
         te2(N2, ue2.month, ue2.year);
       }
@@ -39349,7 +39349,7 @@ const Fa = (e, t39) => e?.querySelector(`[data-dp-element="${t39}"]`), Ja = (e, 
     }
     return false;
   }, ee2 = (y2, V2) => y2.quarter === getQuarter(V2) && y2.year === getYear(V2), O2 = (y2) => typeof f2.value == "function" ? f2.value({ quarter: getQuarter(y2), year: getYear(y2) }) : !!f2.value.quarters.find((V2) => ee2(V2, y2)), J2 = computed(() => (y2) => {
-    const V2 = set(/* @__PURE__ */ new Date(), { year: R2.value(y2) });
+    const V2 = set$1(/* @__PURE__ */ new Date(), { year: R2.value(y2) });
     return eachQuarterOfInterval({
       start: startOfYear(V2),
       end: endOfYear(V2)
@@ -42801,6 +42801,104 @@ const publicApi = {
   reorder: (token2, sortedIds) => cancelableClient.post(url(`public/${token2}/items/reorder`), { sortedIds }),
   getAreas: (token2) => cancelableClient.get(url(`public/${token2}/areas`))
 };
+function promisifyRequest(request) {
+  return new Promise((resolve2, reject) => {
+    request.oncomplete = request.onsuccess = () => resolve2(request.result);
+    request.onabort = request.onerror = () => reject(request.error);
+  });
+}
+function createStore(dbName, storeName) {
+  let dbp;
+  const getDB = () => {
+    if (dbp)
+      return dbp;
+    const request = indexedDB.open(dbName);
+    request.onupgradeneeded = () => request.result.createObjectStore(storeName);
+    dbp = promisifyRequest(request);
+    dbp.then((db) => {
+      db.onclose = () => dbp = void 0;
+    }, () => {
+    });
+    return dbp;
+  };
+  return (txMode, callback) => getDB().then((db) => callback(db.transaction(storeName, txMode).objectStore(storeName)));
+}
+let defaultGetStoreFunc;
+function defaultGetStore() {
+  if (!defaultGetStoreFunc) {
+    defaultGetStoreFunc = createStore("keyval-store", "keyval");
+  }
+  return defaultGetStoreFunc;
+}
+function get(key, customStore = defaultGetStore()) {
+  return customStore("readonly", (store2) => promisifyRequest(store2.get(key)));
+}
+function set(key, value, customStore = defaultGetStore()) {
+  return customStore("readwrite", (store2) => {
+    store2.put(value, key);
+    return promisifyRequest(store2.transaction);
+  });
+}
+const store = createStore("shopping-list-offline", "cache");
+const pendingWrites = /* @__PURE__ */ new Map();
+async function loadStoreState(storeName) {
+  try {
+    return await get(storeName, store);
+  } catch {
+    return void 0;
+  }
+}
+async function saveStoreState(storeName, data) {
+  const existing = pendingWrites.get(storeName);
+  if (existing) clearTimeout(existing);
+  pendingWrites.set(storeName, setTimeout(async () => {
+    pendingWrites.delete(storeName);
+    try {
+      await set(storeName, data, store);
+    } catch {
+    }
+  }, 100));
+}
+async function loadValue(key) {
+  try {
+    return await get(key, store);
+  } catch {
+    return void 0;
+  }
+}
+async function saveValue(key, data) {
+  try {
+    await set(key, data, store);
+  } catch {
+  }
+}
+const PERSISTED_STORES = /* @__PURE__ */ new Set(["items", "lists", "shopAreas", "tags"]);
+const serverFetched = /* @__PURE__ */ new Set();
+function markServerFetched(storeId) {
+  serverFetched.add(storeId);
+}
+const offlinePersistPlugin = ({ store: store2 }) => {
+  if (!PERSISTED_STORES.has(store2.$id)) return;
+  loadStoreState(store2.$id).then((cached) => {
+    if (serverFetched.has(store2.$id)) return;
+    if (cached) {
+      store2.$patch(cached);
+    }
+    if (store2.$id === "lists") {
+      loadValue("currentListId").then((id) => {
+        if (id != null && store2.currentListId == null) {
+          store2.selectList(id);
+        }
+      });
+    }
+  });
+  store2.$subscribe((_mutation, state) => {
+    saveStoreState(store2.$id, JSON.parse(JSON.stringify(state)));
+    if (store2.$id === "lists" && state.currentListId != null) {
+      saveValue("currentListId", state.currentListId);
+    }
+  });
+};
 var Permission = /* @__PURE__ */ ((Permission2) => {
   Permission2[Permission2["READ"] = 0] = "READ";
   Permission2[Permission2["WRITE"] = 1] = "WRITE";
@@ -42813,70 +42911,76 @@ var ShareType = /* @__PURE__ */ ((ShareType2) => {
   return ShareType2;
 })(ShareType || {});
 export {
-  runtimeDom_esmBundler as $,
-  NcIconSvgWrapper as A,
-  _export_sfc as B,
-  NOOP as C,
-  extend$1 as D,
-  isString$1 as E,
+  parseStringStyle as $,
+  NcActionButton as A,
+  NcAppNavigationItem as B,
+  NcAppNavigationCaption as C,
+  createBaseVNode as D,
+  NcIconSvgWrapper as E,
   Fragment as F,
-  NO as G,
-  isSymbol as H,
-  isBuiltInDirective as I,
-  capitalize as J,
-  camelize as K,
-  EMPTY_OBJ as L,
-  isObject$2 as M,
+  _export_sfc as G,
+  NOOP as H,
+  extend$1 as I,
+  isString$1 as J,
+  NO as K,
+  isSymbol as L,
+  isBuiltInDirective as M,
   NcButton as N,
-  toHandlerKey as O,
-  isArray$1 as P,
-  isOn as Q,
-  isReservedProp as R,
-  isVoidTag as S,
-  isHTMLTag as T,
-  isSVGTag as U,
-  isMathMLTag as V,
-  parseStringStyle as W,
-  makeMap as X,
-  generateCodeFrame as Y,
-  getAugmentedNamespace as Z,
+  capitalize as O,
+  camelize as P,
+  EMPTY_OBJ as Q,
+  isObject$2 as R,
+  toHandlerKey as S,
+  isArray$1 as T,
+  isOn as U,
+  isReservedProp as V,
+  isVoidTag as W,
+  isHTMLTag as X,
+  isSVGTag as Y,
+  isMathMLTag as Z,
   _export_sfc$1 as _,
   createVNode as a,
-  shared_esmBundler as a0,
-  watch as a1,
-  onMounted as a2,
-  onUnmounted as a3,
-  normalizeClass as a4,
-  withDirectives as a5,
-  vModelText as a6,
-  withKeys as a7,
-  withModifiers as a8,
-  Teleport as a9,
-  normalizeStyle as aa,
-  createStaticVNode as ab,
-  nextTick as ac,
-  generateOcsUrl as ad,
-  cancelableClient as ae,
-  ShareType as af,
-  Permission as ag,
-  generateUrl as ah,
-  getCurrentUser as ai,
-  NcAvatar as aj,
-  NcLoadingIcon as ak,
-  NcAppNavigation as al,
-  NcAppContent as am,
-  NcContent as an,
-  createApp as ao,
-  createPinia as ap,
-  publicApi as aq,
-  loadState as ar,
-  dist as as,
-  requireMajor as at,
-  requireValid as au,
-  dist$1 as av,
-  process$1 as aw,
-  commonjsGlobal as ax,
-  Buffer as ay,
+  makeMap as a0,
+  generateCodeFrame as a1,
+  getAugmentedNamespace as a2,
+  runtimeDom_esmBundler as a3,
+  shared_esmBundler as a4,
+  watch as a5,
+  onMounted as a6,
+  onUnmounted as a7,
+  normalizeClass as a8,
+  withDirectives as a9,
+  requireValid as aA,
+  dist$1 as aB,
+  process$1 as aC,
+  commonjsGlobal as aD,
+  Buffer as aE,
+  vModelText as aa,
+  withKeys as ab,
+  withModifiers as ac,
+  normalizeStyle as ad,
+  Teleport as ae,
+  createStaticVNode as af,
+  nextTick as ag,
+  generateOcsUrl as ah,
+  cancelableClient as ai,
+  ShareType as aj,
+  Permission as ak,
+  generateUrl as al,
+  getCurrentUser as am,
+  NcAvatar as an,
+  NcLoadingIcon as ao,
+  Transition as ap,
+  NcAppNavigation as aq,
+  NcAppContent as ar,
+  NcContent as as,
+  createPinia as at,
+  offlinePersistPlugin as au,
+  createApp as av,
+  publicApi as aw,
+  loadState as ax,
+  dist as ay,
+  requireMajor as az,
   createTextVNode as b,
   createElementBlock as c,
   renderSlot as d,
@@ -42891,16 +42995,16 @@ export {
   computed as m,
   api as n,
   openBlock as o,
-  translate as p,
-  renderList as q,
+  markServerFetched as p,
+  translate as q,
   resolveComponent as r,
-  createBlock as s,
+  loadValue as s,
   toDisplayString as t,
   unref as u,
-  NcAppNavigationItem as v,
+  saveValue as v,
   withCtx as w,
-  NcActionButton as x,
-  NcAppNavigationCaption as y,
-  createBaseVNode as z
+  readonly as x,
+  renderList as y,
+  createBlock as z
 };
-//# sourceMappingURL=index-Be71WN-U.chunk.mjs.map
+//# sourceMappingURL=index-C7e42v_8.chunk.mjs.map
