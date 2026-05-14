@@ -1,6 +1,6 @@
 const appName = "shopping_list";
-const appVersion = "1.1.1";
-import { e as defineComponent, p as translate, a2 as onMounted, aq as publicApi, o as openBlock, c as createElementBlock, z as createBaseVNode, t as toDisplayString, a5 as withDirectives, a6 as vModelText, a7 as withKeys, a8 as withModifiers, u as unref, g as createCommentVNode, a as createVNode, ak as NcLoadingIcon, F as Fragment, q as renderList, aa as normalizeStyle, a4 as normalizeClass, b as createTextVNode, l as ref, m as computed, ag as Permission, B as _export_sfc, ar as loadState, s as createBlock, ao as createApp, ap as createPinia } from "./index-DZKAvZnl.chunk.mjs";
+const appVersion = "1.2.0";
+import { e as defineComponent, p as translate, a2 as onMounted, aq as publicApi, o as openBlock, c as createElementBlock, z as createBaseVNode, t as toDisplayString, a5 as withDirectives, a6 as vModelText, a7 as withKeys, a8 as withModifiers, u as unref, g as createCommentVNode, a as createVNode, ak as NcLoadingIcon, F as Fragment, q as renderList, aa as normalizeStyle, a4 as normalizeClass, b as createTextVNode, l as ref, m as computed, ag as Permission, B as _export_sfc, ar as loadState, s as createBlock, ao as createApp, ap as createPinia } from "./index-Be71WN-U.chunk.mjs";
 const _hoisted_1$1 = { class: "public-list" };
 const _hoisted_2$1 = { class: "public-list__card" };
 const _hoisted_3$1 = {
@@ -245,7 +245,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const PublicListView = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-90f71608"]]);
+const PublicListView = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-1a913116"]]);
 const _hoisted_1 = { class: "public-app" };
 const _hoisted_2 = {
   key: 0,
@@ -363,7 +363,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const PublicApp = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-f793c085"]]);
+const PublicApp = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-093c6dcb"]]);
 const app = createApp(PublicApp);
 app.use(createPinia());
 app.mount("#shopping_list_public");

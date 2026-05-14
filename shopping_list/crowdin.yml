@@ -3,4 +3,4 @@ api_token_env: CROWDIN_PERSONAL_TOKEN
 
 files:
   - source: /translationfiles/templates/shopping_list.pot
-    translation: /translationfiles/%locale%/shopping_list.po
+    translation: /translationfiles/%locale_with_underscore%/shopping_list.po
