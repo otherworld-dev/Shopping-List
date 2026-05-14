@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-05-12 18:24\n"
+"PO-Revision-Date: 2026-05-13 18:12\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -19,35 +19,35 @@ msgstr ""
 
 #: src/App.vue
 msgid "No list selected"
-msgstr ""
+msgstr "Keine Liste ausgewählt"
 
 #: src/App.vue
 msgid "Select a list from the sidebar or create a new one"
-msgstr ""
+msgstr "Wählen Sie eine Liste aus der Seitenleiste oder erstellen Sie eine neue"
 
 #: src/PublicApp.vue
 msgid "Password required"
-msgstr ""
+msgstr "Passwort erforderlich"
 
 #: src/PublicApp.vue
 msgid "This list is password protected."
-msgstr ""
+msgstr "Diese Liste ist passwortgeschützt."
 
 #: src/PublicApp.vue
 msgid "Enter password"
-msgstr ""
+msgstr "Passwort eingeben"
 
 #: src/PublicApp.vue
 msgid "Unlock"
-msgstr ""
+msgstr "Entsperren"
 
 #: src/PublicApp.vue
 msgid "Incorrect password"
-msgstr ""
+msgstr "Falsches Passwort"
 
 #: src/PublicApp.vue
 msgid "Not found"
-msgstr ""
+msgstr "Nicht gefunden"
 
 #: src/PublicApp.vue
 msgid "This shared list does not exist or has expired."
