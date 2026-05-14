@@ -3,17 +3,17 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-05-12 18:52\n"
+"PO-Revision-Date: 2026-05-14 21:53\n"
 "Last-Translator: \n"
-"Language-Team: Portuguese, Brazilian\n"
-"Language: pt_BR\n"
+"Language-Team: Portuguese\n"
+"Language: pt_PT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Crowdin-Project: shopping-list-for-nextcloud\n"
 "X-Crowdin-Project-ID: 896886\n"
-"X-Crowdin-Language: pt-BR\n"
+"X-Crowdin-Language: pt-PT\n"
 "X-Crowdin-File: /main/shopping_list/translationfiles/templates/shopping_list.pot\n"
 "X-Crowdin-File-ID: 11\n"
 
@@ -375,5 +375,25 @@ msgstr ""
 
 #: src/stores/tags.ts
 msgid "Failed to delete tag"
+msgstr ""
+
+#: src/components/OfflineIndicator.vue
+msgid "Syncing changes…"
+msgstr ""
+
+#: src/components/OfflineIndicator.vue
+msgid "Offline — {count} pending"
+msgstr ""
+
+#: src/components/OfflineIndicator.vue
+msgid "You're offline"
+msgstr ""
+
+#: src/components/OfflineIndicator.vue
+msgid "All changes synced"
+msgstr ""
+
+#: src/components/OfflineIndicator.vue
+msgid "{count} changes pending"
 msgstr ""
 
