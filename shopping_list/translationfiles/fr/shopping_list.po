@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-05-12 18:24\n"
+"PO-Revision-Date: 2026-05-14 21:53\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -375,5 +375,25 @@ msgstr ""
 
 #: src/stores/tags.ts
 msgid "Failed to delete tag"
+msgstr ""
+
+#: src/components/OfflineIndicator.vue
+msgid "Syncing changes…"
+msgstr ""
+
+#: src/components/OfflineIndicator.vue
+msgid "Offline — {count} pending"
+msgstr ""
+
+#: src/components/OfflineIndicator.vue
+msgid "You're offline"
+msgstr ""
+
+#: src/components/OfflineIndicator.vue
+msgid "All changes synced"
+msgstr ""
+
+#: src/components/OfflineIndicator.vue
+msgid "{count} changes pending"
 msgstr ""
 
