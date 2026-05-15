@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-05-15 18:32\n"
+"PO-Revision-Date: 2026-05-15 19:45\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -19,11 +19,11 @@ msgstr ""
 
 #: src/App.vue
 msgid "No list selected"
-msgstr "Keine Liste ausgewählt"
+msgstr "Keine Liste gewählt"
 
 #: src/App.vue
 msgid "Select a list from the sidebar or create a new one"
-msgstr "Wählen Sie eine Liste aus der Seitenleiste oder erstellen Sie eine neue"
+msgstr "Eine Liste aus der Seitenleiste auswählen, oder eine neue erstellen"
 
 #: src/PublicApp.vue
 msgid "Password required"
@@ -59,341 +59,341 @@ msgstr "Zurück zur Liste"
 
 #: src/components/AreaKeywordsSettings.vue src/components/ListSidebar.vue
 msgid "Manage Areas"
-msgstr "Bereiche verwalten"
+msgstr "Kategorien verwalten"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Manage shop areas, keywords, and display order. Keywords auto-detect which area an item belongs to when added or pasted."
-msgstr ""
+msgstr "Shopkategorien, Stichwörter und Anzeigereihenfolge verwalten. Stichwort-Erkennung weist Artikel automatisch einem Bereich zu, wenn sie hinzugefügt werden."
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Search keywords..."
-msgstr ""
+msgstr "Stichwort suchen..."
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Add keyword..."
-msgstr ""
+msgstr "Stichwort hinzufügen..."
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "No keywords"
-msgstr ""
+msgstr "Keine Stichwörter"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Rename"
-msgstr ""
+msgstr "Umbenennen"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Delete area"
-msgstr ""
+msgstr "Kategorie löschen"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Move up"
-msgstr ""
+msgstr "Nach oben"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Move down"
-msgstr ""
+msgstr "Nach unten"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Change color"
-msgstr ""
+msgstr "Farbe ändern"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "New area name..."
-msgstr ""
+msgstr "Neuer Kategoriename..."
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Add area"
-msgstr ""
+msgstr "Kategorie hinzufügen"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Delete \"{name}\"? Items in this area will become uncategorized."
-msgstr ""
+msgstr "\"{name}\" löschen? Elemente in dieser Kategorie werden unkategorisiert."
 
 #: src/components/ItemEditor.vue src/components/PublicListView.vue
 msgid "Add an item to list..."
-msgstr ""
+msgstr "Artikel zur Liste hinzufügen..."
 
 #: src/components/ItemEditor.vue
 msgid "Area"
-msgstr ""
+msgstr "Kategorie"
 
 #: src/components/ItemEditor.vue
 msgid "No match"
-msgstr ""
+msgstr "Keine Übereinstimmung"
 
 #: src/components/ItemRow.vue
 msgid "Qty"
-msgstr ""
+msgstr "Menge"
 
 #: src/components/ItemRow.vue
 msgid "Delete"
-msgstr ""
+msgstr "Löschen"
 
 #: src/components/ListSidebar.vue
 msgid "New list"
-msgstr ""
+msgstr "Neue Liste"
 
 #: src/components/ListSidebar.vue
 msgid "Rename list"
-msgstr ""
+msgstr "Liste umbenennen"
 
 #: src/components/ListSidebar.vue
 msgid "Delete list"
-msgstr ""
+msgstr "Liste löschen"
 
 #: src/components/ListSidebar.vue
 msgid "Shared with me"
-msgstr ""
+msgstr "Mit mir geteilt"
 
 #: src/components/ListSidebar.vue
 msgid "No shopping lists"
-msgstr ""
+msgstr "Keine Einkaufslisten"
 
 #: src/components/ListSidebar.vue
 msgid "Create your first shopping list to get started"
-msgstr ""
+msgstr "Erstelle die erste Einkaufsliste, um loszulegen"
 
 #: src/components/ListSidebar.vue
 msgid "New shopping list"
-msgstr ""
+msgstr "Neue Einkaufsliste"
 
 #: src/components/ListView.vue
 msgid "Share"
-msgstr ""
+msgstr "Freigeben"
 
 #: src/components/ListView.vue src/components/PublicListView.vue
 msgid "No items yet"
-msgstr ""
+msgstr "Noch keine Einträge"
 
 #: src/components/ListView.vue
 msgid "Add your first item above"
-msgstr ""
+msgstr "Ersten Artikel oben hinzufügen"
 
 #: src/components/ListView.vue src/components/PublicListView.vue
 msgid "Uncategorized"
-msgstr ""
+msgstr "Unkategorisiert"
 
 #: src/components/ListView.vue src/components/PublicListView.vue
 msgid "Checked off"
-msgstr ""
+msgstr "Deaktiviert"
 
 #: src/components/ListView.vue
 msgid "Restore all"
-msgstr ""
+msgstr "Alle wiederherstellen"
 
 #: src/components/ListView.vue
 msgid "Delete all"
-msgstr ""
+msgstr "Alle löschen"
 
 #: src/components/ShareDialog.vue
 msgid "Share list"
-msgstr ""
+msgstr "Liste freigeben"
 
 #: src/components/ShareDialog.vue
 msgid "Search users or groups..."
-msgstr ""
+msgstr "Benutzer oder Gruppen suchen..."
 
 #: src/components/ShareDialog.vue
 msgid "No users found"
-msgstr ""
+msgstr "Keine Benutzer gefunden"
 
 #: src/components/ShareDialog.vue
 msgid "Group"
-msgstr ""
+msgstr "Gruppe"
 
 #: src/components/ShareDialog.vue
 msgid "Shared with"
-msgstr ""
+msgstr "An ich freigegeben"
 
 #: src/components/ShareDialog.vue
 msgid "Can view"
-msgstr ""
+msgstr "Darf anzeigen"
 
 #: src/components/ShareDialog.vue
 msgid "Can edit"
-msgstr ""
+msgstr "Darf bearbeiten"
 
 #: src/components/ShareDialog.vue
 msgid "Search above to share this list with other users."
-msgstr ""
+msgstr "Suche oben, um diese Liste mit anderen Benutzern zu teilen."
 
 #: src/components/ShareDialog.vue
 msgid "group"
-msgstr ""
+msgstr "Gruppe"
 
 #: src/components/ShareDialog.vue
 msgid "Public link"
-msgstr ""
+msgstr "Öffentlicher Link"
 
 #: src/components/ShareDialog.vue
 msgid "Create public link"
-msgstr ""
+msgstr "Öffentlichen Link erstellen"
 
 #: src/components/ShareDialog.vue
 msgid "Copy link"
-msgstr ""
+msgstr "Link kopieren"
 
 #: src/components/ShareDialog.vue
 msgid "Copied!"
-msgstr ""
+msgstr "Kopiert!"
 
 #: src/components/ShareDialog.vue
 msgid "Permission"
-msgstr ""
+msgstr "Berechtigung"
 
 #: src/components/ShareDialog.vue
 msgid "Password"
-msgstr ""
+msgstr "Passwort"
 
 #: src/components/ShareDialog.vue
 msgid "Password set"
-msgstr ""
+msgstr "Passwort gesetzt"
 
 #: src/components/ShareDialog.vue
 msgid "Optional"
-msgstr ""
+msgstr "Optional"
 
 #: src/components/ShareDialog.vue
 msgid "Set"
-msgstr ""
+msgstr "Setzen"
 
 #: src/components/ShareDialog.vue
 msgid "Remove"
-msgstr ""
+msgstr "Entfernen"
 
 #: src/components/ShareDialog.vue
 msgid "Expires"
-msgstr ""
+msgstr "Gültig bis"
 
 #: src/components/ShareDialog.vue
 msgid "Delete public link"
-msgstr ""
+msgstr "Öffentlichen Link löschen"
 
 #: src/components/TagInput.vue
 msgid "Add tags..."
-msgstr ""
+msgstr "Tags hinzufügen..."
 
 #: src/stores/items.ts
 msgid "Failed to load items"
-msgstr ""
+msgstr "Fehler beim Laden der Elemente"
 
 #: src/stores/items.ts
 msgid "\"{name}\" updated — quantity merged"
-msgstr ""
+msgstr "\"{name}\" aktualisiert — Menge zusammengeführt"
 
 #: src/stores/items.ts
 msgid "Failed to add item"
-msgstr ""
+msgstr "Hinzufügen fehlgeschlagen"
 
 #: src/stores/items.ts
 msgid "Failed to update item"
-msgstr ""
+msgstr "Aktualisierung fehlgeschlagen"
 
 #: src/stores/items.ts
 msgid "Failed to delete item"
-msgstr ""
+msgstr "Löschen fehlgeschlagen"
 
 #: src/stores/items.ts
 msgid "Failed to reorder items"
-msgstr ""
+msgstr "Umreihen fehlgeschlagen"
 
 #: src/stores/items.ts
 msgid "Failed to clear checked items"
-msgstr ""
+msgstr "Fehler beim Löschen der markierten Elemente"
 
 #: src/stores/items.ts
 msgid "Failed to uncheck items"
-msgstr ""
+msgstr "Fehler beim Abwählen der Einträge"
 
 #: src/stores/lists.ts
 msgid "Failed to load shopping lists"
-msgstr ""
+msgstr "Laden der Einkaufslisten fehlgeschlagen"
 
 #: src/stores/lists.ts
 msgid "Failed to create list"
-msgstr ""
+msgstr "Liste konnte nicht erstellt werden"
 
 #: src/stores/lists.ts
 msgid "Failed to update list"
-msgstr ""
+msgstr "Liste konnte nicht aktualisiert werden"
 
 #: src/stores/lists.ts
 msgid "Failed to delete list"
-msgstr ""
+msgstr "Liste konnte nicht gelöscht werden"
 
 #: src/stores/shares.ts
 msgid "Failed to load shares"
-msgstr ""
+msgstr "Fehler beim Laden der Freigaben"
 
 #: src/stores/shares.ts
 msgid "Failed to share list"
-msgstr ""
+msgstr "Liste konnte nicht freigegeben werden"
 
 #: src/stores/shares.ts
 msgid "Failed to update share"
-msgstr ""
+msgstr "Freigabe konnte nicht aktualisiert werden"
 
 #: src/stores/shares.ts
 msgid "Failed to remove share"
-msgstr ""
+msgstr "Freigabe konnte nicht entfernt werden"
 
 #: src/stores/shares.ts
 msgid "Failed to create public link"
-msgstr ""
+msgstr "Fehler beim Erstellen des öffentlichen Links"
 
 #: src/stores/shares.ts
 msgid "Failed to update public link"
-msgstr ""
+msgstr "Fehler beim Aktualisieren des öffentlichen Links"
 
 #: src/stores/shares.ts
 msgid "Failed to remove public link"
-msgstr ""
+msgstr "Fehler beim Entfernen des öffentlichen Links"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to load shop areas"
-msgstr ""
+msgstr "Fehler beim Laden der Shopkategorien"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to create shop area"
-msgstr ""
+msgstr "Fehler beim Erstellen der Shopkategorie"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to update shop area"
-msgstr ""
+msgstr "Fehler beim Aktualisieren der Shopkategorie"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to delete shop area"
-msgstr ""
+msgstr "Fehler beim Löschen der Shopkategorie"
 
 #: src/stores/tags.ts
 msgid "Failed to load tags"
-msgstr ""
+msgstr "Fehler beim Laden der Tags"
 
 #: src/stores/tags.ts
 msgid "Failed to create tag"
-msgstr ""
+msgstr "Fehler beim Erstellen des Tags"
 
 #: src/stores/tags.ts
 msgid "Failed to delete tag"
-msgstr ""
+msgstr "Fehler beim Löschen des Tags"
 
 #: src/components/OfflineIndicator.vue
 msgid "Syncing changes…"
-msgstr ""
+msgstr "Synchronisiere Änderungen…"
 
 #: src/components/OfflineIndicator.vue
 msgid "Offline — {count} pending"
-msgstr ""
+msgstr "Offline — {count} ausstehend"
 
 #: src/components/OfflineIndicator.vue
 msgid "You're offline"
-msgstr ""
+msgstr "Du bist offline"
 
 #: src/components/OfflineIndicator.vue
 msgid "All changes synced"
-msgstr ""
+msgstr "Alle Änderungen synchronisiert"
 
 #: src/components/OfflineIndicator.vue
 msgid "{count} changes pending"
-msgstr ""
+msgstr "{count} ausstehende Änderungen"
 
