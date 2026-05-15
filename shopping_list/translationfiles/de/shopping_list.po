@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-05-14 21:53\n"
+"PO-Revision-Date: 2026-05-15 18:32\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -51,15 +51,15 @@ msgstr "Nicht gefunden"
 
 #: src/PublicApp.vue
 msgid "This shared list does not exist or has expired."
-msgstr ""
+msgstr "Diese Liste existiert nicht oder ist abgelaufen."
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Back to list"
-msgstr ""
+msgstr "Zurück zur Liste"
 
 #: src/components/AreaKeywordsSettings.vue src/components/ListSidebar.vue
 msgid "Manage Areas"
-msgstr ""
+msgstr "Bereiche verwalten"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Manage shop areas, keywords, and display order. Keywords auto-detect which area an item belongs to when added or pasted."
