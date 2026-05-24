@@ -1,5 +1,5 @@
 const appName = "shopping_list";
-const appVersion = "1.3.0";
+const appVersion = "1.3.1";
 const global$1 = globalThis || void 0 || self;
 /**
 * @vue/shared v3.5.32
@@ -43007,4 +43007,4 @@ export {
   renderList as y,
   createBlock as z
 };
-//# sourceMappingURL=index-BFDTS95w.chunk.mjs.map
+//# sourceMappingURL=index-B5q3YyBo.chunk.mjs.map
