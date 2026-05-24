@@ -378,6 +378,54 @@ msgstr ""
 msgid "Failed to delete tag"
 msgstr ""
 
+#: lib/Service/ShopAreaService.php
+msgid "Produce"
+msgstr ""
+
+#: lib/Service/ShopAreaService.php
+msgid "Dairy"
+msgstr ""
+
+#: lib/Service/ShopAreaService.php
+msgid "Bakery"
+msgstr ""
+
+#: lib/Service/ShopAreaService.php
+msgid "Meat & Seafood"
+msgstr ""
+
+#: lib/Service/ShopAreaService.php
+msgid "Frozen"
+msgstr ""
+
+#: lib/Service/ShopAreaService.php
+msgid "Beverages"
+msgstr ""
+
+#: lib/Service/ShopAreaService.php
+msgid "Snacks"
+msgstr ""
+
+#: lib/Service/ShopAreaService.php
+msgid "Household"
+msgstr ""
+
+#: lib/Service/ShopAreaService.php
+msgid "Personal Care"
+msgstr ""
+
+#: lib/Service/ShopAreaService.php
+msgid "General"
+msgstr ""
+
+#: lib/Service/ShopAreaService.php
+msgid "Pets"
+msgstr ""
+
+#: lib/Service/ShopAreaService.php
+msgid "Other"
+msgstr ""
+
 #: src/components/OfflineIndicator.vue
 msgid "Syncing changes…"
 msgstr ""

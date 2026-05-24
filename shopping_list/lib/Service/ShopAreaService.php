@@ -8,11 +8,13 @@ use OCA\Shopping_List\Db\ShopArea;
 use OCA\Shopping_List\Db\ShopAreaMapper;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\IDBConnection;
+use OCP\IL10N;
 
 class ShopAreaService {
 	public function __construct(
 		private ShopAreaMapper $mapper,
 		private IDBConnection $db,
+		private IL10N $l,
 	) {
 	}
 
@@ -121,10 +123,25 @@ class ShopAreaService {
 			return;
 		}
 
+		$translatedNames = [
+			'Produce' => $this->l->t('Produce'),
+			'Dairy' => $this->l->t('Dairy'),
+			'Bakery' => $this->l->t('Bakery'),
+			'Meat & Seafood' => $this->l->t('Meat & Seafood'),
+			'Frozen' => $this->l->t('Frozen'),
+			'Beverages' => $this->l->t('Beverages'),
+			'Snacks' => $this->l->t('Snacks'),
+			'Household' => $this->l->t('Household'),
+			'Personal Care' => $this->l->t('Personal Care'),
+			'General' => $this->l->t('General'),
+			'Pets' => $this->l->t('Pets'),
+			'Other' => $this->l->t('Other'),
+		];
+
 		foreach (self::DEFAULTS as [$name, $sortOrder, $color, $keywords]) {
 			$area = new ShopArea();
 			$area->setListId($listId);
-			$area->setName($name);
+			$area->setName($translatedNames[$name] ?? $name);
 			$area->setSortOrder($sortOrder);
 			$area->setColor($color);
 			$area->setKeywordsArray($keywords);
