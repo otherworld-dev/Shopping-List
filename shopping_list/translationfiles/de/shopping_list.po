@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-05-24 18:52\n"
+"PO-Revision-Date: 2026-05-24 22:58\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -203,7 +203,7 @@ msgstr "Gruppe"
 
 #: src/components/ShareDialog.vue
 msgid "Shared with"
-msgstr "An ich freigegeben"
+msgstr "An mich freigegeben"
 
 #: src/components/ShareDialog.vue
 msgid "Can view"
@@ -379,51 +379,51 @@ msgstr "Fehler beim Löschen des Tags"
 
 #: lib/Service/ShopAreaService.php
 msgid "Produce"
-msgstr ""
+msgstr "Obst & Gemüse"
 
 #: lib/Service/ShopAreaService.php
 msgid "Dairy"
-msgstr ""
+msgstr "Milchprodukte"
 
 #: lib/Service/ShopAreaService.php
 msgid "Bakery"
-msgstr ""
+msgstr "Gebäck"
 
 #: lib/Service/ShopAreaService.php
 msgid "Meat & Seafood"
-msgstr ""
+msgstr "Fleisch & Fisch"
 
 #: lib/Service/ShopAreaService.php
 msgid "Frozen"
-msgstr ""
+msgstr "Tiefkühlprodukte"
 
 #: lib/Service/ShopAreaService.php
 msgid "Beverages"
-msgstr ""
+msgstr "Getränke"
 
 #: lib/Service/ShopAreaService.php
 msgid "Snacks"
-msgstr ""
+msgstr "Snacks"
 
 #: lib/Service/ShopAreaService.php
 msgid "Household"
-msgstr ""
+msgstr "Haushaltswaren"
 
 #: lib/Service/ShopAreaService.php
 msgid "Personal Care"
-msgstr ""
+msgstr "Pflegeprodukte"
 
 #: lib/Service/ShopAreaService.php
 msgid "General"
-msgstr ""
+msgstr "Allgemein"
 
 #: lib/Service/ShopAreaService.php
 msgid "Pets"
-msgstr ""
+msgstr "Haustier"
 
 #: lib/Service/ShopAreaService.php
 msgid "Other"
-msgstr ""
+msgstr "Andere"
 
 #: src/components/OfflineIndicator.vue
 msgid "Syncing changes…"
