@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-05-15 19:45\n"
+"PO-Revision-Date: 2026-05-24 22:58\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -203,7 +203,7 @@ msgstr "Gruppe"
 
 #: src/components/ShareDialog.vue
 msgid "Shared with"
-msgstr "An ich freigegeben"
+msgstr "An mich freigegeben"
 
 #: src/components/ShareDialog.vue
 msgid "Can view"
@@ -376,6 +376,54 @@ msgstr "Fehler beim Erstellen des Tags"
 #: src/stores/tags.ts
 msgid "Failed to delete tag"
 msgstr "Fehler beim Löschen des Tags"
+
+#: lib/Service/ShopAreaService.php
+msgid "Produce"
+msgstr "Obst & Gemüse"
+
+#: lib/Service/ShopAreaService.php
+msgid "Dairy"
+msgstr "Milchprodukte"
+
+#: lib/Service/ShopAreaService.php
+msgid "Bakery"
+msgstr "Gebäck"
+
+#: lib/Service/ShopAreaService.php
+msgid "Meat & Seafood"
+msgstr "Fleisch & Fisch"
+
+#: lib/Service/ShopAreaService.php
+msgid "Frozen"
+msgstr "Tiefkühlprodukte"
+
+#: lib/Service/ShopAreaService.php
+msgid "Beverages"
+msgstr "Getränke"
+
+#: lib/Service/ShopAreaService.php
+msgid "Snacks"
+msgstr "Snacks"
+
+#: lib/Service/ShopAreaService.php
+msgid "Household"
+msgstr "Haushaltswaren"
+
+#: lib/Service/ShopAreaService.php
+msgid "Personal Care"
+msgstr "Pflegeprodukte"
+
+#: lib/Service/ShopAreaService.php
+msgid "General"
+msgstr "Allgemein"
+
+#: lib/Service/ShopAreaService.php
+msgid "Pets"
+msgstr "Haustier"
+
+#: lib/Service/ShopAreaService.php
+msgid "Other"
+msgstr "Andere"
 
 #: src/components/OfflineIndicator.vue
 msgid "Syncing changes…"

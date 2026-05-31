@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-05-14 21:53\n"
+"PO-Revision-Date: 2026-05-24 18:52\n"
 "Last-Translator: \n"
 "Language-Team: Norwegian\n"
 "Language: no_NO\n"
@@ -375,6 +375,54 @@ msgstr ""
 
 #: src/stores/tags.ts
 msgid "Failed to delete tag"
+msgstr ""
+
+#: lib/Service/ShopAreaService.php
+msgid "Produce"
+msgstr ""
+
+#: lib/Service/ShopAreaService.php
+msgid "Dairy"
+msgstr ""
+
+#: lib/Service/ShopAreaService.php
+msgid "Bakery"
+msgstr ""
+
+#: lib/Service/ShopAreaService.php
+msgid "Meat & Seafood"
+msgstr ""
+
+#: lib/Service/ShopAreaService.php
+msgid "Frozen"
+msgstr ""
+
+#: lib/Service/ShopAreaService.php
+msgid "Beverages"
+msgstr ""
+
+#: lib/Service/ShopAreaService.php
+msgid "Snacks"
+msgstr ""
+
+#: lib/Service/ShopAreaService.php
+msgid "Household"
+msgstr ""
+
+#: lib/Service/ShopAreaService.php
+msgid "Personal Care"
+msgstr ""
+
+#: lib/Service/ShopAreaService.php
+msgid "General"
+msgstr ""
+
+#: lib/Service/ShopAreaService.php
+msgid "Pets"
+msgstr ""
+
+#: lib/Service/ShopAreaService.php
+msgid "Other"
 msgstr ""
 
 #: src/components/OfflineIndicator.vue
