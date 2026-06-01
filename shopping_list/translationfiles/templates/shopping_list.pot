@@ -426,6 +426,10 @@ msgstr ""
 msgid "Other"
 msgstr ""
 
+#: src/components/ItemRow.vue
+msgid "Delete \"{name}\"?"
+msgstr ""
+
 #: src/components/OfflineIndicator.vue
 msgid "Syncing changes…"
 msgstr ""

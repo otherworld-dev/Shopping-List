@@ -320,6 +320,9 @@ async function onToggleCheck() {
 }
 
 async function onDelete() {
+	const name = item.value?.name ?? ''
+	const confirmed = window.confirm(t('shopping_list', 'Delete "{name}"?', { name }))
+	if (!confirmed) return
 	await itemsStore.remove(props.listId, props.itemId)
 }
 </script>
@@ -442,6 +445,13 @@ async function onDelete() {
 
 .item-row:hover .item-row__delete {
 	opacity: 1;
+}
+
+/* Touch devices have no hover — always show the delete button */
+@media (hover: none) {
+	.item-row__delete {
+		opacity: 0.5;
+	}
 }
 
 .item-row__delete:hover {

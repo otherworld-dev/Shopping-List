@@ -14540,6 +14540,9 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
       await itemsStore.toggleCheck(props.listId, props.itemId);
     }
     async function onDelete() {
+      const name = item.value?.name ?? "";
+      const confirmed = window.confirm(translate("shopping_list", 'Delete "{name}"?', { name }));
+      if (!confirmed) return;
       await itemsStore.remove(props.listId, props.itemId);
     }
     return (_ctx, _cache) => {
@@ -14667,13 +14670,13 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
           title: unref(deleteTitle),
           onClick: onDelete
         }, [..._cache[5] || (_cache[5] = [
-          createStaticVNode('<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-v-1e2299f0><polyline points="3 6 5 6 21 6" data-v-1e2299f0></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" data-v-1e2299f0></path><line x1="10" y1="11" x2="10" y2="17" data-v-1e2299f0></line><line x1="14" y1="11" x2="14" y2="17" data-v-1e2299f0></line></svg>', 1)
+          createStaticVNode('<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-v-55097c2b><polyline points="3 6 5 6 21 6" data-v-55097c2b></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" data-v-55097c2b></path><line x1="10" y1="11" x2="10" y2="17" data-v-55097c2b></line><line x1="14" y1="11" x2="14" y2="17" data-v-55097c2b></line></svg>', 1)
         ])], 8, _hoisted_11$3)) : createCommentVNode("", true)
       ], 10, _hoisted_1$5)) : createCommentVNode("", true);
     };
   }
 });
-const ItemRow = /* @__PURE__ */ _export_sfc$1(_sfc_main$6, [["__scopeId", "data-v-1e2299f0"]]);
+const ItemRow = /* @__PURE__ */ _export_sfc$1(_sfc_main$6, [["__scopeId", "data-v-55097c2b"]]);
 const _hoisted_1$4 = { class: "item-editor" };
 const _hoisted_2$4 = { class: "item-editor__main" };
 const _hoisted_3$4 = ["placeholder", "onKeydown"];
