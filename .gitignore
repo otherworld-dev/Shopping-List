@@ -2,8 +2,3 @@ node_modules/
 vendor/
 .php-cs-fixer.cache
 *.tar.gz
-
-# Claude Code
-.claude/
-CLAUDE.md
-.claudeignore

@@ -1,0 +1,3 @@
+- [Shopping List App Overview](project_overview.md) — NC 30+ shared shopping list app, key tech decisions and architecture
+- [Favicon Theming Cache](favicon_theming_cache.md) — Must bump NC theming cachebuster after icon changes
+- [Run l10n after Crowdin](feedback_l10n.md) — Always run npm run l10n and commit after merging Crowdin PRs
