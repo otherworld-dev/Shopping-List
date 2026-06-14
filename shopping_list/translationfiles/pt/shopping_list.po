@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-05-31 21:12\n"
+"PO-Revision-Date: 2026-06-01 21:26\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
@@ -423,6 +423,10 @@ msgstr ""
 
 #: lib/Service/ShopAreaService.php
 msgid "Other"
+msgstr ""
+
+#: src/components/ItemRow.vue
+msgid "Delete \"{name}\"?"
 msgstr ""
 
 #: src/components/OfflineIndicator.vue

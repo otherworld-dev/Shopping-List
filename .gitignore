@@ -2,3 +2,4 @@ node_modules/
 vendor/
 .php-cs-fixer.cache
 *.tar.gz
+.claude/

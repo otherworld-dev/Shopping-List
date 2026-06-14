@@ -108,7 +108,9 @@ async function onSubmitPassword() {
 #content {
 	display: flex !important;
 	justify-content: center !important;
-	min-height: 100vh !important;
+	align-items: flex-start !important;
+	height: 100vh !important;
+	overflow-y: auto !important;
 	padding: 0 !important;
 }
 
@@ -123,7 +125,7 @@ async function onSubmitPassword() {
 .public-app {
 	max-width: 600px;
 	margin: 0 auto;
-	padding: 40px 20px 100px;
+	padding: 40px 20px 160px;
 	width: 100%;
 }
 
