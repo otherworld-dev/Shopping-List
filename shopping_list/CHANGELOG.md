@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - 2026-06-15
+
+### Added
+- Translatable shop-area keywords — keyword sets moved into per-language packs
+  (`resources/keywords/<lang>.json`), editable by translators on Crowdin and
+  seeded per list in the creator's language (German included)
+- Localized quantity parsing — per-language units, connector words, and decimal
+  mark (`resources/parsing/<lang>.json`); German units and `0,5` decimals
+- Accent- and case-insensitive item matching (Latin diacritics; preserves
+  Japanese/Arabic/Hebrew scripts)
+- Keyword pack validator (`npm run keywords:validate`)
+- TRANSLATING.md contributor guide
+
+### Changed
+- Area auto-detection now picks the most specific (longest) matching keyword,
+  so short words can't shadow specific ones
+- English singular/plural niceties are gated to English; other languages keep
+  their item names intact (no more wrong plurals or cross-merges)
+
 ## [1.3.3] - 2026-06-01
 
 ### Added

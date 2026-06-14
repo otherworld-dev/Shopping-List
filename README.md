@@ -99,7 +99,9 @@ screenshots/          App store screenshots
 
 ## Translations
 
-Translations are managed on [Crowdin](https://crowdin.com). Contributions for new languages are welcome — visit the project page to get started.
+Translations are managed on [Crowdin](https://crowdin.com/project/shopping-list-for-nextcloud) — no coding required. You can translate the UI, the grocery **keywords** that drive automatic shop-area sorting, and measurement **units**, all in the browser.
+
+See **[TRANSLATING.md](TRANSLATING.md)** for a short, friendly walkthrough.
 
 ## License
 
