@@ -43,8 +43,9 @@ clean:
 
 .PHONY: appstore
 appstore: build
+	rm -rf $(sign_dir)/$(app_name)
 	mkdir -p $(sign_dir)/$(app_name)
-	rsync -a \
+	rsync -a --delete \
 		--exclude=.git \
 		--exclude=.github \
 		--exclude=.gitignore \
@@ -54,12 +55,17 @@ appstore: build
 		--exclude=node_modules \
 		--exclude=src \
 		--exclude=tests \
+		--exclude=translationfiles \
+		--exclude=po2nextcloud.mjs \
+		--exclude=crowdin.yml \
 		--exclude=package.json \
 		--exclude=package-lock.json \
 		--exclude=tsconfig.json \
 		--exclude=vite.config.ts \
 		--exclude=Makefile \
 		--exclude='*.map' \
+		--exclude='resources/validate.mjs' \
+		--exclude='resources/**/CONTEXT.md' \
 		$(CURDIR)/ $(sign_dir)/$(app_name)/
 	tar -czf $(build_dir)/$(app_name).tar.gz \
 		-C $(sign_dir) $(app_name)

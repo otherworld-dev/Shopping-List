@@ -1,7 +1,7 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-krqSJNNL.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/index-RltyzrDs.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/index-23fjjBcZ.chunk.css')])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-CmLVtGkd.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/index-BGIAMGyq.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/index-23fjjBcZ.chunk.css')])))=>i.map(i=>d[i]);
 const appName = "shopping_list";
 const appVersion = "1.3.3";
-import { _ as _export_sfc, N as NcButton, r as resolveComponent, o as openBlock, c as createElementBlock, a as createVNode, w as withCtx, b as createTextVNode, t as toDisplayString, d as renderSlot, e as defineComponent, f as createElementId, g as createCommentVNode, u as unref, h as getDefaultExportFromCjs, i as getGettextBuilder, j as getLoggerBuilder, k as defineStore, l as ref, m as computed, n as api, p as markServerFetched, q as translate, s as loadValue, v as saveValue, x as readonly, F as Fragment, y as renderList, z as createBlock, A as NcActionButton, B as NcAppNavigationItem, C as NcAppNavigationCaption, D as createBaseVNode, E as NcIconSvgWrapper, G as _export_sfc$1, H as NOOP, I as extend$1, J as isString, K as NO, L as isSymbol, M as isBuiltInDirective, O as capitalize, P as camelize, Q as EMPTY_OBJ, R as isObject, S as toHandlerKey, T as isArray, U as isOn, V as isReservedProp, W as isVoidTag, X as isHTMLTag, Y as isSVGTag, Z as isMathMLTag, $ as parseStringStyle, a0 as makeMap, a1 as generateCodeFrame, a2 as getAugmentedNamespace, a3 as runtimeDom_esmBundler, a4 as shared_esmBundler, a5 as watch, a6 as onMounted, a7 as onUnmounted, a8 as normalizeClass, a9 as withDirectives, aa as vModelText, ab as withKeys, ac as withModifiers, ad as normalizeStyle, ae as Teleport, af as createStaticVNode, ag as nextTick, ah as generateOcsUrl, ai as cancelableClient, aj as ShareType, ak as Permission, al as generateUrl, am as getCurrentUser, an as NcAvatar, ao as NcLoadingIcon, ap as Transition, aq as NcAppNavigation, ar as NcAppContent, as as NcContent, at as createPinia, au as offlinePersistPlugin, av as createApp } from "./index-RltyzrDs.chunk.mjs";
+import { _ as _export_sfc, N as NcButton, r as resolveComponent, o as openBlock, c as createElementBlock, a as createVNode, w as withCtx, b as createTextVNode, t as toDisplayString, d as renderSlot, e as defineComponent, f as createElementId, g as createCommentVNode, u as unref, h as getDefaultExportFromCjs, i as getGettextBuilder, j as getLoggerBuilder, k as defineStore, l as ref, m as computed, n as api, p as markServerFetched, q as translate, s as getLanguage, v as loadValue, x as saveValue, y as readonly, F as Fragment, z as renderList, A as createBlock, B as NcActionButton, C as NcAppNavigationItem, D as NcAppNavigationCaption, E as createBaseVNode, G as NcIconSvgWrapper, H as _export_sfc$1, I as NOOP, J as extend$1, K as isString, L as NO, M as isSymbol, O as isBuiltInDirective, P as capitalize, Q as camelize, R as EMPTY_OBJ, S as isObject, T as toHandlerKey, U as isArray, V as isOn, W as isReservedProp, X as isVoidTag, Y as isHTMLTag, Z as isSVGTag, $ as isMathMLTag, a0 as parseStringStyle, a1 as makeMap, a2 as generateCodeFrame, a3 as getAugmentedNamespace, a4 as runtimeDom_esmBundler, a5 as shared_esmBundler, a6 as watch, a7 as onMounted, a8 as onUnmounted, a9 as normalizeClass, aa as withDirectives, ab as vModelText, ac as withKeys, ad as withModifiers, ae as normalizeStyle, af as Teleport, ag as createStaticVNode, ah as nextTick, ai as generateOcsUrl, aj as cancelableClient, ak as ShareType, al as Permission, am as generateUrl, an as getCurrentUser, ao as NcAvatar, ap as NcLoadingIcon, aq as Transition, ar as NcAppNavigation, as as NcAppContent, at as NcContent, au as createPinia, av as offlinePersistPlugin, aw as createApp } from "./index-BGIAMGyq.chunk.mjs";
 const scriptRel = "modulepreload";
 const assetsURL = function(dep, importerUrl) {
   return new URL(dep, importerUrl).href;
@@ -728,42 +728,56 @@ const useShopAreasStore = defineStore("shopAreas", () => {
     remove
   };
 });
-const UNIT_ALIASES = {
-  cups: "cup",
-  teaspoons: "teaspoon",
-  tsp: "teaspoon",
-  tablespoons: "tablespoon",
-  tbsp: "tablespoon",
-  ounces: "ounce",
-  oz: "ounce",
-  pounds: "pound",
-  lbs: "pound",
-  lb: "pound",
-  grams: "gram",
-  g: "gram",
-  kilograms: "kilogram",
-  kg: "kilogram",
-  milliliters: "milliliter",
-  ml: "milliliter",
-  liters: "liter",
-  l: "liter",
-  cans: "can",
-  bottles: "bottle",
-  slices: "slice",
-  pieces: "piece",
-  cloves: "clove",
-  stalks: "stalk",
-  sprigs: "sprig",
-  bags: "bag",
-  packs: "pack",
-  packets: "pack",
-  pinches: "pinch",
-  bunches: "bunch",
-  heads: "head"
+function fold(s) {
+  return s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+}
+const units$1 = ["esslöffel", "el", "teelöffel", "tl", "tasse", "tassen", "gramm", "g", "kilogramm", "kg", "milliliter", "ml", "liter", "l", "prise", "prisen", "bund", "zehe", "zehen", "dose", "dosen", "flasche", "flaschen", "packung", "packungen", "päckchen", "stück", "scheibe", "scheiben", "becher", "glas", "gläser", "tüte", "tüten", "kopf", "köpfe", "blatt", "blätter", "beutel", "kanne"];
+const unitAliases$1 = { "el": "esslöffel", "tl": "teelöffel", "g": "gramm", "kg": "kilogramm", "ml": "milliliter", "l": "liter", "tassen": "tasse", "prisen": "prise", "zehen": "zehe", "dosen": "dose", "flaschen": "flasche", "packungen": "packung", "scheiben": "scheibe", "gläser": "glas", "tüten": "tüte", "köpfe": "kopf", "blätter": "blatt" };
+const leadingUnits$1 = ["prise", "prisen", "bund", "schuss", "spritzer", "handvoll"];
+const prepositions$1 = ["von", "vom"];
+const decimalSeparators$1 = [",", "."];
+const __vite_glob_0_0 = {
+  units: units$1,
+  unitAliases: unitAliases$1,
+  leadingUnits: leadingUnits$1,
+  prepositions: prepositions$1,
+  decimalSeparators: decimalSeparators$1
 };
+const units = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const unitAliases = { "cups": "cup", "teaspoons": "teaspoon", "tsp": "teaspoon", "tablespoons": "tablespoon", "tbsp": "tablespoon", "ounces": "ounce", "oz": "ounce", "pounds": "pound", "lbs": "pound", "lb": "pound", "grams": "gram", "g": "gram", "kilograms": "kilogram", "kg": "kilogram", "milliliters": "milliliter", "ml": "milliliter", "liters": "liter", "l": "liter", "cans": "can", "bottles": "bottle", "slices": "slice", "pieces": "piece", "cloves": "clove", "stalks": "stalk", "sprigs": "sprig", "bags": "bag", "packs": "pack", "packets": "pack", "pinches": "pinch", "bunches": "bunch", "heads": "head" };
+const leadingUnits = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions = ["of"];
+const decimalSeparators = ["."];
+const __vite_glob_0_1 = {
+  units,
+  unitAliases,
+  leadingUnits,
+  prepositions,
+  decimalSeparators
+};
+const parsingModules = /* @__PURE__ */ Object.assign({
+  "../../resources/parsing/de.json": __vite_glob_0_0,
+  "../../resources/parsing/en.json": __vite_glob_0_1
+});
+const parsingPacks = {};
+for (const path in parsingModules) {
+  const lang = path.match(/\/([^/]+)\.json$/)?.[1];
+  if (lang) parsingPacks[lang] = parsingModules[path];
+}
+function currentLang() {
+  const l = (getLanguage() || "en").toLowerCase();
+  return l.split(/[-_]/)[0];
+}
+function getParsingPack() {
+  return parsingPacks[currentLang()] ?? parsingPacks.en;
+}
+const MORPHOLOGY_LANGS = /* @__PURE__ */ new Set(["en"]);
+function hasMorphology() {
+  return MORPHOLOGY_LANGS.has(currentLang());
+}
 function canonicalUnit(unit) {
   const lower = unit.toLowerCase();
-  return UNIT_ALIASES[lower] ?? lower;
+  return getParsingPack().unitAliases[lower] ?? lower;
 }
 const SINGULAR_EXCEPTIONS = /* @__PURE__ */ new Set([
   "asparagus",
@@ -795,6 +809,7 @@ function singularize(word) {
   return lower;
 }
 function pluralizeName(name) {
+  if (!hasMorphology()) return name;
   const words = name.split(" ");
   const last = words[words.length - 1];
   const lower = last.toLowerCase();
@@ -816,7 +831,8 @@ function pluralizeName(name) {
   return words.join(" ");
 }
 function normalizeName(name) {
-  const cleaned = name.toLowerCase().trim().replace(/\s*\(.*?\)\s*/g, " ").replace(/,\s.*$/, "").replace(/\s+/g, " ").trim();
+  const cleaned = fold(name).trim().replace(/\s*[(（][^)）]*[)）]\s*/g, " ").replace(/(?:,\s|，\s*).*$/, "").replace(/\s+/g, " ").trim();
+  if (!hasMorphology()) return cleaned;
   return cleaned.split(" ").map(singularize).join(" ");
 }
 function findMatchingItem(items, name) {
@@ -14770,67 +14786,15 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
     }
     onMounted(() => document.addEventListener("mousedown", onClickOutside));
     onUnmounted(() => document.removeEventListener("mousedown", onClickOutside));
-    const UNITS = [
-      "teaspoon",
-      "teaspoons",
-      "tsp",
-      "tablespoon",
-      "tablespoons",
-      "tbsp",
-      "cup",
-      "cups",
-      "ounce",
-      "ounces",
-      "oz",
-      "pound",
-      "pounds",
-      "lb",
-      "lbs",
-      "gram",
-      "grams",
-      "g",
-      "kilogram",
-      "kilograms",
-      "kg",
-      "milliliter",
-      "milliliters",
-      "ml",
-      "liter",
-      "liters",
-      "l",
-      "pinch",
-      "pinches",
-      "bunch",
-      "bunches",
-      "clove",
-      "cloves",
-      "can",
-      "cans",
-      "bottle",
-      "bottles",
-      "piece",
-      "pieces",
-      "slice",
-      "slices",
-      "head",
-      "heads",
-      "stalk",
-      "stalks",
-      "sprig",
-      "sprigs",
-      "pack",
-      "packs",
-      "packet",
-      "packets",
-      "bag",
-      "bags",
-      "fl oz"
-    ];
-    const LEADING_UNITS = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+    const parsingPack = getParsingPack();
+    function escapeRe(s) {
+      return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    }
+    const prepositionRe = parsingPack.prepositions.length ? new RegExp("^(?:" + parsingPack.prepositions.map(escapeRe).join("|") + ")\\s+", "i") : null;
     function matchUnit(text) {
       const lower = text.toLowerCase();
       let best = "";
-      for (const unit of UNITS) {
+      for (const unit of parsingPack.units) {
         if (lower.startsWith(unit + " ") || lower.startsWith(unit + ",") || lower === unit) {
           if (unit.length > best.length) best = unit;
         }
@@ -14850,30 +14814,37 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
       }
       return name2;
     }
+    function stripConnector(rest) {
+      rest = rest.replace(/^,\s*/, "");
+      if (prepositionRe) rest = rest.replace(prepositionRe, "");
+      return rest.trim();
+    }
+    const commaDecimal = parsingPack.decimalSeparators.includes(",");
+    const decClass = commaDecimal ? "[.,]" : "\\.";
+    const qtyPattern = new RegExp(
+      "^([\\d]+(?:\\s+[\\d]+/[\\d]+|/[\\d]+|" + decClass + "\\d+)?(?:\\s*-\\s*[\\d]+(?:/[\\d]+|" + decClass + "\\d+)?)?)\\s*"
+    );
     function parseIngredient(line) {
       const trimmed = line.trim();
       if (!trimmed) return { name: "", quantity: null };
       const trimmedLower = trimmed.toLowerCase();
-      for (const unit of LEADING_UNITS) {
+      for (const unit of parsingPack.leadingUnits) {
         if (trimmedLower.startsWith(unit + " ") || trimmedLower.startsWith(unit + ",")) {
-          let rest2 = trimmed.slice(unit.length).trim();
-          rest2 = rest2.replace(/^,\s*/, "").replace(/^of\s+/i, "").trim();
+          const rest2 = stripConnector(trimmed.slice(unit.length).trim());
           return { name: cleanName(rest2 || trimmed), quantity: "1 " + unit };
         }
       }
-      const qtyPattern = /^([\d]+(?:\s+[\d]+\/[\d]+|\/[\d]+|\.\d+)?(?:\s*-\s*[\d]+(?:\/[\d]+|\.\d+)?)?)\s*/;
       const match = trimmed.match(qtyPattern);
       if (!match) {
         return { name: cleanName(trimmed), quantity: null };
       }
-      const qtyStr = match[1].trim();
+      const qtyStr = commaDecimal ? match[1].trim().replace(/,/g, ".") : match[1].trim();
       let rest = trimmed.slice(match[0].length).trim();
       const matchedUnit = matchUnit(rest);
       let finalQty = qtyStr;
       if (matchedUnit) {
         finalQty = qtyStr + " " + matchedUnit;
-        rest = rest.slice(matchedUnit.length).trim();
-        rest = rest.replace(/^,\s*/, "").replace(/^of\s+/i, "").trim();
+        rest = stripConnector(rest.slice(matchedUnit.length).trim());
       }
       rest = rest.replace(/^,\s*/, "").trim();
       return {
@@ -14882,18 +14853,22 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
       };
     }
     function detectArea(ingredientName) {
-      const lower = ingredientName.toLowerCase();
-      const areas = areaOptions.value;
+      const needle = fold(ingredientName);
+      const areas = shopAreasStore.areasByList[listsStore.currentListId] ?? [];
+      let bestArea = null;
+      let bestLen = 0;
       for (const area of areas) {
-        const fullArea = (shopAreasStore.areasByList[listsStore.currentListId] ?? []).find((a) => a.id === area.id);
-        if (!fullArea?.keywords) continue;
-        for (const keyword of fullArea.keywords) {
-          if (lower.includes(keyword)) {
-            return area.id;
+        if (!area.keywords) continue;
+        for (const keyword of area.keywords) {
+          if (!keyword) continue;
+          const k = fold(keyword);
+          if (k.length > bestLen && needle.includes(k)) {
+            bestLen = k.length;
+            bestArea = area.id;
           }
         }
       }
-      return null;
+      return bestArea;
     }
     async function onPaste(e) {
       const text = e.clipboardData?.getData("text") ?? "";
@@ -15012,7 +14987,7 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ItemEditor = /* @__PURE__ */ _export_sfc$1(_sfc_main$5, [["__scopeId", "data-v-eab5cb74"]]);
+const ItemEditor = /* @__PURE__ */ _export_sfc$1(_sfc_main$5, [["__scopeId", "data-v-a80e72ef"]]);
 const _hoisted_1$3 = { class: "share-modal" };
 const _hoisted_2$3 = { class: "share-modal__header" };
 const _hoisted_3$3 = { class: "share-modal__search" };
@@ -16205,7 +16180,7 @@ function usePush() {
   if (hasPushServer) {
     try {
       __vitePreload(async () => {
-        const { listen } = await import("./index-krqSJNNL.chunk.mjs").then((n) => n.i);
+        const { listen } = await import("./index-CmLVtGkd.chunk.mjs").then((n) => n.i);
         return { listen };
       }, true ? __vite__mapDeps([0,1,2]) : void 0, import.meta.url).then(({ listen }) => {
         listen("shopping_list_item_update", () => {

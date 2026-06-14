@@ -1,28 +1,14 @@
 import type { Item } from '../types'
-
-const UNIT_ALIASES: Record<string, string> = {
-	cups: 'cup', teaspoons: 'teaspoon', tsp: 'teaspoon',
-	tablespoons: 'tablespoon', tbsp: 'tablespoon',
-	ounces: 'ounce', oz: 'ounce',
-	pounds: 'pound', lbs: 'pound', lb: 'pound',
-	grams: 'gram', g: 'gram',
-	kilograms: 'kilogram', kg: 'kilogram',
-	milliliters: 'milliliter', ml: 'milliliter',
-	liters: 'liter', l: 'liter',
-	cans: 'can', bottles: 'bottle', slices: 'slice',
-	pieces: 'piece', cloves: 'clove',
-	stalks: 'stalk', sprigs: 'sprig',
-	bags: 'bag', packs: 'pack', packets: 'pack',
-	pinches: 'pinch', bunches: 'bunch',
-	heads: 'head',
-}
+import { fold } from './fold'
+import { getParsingPack, hasMorphology } from './localePacks'
 
 function canonicalUnit(unit: string): string {
 	const lower = unit.toLowerCase()
-	return UNIT_ALIASES[lower] ?? lower
+	return getParsingPack().unitAliases[lower] ?? lower
 }
 
-// Words that should not be singularized (already singular or uncountable)
+// English uncountable / already-singular nouns. Only consulted when English
+// morphology is active (see hasMorphology); irrelevant for other languages.
 const SINGULAR_EXCEPTIONS = new Set([
 	'asparagus', 'hummus', 'couscous', 'cheese', 'rice', 'juice',
 	'lettuce', 'sauce', 'produce', 'grease', 'mousse',
@@ -56,8 +42,12 @@ function singularize(word: string): string {
 
 /**
  * Pluralize a display name. Preserves the original casing of the root.
+ * No-op unless the viewer's language has registered morphology rules
+ * (English only today) — so non-English names are never given English plurals.
  */
 export function pluralizeName(name: string): string {
+	if (!hasMorphology()) return name
+
 	// Only pluralize the last word
 	const words = name.split(' ')
 	const last = words[words.length - 1]
@@ -89,15 +79,17 @@ export function pluralizeName(name: string): string {
 }
 
 export function normalizeName(name: string): string {
-	const cleaned = name
-		.toLowerCase()
+	const cleaned = fold(name)
 		.trim()
-		.replace(/\s*\(.*?\)\s*/g, ' ')  // strip parentheticals
-		.replace(/,\s.*$/, '')             // strip trailing comma notes
+		.replace(/\s*[(（][^)）]*[)）]\s*/g, ' ')  // strip parentheticals (ASCII + full-width)
+		.replace(/(?:,\s|，\s*).*$/, '')            // strip trailing notes (ASCII + full-width comma)
 		.replace(/\s+/g, ' ')
 		.trim()
 
-	// Singularize each word for matching
+	// English: singularize each word so "apple"/"apples" match. Skipped for
+	// other languages (avoids wrong cross-merges like German "Eis"/"Ei", and
+	// the space-split is meaningless for no-space scripts like CJK).
+	if (!hasMorphology()) return cleaned
 	return cleaned.split(' ').map(singularize).join(' ')
 }
 

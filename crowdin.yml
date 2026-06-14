@@ -1,3 +1,9 @@
 files:
   - source: /shopping_list/translationfiles/templates/shopping_list.pot
     translation: /shopping_list/translationfiles/%two_letters_code%/shopping_list.po
+  - source: /shopping_list/resources/keywords/en.json
+    translation: /shopping_list/resources/keywords/%two_letters_code%.json
+    type: json
+  - source: /shopping_list/resources/parsing/en.json
+    translation: /shopping_list/resources/parsing/%two_letters_code%.json
+    type: json

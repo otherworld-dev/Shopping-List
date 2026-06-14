@@ -3,3 +3,4 @@ vendor/
 .php-cs-fixer.cache
 *.tar.gz
 .claude/
+shopping_list/build/

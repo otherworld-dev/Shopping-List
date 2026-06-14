@@ -10,7 +10,8 @@
 		"lint:fix": "eslint src --fix",
 		"stylelint": "stylelint src/**/*.vue src/**/*.css",
 		"stylelint:fix": "stylelint src/**/*.vue src/**/*.css --fix",
-		"l10n": "node po2nextcloud.mjs"
+		"l10n": "node po2nextcloud.mjs",
+		"keywords:validate": "node resources/validate.mjs"
 	},
 	"dependencies": {
 		"@nextcloud/axios": "^2.5.1",

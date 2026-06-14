@@ -61,6 +61,8 @@ import { t } from '@nextcloud/l10n'
 import { useItemsStore } from '../stores/items'
 import { useShopAreasStore } from '../stores/shopAreas'
 import { useListsStore } from '../stores/lists'
+import { fold } from '../utils/fold'
+import { getParsingPack } from '../utils/localePacks'
 
 const props = defineProps<{
 	listId: number
@@ -158,39 +160,24 @@ onUnmounted(() => document.removeEventListener('mousedown', onClickOutside))
 
 // --- Ingredient parsing ---
 
-// Known units for matching
-const UNITS = [
-	'teaspoon', 'teaspoons', 'tsp',
-	'tablespoon', 'tablespoons', 'tbsp',
-	'cup', 'cups',
-	'ounce', 'ounces', 'oz',
-	'pound', 'pounds', 'lb', 'lbs',
-	'gram', 'grams', 'g',
-	'kilogram', 'kilograms', 'kg',
-	'milliliter', 'milliliters', 'ml',
-	'liter', 'liters', 'l',
-	'pinch', 'pinches',
-	'bunch', 'bunches',
-	'clove', 'cloves',
-	'can', 'cans',
-	'bottle', 'bottles',
-	'piece', 'pieces',
-	'slice', 'slices',
-	'head', 'heads',
-	'stalk', 'stalks',
-	'sprig', 'sprigs',
-	'pack', 'packs', 'packet', 'packets',
-	'bag', 'bags',
-	'fl oz',
-]
+// Active parsing pack (units, leading-units, prepositions, decimal separators)
+// for the viewer's language, with English fallback.
+const parsingPack = getParsingPack()
 
-// Units that can appear without a number (e.g. "Pinch of salt", "Zest of 1 lime")
-const LEADING_UNITS = ['pinch', 'pinches', 'bunch', 'bunches', 'zest', 'dash', 'handful']
+function escapeRe(s: string): string {
+	return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+// Strips a connector word after a unit ("2 cups of flour" -> "flour";
+// German "von"). Null when the language defines none.
+const prepositionRe = parsingPack.prepositions.length
+	? new RegExp('^(?:' + parsingPack.prepositions.map(escapeRe).join('|') + ')\\s+', 'i')
+	: null
 
 function matchUnit(text: string): string {
 	const lower = text.toLowerCase()
 	let best = ''
-	for (const unit of UNITS) {
+	for (const unit of parsingPack.units) {
 		if (lower.startsWith(unit + ' ') || lower.startsWith(unit + ',') || lower === unit) {
 			if (unit.length > best.length) best = unit
 		}
@@ -231,29 +218,42 @@ function cleanName(raw: string): string {
 	return name
 }
 
+function stripConnector(rest: string): string {
+	rest = rest.replace(/^,\s*/, '')
+	if (prepositionRe) rest = rest.replace(prepositionRe, '')
+	return rest.trim()
+}
+
+// Decimal mark in the leading quantity: dot, plus comma for languages that use
+// it (e.g. German "0,5"). Built from the active pack so a comma elsewhere in the
+// line (thousands separator, a comma inside the item name) is never touched.
+const commaDecimal = parsingPack.decimalSeparators.includes(',')
+const decClass = commaDecimal ? '[.,]' : '\\.'
+const qtyPattern = new RegExp(
+	'^([\\d]+(?:\\s+[\\d]+/[\\d]+|/[\\d]+|' + decClass + '\\d+)?(?:\\s*-\\s*[\\d]+(?:/[\\d]+|' + decClass + '\\d+)?)?)\\s*',
+)
+
 function parseIngredient(line: string): { name: string; quantity: string | null } {
 	const trimmed = line.trim()
 	if (!trimmed) return { name: '', quantity: null }
 
-	// Check for lines starting with a unit word without a number ("Pinch of salt", "Zest of 1 lime")
+	// Lines starting with a unit word without a number ("Pinch of salt", "Prise Salz")
 	const trimmedLower = trimmed.toLowerCase()
-	for (const unit of LEADING_UNITS) {
+	for (const unit of parsingPack.leadingUnits) {
 		if (trimmedLower.startsWith(unit + ' ') || trimmedLower.startsWith(unit + ',')) {
-			let rest = trimmed.slice(unit.length).trim()
-			rest = rest.replace(/^,\s*/, '').replace(/^of\s+/i, '').trim()
+			const rest = stripConnector(trimmed.slice(unit.length).trim())
 			return { name: cleanName(rest || trimmed), quantity: '1 ' + unit }
 		}
 	}
 
-	// Match leading quantity: numbers, fractions, decimals (e.g. "2 1/2", "0.33", "1/4", "10-15")
-	const qtyPattern = /^([\d]+(?:\s+[\d]+\/[\d]+|\/[\d]+|\.\d+)?(?:\s*-\s*[\d]+(?:\/[\d]+|\.\d+)?)?)\s*/
 	const match = trimmed.match(qtyPattern)
 
 	if (!match) {
 		return { name: cleanName(trimmed), quantity: null }
 	}
 
-	const qtyStr = match[1].trim()
+	// Normalize a decimal comma to a dot within the matched quantity only
+	const qtyStr = commaDecimal ? match[1].trim().replace(/,/g, '.') : match[1].trim()
 	let rest = trimmed.slice(match[0].length).trim()
 
 	// Try to match a unit after the quantity
@@ -262,9 +262,7 @@ function parseIngredient(line: string): { name: string; quantity: string | null 
 	let finalQty = qtyStr
 	if (matchedUnit) {
 		finalQty = qtyStr + ' ' + matchedUnit
-		rest = rest.slice(matchedUnit.length).trim()
-		// Remove leading comma or "of"
-		rest = rest.replace(/^,\s*/, '').replace(/^of\s+/i, '').trim()
+		rest = stripConnector(rest.slice(matchedUnit.length).trim())
 	}
 
 	// Clean up: remove leading comma
@@ -279,19 +277,26 @@ function parseIngredient(line: string): { name: string; quantity: string | null 
 // --- Auto-detect shop area from ingredient name (reads keywords from area entities) ---
 
 function detectArea(ingredientName: string): number | null {
-	const lower = ingredientName.toLowerCase()
-	const areas = areaOptions.value
+	const needle = fold(ingredientName)
+	const areas = shopAreasStore.areasByList[listsStore.currentListId!] ?? []
+	let bestArea: number | null = null
+	let bestLen = 0
 
+	// Prefer the longest (most specific) matching keyword across all areas so a
+	// short early-area token (e.g. "ham") can't shadow a specific later one
+	// (e.g. "shampoo"). Areas are already sort-ordered, so ties keep the earlier.
 	for (const area of areas) {
-		const fullArea = (shopAreasStore.areasByList[listsStore.currentListId!] ?? []).find(a => a.id === area.id)
-		if (!fullArea?.keywords) continue
-		for (const keyword of fullArea.keywords) {
-			if (lower.includes(keyword)) {
-				return area.id
+		if (!area.keywords) continue
+		for (const keyword of area.keywords) {
+			if (!keyword) continue
+			const k = fold(keyword)
+			if (k.length > bestLen && needle.includes(k)) {
+				bestLen = k.length
+				bestArea = area.id
 			}
 		}
 	}
-	return null
+	return bestArea
 }
 
 async function onPaste(e: ClipboardEvent) {
