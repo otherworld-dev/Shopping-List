@@ -43,14 +43,28 @@ class ShopAreaService {
 	 *
 	 * @return array<string, string[]>
 	 */
-	private function loadKeywordDefaults(string $lang): array {
-		$parsed = $this->readKeywordFile($lang);
-		// A missing OR malformed non-English pack degrades to English keywords
-		// rather than seeding a list with no keywords at all.
-		if ($parsed === null && $lang !== 'en') {
-			$parsed = $this->readKeywordFile('en');
+	private function loadKeywordDefaults(string $locale): array {
+		// Try the full locale first ("pt_BR"), then the base code ("pt"), then
+		// English — so a region can have its own pack or share the base language's,
+		// and a missing/malformed pack always degrades gracefully.
+		$norm = str_replace('-', '_', $locale);
+		$base = strtok($norm, '_');
+		$candidates = [];
+		if ($norm !== '') {
+			$candidates[] = $norm;
 		}
-		return $parsed ?? [];
+		if ($base !== false && $base !== '' && $base !== $norm) {
+			$candidates[] = $base;
+		}
+		$candidates[] = 'en';
+
+		foreach ($candidates as $cand) {
+			$parsed = $this->readKeywordFile($cand);
+			if ($parsed !== null) {
+				return $parsed;
+			}
+		}
+		return [];
 	}
 
 	/**
@@ -98,11 +112,7 @@ class ShopAreaService {
 			return;
 		}
 
-		$lang = strtok($this->l->getLanguageCode(), '_-');
-		if ($lang === false || $lang === '') {
-			$lang = 'en';
-		}
-		$keywordsByArea = $this->loadKeywordDefaults($lang);
+		$keywordsByArea = $this->loadKeywordDefaults($this->l->getLanguageCode());
 
 		$translatedNames = [
 			'Produce' => $this->l->t('Produce'),

@@ -17,18 +17,34 @@ const parsingModules = import.meta.glob<ParsingPack>(
 const parsingPacks: Record<string, ParsingPack> = {}
 for (const path in parsingModules) {
 	const lang = path.match(/\/([^/]+)\.json$/)?.[1]
-	if (lang) parsingPacks[lang] = parsingModules[path]
+	if (lang) parsingPacks[lang.toLowerCase()] = parsingModules[path]
+}
+
+/**
+ * Locale candidates, most specific first: full locale, base code, English.
+ * Lets a region use its own pack ("pt_br") or fall back to the base ("pt")
+ * and finally English — robust to whatever Crowdin names the file.
+ */
+function langCandidates(): string[] {
+	const raw = (getLanguage() || 'en').toLowerCase().replace(/-/g, '_')
+	const base = raw.split('_')[0]
+	const out = [raw]
+	if (base !== raw) out.push(base)
+	out.push('en')
+	return out
 }
 
 /** The viewer's UI language reduced to its base code (e.g. "pt_BR" -> "pt"). */
 export function currentLang(): string {
-	const l = (getLanguage() || 'en').toLowerCase()
-	return l.split(/[-_]/)[0]
+	return (getLanguage() || 'en').toLowerCase().split(/[-_]/)[0]
 }
 
 /** Parsing pack for the viewer's language, falling back to English. */
 export function getParsingPack(): ParsingPack {
-	return parsingPacks[currentLang()] ?? parsingPacks.en
+	for (const cand of langCandidates()) {
+		if (parsingPacks[cand]) return parsingPacks[cand]
+	}
+	return parsingPacks.en
 }
 
 /**

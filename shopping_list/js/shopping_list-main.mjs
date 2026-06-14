@@ -762,14 +762,24 @@ const parsingModules = /* @__PURE__ */ Object.assign({
 const parsingPacks = {};
 for (const path in parsingModules) {
   const lang = path.match(/\/([^/]+)\.json$/)?.[1];
-  if (lang) parsingPacks[lang] = parsingModules[path];
+  if (lang) parsingPacks[lang.toLowerCase()] = parsingModules[path];
+}
+function langCandidates() {
+  const raw = (getLanguage() || "en").toLowerCase().replace(/-/g, "_");
+  const base = raw.split("_")[0];
+  const out = [raw];
+  if (base !== raw) out.push(base);
+  out.push("en");
+  return out;
 }
 function currentLang() {
-  const l = (getLanguage() || "en").toLowerCase();
-  return l.split(/[-_]/)[0];
+  return (getLanguage() || "en").toLowerCase().split(/[-_]/)[0];
 }
 function getParsingPack() {
-  return parsingPacks[currentLang()] ?? parsingPacks.en;
+  for (const cand of langCandidates()) {
+    if (parsingPacks[cand]) return parsingPacks[cand];
+  }
+  return parsingPacks.en;
 }
 const MORPHOLOGY_LANGS = /* @__PURE__ */ new Set(["en"]);
 function hasMorphology() {
