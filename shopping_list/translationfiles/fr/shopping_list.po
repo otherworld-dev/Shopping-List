@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-06-01 21:26\n"
+"PO-Revision-Date: 2026-06-14 23:23\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -67,11 +67,11 @@ msgstr "Gérer les zones du magasin, les mots-clés et l'ordre d'affichage. Les 
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Search keywords..."
-msgstr "Rechercher des mots-clés…"
+msgstr "Rechercher des mots-clés..."
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Add keyword..."
-msgstr "Ajouter un mot clé…"
+msgstr "Ajouter un mot clé..."
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "No keywords"
@@ -99,7 +99,7 @@ msgstr "Changer la couleur"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "New area name..."
-msgstr "Nouveau nom de zone…"
+msgstr "Nouveau nom de zone..."
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Add area"
@@ -111,7 +111,7 @@ msgstr "Supprimer « {name} » ? Les éléments de cette zone ne seront pl
 
 #: src/components/ItemEditor.vue src/components/PublicListView.vue
 msgid "Add an item to list..."
-msgstr "Ajouter un élément à la liste…"
+msgstr "Ajouter un élément à la liste..."
 
 #: src/components/ItemEditor.vue
 msgid "Area"
@@ -191,7 +191,7 @@ msgstr "Partager la liste"
 
 #: src/components/ShareDialog.vue
 msgid "Search users or groups..."
-msgstr "Chercher des utilisateurs ou des groupes…"
+msgstr "Chercher des utilisateurs ou des groupes..."
 
 #: src/components/ShareDialog.vue
 msgid "No users found"
@@ -271,7 +271,7 @@ msgstr "Supprimer le lien public"
 
 #: src/components/TagInput.vue
 msgid "Add tags..."
-msgstr "Ajouter des balises…"
+msgstr "Ajouter des balises..."
 
 #: src/stores/items.ts
 msgid "Failed to load items"
