@@ -157,6 +157,53 @@ class ShopAreaService {
 		}
 	}
 
+	/**
+	 * Pick a shop area in the target list for an item being moved there:
+	 * first an area with the same name as the source area, otherwise keyword
+	 * detection on the item name (longest match wins), otherwise null
+	 * (uncategorized). Mirrors the frontend detectArea() folding.
+	 */
+	public function findAreaForMove(int $targetListId, ?string $sourceAreaName, string $itemName): ?int {
+		$areas = $this->mapper->findByList($targetListId);
+
+		if ($sourceAreaName !== null && $sourceAreaName !== '') {
+			$foldedSource = $this->fold($sourceAreaName);
+			foreach ($areas as $area) {
+				if ($this->fold($area->getName()) === $foldedSource) {
+					return $area->getId();
+				}
+			}
+		}
+
+		$needle = $this->fold($itemName);
+		$bestId = null;
+		$bestLen = 0;
+		foreach ($areas as $area) {
+			foreach ($area->getKeywordsArray() as $keyword) {
+				$k = $this->fold($keyword);
+				$len = mb_strlen($k);
+				if ($k !== '' && $len > $bestLen && str_contains($needle, $k)) {
+					$bestLen = $len;
+					$bestId = $area->getId();
+				}
+			}
+		}
+		return $bestId;
+	}
+
+	/**
+	 * Accent- and case-insensitive fold matching the frontend fold():
+	 * NFD, strip only the Latin combining-marks block (U+0300–U+036F) so other
+	 * scripts (e.g. Japanese kana voicing) are preserved, then lowercase.
+	 */
+	private function fold(string $s): string {
+		if (class_exists('\Normalizer')) {
+			$s = \Normalizer::normalize($s, \Normalizer::FORM_D) ?: $s;
+		}
+		$s = preg_replace('/[\x{0300}-\x{036F}]/u', '', $s) ?? $s;
+		return mb_strtolower($s);
+	}
+
 	public function create(int $listId, string $name, ?string $color, ?array $keywords): ShopArea {
 		$area = new ShopArea();
 		$area->setListId($listId);

@@ -257,6 +257,45 @@ export const useItemsStore = defineStore('items', () => {
 		}
 	}
 
+	async function move(listId: number, id: number, targetListId: number) {
+		const items = itemsByList.value[listId] ?? []
+		const index = items.findIndex(i => i.id === id)
+		if (index === -1) return
+
+		// Optimistic: remove from the source list
+		const removed = items.splice(index, 1)[0]
+
+		// Re-resolve the live array on revert (a poll/push refetch may have
+		// replaced it mid-await) and avoid double-inserting if already restored.
+		const revert = () => {
+			const live = itemsByList.value[listId]
+			if (live && !live.some(i => i.id === id)) {
+				live.splice(Math.min(index, live.length), 0, removed)
+			}
+		}
+
+		// Moving requires connectivity (no offline queue for cross-list moves)
+		if (!isOnline.value) {
+			revert()
+			showError(t('shopping_list', 'You\'re offline — moving items requires a connection'))
+			return
+		}
+
+		try {
+			await api.items.move(listId, id, targetListId)
+			// Refresh the target list if it's already loaded so the item appears there
+			if (targetListId in itemsByList.value) {
+				await fetchByList(targetListId)
+			}
+			const targetTitle = listsStore.lists.find(l => l.id === targetListId)?.title ?? ''
+			showSuccess(t('shopping_list', 'Moved "{name}" to {list}', { name: removed.name, list: targetTitle }))
+		} catch (e) {
+			revert()
+			showError(t('shopping_list', 'Failed to move item'))
+			console.error(e)
+		}
+	}
+
 	async function reorder(listId: number, sortedIds: number[]) {
 		// Optimistic: update local sort orders
 		const items = itemsByList.value[listId] ?? []
@@ -357,6 +396,7 @@ export const useItemsStore = defineStore('items', () => {
 		update,
 		toggleCheck,
 		remove,
+		move,
 		reorder,
 		clearChecked,
 		uncheckAll,

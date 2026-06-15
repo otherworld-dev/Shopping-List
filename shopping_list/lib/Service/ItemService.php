@@ -100,6 +100,50 @@ class ItemService {
 		return $item;
 	}
 
+	/**
+	 * Move an item to another list. Requires write access to both lists.
+	 * The shop area is re-resolved in the target list (same-name area, else
+	 * keyword detection, else uncategorized) and the item is reset to unchecked.
+	 */
+	public function move(int $id, int $targetListId, string $userId): Item {
+		try {
+			$item = $this->mapper->find($id);
+		} catch (DoesNotExistException) {
+			throw new NotFoundException('Item not found');
+		}
+
+		$sourceListId = $item->getListId();
+		$this->listService->assertWriteAccess($sourceListId, $userId);
+		$this->listService->assertWriteAccess($targetListId, $userId);
+
+		if ($targetListId === $sourceListId) {
+			return $item;
+		}
+
+		$sourceAreaName = null;
+		if ($item->getShopAreaId() !== null) {
+			try {
+				$sourceAreaName = $this->shopAreaService->find($item->getShopAreaId())->getName();
+			} catch (NotFoundException) {
+				// area gone — fall back to keyword detection
+			}
+		}
+
+		$item->setListId($targetListId);
+		$item->setShopAreaId($this->shopAreaService->findAreaForMove($targetListId, $sourceAreaName, $item->getName()));
+		$item->setChecked(false);
+		$item->setCheckedBy(null);
+		$item->setSortOrder(0);
+		$item->setUpdatedAt(new DateTime());
+
+		$item = $this->mapper->update($item);
+
+		// Notify both lists so the item leaves the source and appears in the target
+		$this->pushService->notifyItemUpdate($sourceListId, $id, 'deleted', $userId);
+		$this->pushService->notifyItemUpdate($targetListId, $id, 'created', $userId);
+		return $item;
+	}
+
 	public function check(int $id, bool $checked, string $userId): Item {
 		try {
 			$item = $this->mapper->find($id);

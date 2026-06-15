@@ -23,6 +23,7 @@ return [
 		['name' => 'item#uncheckAll', 'url' => '/api/v1/lists/{listId}/items/uncheck-all', 'verb' => 'POST'],
 		['name' => 'item#update', 'url' => '/api/v1/lists/{listId}/items/{id}', 'verb' => 'PUT'],
 		['name' => 'item#check', 'url' => '/api/v1/lists/{listId}/items/{id}/check', 'verb' => 'PUT'],
+		['name' => 'item#move', 'url' => '/api/v1/lists/{listId}/items/{id}/move', 'verb' => 'POST'],
 		['name' => 'item#destroy', 'url' => '/api/v1/lists/{listId}/items/{id}', 'verb' => 'DELETE'],
 
 		// Shares

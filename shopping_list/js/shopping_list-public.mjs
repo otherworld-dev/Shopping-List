@@ -1,6 +1,6 @@
 const appName = "shopping_list";
 const appVersion = "1.4.0";
-import { e as defineComponent, q as translate, a7 as onMounted, ax as publicApi, o as openBlock, c as createElementBlock, E as createBaseVNode, t as toDisplayString, aa as withDirectives, ab as vModelText, ac as withKeys, ad as withModifiers, u as unref, g as createCommentVNode, a as createVNode, ap as NcLoadingIcon, F as Fragment, z as renderList, ae as normalizeStyle, a9 as normalizeClass, b as createTextVNode, l as ref, m as computed, al as Permission, H as _export_sfc, ay as loadState, A as createBlock, au as createPinia, av as offlinePersistPlugin, aw as createApp } from "./index-BwxgKWJU.chunk.mjs";
+import { f as defineComponent, s as translate, a8 as onMounted, ay as publicApi, o as openBlock, c as createElementBlock, G as createBaseVNode, t as toDisplayString, ab as withDirectives, ac as vModelText, ad as withKeys, ae as withModifiers, u as unref, h as createCommentVNode, b as createVNode, aq as NcLoadingIcon, F as Fragment, A as renderList, af as normalizeStyle, aa as normalizeClass, d as createTextVNode, m as ref, n as computed, ai as Permission, I as _export_sfc, az as loadState, B as createBlock, av as createPinia, aw as offlinePersistPlugin, ax as createApp } from "./index-BlGor_dO.chunk.mjs";
 const _hoisted_1$1 = { class: "public-list" };
 const _hoisted_2$1 = { class: "public-list__card" };
 const _hoisted_3$1 = {

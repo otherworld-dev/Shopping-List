@@ -14,6 +14,7 @@
 	<screenshot>https://raw.githubusercontent.com/otherworld-dev/Shopping-List/main/screenshots/Nextcloud%20Shopping%20List%20Example.png</screenshot>
 	<bugs>https://github.com/otherworld-dev/Shopping-List/issues</bugs>
 	<dependencies>
+		<lib>intl</lib>
 		<nextcloud min-version="30" max-version="35"/>
 	</dependencies>
 	<navigations>

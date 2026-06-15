@@ -168,7 +168,9 @@ const editingItemId = ref<number | null>(null)
 function onCaptureClick(e: MouseEvent) {
 	const target = e.target as HTMLElement
 
-	if (target.closest('.item-row__check') || target.closest('.item-row__delete')) return
+	// Don't hijack clicks on the checkbox or the actions (⋮) kebab — let those
+	// handle their own click so the menu can open instead of entering edit mode.
+	if (target.closest('.item-row__check') || target.closest('.item-row__actions')) return
 	if ((target as HTMLInputElement).type === 'checkbox') return
 
 	if (isDragging.value) return

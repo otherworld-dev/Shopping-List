@@ -92,22 +92,33 @@
 			{{ areaName }}
 		</span>
 
-		<button
-			v-if="canEdit && !editing"
-			class="item-row__delete"
-			:title="deleteTitle"
-			@click="onDelete">
-			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
-		</button>
+		<NcActions v-if="canEdit && !editing" class="item-row__actions">
+			<template v-if="otherLists.length > 0">
+				<NcActionCaption :name="moveToLabel" />
+				<NcActionButton
+					v-for="l in otherLists"
+					:key="l.id"
+					:close-after-click="true"
+					@click="onMove(l.id)">
+					{{ l.title }}
+				</NcActionButton>
+				<NcActionSeparator />
+			</template>
+			<NcActionButton :close-after-click="true" @click="onDelete">
+				{{ deleteTitle }}
+			</NcActionButton>
+		</NcActions>
 	</div>
 </template>
 
 <script setup lang="ts">
 import { t } from '@nextcloud/l10n'
 import { ref, computed, watch, nextTick, onMounted, onUnmounted } from 'vue'
+import { NcActions, NcActionButton, NcActionCaption, NcActionSeparator } from '@nextcloud/vue'
 import { useItemsStore } from '../stores/items'
 import { useShopAreasStore } from '../stores/shopAreas'
 import { useListsStore } from '../stores/lists'
+import { Permission } from '../types'
 
 const props = defineProps<{
 	itemId: number
@@ -127,6 +138,15 @@ const deleteTitle = t('shopping_list', 'Delete')
 const qtyLabel = t('shopping_list', 'Qty')
 const areaPlaceholder = t('shopping_list', 'Area')
 const noMatchText = t('shopping_list', 'No match')
+const moveToLabel = t('shopping_list', 'Move to list')
+
+// Other lists the user can write to (move targets), sorted by title
+const otherLists = computed(() =>
+	listsStore.lists
+		.filter(l => l.id !== props.listId && (l.isOwner || l.permission >= Permission.WRITE))
+		.slice()
+		.sort((a, b) => a.title.localeCompare(b.title)),
+)
 
 const item = computed(() => {
 	const items = itemsStore.itemsByList[props.listId] ?? []
@@ -325,6 +345,10 @@ async function onDelete() {
 	if (!confirmed) return
 	await itemsStore.remove(props.listId, props.itemId)
 }
+
+async function onMove(targetListId: number) {
+	await itemsStore.move(props.listId, props.itemId, targetListId)
+}
 </script>
 
 <style scoped>
@@ -426,36 +450,11 @@ async function onDelete() {
 	flex-shrink: 0;
 }
 
-.item-row__delete {
+/* Actions (⋮) kebab — sits above the row's click overlay so the menu opens */
+.item-row__actions {
 	flex: 0 0 auto;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background: none;
-	border: none;
-	color: var(--color-text-maxcontrast);
-	cursor: pointer;
-	padding: 6px;
-	border-radius: var(--border-radius);
-	opacity: 0;
-	transition: opacity 0.15s ease, color 0.15s ease;
 	position: relative;
 	z-index: 1;
-}
-
-.item-row:hover .item-row__delete {
-	opacity: 1;
-}
-
-/* Touch devices have no hover — always show the delete button */
-@media (hover: none) {
-	.item-row__delete {
-		opacity: 0.5;
-	}
-}
-
-.item-row__delete:hover {
-	color: var(--color-error);
 }
 
 /* Inline editing */
