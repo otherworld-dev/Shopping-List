@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.2] - 2026-06-15
+
+### Fixed
+- Long item names with no spaces no longer overflow the row or squash sibling
+  rows to one character per line — rows shrink correctly and long names wrap (#20)
+- A long shop-area name on a row can no longer starve the item name to zero width
+  (the area chip is capped); long area names in headers now wrap
+- Same wrapping fixes applied to the public shared-list view
+
 ## [1.4.1] - 2026-06-15
 
 ### Added
