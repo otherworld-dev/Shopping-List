@@ -289,11 +289,14 @@ async function onToggleCheck(item: Item) {
 	align-items: center;
 	gap: 8px;
 	padding: 6px 16px;
+	min-width: 0;
 	border-left: 3px solid var(--color-border-dark, rgba(255, 255, 255, 0.2));
 	background-color: var(--color-background-dark, rgba(0, 0, 0, 0.2));
 }
 
 .public-list__area-name {
+	min-width: 0;
+	overflow-wrap: anywhere;
 	font-size: 0.8em;
 	font-weight: 600;
 	text-transform: uppercase;
@@ -306,6 +309,7 @@ async function onToggleCheck(item: Item) {
 }
 
 .public-list__area-count {
+	flex: 0 0 auto;
 	color: var(--color-text-maxcontrast);
 	font-size: 0.75em;
 	opacity: 0.7;
@@ -373,7 +377,10 @@ async function onToggleCheck(item: Item) {
 	display: inline-flex;
 	align-items: center;
 	gap: 5px;
-	flex: 0 0 auto;
+	flex: 0 1 auto;
+	min-width: 0;
+	max-width: 40%;
+	overflow: hidden;
 	font-size: 0.8em;
 	color: var(--color-text-maxcontrast);
 	white-space: nowrap;

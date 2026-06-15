@@ -34,7 +34,7 @@
 	line-height: 1;
 }
 
-.item-row[data-v-95ea8e01] {
+.item-row[data-v-1e2426d9] {
 	display: flex !important;
 	flex-direction: row !important;
 	flex-wrap: nowrap !important;
@@ -50,17 +50,17 @@
 	gap: 0;
 	position: relative;
 }
-.item-row[data-v-95ea8e01]:last-child {
+.item-row[data-v-1e2426d9]:last-child {
 	border-bottom: none;
 }
-.item-row[data-v-95ea8e01]:hover {
+.item-row[data-v-1e2426d9]:hover {
 	background-color: var(--color-background-hover);
 }
 
 /* Invisible overlay to capture clicks — bypasses Nextcloud's click
    interception on non-interactive elements. The document-level capture
    listener in ListView detects which row was clicked. */
-.item-row[data-item-id][data-v-95ea8e01]::after {
+.item-row[data-item-id][data-v-1e2426d9]::after {
 	content: '';
 	position: absolute;
 	top: 0;
@@ -69,10 +69,10 @@
 	bottom: 0;
 	cursor: pointer;
 }
-.item-row--editing[data-v-95ea8e01]::after {
+.item-row--editing[data-v-1e2426d9]::after {
 	display: none;
 }
-.item-row__check[data-v-95ea8e01] {
+.item-row__check[data-v-1e2426d9] {
 	flex: 0 0 auto;
 	display: flex;
 	align-items: center;
@@ -81,21 +81,21 @@
 	position: relative;
 	z-index: 1;
 }
-.item-row__check input[type="checkbox"][data-v-95ea8e01] {
+.item-row__check input[type="checkbox"][data-v-1e2426d9] {
 	width: 18px;
 	height: 18px;
 	cursor: pointer;
 	accent-color: var(--color-primary-element);
 	margin: 0;
 }
-.item-row__quantity[data-v-95ea8e01] {
+.item-row__quantity[data-v-1e2426d9] {
 	flex: 0 0 auto;
 	color: var(--color-text-maxcontrast);
 	font-size: 0.85em;
 	white-space: nowrap;
 	padding-right: 8px;
 }
-.item-row__name[data-v-95ea8e01] {
+.item-row__name[data-v-1e2426d9] {
 	flex: 1 1 0%;
 	min-width: 0;
 	font-size: 0.95em;
@@ -104,11 +104,11 @@
 	   item can shrink — a long no-space name wraps instead of overflowing. */
 	overflow-wrap: anywhere;
 }
-.item-row__name--checked[data-v-95ea8e01] {
+.item-row__name--checked[data-v-1e2426d9] {
 	text-decoration: line-through;
 	color: var(--color-text-maxcontrast);
 }
-.item-row__area[data-v-95ea8e01] {
+.item-row__area[data-v-1e2426d9] {
 	display: inline-flex;
 	align-items: center;
 	gap: 5px;
@@ -116,6 +116,9 @@
 	   name down to just the colored dot when the item name needs the room. */
 	flex: 0 1 auto;
 	min-width: 0;
+	/* Cap the chip so a long area name can't starve the item name to 0 width
+	   (flex-basis:auto would otherwise be the full text width). */
+	max-width: 40%;
 	font-size: 0.8em;
 	color: var(--color-text-maxcontrast);
 	padding: 0 8px;
@@ -123,13 +126,13 @@
 	z-index: 1;
 	pointer-events: none;
 }
-.item-row__area-dot[data-v-95ea8e01] {
+.item-row__area-dot[data-v-1e2426d9] {
 	width: 6px;
 	height: 6px;
 	border-radius: 50%;
 	flex-shrink: 0;
 }
-.item-row__area-name[data-v-95ea8e01] {
+.item-row__area-name[data-v-1e2426d9] {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -137,14 +140,14 @@
 }
 
 /* Actions (⋮) kebab — sits above the row's click overlay so the menu opens */
-.item-row__actions[data-v-95ea8e01] {
+.item-row__actions[data-v-1e2426d9] {
 	flex: 0 0 auto;
 	position: relative;
 	z-index: 1;
 }
 
 /* Inline editing */
-.item-row__edit-input[data-v-95ea8e01] {
+.item-row__edit-input[data-v-1e2426d9] {
 	height: 30px;
 	border: 1px solid var(--color-primary-element);
 	border-radius: var(--border-radius);
@@ -156,39 +159,39 @@
 	position: relative;
 	z-index: 1;
 }
-.item-row__edit-name[data-v-95ea8e01] {
+.item-row__edit-name[data-v-1e2426d9] {
 	flex: 1 1 0%;
 	min-width: 0;
 }
-.item-row__edit-qty[data-v-95ea8e01] {
+.item-row__edit-qty[data-v-1e2426d9] {
 	flex: 0 0 70px;
 	width: 70px;
 	font-size: 0.85em;
 	text-align: center;
 }
-.item-row__edit-qty[data-v-95ea8e01]::placeholder {
+.item-row__edit-qty[data-v-1e2426d9]::placeholder {
 	color: var(--color-text-maxcontrast);
 	font-style: italic;
 }
 
 /* Area picker in edit mode */
-.item-row__area-wrapper[data-v-95ea8e01] {
+.item-row__area-wrapper[data-v-1e2426d9] {
 	flex: 0 0 auto;
 	position: relative;
 	display: flex;
 	align-items: center;
 	z-index: 10;
 }
-.item-row__edit-area[data-v-95ea8e01] {
+.item-row__edit-area[data-v-1e2426d9] {
 	width: 90px;
 	font-size: 0.85em;
 	padding-right: 20px !important;
 }
-.item-row__edit-area[data-v-95ea8e01]::placeholder {
+.item-row__edit-area[data-v-1e2426d9]::placeholder {
 	color: var(--color-text-maxcontrast);
 	font-style: italic;
 }
-.item-row__area-clear[data-v-95ea8e01] {
+.item-row__area-clear[data-v-1e2426d9] {
 	position: absolute;
 	right: 4px;
 	top: 50%;
@@ -202,7 +205,7 @@
 	line-height: 1;
 	z-index: 2;
 }
-.item-row__area-clear[data-v-95ea8e01]:hover {
+.item-row__area-clear[data-v-1e2426d9]:hover {
 	color: var(--color-error);
 }
 

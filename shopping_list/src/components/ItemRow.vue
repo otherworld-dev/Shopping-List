@@ -443,6 +443,9 @@ async function onMove(targetListId: number) {
 	   name down to just the colored dot when the item name needs the room. */
 	flex: 0 1 auto;
 	min-width: 0;
+	/* Cap the chip so a long area name can't starve the item name to 0 width
+	   (flex-basis:auto would otherwise be the full text width). */
+	max-width: 40%;
 	font-size: 0.8em;
 	color: var(--color-text-maxcontrast);
 	padding: 0 8px;
