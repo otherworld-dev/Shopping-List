@@ -357,6 +357,10 @@ async function onMove(targetListId: number) {
 	flex-direction: row !important;
 	flex-wrap: nowrap !important;
 	align-items: center;
+	/* The row is itself a flex item of the column list; without this it keeps
+	   min-width:auto (= min-content), so a long unbreakable name forces the
+	   whole list wider than the viewport and squashes sibling rows. */
+	min-width: 0;
 	min-height: 44px;
 	padding: 0 12px;
 	border-bottom: 1px solid var(--color-border);

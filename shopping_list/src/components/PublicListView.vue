@@ -314,11 +314,13 @@ async function onToggleCheck(item: Item) {
 .public-list__items {
 	display: flex;
 	flex-direction: column;
+	min-width: 0;
 }
 
 .public-list__item {
 	display: flex;
 	align-items: center;
+	min-width: 0;
 	min-height: 44px;
 	padding: 0 12px;
 	border-bottom: 1px solid var(--color-border, rgba(255, 255, 255, 0.1));

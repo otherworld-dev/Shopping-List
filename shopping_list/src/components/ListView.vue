@@ -394,6 +394,7 @@ async function onUncheckAll() {
 .list-view__items {
 	display: flex;
 	flex-direction: column;
+	min-width: 0;
 	min-height: 8px;
 }
 
