@@ -421,7 +421,9 @@ async function onMove(targetListId: number) {
 	min-width: 0;
 	font-size: 0.95em;
 	padding-right: 8px;
-	word-break: break-word;
+	/* anywhere (not break-word) so the min-content width collapses and the flex
+	   item can shrink — a long no-space name wraps instead of overflowing. */
+	overflow-wrap: anywhere;
 }
 
 .item-row__name--checked {

@@ -14802,7 +14802,7 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ItemRow = /* @__PURE__ */ _export_sfc$1(_sfc_main$6, [["__scopeId", "data-v-c82dc4b4"]]);
+const ItemRow = /* @__PURE__ */ _export_sfc$1(_sfc_main$6, [["__scopeId", "data-v-ddc70260"]]);
 const _hoisted_1$4 = { class: "item-editor" };
 const _hoisted_2$4 = { class: "item-editor__main" };
 const _hoisted_3$4 = ["placeholder", "onKeydown"];
@@ -15760,7 +15760,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ListView = /* @__PURE__ */ _export_sfc$1(_sfc_main$3, [["__scopeId", "data-v-4540b9c1"]]);
+const ListView = /* @__PURE__ */ _export_sfc$1(_sfc_main$3, [["__scopeId", "data-v-806cfddd"]]);
 const _hoisted_1$1 = { class: "area-settings" };
 const _hoisted_2$1 = { class: "area-settings__header" };
 const _hoisted_3$1 = { class: "area-settings__desc" };

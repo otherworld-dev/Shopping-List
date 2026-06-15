@@ -365,11 +365,14 @@ async function onUncheckAll() {
 	align-items: center;
 	gap: 8px;
 	padding: 6px 16px;
+	min-width: 0;
 	border-left: 3px solid var(--color-border-dark);
 	background-color: var(--color-background-dark);
 }
 
 .list-view__area-name {
+	min-width: 0;
+	overflow-wrap: anywhere;
 	font-size: 0.8em;
 	font-weight: 600;
 	text-transform: uppercase;
@@ -382,6 +385,7 @@ async function onUncheckAll() {
 }
 
 .list-view__area-count {
+	flex: 0 0 auto;
 	color: var(--color-text-maxcontrast);
 	font-size: 0.75em;
 	opacity: 0.7;

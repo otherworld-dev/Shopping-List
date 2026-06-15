@@ -245,7 +245,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const PublicListView = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-1a913116"]]);
+const PublicListView = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-a7a304db"]]);
 const _hoisted_1 = { class: "public-app" };
 const _hoisted_2 = {
   key: 0,

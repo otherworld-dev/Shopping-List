@@ -359,7 +359,7 @@ async function onToggleCheck(item: Item) {
 	min-width: 0;
 	font-size: 0.95em;
 	padding-right: 8px;
-	word-break: break-word;
+	overflow-wrap: anywhere;
 }
 
 .public-list__name--checked {
