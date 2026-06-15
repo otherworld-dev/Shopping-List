@@ -16,6 +16,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Server-side area matching folds accents/case to match the client (declares the
   `intl` dependency)
 
+### Fixed
+- The per-row shop-area label no longer squeezes a long item name — it collapses
+  to just the colored dot, with the area name on hover (#20)
+
 ## [1.4.0] - 2026-06-15
 
 ### Added

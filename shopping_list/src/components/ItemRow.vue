@@ -87,9 +87,9 @@
 			</span>
 		</template>
 
-		<span v-if="areaName && !editing" class="item-row__area">
+		<span v-if="areaName && !editing" class="item-row__area" :title="areaName">
 			<span v-if="areaColor" class="item-row__area-dot" :style="{ backgroundColor: areaColor }" />
-			{{ areaName }}
+			<span class="item-row__area-name">{{ areaName }}</span>
 		</span>
 
 		<NcActions v-if="canEdit && !editing" class="item-row__actions">
@@ -433,10 +433,12 @@ async function onMove(targetListId: number) {
 	display: inline-flex;
 	align-items: center;
 	gap: 5px;
-	flex: 0 0 auto;
+	/* Give the item name priority: this label may shrink, collapsing the area
+	   name down to just the colored dot when the item name needs the room. */
+	flex: 0 1 auto;
+	min-width: 0;
 	font-size: 0.8em;
 	color: var(--color-text-maxcontrast);
-	white-space: nowrap;
 	padding: 0 8px;
 	position: relative;
 	z-index: 1;
@@ -448,6 +450,13 @@ async function onMove(targetListId: number) {
 	height: 6px;
 	border-radius: 50%;
 	flex-shrink: 0;
+}
+
+.item-row__area-name {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	min-width: 0;
 }
 
 /* Actions (⋮) kebab — sits above the row's click overlay so the menu opens */

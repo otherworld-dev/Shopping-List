@@ -14455,10 +14455,8 @@ const _hoisted_9$3 = {
   key: 0,
   class: "item-row__quantity"
 };
-const _hoisted_10$3 = {
-  key: 2,
-  class: "item-row__area"
-};
+const _hoisted_10$3 = ["title"];
+const _hoisted_11$3 = { class: "item-row__area-name" };
 const _sfc_main$6 = /* @__PURE__ */ defineComponent({
   __name: "ItemRow",
   props: {
@@ -14755,14 +14753,18 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
             class: normalizeClass(["item-row__name", { "item-row__name--checked": item.value.checked }])
           }, toDisplayString(item.value.name), 3)
         ], 64)),
-        areaName.value && !__props.editing ? (openBlock(), createElementBlock("span", _hoisted_10$3, [
+        areaName.value && !__props.editing ? (openBlock(), createElementBlock("span", {
+          key: 2,
+          class: "item-row__area",
+          title: areaName.value
+        }, [
           areaColor.value ? (openBlock(), createElementBlock("span", {
             key: 0,
             class: "item-row__area-dot",
             style: normalizeStyle({ backgroundColor: areaColor.value })
           }, null, 4)) : createCommentVNode("", true),
-          createTextVNode(" " + toDisplayString(areaName.value), 1)
-        ])) : createCommentVNode("", true),
+          createBaseVNode("span", _hoisted_11$3, toDisplayString(areaName.value), 1)
+        ], 8, _hoisted_10$3)) : createCommentVNode("", true),
         __props.canEdit && !__props.editing ? (openBlock(), createBlock(unref(NcActions), {
           key: 3,
           class: "item-row__actions"
@@ -14800,7 +14802,7 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ItemRow = /* @__PURE__ */ _export_sfc$1(_sfc_main$6, [["__scopeId", "data-v-c9663537"]]);
+const ItemRow = /* @__PURE__ */ _export_sfc$1(_sfc_main$6, [["__scopeId", "data-v-c82dc4b4"]]);
 const _hoisted_1$4 = { class: "item-editor" };
 const _hoisted_2$4 = { class: "item-editor__main" };
 const _hoisted_3$4 = ["placeholder", "onKeydown"];
