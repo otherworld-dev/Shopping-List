@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { api } from '../composables/useApi'
 import type { ShopArea } from '../types'
-import { showError } from '@nextcloud/dialogs'
+import { showError, showSuccess } from '@nextcloud/dialogs'
 import { t } from '@nextcloud/l10n'
 
 export const useShopAreasStore = defineStore('shopAreas', () => {
@@ -62,11 +62,23 @@ export const useShopAreasStore = defineStore('shopAreas', () => {
 		}
 	}
 
+	async function copyFrom(listId: number, sourceListId: number) {
+		try {
+			const response = await api.areas.copy(listId, sourceListId)
+			areasByList.value[listId] = response.data.ocs.data
+			showSuccess(t('shopping_list', 'Categories copied'))
+		} catch (e) {
+			showError(t('shopping_list', 'Failed to copy categories'))
+			console.error(e)
+		}
+	}
+
 	return {
 		areasByList,
 		fetchByList,
 		create,
 		update,
 		remove,
+		copyFrom,
 	}
 })

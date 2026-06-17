@@ -52,6 +52,8 @@ export const api = {
 		update: (listId: number, id: number, data: Record<string, unknown>) =>
 			axios.put(url(`lists/${listId}/areas/${id}`), data),
 		delete: (listId: number, id: number) => axios.delete(url(`lists/${listId}/areas/${id}`)),
+		copy: (listId: number, sourceListId: number) =>
+			axios.post(url(`lists/${listId}/areas/copy`), { sourceListId }),
 	},
 	tags: {
 		getAll: () => axios.get(url('tags')),

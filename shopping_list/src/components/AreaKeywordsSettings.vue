@@ -29,6 +29,20 @@
 			</button>
 		</div>
 
+		<!-- Copy categories from another list -->
+		<div v-if="canEdit && otherLists.length > 0" class="area-settings__copy">
+			<select v-model="copySourceId" class="area-settings__copy-select">
+				<option :value="null">{{ copyFromPlaceholder }}</option>
+				<option v-for="l in otherLists" :key="l.id" :value="l.id">{{ l.title }}</option>
+			</select>
+			<button
+				class="area-settings__copy-btn"
+				:disabled="copySourceId === null || copying"
+				@click="onCopyFrom">
+				{{ copyText }}
+			</button>
+		</div>
+
 		<div class="area-settings__search">
 			<input
 				v-model="search"
@@ -165,6 +179,8 @@ const moveDownText = t('shopping_list', 'Move down')
 const colorTitle = t('shopping_list', 'Change color')
 const newAreaPlaceholder = t('shopping_list', 'New area name...')
 const addAreaText = t('shopping_list', 'Add area')
+const copyFromPlaceholder = t('shopping_list', 'Copy categories from…')
+const copyText = t('shopping_list', 'Copy')
 
 const search = ref('')
 const newKeyword = ref<Record<number, string>>({})
@@ -174,6 +190,8 @@ const renameValue = ref('')
 const renameInputRef = ref<HTMLInputElement[] | null>(null)
 const newAreaName = ref('')
 const newAreaColor = ref('#9E9E9E')
+const copySourceId = ref<number | null>(null)
+const copying = ref(false)
 
 let saveTimeout: Record<number, ReturnType<typeof setTimeout>> = {}
 let colorTimeout: Record<number, ReturnType<typeof setTimeout>> = {}
@@ -185,6 +203,25 @@ const canEdit = computed(() =>
 const areas = computed(() =>
 	listId.value !== null ? (shopAreasStore.areasByList[listId.value] ?? []) : [],
 )
+
+// Other lists to copy categories from
+const otherLists = computed(() =>
+	listsStore.lists
+		.filter(l => l.id !== listId.value)
+		.slice()
+		.sort((a, b) => a.title.localeCompare(b.title)),
+)
+
+async function onCopyFrom() {
+	if (copySourceId.value === null || listId.value === null || copying.value) return
+	copying.value = true
+	try {
+		await shopAreasStore.copyFrom(listId.value, copySourceId.value)
+		copySourceId.value = null
+	} finally {
+		copying.value = false
+	}
+}
 
 onMounted(() => {
 	if (listId.value !== null) {
@@ -425,6 +462,46 @@ async function onDeleteArea(area: ShopArea) {
 }
 
 .area-settings__create-btn:disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+.area-settings__copy {
+	display: flex;
+	gap: 8px;
+	margin-bottom: 16px;
+	align-items: center;
+}
+
+.area-settings__copy-select {
+	flex: 1;
+	min-width: 0;
+	height: 36px;
+	padding: 0 12px;
+	border: 2px solid var(--color-border);
+	border-radius: var(--border-radius-large);
+	background: var(--color-main-background);
+	color: var(--color-main-text);
+	font-size: 0.9em;
+	outline: none;
+	cursor: pointer;
+	box-sizing: border-box;
+}
+
+.area-settings__copy-btn {
+	height: 36px;
+	padding: 0 16px;
+	border: 2px solid var(--color-border);
+	border-radius: var(--border-radius-large);
+	background: var(--color-main-background);
+	color: var(--color-main-text);
+	font-size: 0.85em;
+	font-weight: 600;
+	cursor: pointer;
+	white-space: nowrap;
+}
+
+.area-settings__copy-btn:disabled {
 	opacity: 0.4;
 	cursor: not-allowed;
 }

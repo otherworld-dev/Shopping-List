@@ -64,6 +64,19 @@ class ShopAreaController extends OCSController {
 	}
 
 	#[NoAdminRequired]
+	public function copy(int $listId, int $sourceListId): DataResponse {
+		try {
+			$this->listService->assertWriteAccess($listId, $this->userId);
+			$this->listService->assertAccess($sourceListId, $this->userId);
+			return new DataResponse($this->service->copyAreas($sourceListId, $listId));
+		} catch (NotFoundException $e) {
+			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_NOT_FOUND);
+		} catch (NoPermissionException $e) {
+			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_FORBIDDEN);
+		}
+	}
+
+	#[NoAdminRequired]
 	public function destroy(int $listId, int $id): DataResponse {
 		try {
 			$this->listService->assertWriteAccess($listId, $this->userId);

@@ -355,6 +355,22 @@ msgid "Failed to load shop areas"
 msgstr ""
 
 #: src/stores/shopAreas.ts
+msgid "Categories copied"
+msgstr ""
+
+#: src/stores/shopAreas.ts
+msgid "Failed to copy categories"
+msgstr ""
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Copy categories from…"
+msgstr ""
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Copy"
+msgstr ""
+
+#: src/stores/shopAreas.ts
 msgid "Failed to create shop area"
 msgstr ""
 

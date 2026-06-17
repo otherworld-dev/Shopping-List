@@ -217,6 +217,69 @@ class ShopAreaService {
 		return $this->mapper->insert($area);
 	}
 
+	/**
+	 * Copy shop areas from one list into another. A target area with the same
+	 * name has the source's keywords merged into it (union, keeping the target's
+	 * color/order); otherwise the area is created and appended after the target's
+	 * existing areas. Only category definitions are copied — items are untouched.
+	 *
+	 * @return ShopArea[] the target list's areas after the copy
+	 */
+	public function copyAreas(int $sourceListId, int $targetListId): array {
+		if ($sourceListId === $targetListId) {
+			return $this->mapper->findByList($targetListId);
+		}
+
+		$sourceAreas = $this->mapper->findByList($sourceListId);
+		$targetAreas = $this->mapper->findByList($targetListId);
+
+		// Match by folded name (accent/case-insensitive) like the rest of the app
+		$byName = [];
+		$maxSort = -1;
+		foreach ($targetAreas as $area) {
+			$byName[$this->fold($area->getName())] = $area;
+			$maxSort = max($maxSort, $area->getSortOrder());
+		}
+
+		// All-or-nothing: a mid-loop failure must not leave a half-copied list
+		$this->db->beginTransaction();
+		try {
+			foreach ($sourceAreas as $src) {
+				$existing = $byName[$this->fold($src->getName())] ?? null;
+				if ($existing !== null) {
+					$keywords = $existing->getKeywordsArray();
+					$seen = array_fill_keys($keywords, true);
+					$changed = false;
+					foreach ($src->getKeywordsArray() as $kw) {
+						if (!isset($seen[$kw])) {
+							$keywords[] = $kw;
+							$seen[$kw] = true;
+							$changed = true;
+						}
+					}
+					if ($changed) {
+						$existing->setKeywordsArray($keywords);
+						$this->mapper->update($existing);
+					}
+				} else {
+					$area = new ShopArea();
+					$area->setListId($targetListId);
+					$area->setName($src->getName());
+					$area->setColor($src->getColor());
+					$area->setSortOrder(++$maxSort);
+					$area->setKeywordsArray($src->getKeywordsArray());
+					$this->mapper->insert($area);
+				}
+			}
+			$this->db->commit();
+		} catch (\Throwable $e) {
+			$this->db->rollBack();
+			throw $e;
+		}
+
+		return $this->mapper->findByList($targetListId);
+	}
+
 	public function update(int $id, int $listId, ?string $name, ?string $color, ?int $sortOrder, ?array $keywords): ShopArea {
 		try {
 			$area = $this->mapper->find($id);
