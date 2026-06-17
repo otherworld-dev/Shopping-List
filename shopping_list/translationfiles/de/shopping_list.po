@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-06-13 15:12\n"
+"PO-Revision-Date: 2026-06-17 15:17\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -354,6 +354,22 @@ msgid "Failed to load shop areas"
 msgstr "Fehler beim Laden der Shopkategorien"
 
 #: src/stores/shopAreas.ts
+msgid "Categories copied"
+msgstr ""
+
+#: src/stores/shopAreas.ts
+msgid "Failed to copy categories"
+msgstr ""
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Copy categories from…"
+msgstr ""
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Copy"
+msgstr ""
+
+#: src/stores/shopAreas.ts
 msgid "Failed to create shop area"
 msgstr "Fehler beim Erstellen der Shopkategorie"
 
@@ -428,6 +444,22 @@ msgstr "Andere"
 #: src/components/ItemRow.vue
 msgid "Delete \"{name}\"?"
 msgstr "\"{name}\" löschen?"
+
+#: src/components/ItemRow.vue
+msgid "Move to list"
+msgstr ""
+
+#: src/stores/items.ts
+msgid "Failed to move item"
+msgstr ""
+
+#: src/stores/items.ts
+msgid "Moved \"{name}\" to {list}"
+msgstr ""
+
+#: src/stores/items.ts
+msgid "You're offline — moving items requires a connection"
+msgstr ""
 
 #: src/components/OfflineIndicator.vue
 msgid "Syncing changes…"
