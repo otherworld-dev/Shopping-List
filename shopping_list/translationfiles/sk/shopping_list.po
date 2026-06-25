@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-06-25 17:18\n"
+"PO-Revision-Date: 2026-06-25 18:36\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "Language: sk_SK\n"
@@ -163,7 +163,7 @@ msgstr "Zdielať"
 
 #: src/components/ListView.vue src/components/PublicListView.vue
 msgid "No items yet"
-msgstr "Zatiaľ žiadné položky"
+msgstr "Zatiaľ žiadne položky"
 
 #: src/components/ListView.vue
 msgid "Add your first item above"
@@ -271,7 +271,7 @@ msgstr "Odstrániť verejný odkaz"
 
 #: src/components/TagInput.vue
 msgid "Add tags..."
-msgstr "Pridať tagy..."
+msgstr "Pridať značky..."
 
 #: src/stores/items.ts
 msgid "Failed to load items"
@@ -407,11 +407,11 @@ msgstr ""
 
 #: lib/Service/ShopAreaService.php
 msgid "Meat & Seafood"
-msgstr ""
+msgstr "Mäso a morské plody"
 
 #: lib/Service/ShopAreaService.php
 msgid "Frozen"
-msgstr ""
+msgstr "Mrazené"
 
 #: lib/Service/ShopAreaService.php
 msgid "Beverages"
