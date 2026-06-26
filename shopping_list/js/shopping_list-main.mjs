@@ -779,12 +779,360 @@ const useShopAreasStore = defineStore("shopAreas", () => {
 function fold(s) {
   return s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
 }
-const units$1 = ["esslöffel", "el", "teelöffel", "tl", "tasse", "tassen", "gramm", "g", "kilogramm", "kg", "milliliter", "ml", "liter", "l", "prise", "prisen", "bund", "zehe", "zehen", "dose", "dosen", "flasche", "flaschen", "packung", "packungen", "päckchen", "stück", "scheibe", "scheiben", "becher", "glas", "gläser", "tüte", "tüten", "kopf", "köpfe", "blatt", "blätter", "beutel", "kanne"];
-const unitAliases$1 = { "el": "esslöffel", "tl": "teelöffel", "g": "gramm", "kg": "kilogramm", "ml": "milliliter", "l": "liter", "tassen": "tasse", "prisen": "prise", "zehen": "zehe", "dosen": "dose", "flaschen": "flasche", "packungen": "packung", "scheiben": "scheibe", "gläser": "glas", "tüten": "tüte", "köpfe": "kopf", "blätter": "blatt" };
-const leadingUnits$1 = ["prise", "prisen", "bund", "schuss", "spritzer", "handvoll"];
-const prepositions$1 = ["von", "vom"];
-const decimalSeparators$1 = [",", "."];
+const units$u = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const unitAliases$u = { "cups": "cup", "teaspoons": "teaspoon", "tsp": "teaspoon", "tablespoons": "tablespoon", "tbsp": "tablespoon", "ounces": "ounce", "oz": "ounce", "pounds": "pound", "lbs": "pound", "lb": "pound", "grams": "gram", "g": "gram", "kilograms": "kilogram", "kg": "kilogram", "milliliters": "milliliter", "ml": "milliliter", "liters": "liter", "l": "liter", "cans": "can", "bottles": "bottle", "slices": "slice", "pieces": "piece", "cloves": "clove", "stalks": "stalk", "sprigs": "sprig", "bags": "bag", "packs": "pack", "packets": "pack", "pinches": "pinch", "bunches": "bunch", "heads": "head" };
+const leadingUnits$u = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$u = ["of"];
+const decimalSeparators$u = ["."];
 const __vite_glob_0_0 = {
+  units: units$u,
+  unitAliases: unitAliases$u,
+  leadingUnits: leadingUnits$u,
+  prepositions: prepositions$u,
+  decimalSeparators: decimalSeparators$u
+};
+const units$t = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const unitAliases$t = { "cups": "cup", "teaspoons": "teaspoon", "tsp": "teaspoon", "tablespoons": "tablespoon", "tbsp": "tablespoon", "ounces": "ounce", "oz": "ounce", "pounds": "pound", "lbs": "pound", "lb": "pound", "grams": "gram", "g": "gram", "kilograms": "kilogram", "kg": "kilogram", "milliliters": "milliliter", "ml": "milliliter", "liters": "liter", "l": "liter", "cans": "can", "bottles": "bottle", "slices": "slice", "pieces": "piece", "cloves": "clove", "stalks": "stalk", "sprigs": "sprig", "bags": "bag", "packs": "pack", "packets": "pack", "pinches": "pinch", "bunches": "bunch", "heads": "head" };
+const leadingUnits$t = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$t = ["of"];
+const decimalSeparators$t = ["."];
+const __vite_glob_0_1 = {
+  units: units$t,
+  unitAliases: unitAliases$t,
+  leadingUnits: leadingUnits$t,
+  prepositions: prepositions$t,
+  decimalSeparators: decimalSeparators$t
+};
+const units$s = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const unitAliases$s = { "cups": "cup", "teaspoons": "teaspoon", "tsp": "teaspoon", "tablespoons": "tablespoon", "tbsp": "tablespoon", "ounces": "ounce", "oz": "ounce", "pounds": "pound", "lbs": "pound", "lb": "pound", "grams": "gram", "g": "gram", "kilograms": "kilogram", "kg": "kilogram", "milliliters": "milliliter", "ml": "milliliter", "liters": "liter", "l": "liter", "cans": "can", "bottles": "bottle", "slices": "slice", "pieces": "piece", "cloves": "clove", "stalks": "stalk", "sprigs": "sprig", "bags": "bag", "packs": "pack", "packets": "pack", "pinches": "pinch", "bunches": "bunch", "heads": "head" };
+const leadingUnits$s = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$s = ["of"];
+const decimalSeparators$s = ["."];
+const __vite_glob_0_2 = {
+  units: units$s,
+  unitAliases: unitAliases$s,
+  leadingUnits: leadingUnits$s,
+  prepositions: prepositions$s,
+  decimalSeparators: decimalSeparators$s
+};
+const units$r = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const unitAliases$r = { "cups": "cup", "teaspoons": "teaspoon", "tsp": "teaspoon", "tablespoons": "tablespoon", "tbsp": "tablespoon", "ounces": "ounce", "oz": "ounce", "pounds": "pound", "lbs": "pound", "lb": "pound", "grams": "gram", "g": "gram", "kilograms": "kilogram", "kg": "kilogram", "milliliters": "milliliter", "ml": "milliliter", "liters": "liter", "l": "liter", "cans": "can", "bottles": "bottle", "slices": "slice", "pieces": "piece", "cloves": "clove", "stalks": "stalk", "sprigs": "sprig", "bags": "bag", "packs": "pack", "packets": "pack", "pinches": "pinch", "bunches": "bunch", "heads": "head" };
+const leadingUnits$r = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$r = ["of"];
+const decimalSeparators$r = ["."];
+const __vite_glob_0_3 = {
+  units: units$r,
+  unitAliases: unitAliases$r,
+  leadingUnits: leadingUnits$r,
+  prepositions: prepositions$r,
+  decimalSeparators: decimalSeparators$r
+};
+const units$q = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const unitAliases$q = { "cups": "cup", "teaspoons": "teaspoon", "tsp": "teaspoon", "tablespoons": "tablespoon", "tbsp": "tablespoon", "ounces": "ounce", "oz": "ounce", "pounds": "pound", "lbs": "pound", "lb": "pound", "grams": "gram", "g": "gram", "kilograms": "kilogram", "kg": "kilogram", "milliliters": "milliliter", "ml": "milliliter", "liters": "liter", "l": "liter", "cans": "can", "bottles": "bottle", "slices": "slice", "pieces": "piece", "cloves": "clove", "stalks": "stalk", "sprigs": "sprig", "bags": "bag", "packs": "pack", "packets": "pack", "pinches": "pinch", "bunches": "bunch", "heads": "head" };
+const leadingUnits$q = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$q = ["of"];
+const decimalSeparators$q = ["."];
+const __vite_glob_0_4 = {
+  units: units$q,
+  unitAliases: unitAliases$q,
+  leadingUnits: leadingUnits$q,
+  prepositions: prepositions$q,
+  decimalSeparators: decimalSeparators$q
+};
+const units$p = ["esslöffel", "el", "teelöffel", "tl", "tasse", "tassen", "gramm", "g", "kilogramm", "kg", "milliliter", "ml", "liter", "l", "prise", "prisen", "bund", "zehe", "zehen", "dose", "dosen", "flasche", "flaschen", "packung", "packungen", "päckchen", "stück", "scheibe", "scheiben", "becher", "glas", "gläser", "tüte", "tüten", "kopf", "köpfe", "blatt", "blätter", "beutel", "kanne"];
+const unitAliases$p = { "el": "esslöffel", "tl": "teelöffel", "g": "gramm", "kg": "kilogramm", "ml": "milliliter", "l": "liter", "tassen": "tasse", "prisen": "prise", "zehen": "zehe", "dosen": "dose", "flaschen": "flasche", "packungen": "packung", "scheiben": "scheibe", "gläser": "glas", "tüten": "tüte", "köpfe": "kopf", "blätter": "blatt" };
+const leadingUnits$p = ["prise", "prisen", "bund", "schuss", "spritzer", "handvoll"];
+const prepositions$p = ["von", "vom"];
+const decimalSeparators$p = [",", "."];
+const __vite_glob_0_5 = {
+  units: units$p,
+  unitAliases: unitAliases$p,
+  leadingUnits: leadingUnits$p,
+  prepositions: prepositions$p,
+  decimalSeparators: decimalSeparators$p
+};
+const units$o = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const unitAliases$o = { "cups": "cup", "teaspoons": "teaspoon", "tsp": "teaspoon", "tablespoons": "tablespoon", "tbsp": "tablespoon", "ounces": "ounce", "oz": "ounce", "pounds": "pound", "lbs": "pound", "lb": "pound", "grams": "gram", "g": "gram", "kilograms": "kilogram", "kg": "kilogram", "milliliters": "milliliter", "ml": "milliliter", "liters": "liter", "l": "liter", "cans": "can", "bottles": "bottle", "slices": "slice", "pieces": "piece", "cloves": "clove", "stalks": "stalk", "sprigs": "sprig", "bags": "bag", "packs": "pack", "packets": "pack", "pinches": "pinch", "bunches": "bunch", "heads": "head" };
+const leadingUnits$o = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$o = ["of"];
+const decimalSeparators$o = ["."];
+const __vite_glob_0_6 = {
+  units: units$o,
+  unitAliases: unitAliases$o,
+  leadingUnits: leadingUnits$o,
+  prepositions: prepositions$o,
+  decimalSeparators: decimalSeparators$o
+};
+const units$n = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const unitAliases$n = { "cups": "cup", "teaspoons": "teaspoon", "tsp": "teaspoon", "tablespoons": "tablespoon", "tbsp": "tablespoon", "ounces": "ounce", "oz": "ounce", "pounds": "pound", "lbs": "pound", "lb": "pound", "grams": "gram", "g": "gram", "kilograms": "kilogram", "kg": "kilogram", "milliliters": "milliliter", "ml": "milliliter", "liters": "liter", "l": "liter", "cans": "can", "bottles": "bottle", "slices": "slice", "pieces": "piece", "cloves": "clove", "stalks": "stalk", "sprigs": "sprig", "bags": "bag", "packs": "pack", "packets": "pack", "pinches": "pinch", "bunches": "bunch", "heads": "head" };
+const leadingUnits$n = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$n = ["of"];
+const decimalSeparators$n = ["."];
+const __vite_glob_0_7 = {
+  units: units$n,
+  unitAliases: unitAliases$n,
+  leadingUnits: leadingUnits$n,
+  prepositions: prepositions$n,
+  decimalSeparators: decimalSeparators$n
+};
+const units$m = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const unitAliases$m = { "cups": "cup", "teaspoons": "teaspoon", "tsp": "teaspoon", "tablespoons": "tablespoon", "tbsp": "tablespoon", "ounces": "ounce", "oz": "ounce", "pounds": "pound", "lbs": "pound", "lb": "pound", "grams": "gram", "g": "gram", "kilograms": "kilogram", "kg": "kilogram", "milliliters": "milliliter", "ml": "milliliter", "liters": "liter", "l": "liter", "cans": "can", "bottles": "bottle", "slices": "slice", "pieces": "piece", "cloves": "clove", "stalks": "stalk", "sprigs": "sprig", "bags": "bag", "packs": "pack", "packets": "pack", "pinches": "pinch", "bunches": "bunch", "heads": "head" };
+const leadingUnits$m = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$m = ["of"];
+const decimalSeparators$m = ["."];
+const __vite_glob_0_8 = {
+  units: units$m,
+  unitAliases: unitAliases$m,
+  leadingUnits: leadingUnits$m,
+  prepositions: prepositions$m,
+  decimalSeparators: decimalSeparators$m
+};
+const units$l = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const unitAliases$l = { "cups": "cup", "teaspoons": "teaspoon", "tsp": "teaspoon", "tablespoons": "tablespoon", "tbsp": "tablespoon", "ounces": "ounce", "oz": "ounce", "pounds": "pound", "lbs": "pound", "lb": "pound", "grams": "gram", "g": "gram", "kilograms": "kilogram", "kg": "kilogram", "milliliters": "milliliter", "ml": "milliliter", "liters": "liter", "l": "liter", "cans": "can", "bottles": "bottle", "slices": "slice", "pieces": "piece", "cloves": "clove", "stalks": "stalk", "sprigs": "sprig", "bags": "bag", "packs": "pack", "packets": "pack", "pinches": "pinch", "bunches": "bunch", "heads": "head" };
+const leadingUnits$l = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$l = ["of"];
+const decimalSeparators$l = ["."];
+const __vite_glob_0_9 = {
+  units: units$l,
+  unitAliases: unitAliases$l,
+  leadingUnits: leadingUnits$l,
+  prepositions: prepositions$l,
+  decimalSeparators: decimalSeparators$l
+};
+const units$k = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const unitAliases$k = { "cups": "cup", "teaspoons": "teaspoon", "tsp": "teaspoon", "tablespoons": "tablespoon", "tbsp": "tablespoon", "ounces": "ounce", "oz": "ounce", "pounds": "pound", "lbs": "pound", "lb": "pound", "grams": "gram", "g": "gram", "kilograms": "kilogram", "kg": "kilogram", "milliliters": "milliliter", "ml": "milliliter", "liters": "liter", "l": "liter", "cans": "can", "bottles": "bottle", "slices": "slice", "pieces": "piece", "cloves": "clove", "stalks": "stalk", "sprigs": "sprig", "bags": "bag", "packs": "pack", "packets": "pack", "pinches": "pinch", "bunches": "bunch", "heads": "head" };
+const leadingUnits$k = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$k = ["of"];
+const decimalSeparators$k = ["."];
+const __vite_glob_0_10 = {
+  units: units$k,
+  unitAliases: unitAliases$k,
+  leadingUnits: leadingUnits$k,
+  prepositions: prepositions$k,
+  decimalSeparators: decimalSeparators$k
+};
+const units$j = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const unitAliases$j = { "cups": "cup", "teaspoons": "teaspoon", "tsp": "teaspoon", "tablespoons": "tablespoon", "tbsp": "tablespoon", "ounces": "ounce", "oz": "ounce", "pounds": "pound", "lbs": "pound", "lb": "pound", "grams": "gram", "g": "gram", "kilograms": "kilogram", "kg": "kilogram", "milliliters": "milliliter", "ml": "milliliter", "liters": "liter", "l": "liter", "cans": "can", "bottles": "bottle", "slices": "slice", "pieces": "piece", "cloves": "clove", "stalks": "stalk", "sprigs": "sprig", "bags": "bag", "packs": "pack", "packets": "pack", "pinches": "pinch", "bunches": "bunch", "heads": "head" };
+const leadingUnits$j = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$j = ["of"];
+const decimalSeparators$j = ["."];
+const __vite_glob_0_11 = {
+  units: units$j,
+  unitAliases: unitAliases$j,
+  leadingUnits: leadingUnits$j,
+  prepositions: prepositions$j,
+  decimalSeparators: decimalSeparators$j
+};
+const units$i = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const unitAliases$i = { "cups": "cup", "teaspoons": "teaspoon", "tsp": "teaspoon", "tablespoons": "tablespoon", "tbsp": "tablespoon", "ounces": "ounce", "oz": "ounce", "pounds": "pound", "lbs": "pound", "lb": "pound", "grams": "gram", "g": "gram", "kilograms": "kilogram", "kg": "kilogram", "milliliters": "milliliter", "ml": "milliliter", "liters": "liter", "l": "liter", "cans": "can", "bottles": "bottle", "slices": "slice", "pieces": "piece", "cloves": "clove", "stalks": "stalk", "sprigs": "sprig", "bags": "bag", "packs": "pack", "packets": "pack", "pinches": "pinch", "bunches": "bunch", "heads": "head" };
+const leadingUnits$i = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$i = ["of"];
+const decimalSeparators$i = ["."];
+const __vite_glob_0_12 = {
+  units: units$i,
+  unitAliases: unitAliases$i,
+  leadingUnits: leadingUnits$i,
+  prepositions: prepositions$i,
+  decimalSeparators: decimalSeparators$i
+};
+const units$h = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const unitAliases$h = { "cups": "cup", "teaspoons": "teaspoon", "tsp": "teaspoon", "tablespoons": "tablespoon", "tbsp": "tablespoon", "ounces": "ounce", "oz": "ounce", "pounds": "pound", "lbs": "pound", "lb": "pound", "grams": "gram", "g": "gram", "kilograms": "kilogram", "kg": "kilogram", "milliliters": "milliliter", "ml": "milliliter", "liters": "liter", "l": "liter", "cans": "can", "bottles": "bottle", "slices": "slice", "pieces": "piece", "cloves": "clove", "stalks": "stalk", "sprigs": "sprig", "bags": "bag", "packs": "pack", "packets": "pack", "pinches": "pinch", "bunches": "bunch", "heads": "head" };
+const leadingUnits$h = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$h = ["of"];
+const decimalSeparators$h = ["."];
+const __vite_glob_0_13 = {
+  units: units$h,
+  unitAliases: unitAliases$h,
+  leadingUnits: leadingUnits$h,
+  prepositions: prepositions$h,
+  decimalSeparators: decimalSeparators$h
+};
+const units$g = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const unitAliases$g = { "cups": "cup", "teaspoons": "teaspoon", "tsp": "teaspoon", "tablespoons": "tablespoon", "tbsp": "tablespoon", "ounces": "ounce", "oz": "ounce", "pounds": "pound", "lbs": "pound", "lb": "pound", "grams": "gram", "g": "gram", "kilograms": "kilogram", "kg": "kilogram", "milliliters": "milliliter", "ml": "milliliter", "liters": "liter", "l": "liter", "cans": "can", "bottles": "bottle", "slices": "slice", "pieces": "piece", "cloves": "clove", "stalks": "stalk", "sprigs": "sprig", "bags": "bag", "packs": "pack", "packets": "pack", "pinches": "pinch", "bunches": "bunch", "heads": "head" };
+const leadingUnits$g = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$g = ["of"];
+const decimalSeparators$g = ["."];
+const __vite_glob_0_14 = {
+  units: units$g,
+  unitAliases: unitAliases$g,
+  leadingUnits: leadingUnits$g,
+  prepositions: prepositions$g,
+  decimalSeparators: decimalSeparators$g
+};
+const units$f = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const unitAliases$f = { "cups": "cup", "teaspoons": "teaspoon", "tsp": "teaspoon", "tablespoons": "tablespoon", "tbsp": "tablespoon", "ounces": "ounce", "oz": "ounce", "pounds": "pound", "lbs": "pound", "lb": "pound", "grams": "gram", "g": "gram", "kilograms": "kilogram", "kg": "kilogram", "milliliters": "milliliter", "ml": "milliliter", "liters": "liter", "l": "liter", "cans": "can", "bottles": "bottle", "slices": "slice", "pieces": "piece", "cloves": "clove", "stalks": "stalk", "sprigs": "sprig", "bags": "bag", "packs": "pack", "packets": "pack", "pinches": "pinch", "bunches": "bunch", "heads": "head" };
+const leadingUnits$f = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$f = ["of"];
+const decimalSeparators$f = ["."];
+const __vite_glob_0_15 = {
+  units: units$f,
+  unitAliases: unitAliases$f,
+  leadingUnits: leadingUnits$f,
+  prepositions: prepositions$f,
+  decimalSeparators: decimalSeparators$f
+};
+const units$e = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const unitAliases$e = { "cups": "cup", "teaspoons": "teaspoon", "tsp": "teaspoon", "tablespoons": "tablespoon", "tbsp": "tablespoon", "ounces": "ounce", "oz": "ounce", "pounds": "pound", "lbs": "pound", "lb": "pound", "grams": "gram", "g": "gram", "kilograms": "kilogram", "kg": "kilogram", "milliliters": "milliliter", "ml": "milliliter", "liters": "liter", "l": "liter", "cans": "can", "bottles": "bottle", "slices": "slice", "pieces": "piece", "cloves": "clove", "stalks": "stalk", "sprigs": "sprig", "bags": "bag", "packs": "pack", "packets": "pack", "pinches": "pinch", "bunches": "bunch", "heads": "head" };
+const leadingUnits$e = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$e = ["of"];
+const decimalSeparators$e = ["."];
+const __vite_glob_0_16 = {
+  units: units$e,
+  unitAliases: unitAliases$e,
+  leadingUnits: leadingUnits$e,
+  prepositions: prepositions$e,
+  decimalSeparators: decimalSeparators$e
+};
+const units$d = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const unitAliases$d = { "cups": "cup", "teaspoons": "teaspoon", "tsp": "teaspoon", "tablespoons": "tablespoon", "tbsp": "tablespoon", "ounces": "ounce", "oz": "ounce", "pounds": "pound", "lbs": "pound", "lb": "pound", "grams": "gram", "g": "gram", "kilograms": "kilogram", "kg": "kilogram", "milliliters": "milliliter", "ml": "milliliter", "liters": "liter", "l": "liter", "cans": "can", "bottles": "bottle", "slices": "slice", "pieces": "piece", "cloves": "clove", "stalks": "stalk", "sprigs": "sprig", "bags": "bag", "packs": "pack", "packets": "pack", "pinches": "pinch", "bunches": "bunch", "heads": "head" };
+const leadingUnits$d = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$d = ["of"];
+const decimalSeparators$d = ["."];
+const __vite_glob_0_17 = {
+  units: units$d,
+  unitAliases: unitAliases$d,
+  leadingUnits: leadingUnits$d,
+  prepositions: prepositions$d,
+  decimalSeparators: decimalSeparators$d
+};
+const units$c = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const unitAliases$c = { "cups": "cup", "teaspoons": "teaspoon", "tsp": "teaspoon", "tablespoons": "tablespoon", "tbsp": "tablespoon", "ounces": "ounce", "oz": "ounce", "pounds": "pound", "lbs": "pound", "lb": "pound", "grams": "gram", "g": "gram", "kilograms": "kilogram", "kg": "kilogram", "milliliters": "milliliter", "ml": "milliliter", "liters": "liter", "l": "liter", "cans": "can", "bottles": "bottle", "slices": "slice", "pieces": "piece", "cloves": "clove", "stalks": "stalk", "sprigs": "sprig", "bags": "bag", "packs": "pack", "packets": "pack", "pinches": "pinch", "bunches": "bunch", "heads": "head" };
+const leadingUnits$c = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$c = ["of"];
+const decimalSeparators$c = ["."];
+const __vite_glob_0_18 = {
+  units: units$c,
+  unitAliases: unitAliases$c,
+  leadingUnits: leadingUnits$c,
+  prepositions: prepositions$c,
+  decimalSeparators: decimalSeparators$c
+};
+const units$b = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const unitAliases$b = { "cups": "cup", "teaspoons": "teaspoon", "tsp": "teaspoon", "tablespoons": "tablespoon", "tbsp": "tablespoon", "ounces": "ounce", "oz": "ounce", "pounds": "pound", "lbs": "pound", "lb": "pound", "grams": "gram", "g": "gram", "kilograms": "kilogram", "kg": "kilogram", "milliliters": "milliliter", "ml": "milliliter", "liters": "liter", "l": "liter", "cans": "can", "bottles": "bottle", "slices": "slice", "pieces": "piece", "cloves": "clove", "stalks": "stalk", "sprigs": "sprig", "bags": "bag", "packs": "pack", "packets": "pack", "pinches": "pinch", "bunches": "bunch", "heads": "head" };
+const leadingUnits$b = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$b = ["of"];
+const decimalSeparators$b = ["."];
+const __vite_glob_0_19 = {
+  units: units$b,
+  unitAliases: unitAliases$b,
+  leadingUnits: leadingUnits$b,
+  prepositions: prepositions$b,
+  decimalSeparators: decimalSeparators$b
+};
+const units$a = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const unitAliases$a = { "cups": "cup", "teaspoons": "teaspoon", "tsp": "teaspoon", "tablespoons": "tablespoon", "tbsp": "tablespoon", "ounces": "ounce", "oz": "ounce", "pounds": "pound", "lbs": "pound", "lb": "pound", "grams": "gram", "g": "gram", "kilograms": "kilogram", "kg": "kilogram", "milliliters": "milliliter", "ml": "milliliter", "liters": "liter", "l": "liter", "cans": "can", "bottles": "bottle", "slices": "slice", "pieces": "piece", "cloves": "clove", "stalks": "stalk", "sprigs": "sprig", "bags": "bag", "packs": "pack", "packets": "pack", "pinches": "pinch", "bunches": "bunch", "heads": "head" };
+const leadingUnits$a = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$a = ["of"];
+const decimalSeparators$a = ["."];
+const __vite_glob_0_20 = {
+  units: units$a,
+  unitAliases: unitAliases$a,
+  leadingUnits: leadingUnits$a,
+  prepositions: prepositions$a,
+  decimalSeparators: decimalSeparators$a
+};
+const units$9 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const unitAliases$9 = { "cups": "cup", "teaspoons": "teaspoon", "tsp": "teaspoon", "tablespoons": "tablespoon", "tbsp": "tablespoon", "ounces": "ounce", "oz": "ounce", "pounds": "pound", "lbs": "pound", "lb": "pound", "grams": "gram", "g": "gram", "kilograms": "kilogram", "kg": "kilogram", "milliliters": "milliliter", "ml": "milliliter", "liters": "liter", "l": "liter", "cans": "can", "bottles": "bottle", "slices": "slice", "pieces": "piece", "cloves": "clove", "stalks": "stalk", "sprigs": "sprig", "bags": "bag", "packs": "pack", "packets": "pack", "pinches": "pinch", "bunches": "bunch", "heads": "head" };
+const leadingUnits$9 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$9 = ["of"];
+const decimalSeparators$9 = ["."];
+const __vite_glob_0_21 = {
+  units: units$9,
+  unitAliases: unitAliases$9,
+  leadingUnits: leadingUnits$9,
+  prepositions: prepositions$9,
+  decimalSeparators: decimalSeparators$9
+};
+const units$8 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const unitAliases$8 = { "cups": "cup", "teaspoons": "teaspoon", "tsp": "teaspoon", "tablespoons": "tablespoon", "tbsp": "tablespoon", "ounces": "ounce", "oz": "ounce", "pounds": "pound", "lbs": "pound", "lb": "pound", "grams": "gram", "g": "gram", "kilograms": "kilogram", "kg": "kilogram", "milliliters": "milliliter", "ml": "milliliter", "liters": "liter", "l": "liter", "cans": "can", "bottles": "bottle", "slices": "slice", "pieces": "piece", "cloves": "clove", "stalks": "stalk", "sprigs": "sprig", "bags": "bag", "packs": "pack", "packets": "pack", "pinches": "pinch", "bunches": "bunch", "heads": "head" };
+const leadingUnits$8 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$8 = ["of"];
+const decimalSeparators$8 = ["."];
+const __vite_glob_0_22 = {
+  units: units$8,
+  unitAliases: unitAliases$8,
+  leadingUnits: leadingUnits$8,
+  prepositions: prepositions$8,
+  decimalSeparators: decimalSeparators$8
+};
+const units$7 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const unitAliases$7 = { "cups": "cup", "teaspoons": "teaspoon", "tsp": "teaspoon", "tablespoons": "tablespoon", "tbsp": "tablespoon", "ounces": "ounce", "oz": "ounce", "pounds": "pound", "lbs": "pound", "lb": "pound", "grams": "gram", "g": "gram", "kilograms": "kilogram", "kg": "kilogram", "milliliters": "milliliter", "ml": "milliliter", "liters": "liter", "l": "liter", "cans": "can", "bottles": "bottle", "slices": "slice", "pieces": "piece", "cloves": "clove", "stalks": "stalk", "sprigs": "sprig", "bags": "bag", "packs": "pack", "packets": "pack", "pinches": "pinch", "bunches": "bunch", "heads": "head" };
+const leadingUnits$7 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$7 = ["of"];
+const decimalSeparators$7 = ["."];
+const __vite_glob_0_23 = {
+  units: units$7,
+  unitAliases: unitAliases$7,
+  leadingUnits: leadingUnits$7,
+  prepositions: prepositions$7,
+  decimalSeparators: decimalSeparators$7
+};
+const units$6 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const unitAliases$6 = { "cups": "cup", "teaspoons": "teaspoon", "tsp": "teaspoon", "tablespoons": "tablespoon", "tbsp": "tablespoon", "ounces": "ounce", "oz": "ounce", "pounds": "pound", "lbs": "pound", "lb": "pound", "grams": "gram", "g": "gram", "kilograms": "kilogram", "kg": "kilogram", "milliliters": "milliliter", "ml": "milliliter", "liters": "liter", "l": "liter", "cans": "can", "bottles": "bottle", "slices": "slice", "pieces": "piece", "cloves": "clove", "stalks": "stalk", "sprigs": "sprig", "bags": "bag", "packs": "pack", "packets": "pack", "pinches": "pinch", "bunches": "bunch", "heads": "head" };
+const leadingUnits$6 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$6 = ["of"];
+const decimalSeparators$6 = ["."];
+const __vite_glob_0_24 = {
+  units: units$6,
+  unitAliases: unitAliases$6,
+  leadingUnits: leadingUnits$6,
+  prepositions: prepositions$6,
+  decimalSeparators: decimalSeparators$6
+};
+const units$5 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const unitAliases$5 = { "cups": "cup", "teaspoons": "teaspoon", "tsp": "teaspoon", "tablespoons": "tablespoon", "tbsp": "tablespoon", "ounces": "ounce", "oz": "ounce", "pounds": "pound", "lbs": "pound", "lb": "pound", "grams": "gram", "g": "gram", "kilograms": "kilogram", "kg": "kilogram", "milliliters": "milliliter", "ml": "milliliter", "liters": "liter", "l": "liter", "cans": "can", "bottles": "bottle", "slices": "slice", "pieces": "piece", "cloves": "clove", "stalks": "stalk", "sprigs": "sprig", "bags": "bag", "packs": "pack", "packets": "pack", "pinches": "pinch", "bunches": "bunch", "heads": "head" };
+const leadingUnits$5 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$5 = ["of"];
+const decimalSeparators$5 = ["."];
+const __vite_glob_0_25 = {
+  units: units$5,
+  unitAliases: unitAliases$5,
+  leadingUnits: leadingUnits$5,
+  prepositions: prepositions$5,
+  decimalSeparators: decimalSeparators$5
+};
+const units$4 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const unitAliases$4 = { "cups": "cup", "teaspoons": "teaspoon", "tsp": "teaspoon", "tablespoons": "tablespoon", "tbsp": "tablespoon", "ounces": "ounce", "oz": "ounce", "pounds": "pound", "lbs": "pound", "lb": "pound", "grams": "gram", "g": "gram", "kilograms": "kilogram", "kg": "kilogram", "milliliters": "milliliter", "ml": "milliliter", "liters": "liter", "l": "liter", "cans": "can", "bottles": "bottle", "slices": "slice", "pieces": "piece", "cloves": "clove", "stalks": "stalk", "sprigs": "sprig", "bags": "bag", "packs": "pack", "packets": "pack", "pinches": "pinch", "bunches": "bunch", "heads": "head" };
+const leadingUnits$4 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$4 = ["of"];
+const decimalSeparators$4 = ["."];
+const __vite_glob_0_26 = {
+  units: units$4,
+  unitAliases: unitAliases$4,
+  leadingUnits: leadingUnits$4,
+  prepositions: prepositions$4,
+  decimalSeparators: decimalSeparators$4
+};
+const units$3 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const unitAliases$3 = { "cups": "cup", "teaspoons": "teaspoon", "tsp": "teaspoon", "tablespoons": "tablespoon", "tbsp": "tablespoon", "ounces": "ounce", "oz": "ounce", "pounds": "pound", "lbs": "pound", "lb": "pound", "grams": "gram", "g": "gram", "kilograms": "kilogram", "kg": "kilogram", "milliliters": "milliliter", "ml": "milliliter", "liters": "liter", "l": "liter", "cans": "can", "bottles": "bottle", "slices": "slice", "pieces": "piece", "cloves": "clove", "stalks": "stalk", "sprigs": "sprig", "bags": "bag", "packs": "pack", "packets": "pack", "pinches": "pinch", "bunches": "bunch", "heads": "head" };
+const leadingUnits$3 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$3 = ["of"];
+const decimalSeparators$3 = ["."];
+const __vite_glob_0_27 = {
+  units: units$3,
+  unitAliases: unitAliases$3,
+  leadingUnits: leadingUnits$3,
+  prepositions: prepositions$3,
+  decimalSeparators: decimalSeparators$3
+};
+const units$2 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const unitAliases$2 = { "cups": "cup", "teaspoons": "teaspoon", "tsp": "teaspoon", "tablespoons": "tablespoon", "tbsp": "tablespoon", "ounces": "ounce", "oz": "ounce", "pounds": "pound", "lbs": "pound", "lb": "pound", "grams": "gram", "g": "gram", "kilograms": "kilogram", "kg": "kilogram", "milliliters": "milliliter", "ml": "milliliter", "liters": "liter", "l": "liter", "cans": "can", "bottles": "bottle", "slices": "slice", "pieces": "piece", "cloves": "clove", "stalks": "stalk", "sprigs": "sprig", "bags": "bag", "packs": "pack", "packets": "pack", "pinches": "pinch", "bunches": "bunch", "heads": "head" };
+const leadingUnits$2 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$2 = ["of"];
+const decimalSeparators$2 = ["."];
+const __vite_glob_0_28 = {
+  units: units$2,
+  unitAliases: unitAliases$2,
+  leadingUnits: leadingUnits$2,
+  prepositions: prepositions$2,
+  decimalSeparators: decimalSeparators$2
+};
+const units$1 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const unitAliases$1 = { "cups": "cup", "teaspoons": "teaspoon", "tsp": "teaspoon", "tablespoons": "tablespoon", "tbsp": "tablespoon", "ounces": "ounce", "oz": "ounce", "pounds": "pound", "lbs": "pound", "lb": "pound", "grams": "gram", "g": "gram", "kilograms": "kilogram", "kg": "kilogram", "milliliters": "milliliter", "ml": "milliliter", "liters": "liter", "l": "liter", "cans": "can", "bottles": "bottle", "slices": "slice", "pieces": "piece", "cloves": "clove", "stalks": "stalk", "sprigs": "sprig", "bags": "bag", "packs": "pack", "packets": "pack", "pinches": "pinch", "bunches": "bunch", "heads": "head" };
+const leadingUnits$1 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$1 = ["of"];
+const decimalSeparators$1 = ["."];
+const __vite_glob_0_29 = {
   units: units$1,
   unitAliases: unitAliases$1,
   leadingUnits: leadingUnits$1,
@@ -796,7 +1144,7 @@ const unitAliases = { "cups": "cup", "teaspoons": "teaspoon", "tsp": "teaspoon",
 const leadingUnits = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
 const prepositions = ["of"];
 const decimalSeparators = ["."];
-const __vite_glob_0_1 = {
+const __vite_glob_0_30 = {
   units,
   unitAliases,
   leadingUnits,
@@ -804,8 +1152,37 @@ const __vite_glob_0_1 = {
   decimalSeparators
 };
 const parsingModules = /* @__PURE__ */ Object.assign({
-  "../../resources/parsing/de.json": __vite_glob_0_0,
-  "../../resources/parsing/en.json": __vite_glob_0_1
+  "../../resources/parsing/af.json": __vite_glob_0_0,
+  "../../resources/parsing/ar.json": __vite_glob_0_1,
+  "../../resources/parsing/ca.json": __vite_glob_0_2,
+  "../../resources/parsing/cs.json": __vite_glob_0_3,
+  "../../resources/parsing/da.json": __vite_glob_0_4,
+  "../../resources/parsing/de.json": __vite_glob_0_5,
+  "../../resources/parsing/el.json": __vite_glob_0_6,
+  "../../resources/parsing/en.json": __vite_glob_0_7,
+  "../../resources/parsing/es.json": __vite_glob_0_8,
+  "../../resources/parsing/fi.json": __vite_glob_0_9,
+  "../../resources/parsing/fr.json": __vite_glob_0_10,
+  "../../resources/parsing/he.json": __vite_glob_0_11,
+  "../../resources/parsing/hu.json": __vite_glob_0_12,
+  "../../resources/parsing/it.json": __vite_glob_0_13,
+  "../../resources/parsing/ja.json": __vite_glob_0_14,
+  "../../resources/parsing/ko.json": __vite_glob_0_15,
+  "../../resources/parsing/nl.json": __vite_glob_0_16,
+  "../../resources/parsing/no.json": __vite_glob_0_17,
+  "../../resources/parsing/pl.json": __vite_glob_0_18,
+  "../../resources/parsing/pt.json": __vite_glob_0_19,
+  "../../resources/parsing/pt_BR.json": __vite_glob_0_20,
+  "../../resources/parsing/pt_PT.json": __vite_glob_0_21,
+  "../../resources/parsing/ro.json": __vite_glob_0_22,
+  "../../resources/parsing/ru.json": __vite_glob_0_23,
+  "../../resources/parsing/sr.json": __vite_glob_0_24,
+  "../../resources/parsing/sv.json": __vite_glob_0_25,
+  "../../resources/parsing/tr.json": __vite_glob_0_26,
+  "../../resources/parsing/uk.json": __vite_glob_0_27,
+  "../../resources/parsing/vi.json": __vite_glob_0_28,
+  "../../resources/parsing/zh.json": __vite_glob_0_29,
+  "../../resources/parsing/zh_CN.json": __vite_glob_0_30
 });
 const parsingPacks = {};
 for (const path in parsingModules) {
