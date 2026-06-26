@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.1] - 2026-06-26
+
+### Added
+- Slovak translation — interface, category keywords, and measurement units
+- Croatian translation — category keywords and measurement units
+
+### Fixed
+- Measurement-unit packs can now be fully translated on Crowdin: the internal
+  unit aliases (duplicate English words that couldn't be translated) moved into
+  code, so translators see only real, translatable strings and the file reaches
+  100% (#3)
+- Restored the German measurement-unit pack
+
+### Upgrade
+No database migration. Drop-in replacement for v1.5.0.
+
 ## [1.5.0] - 2026-06-15
 
 ### Added
