@@ -779,11 +779,31 @@ const useShopAreasStore = defineStore("shopAreas", () => {
 function fold(s) {
   return s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
 }
+const units$w = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const leadingUnits$w = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$w = ["of"];
+const decimalSeparators$w = ["."];
+const __vite_glob_0_0 = {
+  units: units$w,
+  leadingUnits: leadingUnits$w,
+  prepositions: prepositions$w,
+  decimalSeparators: decimalSeparators$w
+};
+const units$v = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const leadingUnits$v = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$v = ["of"];
+const decimalSeparators$v = ["."];
+const __vite_glob_0_1 = {
+  units: units$v,
+  leadingUnits: leadingUnits$v,
+  prepositions: prepositions$v,
+  decimalSeparators: decimalSeparators$v
+};
 const units$u = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
 const leadingUnits$u = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
 const prepositions$u = ["of"];
 const decimalSeparators$u = ["."];
-const __vite_glob_0_0 = {
+const __vite_glob_0_2 = {
   units: units$u,
   leadingUnits: leadingUnits$u,
   prepositions: prepositions$u,
@@ -793,7 +813,7 @@ const units$t = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "t
 const leadingUnits$t = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
 const prepositions$t = ["of"];
 const decimalSeparators$t = ["."];
-const __vite_glob_0_1 = {
+const __vite_glob_0_3 = {
   units: units$t,
   leadingUnits: leadingUnits$t,
   prepositions: prepositions$t,
@@ -803,17 +823,17 @@ const units$s = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "t
 const leadingUnits$s = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
 const prepositions$s = ["of"];
 const decimalSeparators$s = ["."];
-const __vite_glob_0_2 = {
+const __vite_glob_0_4 = {
   units: units$s,
   leadingUnits: leadingUnits$s,
   prepositions: prepositions$s,
   decimalSeparators: decimalSeparators$s
 };
-const units$r = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
-const leadingUnits$r = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
-const prepositions$r = ["of"];
-const decimalSeparators$r = ["."];
-const __vite_glob_0_3 = {
+const units$r = ["esslöffel", "el", "teelöffel", "tl", "tasse", "tassen", "gramm", "g", "kilogramm", "kg", "milliliter", "ml", "liter", "l", "prise", "prisen", "bund", "zehe", "zehen", "dose", "dosen", "flasche", "flaschen", "packung", "packungen", "päckchen", "stück", "scheibe", "scheiben", "becher", "glas", "gläser", "tüte", "tüten", "kopf", "köpfe", "blatt", "blätter", "beutel", "kanne"];
+const leadingUnits$r = ["prise", "prisen", "bund", "schuss", "spritzer", "handvoll"];
+const prepositions$r = ["von", "vom"];
+const decimalSeparators$r = [",", "."];
+const __vite_glob_0_5 = {
   units: units$r,
   leadingUnits: leadingUnits$r,
   prepositions: prepositions$r,
@@ -823,17 +843,17 @@ const units$q = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "t
 const leadingUnits$q = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
 const prepositions$q = ["of"];
 const decimalSeparators$q = ["."];
-const __vite_glob_0_4 = {
+const __vite_glob_0_6 = {
   units: units$q,
   leadingUnits: leadingUnits$q,
   prepositions: prepositions$q,
   decimalSeparators: decimalSeparators$q
 };
-const units$p = ["esslöffel", "el", "teelöffel", "tl", "tasse", "tassen", "gramm", "g", "kilogramm", "kg", "milliliter", "ml", "liter", "l", "prise", "prisen", "bund", "zehe", "zehen", "dose", "dosen", "flasche", "flaschen", "packung", "packungen", "päckchen", "stück", "scheibe", "scheiben", "becher", "glas", "gläser", "tüte", "tüten", "kopf", "köpfe", "blatt", "blätter", "beutel", "kanne"];
-const leadingUnits$p = ["prise", "prisen", "bund", "schuss", "spritzer", "handvoll"];
-const prepositions$p = ["von", "vom"];
-const decimalSeparators$p = [",", "."];
-const __vite_glob_0_5 = {
+const units$p = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
+const leadingUnits$p = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$p = ["of"];
+const decimalSeparators$p = ["."];
+const __vite_glob_0_7 = {
   units: units$p,
   leadingUnits: leadingUnits$p,
   prepositions: prepositions$p,
@@ -843,7 +863,7 @@ const units$o = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "t
 const leadingUnits$o = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
 const prepositions$o = ["of"];
 const decimalSeparators$o = ["."];
-const __vite_glob_0_6 = {
+const __vite_glob_0_8 = {
   units: units$o,
   leadingUnits: leadingUnits$o,
   prepositions: prepositions$o,
@@ -853,7 +873,7 @@ const units$n = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "t
 const leadingUnits$n = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
 const prepositions$n = ["of"];
 const decimalSeparators$n = ["."];
-const __vite_glob_0_7 = {
+const __vite_glob_0_9 = {
   units: units$n,
   leadingUnits: leadingUnits$n,
   prepositions: prepositions$n,
@@ -863,7 +883,7 @@ const units$m = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "t
 const leadingUnits$m = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
 const prepositions$m = ["of"];
 const decimalSeparators$m = ["."];
-const __vite_glob_0_8 = {
+const __vite_glob_0_10 = {
   units: units$m,
   leadingUnits: leadingUnits$m,
   prepositions: prepositions$m,
@@ -873,7 +893,7 @@ const units$l = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "t
 const leadingUnits$l = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
 const prepositions$l = ["of"];
 const decimalSeparators$l = ["."];
-const __vite_glob_0_9 = {
+const __vite_glob_0_11 = {
   units: units$l,
   leadingUnits: leadingUnits$l,
   prepositions: prepositions$l,
@@ -883,7 +903,7 @@ const units$k = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "t
 const leadingUnits$k = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
 const prepositions$k = ["of"];
 const decimalSeparators$k = ["."];
-const __vite_glob_0_10 = {
+const __vite_glob_0_12 = {
   units: units$k,
   leadingUnits: leadingUnits$k,
   prepositions: prepositions$k,
@@ -893,7 +913,7 @@ const units$j = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "t
 const leadingUnits$j = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
 const prepositions$j = ["of"];
 const decimalSeparators$j = ["."];
-const __vite_glob_0_11 = {
+const __vite_glob_0_13 = {
   units: units$j,
   leadingUnits: leadingUnits$j,
   prepositions: prepositions$j,
@@ -903,7 +923,7 @@ const units$i = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "t
 const leadingUnits$i = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
 const prepositions$i = ["of"];
 const decimalSeparators$i = ["."];
-const __vite_glob_0_12 = {
+const __vite_glob_0_14 = {
   units: units$i,
   leadingUnits: leadingUnits$i,
   prepositions: prepositions$i,
@@ -913,7 +933,7 @@ const units$h = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "t
 const leadingUnits$h = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
 const prepositions$h = ["of"];
 const decimalSeparators$h = ["."];
-const __vite_glob_0_13 = {
+const __vite_glob_0_15 = {
   units: units$h,
   leadingUnits: leadingUnits$h,
   prepositions: prepositions$h,
@@ -923,7 +943,7 @@ const units$g = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "t
 const leadingUnits$g = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
 const prepositions$g = ["of"];
 const decimalSeparators$g = ["."];
-const __vite_glob_0_14 = {
+const __vite_glob_0_16 = {
   units: units$g,
   leadingUnits: leadingUnits$g,
   prepositions: prepositions$g,
@@ -933,7 +953,7 @@ const units$f = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "t
 const leadingUnits$f = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
 const prepositions$f = ["of"];
 const decimalSeparators$f = ["."];
-const __vite_glob_0_15 = {
+const __vite_glob_0_17 = {
   units: units$f,
   leadingUnits: leadingUnits$f,
   prepositions: prepositions$f,
@@ -943,7 +963,7 @@ const units$e = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "t
 const leadingUnits$e = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
 const prepositions$e = ["of"];
 const decimalSeparators$e = ["."];
-const __vite_glob_0_16 = {
+const __vite_glob_0_18 = {
   units: units$e,
   leadingUnits: leadingUnits$e,
   prepositions: prepositions$e,
@@ -953,7 +973,7 @@ const units$d = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "t
 const leadingUnits$d = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
 const prepositions$d = ["of"];
 const decimalSeparators$d = ["."];
-const __vite_glob_0_17 = {
+const __vite_glob_0_19 = {
   units: units$d,
   leadingUnits: leadingUnits$d,
   prepositions: prepositions$d,
@@ -963,7 +983,7 @@ const units$c = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "t
 const leadingUnits$c = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
 const prepositions$c = ["of"];
 const decimalSeparators$c = ["."];
-const __vite_glob_0_18 = {
+const __vite_glob_0_20 = {
   units: units$c,
   leadingUnits: leadingUnits$c,
   prepositions: prepositions$c,
@@ -973,7 +993,7 @@ const units$b = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "t
 const leadingUnits$b = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
 const prepositions$b = ["of"];
 const decimalSeparators$b = ["."];
-const __vite_glob_0_19 = {
+const __vite_glob_0_21 = {
   units: units$b,
   leadingUnits: leadingUnits$b,
   prepositions: prepositions$b,
@@ -983,7 +1003,7 @@ const units$a = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "t
 const leadingUnits$a = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
 const prepositions$a = ["of"];
 const decimalSeparators$a = ["."];
-const __vite_glob_0_20 = {
+const __vite_glob_0_22 = {
   units: units$a,
   leadingUnits: leadingUnits$a,
   prepositions: prepositions$a,
@@ -993,7 +1013,7 @@ const units$9 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "t
 const leadingUnits$9 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
 const prepositions$9 = ["of"];
 const decimalSeparators$9 = ["."];
-const __vite_glob_0_21 = {
+const __vite_glob_0_23 = {
   units: units$9,
   leadingUnits: leadingUnits$9,
   prepositions: prepositions$9,
@@ -1003,17 +1023,17 @@ const units$8 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "t
 const leadingUnits$8 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
 const prepositions$8 = ["of"];
 const decimalSeparators$8 = ["."];
-const __vite_glob_0_22 = {
+const __vite_glob_0_24 = {
   units: units$8,
   leadingUnits: leadingUnits$8,
   prepositions: prepositions$8,
   decimalSeparators: decimalSeparators$8
 };
-const units$7 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
-const leadingUnits$7 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const units$7 = ["teaspoon", "čajové lyžičky", "čajová lyžička", "tablespoon", "polievkové lyžice", "tbsp", "cup", "šálky", "ounce", "ounces", "oz", "pound", "libry", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilogramy", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "štipky", "bunch", "bunches", "clove", "strúčiky", "can", "cans", "bottle", "fľaše", "piece", "kúsky", "slice", "plátky", "head", "hlávky", "stalk", "stonky", "sprig", "vetvičky", "pack", "packs", "paket", "packets", "vrecko", "vrecká", "fl oz"];
+const leadingUnits$7 = ["štipka", "štipky", "zväzok", "zväzky", "kôra", "trocha", "hrsť"];
 const prepositions$7 = ["of"];
 const decimalSeparators$7 = ["."];
-const __vite_glob_0_23 = {
+const __vite_glob_0_25 = {
   units: units$7,
   leadingUnits: leadingUnits$7,
   prepositions: prepositions$7,
@@ -1023,7 +1043,7 @@ const units$6 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "t
 const leadingUnits$6 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
 const prepositions$6 = ["of"];
 const decimalSeparators$6 = ["."];
-const __vite_glob_0_24 = {
+const __vite_glob_0_26 = {
   units: units$6,
   leadingUnits: leadingUnits$6,
   prepositions: prepositions$6,
@@ -1033,7 +1053,7 @@ const units$5 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "t
 const leadingUnits$5 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
 const prepositions$5 = ["of"];
 const decimalSeparators$5 = ["."];
-const __vite_glob_0_25 = {
+const __vite_glob_0_27 = {
   units: units$5,
   leadingUnits: leadingUnits$5,
   prepositions: prepositions$5,
@@ -1043,7 +1063,7 @@ const units$4 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "t
 const leadingUnits$4 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
 const prepositions$4 = ["of"];
 const decimalSeparators$4 = ["."];
-const __vite_glob_0_26 = {
+const __vite_glob_0_28 = {
   units: units$4,
   leadingUnits: leadingUnits$4,
   prepositions: prepositions$4,
@@ -1053,7 +1073,7 @@ const units$3 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "t
 const leadingUnits$3 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
 const prepositions$3 = ["of"];
 const decimalSeparators$3 = ["."];
-const __vite_glob_0_27 = {
+const __vite_glob_0_29 = {
   units: units$3,
   leadingUnits: leadingUnits$3,
   prepositions: prepositions$3,
@@ -1063,7 +1083,7 @@ const units$2 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "t
 const leadingUnits$2 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
 const prepositions$2 = ["of"];
 const decimalSeparators$2 = ["."];
-const __vite_glob_0_28 = {
+const __vite_glob_0_30 = {
   units: units$2,
   leadingUnits: leadingUnits$2,
   prepositions: prepositions$2,
@@ -1073,7 +1093,7 @@ const units$1 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "t
 const leadingUnits$1 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
 const prepositions$1 = ["of"];
 const decimalSeparators$1 = ["."];
-const __vite_glob_0_29 = {
+const __vite_glob_0_31 = {
   units: units$1,
   leadingUnits: leadingUnits$1,
   prepositions: prepositions$1,
@@ -1083,7 +1103,7 @@ const units = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbs
 const leadingUnits = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
 const prepositions = ["of"];
 const decimalSeparators = ["."];
-const __vite_glob_0_30 = {
+const __vite_glob_0_32 = {
   units,
   leadingUnits,
   prepositions,
@@ -1135,25 +1155,27 @@ const parsingModules = /* @__PURE__ */ Object.assign({
   "../../resources/parsing/fi.json": __vite_glob_0_9,
   "../../resources/parsing/fr.json": __vite_glob_0_10,
   "../../resources/parsing/he.json": __vite_glob_0_11,
-  "../../resources/parsing/hu.json": __vite_glob_0_12,
-  "../../resources/parsing/it.json": __vite_glob_0_13,
-  "../../resources/parsing/ja.json": __vite_glob_0_14,
-  "../../resources/parsing/ko.json": __vite_glob_0_15,
-  "../../resources/parsing/nl.json": __vite_glob_0_16,
-  "../../resources/parsing/no.json": __vite_glob_0_17,
-  "../../resources/parsing/pl.json": __vite_glob_0_18,
-  "../../resources/parsing/pt.json": __vite_glob_0_19,
-  "../../resources/parsing/pt_BR.json": __vite_glob_0_20,
-  "../../resources/parsing/pt_PT.json": __vite_glob_0_21,
-  "../../resources/parsing/ro.json": __vite_glob_0_22,
-  "../../resources/parsing/ru.json": __vite_glob_0_23,
-  "../../resources/parsing/sr.json": __vite_glob_0_24,
-  "../../resources/parsing/sv.json": __vite_glob_0_25,
-  "../../resources/parsing/tr.json": __vite_glob_0_26,
-  "../../resources/parsing/uk.json": __vite_glob_0_27,
-  "../../resources/parsing/vi.json": __vite_glob_0_28,
-  "../../resources/parsing/zh.json": __vite_glob_0_29,
-  "../../resources/parsing/zh_CN.json": __vite_glob_0_30
+  "../../resources/parsing/hr.json": __vite_glob_0_12,
+  "../../resources/parsing/hu.json": __vite_glob_0_13,
+  "../../resources/parsing/it.json": __vite_glob_0_14,
+  "../../resources/parsing/ja.json": __vite_glob_0_15,
+  "../../resources/parsing/ko.json": __vite_glob_0_16,
+  "../../resources/parsing/nl.json": __vite_glob_0_17,
+  "../../resources/parsing/no.json": __vite_glob_0_18,
+  "../../resources/parsing/pl.json": __vite_glob_0_19,
+  "../../resources/parsing/pt.json": __vite_glob_0_20,
+  "../../resources/parsing/pt_BR.json": __vite_glob_0_21,
+  "../../resources/parsing/pt_PT.json": __vite_glob_0_22,
+  "../../resources/parsing/ro.json": __vite_glob_0_23,
+  "../../resources/parsing/ru.json": __vite_glob_0_24,
+  "../../resources/parsing/sk.json": __vite_glob_0_25,
+  "../../resources/parsing/sr.json": __vite_glob_0_26,
+  "../../resources/parsing/sv.json": __vite_glob_0_27,
+  "../../resources/parsing/tr.json": __vite_glob_0_28,
+  "../../resources/parsing/uk.json": __vite_glob_0_29,
+  "../../resources/parsing/vi.json": __vite_glob_0_30,
+  "../../resources/parsing/zh.json": __vite_glob_0_31,
+  "../../resources/parsing/zh_CN.json": __vite_glob_0_32
 });
 const parsingPacks = {};
 for (const path in parsingModules) {
