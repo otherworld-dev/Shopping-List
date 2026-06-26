@@ -6,15 +6,18 @@ Thank you for your interest in translating the Shopping List app!
 
 Translations are managed on [Crowdin](https://crowdin.com/project/shopping-list-for-nextcloud). Please visit the project there to contribute translations for your language.
 
-There are two things to translate on Crowdin:
+There are three things to translate on Crowdin:
 
 1. **UI strings** — the app's buttons, labels, and messages (gettext `.po`).
 2. **Keywords** — free lists of grocery words per shop area, used to auto-detect
    which area an item belongs to. Curate native words; don't translate 1:1.
+3. **Parsing** (`resources/parsing/*.json`) — measurement units, no-number
+   "leading" units, the connector word (English `of`), and the decimal mark.
+   English fallback for any language without a pack.
 
-Parsing packs (`resources/parsing/*.json` — measurement units, etc.) are technical
-data and are **not** on Crowdin; they're contributed in-repo via PR, with an
-English fallback for any language without one.
+Note: unit *aliases* (abbreviation/plural → canonical, e.g. `cups`→`cup`) are
+**not** translatable — they're duplicate English words, so they live in code
+(`src/utils/localePacks.ts`), not in the parsing packs.
 
 See `resources/keywords/CONTEXT.md` for keyword guidelines.
 

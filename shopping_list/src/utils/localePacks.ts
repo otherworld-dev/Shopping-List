@@ -8,16 +8,66 @@ export interface ParsingPack {
 	decimalSeparators: string[]
 }
 
+// Raw on-disk pack: everything except unitAliases, which lives in code (below).
+type RawParsingPack = Omit<ParsingPack, 'unitAliases'>
+
+/**
+ * English unit aliases (abbreviations + plurals -> canonical form), used only to
+ * canonicalise units when merging duplicate items ("2 cups" + "1 cup" -> 3 cups).
+ *
+ * These deliberately live in code, NOT in the translatable parsing JSON: every
+ * value is just another English unit word ("cup" -> "cup"), so exposing them on
+ * Crowdin added ~30 un-translatable strings that could never reach 100% and
+ * confused translators. Other languages get no aliases (exact-string merge still
+ * works); a language pack can be given its own map here if it ever needs one.
+ */
+const EN_UNIT_ALIASES: Record<string, string> = {
+	cups: 'cup',
+	teaspoons: 'teaspoon',
+	tsp: 'teaspoon',
+	tablespoons: 'tablespoon',
+	tbsp: 'tablespoon',
+	ounces: 'ounce',
+	oz: 'ounce',
+	pounds: 'pound',
+	lbs: 'pound',
+	lb: 'pound',
+	grams: 'gram',
+	g: 'gram',
+	kilograms: 'kilogram',
+	kg: 'kilogram',
+	milliliters: 'milliliter',
+	ml: 'milliliter',
+	liters: 'liter',
+	l: 'liter',
+	cans: 'can',
+	bottles: 'bottle',
+	slices: 'slice',
+	pieces: 'piece',
+	cloves: 'clove',
+	stalks: 'stalk',
+	sprigs: 'sprig',
+	bags: 'bag',
+	packs: 'pack',
+	packets: 'pack',
+	pinches: 'pinch',
+	bunches: 'bunch',
+	heads: 'head',
+}
+
 // Eagerly bundle every parsing pack under resources/parsing/*.json
-const parsingModules = import.meta.glob<ParsingPack>(
+const parsingModules = import.meta.glob<RawParsingPack>(
 	'../../resources/parsing/*.json',
 	{ eager: true, import: 'default' },
 )
 
 const parsingPacks: Record<string, ParsingPack> = {}
 for (const path in parsingModules) {
-	const lang = path.match(/\/([^/]+)\.json$/)?.[1]
-	if (lang) parsingPacks[lang.toLowerCase()] = parsingModules[path]
+	const lang = path.match(/\/([^/]+)\.json$/)?.[1]?.toLowerCase()
+	if (!lang) continue
+	// Aliases come from code: English gets its map, other languages get none.
+	const unitAliases = lang === 'en' ? EN_UNIT_ALIASES : {}
+	parsingPacks[lang] = { ...parsingModules[path], unitAliases }
 }
 
 /**

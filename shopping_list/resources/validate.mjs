@@ -92,8 +92,10 @@ function validateParsing(file, data) {
 			else if (k === 'units' && v !== v.toLowerCase()) warn(`${file} [units]: "${v}" is not lowercase`)
 		}
 	}
-	if (typeof data?.unitAliases !== 'object' || data.unitAliases === null || Array.isArray(data.unitAliases)) {
-		err(`${file}: "unitAliases" must be an object`)
+	// unitAliases intentionally NOT a translatable field — it lives in code
+	// (localePacks.ts EN_UNIT_ALIASES). A stray one in a pack is harmless noise.
+	if ('unitAliases' in (data ?? {})) {
+		warn(`${file}: "unitAliases" is ignored (aliases live in code, not the pack)`)
 	}
 }
 

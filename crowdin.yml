@@ -4,7 +4,12 @@ files:
   - source: /shopping_list/resources/keywords/en.json
     translation: /shopping_list/resources/keywords/%two_letters_code%.json
     type: json
-  # Note: parsing packs (resources/parsing/*.json) are NOT translated on Crowdin.
-  # They hold technical data (unit aliases, decimal marks) that doesn't fit a
-  # 1:1 translation model. Per-language unit packs are contributed via PR; the
-  # app falls back to English parsing when a language has none.
+  # Parsing packs: measurement units, no-number "leading" units, the connector
+  # word ("of"), and the decimal mark. All genuinely translatable free lists.
+  # Unit aliases (cup->cup abbreviation/plural canonicalisation) are NOT here —
+  # they're duplicate English words that can't be translated, so they live in
+  # code (src/utils/localePacks.ts). The app falls back to English parsing for
+  # any language without a pack.
+  - source: /shopping_list/resources/parsing/en.json
+    translation: /shopping_list/resources/parsing/%two_letters_code%.json
+    type: json

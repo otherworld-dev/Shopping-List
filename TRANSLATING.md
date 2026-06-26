@@ -15,8 +15,8 @@ request a language (or open a [GitHub issue](https://github.com/otherworld-dev/S
 
 ## What you'll be translating
 
-There are two things in Crowdin. You don't have to do both — anything you skip
-simply stays in English.
+There are three things in Crowdin. You don't have to do all of them — anything
+you skip simply stays in English.
 
 > **What it looks like:** UI strings are simple one-line translations. Keywords
 > are a **list of words** — you'll see an English list and replace it with your
@@ -54,11 +54,24 @@ A few rules keep it reliable:
 You can submit at any time — even a partial list helps, and you or someone else
 can extend it later. There's no need to fill every area.
 
-> **Note on measurement units:** localized units (e.g. German *EL*, *Liter*) are
-> handled in code, not on Crowdin — they're technical data that doesn't fit a
-> translate-each-word model. If you'd like your language's units recognised when
-> adding quantities, open a [GitHub issue](https://github.com/otherworld-dev/Shopping-List/issues)
-> or PR and we'll add a unit pack. Everything falls back to English otherwise.
+### 3. Parsing (measurement units)
+This is what lets the app understand quantities when someone types them — so
+*"2 EL Mehl"* or *"0,5 l Milch"* is read correctly in your language. There are
+just a few short lists:
+
+- **Units** — the measurement words people type (e.g. German *EL*, *TL*, *Liter*,
+  *Gramm*, *Prise*). Same rules as keywords: **all lowercase**, and **include
+  singular *and* plural** if they differ.
+- **Leading units** — units that come *before* a number-less amount (*pinch of
+  salt* → German *Prise Salz*).
+- **The connector word** — English uses *"of"* (*2 cups **of** flour*); German
+  uses *von/vom*. Translate it to your language's equivalent, or leave it if
+  your language doesn't use one.
+- **The decimal mark** — set this to *","* if your language writes *0,5* instead
+  of *0.5*.
+
+Anything you leave untranslated just falls back to English, and an unrecognised
+unit simply stays as part of the item name — nothing breaks.
 
 ---
 
