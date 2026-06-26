@@ -1,0 +1,483 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: shopping-list-for-nextcloud\n"
+"Report-Msgid-Bugs-To: translations\\@example.com\n"
+"POT-Creation-Date: 2026-05-11 21:00+0000\n"
+"PO-Revision-Date: 2026-06-25 18:36\n"
+"Last-Translator: \n"
+"Language-Team: Slovak\n"
+"Language: sk_SK\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
+"X-Crowdin-Project: shopping-list-for-nextcloud\n"
+"X-Crowdin-Project-ID: 896886\n"
+"X-Crowdin-Language: sk\n"
+"X-Crowdin-File: /main/shopping_list/translationfiles/templates/shopping_list.pot\n"
+"X-Crowdin-File-ID: 11\n"
+
+#: src/App.vue
+msgid "No list selected"
+msgstr "Nebol vybraný zoznam"
+
+#: src/App.vue
+msgid "Select a list from the sidebar or create a new one"
+msgstr "Vyberte zoznam z bočného panela alebo si vytvorte nový"
+
+#: src/PublicApp.vue
+msgid "Password required"
+msgstr "Je potrebné zadať heslo"
+
+#: src/PublicApp.vue
+msgid "This list is password protected."
+msgstr "Tento zoznam je chránený heslom."
+
+#: src/PublicApp.vue
+msgid "Enter password"
+msgstr "Zadajte heslo"
+
+#: src/PublicApp.vue
+msgid "Unlock"
+msgstr "Odomknúť"
+
+#: src/PublicApp.vue
+msgid "Incorrect password"
+msgstr "Nesprávne heslo"
+
+#: src/PublicApp.vue
+msgid "Not found"
+msgstr "Nenájdené"
+
+#: src/PublicApp.vue
+msgid "This shared list does not exist or has expired."
+msgstr "Tento zdieľaný zoznam neexistuje alebo jeho platnosť vypršala."
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Back to list"
+msgstr "Späť na zoznam"
+
+#: src/components/AreaKeywordsSettings.vue src/components/ListSidebar.vue
+msgid "Manage Areas"
+msgstr "Spravovať oblasti"
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Manage shop areas, keywords, and display order. Keywords auto-detect which area an item belongs to when added or pasted."
+msgstr "Spravujte oblasti obchodu, kľúčové slová a poradie zobrazenia. Kľúčové slová automaticky rozpoznajú, do ktorej oblasti položka patrí, keď je pridaná alebo vložená."
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Search keywords..."
+msgstr "Vyhľadať kľúčové slová..."
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Add keyword..."
+msgstr "Pridať kľúčové slovo..."
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "No keywords"
+msgstr "Žiadne kľúčové slová"
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Rename"
+msgstr "Premenovať"
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Delete area"
+msgstr "Vymazať oblasť"
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Move up"
+msgstr "Posunúť hore"
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Move down"
+msgstr "Posunúť nadol"
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Change color"
+msgstr "Zmeniť farbu"
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "New area name..."
+msgstr "Nový názov oblasti..."
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Add area"
+msgstr "Pridať oblasť"
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Delete \"{name}\"? Items in this area will become uncategorized."
+msgstr "Odstrániť „{name}“? Položky v tejto oblasti ostanú bez kategórie."
+
+#: src/components/ItemEditor.vue src/components/PublicListView.vue
+msgid "Add an item to list..."
+msgstr "Pridať položku do zoznamu..."
+
+#: src/components/ItemEditor.vue
+msgid "Area"
+msgstr ""
+
+#: src/components/ItemEditor.vue
+msgid "No match"
+msgstr "Žiadna zhoda"
+
+#: src/components/ItemRow.vue
+msgid "Qty"
+msgstr "Množstvo"
+
+#: src/components/ItemRow.vue
+msgid "Delete"
+msgstr "Odstrániť"
+
+#: src/components/ListSidebar.vue
+msgid "New list"
+msgstr "Nový zoznam"
+
+#: src/components/ListSidebar.vue
+msgid "Rename list"
+msgstr "Premenovať zoznam"
+
+#: src/components/ListSidebar.vue
+msgid "Delete list"
+msgstr "Odstrániť zoznam"
+
+#: src/components/ListSidebar.vue
+msgid "Shared with me"
+msgstr "Zdieľané so mnou"
+
+#: src/components/ListSidebar.vue
+msgid "No shopping lists"
+msgstr "Žiadne nákupné zoznamy"
+
+#: src/components/ListSidebar.vue
+msgid "Create your first shopping list to get started"
+msgstr "Vytvoriť prvý nákupný zoznam, aby ste mohli začať"
+
+#: src/components/ListSidebar.vue
+msgid "New shopping list"
+msgstr "Nový nákupný zoznam"
+
+#: src/components/ListView.vue
+msgid "Share"
+msgstr "Zdielať"
+
+#: src/components/ListView.vue src/components/PublicListView.vue
+msgid "No items yet"
+msgstr "Zatiaľ žiadne položky"
+
+#: src/components/ListView.vue
+msgid "Add your first item above"
+msgstr "Pridajte svoju prvú položku vyššie"
+
+#: src/components/ListView.vue src/components/PublicListView.vue
+msgid "Uncategorized"
+msgstr "Nezaradené"
+
+#: src/components/ListView.vue src/components/PublicListView.vue
+msgid "Checked off"
+msgstr "Zaškrtnuté"
+
+#: src/components/ListView.vue
+msgid "Restore all"
+msgstr "Obnoviť všetko"
+
+#: src/components/ListView.vue
+msgid "Delete all"
+msgstr "Odstrániť všetko"
+
+#: src/components/ShareDialog.vue
+msgid "Share list"
+msgstr "Zdieľať zoznam"
+
+#: src/components/ShareDialog.vue
+msgid "Search users or groups..."
+msgstr "Hľadať používateľov alebo skupiny..."
+
+#: src/components/ShareDialog.vue
+msgid "No users found"
+msgstr "Nenašli sa žiadni používatelia"
+
+#: src/components/ShareDialog.vue
+msgid "Group"
+msgstr "Skupina"
+
+#: src/components/ShareDialog.vue
+msgid "Shared with"
+msgstr "Zdieľané s"
+
+#: src/components/ShareDialog.vue
+msgid "Can view"
+msgstr "Môže prezerať"
+
+#: src/components/ShareDialog.vue
+msgid "Can edit"
+msgstr "Môže upravovať"
+
+#: src/components/ShareDialog.vue
+msgid "Search above to share this list with other users."
+msgstr "Vyhľadajte vyššie a zdieľajte tento zoznam s ostatnými používateľmi."
+
+#: src/components/ShareDialog.vue
+msgid "group"
+msgstr "skupina"
+
+#: src/components/ShareDialog.vue
+msgid "Public link"
+msgstr "Verejný odkaz"
+
+#: src/components/ShareDialog.vue
+msgid "Create public link"
+msgstr "Vytvoriť verejný odkaz"
+
+#: src/components/ShareDialog.vue
+msgid "Copy link"
+msgstr "Kopírovať odkaz"
+
+#: src/components/ShareDialog.vue
+msgid "Copied!"
+msgstr "Skopírované!"
+
+#: src/components/ShareDialog.vue
+msgid "Permission"
+msgstr "Povolenie"
+
+#: src/components/ShareDialog.vue
+msgid "Password"
+msgstr "Heslo"
+
+#: src/components/ShareDialog.vue
+msgid "Password set"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Optional"
+msgstr "Voliteľné"
+
+#: src/components/ShareDialog.vue
+msgid "Set"
+msgstr "Nastaviť"
+
+#: src/components/ShareDialog.vue
+msgid "Remove"
+msgstr "Odstrániť"
+
+#: src/components/ShareDialog.vue
+msgid "Expires"
+msgstr "Platnosť do"
+
+#: src/components/ShareDialog.vue
+msgid "Delete public link"
+msgstr "Odstrániť verejný odkaz"
+
+#: src/components/TagInput.vue
+msgid "Add tags..."
+msgstr "Pridať značky..."
+
+#: src/stores/items.ts
+msgid "Failed to load items"
+msgstr ""
+
+#: src/stores/items.ts
+msgid "\"{name}\" updated — quantity merged"
+msgstr "\"{name}\" aktualizované — množstvo zlúčené"
+
+#: src/stores/items.ts
+msgid "Failed to add item"
+msgstr "Nepodarilo sa presunúť položku"
+
+#: src/stores/items.ts
+msgid "Failed to update item"
+msgstr "Nepodarilo sa aktualizovať položku"
+
+#: src/stores/items.ts
+msgid "Failed to delete item"
+msgstr "Nepodarilo sa odstrániť položku"
+
+#: src/stores/items.ts
+msgid "Failed to reorder items"
+msgstr "Nepodarilo sa preusporiadať položky"
+
+#: src/stores/items.ts
+msgid "Failed to clear checked items"
+msgstr ""
+
+#: src/stores/items.ts
+msgid "Failed to uncheck items"
+msgstr "Nepodarilo sa odznačiť položky"
+
+#: src/stores/lists.ts
+msgid "Failed to load shopping lists"
+msgstr "Nepodarilo sa načítať nákupné zoznamy"
+
+#: src/stores/lists.ts
+msgid "Failed to create list"
+msgstr ""
+
+#: src/stores/lists.ts
+msgid "Failed to update list"
+msgstr ""
+
+#: src/stores/lists.ts
+msgid "Failed to delete list"
+msgstr "Nepodarilo sa odstrániť zoznam"
+
+#: src/stores/shares.ts
+msgid "Failed to load shares"
+msgstr ""
+
+#: src/stores/shares.ts
+msgid "Failed to share list"
+msgstr ""
+
+#: src/stores/shares.ts
+msgid "Failed to update share"
+msgstr ""
+
+#: src/stores/shares.ts
+msgid "Failed to remove share"
+msgstr "Nepodarilo sa odstrániť zoznam"
+
+#: src/stores/shares.ts
+msgid "Failed to create public link"
+msgstr ""
+
+#: src/stores/shares.ts
+msgid "Failed to update public link"
+msgstr ""
+
+#: src/stores/shares.ts
+msgid "Failed to remove public link"
+msgstr "Nepodarilo sa odstrániť verejný odkaz"
+
+#: src/stores/shopAreas.ts
+msgid "Failed to load shop areas"
+msgstr ""
+
+#: src/stores/shopAreas.ts
+msgid "Categories copied"
+msgstr "Kategórie skopírované"
+
+#: src/stores/shopAreas.ts
+msgid "Failed to copy categories"
+msgstr ""
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Copy categories from…"
+msgstr "Kopírovať kategórie z…"
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Copy"
+msgstr "Kopírovať"
+
+#: src/stores/shopAreas.ts
+msgid "Failed to create shop area"
+msgstr ""
+
+#: src/stores/shopAreas.ts
+msgid "Failed to update shop area"
+msgstr ""
+
+#: src/stores/shopAreas.ts
+msgid "Failed to delete shop area"
+msgstr ""
+
+#: src/stores/tags.ts
+msgid "Failed to load tags"
+msgstr ""
+
+#: src/stores/tags.ts
+msgid "Failed to create tag"
+msgstr ""
+
+#: src/stores/tags.ts
+msgid "Failed to delete tag"
+msgstr "Nepodarilo sa odstrániť značky"
+
+#: lib/Service/ShopAreaService.php
+msgid "Produce"
+msgstr ""
+
+#: lib/Service/ShopAreaService.php
+msgid "Dairy"
+msgstr ""
+
+#: lib/Service/ShopAreaService.php
+msgid "Bakery"
+msgstr ""
+
+#: lib/Service/ShopAreaService.php
+msgid "Meat & Seafood"
+msgstr "Mäso a morské plody"
+
+#: lib/Service/ShopAreaService.php
+msgid "Frozen"
+msgstr "Mrazené"
+
+#: lib/Service/ShopAreaService.php
+msgid "Beverages"
+msgstr "Nápoje"
+
+#: lib/Service/ShopAreaService.php
+msgid "Snacks"
+msgstr "Občerstvenie"
+
+#: lib/Service/ShopAreaService.php
+msgid "Household"
+msgstr "Domácnosť"
+
+#: lib/Service/ShopAreaService.php
+msgid "Personal Care"
+msgstr "Osobná starostlivosť"
+
+#: lib/Service/ShopAreaService.php
+msgid "General"
+msgstr "Všeobecné"
+
+#: lib/Service/ShopAreaService.php
+msgid "Pets"
+msgstr "Domáci miláčikovia"
+
+#: lib/Service/ShopAreaService.php
+msgid "Other"
+msgstr "Ostatné"
+
+#: src/components/ItemRow.vue
+msgid "Delete \"{name}\"?"
+msgstr "Odstrániť \"{name}\"?"
+
+#: src/components/ItemRow.vue
+msgid "Move to list"
+msgstr "Presunúť do zoznamu"
+
+#: src/stores/items.ts
+msgid "Failed to move item"
+msgstr "Nepodarilo sa presunúť položku"
+
+#: src/stores/items.ts
+msgid "Moved \"{name}\" to {list}"
+msgstr "Presunúť \"{name}\" do {list}"
+
+#: src/stores/items.ts
+msgid "You're offline — moving items requires a connection"
+msgstr "Ste offline — presúvanie položiek vyžaduje pripojenie"
+
+#: src/components/OfflineIndicator.vue
+msgid "Syncing changes…"
+msgstr "Synchronizujú sa zmeny…"
+
+#: src/components/OfflineIndicator.vue
+msgid "Offline — {count} pending"
+msgstr ""
+
+#: src/components/OfflineIndicator.vue
+msgid "You're offline"
+msgstr "Ste offline"
+
+#: src/components/OfflineIndicator.vue
+msgid "All changes synced"
+msgstr ""
+
+#: src/components/OfflineIndicator.vue
+msgid "{count} changes pending"
+msgstr "{count} čakajúcich zmien"
+
