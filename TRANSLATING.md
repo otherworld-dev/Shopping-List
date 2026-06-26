@@ -15,13 +15,13 @@ request a language (or open a [GitHub issue](https://github.com/otherworld-dev/S
 
 ## What you'll be translating
 
-There are three things in Crowdin. You don't have to do all three — anything you
-skip simply stays in English.
+There are two things in Crowdin. You don't have to do both — anything you skip
+simply stays in English.
 
 > **What it looks like:** UI strings are simple one-line translations. Keywords
-> and Parsing are **lists of words** — you'll see an English list and replace it
-> with your own. You never edit braces, quotes, or anything that looks like code:
-> just change the words and leave the structure alone.
+> are a **list of words** — you'll see an English list and replace it with your
+> own. You never edit braces, quotes, or anything that looks like code: just
+> change the words and leave the structure alone.
 
 ### 1. UI strings
 The app's buttons, menus, and messages (e.g. *"Add an item"*, *"Delete"*).
@@ -54,23 +54,11 @@ A few rules keep it reliable:
 You can submit at any time — even a partial list helps, and you or someone else
 can extend it later. There's no need to fill every area.
 
-### 3. Parsing
-A short list of your language's **measurement words**, so quantities are
-recognised when items are added:
-
-- **Units** — your measurement words, e.g. `liter, l, gramm, g, esslöffel, el, …`
-- **No-number units** — words used *without* a number: you say *"a **pinch** of
-  salt"* or *"a **handful** of nuts"*, not *"3 pinch"*. List your equivalents
-  (pinch, dash, handful, splash, …).
-- **Connector word** — the little word in *"a pinch **of** salt"* (English `of`,
-  German `von`).
-- **Decimal mark** — which character(s) your language uses for decimals. You can
-  list more than one — German, for example, accepts both `0,5` and `0.5`.
-
-> You may also see a **"base form" (aliases)** section that links abbreviations to
-> full words (e.g. `tsp` → `teaspoon`). **You can skip it** — it only fine-tunes
-> how quantities combine, and a maintainer can fill it in. Just translate the
-> word lists above.
+> **Note on measurement units:** localized units (e.g. German *EL*, *Liter*) are
+> handled in code, not on Crowdin — they're technical data that doesn't fit a
+> translate-each-word model. If you'd like your language's units recognised when
+> adding quantities, open a [GitHub issue](https://github.com/otherworld-dev/Shopping-List/issues)
+> or PR and we'll add a unit pack. Everything falls back to English otherwise.
 
 ---
 
@@ -78,7 +66,7 @@ recognised when items are added:
 
 1. Open the [Crowdin project](https://crowdin.com/project/shopping-list-for-nextcloud)
    and choose your language.
-2. Translate any of the three things above and **save**. That's all you do.
+2. Translate the UI strings and/or keywords above and **save**. That's all you do.
 3. Your work is automatically sent to the project, and a maintainer includes it —
    you don't need to do anything else.
 4. It ships in the next release. New shopping lists created by people using your
