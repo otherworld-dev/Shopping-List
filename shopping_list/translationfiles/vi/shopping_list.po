@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-06-17 15:18\n"
+"PO-Revision-Date: 2026-06-27 13:32\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "Language: vi_VN\n"
@@ -367,6 +367,22 @@ msgstr ""
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Copy"
+msgstr ""
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Load keywords for my language"
+msgstr ""
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Adds your language's grocery keywords to the default areas, so items auto-sort correctly. Existing keywords are kept."
+msgstr ""
+
+#: src/stores/shopAreas.ts
+msgid "Keywords for your language added"
+msgstr ""
+
+#: src/stores/shopAreas.ts
+msgid "Failed to add keywords"
 msgstr ""
 
 #: src/stores/shopAreas.ts
