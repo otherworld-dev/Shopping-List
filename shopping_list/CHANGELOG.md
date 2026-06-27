@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.2] - 2026-06-27
+
+### Fixed
+- Default shop-area names (Produce, Dairy, …) now follow each viewer's language
+  live, including on existing and shared lists. They were previously frozen in
+  whatever language the list was created in, so already-translated names kept
+  showing in English (#24)
+
+### Added
+- "Load keywords for my language" button in Manage Areas — adds your language's
+  grocery keywords to an existing list's default areas, so items auto-sort
+  correctly. Existing keywords are kept (#24)
+
+### Upgrade
+Adds a `name_key` column to shop areas (auto-migrated). Existing English-seeded
+lists are matched to the built-in defaults so their names start translating;
+areas you've renamed keep your custom names.
+
 ## [1.5.1] - 2026-06-26
 
 ### Added
