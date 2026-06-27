@@ -11,6 +11,7 @@ use OCA\Shopping_List\Db\ShoppingListMapper;
 use OCA\Shopping_List\Service\NoPermissionException;
 use OCA\Shopping_List\Service\NotFoundException;
 use OCA\Shopping_List\Service\PasswordRequiredException;
+use OCA\Shopping_List\Service\ShopAreaService;
 use OCA\Shopping_List\Db\ShopAreaMapper;
 use OCA\Shopping_List\Service\ShareService;
 use DateTime;
@@ -31,6 +32,7 @@ class PublicListController extends OCSController {
 		private ShoppingListMapper $listMapper,
 		private ItemMapper $itemMapper,
 		private ShopAreaMapper $areaMapper,
+		private ShopAreaService $areaService,
 		private ISession $session,
 	) {
 		parent::__construct($appName, $request);
@@ -275,7 +277,7 @@ class PublicListController extends OCSController {
 	public function areas(string $token): DataResponse {
 		try {
 			$share = $this->authenticate($token);
-			return new DataResponse($this->areaMapper->findByList($share->getListId()));
+			return new DataResponse($this->areaService->findAll($share->getListId()));
 		} catch (PasswordRequiredException) {
 			return new DataResponse(['passwordRequired' => true], Http::STATUS_FORBIDDEN);
 		} catch (NotFoundException) {

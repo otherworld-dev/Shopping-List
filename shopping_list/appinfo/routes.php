@@ -52,6 +52,7 @@ return [
 		['name' => 'shop_area#index', 'url' => '/api/v1/lists/{listId}/areas', 'verb' => 'GET'],
 		['name' => 'shop_area#create', 'url' => '/api/v1/lists/{listId}/areas', 'verb' => 'POST'],
 		['name' => 'shop_area#copy', 'url' => '/api/v1/lists/{listId}/areas/copy', 'verb' => 'POST'],
+		['name' => 'shop_area#applyKeywords', 'url' => '/api/v1/lists/{listId}/areas/apply-keywords', 'verb' => 'POST'],
 		['name' => 'shop_area#update', 'url' => '/api/v1/lists/{listId}/areas/{id}', 'verb' => 'PUT'],
 		['name' => 'shop_area#destroy', 'url' => '/api/v1/lists/{listId}/areas/{id}', 'verb' => 'DELETE'],
 

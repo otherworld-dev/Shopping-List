@@ -43,6 +43,17 @@
 			</button>
 		</div>
 
+		<!-- Add the current language's keyword pack to the default areas -->
+		<div v-if="canEdit" class="area-settings__loadlang">
+			<button
+				class="area-settings__loadlang-btn"
+				:disabled="loadingLang"
+				:title="loadLangHint"
+				@click="onLoadLanguageKeywords">
+				{{ loadLangText }}
+			</button>
+		</div>
+
 		<div class="area-settings__search">
 			<input
 				v-model="search"
@@ -181,6 +192,8 @@ const newAreaPlaceholder = t('shopping_list', 'New area name...')
 const addAreaText = t('shopping_list', 'Add area')
 const copyFromPlaceholder = t('shopping_list', 'Copy categories from…')
 const copyText = t('shopping_list', 'Copy')
+const loadLangText = t('shopping_list', 'Load keywords for my language')
+const loadLangHint = t('shopping_list', 'Adds your language\'s grocery keywords to the default areas, so items auto-sort correctly. Existing keywords are kept.')
 
 const search = ref('')
 const newKeyword = ref<Record<number, string>>({})
@@ -192,6 +205,7 @@ const newAreaName = ref('')
 const newAreaColor = ref('#9E9E9E')
 const copySourceId = ref<number | null>(null)
 const copying = ref(false)
+const loadingLang = ref(false)
 
 let saveTimeout: Record<number, ReturnType<typeof setTimeout>> = {}
 let colorTimeout: Record<number, ReturnType<typeof setTimeout>> = {}
@@ -220,6 +234,16 @@ async function onCopyFrom() {
 		copySourceId.value = null
 	} finally {
 		copying.value = false
+	}
+}
+
+async function onLoadLanguageKeywords() {
+	if (listId.value === null || loadingLang.value) return
+	loadingLang.value = true
+	try {
+		await shopAreasStore.loadLanguageKeywords(listId.value)
+	} finally {
+		loadingLang.value = false
 	}
 }
 
@@ -502,6 +526,28 @@ async function onDeleteArea(area: ShopArea) {
 }
 
 .area-settings__copy-btn:disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+.area-settings__loadlang {
+	margin-bottom: 16px;
+}
+
+.area-settings__loadlang-btn {
+	width: 100%;
+	height: 36px;
+	padding: 0 16px;
+	border: 2px solid var(--color-border);
+	border-radius: var(--border-radius-large);
+	background: var(--color-main-background);
+	color: var(--color-main-text);
+	font-size: 0.85em;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.area-settings__loadlang-btn:disabled {
 	opacity: 0.4;
 	cursor: not-allowed;
 }

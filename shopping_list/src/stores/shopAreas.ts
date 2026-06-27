@@ -73,6 +73,17 @@ export const useShopAreasStore = defineStore('shopAreas', () => {
 		}
 	}
 
+	async function loadLanguageKeywords(listId: number) {
+		try {
+			const response = await api.areas.applyKeywords(listId)
+			areasByList.value[listId] = response.data.ocs.data
+			showSuccess(t('shopping_list', 'Keywords for your language added'))
+		} catch (e) {
+			showError(t('shopping_list', 'Failed to add keywords'))
+			console.error(e)
+		}
+	}
+
 	return {
 		areasByList,
 		fetchByList,
@@ -80,5 +91,6 @@ export const useShopAreasStore = defineStore('shopAreas', () => {
 		update,
 		remove,
 		copyFrom,
+		loadLanguageKeywords,
 	}
 })

@@ -1,5 +1,5 @@
 const appName = "shopping_list";
-const appVersion = "1.5.0";
+const appVersion = "1.5.1";
 const global$1 = globalThis || void 0 || self;
 /**
 * @vue/shared v3.5.32
@@ -42784,7 +42784,8 @@ const api = {
     create: (listId, name, color, keywords) => cancelableClient.post(url(`lists/${listId}/areas`), { name, color, keywords }),
     update: (listId, id, data) => cancelableClient.put(url(`lists/${listId}/areas/${id}`), data),
     delete: (listId, id) => cancelableClient.delete(url(`lists/${listId}/areas/${id}`)),
-    copy: (listId, sourceListId) => cancelableClient.post(url(`lists/${listId}/areas/copy`), { sourceListId })
+    copy: (listId, sourceListId) => cancelableClient.post(url(`lists/${listId}/areas/copy`), { sourceListId }),
+    applyKeywords: (listId) => cancelableClient.post(url(`lists/${listId}/areas/apply-keywords`))
   },
   tags: {
     getAll: () => cancelableClient.get(url("tags")),
@@ -43012,4 +43013,4 @@ export {
   saveValue as y,
   readonly as z
 };
-//# sourceMappingURL=index-CNmHhtp4.chunk.mjs.map
+//# sourceMappingURL=index-14pwRDKO.chunk.mjs.map

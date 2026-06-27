@@ -133,6 +133,7 @@ class ShopAreaService {
 			$area = new ShopArea();
 			$area->setListId($listId);
 			$area->setName($translatedNames[$name] ?? $name);
+			$area->setNameKey($name);
 			$area->setSortOrder($sortOrder);
 			$area->setColor($color);
 			$area->setKeywordsArray($keywordsByArea[$name] ?? []);
@@ -141,12 +142,36 @@ class ShopAreaService {
 	}
 
 	/**
-	 * Get all areas for a list.
+	 * Get all areas for a list, with default-area names translated into the
+	 * viewer's language (see translateNames()).
 	 *
 	 * @return ShopArea[]
 	 */
 	public function findAll(int $listId): array {
-		return $this->mapper->findByList($listId);
+		return $this->translateNames($this->mapper->findByList($listId));
+	}
+
+	/**
+	 * Translate default-area names into the viewer's language for display.
+	 *
+	 * Default areas carry a stable English name_key; we resolve it through IL10N
+	 * so every viewer of a (possibly shared) list sees the names in their own
+	 * language, and existing lists pick up translations added after they were
+	 * created. Areas without a key (user-renamed or non-default) keep their
+	 * stored name. The name is only overwritten in-memory for serialization —
+	 * the stored value (used for keyword matching, move, copy) is untouched.
+	 *
+	 * @param ShopArea[] $areas
+	 * @return ShopArea[]
+	 */
+	private function translateNames(array $areas): array {
+		foreach ($areas as $area) {
+			$key = $area->getNameKey();
+			if ($key !== null && $key !== '') {
+				$area->setName($this->l->t($key));
+			}
+		}
+		return $areas;
 	}
 
 	public function find(int $id): ShopArea {
@@ -265,6 +290,7 @@ class ShopAreaService {
 					$area = new ShopArea();
 					$area->setListId($targetListId);
 					$area->setName($src->getName());
+					$area->setNameKey($src->getNameKey());
 					$area->setColor($src->getColor());
 					$area->setSortOrder(++$maxSort);
 					$area->setKeywordsArray($src->getKeywordsArray());
@@ -277,7 +303,54 @@ class ShopAreaService {
 			throw $e;
 		}
 
-		return $this->mapper->findByList($targetListId);
+		return $this->translateNames($this->mapper->findByList($targetListId));
+	}
+
+	/**
+	 * Merge the viewer's language keyword pack into this list's default areas
+	 * (matched by name_key). Additive union — existing and learned keywords are
+	 * kept, the pack's words are added on top. Lets an existing list (seeded in
+	 * another language) pick up a newly-translated keyword set without recreating
+	 * it. Areas without a default key (custom areas) are left untouched.
+	 *
+	 * @return ShopArea[] the list's areas after the merge
+	 */
+	public function applyLanguageKeywords(int $listId): array {
+		$keywordsByArea = $this->loadKeywordDefaults($this->l->getLanguageCode());
+		if ($keywordsByArea === []) {
+			return $this->translateNames($this->mapper->findByList($listId));
+		}
+
+		$areas = $this->mapper->findByList($listId);
+		$this->db->beginTransaction();
+		try {
+			foreach ($areas as $area) {
+				$key = $area->getNameKey();
+				if ($key === null || $key === '' || !isset($keywordsByArea[$key])) {
+					continue;
+				}
+				$keywords = $area->getKeywordsArray();
+				$seen = array_fill_keys($keywords, true);
+				$changed = false;
+				foreach ($keywordsByArea[$key] as $kw) {
+					if (!isset($seen[$kw])) {
+						$keywords[] = $kw;
+						$seen[$kw] = true;
+						$changed = true;
+					}
+				}
+				if ($changed) {
+					$area->setKeywordsArray($keywords);
+					$this->mapper->update($area);
+				}
+			}
+			$this->db->commit();
+		} catch (\Throwable $e) {
+			$this->db->rollBack();
+			throw $e;
+		}
+
+		return $this->translateNames($this->mapper->findByList($listId));
 	}
 
 	public function update(int $id, int $listId, ?string $name, ?string $color, ?int $sortOrder, ?array $keywords): ShopArea {
@@ -292,7 +365,10 @@ class ShopAreaService {
 		}
 
 		if ($name !== null) {
+			// An explicit rename makes the name custom — drop the default key so it
+			// is no longer re-translated and the user's wording is kept verbatim.
 			$area->setName($name);
+			$area->setNameKey(null);
 		}
 		if ($color !== null) {
 			$area->setColor($color);
@@ -304,7 +380,7 @@ class ShopAreaService {
 			$area->setKeywordsArray($keywords);
 		}
 
-		return $this->mapper->update($area);
+		return $this->translateNames([$this->mapper->update($area)])[0];
 	}
 
 	/**

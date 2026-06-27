@@ -43,6 +43,9 @@ export interface ShopArea {
 	sortOrder: number
 	color: string | null
 	keywords: string[]
+	// Stable English key for default areas (e.g. "Produce"); null for custom/renamed
+	// areas. The server resolves it to the viewer's language in `name`.
+	nameKey: string | null
 }
 
 export interface Tag {

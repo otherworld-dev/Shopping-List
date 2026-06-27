@@ -54,6 +54,8 @@ export const api = {
 		delete: (listId: number, id: number) => axios.delete(url(`lists/${listId}/areas/${id}`)),
 		copy: (listId: number, sourceListId: number) =>
 			axios.post(url(`lists/${listId}/areas/copy`), { sourceListId }),
+		applyKeywords: (listId: number) =>
+			axios.post(url(`lists/${listId}/areas/apply-keywords`)),
 	},
 	tags: {
 		getAll: () => axios.get(url('tags')),

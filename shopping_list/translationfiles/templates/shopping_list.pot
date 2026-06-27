@@ -370,6 +370,24 @@ msgstr ""
 msgid "Copy"
 msgstr ""
 
+#: src/components/AreaKeywordsSettings.vue
+msgid "Load keywords for my language"
+msgstr ""
+
+#: src/components/AreaKeywordsSettings.vue
+msgid ""
+"Adds your language's grocery keywords to the default areas, so items auto-"
+"sort correctly. Existing keywords are kept."
+msgstr ""
+
+#: src/stores/shopAreas.ts
+msgid "Keywords for your language added"
+msgstr ""
+
+#: src/stores/shopAreas.ts
+msgid "Failed to add keywords"
+msgstr ""
+
 #: src/stores/shopAreas.ts
 msgid "Failed to create shop area"
 msgstr ""

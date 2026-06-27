@@ -18,6 +18,8 @@ use OCP\AppFramework\Db\Entity;
  * @method void setColor(?string $color)
  * @method ?string getKeywords()
  * @method void setKeywords(?string $keywords)
+ * @method ?string getNameKey()
+ * @method void setNameKey(?string $nameKey)
  */
 class ShopArea extends Entity implements JsonSerializable {
 	protected $listId;
@@ -25,6 +27,9 @@ class ShopArea extends Entity implements JsonSerializable {
 	protected $sortOrder;
 	protected $color;
 	protected $keywords;
+	// Stable English key for default areas (e.g. "Produce"), so the name can be
+	// translated live per viewer. Null once a user renames the area (custom name).
+	protected $nameKey;
 
 	public function __construct() {
 		$this->addType('id', 'integer');
@@ -53,6 +58,7 @@ class ShopArea extends Entity implements JsonSerializable {
 			'sortOrder' => $this->sortOrder,
 			'color' => $this->color,
 			'keywords' => $this->getKeywordsArray(),
+			'nameKey' => $this->nameKey,
 		];
 	}
 }

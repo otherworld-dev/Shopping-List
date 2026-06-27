@@ -76,6 +76,21 @@ class ShopAreaController extends OCSController {
 		}
 	}
 
+	/**
+	 * Merge the viewer's language keyword pack into this list's default areas.
+	 */
+	#[NoAdminRequired]
+	public function applyKeywords(int $listId): DataResponse {
+		try {
+			$this->listService->assertWriteAccess($listId, $this->userId);
+			return new DataResponse($this->service->applyLanguageKeywords($listId));
+		} catch (NotFoundException $e) {
+			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_NOT_FOUND);
+		} catch (NoPermissionException $e) {
+			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_FORBIDDEN);
+		}
+	}
+
 	#[NoAdminRequired]
 	public function destroy(int $listId, int $id): DataResponse {
 		try {
