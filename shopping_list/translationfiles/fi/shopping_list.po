@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-06-27 13:32\n"
+"PO-Revision-Date: 2026-06-28 21:22\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Language: fi_FI\n"
@@ -19,339 +19,339 @@ msgstr ""
 
 #: src/App.vue
 msgid "No list selected"
-msgstr ""
+msgstr "Listaa ei ole valittu"
 
 #: src/App.vue
 msgid "Select a list from the sidebar or create a new one"
-msgstr ""
+msgstr "Valitse lista sivupalkista tai luo uusi"
 
 #: src/PublicApp.vue
 msgid "Password required"
-msgstr ""
+msgstr "Vaaditaan salasana "
 
 #: src/PublicApp.vue
 msgid "This list is password protected."
-msgstr ""
+msgstr "Tämä lista on suojattu salasanalla."
 
 #: src/PublicApp.vue
 msgid "Enter password"
-msgstr ""
+msgstr "Syötä salasana"
 
 #: src/PublicApp.vue
 msgid "Unlock"
-msgstr ""
+msgstr "Avaa"
 
 #: src/PublicApp.vue
 msgid "Incorrect password"
-msgstr ""
+msgstr "Virheellinen salasana"
 
 #: src/PublicApp.vue
 msgid "Not found"
-msgstr ""
+msgstr "Ei löytynyt"
 
 #: src/PublicApp.vue
 msgid "This shared list does not exist or has expired."
-msgstr ""
+msgstr "Tätä jaettua listaa ei ole olemassa tai se on vanhentunut."
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Back to list"
-msgstr ""
+msgstr "Takaisin listaan"
 
 #: src/components/AreaKeywordsSettings.vue src/components/ListSidebar.vue
 msgid "Manage Areas"
-msgstr ""
+msgstr "Hallitse osastoja"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Manage shop areas, keywords, and display order. Keywords auto-detect which area an item belongs to when added or pasted."
-msgstr ""
+msgstr "Hallitse kaupan osastoja, avainsanoja ja näyttöjärjestystä. Avainsanat tunnistavat automaattisesti, mille osastolle tuote kuuluu, kun se lisätään tai liitetään."
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Search keywords..."
-msgstr ""
+msgstr "Hae avainsanoja..."
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Add keyword..."
-msgstr ""
+msgstr "Lisää avainsana..."
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "No keywords"
-msgstr ""
+msgstr "Ei avainsanoja"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Rename"
-msgstr ""
+msgstr "Nimeä uudelleen"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Delete area"
-msgstr ""
+msgstr "Poista osasto"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Move up"
-msgstr ""
+msgstr "Siirrä ylös"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Move down"
-msgstr ""
+msgstr "Siirrä alas"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Change color"
-msgstr ""
+msgstr "Vaihda väri"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "New area name..."
-msgstr ""
+msgstr "Uuden osaston nimi..."
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Add area"
-msgstr ""
+msgstr "Lisää osasto"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Delete \"{name}\"? Items in this area will become uncategorized."
-msgstr ""
+msgstr "Poistetaanko \"{name}\"? Tämän osaston tuotteet muuttuvat luokittelemattomiksi."
 
 #: src/components/ItemEditor.vue src/components/PublicListView.vue
 msgid "Add an item to list..."
-msgstr ""
+msgstr "Lisää tuote listalle..."
 
 #: src/components/ItemEditor.vue
 msgid "Area"
-msgstr ""
+msgstr "Osasto"
 
 #: src/components/ItemEditor.vue
 msgid "No match"
-msgstr ""
+msgstr "Ei osumaa"
 
 #: src/components/ItemRow.vue
 msgid "Qty"
-msgstr ""
+msgstr "Määrä"
 
 #: src/components/ItemRow.vue
 msgid "Delete"
-msgstr ""
+msgstr "Poista"
 
 #: src/components/ListSidebar.vue
 msgid "New list"
-msgstr ""
+msgstr "Uusi lista"
 
 #: src/components/ListSidebar.vue
 msgid "Rename list"
-msgstr ""
+msgstr "Nimeä lista uudelleen"
 
 #: src/components/ListSidebar.vue
 msgid "Delete list"
-msgstr ""
+msgstr "Poista lista"
 
 #: src/components/ListSidebar.vue
 msgid "Shared with me"
-msgstr ""
+msgstr "Jaettu minulle"
 
 #: src/components/ListSidebar.vue
 msgid "No shopping lists"
-msgstr ""
+msgstr "Ei ostoslistoja"
 
 #: src/components/ListSidebar.vue
 msgid "Create your first shopping list to get started"
-msgstr ""
+msgstr "Luo ensimmäinen ostoslistasi aloittaaksesi"
 
 #: src/components/ListSidebar.vue
 msgid "New shopping list"
-msgstr ""
+msgstr "Uusi ostoslista"
 
 #: src/components/ListView.vue
 msgid "Share"
-msgstr ""
+msgstr "Jaa"
 
 #: src/components/ListView.vue src/components/PublicListView.vue
 msgid "No items yet"
-msgstr ""
+msgstr "Ei vielä tuotteita"
 
 #: src/components/ListView.vue
 msgid "Add your first item above"
-msgstr ""
+msgstr "Lisää ensimmäinen tuotteesi ylhäällä"
 
 #: src/components/ListView.vue src/components/PublicListView.vue
 msgid "Uncategorized"
-msgstr ""
+msgstr "Luokittelematon"
 
 #: src/components/ListView.vue src/components/PublicListView.vue
 msgid "Checked off"
-msgstr ""
+msgstr "Valitsematon"
 
 #: src/components/ListView.vue
 msgid "Restore all"
-msgstr ""
+msgstr "Palauta kaikki"
 
 #: src/components/ListView.vue
 msgid "Delete all"
-msgstr ""
+msgstr "Poista kaikki"
 
 #: src/components/ShareDialog.vue
 msgid "Share list"
-msgstr ""
+msgstr "Jaa lista"
 
 #: src/components/ShareDialog.vue
 msgid "Search users or groups..."
-msgstr ""
+msgstr "Hae käyttäjiä tai ryhmiä..."
 
 #: src/components/ShareDialog.vue
 msgid "No users found"
-msgstr ""
+msgstr "Käyttäjiä ei löytynyt"
 
 #: src/components/ShareDialog.vue
 msgid "Group"
-msgstr ""
+msgstr "Ryhmä"
 
 #: src/components/ShareDialog.vue
 msgid "Shared with"
-msgstr ""
+msgstr "Jaettu kanssa"
 
 #: src/components/ShareDialog.vue
 msgid "Can view"
-msgstr ""
+msgstr "Voi katsella"
 
 #: src/components/ShareDialog.vue
 msgid "Can edit"
-msgstr ""
+msgstr "Voi muokata"
 
 #: src/components/ShareDialog.vue
 msgid "Search above to share this list with other users."
-msgstr ""
+msgstr "Hae ylhäällä jakaaksesi tämän listan muille käyttäjille."
 
 #: src/components/ShareDialog.vue
 msgid "group"
-msgstr ""
+msgstr "ryhmä"
 
 #: src/components/ShareDialog.vue
 msgid "Public link"
-msgstr ""
+msgstr "Julkinen linkki"
 
 #: src/components/ShareDialog.vue
 msgid "Create public link"
-msgstr ""
+msgstr "Luo julkinen linkki"
 
 #: src/components/ShareDialog.vue
 msgid "Copy link"
-msgstr ""
+msgstr "Kopioi linkki"
 
 #: src/components/ShareDialog.vue
 msgid "Copied!"
-msgstr ""
+msgstr "Kopioitu!"
 
 #: src/components/ShareDialog.vue
 msgid "Permission"
-msgstr ""
+msgstr "Oikeus"
 
 #: src/components/ShareDialog.vue
 msgid "Password"
-msgstr ""
+msgstr "Salasana"
 
 #: src/components/ShareDialog.vue
 msgid "Password set"
-msgstr ""
+msgstr "Salasana asetettu"
 
 #: src/components/ShareDialog.vue
 msgid "Optional"
-msgstr ""
+msgstr "Valinnainen"
 
 #: src/components/ShareDialog.vue
 msgid "Set"
-msgstr ""
+msgstr "Aseta"
 
 #: src/components/ShareDialog.vue
 msgid "Remove"
-msgstr ""
+msgstr "Poista"
 
 #: src/components/ShareDialog.vue
 msgid "Expires"
-msgstr ""
+msgstr "Vanhenee"
 
 #: src/components/ShareDialog.vue
 msgid "Delete public link"
-msgstr ""
+msgstr "Poista julkinen linkki"
 
 #: src/components/TagInput.vue
 msgid "Add tags..."
-msgstr ""
+msgstr "Lisää tunnisteita..."
 
 #: src/stores/items.ts
 msgid "Failed to load items"
-msgstr ""
+msgstr "Tuotteiden lataaminen epäonnistui"
 
 #: src/stores/items.ts
 msgid "\"{name}\" updated — quantity merged"
-msgstr ""
+msgstr "\"{name}\" päivitetty — määrä yhdistetty"
 
 #: src/stores/items.ts
 msgid "Failed to add item"
-msgstr ""
+msgstr "Tuotteen lisääminen epäonnistui"
 
 #: src/stores/items.ts
 msgid "Failed to update item"
-msgstr ""
+msgstr "Tuotteen päivittäminen epäonnistui"
 
 #: src/stores/items.ts
 msgid "Failed to delete item"
-msgstr ""
+msgstr "Tuotteen poistaminen epäonnistui"
 
 #: src/stores/items.ts
 msgid "Failed to reorder items"
-msgstr ""
+msgstr "Tuotteiden uudelleenjärjestäminen epäonnistui"
 
 #: src/stores/items.ts
 msgid "Failed to clear checked items"
-msgstr ""
+msgstr "Valittujen tuotteiden tyhjentäminen epäonnistui"
 
 #: src/stores/items.ts
 msgid "Failed to uncheck items"
-msgstr ""
+msgstr "Tuotteiden valinnan poisto epäonnistui"
 
 #: src/stores/lists.ts
 msgid "Failed to load shopping lists"
-msgstr ""
+msgstr "Ostoslistojen lataaminen epäonnistui"
 
 #: src/stores/lists.ts
 msgid "Failed to create list"
-msgstr ""
+msgstr "Listan luominen epäonnistui"
 
 #: src/stores/lists.ts
 msgid "Failed to update list"
-msgstr ""
+msgstr "Listan päivittäminen epäonnistui"
 
 #: src/stores/lists.ts
 msgid "Failed to delete list"
-msgstr ""
+msgstr "Listan poistaminen epäonnistui"
 
 #: src/stores/shares.ts
 msgid "Failed to load shares"
-msgstr ""
+msgstr "Jakojen lataaminen epäonnistui"
 
 #: src/stores/shares.ts
 msgid "Failed to share list"
-msgstr ""
+msgstr "Listan jakaminen epäonnistui"
 
 #: src/stores/shares.ts
 msgid "Failed to update share"
-msgstr ""
+msgstr "Jaon päivittäminen epäonnistui"
 
 #: src/stores/shares.ts
 msgid "Failed to remove share"
-msgstr ""
+msgstr "Jaon poistaminen epäonnistui"
 
 #: src/stores/shares.ts
 msgid "Failed to create public link"
-msgstr ""
+msgstr "Julkisen linkin luominen epäonnistui"
 
 #: src/stores/shares.ts
 msgid "Failed to update public link"
-msgstr ""
+msgstr "Julkisen linkin päivittäminen epäonnistui"
 
 #: src/stores/shares.ts
 msgid "Failed to remove public link"
-msgstr ""
+msgstr "Julkisen linkin poistaminen epäonnistui"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to load shop areas"
-msgstr ""
+msgstr "Kaupan osastojen lataaminen epäonnistui"
 
 #: src/stores/shopAreas.ts
 msgid "Categories copied"
@@ -387,79 +387,79 @@ msgstr ""
 
 #: src/stores/shopAreas.ts
 msgid "Failed to create shop area"
-msgstr ""
+msgstr "Kaupan osaston luominen epäonnistui"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to update shop area"
-msgstr ""
+msgstr "Kaupan osaston päivittäminen epäonnistui"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to delete shop area"
-msgstr ""
+msgstr "Kaupan osaston poistaminen epäonnistui"
 
 #: src/stores/tags.ts
 msgid "Failed to load tags"
-msgstr ""
+msgstr "Tunnisteiden lataaminen epäonnistui"
 
 #: src/stores/tags.ts
 msgid "Failed to create tag"
-msgstr ""
+msgstr "Tunnisteen luominen epäonnistui"
 
 #: src/stores/tags.ts
 msgid "Failed to delete tag"
-msgstr ""
+msgstr "Tunnisteen poistaminen epäonnistui"
 
 #: lib/Service/ShopAreaService.php
 msgid "Produce"
-msgstr ""
+msgstr "Hedelmät ja vihannekset"
 
 #: lib/Service/ShopAreaService.php
 msgid "Dairy"
-msgstr ""
+msgstr "Maitotuotteet"
 
 #: lib/Service/ShopAreaService.php
 msgid "Bakery"
-msgstr ""
+msgstr "Leipomo"
 
 #: lib/Service/ShopAreaService.php
 msgid "Meat & Seafood"
-msgstr ""
+msgstr "Liha ja kala"
 
 #: lib/Service/ShopAreaService.php
 msgid "Frozen"
-msgstr ""
+msgstr "Pakaste"
 
 #: lib/Service/ShopAreaService.php
 msgid "Beverages"
-msgstr ""
+msgstr "Juomat"
 
 #: lib/Service/ShopAreaService.php
 msgid "Snacks"
-msgstr ""
+msgstr "Naposteltavat"
 
 #: lib/Service/ShopAreaService.php
 msgid "Household"
-msgstr ""
+msgstr "Kotitalous"
 
 #: lib/Service/ShopAreaService.php
 msgid "Personal Care"
-msgstr ""
+msgstr "Henkilökohtainen hygienia"
 
 #: lib/Service/ShopAreaService.php
 msgid "General"
-msgstr ""
+msgstr "Yleinen"
 
 #: lib/Service/ShopAreaService.php
 msgid "Pets"
-msgstr ""
+msgstr "Lemmikit"
 
 #: lib/Service/ShopAreaService.php
 msgid "Other"
-msgstr ""
+msgstr "Muut"
 
 #: src/components/ItemRow.vue
 msgid "Delete \"{name}\"?"
-msgstr ""
+msgstr "Poistetaanko \"{name}\"?"
 
 #: src/components/ItemRow.vue
 msgid "Move to list"
@@ -479,21 +479,21 @@ msgstr ""
 
 #: src/components/OfflineIndicator.vue
 msgid "Syncing changes…"
-msgstr ""
+msgstr "Synkronoidaan muutoksia…"
 
 #: src/components/OfflineIndicator.vue
 msgid "Offline — {count} pending"
-msgstr ""
+msgstr "Ei verkkoyhteyttä — {count} odottamassa"
 
 #: src/components/OfflineIndicator.vue
 msgid "You're offline"
-msgstr ""
+msgstr "Ei verkkoyhteyttä"
 
 #: src/components/OfflineIndicator.vue
 msgid "All changes synced"
-msgstr ""
+msgstr "Kaikki muutokset synkronoitu"
 
 #: src/components/OfflineIndicator.vue
 msgid "{count} changes pending"
-msgstr ""
+msgstr "{count} muutosta odottamassa"
 
