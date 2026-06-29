@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-06-28 21:22\n"
+"PO-Revision-Date: 2026-06-29 04:37\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Language: fi_FI\n"
@@ -355,19 +355,19 @@ msgstr "Kaupan osastojen lataaminen epäonnistui"
 
 #: src/stores/shopAreas.ts
 msgid "Categories copied"
-msgstr ""
+msgstr "Luokat kopioitu"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to copy categories"
-msgstr ""
+msgstr "Luokkien kopiointi epäonnistui"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Copy categories from…"
-msgstr ""
+msgstr "Kopioi luokkia…"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Copy"
-msgstr ""
+msgstr "Kopioi"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Load keywords for my language"
