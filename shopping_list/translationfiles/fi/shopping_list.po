@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-06-29 04:37\n"
+"PO-Revision-Date: 2026-06-29 05:55\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Language: fi_FI\n"
@@ -371,19 +371,19 @@ msgstr "Kopioi"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Load keywords for my language"
-msgstr ""
+msgstr "Lataa avainsanat omalle kielelleni"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Adds your language's grocery keywords to the default areas, so items auto-sort correctly. Existing keywords are kept."
-msgstr ""
+msgstr "Lisää kielesi avainsanat oletusalueisiin, jotta kohteet lajitteloituisivat oikein automaattisesti. Olemassa olevat avainsanat säilytetään."
 
 #: src/stores/shopAreas.ts
 msgid "Keywords for your language added"
-msgstr ""
+msgstr "Kielesi avainsanat lisätty"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to add keywords"
-msgstr ""
+msgstr "Avainsanojen lisääminen epäonnistui"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to create shop area"
@@ -463,19 +463,19 @@ msgstr "Poistetaanko \"{name}\"?"
 
 #: src/components/ItemRow.vue
 msgid "Move to list"
-msgstr ""
+msgstr "Siirrä listalle"
 
 #: src/stores/items.ts
 msgid "Failed to move item"
-msgstr ""
+msgstr "Kohteiden siirto epäonnistui"
 
 #: src/stores/items.ts
 msgid "Moved \"{name}\" to {list}"
-msgstr ""
+msgstr "Siirettiin \"{name}\" kohteeseen {list}"
 
 #: src/stores/items.ts
 msgid "You're offline — moving items requires a connection"
-msgstr ""
+msgstr "Olet yhteydettömässä tilassa — esineiden siirtäminen vaatii yhteyden"
 
 #: src/components/OfflineIndicator.vue
 msgid "Syncing changes…"
