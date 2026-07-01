@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.0] - 2026-07-01
+
+### Added
+- Companion Android app, available on [Google Play](https://play.google.com/store/apps/details?id=dev.otherworld.shoppinglist)
+- One-time in-app notification announcing the Android app. On upgrade, existing
+  users (list owners and people lists are shared with) get a dismissable
+  notification linking to the Play Store. Fresh installs are not notified.
+
+### Upgrade
+No database schema change. The upgrade runs a one-off step that sends the
+announcement notification; it is best-effort and never blocks the upgrade.
+
 ## [1.5.3] - 2026-06-28
 
 ### Added
