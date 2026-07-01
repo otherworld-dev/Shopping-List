@@ -6,13 +6,14 @@
 
 A shared shopping list app for [Nextcloud](https://nextcloud.com). Create multiple lists, categorize items by shop area, and collaborate with your household in real-time.
 
-## Android app
+## Official app & website
 
-A companion Android app is available on Google Play:
+Shopping List is developed by Otherworld Dev. These are the **official** links — accept no substitutes:
+
+- **Website** — <https://shoppinglist.otherworld.dev/>
+- **Android app** — the official companion app on [Google Play](https://play.google.com/store/apps/details?id=dev.otherworld.shoppinglist)
 
 [<img src="https://play.google.com/intro/images/badges/static/generic/en_badge_web_generic.png" alt="Get it on Google Play" height="60">](https://play.google.com/store/apps/details?id=dev.otherworld.shoppinglist)
-
-<https://play.google.com/store/apps/details?id=dev.otherworld.shoppinglist>
 
 ## Features
 

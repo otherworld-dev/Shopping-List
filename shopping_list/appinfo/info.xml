@@ -6,13 +6,16 @@
 	<summary>Shared shopping lists for your household</summary>
 	<description><![CDATA[Manage shared shopping lists between household members. Create multiple lists, categorize items by shop area, tag items, and collaborate in real-time.
 
-A companion Android app is available on Google Play: [https://play.google.com/store/apps/details?id=dev.otherworld.shoppinglist](https://play.google.com/store/apps/details?id=dev.otherworld.shoppinglist)]]></description>
+Official website: [shoppinglist.otherworld.dev](https://shoppinglist.otherworld.dev/)
+
+Official companion Android app: [Google Play](https://play.google.com/store/apps/details?id=dev.otherworld.shoppinglist)]]></description>
 	<version>1.6.0</version>
 	<licence>agpl</licence>
 	<author mail="adam@otherworld.dev">Adam Morgan</author>
 	<funding>https://www.paypal.com/donate/?hosted_button_id=MA56N6K8FSTQ2</funding>
     <namespace>Shopping_List</namespace>
 	<category>organization</category>
+	<website>https://shoppinglist.otherworld.dev/</website>
 	<screenshot>https://raw.githubusercontent.com/otherworld-dev/Shopping-List/main/screenshots/Nextcloud%20Shopping%20List%20Example.png</screenshot>
 	<bugs>https://github.com/otherworld-dev/Shopping-List/issues</bugs>
 	<dependencies>
