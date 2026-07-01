@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-07-01 00:00\n"
-"Last-Translator: Jurgen Gaeremyn\n"
+"PO-Revision-Date: 2026-07-01 14:13\n"
+"Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
@@ -369,6 +369,22 @@ msgstr "Afdelingen kopiëren van…"
 msgid "Copy"
 msgstr "Kopiëren"
 
+#: src/components/AreaKeywordsSettings.vue
+msgid "Load keywords for my language"
+msgstr ""
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Adds your language's grocery keywords to the default areas, so items auto-sort correctly. Existing keywords are kept."
+msgstr ""
+
+#: src/stores/shopAreas.ts
+msgid "Keywords for your language added"
+msgstr ""
+
+#: src/stores/shopAreas.ts
+msgid "Failed to add keywords"
+msgstr ""
+
 #: src/stores/shopAreas.ts
 msgid "Failed to create shop area"
 msgstr "Afdeling aanmaken mislukt"
@@ -419,7 +435,7 @@ msgstr "Dranken"
 
 #: lib/Service/ShopAreaService.php
 msgid "Snacks"
-msgstr "Snacks"
+msgstr ""
 
 #: lib/Service/ShopAreaService.php
 msgid "Household"
@@ -480,3 +496,4 @@ msgstr "Alle wijzigingen gesynchroniseerd"
 #: src/components/OfflineIndicator.vue
 msgid "{count} changes pending"
 msgstr "{count} wijzigingen in behandeling"
+
