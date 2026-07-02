@@ -11,7 +11,7 @@ A shared shopping list app for [Nextcloud](https://nextcloud.com). Create multip
 Shopping List is developed by Otherworld Dev. These are the **official** links — accept no substitutes:
 
 - **Website** — <https://shoppinglist.otherworld.dev/>
-- **Android app** — the official companion app on [Google Play](https://play.google.com/store/apps/details?id=dev.otherworld.shoppinglist)
+- **Android app** — the official companion app on [Google Play](https://play.google.com/store/apps/details?id=dev.otherworld.shoppinglist) (coming soon to [F-Droid](https://f-droid.org/))
 
 [<img src="https://play.google.com/intro/images/badges/static/generic/en_badge_web_generic.png" alt="Get it on Google Play" height="60">](https://play.google.com/store/apps/details?id=dev.otherworld.shoppinglist)
 
