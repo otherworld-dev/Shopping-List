@@ -101,7 +101,6 @@ OC.L10N.register(
     "Meat & Seafood": "Vlees & Vis",
     "Frozen": "Diepvries",
     "Beverages": "Dranken",
-    "Snacks": "Snacks",
     "Household": "Huishouden",
     "Personal Care": "Persoonlijke verzorging",
     "General": "Algemeen",
