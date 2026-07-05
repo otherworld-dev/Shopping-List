@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-06-27 13:32\n"
+"PO-Revision-Date: 2026-07-05 22:34\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -495,5 +495,21 @@ msgstr ""
 
 #: src/components/OfflineIndicator.vue
 msgid "{count} changes pending"
+msgstr ""
+
+#: appinfo/info.xml lib/Notification/Notifier.php
+msgid "Shopping List"
+msgstr ""
+
+#: lib/Notification/Notifier.php
+msgid "Shopping List is now on Android"
+msgstr ""
+
+#: lib/Notification/Notifier.php
+msgid "Take your lists shopping — a companion Android app is now available on Google Play."
+msgstr ""
+
+#: lib/Notification/Notifier.php
+msgid "Get it on Google Play"
 msgstr ""
 
