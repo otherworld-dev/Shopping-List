@@ -120,6 +120,7 @@ OC.L10N.register(
     "Offline — {count} pending": "Ei verkkoyhteyttä — {count} odottamassa",
     "You're offline": "Ei verkkoyhteyttä",
     "All changes synced": "Kaikki muutokset synkronoitu",
-    "{count} changes pending": "{count} muutosta odottamassa"
+    "{count} changes pending": "{count} muutosta odottamassa",
+    "Shopping List": "Ostoslista"
 },
 "nplurals=2; plural=(n != 1);");
