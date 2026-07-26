@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-07-05 22:33\n"
+"PO-Revision-Date: 2026-07-26 21:18\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -59,11 +59,11 @@ msgstr "Retour à la liste"
 
 #: src/components/AreaKeywordsSettings.vue src/components/ListSidebar.vue
 msgid "Manage Areas"
-msgstr "Gérez les zones"
+msgstr "Gérez les allées"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Manage shop areas, keywords, and display order. Keywords auto-detect which area an item belongs to when added or pasted."
-msgstr "Gérer les zones du magasin, les mots-clés et l'ordre d'affichage. Les mots-clés détectent automatiquement la zone à laquelle appartient un article lorsqu'il est ajouté ou collé."
+msgstr "Gérer les allées du magasin, les mots-clés et l'ordre d'affichage. Les mots-clés détectent automatiquement l'allée à laquelle appartient un article lorsqu'il est ajouté ou collé."
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Search keywords..."
@@ -83,7 +83,7 @@ msgstr "Renommer"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Delete area"
-msgstr "Supprimer la zone"
+msgstr "Supprimer l'allée"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Move up"
@@ -103,11 +103,11 @@ msgstr "Nouveau nom de zone..."
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Add area"
-msgstr "Ajouter une zone"
+msgstr "Ajouter une allée"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Delete \"{name}\"? Items in this area will become uncategorized."
-msgstr "Supprimer « {name} » ? Les éléments de cette zone ne seront plus catégorisés."
+msgstr "Supprimer « {name} » ? Les éléments de cette allée ne seront plus catégorisés."
 
 #: src/components/ItemEditor.vue src/components/PublicListView.vue
 msgid "Add an item to list..."
@@ -115,7 +115,7 @@ msgstr "Ajouter un élément à la liste..."
 
 #: src/components/ItemEditor.vue
 msgid "Area"
-msgstr "Zone"
+msgstr "Allée"
 
 #: src/components/ItemEditor.vue
 msgid "No match"
@@ -351,51 +351,51 @@ msgstr "Impossible de supprimer le lien public"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to load shop areas"
-msgstr "Impossible de charger les zones de magasin"
+msgstr "Impossible de charger les allées"
 
 #: src/stores/shopAreas.ts
 msgid "Categories copied"
-msgstr ""
+msgstr "Catégories copiées"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to copy categories"
-msgstr ""
+msgstr "Échec de la copie des catégories"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Copy categories from…"
-msgstr ""
+msgstr "Copier les catégories depuis…"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Copy"
-msgstr ""
+msgstr "Copier"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Load keywords for my language"
-msgstr ""
+msgstr "Charger les mots-clés pour ma langue"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Adds your language's grocery keywords to the default areas, so items auto-sort correctly. Existing keywords are kept."
-msgstr ""
+msgstr "Ajoute les mots-clés d'épicerie de votre langue aux rayons par défaut, ainsi les articles sont automatiquement triés correctement. Les mots-clés existants sont conservés."
 
 #: src/stores/shopAreas.ts
 msgid "Keywords for your language added"
-msgstr ""
+msgstr "Mots-clés pour votre langue ajoutée"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to add keywords"
-msgstr ""
+msgstr "Échec de l'ajout des mots-clés"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to create shop area"
-msgstr "Impossible de créer la zone de magasin"
+msgstr "Impossible de créer l'allée"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to update shop area"
-msgstr "Impossible de mettre à jour la zone de magasin"
+msgstr "Impossible de mettre à jour l'allée"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to delete shop area"
-msgstr "Impossible de supprimer la zone de magasin"
+msgstr "Impossible de supprimer l'allée"
 
 #: src/stores/tags.ts
 msgid "Failed to load tags"
@@ -411,71 +411,71 @@ msgstr "Impossible de supprimer la balise"
 
 #: lib/Service/ShopAreaService.php
 msgid "Produce"
-msgstr ""
+msgstr "Fruits et légumes"
 
 #: lib/Service/ShopAreaService.php
 msgid "Dairy"
-msgstr ""
+msgstr "Produits laitiers"
 
 #: lib/Service/ShopAreaService.php
 msgid "Bakery"
-msgstr ""
+msgstr "Boulangerie"
 
 #: lib/Service/ShopAreaService.php
 msgid "Meat & Seafood"
-msgstr ""
+msgstr "Viandes et produits de la mer"
 
 #: lib/Service/ShopAreaService.php
 msgid "Frozen"
-msgstr ""
+msgstr "Surgelés"
 
 #: lib/Service/ShopAreaService.php
 msgid "Beverages"
-msgstr ""
+msgstr "Boissons"
 
 #: lib/Service/ShopAreaService.php
 msgid "Snacks"
-msgstr ""
+msgstr "Collations"
 
 #: lib/Service/ShopAreaService.php
 msgid "Household"
-msgstr ""
+msgstr "Produits d'entretien"
 
 #: lib/Service/ShopAreaService.php
 msgid "Personal Care"
-msgstr ""
+msgstr "Soin personnel"
 
 #: lib/Service/ShopAreaService.php
 msgid "General"
-msgstr ""
+msgstr "Général"
 
 #: lib/Service/ShopAreaService.php
 msgid "Pets"
-msgstr ""
+msgstr "Animaux"
 
 #: lib/Service/ShopAreaService.php
 msgid "Other"
-msgstr ""
+msgstr "Autre"
 
 #: src/components/ItemRow.vue
 msgid "Delete \"{name}\"?"
-msgstr ""
+msgstr "Supprimer \"{name}\" ?"
 
 #: src/components/ItemRow.vue
 msgid "Move to list"
-msgstr ""
+msgstr "Déplacer vers la liste"
 
 #: src/stores/items.ts
 msgid "Failed to move item"
-msgstr ""
+msgstr "Échec du déplacement d'élément"
 
 #: src/stores/items.ts
 msgid "Moved \"{name}\" to {list}"
-msgstr ""
+msgstr "A déplacé {name} vers {list}"
 
 #: src/stores/items.ts
 msgid "You're offline — moving items requires a connection"
-msgstr ""
+msgstr "Vous êtes hors ligne — le déplacement d'objets nécessite une connexion"
 
 #: src/components/OfflineIndicator.vue
 msgid "Syncing changes…"
@@ -499,17 +499,17 @@ msgstr "{count} changements en attente"
 
 #: appinfo/info.xml lib/Notification/Notifier.php
 msgid "Shopping List"
-msgstr ""
+msgstr "Liste de courses"
 
 #: lib/Notification/Notifier.php
 msgid "Shopping List is now on Android"
-msgstr ""
+msgstr "Shopping List est maintenant sur Android"
 
 #: lib/Notification/Notifier.php
 msgid "Take your lists shopping — a companion Android app is now available on Google Play."
-msgstr ""
+msgstr "Prenez vos listes de courses — une application Android est maintenant disponible sur Google Play."
 
 #: lib/Notification/Notifier.php
 msgid "Get it on Google Play"
-msgstr ""
+msgstr "Disponible sur Google Play"
 
