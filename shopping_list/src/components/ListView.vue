@@ -19,6 +19,10 @@
 						+{{ overflowCount }}
 					</span>
 				</div>
+				<button class="list-view__share-btn"
+					@click="showImportExport = true">
+					{{ importExportText }}
+				</button>
 				<button v-if="listsStore.currentList?.isOwner"
 					class="list-view__share-btn"
 					@click="showShareDialog = true">
@@ -118,6 +122,11 @@
 			:is-owner="listsStore.currentList.isOwner"
 			:current-user-id="currentUserId"
 			@close="showShareDialog = false" />
+
+		<ImportExportDialog
+			v-if="showImportExport && listsStore.currentList"
+			:list-id="listsStore.currentList.id"
+			@close="showImportExport = false" />
 	</div>
 </template>
 
@@ -141,6 +150,7 @@ import draggable from 'vuedraggable'
 import ItemRow from './ItemRow.vue'
 import ItemEditor from './ItemEditor.vue'
 import ShareDialog from './ShareDialog.vue'
+import ImportExportDialog from './ImportExportDialog.vue'
 
 const listsStore = useListsStore()
 const itemsStore = useItemsStore()
@@ -159,6 +169,7 @@ const overflowCount = computed(() => Math.max(0, currentShares.value.length - MA
 
 const showChecked = ref(true)
 const showShareDialog = ref(false)
+const showImportExport = ref(false)
 const currentUserId = getCurrentUser()?.uid ?? ''
 const editingItemId = ref<number | null>(null)
 
@@ -194,6 +205,7 @@ onUnmounted(() => document.removeEventListener('click', onCaptureClick, true))
 
 // Pre-compute translations once
 const shareText = t('shopping_list', 'Share')
+const importExportText = t('shopping_list', 'Import / Export')
 const emptyName = t('shopping_list', 'No items yet')
 const emptyDesc = t('shopping_list', 'Add your first item above')
 const uncategorizedText = t('shopping_list', 'Uncategorized')
