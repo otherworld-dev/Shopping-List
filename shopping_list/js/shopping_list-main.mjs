@@ -1,7 +1,7 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-DvvHs_73.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/index-BLh7aVD0.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/index-23fjjBcZ.chunk.css')])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-CGHYGu0U.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/index-BVjRn9zl.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/index-23fjjBcZ.chunk.css')])))=>i.map(i=>d[i]);
 const appName = "shopping_list";
-const appVersion = "1.5.3";
-import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, a as NcButton, r as resolveComponent, b as createVNode, w as withCtx, d as createTextVNode, e as renderSlot, f as defineComponent, g as createElementId, h as createCommentVNode, u as unref, i as getDefaultExportFromCjs, j as getGettextBuilder, k as getLoggerBuilder, l as defineStore, m as ref, n as computed, p as api, q as markServerFetched, s as translate, v as getLanguage, x as loadValue, y as saveValue, z as readonly, F as Fragment, A as renderList, B as createBlock, C as NcActionButton, D as NcAppNavigationItem, E as NcAppNavigationCaption, G as createBaseVNode, H as NcIconSvgWrapper, I as _export_sfc$1, J as NOOP, K as extend$1, L as isString, M as NO, O as isSymbol, P as isBuiltInDirective, Q as capitalize, R as camelize, S as EMPTY_OBJ, T as isObject, U as toHandlerKey, V as isArray, W as isOn, X as isReservedProp, Y as isVoidTag, Z as isHTMLTag, $ as isSVGTag, a0 as isMathMLTag, a1 as parseStringStyle, a2 as makeMap, a3 as generateCodeFrame, a4 as getAugmentedNamespace, a5 as runtimeDom_esmBundler, a6 as shared_esmBundler, a7 as watch, a8 as onMounted, a9 as onUnmounted, aa as normalizeClass, ab as withDirectives, ac as vModelText, ad as withKeys, ae as withModifiers, af as normalizeStyle, ag as Teleport, ah as NcActions, ai as Permission, aj as nextTick, ak as generateOcsUrl, al as cancelableClient, am as ShareType, an as generateUrl, ao as getCurrentUser, ap as NcAvatar, aq as NcLoadingIcon, ar as vModelSelect, as as Transition, at as NcAppNavigation, au as NcAppContent, av as NcContent, aw as createPinia, ax as offlinePersistPlugin, ay as createApp } from "./index-BLh7aVD0.chunk.mjs";
+const appVersion = "1.6.2";
+import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, a as NcButton, r as resolveComponent, b as createVNode, w as withCtx, d as createTextVNode, e as renderSlot, f as defineComponent, g as createElementId, h as createCommentVNode, u as unref, i as getDefaultExportFromCjs, j as getGettextBuilder, k as getLoggerBuilder, l as defineStore, m as ref, n as computed, p as api, q as markServerFetched, s as translate, v as getLanguage, x as loadValue, y as saveValue, z as readonly, F as Fragment, A as renderList, B as createBlock, C as NcActionButton, D as NcAppNavigationItem, E as NcAppNavigationCaption, G as createBaseVNode, H as NcIconSvgWrapper, I as _export_sfc$1, J as NOOP, K as extend$1, L as isString, M as NO, O as isSymbol, P as isBuiltInDirective, Q as capitalize, R as camelize, S as EMPTY_OBJ, T as isObject, U as toHandlerKey, V as isArray, W as isOn, X as isReservedProp, Y as isVoidTag, Z as isHTMLTag, $ as isSVGTag, a0 as isMathMLTag, a1 as parseStringStyle, a2 as makeMap, a3 as generateCodeFrame, a4 as getAugmentedNamespace, a5 as runtimeDom_esmBundler, a6 as shared_esmBundler, a7 as watch, a8 as onMounted, a9 as onUnmounted, aa as normalizeClass, ab as withDirectives, ac as vModelText, ad as withKeys, ae as withModifiers, af as normalizeStyle, ag as Teleport, ah as NcActions, ai as Permission, aj as nextTick, ak as generateOcsUrl, al as cancelableClient, am as ShareType, an as generateUrl, ao as getCurrentUser, ap as NcAvatar, aq as NcLoadingIcon, ar as vModelSelect, as as Transition, at as NcAppNavigation, au as NcAppContent, av as NcContent, aw as createPinia, ax as offlinePersistPlugin, ay as createApp } from "./index-BVjRn9zl.chunk.mjs";
 const _sfc_main$b = {
   name: "NcActionCaption",
   inject: {
@@ -890,10 +890,10 @@ const __vite_glob_0_9 = {
   prepositions: prepositions$n,
   decimalSeparators: decimalSeparators$n
 };
-const units$m = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
-const leadingUnits$m = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
-const prepositions$m = ["of"];
-const decimalSeparators$m = ["."];
+const units$m = ["cuillère à café", "cuillères à café", "c.à.c.", "cuillère à soupe", "cuillères à soupe", "c.à.s.", "tasse", "tasses", "once", "onces", "oz", "livre", "livres", "lb", "lbs", "gramme", "grammes", "g", "kilogramme", "kilogrammes", "kg", "millilitre", "millilitres", "ml", "litre", "litres", "l", "pincée", "pincées", "botte", "bottes", "gousse", "gousses", "boîte", "boîtes", "bouteille", "bouteilles", "unité", "unités", "tranche", "tranches", "pièce", "pièces", "tige", "tiges", "brin", "brins", "paquet", "paquets", "sachet", "sachets", "sac", "sacs", "onces liq."];
+const leadingUnits$m = ["pincée", "pincées", "botte", "bottes", "zeste", "petite quantité", "poignée"];
+const prepositions$m = ["de"];
+const decimalSeparators$m = [","];
 const __vite_glob_0_10 = {
   units: units$m,
   leadingUnits: leadingUnits$m,
@@ -16754,7 +16754,7 @@ function usePush() {
   if (hasPushServer) {
     try {
       __vitePreload(async () => {
-        const { listen } = await import("./index-DvvHs_73.chunk.mjs").then((n) => n.i);
+        const { listen } = await import("./index-CGHYGu0U.chunk.mjs").then((n) => n.i);
         return { listen };
       }, true ? __vite__mapDeps([0,1,2]) : void 0, import.meta.url).then(({ listen }) => {
         listen("shopping_list_item_update", () => {
