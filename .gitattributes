@@ -1,0 +1,14 @@
+# Keep machine-managed text files at LF regardless of the checkout platform.
+#
+# Without this, a Windows checkout rewrites these to CRLF and the next edit
+# shows up as a whole-file rewrite. PR #36 was 391 changed lines for 29 real
+# translations because of exactly that, and PR #27 hit it before.
+
+# Crowdin owns everything under translationfiles/.
+*.po                                    text eol=lf
+*.pot                                   text eol=lf
+
+# Locale packs. resources/parsing/hr.json differed from en.json only in line
+# endings, which makes a passthrough pack look like a real translation.
+shopping_list/resources/keywords/*.json text eol=lf
+shopping_list/resources/parsing/*.json  text eol=lf
