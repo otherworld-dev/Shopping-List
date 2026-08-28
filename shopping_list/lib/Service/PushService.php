@@ -7,6 +7,7 @@ namespace OCA\Shopping_List\Service;
 use OCA\Shopping_List\Db\ListShareMapper;
 use OCA\Shopping_List\Db\ShoppingListMapper;
 use OCP\IGroupManager;
+use Psr\Container\ContainerInterface;
 
 class PushService {
 	private ?object $queue = null;
@@ -15,12 +16,13 @@ class PushService {
 		private ShoppingListMapper $listMapper,
 		private ListShareMapper $shareMapper,
 		private IGroupManager $groupManager,
+		ContainerInterface $container,
 	) {
 		// Optional dependency on notify_push
 		if (class_exists('OCA\NotifyPush\Queue\IQueue')) {
 			try {
-				$this->queue = \OC::$server->get('OCA\NotifyPush\Queue\IQueue');
-			} catch (\Exception) {
+				$this->queue = $container->get('OCA\NotifyPush\Queue\IQueue');
+			} catch (\Throwable) {
 				// notify_push not available
 			}
 		}
