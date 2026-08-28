@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-07-26 21:18\n"
+"PO-Revision-Date: 2026-08-28 16:31\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -359,7 +359,7 @@ msgstr "Catégories copiées"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to copy categories"
-msgstr "Échec de la copie des catégories"
+msgstr "Impossible de copier les catégories"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Copy categories from…"
@@ -375,15 +375,15 @@ msgstr "Charger les mots-clés pour ma langue"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Adds your language's grocery keywords to the default areas, so items auto-sort correctly. Existing keywords are kept."
-msgstr "Ajoute les mots-clés d'épicerie de votre langue aux rayons par défaut, ainsi les articles sont automatiquement triés correctement. Les mots-clés existants sont conservés."
+msgstr "Ajoute les mots-clés de courses de votre langue aux allées par défaut, afin que les articles soient automatiquement classés correctement. Les mots-clés existants sont conservés."
 
 #: src/stores/shopAreas.ts
 msgid "Keywords for your language added"
-msgstr "Mots-clés pour votre langue ajoutée"
+msgstr "Les mots-clés pour votre langue ont été ajoutés"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to add keywords"
-msgstr "Échec de l'ajout des mots-clés"
+msgstr "Impossible d'ajouter les mots-clés"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to create shop area"
@@ -443,7 +443,7 @@ msgstr "Produits d'entretien"
 
 #: lib/Service/ShopAreaService.php
 msgid "Personal Care"
-msgstr "Soin personnel"
+msgstr "Hygiène personnelle"
 
 #: lib/Service/ShopAreaService.php
 msgid "General"
@@ -459,23 +459,23 @@ msgstr "Autre"
 
 #: src/components/ItemRow.vue
 msgid "Delete \"{name}\"?"
-msgstr "Supprimer \"{name}\" ?"
+msgstr "Supprimer « {name} » ?"
 
 #: src/components/ItemRow.vue
 msgid "Move to list"
-msgstr "Déplacer vers la liste"
+msgstr "Déplacer vers une liste"
 
 #: src/stores/items.ts
 msgid "Failed to move item"
-msgstr "Échec du déplacement d'élément"
+msgstr "Impossible de déplacer l'article"
 
 #: src/stores/items.ts
 msgid "Moved \"{name}\" to {list}"
-msgstr "A déplacé {name} vers {list}"
+msgstr "« {name} » déplacé vers {list}"
 
 #: src/stores/items.ts
 msgid "You're offline — moving items requires a connection"
-msgstr "Vous êtes hors ligne — le déplacement d'objets nécessite une connexion"
+msgstr "Vous êtes hors ligne — le déplacement d'articles nécessite une connexion"
 
 #: src/components/OfflineIndicator.vue
 msgid "Syncing changes…"
@@ -507,7 +507,7 @@ msgstr "Shopping List est maintenant sur Android"
 
 #: lib/Notification/Notifier.php
 msgid "Take your lists shopping — a companion Android app is now available on Google Play."
-msgstr "Prenez vos listes de courses — une application Android est maintenant disponible sur Google Play."
+msgstr "Emportez vos listes de courses partout avec vous. Une application compagnon Android est maintenant disponible sur Google Play."
 
 #: lib/Notification/Notifier.php
 msgid "Get it on Google Play"
