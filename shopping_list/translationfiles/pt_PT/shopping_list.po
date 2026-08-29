@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-07-05 22:34\n"
+"PO-Revision-Date: 2026-08-29 22:51\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "Language: pt_PT\n"
@@ -159,6 +159,22 @@ msgstr ""
 
 #: src/components/ListView.vue
 msgid "Share"
+msgstr ""
+
+#: src/components/ListView.vue
+msgid "List actions"
+msgstr ""
+
+#: src/components/ListView.vue
+msgid "Copy list as text"
+msgstr ""
+
+#: src/components/ListView.vue
+msgid "List copied to clipboard"
+msgstr ""
+
+#: src/components/ListView.vue
+msgid "Could not copy the list"
 msgstr ""
 
 #: src/components/ListView.vue src/components/PublicListView.vue

@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-07-05 22:33\n"
+"PO-Revision-Date: 2026-08-29 22:51\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "Language: he_IL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3;\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n==2 ? 1 : 2);\n"
 "X-Crowdin-Project: shopping-list-for-nextcloud\n"
 "X-Crowdin-Project-ID: 896886\n"
 "X-Crowdin-Language: he\n"
@@ -159,6 +159,22 @@ msgstr ""
 
 #: src/components/ListView.vue
 msgid "Share"
+msgstr ""
+
+#: src/components/ListView.vue
+msgid "List actions"
+msgstr ""
+
+#: src/components/ListView.vue
+msgid "Copy list as text"
+msgstr ""
+
+#: src/components/ListView.vue
+msgid "List copied to clipboard"
+msgstr ""
+
+#: src/components/ListView.vue
+msgid "Could not copy the list"
 msgstr ""
 
 #: src/components/ListView.vue src/components/PublicListView.vue
