@@ -5,6 +5,37 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.0] - 2026-08-30
+
+### Added
+- Pasted lists with markup now import cleanly: checkbox lines (`[ ]` / `[x]`),
+  bracketed amounts (`[ 10 ]`), bullets (`-` `*`), and numbered lines
+  (`1.` / `2)`) all parse into proper items with quantities. Thanks to rubo77
+  for the format examples and for pointing out that export was missing (#35)
+- "Copy list as text" in the new list actions menu: copies the outstanding
+  items in the same format the add box accepts, so a list round trips through
+  a chat message and back (#35)
+- First automated test suite (vitest), covering the ingredient parser in
+  English and German and the copy-as-text round trip
+
+### Changed
+- The Share button moved into the list actions menu in the list header
+- French is now fully translated (124/124 strings), with reworked wording.
+  Thanks to Enreg40 for the careful review that improved several of them
+- Item names with brand capitalisation (iPhone, eBay) keep it instead of
+  being force-capitalised
+
+### Fixed
+- Names with a leading digit glued to a word (7up, 3M tape, 7-Eleven) no
+  longer lose the digit to the quantity field
+- `2x Milk` now reads as a count of 2, instead of creating an item named
+  "X Milk"; `2 x Milk` and the multiplication sign also work
+- Replaced a private-API `\OC::$server` call in the push service with proper
+  dependency injection, ahead of it breaking on a future Nextcloud major
+
+### Upgrade
+No database migration. Drop-in replacement for any 1.6.x.
+
 ## [1.6.2] - 2026-07-05
 
 ### Fixed
