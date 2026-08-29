@@ -19,11 +19,17 @@
 						+{{ overflowCount }}
 					</span>
 				</div>
-				<button v-if="listsStore.currentList?.isOwner"
-					class="list-view__share-btn"
-					@click="showShareDialog = true">
-					{{ shareText }}
-				</button>
+				<NcActions :aria-label="listActionsText">
+					<NcActionButton v-if="listsStore.currentList?.isOwner"
+						@click="showShareDialog = true">
+						{{ shareText }}
+					</NcActionButton>
+					<NcActionButton
+						:disabled="itemsStore.uncheckedItems.length === 0"
+						@click="onCopyAsText">
+						{{ copyAsTextText }}
+					</NcActionButton>
+				</NcActions>
 			</div>
 		</div>
 
@@ -124,11 +130,14 @@
 <script setup lang="ts">
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import {
+	NcActionButton,
+	NcActions,
 	NcAvatar,
 	NcEmptyContent,
 	NcIconSvgWrapper,
 	NcLoadingIcon,
 } from '@nextcloud/vue'
+import { showError, showSuccess } from '@nextcloud/dialogs'
 import { t } from '@nextcloud/l10n'
 import { getCurrentUser } from '@nextcloud/auth'
 import { useListsStore } from '../stores/lists'
@@ -141,6 +150,7 @@ import draggable from 'vuedraggable'
 import ItemRow from './ItemRow.vue'
 import ItemEditor from './ItemEditor.vue'
 import ShareDialog from './ShareDialog.vue'
+import { formatListAsText } from '../utils/listText'
 
 const listsStore = useListsStore()
 const itemsStore = useItemsStore()
@@ -194,12 +204,49 @@ onUnmounted(() => document.removeEventListener('click', onCaptureClick, true))
 
 // Pre-compute translations once
 const shareText = t('shopping_list', 'Share')
+const listActionsText = t('shopping_list', 'List actions')
+const copyAsTextText = t('shopping_list', 'Copy list as text')
+const copiedText = t('shopping_list', 'List copied to clipboard')
+const copyFailedText = t('shopping_list', 'Could not copy the list')
 const emptyName = t('shopping_list', 'No items yet')
 const emptyDesc = t('shopping_list', 'Add your first item above')
 const uncategorizedText = t('shopping_list', 'Uncategorized')
 const boughtText = t('shopping_list', 'Checked off')
 const uncheckAllText = t('shopping_list', 'Restore all')
 const clearCheckedText = t('shopping_list', 'Delete all')
+
+// Copies the outstanding items as plain text, in the format the add box
+// accepts when pasted, so a list round trips into a chat message and back.
+async function onCopyAsText() {
+	const text = formatListAsText(itemsStore.uncheckedItems)
+	if (!text) return
+
+	try {
+		await navigator.clipboard.writeText(text)
+		showSuccess(copiedText)
+		return
+	} catch {
+		// navigator.clipboard needs a secure context, which a self-hosted
+		// instance served over plain http is not. Fall back to a detached
+		// textarea, which still works there.
+	}
+
+	const ta = document.createElement('textarea')
+	ta.value = text
+	ta.setAttribute('readonly', '')
+	ta.style.position = 'fixed'
+	ta.style.opacity = '0'
+	document.body.appendChild(ta)
+	ta.select()
+	const copied = document.execCommand('copy')
+	document.body.removeChild(ta)
+
+	if (copied) {
+		showSuccess(copiedText)
+	} else {
+		showError(copyFailedText)
+	}
+}
 
 const canEdit = computed(() =>
 	listsStore.currentList !== null && listsStore.currentList.permission >= Permission.WRITE,
@@ -425,20 +472,6 @@ async function onUncheckAll() {
 	font-size: 0.8em;
 	color: var(--color-text-maxcontrast);
 	font-weight: 500;
-}
-
-.list-view__share-btn {
-	background: none;
-	border: 1px solid var(--color-border-dark);
-	border-radius: var(--border-radius-large);
-	color: var(--color-main-text);
-	padding: 6px 14px;
-	font-size: 0.9em;
-	cursor: pointer;
-}
-
-.list-view__share-btn:hover {
-	background-color: var(--color-background-hover);
 }
 
 /* Bought section */

@@ -15197,6 +15197,86 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
   }
 });
 const ItemRow = /* @__PURE__ */ _export_sfc$1(_sfc_main$6, [["__scopeId", "data-v-1e2426d9"]]);
+function escapeRe(s) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+function createIngredientParser(pack) {
+  const prepositionRe = pack.prepositions.length ? new RegExp("^(?:" + pack.prepositions.map(escapeRe).join("|") + ")\\s+", "i") : null;
+  const commaDecimal = pack.decimalSeparators.includes(",");
+  const decClass = commaDecimal ? "[.,]" : "\\.";
+  const qtyPattern = new RegExp(
+    "^([\\d]+(?:\\s+[\\d]+/[\\d]+|/[\\d]+|" + decClass + "\\d+)?(?:\\s*-\\s*[\\d]+(?:/[\\d]+|" + decClass + "\\d+)?)?)\\s*"
+  );
+  function matchUnit(text) {
+    const lower = text.toLowerCase();
+    let best = "";
+    for (const unit of pack.units) {
+      if (lower.startsWith(unit + " ") || lower.startsWith(unit + ",") || lower === unit) {
+        if (unit.length > best.length) best = unit;
+      }
+    }
+    return best;
+  }
+  function cleanName(raw) {
+    let name = raw;
+    let prev = "";
+    while (prev !== name) {
+      prev = name;
+      name = name.replace(/\s*\([^)]*\)/g, "");
+    }
+    name = name.replace(/[()]/g, "").replace(/,\s*,/g, ",").replace(/,\s*$/, "").replace(/^\s*,\s*/, "").replace(/\s+/g, " ").trim();
+    if (name.length > 0) {
+      const second = name.charAt(1);
+      const secondIsUpper = second !== "" && second !== second.toLowerCase();
+      if (!secondIsUpper) {
+        name = name.charAt(0).toUpperCase() + name.slice(1);
+      }
+    }
+    return name;
+  }
+  function stripConnector(rest) {
+    rest = rest.replace(/^,\s*/, "");
+    if (prepositionRe) rest = rest.replace(prepositionRe, "");
+    return rest.trim();
+  }
+  function stripListMarkup(line) {
+    let out = line.trim();
+    out = out.replace(/^\[\s*[xX]?\s*\]\s*/, "");
+    out = out.replace(/^\[\s*(\d+(?:[.,]\d+)?)\s*\]\s*/, "$1 ");
+    out = out.replace(/^[-*•]\s+/, "");
+    out = out.replace(/^\d+[.)]\s+/, "");
+    return out.trim();
+  }
+  function parseIngredient(line) {
+    const trimmed = stripListMarkup(line);
+    if (!trimmed) return { name: "", quantity: null };
+    const trimmedLower = trimmed.toLowerCase();
+    for (const unit of pack.leadingUnits) {
+      if (trimmedLower.startsWith(unit + " ") || trimmedLower.startsWith(unit + ",")) {
+        const rest2 = stripConnector(trimmed.slice(unit.length).trim());
+        return { name: cleanName(rest2 || trimmed), quantity: "1 " + unit };
+      }
+    }
+    const match = trimmed.match(qtyPattern);
+    if (!match) {
+      return { name: cleanName(trimmed), quantity: null };
+    }
+    const qtyStr = commaDecimal ? match[1].trim().replace(/,/g, ".") : match[1].trim();
+    let rest = trimmed.slice(match[0].length).trim();
+    const matchedUnit = matchUnit(rest);
+    let finalQty = qtyStr;
+    if (matchedUnit) {
+      finalQty = qtyStr + " " + matchedUnit;
+      rest = stripConnector(rest.slice(matchedUnit.length).trim());
+    }
+    rest = rest.replace(/^,\s*/, "").trim();
+    return {
+      name: cleanName(rest || trimmed),
+      quantity: finalQty
+    };
+  }
+  return { parseIngredient, stripListMarkup };
+}
 const _hoisted_1$4 = { class: "item-editor" };
 const _hoisted_2$4 = { class: "item-editor__main" };
 const _hoisted_3$4 = ["placeholder", "onKeydown"];
@@ -15290,72 +15370,7 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
     }
     onMounted(() => document.addEventListener("mousedown", onClickOutside));
     onUnmounted(() => document.removeEventListener("mousedown", onClickOutside));
-    const parsingPack = getParsingPack();
-    function escapeRe(s) {
-      return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    }
-    const prepositionRe = parsingPack.prepositions.length ? new RegExp("^(?:" + parsingPack.prepositions.map(escapeRe).join("|") + ")\\s+", "i") : null;
-    function matchUnit(text) {
-      const lower = text.toLowerCase();
-      let best = "";
-      for (const unit of parsingPack.units) {
-        if (lower.startsWith(unit + " ") || lower.startsWith(unit + ",") || lower === unit) {
-          if (unit.length > best.length) best = unit;
-        }
-      }
-      return best;
-    }
-    function cleanName(raw) {
-      let name2 = raw;
-      let prev = "";
-      while (prev !== name2) {
-        prev = name2;
-        name2 = name2.replace(/\s*\([^)]*\)/g, "");
-      }
-      name2 = name2.replace(/[()]/g, "").replace(/,\s*,/g, ",").replace(/,\s*$/, "").replace(/^\s*,\s*/, "").replace(/\s+/g, " ").trim();
-      if (name2.length > 0) {
-        name2 = name2.charAt(0).toUpperCase() + name2.slice(1);
-      }
-      return name2;
-    }
-    function stripConnector(rest) {
-      rest = rest.replace(/^,\s*/, "");
-      if (prepositionRe) rest = rest.replace(prepositionRe, "");
-      return rest.trim();
-    }
-    const commaDecimal = parsingPack.decimalSeparators.includes(",");
-    const decClass = commaDecimal ? "[.,]" : "\\.";
-    const qtyPattern = new RegExp(
-      "^([\\d]+(?:\\s+[\\d]+/[\\d]+|/[\\d]+|" + decClass + "\\d+)?(?:\\s*-\\s*[\\d]+(?:/[\\d]+|" + decClass + "\\d+)?)?)\\s*"
-    );
-    function parseIngredient(line) {
-      const trimmed = line.trim();
-      if (!trimmed) return { name: "", quantity: null };
-      const trimmedLower = trimmed.toLowerCase();
-      for (const unit of parsingPack.leadingUnits) {
-        if (trimmedLower.startsWith(unit + " ") || trimmedLower.startsWith(unit + ",")) {
-          const rest2 = stripConnector(trimmed.slice(unit.length).trim());
-          return { name: cleanName(rest2 || trimmed), quantity: "1 " + unit };
-        }
-      }
-      const match = trimmed.match(qtyPattern);
-      if (!match) {
-        return { name: cleanName(trimmed), quantity: null };
-      }
-      const qtyStr = commaDecimal ? match[1].trim().replace(/,/g, ".") : match[1].trim();
-      let rest = trimmed.slice(match[0].length).trim();
-      const matchedUnit = matchUnit(rest);
-      let finalQty = qtyStr;
-      if (matchedUnit) {
-        finalQty = qtyStr + " " + matchedUnit;
-        rest = stripConnector(rest.slice(matchedUnit.length).trim());
-      }
-      rest = rest.replace(/^,\s*/, "").trim();
-      return {
-        name: cleanName(rest || trimmed),
-        quantity: finalQty
-      };
-    }
+    const { parseIngredient } = createIngredientParser(getParsingPack());
     function detectArea(ingredientName) {
       const needle = fold(ingredientName);
       const areas = shopAreasStore.areasByList[listsStore.currentListId] ?? [];
@@ -15491,7 +15506,7 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ItemEditor = /* @__PURE__ */ _export_sfc$1(_sfc_main$5, [["__scopeId", "data-v-a80e72ef"]]);
+const ItemEditor = /* @__PURE__ */ _export_sfc$1(_sfc_main$5, [["__scopeId", "data-v-e329217e"]]);
 const _hoisted_1$3 = { class: "share-modal" };
 const _hoisted_2$3 = { class: "share-modal__header" };
 const _hoisted_3$3 = { class: "share-modal__search" };
@@ -15855,6 +15870,17 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
   }
 });
 const ShareDialog = /* @__PURE__ */ _export_sfc$1(_sfc_main$4, [["__scopeId", "data-v-c9fb2be6"]]);
+function formatListAsText(items) {
+  return items.filter((item) => !item.checked).map((item) => {
+    const parts = [];
+    if (item.quantity && (item.quantity !== "1" || item.unit)) {
+      parts.push(item.quantity);
+    }
+    if (item.unit) parts.push(item.unit);
+    parts.push(item.name);
+    return parts.join(" ");
+  }).join("\n");
+}
 const _hoisted_1$2 = { class: "list-view" };
 const _hoisted_2$2 = { class: "list-view__header" };
 const _hoisted_3$2 = { class: "list-view__actions" };
@@ -15932,12 +15958,40 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
     onMounted(() => document.addEventListener("click", onCaptureClick, true));
     onUnmounted(() => document.removeEventListener("click", onCaptureClick, true));
     const shareText = translate("shopping_list", "Share");
+    const listActionsText = translate("shopping_list", "List actions");
+    const copyAsTextText = translate("shopping_list", "Copy list as text");
+    const copiedText = translate("shopping_list", "List copied to clipboard");
+    const copyFailedText = translate("shopping_list", "Could not copy the list");
     const emptyName = translate("shopping_list", "No items yet");
     const emptyDesc = translate("shopping_list", "Add your first item above");
     const uncategorizedText = translate("shopping_list", "Uncategorized");
     const boughtText = translate("shopping_list", "Checked off");
     const uncheckAllText = translate("shopping_list", "Restore all");
     const clearCheckedText = translate("shopping_list", "Delete all");
+    async function onCopyAsText() {
+      const text = formatListAsText(itemsStore.uncheckedItems);
+      if (!text) return;
+      try {
+        await navigator.clipboard.writeText(text);
+        showSuccess(copiedText);
+        return;
+      } catch {
+      }
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      const copied = document.execCommand("copy");
+      document.body.removeChild(ta);
+      if (copied) {
+        showSuccess(copiedText);
+      } else {
+        showError(copyFailedText);
+      }
+    }
     const canEdit = computed(
       () => listsStore.currentList !== null && listsStore.currentList.permission >= Permission.WRITE
     );
@@ -16041,11 +16095,29 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
               }), 128)),
               overflowCount.value > 0 ? (openBlock(), createElementBlock("span", _hoisted_4$2, " +" + toDisplayString(overflowCount.value), 1)) : createCommentVNode("", true)
             ])) : createCommentVNode("", true),
-            unref(listsStore).currentList?.isOwner ? (openBlock(), createElementBlock("button", {
-              key: 1,
-              class: "list-view__share-btn",
-              onClick: _cache[1] || (_cache[1] = ($event) => showShareDialog.value = true)
-            }, toDisplayString(unref(shareText)), 1)) : createCommentVNode("", true)
+            createVNode(unref(NcActions), { "aria-label": unref(listActionsText) }, {
+              default: withCtx(() => [
+                unref(listsStore).currentList?.isOwner ? (openBlock(), createBlock(unref(NcActionButton), {
+                  key: 0,
+                  onClick: _cache[1] || (_cache[1] = ($event) => showShareDialog.value = true)
+                }, {
+                  default: withCtx(() => [
+                    createTextVNode(toDisplayString(unref(shareText)), 1)
+                  ]),
+                  _: 1
+                })) : createCommentVNode("", true),
+                createVNode(unref(NcActionButton), {
+                  disabled: unref(itemsStore).uncheckedItems.length === 0,
+                  onClick: onCopyAsText
+                }, {
+                  default: withCtx(() => [
+                    createTextVNode(toDisplayString(unref(copyAsTextText)), 1)
+                  ]),
+                  _: 1
+                }, 8, ["disabled"])
+              ]),
+              _: 1
+            }, 8, ["aria-label"])
           ])
         ]),
         createBaseVNode("div", _hoisted_5$2, [
@@ -16154,7 +16226,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ListView = /* @__PURE__ */ _export_sfc$1(_sfc_main$3, [["__scopeId", "data-v-b67ae652"]]);
+const ListView = /* @__PURE__ */ _export_sfc$1(_sfc_main$3, [["__scopeId", "data-v-e43bc59b"]]);
 const _hoisted_1$1 = { class: "area-settings" };
 const _hoisted_2$1 = { class: "area-settings__header" };
 const _hoisted_3$1 = { class: "area-settings__desc" };

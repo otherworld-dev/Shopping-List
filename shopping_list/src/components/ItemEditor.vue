@@ -63,6 +63,7 @@ import { useShopAreasStore } from '../stores/shopAreas'
 import { useListsStore } from '../stores/lists'
 import { fold } from '../utils/fold'
 import { getParsingPack } from '../utils/localePacks'
+import { createIngredientParser } from '../utils/parseIngredient'
 
 const props = defineProps<{
 	listId: number
@@ -160,119 +161,10 @@ onUnmounted(() => document.removeEventListener('mousedown', onClickOutside))
 
 // --- Ingredient parsing ---
 
-// Active parsing pack (units, leading-units, prepositions, decimal separators)
-// for the viewer's language, with English fallback.
-const parsingPack = getParsingPack()
-
-function escapeRe(s: string): string {
-	return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-}
-
-// Strips a connector word after a unit ("2 cups of flour" -> "flour";
-// German "von"). Null when the language defines none.
-const prepositionRe = parsingPack.prepositions.length
-	? new RegExp('^(?:' + parsingPack.prepositions.map(escapeRe).join('|') + ')\\s+', 'i')
-	: null
-
-function matchUnit(text: string): string {
-	const lower = text.toLowerCase()
-	let best = ''
-	for (const unit of parsingPack.units) {
-		if (lower.startsWith(unit + ' ') || lower.startsWith(unit + ',') || lower === unit) {
-			if (unit.length > best.length) best = unit
-		}
-	}
-	return best
-}
-
-/**
- * Clean up an ingredient name:
- * - Remove parenthetical notes: "(chopped)", "(stems removed, chopped)"
- * - Remove trailing comma descriptions: ", finely diced"
- * - Capitalize first letter
- * - Collapse whitespace
- */
-function cleanName(raw: string): string {
-	let name = raw
-
-	// Remove all parenthetical groups, including nested: (... (... ) ...)
-	// Repeat until no more parens remain (handles nesting)
-	let prev = ''
-	while (prev !== name) {
-		prev = name
-		name = name.replace(/\s*\([^)]*\)/g, '')
-	}
-
-	name = name
-		.replace(/[()]/g, '')                // remove any stray parens
-		.replace(/,\s*,/g, ',')              // collapse double commas
-		.replace(/,\s*$/, '')                // trailing comma
-		.replace(/^\s*,\s*/, '')             // leading comma
-		.replace(/\s+/g, ' ')               // collapse whitespace
-		.trim()
-
-	// Capitalize first letter
-	if (name.length > 0) {
-		name = name.charAt(0).toUpperCase() + name.slice(1)
-	}
-	return name
-}
-
-function stripConnector(rest: string): string {
-	rest = rest.replace(/^,\s*/, '')
-	if (prepositionRe) rest = rest.replace(prepositionRe, '')
-	return rest.trim()
-}
-
-// Decimal mark in the leading quantity: dot, plus comma for languages that use
-// it (e.g. German "0,5"). Built from the active pack so a comma elsewhere in the
-// line (thousands separator, a comma inside the item name) is never touched.
-const commaDecimal = parsingPack.decimalSeparators.includes(',')
-const decClass = commaDecimal ? '[.,]' : '\\.'
-const qtyPattern = new RegExp(
-	'^([\\d]+(?:\\s+[\\d]+/[\\d]+|/[\\d]+|' + decClass + '\\d+)?(?:\\s*-\\s*[\\d]+(?:/[\\d]+|' + decClass + '\\d+)?)?)\\s*',
-)
-
-function parseIngredient(line: string): { name: string; quantity: string | null } {
-	const trimmed = line.trim()
-	if (!trimmed) return { name: '', quantity: null }
-
-	// Lines starting with a unit word without a number ("Pinch of salt", "Prise Salz")
-	const trimmedLower = trimmed.toLowerCase()
-	for (const unit of parsingPack.leadingUnits) {
-		if (trimmedLower.startsWith(unit + ' ') || trimmedLower.startsWith(unit + ',')) {
-			const rest = stripConnector(trimmed.slice(unit.length).trim())
-			return { name: cleanName(rest || trimmed), quantity: '1 ' + unit }
-		}
-	}
-
-	const match = trimmed.match(qtyPattern)
-
-	if (!match) {
-		return { name: cleanName(trimmed), quantity: null }
-	}
-
-	// Normalize a decimal comma to a dot within the matched quantity only
-	const qtyStr = commaDecimal ? match[1].trim().replace(/,/g, '.') : match[1].trim()
-	let rest = trimmed.slice(match[0].length).trim()
-
-	// Try to match a unit after the quantity
-	const matchedUnit = matchUnit(rest)
-
-	let finalQty = qtyStr
-	if (matchedUnit) {
-		finalQty = qtyStr + ' ' + matchedUnit
-		rest = stripConnector(rest.slice(matchedUnit.length).trim())
-	}
-
-	// Clean up: remove leading comma
-	rest = rest.replace(/^,\s*/, '').trim()
-
-	return {
-		name: cleanName(rest || trimmed),
-		quantity: finalQty,
-	}
-}
+// Parser for the viewer's language, with English fallback. The implementation
+// lives in utils/parseIngredient.ts so it can be unit tested directly, without
+// a component or a mocked locale.
+const { parseIngredient } = createIngredientParser(getParsingPack())
 
 // --- Auto-detect shop area from ingredient name (reads keywords from area entities) ---
 
