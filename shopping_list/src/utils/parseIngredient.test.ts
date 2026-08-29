@@ -120,6 +120,49 @@ describe('parseIngredient quantity and unit, German', () => {
 	})
 })
 
+describe('parseIngredient attached digits', () => {
+	it('keeps a digit-leading name whole when the glued word is not a unit', () => {
+		expect(en.parseIngredient('7up')).toEqual({ name: '7up', quantity: null })
+		expect(en.parseIngredient('7-Eleven')).toEqual({ name: '7-Eleven', quantity: null })
+		expect(en.parseIngredient('3M tape')).toEqual({ name: '3M tape', quantity: null })
+	})
+
+	it('still reads a quantity when the glued word is a unit', () => {
+		expect(en.parseIngredient('500ml Milk')).toEqual({ name: 'Milk', quantity: '500 ml' })
+		expect(en.parseIngredient('1L Milk')).toEqual({ name: 'Milk', quantity: '1 l' })
+		expect(en.parseIngredient('1.5kg potatoes')).toEqual({ name: 'Potatoes', quantity: '1.5 kg' })
+	})
+
+	it('still reads a quantity when the glued word is a unit, German decimals', () => {
+		expect(de.parseIngredient('0,5l Milch')).toEqual({ name: 'Milch', quantity: '0.5 l' })
+	})
+
+	it('does not affect space-separated quantities', () => {
+		expect(en.parseIngredient('500 ml Milk')).toEqual({ name: 'Milk', quantity: '500 ml' })
+		expect(en.parseIngredient('12 Eggs')).toEqual({ name: 'Eggs', quantity: '12' })
+	})
+})
+
+describe('parseIngredient x multiplier', () => {
+	it('reads Nx as a count', () => {
+		expect(en.parseIngredient('2x Milk')).toEqual({ name: 'Milk', quantity: '2' })
+		expect(en.parseIngredient('6x Eggs')).toEqual({ name: 'Eggs', quantity: '6' })
+	})
+
+	it('accepts a space and either case', () => {
+		expect(en.parseIngredient('2 x Milk')).toEqual({ name: 'Milk', quantity: '2' })
+		expect(en.parseIngredient('2X Milk')).toEqual({ name: 'Milk', quantity: '2' })
+	})
+
+	it('accepts the multiplication sign', () => {
+		expect(en.parseIngredient('2 × Milk')).toEqual({ name: 'Milk', quantity: '2' })
+	})
+
+	it('works in German, where Nx is everyday notation', () => {
+		expect(de.parseIngredient('2x Eier')).toEqual({ name: 'Eier', quantity: '2' })
+	})
+})
+
 describe('parseIngredient known limitation, deferred', () => {
 	it('still swallows a leading digit that belongs to the name', () => {
 		// Documents current behaviour, not desired behaviour. See the German

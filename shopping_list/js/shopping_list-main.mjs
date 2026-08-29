@@ -15263,6 +15263,15 @@ function createIngredientParser(pack) {
     }
     const qtyStr = commaDecimal ? match[1].trim().replace(/,/g, ".") : match[1].trim();
     let rest = trimmed.slice(match[0].length).trim();
+    const mult = rest.match(/^[x×]\s+/i);
+    if (mult) {
+      rest = rest.slice(mult[0].length).trim();
+      return { name: cleanName(rest || trimmed), quantity: qtyStr };
+    }
+    const attached = trimmed.length > match[1].length && !/[\s,]/.test(trimmed.charAt(match[1].length));
+    if (attached && !matchUnit(rest)) {
+      return { name: cleanName(trimmed), quantity: null };
+    }
     const matchedUnit = matchUnit(rest);
     let finalQty = qtyStr;
     if (matchedUnit) {

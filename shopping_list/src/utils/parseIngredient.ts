@@ -135,6 +135,23 @@ export function createIngredientParser(pack: ParsingPack) {
 		const qtyStr = commaDecimal ? match[1].trim().replace(/,/g, '.') : match[1].trim()
 		let rest = trimmed.slice(match[0].length).trim()
 
+		// "2x Milk" / "2 x Milk" / "2 × Milk": the x is a count marker, not part
+		// of the name. Everyday notation in English and German alike.
+		const mult = rest.match(/^[x×]\s+/i)
+		if (mult) {
+			rest = rest.slice(mult[0].length).trim()
+			return { name: cleanName(rest || trimmed), quantity: qtyStr }
+		}
+
+		// Digits glued straight onto a word only count as a quantity when that
+		// word is a unit: "500ml Milk" stays a quantity, but "7up", "7-Eleven"
+		// and "3M tape" are names, and splitting them would corrupt them. A
+		// comma is a separator ("10, Aepfel"), not a glued word.
+		const attached = trimmed.length > match[1].length && !/[\s,]/.test(trimmed.charAt(match[1].length))
+		if (attached && !matchUnit(rest)) {
+			return { name: cleanName(trimmed), quantity: null }
+		}
+
 		// Try to match a unit after the quantity
 		const matchedUnit = matchUnit(rest)
 
