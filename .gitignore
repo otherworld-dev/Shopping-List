@@ -4,3 +4,6 @@ vendor/
 *.tar.gz
 .claude/
 shopping_list/build/
+shopping_list/js/
+shopping_list/css/
+shopping_list/composer.lock
