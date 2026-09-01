@@ -110,8 +110,8 @@ msgid "Delete \"{name}\"? Items in this area will become uncategorized."
 msgstr "\"{name}\" verwijderen? Items in deze afdeling worden niet-ingedeeld."
 
 #: src/components/ItemEditor.vue src/components/PublicListView.vue
-msgid "Add an item to list..."
-msgstr "Voeg een item toe aan de lijst..."
+msgid "Add an item or paste a list..."
+msgstr "Voeg een item toe of plak een lijst..."
 
 #: src/components/ItemEditor.vue
 msgid "Area"
@@ -164,6 +164,18 @@ msgstr "Delen"
 #: src/components/ListView.vue
 msgid "List actions"
 msgstr ""
+
+#: src/components/ItemEditor.vue
+msgid "Input format help"
+msgstr "Hulp bij invoerformaat"
+
+#: src/components/ItemEditor.vue
+msgid "Paste a list or type items"
+msgstr "Plak een lijst of typ items"
+
+#: src/components/ItemEditor.vue
+msgid "Paste multiple lines at once — each line becomes a separate item."
+msgstr "Plak meerdere regels tegelijk — elke regel wordt een apart item."
 
 #: src/components/ListView.vue
 msgid "Copy list as text"

@@ -1,5 +1,5 @@
 msgid ""
-msgstr ""
+msgstr "Syötemuodon apu"
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
@@ -110,8 +110,8 @@ msgid "Delete \"{name}\"? Items in this area will become uncategorized."
 msgstr "Poistetaanko \"{name}\"? Tämän osaston tuotteet muuttuvat luokittelemattomiksi."
 
 #: src/components/ItemEditor.vue src/components/PublicListView.vue
-msgid "Add an item to list..."
-msgstr "Lisää tuote listalle..."
+msgid "Add an item or paste a list..."
+msgstr "Lisää tuote tai liitä lista..."
 
 #: src/components/ItemEditor.vue
 msgid "Area"
@@ -163,19 +163,31 @@ msgstr "Jaa"
 
 #: src/components/ListView.vue
 msgid "List actions"
-msgstr ""
+msgstr "Syötemuodon apu"
+
+#: src/components/ItemEditor.vue
+msgid "Input format help"
+msgstr "Syötemuodon apu"
+
+#: src/components/ItemEditor.vue
+msgid "Paste a list or type items"
+msgstr "Syötemuodon apu"
+
+#: src/components/ItemEditor.vue
+msgid "Paste multiple lines at once — each line becomes a separate item."
+msgstr "Syötemuodon apu"
 
 #: src/components/ListView.vue
 msgid "Copy list as text"
-msgstr ""
+msgstr "Syötemuodon apu"
 
 #: src/components/ListView.vue
 msgid "List copied to clipboard"
-msgstr ""
+msgstr "Syötemuodon apu"
 
 #: src/components/ListView.vue
 msgid "Could not copy the list"
-msgstr ""
+msgstr "Syötemuodon apu"
 
 #: src/components/ListView.vue src/components/PublicListView.vue
 msgid "No items yet"
@@ -519,13 +531,13 @@ msgstr "Ostoslista"
 
 #: lib/Notification/Notifier.php
 msgid "Shopping List is now on Android"
-msgstr ""
+msgstr "Syötemuodon apu"
 
 #: lib/Notification/Notifier.php
 msgid "Take your lists shopping — a companion Android app is now available on Google Play."
-msgstr ""
+msgstr "Syötemuodon apu"
 
 #: lib/Notification/Notifier.php
 msgid "Get it on Google Play"
-msgstr ""
+msgstr "Syötemuodon apu"
 

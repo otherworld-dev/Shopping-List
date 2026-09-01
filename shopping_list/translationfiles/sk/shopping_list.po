@@ -110,7 +110,7 @@ msgid "Delete \"{name}\"? Items in this area will become uncategorized."
 msgstr "Odstrániť „{name}“? Položky v tejto oblasti ostanú bez kategórie."
 
 #: src/components/ItemEditor.vue src/components/PublicListView.vue
-msgid "Add an item to list..."
+msgid "Add an item or paste a list..."
 msgstr "Pridať položku do zoznamu..."
 
 #: src/components/ItemEditor.vue
@@ -120,6 +120,18 @@ msgstr "Oblasť"
 #: src/components/ItemEditor.vue
 msgid "No match"
 msgstr "Žiadna zhoda"
+
+#: src/components/ItemEditor.vue
+msgid "Input format help"
+msgstr "Pomoc s formátom vstupu"
+
+#: src/components/ItemEditor.vue
+msgid "Paste a list or type items"
+msgstr "Vložte zoznam alebo zadajte položky"
+
+#: src/components/ItemEditor.vue
+msgid "Paste multiple lines at once — each line becomes a separate item."
+msgstr "Vložte viacero riadkov naraz — každý riadok sa stane samostatnou položkou."
 
 #: src/components/ItemRow.vue
 msgid "Qty"

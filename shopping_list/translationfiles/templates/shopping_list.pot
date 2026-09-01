@@ -111,7 +111,7 @@ msgid "Delete \"{name}\"? Items in this area will become uncategorized."
 msgstr ""
 
 #: src/components/ItemEditor.vue src/components/PublicListView.vue
-msgid "Add an item to list..."
+msgid "Add an item or paste a list..."
 msgstr ""
 
 #: src/components/ItemEditor.vue
@@ -120,6 +120,18 @@ msgstr ""
 
 #: src/components/ItemEditor.vue
 msgid "No match"
+msgstr ""
+
+#: src/components/ItemEditor.vue
+msgid "Input format help"
+msgstr ""
+
+#: src/components/ItemEditor.vue
+msgid "Paste a list or type items"
+msgstr ""
+
+#: src/components/ItemEditor.vue
+msgid "Paste multiple lines at once — each line becomes a separate item."
 msgstr ""
 
 #: src/components/ItemRow.vue

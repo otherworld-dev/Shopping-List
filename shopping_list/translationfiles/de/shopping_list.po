@@ -110,8 +110,8 @@ msgid "Delete \"{name}\"? Items in this area will become uncategorized."
 msgstr "\"{name}\" löschen? Elemente in dieser Kategorie werden unkategorisiert."
 
 #: src/components/ItemEditor.vue src/components/PublicListView.vue
-msgid "Add an item to list..."
-msgstr "Artikel zur Liste hinzufügen..."
+msgid "Add an item or paste a list..."
+msgstr "Artikel hinzufügen oder Liste einfügen..."
 
 #: src/components/ItemEditor.vue
 msgid "Area"
@@ -120,6 +120,18 @@ msgstr "Kategorie"
 #: src/components/ItemEditor.vue
 msgid "No match"
 msgstr "Keine Übereinstimmung"
+
+#: src/components/ItemEditor.vue
+msgid "Input format help"
+msgstr "Eingabeformat-Hilfe"
+
+#: src/components/ItemEditor.vue
+msgid "Paste a list or type items"
+msgstr "Liste einfügen oder Artikel eingeben"
+
+#: src/components/ItemEditor.vue
+msgid "Paste multiple lines at once — each line becomes a separate item."
+msgstr "Mehrere Zeilen gleichzeitig einfügen — jede Zeile wird ein eigener Artikel."
 
 #: src/components/ItemRow.vue
 msgid "Qty"

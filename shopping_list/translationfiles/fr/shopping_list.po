@@ -110,8 +110,8 @@ msgid "Delete \"{name}\"? Items in this area will become uncategorized."
 msgstr "Supprimer « {name} » ? Les éléments de cette allée ne seront plus catégorisés."
 
 #: src/components/ItemEditor.vue src/components/PublicListView.vue
-msgid "Add an item to list..."
-msgstr "Ajouter un élément à la liste..."
+msgid "Add an item or paste a list..."
+msgstr "Ajouter un élément ou coller une liste..."
 
 #: src/components/ItemEditor.vue
 msgid "Area"
@@ -164,6 +164,18 @@ msgstr "Partager"
 #: src/components/ListView.vue
 msgid "List actions"
 msgstr ""
+
+#: src/components/ItemEditor.vue
+msgid "Input format help"
+msgstr "Aide sur le format de saisie"
+
+#: src/components/ItemEditor.vue
+msgid "Paste a list or type items"
+msgstr "Coller une liste ou saisir des éléments"
+
+#: src/components/ItemEditor.vue
+msgid "Paste multiple lines at once — each line becomes a separate item."
+msgstr "Collez plusieurs lignes à la fois — chaque ligne devient un élément distinct."
 
 #: src/components/ListView.vue
 msgid "Copy list as text"

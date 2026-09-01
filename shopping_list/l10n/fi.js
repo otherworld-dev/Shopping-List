@@ -24,7 +24,7 @@ OC.L10N.register(
     "New area name...": "Uuden osaston nimi...",
     "Add area": "Lisää osasto",
     "Delete \"{name}\"? Items in this area will become uncategorized.": "Poistetaanko \"{name}\"? Tämän osaston tuotteet muuttuvat luokittelemattomiksi.",
-    "Add an item to list...": "Lisää tuote listalle...",
+    "Add an item or paste a list...": "Lisää tuote tai liitä lista...",
     "Area": "Osasto",
     "No match": "Ei osumaa",
     "Qty": "Määrä",
@@ -37,6 +37,13 @@ OC.L10N.register(
     "Create your first shopping list to get started": "Luo ensimmäinen ostoslistasi aloittaaksesi",
     "New shopping list": "Uusi ostoslista",
     "Share": "Jaa",
+    "List actions": "Syötemuodon apu",
+    "Input format help": "Syötemuodon apu",
+    "Paste a list or type items": "Syötemuodon apu",
+    "Paste multiple lines at once — each line becomes a separate item.": "Syötemuodon apu",
+    "Copy list as text": "Syötemuodon apu",
+    "List copied to clipboard": "Syötemuodon apu",
+    "Could not copy the list": "Syötemuodon apu",
     "No items yet": "Ei vielä tuotteita",
     "Add your first item above": "Lisää ensimmäinen tuotteesi ylhäällä",
     "Uncategorized": "Luokittelematon",
@@ -121,6 +128,9 @@ OC.L10N.register(
     "You're offline": "Ei verkkoyhteyttä",
     "All changes synced": "Kaikki muutokset synkronoitu",
     "{count} changes pending": "{count} muutosta odottamassa",
-    "Shopping List": "Ostoslista"
+    "Shopping List": "Ostoslista",
+    "Shopping List is now on Android": "Syötemuodon apu",
+    "Take your lists shopping — a companion Android app is now available on Google Play.": "Syötemuodon apu",
+    "Get it on Google Play": "Syötemuodon apu"
 },
 "nplurals=2; plural=(n != 1);");
