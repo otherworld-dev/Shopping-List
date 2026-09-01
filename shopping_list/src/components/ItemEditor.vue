@@ -51,6 +51,23 @@
 					</div>
 				</div>
 			</div>
+			<button
+				type="button"
+				class="item-editor__hint"
+				@click="hintOpen = !hintOpen"
+				:title="hintLabel">
+				?
+			</button>
+			<div v-if="hintOpen" class="item-editor__hint-popover">
+				<p class="item-editor__hint-title">{{ hintTitle }}</p>
+				<ul class="item-editor__hint-list">
+					<li><code>[x] - 3 Bananas</code> — 3 Bananas (deactivated)</li>
+					<li><code>[ ] - Apples</code> — Apples (qty 1)</li>
+					<li><code>- Pineapple</code> — Pineapple (qty 1)</li>
+					<li><code>2 cups Flour</code> — 2 cups Flour</li>
+				</ul>
+				<p class="item-editor__hint-note">{{ hintNote }}</p>
+			</div>
 		</div>
 	</div>
 </template>
@@ -73,9 +90,12 @@ const itemsStore = useItemsStore()
 const shopAreasStore = useShopAreasStore()
 const listsStore = useListsStore()
 
-const addItemLabel = t('shopping_list', 'Add an item to list...')
+const addItemLabel = t('shopping_list', 'Add an item or paste a list...')
 const shopAreaPlaceholder = t('shopping_list', 'Area')
 const noMatchText = t('shopping_list', 'No match')
+const hintLabel = t('shopping_list', 'Input format help')
+const hintTitle = t('shopping_list', 'Paste a list or type items')
+const hintNote = t('shopping_list', 'Paste multiple lines at once — each line becomes a separate item.')
 
 const nameRef = ref<HTMLInputElement | null>(null)
 const areaRef = ref<HTMLInputElement | null>(null)
@@ -86,6 +106,7 @@ const selectedAreaId = ref<number | null>(null)
 const areaSearch = ref('')
 const dropdownOpen = ref(false)
 const highlightIndex = ref(0)
+const hintOpen = ref(false)
 
 const areaOptions = computed(() => {
 	if (!listsStore.currentListId) return []
@@ -153,6 +174,10 @@ function onAreaTab() {
 function onClickOutside(e: MouseEvent) {
 	if (areaWrapperRef.value && !areaWrapperRef.value.contains(e.target as Node)) {
 		closeDropdown()
+	}
+	const target = e.target as HTMLElement
+	if (hintOpen.value && !target.closest('.item-editor__hint') && !target.closest('.item-editor__hint-popover')) {
+		hintOpen.value = false
 	}
 }
 
@@ -269,6 +294,7 @@ async function onSubmit() {
 	border-radius: var(--border-radius-large);
 	padding: 0 4px 0 0;
 	transition: border-color 0.15s ease;
+	position: relative;
 }
 
 .item-editor__main:focus-within {
@@ -389,5 +415,77 @@ async function onSubmit() {
 	font-size: 0.85em;
 	color: var(--color-text-maxcontrast);
 	text-align: center;
+}
+
+/* Hint icon + popover */
+.item-editor__hint {
+	flex: 0 0 20px !important;
+	width: 20px !important;
+	height: 20px !important;
+	min-height: 20px !important;
+	border: none;
+	border-radius: 50% !important;
+	background: var(--color-background-dark);
+	color: var(--color-text-maxcontrast);
+	font-size: 0.7em;
+	font-weight: 700;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0 !important;
+	margin: 0 4px 0 0;
+	line-height: 1;
+	transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.item-editor__hint:hover {
+	background: var(--color-primary-element);
+	color: var(--color-primary-element-text);
+}
+
+.item-editor__hint-popover {
+	position: absolute;
+	right: 16px;
+	top: 100%;
+	margin-top: 4px;
+	min-width: 280px;
+	background: var(--color-main-background);
+	border: 1px solid var(--color-border);
+	border-radius: var(--border-radius-large);
+	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+	padding: 12px 16px;
+	z-index: 200;
+	text-align: left;
+}
+
+.item-editor__hint-title {
+	font-weight: 600;
+	font-size: 0.9em;
+	margin: 0 0 8px 0;
+}
+
+.item-editor__hint-list {
+	list-style: none;
+	padding: 0;
+	margin: 0 0 8px 0;
+	font-size: 0.85em;
+	line-height: 1.8;
+	color: var(--color-text-maxcontrast);
+}
+
+.item-editor__hint-list code {
+	background: var(--color-background-dark);
+	border-radius: var(--border-radius);
+	padding: 1px 6px;
+	font-size: 0.9em;
+	color: var(--color-main-text);
+}
+
+.item-editor__hint-note {
+	font-size: 0.8em;
+	color: var(--color-text-maxcontrast);
+	margin: 0;
+	font-style: italic;
 }
 </style>

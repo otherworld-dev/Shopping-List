@@ -118,7 +118,7 @@ const showChecked = ref(true)
 const emptyText = t('shopping_list', 'No items yet')
 const uncategorizedText = t('shopping_list', 'Uncategorized')
 const boughtText = t('shopping_list', 'Checked off')
-const addItemText = t('shopping_list', 'Add an item to list...')
+const addItemText = t('shopping_list', 'Add an item or paste a list...')
 
 const editorRef = ref<HTMLInputElement | null>(null)
 const newItemName = ref('')
