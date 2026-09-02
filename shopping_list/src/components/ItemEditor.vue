@@ -51,6 +51,40 @@
 					</div>
 				</div>
 			</div>
+			<NcPopover class="item-editor__help" popup-role="dialog">
+				<template #trigger>
+					<NcButton
+						variant="tertiary-no-background"
+						size="small"
+						:aria-label="helpLabel"
+						:title="helpLabel">
+						<template #icon>
+							<NcIconSvgWrapper :path="mdiHelpCircleOutline" :size="18" />
+						</template>
+					</NcButton>
+				</template>
+				<div class="input-help">
+					<p class="input-help__title">{{ helpTitle }}</p>
+					<p class="input-help__intro">{{ helpIntro }}</p>
+					<table class="input-help__examples">
+						<thead>
+							<tr>
+								<th scope="col">{{ helpTypedHeader }}</th>
+								<th scope="col">{{ helpResultHeader }}</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for="example in inputExamples" :key="example.input">
+								<td><code class="input-help__line">{{ example.input }}</code></td>
+								<td class="input-help__result">
+									<span v-if="example.quantity" class="input-help__quantity">{{ example.quantity }}</span>
+									<span>{{ example.name }}</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</NcPopover>
 		</div>
 	</div>
 </template>
@@ -58,12 +92,15 @@
 <script setup lang="ts">
 import { ref, computed, nextTick, onMounted, onUnmounted } from 'vue'
 import { t } from '@nextcloud/l10n'
+import { NcButton, NcIconSvgWrapper, NcPopover } from '@nextcloud/vue'
+import { mdiHelpCircleOutline } from '@mdi/js'
 import { useItemsStore } from '../stores/items'
 import { useShopAreasStore } from '../stores/shopAreas'
 import { useListsStore } from '../stores/lists'
 import { fold } from '../utils/fold'
 import { getParsingPack } from '../utils/localePacks'
 import { createIngredientParser } from '../utils/parseIngredient'
+import { INPUT_EXAMPLES } from '../utils/inputExamples'
 
 const props = defineProps<{
 	listId: number
@@ -73,7 +110,12 @@ const itemsStore = useItemsStore()
 const shopAreasStore = useShopAreasStore()
 const listsStore = useListsStore()
 
-const addItemLabel = t('shopping_list', 'Add an item to list...')
+const addItemLabel = t('shopping_list', 'Add an item or paste a list...')
+const helpLabel = t('shopping_list', 'Input format help')
+const helpTitle = t('shopping_list', 'Type one item, or paste a whole list')
+const helpIntro = t('shopping_list', 'Every pasted line becomes its own item. Amounts, units and list markers are read for you.')
+const helpTypedHeader = t('shopping_list', 'You type')
+const helpResultHeader = t('shopping_list', 'You get')
 const shopAreaPlaceholder = t('shopping_list', 'Area')
 const noMatchText = t('shopping_list', 'No match')
 
@@ -165,6 +207,14 @@ onUnmounted(() => document.removeEventListener('mousedown', onClickOutside))
 // lives in utils/parseIngredient.ts so it can be unit tested directly, without
 // a component or a mocked locale.
 const { parseIngredient } = createIngredientParser(getParsingPack())
+
+// The input help shows each example line next to what this parser makes of
+// it, so the help always matches what a paste would really produce, in the
+// viewer's language.
+const inputExamples = INPUT_EXAMPLES.map(source => {
+	const input = t('shopping_list', source)
+	return { input, ...parseIngredient(input) }
+})
 
 // --- Auto-detect shop area from ingredient name (reads keywords from area entities) ---
 
@@ -389,5 +439,66 @@ async function onSubmit() {
 	font-size: 0.85em;
 	color: var(--color-text-maxcontrast);
 	text-align: center;
+}
+
+/* Input format help */
+.item-editor__help {
+	flex: 0 0 auto;
+	display: flex;
+	align-items: center;
+}
+
+.input-help {
+	max-width: min(380px, calc(100vw - 32px));
+	padding: 12px 14px;
+}
+
+.input-help__title {
+	font-weight: 600;
+	margin: 0 0 4px;
+}
+
+.input-help__intro {
+	color: var(--color-text-maxcontrast);
+	font-size: 0.9em;
+	margin: 0 0 10px;
+}
+
+.input-help__examples {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.input-help__examples th {
+	text-align: start;
+	font-weight: 600;
+	font-size: 0.8em;
+	color: var(--color-text-maxcontrast);
+	padding: 0 12px 4px 0;
+}
+
+.input-help__examples td {
+	padding: 3px 12px 3px 0;
+	vertical-align: middle;
+}
+
+.input-help__line {
+	font-family: monospace;
+	font-size: 0.85em;
+	background: var(--color-background-dark);
+	border-radius: var(--border-radius);
+	padding: 2px 6px;
+	white-space: nowrap;
+}
+
+.input-help__result {
+	font-size: 0.9em;
+}
+
+.input-help__quantity {
+	color: var(--color-text-maxcontrast);
+	font-size: 0.85em;
+	white-space: nowrap;
+	padding-right: 8px;
 }
 </style>
