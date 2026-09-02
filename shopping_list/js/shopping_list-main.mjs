@@ -15305,6 +15305,7 @@ function createIngredientParser(pack) {
 const INPUT_EXAMPLES = [
   "- Apples",
   "[ ] 3 Bananas",
+  "[x] Eggs",
   "2 cups flour",
   "1. Milk"
 ];
@@ -15328,10 +15329,14 @@ const _hoisted_11$3 = { class: "input-help__examples" };
 const _hoisted_12$3 = { scope: "col" };
 const _hoisted_13$3 = { scope: "col" };
 const _hoisted_14$3 = { class: "input-help__line" };
-const _hoisted_15$3 = { class: "input-help__result" };
-const _hoisted_16$3 = {
+const _hoisted_15$3 = {
   key: 0,
   class: "input-help__quantity"
+};
+const _hoisted_16$3 = { class: "input-help__name" };
+const _hoisted_17$3 = {
+  key: 1,
+  class: "input-help__checked"
 };
 const _sfc_main$5 = /* @__PURE__ */ defineComponent({
   __name: "ItemEditor",
@@ -15349,6 +15354,7 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
     const helpIntro = translate("shopping_list", "Every pasted line becomes its own item. Amounts, units and list markers are read for you.");
     const helpTypedHeader = translate("shopping_list", "You type");
     const helpResultHeader = translate("shopping_list", "You get");
+    const checkedOffText = translate("shopping_list", "Checked off");
     const shopAreaPlaceholder = translate("shopping_list", "Area");
     const noMatchText = translate("shopping_list", "No match");
     const nameRef = ref(null);
@@ -15490,7 +15496,7 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
     return (_ctx, _cache) => {
       return openBlock(), createElementBlock("div", _hoisted_1$4, [
         createBaseVNode("div", _hoisted_2$4, [
-          _cache[5] || (_cache[5] = createBaseVNode("span", { class: "item-editor__plus" }, "+", -1)),
+          _cache[6] || (_cache[6] = createBaseVNode("span", { class: "item-editor__plus" }, "+", -1)),
           withDirectives(createBaseVNode("input", {
             ref_key: "nameRef",
             ref: nameRef,
@@ -15598,11 +15604,15 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
                         createBaseVNode("td", null, [
                           createBaseVNode("code", _hoisted_14$3, toDisplayString(example.input), 1)
                         ]),
-                        createBaseVNode("td", _hoisted_15$3, [
-                          example.quantity ? (openBlock(), createElementBlock("span", _hoisted_16$3, toDisplayString(example.quantity), 1)) : createCommentVNode("", true),
+                        createBaseVNode("td", {
+                          class: normalizeClass(["input-help__result", { "input-help__result--checked": example.checked }])
+                        }, [
+                          example.quantity ? (openBlock(), createElementBlock("span", _hoisted_15$3, toDisplayString(example.quantity), 1)) : createCommentVNode("", true),
                           _cache[4] || (_cache[4] = createTextVNode()),
-                          createBaseVNode("span", null, toDisplayString(example.name), 1)
-                        ])
+                          createBaseVNode("span", _hoisted_16$3, toDisplayString(example.name), 1),
+                          _cache[5] || (_cache[5] = createTextVNode()),
+                          example.checked ? (openBlock(), createElementBlock("span", _hoisted_17$3, toDisplayString(unref(checkedOffText)), 1)) : createCommentVNode("", true)
+                        ], 2)
                       ]);
                     }), 128))
                   ])
@@ -15616,7 +15626,7 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ItemEditor = /* @__PURE__ */ _export_sfc$1(_sfc_main$5, [["__scopeId", "data-v-4e9ccc37"]]);
+const ItemEditor = /* @__PURE__ */ _export_sfc$1(_sfc_main$5, [["__scopeId", "data-v-0978268e"]]);
 const _hoisted_1$3 = { class: "share-modal" };
 const _hoisted_2$3 = { class: "share-modal__header" };
 const _hoisted_3$3 = { class: "share-modal__search" };

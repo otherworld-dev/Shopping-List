@@ -76,8 +76,8 @@
 						<tbody>
 							<tr v-for="example in inputExamples" :key="example.input">
 								<td><code class="input-help__line">{{ example.input }}</code></td>
-								<td class="input-help__result">
-									<span v-if="example.quantity" class="input-help__quantity">{{ example.quantity }}</span> <span>{{ example.name }}</span>
+								<td class="input-help__result" :class="{ 'input-help__result--checked': example.checked }">
+									<span v-if="example.quantity" class="input-help__quantity">{{ example.quantity }}</span> <span class="input-help__name">{{ example.name }}</span> <span v-if="example.checked" class="input-help__checked">{{ checkedOffText }}</span>
 								</td>
 							</tr>
 						</tbody>
@@ -115,6 +115,8 @@ const helpTitle = t('shopping_list', 'Type one item, or paste a whole list')
 const helpIntro = t('shopping_list', 'Every pasted line becomes its own item. Amounts, units and list markers are read for you.')
 const helpTypedHeader = t('shopping_list', 'You type')
 const helpResultHeader = t('shopping_list', 'You get')
+// Same wording as the section a ticked example lands in.
+const checkedOffText = t('shopping_list', 'Checked off')
 const shopAreaPlaceholder = t('shopping_list', 'Area')
 const noMatchText = t('shopping_list', 'No match')
 
@@ -507,5 +509,18 @@ async function onSubmit() {
 	font-size: 0.85em;
 	white-space: nowrap;
 	padding-right: 8px;
+}
+
+/* A ticked example is drawn the way a checked-off item is in the list. */
+.input-help__result--checked .input-help__name {
+	text-decoration: line-through;
+	color: var(--color-text-maxcontrast);
+}
+
+.input-help__checked {
+	color: var(--color-text-maxcontrast);
+	font-size: 0.8em;
+	white-space: nowrap;
+	padding-left: 6px;
 }
 </style>

@@ -151,6 +151,11 @@ msgstr ""
 msgid "[ ] 3 Bananas"
 msgstr ""
 
+#. Example line in the input help. Translate the word, keep the "[x] " ticked checkbox.
+#: src/utils/inputExamples.ts
+msgid "[x] Eggs"
+msgstr ""
+
 #. Example line in the input help. Use a unit from your language's parsing pack so it is recognised.
 #: src/utils/inputExamples.ts
 msgid "2 cups flour"
@@ -237,7 +242,7 @@ msgstr ""
 msgid "Uncategorized"
 msgstr ""
 
-#: src/components/ListView.vue src/components/PublicListView.vue
+#: src/components/ListView.vue src/components/PublicListView.vue src/components/ItemEditor.vue
 msgid "Checked off"
 msgstr ""
 
