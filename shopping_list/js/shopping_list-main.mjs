@@ -1719,7 +1719,7 @@ const _hoisted_3$6 = {
 const listIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,4H7V8H3V4M9,5V7H21V5H9M3,10H7V14H3V10M9,11V13H21V11H9M3,16H7V20H3V16M9,17V19H21V17H9" fill="currentColor"/></svg>';
 const _sfc_main$7 = /* @__PURE__ */ defineComponent({
   __name: "ListSidebar",
-  emits: ["show-settings"],
+  emits: ["showSettings"],
   setup(__props) {
     const listsStore = useListsStore();
     const itemsStore = useItemsStore();
@@ -1797,7 +1797,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
         unref(listsStore).currentListId !== null ? (openBlock(), createElementBlock("div", _hoisted_3$6, [
           createBaseVNode("button", {
             class: "sidebar-settings__btn",
-            onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("show-settings"))
+            onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("showSettings"))
           }, " ⚙ " + toDisplayString(unref(settingsText)), 1)
         ])) : createCommentVNode("", true),
         !unref(listsStore).loading && unref(listsStore).lists.length === 0 ? (openBlock(), createBlock(unref(NcEmptyContent), {
@@ -1814,7 +1814,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ListSidebar = /* @__PURE__ */ _export_sfc$1(_sfc_main$7, [["__scopeId", "data-v-b6280b45"]]);
+const ListSidebar = /* @__PURE__ */ _export_sfc$1(_sfc_main$7, [["__scopeId", "data-v-417c9458"]]);
 const useSharesStore = defineStore("shares", () => {
   const sharesByList = ref({});
   async function fetchByList(listId) {
@@ -15196,7 +15196,7 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ItemRow = /* @__PURE__ */ _export_sfc$1(_sfc_main$6, [["__scopeId", "data-v-1e2426d9"]]);
+const ItemRow = /* @__PURE__ */ _export_sfc$1(_sfc_main$6, [["__scopeId", "data-v-43a482d9"]]);
 var mdiHelpCircleOutline = "M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z";
 function escapeRe(s) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -15514,9 +15514,9 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
             [vModelText, name.value]
           ]),
           createBaseVNode("div", {
-            class: "item-editor__area-wrapper",
             ref_key: "areaWrapperRef",
-            ref: areaWrapperRef
+            ref: areaWrapperRef,
+            class: "item-editor__area-wrapper"
           }, [
             withDirectives(createBaseVNode("input", {
               ref_key: "areaRef",
@@ -15626,7 +15626,7 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ItemEditor = /* @__PURE__ */ _export_sfc$1(_sfc_main$5, [["__scopeId", "data-v-0978268e"]]);
+const ItemEditor = /* @__PURE__ */ _export_sfc$1(_sfc_main$5, [["__scopeId", "data-v-4fab3c34"]]);
 const _hoisted_1$3 = { class: "share-modal" };
 const _hoisted_2$3 = { class: "share-modal__header" };
 const _hoisted_3$3 = { class: "share-modal__search" };
@@ -15850,7 +15850,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
             createBaseVNode("button", {
               class: "share-modal__close",
               onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("close"))
-            }, "✕")
+            }, " ✕ ")
           ]),
           createBaseVNode("div", _hoisted_3$3, [
             withDirectives(createBaseVNode("input", {
@@ -15989,7 +15989,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ShareDialog = /* @__PURE__ */ _export_sfc$1(_sfc_main$4, [["__scopeId", "data-v-c9fb2be6"]]);
+const ShareDialog = /* @__PURE__ */ _export_sfc$1(_sfc_main$4, [["__scopeId", "data-v-8ef27d4b"]]);
 function formatListAsText(items) {
   return items.filter((item) => !item.checked).map((item) => {
     const parts = [];
@@ -16346,7 +16346,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ListView = /* @__PURE__ */ _export_sfc$1(_sfc_main$3, [["__scopeId", "data-v-e43bc59b"]]);
+const ListView = /* @__PURE__ */ _export_sfc$1(_sfc_main$3, [["__scopeId", "data-v-0af7deef"]]);
 const _hoisted_1$1 = { class: "area-settings" };
 const _hoisted_2$1 = { class: "area-settings__header" };
 const _hoisted_3$1 = { class: "area-settings__desc" };
@@ -16431,8 +16431,8 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     const copySourceId = ref(null);
     const copying = ref(false);
     const loadingLang = ref(false);
-    let saveTimeout = {};
-    let colorTimeout = {};
+    const saveTimeout = {};
+    const colorTimeout = {};
     const listId = computed(() => listsStore.currentListId);
     const canEdit = computed(
       () => listsStore.currentList !== null && listsStore.currentList.permission >= Permission.WRITE
@@ -16755,7 +16755,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const AreaKeywordsSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$2, [["__scopeId", "data-v-d470643b"]]);
+const AreaKeywordsSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$2, [["__scopeId", "data-v-5614877a"]]);
 const syncing = ref(false);
 const pendingCount = ref(0);
 let draining = false;
@@ -16942,7 +16942,8 @@ function usePush() {
   const sharesStore = useSharesStore();
   const { isOnline: isOnline2 } = useNetworkStatus();
   const { syncing: syncing2 } = useSyncEngine();
-  const hasPushServer = !!window.OC?.config?.notify_push;
+  const oc = window.OC;
+  const hasPushServer = Boolean(oc?.config?.notify_push);
   if (hasPushServer) {
     try {
       __vitePreload(async () => {
@@ -16963,7 +16964,7 @@ function usePush() {
             sharesStore.fetchByList(body.listId);
           }
         });
-        console.log("[ShoppingList] notify_push connected");
+        console.debug("[ShoppingList] notify_push connected");
       }).catch(() => {
         startPolling();
       });
@@ -16974,7 +16975,7 @@ function usePush() {
     startPolling();
   }
   function startPolling() {
-    console.log("[ShoppingList] Polling every 10s");
+    console.debug("[ShoppingList] Polling every 10s");
     setInterval(() => {
       if (!isOnline2.value || syncing2.value) return;
       listsStore.fetchAll();

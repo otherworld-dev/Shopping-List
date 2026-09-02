@@ -1,7 +1,6 @@
 <template>
 	<span class="shop-area">
-		<span
-			v-if="color"
+		<span v-if="color"
 			class="shop-area__dot"
 			:style="{ backgroundColor: color }" />
 		<span class="shop-area__name">{{ name }}</span>

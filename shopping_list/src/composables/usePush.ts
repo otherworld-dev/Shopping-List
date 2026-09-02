@@ -17,8 +17,10 @@ export function usePush() {
 	const { isOnline } = useNetworkStatus()
 	const { syncing } = useSyncEngine()
 
-	// Check if the server actually has notify_push enabled
-	const hasPushServer = !!(window as any).OC?.config?.notify_push
+	// Check if the server actually has notify_push enabled. Only this one
+	// config flag is read from the OC global, so type just that much of it.
+	const oc = (window as unknown as { OC?: { config?: { notify_push?: unknown } } }).OC
+	const hasPushServer = Boolean(oc?.config?.notify_push)
 
 	if (hasPushServer) {
 		try {
@@ -40,7 +42,7 @@ export function usePush() {
 					}
 				})
 
-				console.log('[ShoppingList] notify_push connected')
+				console.debug('[ShoppingList] notify_push connected')
 			}).catch(() => {
 				startPolling()
 			})
@@ -52,7 +54,7 @@ export function usePush() {
 	}
 
 	function startPolling() {
-		console.log('[ShoppingList] Polling every 10s')
+		console.debug('[ShoppingList] Polling every 10s')
 		pollingInterval = setInterval(() => {
 			// Skip polling while offline or syncing
 			if (!isOnline.value || syncing.value) return

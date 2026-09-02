@@ -6,8 +6,7 @@
 				<div v-if="currentShares.length > 0"
 					class="list-view__avatars"
 					@click="showShareDialog = true">
-					<NcAvatar
-						v-for="share in visibleShares"
+					<NcAvatar v-for="share in visibleShares"
 						:key="share.id"
 						:user="share.sharedWithType === ShareType.USER ? share.sharedWith : undefined"
 						:display-name="share.sharedWithDisplayName || share.sharedWith"
@@ -24,8 +23,7 @@
 						@click="showShareDialog = true">
 						{{ shareText }}
 					</NcActionButton>
-					<NcActionButton
-						:disabled="itemsStore.uncheckedItems.length === 0"
+					<NcActionButton :disabled="itemsStore.uncheckedItems.length === 0"
 						@click="onCopyAsText">
 						{{ copyAsTextText }}
 					</NcActionButton>
@@ -34,8 +32,7 @@
 		</div>
 
 		<div class="list-view__card">
-			<ItemEditor
-				v-if="canEdit"
+			<ItemEditor v-if="canEdit"
 				:list-id="listsStore.currentList!.id" />
 
 			<div v-if="itemsStore.loading" class="list-view__loading">
@@ -45,8 +42,7 @@
 			<template v-else>
 				<div v-if="itemsStore.uncheckedItems.length === 0 && itemsStore.checkedItems.length === 0"
 					class="list-view__empty">
-					<NcEmptyContent
-						:name="emptyName"
+					<NcEmptyContent :name="emptyName"
 						:description="emptyDesc">
 						<template #icon>
 							<NcIconSvgWrapper :svg="cartIcon" />
@@ -67,8 +63,7 @@
 						<span class="list-view__area-count">{{ group.items.length }}</span>
 					</div>
 
-					<draggable
-						v-model="localGroups[groupIndex].items"
+					<draggable v-model="localGroups[groupIndex].items"
 						item-key="id"
 						:group="{ name: 'items' }"
 						:disabled="!canEdit"
@@ -80,8 +75,7 @@
 						@start="isDragging = true"
 						@end="onDragEnd">
 						<template #item="{ element }">
-							<ItemRow
-								:item-id="element.id"
+							<ItemRow :item-id="element.id"
 								:list-id="listsStore.currentList!.id"
 								:can-edit="canEdit"
 								:editing="editingItemId === element.id"
@@ -108,8 +102,7 @@
 				</div>
 			</div>
 			<div v-if="showChecked" class="list-view__bought-card">
-				<ItemRow
-					v-for="itemId in checkedItemIds"
+				<ItemRow v-for="itemId in checkedItemIds"
 					:key="itemId"
 					:item-id="itemId"
 					:list-id="listsStore.currentList!.id"
@@ -118,8 +111,7 @@
 			</div>
 		</div>
 
-		<ShareDialog
-			v-if="showShareDialog && listsStore.currentList"
+		<ShareDialog v-if="showShareDialog && listsStore.currentList"
 			:list-id="listsStore.currentList.id"
 			:is-owner="listsStore.currentList.isOwner"
 			:current-user-id="currentUserId"

@@ -245,7 +245,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const PublicListView = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-fe97de76"]]);
+const PublicListView = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-229049e7"]]);
 const _hoisted_1 = { class: "public-app" };
 const _hoisted_2 = {
   key: 0,
@@ -363,7 +363,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const PublicApp = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-90d5fad9"]]);
+const PublicApp = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-5c4ee2ce"]]);
 const pinia = createPinia();
 pinia.use(offlinePersistPlugin);
 const app = createApp(PublicApp);

@@ -5,14 +5,13 @@
 		<div class="public-list__card">
 			<div v-if="canEdit" class="public-list__editor">
 				<span class="public-list__editor-plus">+</span>
-				<input
-					ref="editorRef"
+				<input ref="editorRef"
 					v-model="newItemName"
 					type="text"
 					enterkeyhint="send"
 					:placeholder="addItemText"
 					class="public-list__editor-input"
-					@keydown.enter.prevent="onAddItem" />
+					@keydown.enter.prevent="onAddItem">
 			</div>
 
 			<div v-if="loading" class="public-list__loading">
@@ -38,17 +37,15 @@
 					</div>
 
 					<div class="public-list__items">
-						<div
-							v-for="item in group.items"
+						<div v-for="item in group.items"
 							:key="item.id"
 							class="public-list__item"
 							:class="{ 'public-list__item--checked': item.checked }">
 							<label class="public-list__check">
-								<input
-									type="checkbox"
+								<input type="checkbox"
 									:checked="item.checked"
 									:disabled="!canEdit"
-									@change="onToggleCheck(item)" />
+									@change="onToggleCheck(item)">
 							</label>
 							<span v-if="item.quantity" class="public-list__quantity">
 								{{ item.quantity }}{{ item.unit ? ' ' + item.unit : '' }}
@@ -57,8 +54,7 @@
 								{{ item.name }}
 							</span>
 							<span v-if="getAreaName(item.shopAreaId)" class="public-list__area">
-								<span
-									v-if="getAreaColor(item.shopAreaId)"
+								<span v-if="getAreaColor(item.shopAreaId)"
 									class="public-list__area-dot"
 									:style="{ backgroundColor: getAreaColor(item.shopAreaId)! }" />
 								{{ getAreaName(item.shopAreaId) }}
@@ -75,16 +71,14 @@
 				<span class="public-list__toggle">{{ showChecked ? '▾' : '▸' }}</span>
 			</h3>
 			<div v-if="showChecked" class="public-list__bought-card">
-				<div
-					v-for="item in checkedItems"
+				<div v-for="item in checkedItems"
 					:key="item.id"
 					class="public-list__item public-list__item--checked">
 					<label class="public-list__check">
-						<input
-							type="checkbox"
+						<input type="checkbox"
 							:checked="true"
 							:disabled="!canEdit"
-							@change="onToggleCheck(item)" />
+							@change="onToggleCheck(item)">
 					</label>
 					<span v-if="item.quantity" class="public-list__quantity">
 						{{ item.quantity }}{{ item.unit ? ' ' + item.unit : '' }}

@@ -1,3 +1,19 @@
+export interface Tag {
+	id: number
+	name: string
+}
+
+export enum Permission {
+	READ = 0,
+	WRITE = 1,
+}
+
+export enum ShareType {
+	USER = 0,
+	GROUP = 1,
+	LINK = 3,
+}
+
 export interface ShoppingList {
 	id: number
 	userId: string
@@ -46,20 +62,4 @@ export interface ShopArea {
 	// Stable English key for default areas (e.g. "Produce"); null for custom/renamed
 	// areas. The server resolves it to the viewer's language in `name`.
 	nameKey: string | null
-}
-
-export interface Tag {
-	id: number
-	name: string
-}
-
-export enum Permission {
-	READ = 0,
-	WRITE = 1,
-}
-
-export enum ShareType {
-	USER = 0,
-	GROUP = 1,
-	LINK = 3,
 }

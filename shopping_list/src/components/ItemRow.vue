@@ -1,6 +1,5 @@
 <template>
-	<div
-		v-if="item"
+	<div v-if="item"
 		class="item-row"
 		:class="{
 			'item-row--checked': item.checked,
@@ -8,16 +7,14 @@
 		}"
 		:data-item-id="canEdit && !item.checked ? itemId : undefined">
 		<label class="item-row__check">
-			<input
-				type="checkbox"
+			<input type="checkbox"
 				:checked="item.checked"
 				:disabled="!canEdit"
-				@change="onToggleCheck" />
+				@change="onToggleCheck">
 		</label>
 
 		<template v-if="editing">
-			<input
-				ref="qtyInputRef"
+			<input ref="qtyInputRef"
 				v-model="editQty"
 				type="text"
 				:placeholder="qtyLabel"
@@ -25,19 +22,17 @@
 				@keydown.enter.prevent="saveEdit"
 				@keydown.escape.prevent="cancelEdit"
 				@keydown.tab.prevent="focusNameInput"
-				@blur="onFieldBlur" />
-			<input
-				ref="nameInputRef"
+				@blur="onFieldBlur">
+			<input ref="nameInputRef"
 				v-model="editName"
 				type="text"
 				class="item-row__edit-input item-row__edit-name"
 				@keydown.enter.prevent="saveEdit"
 				@keydown.escape.prevent="cancelEdit"
 				@keydown.tab.prevent="focusAreaInput"
-				@blur="onFieldBlur" />
+				@blur="onFieldBlur">
 			<div ref="areaWrapperRef" class="item-row__area-wrapper">
-				<input
-					ref="areaInputRef"
+				<input ref="areaInputRef"
 					v-model="areaSearch"
 					type="text"
 					:placeholder="editAreaName || areaPlaceholder"
@@ -48,24 +43,24 @@
 					@keydown.tab.prevent="onAreaTab"
 					@keydown.down.prevent="moveHighlight(1)"
 					@keydown.up.prevent="moveHighlight(-1)"
-					@blur="onFieldBlur" />
-				<button
-					v-if="editAreaId !== null"
+					@blur="onFieldBlur">
+				<button v-if="editAreaId !== null"
 					class="item-row__area-clear"
 					tabindex="-1"
 					@mousedown.prevent="clearArea">
 					✕
 				</button>
 				<Teleport to="body">
-					<div v-if="dropdownOpen" ref="dropdownRef" class="item-row__dropdown" :style="dropdownStyle">
-						<div
-							v-for="(area, i) in filteredAreas"
+					<div v-if="dropdownOpen"
+						ref="dropdownRef"
+						class="item-row__dropdown"
+						:style="dropdownStyle">
+						<div v-for="(area, i) in filteredAreas"
 							:key="area.id"
 							class="item-row__dropdown-item"
 							:class="{ 'item-row__dropdown-item--highlighted': i === highlightIndex }"
 							@mousedown.prevent="selectArea(area)">
-							<span
-								v-if="area.color"
+							<span v-if="area.color"
 								class="item-row__dropdown-dot"
 								:style="{ backgroundColor: area.color }" />
 							{{ area.name }}
@@ -95,8 +90,7 @@
 		<NcActions v-if="canEdit && !editing" class="item-row__actions">
 			<template v-if="otherLists.length > 0">
 				<NcActionCaption :name="moveToLabel" />
-				<NcActionButton
-					v-for="l in otherLists"
+				<NcActionButton v-for="l in otherLists"
 					:key="l.id"
 					:close-after-click="true"
 					@click="onMove(l.id)">

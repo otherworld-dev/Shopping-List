@@ -1,6 +1,5 @@
 <template>
-	<NcSelect
-		v-model="selectedTags"
+	<NcSelect v-model="selectedTags"
 		:options="tagOptions"
 		:multiple="true"
 		:taggable="true"

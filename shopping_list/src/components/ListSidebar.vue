@@ -1,12 +1,10 @@
 <template>
 	<div>
-		<NcAppNavigationNew
-			:text="newListText"
+		<NcAppNavigationNew :text="newListText"
 			@click="onNewList" />
 
 		<template v-if="listsStore.ownedLists.length > 0">
-			<NcAppNavigationItem
-				v-for="list in listsStore.ownedLists"
+			<NcAppNavigationItem v-for="list in listsStore.ownedLists"
 				:key="list.id"
 				:name="list.title"
 				:active="list.id === listsStore.currentListId"
@@ -27,12 +25,10 @@
 			</NcAppNavigationItem>
 		</template>
 
-		<NcAppNavigationCaption
-			v-if="listsStore.sharedLists.length > 0"
+		<NcAppNavigationCaption v-if="listsStore.sharedLists.length > 0"
 			:name="sharedText" />
 
-		<NcAppNavigationItem
-			v-for="list in listsStore.sharedLists"
+		<NcAppNavigationItem v-for="list in listsStore.sharedLists"
 			:key="list.id"
 			:name="list.title"
 			:active="list.id === listsStore.currentListId"
@@ -45,7 +41,7 @@
 		</NcAppNavigationItem>
 
 		<div v-if="listsStore.currentListId !== null" class="sidebar-settings">
-			<button class="sidebar-settings__btn" @click="$emit('show-settings')">
+			<button class="sidebar-settings__btn" @click="$emit('showSettings')">
 				⚙ {{ settingsText }}
 			</button>
 		</div>
@@ -73,7 +69,7 @@ import { t } from '@nextcloud/l10n'
 import { useListsStore } from '../stores/lists'
 import { useItemsStore } from '../stores/items'
 
-defineEmits<{ 'show-settings': [] }>()
+defineEmits<{ showSettings: [] }>()
 
 const listsStore = useListsStore()
 const itemsStore = useItemsStore()

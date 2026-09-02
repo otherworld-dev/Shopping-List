@@ -20,6 +20,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   something a paste would not do. Thanks to rubo77 for the idea and the first
   version (#39)
 
+### Changed
+- The frontend source is now linted with Nextcloud's shared ESLint rules, and
+  `npm run lint` works again. Templates follow the shared layout, the two
+  Nextcloud packages the app imports directly are declared as dependencies,
+  and the push composable no longer logs at info level
+
 ## [1.7.0] - 2026-08-30
 
 ### Added

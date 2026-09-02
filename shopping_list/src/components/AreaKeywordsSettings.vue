@@ -5,24 +5,23 @@
 				← {{ backText }}
 			</button>
 			<h2>{{ title }}</h2>
-			<p class="area-settings__desc">{{ description }}</p>
+			<p class="area-settings__desc">
+				{{ description }}
+			</p>
 		</div>
 
 		<!-- Add new area -->
 		<div v-if="canEdit" class="area-settings__create">
-			<input
-				v-model="newAreaName"
+			<input v-model="newAreaName"
 				type="text"
 				:placeholder="newAreaPlaceholder"
 				class="area-settings__create-input"
-				@keydown.enter.prevent="onCreateArea" />
-			<input
-				v-model="newAreaColor"
+				@keydown.enter.prevent="onCreateArea">
+			<input v-model="newAreaColor"
 				type="color"
 				class="area-settings__create-color"
-				:title="colorTitle" />
-			<button
-				class="area-settings__create-btn"
+				:title="colorTitle">
+			<button class="area-settings__create-btn"
 				:disabled="!newAreaName.trim()"
 				@click="onCreateArea">
 				{{ addAreaText }}
@@ -32,11 +31,14 @@
 		<!-- Copy categories from another list -->
 		<div v-if="canEdit && otherLists.length > 0" class="area-settings__copy">
 			<select v-model="copySourceId" class="area-settings__copy-select">
-				<option :value="null">{{ copyFromPlaceholder }}</option>
-				<option v-for="l in otherLists" :key="l.id" :value="l.id">{{ l.title }}</option>
+				<option :value="null">
+					{{ copyFromPlaceholder }}
+				</option>
+				<option v-for="l in otherLists" :key="l.id" :value="l.id">
+					{{ l.title }}
+				</option>
 			</select>
-			<button
-				class="area-settings__copy-btn"
+			<button class="area-settings__copy-btn"
 				:disabled="copySourceId === null || copying"
 				@click="onCopyFrom">
 				{{ copyText }}
@@ -45,8 +47,7 @@
 
 		<!-- Add the current language's keyword pack to the default areas -->
 		<div v-if="canEdit" class="area-settings__loadlang">
-			<button
-				class="area-settings__loadlang-btn"
+			<button class="area-settings__loadlang-btn"
 				:disabled="loadingLang"
 				:title="loadLangHint"
 				@click="onLoadLanguageKeywords">
@@ -55,11 +56,10 @@
 		</div>
 
 		<div class="area-settings__search">
-			<input
-				v-model="search"
+			<input v-model="search"
 				type="text"
 				:placeholder="searchPlaceholder"
-				class="area-settings__search-input" />
+				class="area-settings__search-input">
 		</div>
 
 		<div v-for="(area, index) in areas" :key="area.id" class="area-settings__section">
@@ -67,34 +67,31 @@
 				<span class="area-settings__section-toggle">{{ openSections[area.id] ? '▾' : '▸' }}</span>
 
 				<!-- Color swatch -->
-				<input
-					v-if="canEdit"
+				<input v-if="canEdit"
 					type="color"
 					:value="area.color || '#9E9E9E'"
 					class="area-settings__color-input"
 					:title="colorTitle"
 					@click.stop
-					@input="onColorChange(area.id, ($event.target as HTMLInputElement).value)" />
+					@input="onColorChange(area.id, ($event.target as HTMLInputElement).value)">
 				<span v-else
 					class="area-settings__color-swatch"
 					:style="{ backgroundColor: area.color || '#9E9E9E' }" />
 
 				<!-- Name: inline rename or display -->
 				<template v-if="canEdit && renamingAreaId === area.id">
-					<input
-						ref="renameInputRef"
+					<input ref="renameInputRef"
 						v-model="renameValue"
 						type="text"
 						class="area-settings__rename-input"
 						@click.stop
 						@keydown.enter.prevent="saveRename(area.id)"
 						@keydown.escape.prevent="cancelRename"
-						@blur="saveRename(area.id)" />
+						@blur="saveRename(area.id)">
 				</template>
 				<template v-else>
 					<span class="area-settings__section-name" @dblclick.stop="canEdit && startRename(area)">{{ area.name }}</span>
-					<button
-						v-if="canEdit"
+					<button v-if="canEdit"
 						class="area-settings__action-btn area-settings__action-btn--rename"
 						:title="renameText"
 						@click.stop="startRename(area)">
@@ -107,15 +104,13 @@
 
 				<!-- Reorder buttons -->
 				<template v-if="canEdit">
-					<button
-						class="area-settings__action-btn"
+					<button class="area-settings__action-btn"
 						:disabled="index === 0"
 						:title="moveUpText"
 						@click.stop="moveArea(index, -1)">
 						▲
 					</button>
-					<button
-						class="area-settings__action-btn"
+					<button class="area-settings__action-btn"
 						:disabled="index === areas.length - 1"
 						:title="moveDownText"
 						@click.stop="moveArea(index, 1)">
@@ -123,8 +118,7 @@
 					</button>
 
 					<!-- Delete -->
-					<button
-						class="area-settings__action-btn area-settings__action-btn--delete"
+					<button class="area-settings__action-btn area-settings__action-btn--delete"
 						:title="deleteText"
 						@click.stop="onDeleteArea(area)">
 						✕
@@ -134,22 +128,19 @@
 
 			<div v-if="openSections[area.id]" class="area-settings__section-body">
 				<div v-if="canEdit" class="area-settings__add">
-					<input
-						v-model="newKeyword[area.id]"
+					<input v-model="newKeyword[area.id]"
 						type="text"
 						:placeholder="addPlaceholder"
 						class="area-settings__add-input"
-						@keydown.enter.prevent="onAddKeyword(area)" />
-					<button
-						class="area-settings__add-btn"
+						@keydown.enter.prevent="onAddKeyword(area)">
+					<button class="area-settings__add-btn"
 						:disabled="!newKeyword[area.id]?.trim()"
 						@click="onAddKeyword(area)">
 						+
 					</button>
 				</div>
 				<div class="area-settings__keywords">
-					<span
-						v-for="word in filteredKeywords(area)"
+					<span v-for="word in filteredKeywords(area)"
 						:key="word"
 						class="area-settings__keyword">
 						{{ word }}
@@ -207,8 +198,8 @@ const copySourceId = ref<number | null>(null)
 const copying = ref(false)
 const loadingLang = ref(false)
 
-let saveTimeout: Record<number, ReturnType<typeof setTimeout>> = {}
-let colorTimeout: Record<number, ReturnType<typeof setTimeout>> = {}
+const saveTimeout: Record<number, ReturnType<typeof setTimeout>> = {}
+const colorTimeout: Record<number, ReturnType<typeof setTimeout>> = {}
 
 const listId = computed(() => listsStore.currentListId)
 const canEdit = computed(() =>

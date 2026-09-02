@@ -2,8 +2,7 @@
 	<div class="item-editor">
 		<div class="item-editor__main">
 			<span class="item-editor__plus">+</span>
-			<input
-				ref="nameRef"
+			<input ref="nameRef"
 				v-model="name"
 				type="text"
 				enterkeyhint="send"
@@ -11,10 +10,9 @@
 				class="item-editor__input"
 				@keydown.enter.prevent="onSubmit"
 				@keydown.tab.prevent="focusArea"
-				@paste="onPaste" />
-			<div class="item-editor__area-wrapper" ref="areaWrapperRef">
-				<input
-					ref="areaRef"
+				@paste="onPaste">
+			<div ref="areaWrapperRef" class="item-editor__area-wrapper">
+				<input ref="areaRef"
 					v-model="areaSearch"
 					type="text"
 					enterkeyhint="send"
@@ -25,23 +23,20 @@
 					@keydown.tab.prevent="onAreaTab"
 					@keydown.escape="closeDropdown"
 					@keydown.down.prevent="moveHighlight(1)"
-					@keydown.up.prevent="moveHighlight(-1)" />
-				<button
-					v-if="selectedAreaId !== null"
+					@keydown.up.prevent="moveHighlight(-1)">
+				<button v-if="selectedAreaId !== null"
 					class="item-editor__area-clear"
 					tabindex="-1"
 					@click="clearArea">
 					✕
 				</button>
 				<div v-if="dropdownOpen" class="item-editor__dropdown">
-					<div
-						v-for="(area, i) in filteredAreas"
+					<div v-for="(area, i) in filteredAreas"
 						:key="area.id"
 						class="item-editor__dropdown-item"
 						:class="{ 'item-editor__dropdown-item--highlighted': i === highlightIndex }"
 						@mousedown.prevent="selectArea(area)">
-						<span
-							v-if="area.color"
+						<span v-if="area.color"
 							class="item-editor__dropdown-dot"
 							:style="{ backgroundColor: area.color }" />
 						{{ area.name }}
@@ -53,8 +48,7 @@
 			</div>
 			<NcPopover class="item-editor__help" popup-role="dialog">
 				<template #trigger>
-					<NcButton
-						variant="tertiary-no-background"
+					<NcButton variant="tertiary-no-background"
 						size="small"
 						:aria-label="helpLabel"
 						:title="helpLabel">
@@ -64,13 +58,21 @@
 					</NcButton>
 				</template>
 				<div class="input-help" tabindex="0" :aria-label="helpLabel">
-					<p class="input-help__title">{{ helpTitle }}</p>
-					<p class="input-help__intro">{{ helpIntro }}</p>
+					<p class="input-help__title">
+						{{ helpTitle }}
+					</p>
+					<p class="input-help__intro">
+						{{ helpIntro }}
+					</p>
 					<table class="input-help__examples">
 						<thead>
 							<tr>
-								<th scope="col">{{ helpTypedHeader }}</th>
-								<th scope="col">{{ helpResultHeader }}</th>
+								<th scope="col">
+									{{ helpTypedHeader }}
+								</th>
+								<th scope="col">
+									{{ helpResultHeader }}
+								</th>
 							</tr>
 						</thead>
 						<tbody>

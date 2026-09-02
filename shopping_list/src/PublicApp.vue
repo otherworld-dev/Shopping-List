@@ -9,17 +9,18 @@
 				<h2>{{ passwordTitle }}</h2>
 				<p>{{ passwordDesc }}</p>
 				<form @submit.prevent="onSubmitPassword">
-					<input
-						ref="passwordRef"
+					<input ref="passwordRef"
 						v-model="password"
 						type="password"
 						:placeholder="passwordPlaceholder"
 						class="public-app__password-input"
-						autofocus />
+						autofocus>
 					<button type="submit" class="public-app__password-btn" :disabled="!password">
 						{{ unlockText }}
 					</button>
-					<p v-if="passwordError" class="public-app__password-error">{{ passwordErrorText }}</p>
+					<p v-if="passwordError" class="public-app__password-error">
+						{{ passwordErrorText }}
+					</p>
 				</form>
 			</div>
 		</div>
@@ -29,8 +30,7 @@
 			<p>{{ notFoundDesc }}</p>
 		</div>
 
-		<PublicListView
-			v-else
+		<PublicListView v-else
 			:token="token"
 			:title="listTitle"
 			:permission="listPermission" />

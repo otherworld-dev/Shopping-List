@@ -81,8 +81,8 @@ export function pluralizeName(name: string): string {
 export function normalizeName(name: string): string {
 	const cleaned = fold(name)
 		.trim()
-		.replace(/\s*[(（][^)）]*[)）]\s*/g, ' ')  // strip parentheticals (ASCII + full-width)
-		.replace(/(?:,\s|，\s*).*$/, '')            // strip trailing notes (ASCII + full-width comma)
+		.replace(/\s*[(（][^)）]*[)）]\s*/g, ' ') // strip parentheticals (ASCII + full-width)
+		.replace(/(?:,\s|，\s*).*$/, '') // strip trailing notes (ASCII + full-width comma)
 		.replace(/\s+/g, ' ')
 		.trim()
 

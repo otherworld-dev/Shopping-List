@@ -3,22 +3,22 @@
 		<div class="share-modal">
 			<div class="share-modal__header">
 				<h3>{{ shareTitle }}</h3>
-				<button class="share-modal__close" @click="$emit('close')">✕</button>
+				<button class="share-modal__close" @click="$emit('close')">
+					✕
+				</button>
 			</div>
 
 			<div class="share-modal__search">
-				<input
-					ref="searchRef"
+				<input ref="searchRef"
 					v-model="searchQuery"
 					type="text"
 					:placeholder="searchPlaceholder"
 					class="share-modal__search-input"
-					@input="onSearchInput" />
+					@input="onSearchInput">
 			</div>
 
 			<div v-if="shareeResults.length > 0" class="share-modal__results">
-				<div
-					v-for="sharee in shareeResults"
+				<div v-for="sharee in shareeResults"
 					:key="sharee.value + sharee.type"
 					class="share-modal__result"
 					@click="onSelectSharee(sharee)">
@@ -34,9 +34,10 @@
 			</div>
 
 			<div v-if="shares.length > 0" class="share-modal__shares">
-				<div class="share-modal__section-title">{{ sharedWithText }}</div>
-				<div
-					v-for="share in shares"
+				<div class="share-modal__section-title">
+					{{ sharedWithText }}
+				</div>
+				<div v-for="share in shares"
 					:key="share.id"
 					class="share-modal__share">
 					<span class="share-modal__icon">{{ share.sharedWithType === 1 ? '👥' : '👤' }}</span>
@@ -44,16 +45,18 @@
 						<span class="share-modal__share-name">{{ share.sharedWithDisplayName }}</span>
 						<span v-if="share.sharedWithType === 1" class="share-modal__share-type">{{ groupText }}</span>
 					</div>
-					<select
-						v-if="isOwner"
+					<select v-if="isOwner"
 						class="share-modal__permission"
 						:value="share.permission"
 						@change="onPermissionChange(share.id, Number(($event.target as HTMLSelectElement).value))">
-						<option :value="0">{{ canViewText }}</option>
-						<option :value="1">{{ canEditText }}</option>
+						<option :value="0">
+							{{ canViewText }}
+						</option>
+						<option :value="1">
+							{{ canEditText }}
+						</option>
 					</select>
-					<button
-						v-if="isOwner || share.sharedWith === currentUserId"
+					<button v-if="isOwner || share.sharedWith === currentUserId"
 						class="share-modal__remove"
 						@click="onRemoveShare(share.id)">
 						✕
@@ -62,7 +65,9 @@
 			</div>
 
 			<div v-if="isOwner" class="share-modal__link-section">
-				<div class="share-modal__section-title">{{ publicLinkText }}</div>
+				<div class="share-modal__section-title">
+					{{ publicLinkText }}
+				</div>
 
 				<div v-if="!linkShare" class="share-modal__link-create">
 					<button class="share-modal__link-btn" @click="onCreateLink">
@@ -72,12 +77,11 @@
 
 				<div v-else class="share-modal__link-details">
 					<div class="share-modal__link-url-row">
-						<input
-							ref="linkUrlRef"
+						<input ref="linkUrlRef"
 							:value="linkUrl"
 							readonly
 							class="share-modal__link-url"
-							@focus="($event.target as HTMLInputElement).select()" />
+							@focus="($event.target as HTMLInputElement).select()">
 						<button class="share-modal__link-copy" @click="onCopyLink">
 							{{ copiedLink ? copiedText : copyText }}
 						</button>
@@ -86,8 +90,7 @@
 					<div class="share-modal__link-options">
 						<label class="share-modal__link-option">
 							{{ permissionLabel }}
-							<select
-								:value="linkShare.permission"
+							<select :value="linkShare.permission"
 								class="share-modal__permission"
 								@change="onLinkPermissionChange(Number(($event.target as HTMLSelectElement).value))">
 								<option :value="0">{{ canViewText }}</option>
@@ -98,19 +101,16 @@
 						<label class="share-modal__link-option">
 							{{ passwordLabel }}
 							<div class="share-modal__link-password-row">
-								<input
-									v-model="linkPassword"
+								<input v-model="linkPassword"
 									type="password"
 									:placeholder="linkShare.hasPassword ? passwordSetText : passwordPlaceholder"
-									class="share-modal__link-input" />
-								<button
-									v-if="linkPassword"
+									class="share-modal__link-input">
+								<button v-if="linkPassword"
 									class="share-modal__link-btn share-modal__link-btn--small"
 									@click="onSetPassword">
 									{{ saveText }}
 								</button>
-								<button
-									v-if="linkShare.hasPassword && !linkPassword"
+								<button v-if="linkShare.hasPassword && !linkPassword"
 									class="share-modal__link-btn share-modal__link-btn--small share-modal__link-btn--danger"
 									@click="onRemovePassword">
 									{{ removeText }}
@@ -120,12 +120,11 @@
 
 						<label class="share-modal__link-option">
 							{{ expiryLabel }}
-							<input
-								type="date"
+							<input type="date"
 								:value="linkShare.expiresAt?.split('T')[0] ?? ''"
 								:min="todayStr"
 								class="share-modal__link-input"
-								@change="onExpiryChange(($event.target as HTMLInputElement).value)" />
+								@change="onExpiryChange(($event.target as HTMLInputElement).value)">
 						</label>
 					</div>
 
