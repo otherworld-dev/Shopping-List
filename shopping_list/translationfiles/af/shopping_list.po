@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-08-29 22:50\n"
+"PO-Revision-Date: 2026-09-02 23:36\n"
 "Last-Translator: \n"
 "Language-Team: Afrikaans\n"
 "Language: af_ZA\n"
@@ -109,8 +109,60 @@ msgstr ""
 msgid "Delete \"{name}\"? Items in this area will become uncategorized."
 msgstr ""
 
-#: src/components/ItemEditor.vue src/components/PublicListView.vue
+#: src/components/PublicListView.vue
 msgid "Add an item to list..."
+msgstr ""
+
+#: src/components/ItemEditor.vue
+msgid "Add an item or paste a list..."
+msgstr ""
+
+#. Accessible name and tooltip of the round question-mark button in the add box
+#: src/components/ItemEditor.vue
+msgid "Input format help"
+msgstr ""
+
+#: src/components/ItemEditor.vue
+msgid "Type one item, or paste a whole list"
+msgstr ""
+
+#: src/components/ItemEditor.vue
+msgid "Every pasted line becomes its own item. Amounts, units and list markers are read for you."
+msgstr ""
+
+#. Column heading in the input help: the example line as the user would type it
+#: src/components/ItemEditor.vue
+msgid "You type"
+msgstr ""
+
+#. Column heading in the input help: the item the app makes from that line
+#: src/components/ItemEditor.vue
+msgid "You get"
+msgstr ""
+
+#. Example line in the input help. Translate the words, keep the "- " bullet.
+#: src/utils/inputExamples.ts
+msgid "- Apples"
+msgstr ""
+
+#. Example line in the input help. Translate the words, keep the "[ ] " checkbox and the number.
+#: src/utils/inputExamples.ts
+msgid "[ ] 3 Bananas"
+msgstr ""
+
+#. Example line in the input help. Translate the word, keep the "[x] " ticked checkbox.
+#: src/utils/inputExamples.ts
+msgid "[x] Eggs"
+msgstr ""
+
+#. Example line in the input help. Use a unit from your language's parsing pack so it is recognised.
+#: src/utils/inputExamples.ts
+msgid "2 cups flour"
+msgstr ""
+
+#. Example line in the input help. Translate the word, keep the "1. " numbering.
+#: src/utils/inputExamples.ts
+msgid "1. Milk"
 msgstr ""
 
 #: src/components/ItemEditor.vue
@@ -189,7 +241,7 @@ msgstr ""
 msgid "Uncategorized"
 msgstr ""
 
-#: src/components/ListView.vue src/components/PublicListView.vue
+#: src/components/ListView.vue src/components/PublicListView.vue src/components/ItemEditor.vue
 msgid "Checked off"
 msgstr ""
 
