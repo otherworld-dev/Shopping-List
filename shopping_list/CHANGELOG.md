@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   as written by Nextcloud Text) now imports as an item that is already checked
   off, so a checklist brought in from another app keeps which items were
   already bought. Thanks to rubo77 for the follow-up (#35)
+- The add box explains what it understands: its placeholder now invites you
+  to paste a list, and a question-mark button opens a short help panel with
+  example lines shown next to the item each one produces. The examples run
+  through the live parser in your language, so the help never promises
+  something a paste would not do. Thanks to rubo77 for the idea and the first
+  version (#39)
 
 ## [1.7.0] - 2026-08-30
 

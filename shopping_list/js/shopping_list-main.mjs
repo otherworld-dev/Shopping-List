@@ -1,7 +1,7 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-5LPRCTrr.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/index-CKkkMwf1.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/index-23fjjBcZ.chunk.css')])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-C3GEyPk4.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/index-DLEh-iBm.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/index-23fjjBcZ.chunk.css')])))=>i.map(i=>d[i]);
 const appName = "shopping_list";
 const appVersion = "1.7.0";
-import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, a as NcButton, r as resolveComponent, b as createVNode, w as withCtx, d as createTextVNode, e as renderSlot, f as defineComponent, g as createElementId, h as createCommentVNode, u as unref, i as getDefaultExportFromCjs, j as getGettextBuilder, k as getLoggerBuilder, l as defineStore, m as ref, n as computed, p as api, q as markServerFetched, s as translate, v as getLanguage, x as loadValue, y as saveValue, z as readonly, F as Fragment, A as renderList, B as createBlock, C as NcActionButton, D as NcAppNavigationItem, E as NcAppNavigationCaption, G as createBaseVNode, H as NcIconSvgWrapper, I as _export_sfc$1, J as NOOP, K as extend$1, L as isString, M as NO, O as isSymbol, P as isBuiltInDirective, Q as capitalize, R as camelize, S as EMPTY_OBJ, T as isObject, U as toHandlerKey, V as isArray, W as isOn, X as isReservedProp, Y as isVoidTag, Z as isHTMLTag, $ as isSVGTag, a0 as isMathMLTag, a1 as parseStringStyle, a2 as makeMap, a3 as generateCodeFrame, a4 as getAugmentedNamespace, a5 as runtimeDom_esmBundler, a6 as shared_esmBundler, a7 as watch, a8 as onMounted, a9 as onUnmounted, aa as normalizeClass, ab as withDirectives, ac as vModelText, ad as withKeys, ae as withModifiers, af as normalizeStyle, ag as Teleport, ah as NcActions, ai as Permission, aj as nextTick, ak as generateOcsUrl, al as cancelableClient, am as ShareType, an as generateUrl, ao as getCurrentUser, ap as NcAvatar, aq as NcLoadingIcon, ar as vModelSelect, as as Transition, at as NcAppNavigation, au as NcAppContent, av as NcContent, aw as createPinia, ax as offlinePersistPlugin, ay as createApp } from "./index-CKkkMwf1.chunk.mjs";
+import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, a as NcButton, r as resolveComponent, b as createVNode, w as withCtx, d as createTextVNode, e as renderSlot, f as defineComponent, g as createElementId, h as createCommentVNode, u as unref, i as getDefaultExportFromCjs, j as getGettextBuilder, k as getLoggerBuilder, l as defineStore, m as ref, n as computed, p as api, q as markServerFetched, s as translate, v as getLanguage, x as loadValue, y as saveValue, z as readonly, F as Fragment, A as renderList, B as createBlock, C as NcActionButton, D as NcAppNavigationItem, E as NcAppNavigationCaption, G as createBaseVNode, H as NcIconSvgWrapper, I as _export_sfc$1, J as NOOP, K as extend$1, L as isString, M as NO, O as isSymbol, P as isBuiltInDirective, Q as capitalize, R as camelize, S as EMPTY_OBJ, T as isObject, U as toHandlerKey, V as isArray, W as isOn, X as isReservedProp, Y as isVoidTag, Z as isHTMLTag, $ as isSVGTag, a0 as isMathMLTag, a1 as parseStringStyle, a2 as makeMap, a3 as generateCodeFrame, a4 as getAugmentedNamespace, a5 as runtimeDom_esmBundler, a6 as shared_esmBundler, a7 as watch, a8 as onMounted, a9 as onUnmounted, aa as normalizeClass, ab as withDirectives, ac as vModelText, ad as withKeys, ae as withModifiers, af as normalizeStyle, ag as Teleport, ah as NcActions, ai as Permission, aj as nextTick, ak as NcPopover, al as generateOcsUrl, am as cancelableClient, an as ShareType, ao as generateUrl, ap as getCurrentUser, aq as NcAvatar, ar as NcLoadingIcon, as as vModelSelect, at as Transition, au as NcAppNavigation, av as NcAppContent, aw as NcContent, ax as createPinia, ay as offlinePersistPlugin, az as createApp } from "./index-DLEh-iBm.chunk.mjs";
 const _sfc_main$b = {
   name: "NcActionCaption",
   inject: {
@@ -14841,16 +14841,16 @@ const _hoisted_4$5 = ["placeholder", "onKeydown"];
 const _hoisted_5$5 = ["onKeydown"];
 const _hoisted_6$4 = ["placeholder", "onKeydown"];
 const _hoisted_7$4 = ["onMousedown"];
-const _hoisted_8$3 = {
+const _hoisted_8$4 = {
   key: 0,
   class: "item-row__dropdown-empty"
 };
-const _hoisted_9$3 = {
+const _hoisted_9$4 = {
   key: 0,
   class: "item-row__quantity"
 };
-const _hoisted_10$3 = ["title"];
-const _hoisted_11$3 = { class: "item-row__area-name" };
+const _hoisted_10$4 = ["title"];
+const _hoisted_11$4 = { class: "item-row__area-name" };
 const _sfc_main$6 = /* @__PURE__ */ defineComponent({
   __name: "ItemRow",
   props: {
@@ -15137,12 +15137,12 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
                     createTextVNode(" " + toDisplayString(area.name), 1)
                   ], 42, _hoisted_7$4);
                 }), 128)),
-                filteredAreas.value.length === 0 ? (openBlock(), createElementBlock("div", _hoisted_8$3, toDisplayString(unref(noMatchText)), 1)) : createCommentVNode("", true)
+                filteredAreas.value.length === 0 ? (openBlock(), createElementBlock("div", _hoisted_8$4, toDisplayString(unref(noMatchText)), 1)) : createCommentVNode("", true)
               ], 4)) : createCommentVNode("", true)
             ]))
           ], 512)
         ], 64)) : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
-          item.value.quantity ? (openBlock(), createElementBlock("span", _hoisted_9$3, toDisplayString(item.value.quantity) + toDisplayString(item.value.unit ? " " + item.value.unit : ""), 1)) : createCommentVNode("", true),
+          item.value.quantity ? (openBlock(), createElementBlock("span", _hoisted_9$4, toDisplayString(item.value.quantity) + toDisplayString(item.value.unit ? " " + item.value.unit : ""), 1)) : createCommentVNode("", true),
           createBaseVNode("span", {
             class: normalizeClass(["item-row__name", { "item-row__name--checked": item.value.checked }])
           }, toDisplayString(item.value.name), 3)
@@ -15157,8 +15157,8 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
             class: "item-row__area-dot",
             style: normalizeStyle({ backgroundColor: areaColor.value })
           }, null, 4)) : createCommentVNode("", true),
-          createBaseVNode("span", _hoisted_11$3, toDisplayString(areaName.value), 1)
-        ], 8, _hoisted_10$3)) : createCommentVNode("", true),
+          createBaseVNode("span", _hoisted_11$4, toDisplayString(areaName.value), 1)
+        ], 8, _hoisted_10$4)) : createCommentVNode("", true),
         __props.canEdit && !__props.editing ? (openBlock(), createBlock(unref(NcActions), {
           key: 3,
           class: "item-row__actions"
@@ -15197,6 +15197,7 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
   }
 });
 const ItemRow = /* @__PURE__ */ _export_sfc$1(_sfc_main$6, [["__scopeId", "data-v-1e2426d9"]]);
+var mdiHelpCircleOutline = "M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z";
 function escapeRe(s) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
@@ -15301,6 +15302,12 @@ function createIngredientParser(pack) {
   }
   return { parseIngredient, stripListMarkup };
 }
+const INPUT_EXAMPLES = [
+  "- Apples",
+  "[ ] 3 Bananas",
+  "2 cups flour",
+  "1. Milk"
+];
 const _hoisted_1$4 = { class: "item-editor" };
 const _hoisted_2$4 = { class: "item-editor__main" };
 const _hoisted_3$4 = ["placeholder", "onKeydown"];
@@ -15314,6 +15321,18 @@ const _hoisted_7$3 = {
   key: 0,
   class: "item-editor__dropdown-empty"
 };
+const _hoisted_8$3 = { class: "input-help" };
+const _hoisted_9$3 = { class: "input-help__title" };
+const _hoisted_10$3 = { class: "input-help__intro" };
+const _hoisted_11$3 = { class: "input-help__examples" };
+const _hoisted_12$3 = { scope: "col" };
+const _hoisted_13$3 = { scope: "col" };
+const _hoisted_14$3 = { class: "input-help__line" };
+const _hoisted_15$3 = { class: "input-help__result" };
+const _hoisted_16$3 = {
+  key: 0,
+  class: "input-help__quantity"
+};
 const _sfc_main$5 = /* @__PURE__ */ defineComponent({
   __name: "ItemEditor",
   props: {
@@ -15324,7 +15343,12 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
     const itemsStore = useItemsStore();
     const shopAreasStore = useShopAreasStore();
     const listsStore = useListsStore();
-    const addItemLabel = translate("shopping_list", "Add an item to list...");
+    const addItemLabel = translate("shopping_list", "Add an item or paste a list...");
+    const helpLabel = translate("shopping_list", "Input format help");
+    const helpTitle = translate("shopping_list", "Type one item, or paste a whole list");
+    const helpIntro = translate("shopping_list", "Every pasted line becomes its own item. Amounts, units and list markers are read for you.");
+    const helpTypedHeader = translate("shopping_list", "You type");
+    const helpResultHeader = translate("shopping_list", "You get");
     const shopAreaPlaceholder = translate("shopping_list", "Area");
     const noMatchText = translate("shopping_list", "No match");
     const nameRef = ref(null);
@@ -15395,6 +15419,10 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
     onMounted(() => document.addEventListener("mousedown", onClickOutside));
     onUnmounted(() => document.removeEventListener("mousedown", onClickOutside));
     const { parseIngredient } = createIngredientParser(getParsingPack());
+    const inputExamples = INPUT_EXAMPLES.map((source) => {
+      const input = translate("shopping_list", source);
+      return { input, ...parseIngredient(input) };
+    });
     function detectArea(ingredientName) {
       const needle = fold(ingredientName);
       const areas = shopAreasStore.areasByList[listsStore.currentListId] ?? [];
@@ -15526,13 +15554,64 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
               }), 128)),
               filteredAreas.value.length === 0 ? (openBlock(), createElementBlock("div", _hoisted_7$3, toDisplayString(unref(noMatchText)), 1)) : createCommentVNode("", true)
             ])) : createCommentVNode("", true)
-          ], 512)
+          ], 512),
+          createVNode(unref(NcPopover), {
+            class: "item-editor__help",
+            "popup-role": "dialog"
+          }, {
+            trigger: withCtx(() => [
+              createVNode(unref(NcButton), {
+                variant: "tertiary-no-background",
+                size: "small",
+                "aria-label": unref(helpLabel),
+                title: unref(helpLabel)
+              }, {
+                icon: withCtx(() => [
+                  createVNode(unref(NcIconSvgWrapper), {
+                    path: unref(mdiHelpCircleOutline),
+                    size: 18
+                  }, null, 8, ["path"])
+                ]),
+                _: 1
+              }, 8, ["aria-label", "title"])
+            ]),
+            default: withCtx(() => [
+              createBaseVNode("div", _hoisted_8$3, [
+                createBaseVNode("p", _hoisted_9$3, toDisplayString(unref(helpTitle)), 1),
+                createBaseVNode("p", _hoisted_10$3, toDisplayString(unref(helpIntro)), 1),
+                createBaseVNode("table", _hoisted_11$3, [
+                  createBaseVNode("thead", null, [
+                    createBaseVNode("tr", null, [
+                      createBaseVNode("th", _hoisted_12$3, toDisplayString(unref(helpTypedHeader)), 1),
+                      createBaseVNode("th", _hoisted_13$3, toDisplayString(unref(helpResultHeader)), 1)
+                    ])
+                  ]),
+                  createBaseVNode("tbody", null, [
+                    (openBlock(true), createElementBlock(Fragment, null, renderList(unref(inputExamples), (example) => {
+                      return openBlock(), createElementBlock("tr", {
+                        key: example.input
+                      }, [
+                        createBaseVNode("td", null, [
+                          createBaseVNode("code", _hoisted_14$3, toDisplayString(example.input), 1)
+                        ]),
+                        createBaseVNode("td", _hoisted_15$3, [
+                          example.quantity ? (openBlock(), createElementBlock("span", _hoisted_16$3, toDisplayString(example.quantity), 1)) : createCommentVNode("", true),
+                          createBaseVNode("span", null, toDisplayString(example.name), 1)
+                        ])
+                      ]);
+                    }), 128))
+                  ])
+                ])
+              ])
+            ]),
+            _: 1
+          })
         ])
       ]);
     };
   }
 });
-const ItemEditor = /* @__PURE__ */ _export_sfc$1(_sfc_main$5, [["__scopeId", "data-v-b8445a89"]]);
+const ItemEditor = /* @__PURE__ */ _export_sfc$1(_sfc_main$5, [["__scopeId", "data-v-475f9ba9"]]);
 const _hoisted_1$3 = { class: "share-modal" };
 const _hoisted_2$3 = { class: "share-modal__header" };
 const _hoisted_3$3 = { class: "share-modal__search" };
@@ -16852,7 +16931,7 @@ function usePush() {
   if (hasPushServer) {
     try {
       __vitePreload(async () => {
-        const { listen } = await import("./index-5LPRCTrr.chunk.mjs").then((n) => n.i);
+        const { listen } = await import("./index-C3GEyPk4.chunk.mjs").then((n) => n.i);
         return { listen };
       }, true ? __vite__mapDeps([0,1,2]) : void 0, import.meta.url).then(({ listen }) => {
         listen("shopping_list_item_update", () => {
