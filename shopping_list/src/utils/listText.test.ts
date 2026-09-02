@@ -71,9 +71,9 @@ describe('formatListAsText', () => {
 		const lines = formatListAsText(items).split('\n')
 
 		expect(lines.map(l => parseIngredient(l))).toEqual([
-			{ name: 'Flour', quantity: '2 cups' },
-			{ name: 'Milk', quantity: null },
-			{ name: 'Eggs', quantity: '6' },
+			{ name: 'Flour', quantity: '2 cups', checked: false },
+			{ name: 'Milk', quantity: null, checked: false },
+			{ name: 'Eggs', quantity: '6', checked: false },
 		])
 	})
 })

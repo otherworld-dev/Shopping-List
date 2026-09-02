@@ -66,7 +66,10 @@ export const useItemsStore = defineStore('items', () => {
 	async function create(listId: number, data: Record<string, unknown>) {
 		try {
 			const existingItems = itemsByList.value[listId] ?? []
-			const match = findMatchingItem(existingItems, data.name as string)
+			// A line pasted as already checked off ("[x] Milk") records something
+			// bought, not more of something outstanding, so it never merges its
+			// quantity into an open item. It becomes its own checked-off entry.
+			const match = data.checked ? undefined : findMatchingItem(existingItems, data.name as string)
 
 			if (match) {
 				const merged = mergeQuantities(match.quantity, data.quantity as string | null)
@@ -116,7 +119,7 @@ export const useItemsStore = defineStore('items', () => {
 				quantity: (data.quantity as string) ?? '1',
 				unit: (data.unit as string) ?? null,
 				shopAreaId: (data.shopAreaId as number) ?? null,
-				checked: false,
+				checked: Boolean(data.checked),
 				checkedBy: null,
 				sortOrder: existingItems.length,
 				tags: [],

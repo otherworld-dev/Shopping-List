@@ -36,6 +36,7 @@ class ItemService {
 		?int $shopAreaId,
 		string $userId,
 		bool $areaExplicit = false,
+		bool $checked = false,
 	): Item {
 		$this->listService->assertWriteAccess($listId, $userId);
 
@@ -45,7 +46,10 @@ class ItemService {
 		$item->setQuantity($quantity ?? '1');
 		$item->setUnit($unit);
 		$item->setShopAreaId($shopAreaId);
-		$item->setChecked(false);
+		// A pasted "[x] Milk" line arrives as already bought, so it lands in the
+		// checked-off section straight away instead of among the open items.
+		$item->setChecked($checked);
+		$item->setCheckedBy($checked ? $userId : null);
 		$item->setSortOrder(0);
 		$now = new DateTime();
 		$item->setCreatedAt($now);

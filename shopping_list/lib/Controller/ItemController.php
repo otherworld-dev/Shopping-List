@@ -40,9 +40,10 @@ class ItemController extends OCSController {
 		?string $unit = null,
 		?int $shopAreaId = null,
 		bool $areaExplicit = false,
+		bool $checked = false,
 	): DataResponse {
 		try {
-			$item = $this->service->create($listId, $name, $quantity, $unit, $shopAreaId, $this->userId, $areaExplicit);
+			$item = $this->service->create($listId, $name, $quantity, $unit, $shopAreaId, $this->userId, $areaExplicit, $checked);
 			return new DataResponse($item, Http::STATUS_CREATED);
 		} catch (NotFoundException $e) {
 			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_NOT_FOUND);

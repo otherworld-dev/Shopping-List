@@ -218,6 +218,7 @@ async function onPaste(e: ClipboardEvent) {
 			quantity: parsed.quantity || '1',
 			shopAreaId: areaId,
 			areaExplicit: explicitArea,
+			checked: parsed.checked,
 		})
 	}
 
@@ -242,6 +243,7 @@ async function onSubmit() {
 		quantity: parsed.quantity || '1',
 		shopAreaId: areaId,
 		areaExplicit: explicitArea,
+		checked: parsed.checked,
 	})
 
 	name.value = ''

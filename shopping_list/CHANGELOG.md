@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- A pasted line with a ticked checkbox (`[x] Milk`, or Markdown's `- [x] Milk`
+  as written by Nextcloud Text) now imports as an item that is already checked
+  off, so a checklist brought in from another app keeps which items were
+  already bought. Thanks to rubo77 for the follow-up (#35)
+
 ## [1.7.0] - 2026-08-30
 
 ### Added

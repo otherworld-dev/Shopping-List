@@ -3,6 +3,8 @@ import type { ParsingPack } from './localePacks'
 export interface ParsedIngredient {
 	name: string
 	quantity: string | null
+	/** True when the line carried a ticked checkbox ("[x] Milk"): already bought. */
+	checked: boolean
 }
 
 function escapeRe(s: string): string {
@@ -89,30 +91,50 @@ export function createIngredientParser(pack: ParsingPack) {
 
 	/**
 	 * Normalise the list markup people paste in from notes apps and chats, so
-	 * the quantity logic below sees a plain line.
+	 * the quantity logic below sees a plain line, and report whether the line
+	 * carried a ticked checkbox so "[x] Milk" can import as already checked off.
 	 *
 	 * A bracketed number is rewritten rather than removed, because it IS the
-	 * quantity: "[ 10 ] Aepfel" becomes "10 Aepfel". A checkbox is removed and
-	 * its ticked state discarded, since there is no supported way to create an
-	 * already-checked item. An ordered-list index is removed rather than read
-	 * as a quantity, because "1." numbers the line, it does not count the item.
+	 * quantity: "[ 10 ] Aepfel" becomes "10 Aepfel". An ordered-list index is
+	 * removed rather than read as a quantity, because "1." numbers the line, it
+	 * does not count the item. Markers can nest in either order ("[x] - Milk"
+	 * from a chat, "- [x] Milk" from a Markdown checklist), so the passes
+	 * repeat until the line stops changing.
 	 */
-	function stripListMarkup(line: string): string {
+	function readListMarkup(line: string): { rest: string; checked: boolean } {
 		let out = line.trim()
-		// [ ] / [x] / [X] checkbox. Deliberately does not match "[ 10 ]".
-		out = out.replace(/^\[\s*[xX]?\s*\]\s*/, '')
-		// [ 10 ] bracketed quantity -> plain leading quantity.
-		out = out.replace(/^\[\s*(\d+(?:[.,]\d+)?)\s*\]\s*/, '$1 ')
-		// Bullet markers. The trailing space requirement keeps "-3" intact.
-		out = out.replace(/^[-*•]\s+/, '')
-		// Ordered-list index. Requires the separator and a space, so a decimal
-		// like "1.5 kg" is untouched.
-		out = out.replace(/^\d+[.)]\s+/, '')
-		return out.trim()
+		let checked = false
+		let prev = ''
+		while (prev !== out) {
+			prev = out
+			// [ ] / [x] / [X] checkbox. Deliberately does not match "[ 10 ]".
+			const box = out.match(/^\[\s*([xX]?)\s*\]\s*/)
+			if (box) {
+				if (box[1]) checked = true
+				out = out.slice(box[0].length)
+			}
+			// [ 10 ] bracketed quantity -> plain leading quantity.
+			out = out.replace(/^\[\s*(\d+(?:[.,]\d+)?)\s*\]\s*/, '$1 ')
+			// Bullet markers. The trailing space requirement keeps "-3" intact.
+			out = out.replace(/^[-*•]\s+/, '')
+			// Ordered-list index. Requires the separator and a space, so a decimal
+			// like "1.5 kg" is untouched.
+			out = out.replace(/^\d+[.)]\s+/, '')
+		}
+		return { rest: out.trim(), checked }
+	}
+
+	function stripListMarkup(line: string): string {
+		return readListMarkup(line).rest
 	}
 
 	function parseIngredient(line: string): ParsedIngredient {
-		const trimmed = stripListMarkup(line)
+		const { rest, checked } = readListMarkup(line)
+		return { ...parseLine(rest), checked }
+	}
+
+	/** The quantity and name logic, on a line whose list markup is already gone. */
+	function parseLine(trimmed: string): Omit<ParsedIngredient, 'checked'> {
 		if (!trimmed) return { name: '', quantity: null }
 
 		// Lines starting with a unit word without a number ("Pinch of salt",

@@ -1,7 +1,7 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-CGHYGu0U.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/index-BVjRn9zl.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/index-23fjjBcZ.chunk.css')])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-5LPRCTrr.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/index-CKkkMwf1.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/index-23fjjBcZ.chunk.css')])))=>i.map(i=>d[i]);
 const appName = "shopping_list";
-const appVersion = "1.6.2";
-import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, a as NcButton, r as resolveComponent, b as createVNode, w as withCtx, d as createTextVNode, e as renderSlot, f as defineComponent, g as createElementId, h as createCommentVNode, u as unref, i as getDefaultExportFromCjs, j as getGettextBuilder, k as getLoggerBuilder, l as defineStore, m as ref, n as computed, p as api, q as markServerFetched, s as translate, v as getLanguage, x as loadValue, y as saveValue, z as readonly, F as Fragment, A as renderList, B as createBlock, C as NcActionButton, D as NcAppNavigationItem, E as NcAppNavigationCaption, G as createBaseVNode, H as NcIconSvgWrapper, I as _export_sfc$1, J as NOOP, K as extend$1, L as isString, M as NO, O as isSymbol, P as isBuiltInDirective, Q as capitalize, R as camelize, S as EMPTY_OBJ, T as isObject, U as toHandlerKey, V as isArray, W as isOn, X as isReservedProp, Y as isVoidTag, Z as isHTMLTag, $ as isSVGTag, a0 as isMathMLTag, a1 as parseStringStyle, a2 as makeMap, a3 as generateCodeFrame, a4 as getAugmentedNamespace, a5 as runtimeDom_esmBundler, a6 as shared_esmBundler, a7 as watch, a8 as onMounted, a9 as onUnmounted, aa as normalizeClass, ab as withDirectives, ac as vModelText, ad as withKeys, ae as withModifiers, af as normalizeStyle, ag as Teleport, ah as NcActions, ai as Permission, aj as nextTick, ak as generateOcsUrl, al as cancelableClient, am as ShareType, an as generateUrl, ao as getCurrentUser, ap as NcAvatar, aq as NcLoadingIcon, ar as vModelSelect, as as Transition, at as NcAppNavigation, au as NcAppContent, av as NcContent, aw as createPinia, ax as offlinePersistPlugin, ay as createApp } from "./index-BVjRn9zl.chunk.mjs";
+const appVersion = "1.7.0";
+import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, a as NcButton, r as resolveComponent, b as createVNode, w as withCtx, d as createTextVNode, e as renderSlot, f as defineComponent, g as createElementId, h as createCommentVNode, u as unref, i as getDefaultExportFromCjs, j as getGettextBuilder, k as getLoggerBuilder, l as defineStore, m as ref, n as computed, p as api, q as markServerFetched, s as translate, v as getLanguage, x as loadValue, y as saveValue, z as readonly, F as Fragment, A as renderList, B as createBlock, C as NcActionButton, D as NcAppNavigationItem, E as NcAppNavigationCaption, G as createBaseVNode, H as NcIconSvgWrapper, I as _export_sfc$1, J as NOOP, K as extend$1, L as isString, M as NO, O as isSymbol, P as isBuiltInDirective, Q as capitalize, R as camelize, S as EMPTY_OBJ, T as isObject, U as toHandlerKey, V as isArray, W as isOn, X as isReservedProp, Y as isVoidTag, Z as isHTMLTag, $ as isSVGTag, a0 as isMathMLTag, a1 as parseStringStyle, a2 as makeMap, a3 as generateCodeFrame, a4 as getAugmentedNamespace, a5 as runtimeDom_esmBundler, a6 as shared_esmBundler, a7 as watch, a8 as onMounted, a9 as onUnmounted, aa as normalizeClass, ab as withDirectives, ac as vModelText, ad as withKeys, ae as withModifiers, af as normalizeStyle, ag as Teleport, ah as NcActions, ai as Permission, aj as nextTick, ak as generateOcsUrl, al as cancelableClient, am as ShareType, an as generateUrl, ao as getCurrentUser, ap as NcAvatar, aq as NcLoadingIcon, ar as vModelSelect, as as Transition, at as NcAppNavigation, au as NcAppContent, av as NcContent, aw as createPinia, ax as offlinePersistPlugin, ay as createApp } from "./index-CKkkMwf1.chunk.mjs";
 const _sfc_main$b = {
   name: "NcActionCaption",
   inject: {
@@ -1425,7 +1425,7 @@ const useItemsStore = defineStore("items", () => {
   async function create(listId, data) {
     try {
       const existingItems = itemsByList.value[listId] ?? [];
-      const match = findMatchingItem(existingItems, data.name);
+      const match = data.checked ? void 0 : findMatchingItem(existingItems, data.name);
       if (match) {
         const merged = mergeQuantities(match.quantity, data.quantity);
         const updateData = { quantity: merged };
@@ -1466,7 +1466,7 @@ const useItemsStore = defineStore("items", () => {
         quantity: data.quantity ?? "1",
         unit: data.unit ?? null,
         shopAreaId: data.shopAreaId ?? null,
-        checked: false,
+        checked: Boolean(data.checked),
         checkedBy: null,
         sortOrder: existingItems.length,
         tags: [],
@@ -15239,16 +15239,31 @@ function createIngredientParser(pack) {
     if (prepositionRe) rest = rest.replace(prepositionRe, "");
     return rest.trim();
   }
-  function stripListMarkup(line) {
+  function readListMarkup(line) {
     let out = line.trim();
-    out = out.replace(/^\[\s*[xX]?\s*\]\s*/, "");
-    out = out.replace(/^\[\s*(\d+(?:[.,]\d+)?)\s*\]\s*/, "$1 ");
-    out = out.replace(/^[-*•]\s+/, "");
-    out = out.replace(/^\d+[.)]\s+/, "");
-    return out.trim();
+    let checked = false;
+    let prev = "";
+    while (prev !== out) {
+      prev = out;
+      const box = out.match(/^\[\s*([xX]?)\s*\]\s*/);
+      if (box) {
+        if (box[1]) checked = true;
+        out = out.slice(box[0].length);
+      }
+      out = out.replace(/^\[\s*(\d+(?:[.,]\d+)?)\s*\]\s*/, "$1 ");
+      out = out.replace(/^[-*•]\s+/, "");
+      out = out.replace(/^\d+[.)]\s+/, "");
+    }
+    return { rest: out.trim(), checked };
+  }
+  function stripListMarkup(line) {
+    return readListMarkup(line).rest;
   }
   function parseIngredient(line) {
-    const trimmed = stripListMarkup(line);
+    const { rest, checked } = readListMarkup(line);
+    return { ...parseLine(rest), checked };
+  }
+  function parseLine(trimmed) {
     if (!trimmed) return { name: "", quantity: null };
     const trimmedLower = trimmed.toLowerCase();
     for (const unit of pack.leadingUnits) {
@@ -15417,7 +15432,8 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
           name: parsed.name,
           quantity: parsed.quantity || "1",
           shopAreaId: areaId,
-          areaExplicit: explicitArea
+          areaExplicit: explicitArea,
+          checked: parsed.checked
         });
       }
       name.value = "";
@@ -15436,7 +15452,8 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
         name: parsed.name,
         quantity: parsed.quantity || "1",
         shopAreaId: areaId,
-        areaExplicit: explicitArea
+        areaExplicit: explicitArea,
+        checked: parsed.checked
       });
       name.value = "";
       await nextTick();
@@ -15515,7 +15532,7 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ItemEditor = /* @__PURE__ */ _export_sfc$1(_sfc_main$5, [["__scopeId", "data-v-e329217e"]]);
+const ItemEditor = /* @__PURE__ */ _export_sfc$1(_sfc_main$5, [["__scopeId", "data-v-b8445a89"]]);
 const _hoisted_1$3 = { class: "share-modal" };
 const _hoisted_2$3 = { class: "share-modal__header" };
 const _hoisted_3$3 = { class: "share-modal__search" };
@@ -16835,7 +16852,7 @@ function usePush() {
   if (hasPushServer) {
     try {
       __vitePreload(async () => {
-        const { listen } = await import("./index-CGHYGu0U.chunk.mjs").then((n) => n.i);
+        const { listen } = await import("./index-5LPRCTrr.chunk.mjs").then((n) => n.i);
         return { listen };
       }, true ? __vite__mapDeps([0,1,2]) : void 0, import.meta.url).then(({ listen }) => {
         listen("shopping_list_item_update", () => {

@@ -1,5 +1,5 @@
 const appName = "shopping_list";
-const appVersion = "1.6.2";
+const appVersion = "1.7.0";
 const global$1 = globalThis || void 0 || self;
 /**
 * @vue/shared v3.5.32
@@ -43013,4 +43013,4 @@ export {
   saveValue as y,
   readonly as z
 };
-//# sourceMappingURL=index-BVjRn9zl.chunk.mjs.map
+//# sourceMappingURL=index-CKkkMwf1.chunk.mjs.map
