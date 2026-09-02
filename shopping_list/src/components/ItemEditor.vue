@@ -63,7 +63,7 @@
 						</template>
 					</NcButton>
 				</template>
-				<div class="input-help">
+				<div class="input-help" tabindex="0" :aria-label="helpLabel">
 					<p class="input-help__title">{{ helpTitle }}</p>
 					<p class="input-help__intro">{{ helpIntro }}</p>
 					<table class="input-help__examples">
@@ -77,8 +77,7 @@
 							<tr v-for="example in inputExamples" :key="example.input">
 								<td><code class="input-help__line">{{ example.input }}</code></td>
 								<td class="input-help__result">
-									<span v-if="example.quantity" class="input-help__quantity">{{ example.quantity }}</span>
-									<span>{{ example.name }}</span>
+									<span v-if="example.quantity" class="input-help__quantity">{{ example.quantity }}</span> <span>{{ example.name }}</span>
 								</td>
 							</tr>
 						</tbody>
@@ -453,6 +452,12 @@ async function onSubmit() {
 .input-help {
 	max-width: min(380px, calc(100vw - 32px));
 	padding: 12px 14px;
+	border-radius: var(--border-radius-large);
+}
+
+.input-help:focus-visible {
+	outline: 2px solid var(--color-primary-element);
+	outline-offset: -2px;
 }
 
 .input-help__title {

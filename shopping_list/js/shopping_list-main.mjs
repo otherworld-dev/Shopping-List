@@ -15321,7 +15321,7 @@ const _hoisted_7$3 = {
   key: 0,
   class: "item-editor__dropdown-empty"
 };
-const _hoisted_8$3 = { class: "input-help" };
+const _hoisted_8$3 = ["aria-label"];
 const _hoisted_9$3 = { class: "input-help__title" };
 const _hoisted_10$3 = { class: "input-help__intro" };
 const _hoisted_11$3 = { class: "input-help__examples" };
@@ -15490,7 +15490,7 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
     return (_ctx, _cache) => {
       return openBlock(), createElementBlock("div", _hoisted_1$4, [
         createBaseVNode("div", _hoisted_2$4, [
-          _cache[4] || (_cache[4] = createBaseVNode("span", { class: "item-editor__plus" }, "+", -1)),
+          _cache[5] || (_cache[5] = createBaseVNode("span", { class: "item-editor__plus" }, "+", -1)),
           withDirectives(createBaseVNode("input", {
             ref_key: "nameRef",
             ref: nameRef,
@@ -15576,7 +15576,11 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
               }, 8, ["aria-label", "title"])
             ]),
             default: withCtx(() => [
-              createBaseVNode("div", _hoisted_8$3, [
+              createBaseVNode("div", {
+                class: "input-help",
+                tabindex: "0",
+                "aria-label": unref(helpLabel)
+              }, [
                 createBaseVNode("p", _hoisted_9$3, toDisplayString(unref(helpTitle)), 1),
                 createBaseVNode("p", _hoisted_10$3, toDisplayString(unref(helpIntro)), 1),
                 createBaseVNode("table", _hoisted_11$3, [
@@ -15596,13 +15600,14 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
                         ]),
                         createBaseVNode("td", _hoisted_15$3, [
                           example.quantity ? (openBlock(), createElementBlock("span", _hoisted_16$3, toDisplayString(example.quantity), 1)) : createCommentVNode("", true),
+                          _cache[4] || (_cache[4] = createTextVNode()),
                           createBaseVNode("span", null, toDisplayString(example.name), 1)
                         ])
                       ]);
                     }), 128))
                   ])
                 ])
-              ])
+              ], 8, _hoisted_8$3)
             ]),
             _: 1
           })
@@ -15611,7 +15616,7 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ItemEditor = /* @__PURE__ */ _export_sfc$1(_sfc_main$5, [["__scopeId", "data-v-475f9ba9"]]);
+const ItemEditor = /* @__PURE__ */ _export_sfc$1(_sfc_main$5, [["__scopeId", "data-v-4e9ccc37"]]);
 const _hoisted_1$3 = { class: "share-modal" };
 const _hoisted_2$3 = { class: "share-modal__header" };
 const _hoisted_3$3 = { class: "share-modal__search" };
