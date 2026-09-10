@@ -7,6 +7,7 @@ namespace OCA\Shopping_List\Service;
 use DateTime;
 use OCA\Shopping_List\Db\ShoppingList;
 use OCA\Shopping_List\Db\ShoppingListMapper;
+use OCA\Shopping_List\Db\UserListPreferenceMapper;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\IDBConnection;
 use OCP\IGroupManager;
@@ -21,6 +22,7 @@ class ListService {
 		private IUserManager $userManager,
 		private IDBConnection $db,
 		private PushService $pushService,
+		private UserListPreferenceMapper $preferenceMapper,
 	) {
 	}
 
@@ -59,7 +61,17 @@ class ListService {
 			$list->setPermission($sharedListPermissions[$list->getId()] ?? 0);
 		}
 
-		return array_merge($ownedLists, $sharedLists);
+		// Load user preferences for all visible lists
+		$allLists = array_merge($ownedLists, $sharedLists);
+		$preferences = $this->preferenceMapper->findAllByUser($userId);
+
+		// Attach pin state to each list
+		foreach ($allLists as $list) {
+			$pref = $preferences[$list->getId()] ?? null;
+			$list->setIsPinned($pref?->getIsPinned());
+		}
+
+		return $allLists;
 	}
 
 	/**
