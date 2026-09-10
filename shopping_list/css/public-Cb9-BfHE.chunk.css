@@ -1,18 +1,18 @@
 
-.public-list h2[data-v-229049e7] {
+.public-list h2[data-v-63733b33] {
 	margin: 0 0 16px;
 	font-size: 1.5em;
 	font-weight: 700;
 	color: var(--color-main-text, #fff);
 }
-.public-list__card[data-v-229049e7] {
+.public-list__card[data-v-63733b33] {
 	border: 1px solid var(--color-border, rgba(255, 255, 255, 0.15));
 	border-radius: var(--border-radius-large, 10px);
 	background-color: var(--color-main-background, rgba(0, 0, 0, 0.35));
 	backdrop-filter: blur(10px);
 	overflow: hidden;
 }
-.public-list__editor[data-v-229049e7] {
+.public-list__editor[data-v-63733b33] {
 	display: flex;
 	align-items: center;
 	height: 42px;
@@ -21,7 +21,7 @@
 	border-bottom: 1px solid var(--color-border, rgba(255, 255, 255, 0.1));
 	padding: 0 4px 0 0;
 }
-.public-list__editor-plus[data-v-229049e7] {
+.public-list__editor-plus[data-v-63733b33] {
 	flex: 0 0 auto;
 	font-size: 1.2em;
 	color: var(--color-primary-element);
@@ -29,7 +29,7 @@
 	user-select: none;
 	font-weight: 700;
 }
-.public-list__editor-input[data-v-229049e7] {
+.public-list__editor-input[data-v-63733b33] {
 	flex: 1 1 0%;
 	min-width: 0;
 	height: 100%;
@@ -40,33 +40,86 @@
 	outline: none;
 	padding: 0;
 }
-.public-list__editor-input[data-v-229049e7]::placeholder {
+.public-list__editor-input[data-v-63733b33]::placeholder {
 	color: var(--color-text-maxcontrast);
 	font-style: italic;
 }
-.public-list__loading[data-v-229049e7] {
+.public-list__loading[data-v-63733b33] {
 	display: flex;
 	justify-content: center;
 	padding: 40px;
 }
-.public-list__empty[data-v-229049e7] {
+.public-list__empty[data-v-63733b33] {
 	padding: 40px;
 	text-align: center;
 	color: var(--color-text-maxcontrast);
 }
-.public-list__area-group[data-v-229049e7] {
+.public-list__area-group[data-v-63733b33] {
 	border-top: 1px solid var(--color-border);
 }
-.public-list__area-header[data-v-229049e7] {
+
+/* A native button, so it is keyboard reachable and announces its state.
+   Nextcloud styles every button globally, and its :hover, :focus and :active
+   rules are specific enough to beat a single class: they would paint the
+   left border near-black and flash the background white on press. The card
+   and group classes in front keep these rules ahead without !important. */
+.public-list__card .public-list__area-group > button.public-list__area-header[data-v-63733b33] {
 	display: flex;
 	align-items: center;
-	gap: 8px;
-	padding: 6px 16px;
+	gap: 6px;
+	width: 100%;
 	min-width: 0;
+	min-height: 0;
+	margin: 0;
+	padding: 6px 16px 6px 10px;
+	border: none;
 	border-left: 3px solid var(--color-border-dark, rgba(255, 255, 255, 0.2));
+	border-radius: 0;
 	background-color: var(--color-background-dark, rgba(0, 0, 0, 0.2));
+	color: inherit;
+	font: inherit;
+	text-align: start;
+	cursor: pointer;
 }
-.public-list__area-name[data-v-229049e7] {
+.public-list__card .public-list__area-group > button.public-list__area-header[data-v-63733b33]:is(:hover, :focus, :active) {
+	border-left-color: var(--color-border-dark, rgba(255, 255, 255, 0.2));
+	color: inherit;
+}
+.public-list__card .public-list__area-group > button.public-list__area-header[data-v-63733b33]:is(:hover, :active) {
+	background-color: var(--color-background-darker, rgba(0, 0, 0, 0.3));
+}
+.public-list__card .public-list__area-group > button.public-list__area-header[data-v-63733b33]:focus-visible {
+	outline: 2px solid var(--color-main-text, #fff);
+	outline-offset: -2px;
+}
+
+/* The icon wrapper is a 34px box by default, sized for a clickable icon on
+   its own. Here it sits inside the header button, so it shrinks to the
+   glyph. The header class in front outranks the wrapper's own rule. */
+.public-list__area-header .public-list__area-chevron[data-v-63733b33] {
+	display: flex;
+	flex: 0 0 auto;
+	align-items: center;
+	justify-content: center;
+	width: 18px;
+	height: 18px;
+	min-width: 0;
+	min-height: 0;
+	color: var(--color-text-maxcontrast);
+	transition: transform 0.15s ease;
+}
+.public-list__area-chevron--collapsed[data-v-63733b33] {
+	transform: rotate(-90deg);
+}
+.public-list__area-chevron--collapsed[data-v-63733b33]:dir(rtl) {
+	transform: rotate(90deg);
+}
+@media (prefers-reduced-motion: reduce) {
+.public-list__area-header .public-list__area-chevron[data-v-63733b33] {
+		transition: none;
+}
+}
+.public-list__area-name[data-v-63733b33] {
 	min-width: 0;
 	overflow-wrap: anywhere;
 	font-size: 0.8em;
@@ -75,21 +128,21 @@
 	letter-spacing: 0.5px;
 	color: var(--color-text-maxcontrast);
 }
-.public-list__area-name--muted[data-v-229049e7] {
+.public-list__area-name--muted[data-v-63733b33] {
 	font-weight: 500;
 }
-.public-list__area-count[data-v-229049e7] {
+.public-list__area-count[data-v-63733b33] {
 	flex: 0 0 auto;
 	color: var(--color-text-maxcontrast);
 	font-size: 0.75em;
 	opacity: 0.7;
 }
-.public-list__items[data-v-229049e7] {
+.public-list__items[data-v-63733b33] {
 	display: flex;
 	flex-direction: column;
 	min-width: 0;
 }
-.public-list__item[data-v-229049e7] {
+.public-list__item[data-v-63733b33] {
 	display: flex;
 	align-items: center;
 	min-width: 0;
@@ -99,42 +152,42 @@
 	gap: 0;
 	color: var(--color-main-text, #fff);
 }
-.public-list__item[data-v-229049e7]:last-child {
+.public-list__item[data-v-63733b33]:last-child {
 	border-bottom: none;
 }
-.public-list__check[data-v-229049e7] {
+.public-list__check[data-v-63733b33] {
 	flex: 0 0 auto;
 	display: flex;
 	align-items: center;
 	padding: 0 10px 0 4px;
 	cursor: pointer;
 }
-.public-list__check input[type="checkbox"][data-v-229049e7] {
+.public-list__check input[type="checkbox"][data-v-63733b33] {
 	width: 18px;
 	height: 18px;
 	cursor: pointer;
 	accent-color: var(--color-primary-element);
 	margin: 0;
 }
-.public-list__quantity[data-v-229049e7] {
+.public-list__quantity[data-v-63733b33] {
 	flex: 0 0 auto;
 	color: var(--color-text-maxcontrast);
 	font-size: 0.85em;
 	white-space: nowrap;
 	padding-right: 8px;
 }
-.public-list__name[data-v-229049e7] {
+.public-list__name[data-v-63733b33] {
 	flex: 1 1 0%;
 	min-width: 0;
 	font-size: 0.95em;
 	padding-right: 8px;
 	overflow-wrap: anywhere;
 }
-.public-list__name--checked[data-v-229049e7] {
+.public-list__name--checked[data-v-63733b33] {
 	text-decoration: line-through;
 	color: var(--color-text-maxcontrast);
 }
-.public-list__area[data-v-229049e7] {
+.public-list__area[data-v-63733b33] {
 	display: inline-flex;
 	align-items: center;
 	gap: 5px;
@@ -147,16 +200,16 @@
 	white-space: nowrap;
 	padding: 0 8px;
 }
-.public-list__area-dot[data-v-229049e7] {
+.public-list__area-dot[data-v-63733b33] {
 	width: 6px;
 	height: 6px;
 	border-radius: 50%;
 	flex-shrink: 0;
 }
-.public-list__bought[data-v-229049e7] {
+.public-list__bought[data-v-63733b33] {
 	margin-top: 20px;
 }
-.public-list__bought h3[data-v-229049e7] {
+.public-list__bought h3[data-v-63733b33] {
 	margin: 0 0 8px;
 	font-size: 0.9em;
 	color: var(--color-text-maxcontrast);
@@ -164,10 +217,10 @@
 	cursor: pointer;
 	user-select: none;
 }
-.public-list__toggle[data-v-229049e7] {
+.public-list__toggle[data-v-63733b33] {
 	margin-left: 4px;
 }
-.public-list__bought-card[data-v-229049e7] {
+.public-list__bought-card[data-v-63733b33] {
 	border: 1px solid var(--color-border, rgba(255, 255, 255, 0.15));
 	border-radius: var(--border-radius-large, 10px);
 	background-color: var(--color-main-background, rgba(0, 0, 0, 0.35));

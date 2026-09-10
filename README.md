@@ -18,7 +18,7 @@ Shopping List is developed by Otherworld Dev. These are the **official** links �
 ## Features
 
 - **Multiple lists** — organize by store, meal plan, or occasion
-- **Shop area grouping** — items grouped by aisle/department (Produce, Dairy, Bakery, etc.) with color-coded headers
+- **Shop area grouping** — items grouped by aisle/department (Produce, Dairy, Bakery, etc.) with color-coded headers; click a header to collapse that area, and each list remembers which areas you folded away
 - **Inline editing** — click any item to edit name or quantity in place
 - **Ingredient parsing** — paste a recipe ingredient list and items are parsed automatically (e.g. "2 cups flour" splits into quantity and name)
 - **Area auto-detection** — new items are automatically assigned to a shop area based on configurable keyword mappings

@@ -1,6 +1,6 @@
 const appName = "shopping_list";
-const appVersion = "1.7.0";
-import { f as defineComponent, s as translate, a8 as onMounted, aA as publicApi, o as openBlock, c as createElementBlock, G as createBaseVNode, t as toDisplayString, ab as withDirectives, ac as vModelText, ad as withKeys, ae as withModifiers, u as unref, h as createCommentVNode, b as createVNode, ar as NcLoadingIcon, F as Fragment, A as renderList, af as normalizeStyle, aa as normalizeClass, d as createTextVNode, m as ref, n as computed, ai as Permission, I as _export_sfc, aB as loadState, B as createBlock, ax as createPinia, ay as offlinePersistPlugin, az as createApp } from "./index-DLEh-iBm.chunk.mjs";
+const appVersion = "1.7.1";
+import { f as defineComponent, s as translate, ar as useCollapsedAreas, a8 as onMounted, aE as publicApi, o as openBlock, c as createElementBlock, G as createBaseVNode, t as toDisplayString, ab as withDirectives, ae as vModelText, ac as withKeys, ad as withModifiers, u as unref, h as createCommentVNode, b as createVNode, at as NcLoadingIcon, F as Fragment, A as renderList, af as normalizeStyle, aa as normalizeClass, au as mdiChevronDown, H as NcIconSvgWrapper, av as vShow, d as createTextVNode, m as ref, n as computed, ai as Permission, I as _export_sfc, aF as loadState, B as createBlock, aB as createPinia, aC as offlinePersistPlugin, aD as createApp } from "./useCollapsedAreas-BI7XhJEx.chunk.mjs";
 const _hoisted_1$1 = { class: "public-list" };
 const _hoisted_2$1 = { class: "public-list__card" };
 const _hoisted_3$1 = {
@@ -16,41 +16,35 @@ const _hoisted_6$1 = {
   key: 0,
   class: "public-list__empty"
 };
-const _hoisted_7$1 = { class: "public-list__area-name" };
+const _hoisted_7$1 = ["aria-expanded", "aria-controls", "onClick"];
 const _hoisted_8$1 = { class: "public-list__area-count" };
-const _hoisted_9 = {
-  key: 1,
-  class: "public-list__area-header"
-};
-const _hoisted_10 = { class: "public-list__area-name public-list__area-name--muted" };
-const _hoisted_11 = { class: "public-list__area-count" };
-const _hoisted_12 = { class: "public-list__items" };
-const _hoisted_13 = { class: "public-list__check" };
-const _hoisted_14 = ["checked", "disabled", "onChange"];
-const _hoisted_15 = {
+const _hoisted_9 = ["id"];
+const _hoisted_10 = { class: "public-list__check" };
+const _hoisted_11 = ["checked", "disabled", "onChange"];
+const _hoisted_12 = {
   key: 0,
   class: "public-list__quantity"
 };
-const _hoisted_16 = {
+const _hoisted_13 = {
   key: 1,
   class: "public-list__area"
 };
-const _hoisted_17 = {
+const _hoisted_14 = {
   key: 0,
   class: "public-list__bought"
 };
-const _hoisted_18 = { class: "public-list__toggle" };
-const _hoisted_19 = {
+const _hoisted_15 = { class: "public-list__toggle" };
+const _hoisted_16 = {
   key: 0,
   class: "public-list__bought-card"
 };
-const _hoisted_20 = { class: "public-list__check" };
-const _hoisted_21 = ["disabled", "onChange"];
-const _hoisted_22 = {
+const _hoisted_17 = { class: "public-list__check" };
+const _hoisted_18 = ["disabled", "onChange"];
+const _hoisted_19 = {
   key: 0,
   class: "public-list__quantity"
 };
-const _hoisted_23 = { class: "public-list__name public-list__name--checked" };
+const _hoisted_20 = { class: "public-list__name public-list__name--checked" };
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   __name: "PublicListView",
   props: {
@@ -99,6 +93,18 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       }
       return result;
     });
+    const { isCollapsed, toggle: toggleArea } = useCollapsedAreas(
+      () => areas.value[0]?.listId ?? items.value[0]?.listId ?? null
+    );
+    function hasHeader(group) {
+      return !!group.areaName || areaGroups.value.length > 1;
+    }
+    function isGroupCollapsed(group) {
+      return hasHeader(group) && isCollapsed(group.areaId);
+    }
+    function groupElementId(group) {
+      return `public-list-area-${group.areaId ?? "none"}`;
+    }
     function getAreaName(areaId) {
       if (areaId === null) return null;
       return areas.value.find((a) => a.id === areaId)?.name ?? null;
@@ -170,36 +176,47 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
                 key: group.areaId ?? "none",
                 class: "public-list__area-group"
               }, [
-                group.areaName ? (openBlock(), createElementBlock("div", {
+                hasHeader(group) ? (openBlock(), createElementBlock("button", {
                   key: 0,
+                  type: "button",
                   class: "public-list__area-header",
-                  style: normalizeStyle(group.areaColor ? { borderLeftColor: group.areaColor } : {})
+                  style: normalizeStyle(group.areaColor ? { borderLeftColor: group.areaColor } : {}),
+                  "aria-expanded": !isGroupCollapsed(group),
+                  "aria-controls": groupElementId(group),
+                  onClick: ($event) => unref(toggleArea)(group.areaId)
                 }, [
-                  createBaseVNode("span", _hoisted_7$1, toDisplayString(group.areaName), 1),
+                  createVNode(unref(NcIconSvgWrapper), {
+                    path: unref(mdiChevronDown),
+                    size: 18,
+                    class: normalizeClass(["public-list__area-chevron", { "public-list__area-chevron--collapsed": isGroupCollapsed(group) }])
+                  }, null, 8, ["path", "class"]),
+                  createBaseVNode("span", {
+                    class: normalizeClass(["public-list__area-name", { "public-list__area-name--muted": !group.areaName }])
+                  }, toDisplayString(group.areaName || unref(uncategorizedText)), 3),
                   createBaseVNode("span", _hoisted_8$1, toDisplayString(group.items.length), 1)
-                ], 4)) : areaGroups.value.length > 1 ? (openBlock(), createElementBlock("div", _hoisted_9, [
-                  createBaseVNode("span", _hoisted_10, toDisplayString(unref(uncategorizedText)), 1),
-                  createBaseVNode("span", _hoisted_11, toDisplayString(group.items.length), 1)
-                ])) : createCommentVNode("", true),
-                createBaseVNode("div", _hoisted_12, [
+                ], 12, _hoisted_7$1)) : createCommentVNode("", true),
+                withDirectives(createBaseVNode("div", {
+                  id: groupElementId(group),
+                  class: "public-list__items"
+                }, [
                   (openBlock(true), createElementBlock(Fragment, null, renderList(group.items, (item) => {
                     return openBlock(), createElementBlock("div", {
                       key: item.id,
                       class: normalizeClass(["public-list__item", { "public-list__item--checked": item.checked }])
                     }, [
-                      createBaseVNode("label", _hoisted_13, [
+                      createBaseVNode("label", _hoisted_10, [
                         createBaseVNode("input", {
                           type: "checkbox",
                           checked: item.checked,
                           disabled: !canEdit.value,
                           onChange: ($event) => onToggleCheck(item)
-                        }, null, 40, _hoisted_14)
+                        }, null, 40, _hoisted_11)
                       ]),
-                      item.quantity ? (openBlock(), createElementBlock("span", _hoisted_15, toDisplayString(item.quantity) + toDisplayString(item.unit ? " " + item.unit : ""), 1)) : createCommentVNode("", true),
+                      item.quantity ? (openBlock(), createElementBlock("span", _hoisted_12, toDisplayString(item.quantity) + toDisplayString(item.unit ? " " + item.unit : ""), 1)) : createCommentVNode("", true),
                       createBaseVNode("span", {
                         class: normalizeClass(["public-list__name", { "public-list__name--checked": item.checked }])
                       }, toDisplayString(item.name), 3),
-                      getAreaName(item.shopAreaId) ? (openBlock(), createElementBlock("span", _hoisted_16, [
+                      getAreaName(item.shopAreaId) ? (openBlock(), createElementBlock("span", _hoisted_13, [
                         getAreaColor(item.shopAreaId) ? (openBlock(), createElementBlock("span", {
                           key: 0,
                           class: "public-list__area-dot",
@@ -209,34 +226,36 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
                       ])) : createCommentVNode("", true)
                     ], 2);
                   }), 128))
+                ], 8, _hoisted_9), [
+                  [vShow, !isGroupCollapsed(group)]
                 ])
               ]);
             }), 128))
           ], 64))
         ]),
-        !loading.value && checkedItems.value.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_17, [
+        !loading.value && checkedItems.value.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_14, [
           createBaseVNode("h3", {
             onClick: _cache[1] || (_cache[1] = ($event) => showChecked.value = !showChecked.value)
           }, [
             createTextVNode(toDisplayString(unref(boughtText)) + " (" + toDisplayString(checkedItems.value.length) + ") ", 1),
-            createBaseVNode("span", _hoisted_18, toDisplayString(showChecked.value ? "▾" : "▸"), 1)
+            createBaseVNode("span", _hoisted_15, toDisplayString(showChecked.value ? "▾" : "▸"), 1)
           ]),
-          showChecked.value ? (openBlock(), createElementBlock("div", _hoisted_19, [
+          showChecked.value ? (openBlock(), createElementBlock("div", _hoisted_16, [
             (openBlock(true), createElementBlock(Fragment, null, renderList(checkedItems.value, (item) => {
               return openBlock(), createElementBlock("div", {
                 key: item.id,
                 class: "public-list__item public-list__item--checked"
               }, [
-                createBaseVNode("label", _hoisted_20, [
+                createBaseVNode("label", _hoisted_17, [
                   createBaseVNode("input", {
                     type: "checkbox",
                     checked: true,
                     disabled: !canEdit.value,
                     onChange: ($event) => onToggleCheck(item)
-                  }, null, 40, _hoisted_21)
+                  }, null, 40, _hoisted_18)
                 ]),
-                item.quantity ? (openBlock(), createElementBlock("span", _hoisted_22, toDisplayString(item.quantity) + toDisplayString(item.unit ? " " + item.unit : ""), 1)) : createCommentVNode("", true),
-                createBaseVNode("span", _hoisted_23, toDisplayString(item.name), 1)
+                item.quantity ? (openBlock(), createElementBlock("span", _hoisted_19, toDisplayString(item.quantity) + toDisplayString(item.unit ? " " + item.unit : ""), 1)) : createCommentVNode("", true),
+                createBaseVNode("span", _hoisted_20, toDisplayString(item.name), 1)
               ]);
             }), 128))
           ])) : createCommentVNode("", true)
@@ -245,7 +264,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const PublicListView = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-229049e7"]]);
+const PublicListView = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-63733b33"]]);
 const _hoisted_1 = { class: "public-app" };
 const _hoisted_2 = {
   key: 0,
