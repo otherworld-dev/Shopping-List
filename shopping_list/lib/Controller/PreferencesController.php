@@ -2,18 +2,19 @@
 
 declare(strict_types=1);
 
-namespace OCA\ShoppingList\Controller;
+namespace OCA\Shopping_List\Controller;
 
-use OCA\ShoppingList\Db\UserListPreferenceMapper;
-use OCA\ShoppingList\Exception\NoPermissionException;
-use OCA\ShoppingList\Service\ListService;
-use OCP\AppFramework\Controller;
+use OCA\Shopping_List\Db\UserListPreferenceMapper;
+use OCA\Shopping_List\Exception\NoPermissionException;
+use OCA\Shopping_List\Service\ListService;
+use OCP\AppFramework\OCSController;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\AppFramework\Http;
+use OCP\AppFramework\Http\Attribute\NoAdminRequired;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\IRequest;
 
-class PreferencesController extends Controller {
+class PreferencesController extends OCSController {
 	public function __construct(
 		string $appName,
 		IRequest $request,
@@ -24,9 +25,7 @@ class PreferencesController extends Controller {
 		parent::__construct($appName, $request);
 	}
 
-	/**
-	 * @NoAdminRequired
-	 */
+	#[NoAdminRequired]
 	public function update(int $id, bool $isPinned): DataResponse {
 		try {
 			// Verify user has access to the list
