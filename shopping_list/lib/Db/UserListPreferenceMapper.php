@@ -50,7 +50,7 @@ class UserListPreferenceMapper extends QBMapper {
 
 		try {
 			return $this->insert($pref);
-		} catch (\Exception $e) {
+		} catch (\OCP\DB\Exception $e) {
 			// Duplicate key - preference already exists, update it instead
 			$qb = $this->db->getQueryBuilder();
 			$qb->select('*')
@@ -64,8 +64,30 @@ class UserListPreferenceMapper extends QBMapper {
 
 			if ($row === false) {
 				// Edge case: row was deleted between insert attempt and select
-				// Retry insert (should succeed now)
-				return $this->insert($pref);
+				// Try insert again (should succeed, but handle duplicate if another thread beat us)
+				try {
+					return $this->insert($pref);
+				} catch (\OCP\DB\Exception $retryException) {
+					// Another thread inserted concurrently - fetch and update
+					$qb2 = $this->db->getQueryBuilder();
+					$qb2->select('*')
+						->from($this->getTableName())
+						->where($qb2->expr()->eq('user_id', $qb2->createNamedParameter($userId)))
+						->andWhere($qb2->expr()->eq('list_id', $qb2->createNamedParameter($listId, IQueryBuilder::PARAM_INT)));
+
+					$result2 = $qb2->executeQuery();
+					$row2 = $result2->fetch();
+					$result2->closeCursor();
+
+					if ($row2 === false) {
+						// Should never happen - throw original exception
+						throw $retryException;
+					}
+
+					$existing = UserListPreference::fromRow($row2);
+					$existing->setIsPinned($isPinned);
+					return $this->update($existing);
+				}
 			}
 
 			$existing = UserListPreference::fromRow($row);
