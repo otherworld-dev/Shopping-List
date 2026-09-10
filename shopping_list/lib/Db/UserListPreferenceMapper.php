@@ -86,13 +86,31 @@ class UserListPreferenceMapper extends QBMapper {
 
 					$existing = UserListPreference::fromRow($row2);
 					$existing->setIsPinned($isPinned);
-					return $this->update($existing);
+
+					// Manual UPDATE using composite key (can't use parent update() - no id field)
+					$updateQb = $this->db->getQueryBuilder();
+					$updateQb->update($this->getTableName())
+						->set('is_pinned', $updateQb->createNamedParameter($isPinned, IQueryBuilder::PARAM_BOOL))
+						->where($updateQb->expr()->eq('user_id', $updateQb->createNamedParameter($userId)))
+						->andWhere($updateQb->expr()->eq('list_id', $updateQb->createNamedParameter($listId, IQueryBuilder::PARAM_INT)));
+					$updateQb->executeStatement();
+
+					return $existing;
 				}
 			}
 
 			$existing = UserListPreference::fromRow($row);
 			$existing->setIsPinned($isPinned);
-			return $this->update($existing);
+
+			// Manual UPDATE using composite key (can't use parent update() - no id field)
+			$updateQb = $this->db->getQueryBuilder();
+			$updateQb->update($this->getTableName())
+				->set('is_pinned', $updateQb->createNamedParameter($isPinned, IQueryBuilder::PARAM_BOOL))
+				->where($updateQb->expr()->eq('user_id', $updateQb->createNamedParameter($userId)))
+				->andWhere($updateQb->expr()->eq('list_id', $updateQb->createNamedParameter($listId, IQueryBuilder::PARAM_INT)));
+			$updateQb->executeStatement();
+
+			return $existing;
 		}
 	}
 }
