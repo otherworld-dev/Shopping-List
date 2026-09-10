@@ -1,5 +1,5 @@
 const appName = "shopping_list";
-const appVersion = "1.7.0";
+const appVersion = "1.7.1";
 const global$1 = globalThis || void 0 || self;
 /**
 * @vue/shared v3.5.32
@@ -42759,6 +42759,9 @@ const api = {
     update: (id, title) => cancelableClient.put(url(`lists/${id}`), { title }),
     delete: (id) => cancelableClient.delete(url(`lists/${id}`))
   },
+  preferences: {
+    update: (listId, isPinned) => cancelableClient.patch(url(`lists/${listId}/preferences`), { isPinned })
+  },
   items: {
     getAll: (listId) => cancelableClient.get(url(`lists/${listId}/items`)),
     create: (listId, data) => cancelableClient.post(url(`lists/${listId}/items`), data),
@@ -42915,11 +42918,11 @@ var ShareType = /* @__PURE__ */ ((ShareType2) => {
 })(ShareType || {});
 export {
   isSVGTag as $,
-  renderList as A,
-  createBlock as B,
-  NcActionButton as C,
-  NcAppNavigationItem as D,
-  NcAppNavigationCaption as E,
+  NcAppNavigationCaption as A,
+  renderList as B,
+  createBlock as C,
+  NcActionButton as D,
+  NcAppNavigationItem as E,
   Fragment as F,
   createBaseVNode as G,
   NcIconSvgWrapper as H,
@@ -43014,4 +43017,4 @@ export {
   saveValue as y,
   readonly as z
 };
-//# sourceMappingURL=index-DLEh-iBm.chunk.mjs.map
+//# sourceMappingURL=index-Bq-te3Hm.chunk.mjs.map

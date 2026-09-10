@@ -23,6 +23,18 @@ export const useListsStore = defineStore('lists', () => {
 		lists.value.filter(l => !l.isOwner),
 	)
 
+	const pinnedLists = computed(() =>
+		lists.value.filter(l => l.isPinned === true).sort((a, b) =>
+			new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+		),
+	)
+
+	const unpinnedLists = computed(() =>
+		lists.value.filter(l => l.isPinned !== true).sort((a, b) =>
+			new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+		),
+	)
+
 	async function fetchAll() {
 		loading.value = true
 		try {
@@ -82,6 +94,32 @@ export const useListsStore = defineStore('lists', () => {
 		currentListId.value = id
 	}
 
+	async function pin(id: number) {
+		try {
+			await api.preferences.update(id, true)
+			const index = lists.value.findIndex(l => l.id === id)
+			if (index !== -1) {
+				lists.value[index].isPinned = true
+			}
+		} catch (e) {
+			showError(t('shopping_list', 'Failed to pin list'))
+			console.error(e)
+		}
+	}
+
+	async function unpin(id: number) {
+		try {
+			await api.preferences.update(id, false)
+			const index = lists.value.findIndex(l => l.id === id)
+			if (index !== -1) {
+				lists.value[index].isPinned = false
+			}
+		} catch (e) {
+			showError(t('shopping_list', 'Failed to unpin list'))
+			console.error(e)
+		}
+	}
+
 	return {
 		lists,
 		currentListId,
@@ -89,10 +127,14 @@ export const useListsStore = defineStore('lists', () => {
 		currentList,
 		ownedLists,
 		sharedLists,
+		pinnedLists,
+		unpinnedLists,
 		fetchAll,
 		create,
 		update,
 		remove,
 		selectList,
+		pin,
+		unpin,
 	}
 })

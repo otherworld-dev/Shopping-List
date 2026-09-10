@@ -1,6 +1,6 @@
 const appName = "shopping_list";
-const appVersion = "1.7.0";
-import { f as defineComponent, s as translate, a8 as onMounted, aA as publicApi, o as openBlock, c as createElementBlock, G as createBaseVNode, t as toDisplayString, ab as withDirectives, ac as vModelText, ad as withKeys, ae as withModifiers, u as unref, h as createCommentVNode, b as createVNode, ar as NcLoadingIcon, F as Fragment, A as renderList, af as normalizeStyle, aa as normalizeClass, d as createTextVNode, m as ref, n as computed, ai as Permission, I as _export_sfc, aB as loadState, B as createBlock, ax as createPinia, ay as offlinePersistPlugin, az as createApp } from "./index-DLEh-iBm.chunk.mjs";
+const appVersion = "1.7.1";
+import { f as defineComponent, s as translate, a8 as onMounted, aA as publicApi, o as openBlock, c as createElementBlock, G as createBaseVNode, t as toDisplayString, ab as withDirectives, ac as vModelText, ad as withKeys, ae as withModifiers, u as unref, h as createCommentVNode, b as createVNode, ar as NcLoadingIcon, F as Fragment, B as renderList, af as normalizeStyle, aa as normalizeClass, d as createTextVNode, m as ref, n as computed, ai as Permission, I as _export_sfc, aB as loadState, C as createBlock, ax as createPinia, ay as offlinePersistPlugin, az as createApp } from "./index-Bq-te3Hm.chunk.mjs";
 const _hoisted_1$1 = { class: "public-list" };
 const _hoisted_2$1 = { class: "public-list__card" };
 const _hoisted_3$1 = {
@@ -245,7 +245,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const PublicListView = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-229049e7"]]);
+const PublicListView = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-6cabcd4a"]]);
 const _hoisted_1 = { class: "public-app" };
 const _hoisted_2 = {
   key: 0,
@@ -363,7 +363,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const PublicApp = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-5c4ee2ce"]]);
+const PublicApp = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-0d5a0c7b"]]);
 const pinia = createPinia();
 pinia.use(offlinePersistPlugin);
 const app = createApp(PublicApp);

@@ -3,8 +3,10 @@
 		<NcAppNavigationNew :text="newListText"
 			@click="onNewList" />
 
-		<template v-if="listsStore.ownedLists.length > 0">
-			<NcAppNavigationItem v-for="list in listsStore.ownedLists"
+		<!-- Pinned lists section -->
+		<template v-if="listsStore.pinnedLists.filter(l => l.isOwner).length > 0">
+			<NcAppNavigationCaption :name="pinnedText" />
+			<NcAppNavigationItem v-for="list in listsStore.pinnedLists.filter(l => l.isOwner)"
 				:key="list.id"
 				:name="list.title"
 				:active="list.id === listsStore.currentListId"
@@ -18,6 +20,37 @@
 					</span>
 				</template>
 				<template #actions>
+					<NcActionButton @click="onUnpin(list.id)">
+						{{ unpinText }}
+					</NcActionButton>
+					<NcActionButton @click="onDelete(list.id)">
+						{{ deleteText }}
+					</NcActionButton>
+				</template>
+			</NcAppNavigationItem>
+		</template>
+
+		<!-- Others section (unpinned owned lists) -->
+		<template v-if="listsStore.unpinnedLists.filter(l => l.isOwner).length > 0">
+			<NcAppNavigationCaption v-if="listsStore.pinnedLists.filter(l => l.isOwner).length > 0"
+				:name="othersText" />
+			<NcAppNavigationItem v-for="list in listsStore.unpinnedLists.filter(l => l.isOwner)"
+				:key="list.id"
+				:name="list.title"
+				:active="list.id === listsStore.currentListId"
+				:editable="true"
+				:edit-label="renameText"
+				@click="listsStore.selectList(list.id)"
+				@update:name="(name: string) => onRename(list.id, name)">
+				<template #counter>
+					<span v-if="getUncheckedCount(list.id) > 0" class="count-bubble">
+						{{ getUncheckedCount(list.id) }}
+					</span>
+				</template>
+				<template #actions>
+					<NcActionButton @click="onPin(list.id)">
+						{{ pinText }}
+					</NcActionButton>
 					<NcActionButton @click="onDelete(list.id)">
 						{{ deleteText }}
 					</NcActionButton>
@@ -84,6 +117,10 @@ const sharedText = t('shopping_list', 'Shared with me')
 const emptyName = t('shopping_list', 'No shopping lists')
 const emptyDesc = t('shopping_list', 'Create your first shopping list to get started')
 const settingsText = t('shopping_list', 'Manage Areas')
+const pinnedText = t('shopping_list', 'Pinned')
+const othersText = t('shopping_list', 'Others')
+const pinText = t('shopping_list', 'Pin')
+const unpinText = t('shopping_list', 'Unpin')
 
 function getUncheckedCount(listId: number): number {
 	const items = itemsStore.itemsByList[listId] ?? []
@@ -102,6 +139,14 @@ async function onRename(id: number, name: string) {
 
 async function onDelete(id: number) {
 	await listsStore.remove(id)
+}
+
+async function onPin(id: number) {
+	await listsStore.pin(id)
+}
+
+async function onUnpin(id: number) {
+	await listsStore.unpin(id)
 }
 </script>
 

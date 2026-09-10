@@ -13,6 +13,10 @@ export const api = {
 		update: (id: number, title: string) => axios.put(url(`lists/${id}`), { title }),
 		delete: (id: number) => axios.delete(url(`lists/${id}`)),
 	},
+	preferences: {
+		update: (listId: number, isPinned: boolean) =>
+			axios.patch(url(`lists/${listId}/preferences`), { isPinned }),
+	},
 	items: {
 		getAll: (listId: number) => axios.get(url(`lists/${listId}/items`)),
 		create: (listId: number, data: Record<string, unknown>) =>
