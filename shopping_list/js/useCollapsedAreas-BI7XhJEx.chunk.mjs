@@ -1,5 +1,5 @@
 const appName = "shopping_list";
-const appVersion = "1.7.0";
+const appVersion = "1.7.1";
 const global$1 = globalThis || void 0 || self;
 /**
 * @vue/shared v3.5.32
@@ -11481,7 +11481,7 @@ var mdiAlertCircleOutline = "M11,15H13V17H11V15M11,7H13V13H11V7M12,2C6.47,2 2,6.
 var mdiArrowRight = "M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z";
 var mdiCalendarBlank = "M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1";
 var mdiCheck = "M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z";
-var mdiChevronDown = "M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z";
+var mdiChevronDown$1 = "M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z";
 var mdiChevronLeft = "M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z";
 var mdiChevronRight = "M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z";
 var mdiChevronUp = "M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z";
@@ -25576,7 +25576,7 @@ const _sfc_main$1$3 = /* @__PURE__ */ defineComponent({
   }
 });
 const NcAppContentDetailsToggle = /* @__PURE__ */ _export_sfc$1(_sfc_main$1$3, [["__scopeId", "data-v-a28923a1"]]);
-const browserStorage$1 = getBuilder("nextcloud").persist().build();
+const browserStorage$2 = getBuilder("nextcloud").persist().build();
 const instanceName = getCapabilities().theming?.name ?? "Nextcloud";
 const _sfc_main$j = {
   name: "NcAppContent",
@@ -25793,14 +25793,14 @@ const _sfc_main$j = {
     },
     handlePaneResize(event) {
       const listPaneSize = parseInt(event.panes[0].size, 10);
-      browserStorage$1.setItem(this.paneConfigID, JSON.stringify(listPaneSize));
+      browserStorage$2.setItem(this.paneConfigID, JSON.stringify(listPaneSize));
       this.listPaneSize = listPaneSize;
       this.$emit("resizeList", { size: listPaneSize });
       logger.debug("[NcAppContent] pane config", { listPaneSize });
     },
     // browserStorage is not reactive, we need to update this manually
     restorePaneConfig() {
-      const listPaneSize = parseInt(browserStorage$1.getItem(this.paneConfigID), 10);
+      const listPaneSize = parseInt(browserStorage$2.getItem(this.paneConfigID), 10);
       if (!isNaN(listPaneSize) && listPaneSize !== this.listPaneSize) {
         logger.debug("[NcAppContent] pane config", { listPaneSize });
         this.listPaneSize = listPaneSize;
@@ -28231,9 +28231,9 @@ const userStatus = {
     }
   }
 };
-const browserStorage = getBuilder("nextcloud").persist().build();
+const browserStorage$1 = getBuilder("nextcloud").persist().build();
 function getUserHasAvatar(userId) {
-  const flag = browserStorage.getItem("user-has-avatar." + userId);
+  const flag = browserStorage$1.getItem("user-has-avatar." + userId);
   if (typeof flag === "string") {
     return Boolean(flag);
   }
@@ -28241,7 +28241,7 @@ function getUserHasAvatar(userId) {
 }
 function setUserHasAvatar(userId, flag) {
   if (userId) {
-    browserStorage.setItem("user-has-avatar." + userId, flag);
+    browserStorage$1.setItem("user-has-avatar." + userId, flag);
   }
 }
 const _sfc_main$6 = {
@@ -41213,7 +41213,7 @@ const _hoisted_2 = {
           "arrow-down": withCtx(() => [
             createVNode(NcIconSvgWrapper, {
               inline: "",
-              path: unref(mdiChevronDown),
+              path: unref(mdiChevronDown$1),
               size: 20
             }, null, 8, ["path"])
           ]),
@@ -42902,6 +42902,8 @@ const offlinePersistPlugin = ({ store: store2 }) => {
     }
   });
 };
+var mdiChevronDown = "M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z";
+var mdiHelpCircleOutline = "M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z";
 var Permission = /* @__PURE__ */ ((Permission2) => {
   Permission2[Permission2["READ"] = 0] = "READ";
   Permission2[Permission2["WRITE"] = 1] = "WRITE";
@@ -42913,6 +42915,64 @@ var ShareType = /* @__PURE__ */ ((ShareType2) => {
   ShareType2[ShareType2["LINK"] = 3] = "LINK";
   return ShareType2;
 })(ShareType || {});
+function areaKey(areaId) {
+  return areaId === null ? "none" : String(areaId);
+}
+function storageKey(listId) {
+  return `shopping_list.collapsedAreas.${listId}`;
+}
+function loadCollapsed(storage, listId) {
+  if (!storage) return /* @__PURE__ */ new Set();
+  try {
+    const raw = storage.getItem(storageKey(listId));
+    if (!raw) return /* @__PURE__ */ new Set();
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return /* @__PURE__ */ new Set();
+    return new Set(parsed.filter((key) => typeof key === "string"));
+  } catch {
+    return /* @__PURE__ */ new Set();
+  }
+}
+function saveCollapsed(storage, listId, keys) {
+  if (!storage) return;
+  try {
+    if (keys.size === 0) {
+      storage.removeItem(storageKey(listId));
+    } else {
+      storage.setItem(storageKey(listId), JSON.stringify([...keys].sort()));
+    }
+  } catch {
+  }
+}
+function browserStorage() {
+  try {
+    return window.localStorage;
+  } catch {
+    return null;
+  }
+}
+function useCollapsedAreas(listId, storage = browserStorage()) {
+  const collapsed = /* @__PURE__ */ ref(/* @__PURE__ */ new Set());
+  watch(listId, (id) => {
+    collapsed.value = id === null ? /* @__PURE__ */ new Set() : loadCollapsed(storage, id);
+  }, { immediate: true });
+  function isCollapsed(areaId) {
+    return collapsed.value.has(areaKey(areaId));
+  }
+  function toggle(areaId) {
+    const key = areaKey(areaId);
+    const next = new Set(collapsed.value);
+    if (next.has(key)) {
+      next.delete(key);
+    } else {
+      next.add(key);
+    }
+    collapsed.value = next;
+    const id = listId();
+    if (id !== null) saveCollapsed(storage, id, next);
+  }
+  return { isCollapsed, toggle };
+}
 export {
   isSVGTag as $,
   renderList as A,
@@ -42953,41 +43013,45 @@ export {
   watch as a7,
   onMounted as a8,
   onUnmounted as a9,
-  publicApi as aA,
-  loadState as aB,
-  dist as aC,
-  requireMajor as aD,
-  requireValid as aE,
-  dist$1 as aF,
-  process$1 as aG,
-  commonjsGlobal as aH,
-  Buffer as aI,
+  NcContent as aA,
+  createPinia as aB,
+  offlinePersistPlugin as aC,
+  createApp as aD,
+  publicApi as aE,
+  loadState as aF,
+  dist as aG,
+  requireMajor as aH,
+  requireValid as aI,
+  dist$1 as aJ,
+  process$1 as aK,
+  commonjsGlobal as aL,
+  Buffer as aM,
   normalizeClass as aa,
   withDirectives as ab,
-  vModelText as ac,
-  withKeys as ad,
-  withModifiers as ae,
+  withKeys as ac,
+  withModifiers as ad,
+  vModelText as ae,
   normalizeStyle as af,
   Teleport as ag,
   NcActions as ah,
   Permission as ai,
   nextTick as aj,
   NcPopover as ak,
-  generateOcsUrl as al,
-  cancelableClient as am,
-  ShareType as an,
-  generateUrl as ao,
-  getCurrentUser as ap,
-  NcAvatar as aq,
-  NcLoadingIcon as ar,
-  vModelSelect as as,
-  Transition as at,
-  NcAppNavigation as au,
-  NcAppContent as av,
-  NcContent as aw,
-  createPinia as ax,
-  offlinePersistPlugin as ay,
-  createApp as az,
+  mdiHelpCircleOutline as al,
+  generateOcsUrl as am,
+  cancelableClient as an,
+  ShareType as ao,
+  generateUrl as ap,
+  getCurrentUser as aq,
+  useCollapsedAreas as ar,
+  NcAvatar as as,
+  NcLoadingIcon as at,
+  mdiChevronDown as au,
+  vShow as av,
+  vModelSelect as aw,
+  Transition as ax,
+  NcAppNavigation as ay,
+  NcAppContent as az,
   createVNode as b,
   createElementBlock as c,
   createTextVNode as d,
@@ -43014,4 +43078,4 @@ export {
   saveValue as y,
   readonly as z
 };
-//# sourceMappingURL=index-DLEh-iBm.chunk.mjs.map
+//# sourceMappingURL=useCollapsedAreas-BI7XhJEx.chunk.mjs.map

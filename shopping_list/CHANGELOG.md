@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- Shop areas can be collapsed. Click an area's header, or tab to it and
+  press Enter, to fold its items away. The arrow on the left shows whether
+  it is open, and the item count stays in the header, so a folded area
+  still shows how much is left in it. Your browser remembers the folded
+  areas for each list, so they stay folded after a reload. Folding is your
+  own view: it changes nothing for the others sharing the list. Public share
+  links can fold areas too. Thanks to rubo77 for the idea (#42)
+
 ## [1.7.1] - 2026-09-02
 
 ### Added

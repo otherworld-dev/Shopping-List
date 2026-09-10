@@ -1,7 +1,7 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-C3GEyPk4.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/index-DLEh-iBm.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/index-23fjjBcZ.chunk.css')])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-CWkT3IJr.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/useCollapsedAreas-BI7XhJEx.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/useCollapsedAreas-23fjjBcZ.chunk.css')])))=>i.map(i=>d[i]);
 const appName = "shopping_list";
-const appVersion = "1.7.0";
-import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, a as NcButton, r as resolveComponent, b as createVNode, w as withCtx, d as createTextVNode, e as renderSlot, f as defineComponent, g as createElementId, h as createCommentVNode, u as unref, i as getDefaultExportFromCjs, j as getGettextBuilder, k as getLoggerBuilder, l as defineStore, m as ref, n as computed, p as api, q as markServerFetched, s as translate, v as getLanguage, x as loadValue, y as saveValue, z as readonly, F as Fragment, A as renderList, B as createBlock, C as NcActionButton, D as NcAppNavigationItem, E as NcAppNavigationCaption, G as createBaseVNode, H as NcIconSvgWrapper, I as _export_sfc$1, J as NOOP, K as extend$1, L as isString, M as NO, O as isSymbol, P as isBuiltInDirective, Q as capitalize, R as camelize, S as EMPTY_OBJ, T as isObject, U as toHandlerKey, V as isArray, W as isOn, X as isReservedProp, Y as isVoidTag, Z as isHTMLTag, $ as isSVGTag, a0 as isMathMLTag, a1 as parseStringStyle, a2 as makeMap, a3 as generateCodeFrame, a4 as getAugmentedNamespace, a5 as runtimeDom_esmBundler, a6 as shared_esmBundler, a7 as watch, a8 as onMounted, a9 as onUnmounted, aa as normalizeClass, ab as withDirectives, ac as vModelText, ad as withKeys, ae as withModifiers, af as normalizeStyle, ag as Teleport, ah as NcActions, ai as Permission, aj as nextTick, ak as NcPopover, al as generateOcsUrl, am as cancelableClient, an as ShareType, ao as generateUrl, ap as getCurrentUser, aq as NcAvatar, ar as NcLoadingIcon, as as vModelSelect, at as Transition, au as NcAppNavigation, av as NcAppContent, aw as NcContent, ax as createPinia, ay as offlinePersistPlugin, az as createApp } from "./index-DLEh-iBm.chunk.mjs";
+const appVersion = "1.7.1";
+import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, a as NcButton, r as resolveComponent, b as createVNode, w as withCtx, d as createTextVNode, e as renderSlot, f as defineComponent, g as createElementId, h as createCommentVNode, u as unref, i as getDefaultExportFromCjs, j as getGettextBuilder, k as getLoggerBuilder, l as defineStore, m as ref, n as computed, p as api, q as markServerFetched, s as translate, v as getLanguage, x as loadValue, y as saveValue, z as readonly, F as Fragment, A as renderList, B as createBlock, C as NcActionButton, D as NcAppNavigationItem, E as NcAppNavigationCaption, G as createBaseVNode, H as NcIconSvgWrapper, I as _export_sfc$1, J as NOOP, K as extend$1, L as isString, M as NO, O as isSymbol, P as isBuiltInDirective, Q as capitalize, R as camelize, S as EMPTY_OBJ, T as isObject, U as toHandlerKey, V as isArray, W as isOn, X as isReservedProp, Y as isVoidTag, Z as isHTMLTag, $ as isSVGTag, a0 as isMathMLTag, a1 as parseStringStyle, a2 as makeMap, a3 as generateCodeFrame, a4 as getAugmentedNamespace, a5 as runtimeDom_esmBundler, a6 as shared_esmBundler, a7 as watch, a8 as onMounted, a9 as onUnmounted, aa as normalizeClass, ab as withDirectives, ac as withKeys, ad as withModifiers, ae as vModelText, af as normalizeStyle, ag as Teleport, ah as NcActions, ai as Permission, aj as nextTick, ak as NcPopover, al as mdiHelpCircleOutline, am as generateOcsUrl, an as cancelableClient, ao as ShareType, ap as generateUrl, aq as getCurrentUser, ar as useCollapsedAreas, as as NcAvatar, at as NcLoadingIcon, au as mdiChevronDown, av as vShow, aw as vModelSelect, ax as Transition, ay as NcAppNavigation, az as NcAppContent, aA as NcContent, aB as createPinia, aC as offlinePersistPlugin, aD as createApp } from "./useCollapsedAreas-BI7XhJEx.chunk.mjs";
 const _sfc_main$b = {
   name: "NcActionCaption",
   inject: {
@@ -15197,7 +15197,6 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
   }
 });
 const ItemRow = /* @__PURE__ */ _export_sfc$1(_sfc_main$6, [["__scopeId", "data-v-43a482d9"]]);
-var mdiHelpCircleOutline = "M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z";
 function escapeRe(s) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
@@ -15329,12 +15328,12 @@ const _hoisted_11$3 = { class: "input-help__examples" };
 const _hoisted_12$3 = { scope: "col" };
 const _hoisted_13$3 = { scope: "col" };
 const _hoisted_14$3 = { class: "input-help__line" };
-const _hoisted_15$3 = {
+const _hoisted_15$2 = {
   key: 0,
   class: "input-help__quantity"
 };
-const _hoisted_16$3 = { class: "input-help__name" };
-const _hoisted_17$3 = {
+const _hoisted_16$2 = { class: "input-help__name" };
+const _hoisted_17$2 = {
   key: 1,
   class: "input-help__checked"
 };
@@ -15607,11 +15606,11 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
                         createBaseVNode("td", {
                           class: normalizeClass(["input-help__result", { "input-help__result--checked": example.checked }])
                         }, [
-                          example.quantity ? (openBlock(), createElementBlock("span", _hoisted_15$3, toDisplayString(example.quantity), 1)) : createCommentVNode("", true),
+                          example.quantity ? (openBlock(), createElementBlock("span", _hoisted_15$2, toDisplayString(example.quantity), 1)) : createCommentVNode("", true),
                           _cache[4] || (_cache[4] = createTextVNode()),
-                          createBaseVNode("span", _hoisted_16$3, toDisplayString(example.name), 1),
+                          createBaseVNode("span", _hoisted_16$2, toDisplayString(example.name), 1),
                           _cache[5] || (_cache[5] = createTextVNode()),
-                          example.checked ? (openBlock(), createElementBlock("span", _hoisted_17$3, toDisplayString(unref(checkedOffText)), 1)) : createCommentVNode("", true)
+                          example.checked ? (openBlock(), createElementBlock("span", _hoisted_17$2, toDisplayString(unref(checkedOffText)), 1)) : createCommentVNode("", true)
                         ], 2)
                       ]);
                     }), 128))
@@ -15653,9 +15652,9 @@ const _hoisted_12$2 = {
 };
 const _hoisted_13$2 = { class: "share-modal__section-title" };
 const _hoisted_14$2 = { class: "share-modal__icon" };
-const _hoisted_15$2 = { class: "share-modal__share-info" };
-const _hoisted_16$2 = { class: "share-modal__share-name" };
-const _hoisted_17$2 = {
+const _hoisted_15$1 = { class: "share-modal__share-info" };
+const _hoisted_16$1 = { class: "share-modal__share-name" };
+const _hoisted_17$1 = {
   key: 0,
   class: "share-modal__share-type"
 };
@@ -15888,9 +15887,9 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
                 class: "share-modal__share"
               }, [
                 createBaseVNode("span", _hoisted_14$2, toDisplayString(share.sharedWithType === 1 ? "👥" : "👤"), 1),
-                createBaseVNode("div", _hoisted_15$2, [
-                  createBaseVNode("span", _hoisted_16$2, toDisplayString(share.sharedWithDisplayName), 1),
-                  share.sharedWithType === 1 ? (openBlock(), createElementBlock("span", _hoisted_17$2, toDisplayString(unref(groupText)), 1)) : createCommentVNode("", true)
+                createBaseVNode("div", _hoisted_15$1, [
+                  createBaseVNode("span", _hoisted_16$1, toDisplayString(share.sharedWithDisplayName), 1),
+                  share.sharedWithType === 1 ? (openBlock(), createElementBlock("span", _hoisted_17$1, toDisplayString(unref(groupText)), 1)) : createCommentVNode("", true)
                 ]),
                 __props.isOwner ? (openBlock(), createElementBlock("select", {
                   key: 0,
@@ -16017,25 +16016,19 @@ const _hoisted_7$1 = {
   key: 0,
   class: "list-view__empty"
 };
-const _hoisted_8$1 = { class: "list-view__area-name" };
+const _hoisted_8$1 = ["aria-expanded", "aria-controls", "onClick"];
 const _hoisted_9$1 = { class: "list-view__area-count" };
 const _hoisted_10$1 = {
-  key: 1,
-  class: "list-view__area-header"
-};
-const _hoisted_11$1 = { class: "list-view__area-name list-view__area-name--muted" };
-const _hoisted_12$1 = { class: "list-view__area-count" };
-const _hoisted_13$1 = {
   key: 0,
   class: "list-view__bought"
 };
-const _hoisted_14$1 = { class: "list-view__bought-header" };
-const _hoisted_15$1 = { class: "list-view__toggle" };
-const _hoisted_16$1 = {
+const _hoisted_11$1 = { class: "list-view__bought-header" };
+const _hoisted_12$1 = { class: "list-view__toggle" };
+const _hoisted_13$1 = {
   key: 0,
   class: "list-view__bought-actions"
 };
-const _hoisted_17$1 = {
+const _hoisted_14$1 = {
   key: 0,
   class: "list-view__bought-card"
 };
@@ -16116,6 +16109,16 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
       () => listsStore.currentList !== null && listsStore.currentList.permission >= Permission.WRITE
     );
     const isDragging = ref(false);
+    const { isCollapsed, toggle: toggleArea } = useCollapsedAreas(() => listsStore.currentListId);
+    function hasHeader(group) {
+      return !!group.areaName || localGroups.value.length > 1;
+    }
+    function isGroupCollapsed(group) {
+      return hasHeader(group) && isCollapsed(group.areaId);
+    }
+    function groupElementId(group) {
+      return `list-view-area-${group.areaId ?? "none"}`;
+    }
     const areaGroups = computed(() => {
       const unchecked = itemsStore.uncheckedItems;
       if (unchecked.length === 0) return [];
@@ -16264,18 +16267,27 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
                 key: group.areaId ?? "none",
                 class: "list-view__area-group"
               }, [
-                group.areaName ? (openBlock(), createElementBlock("div", {
+                hasHeader(group) ? (openBlock(), createElementBlock("button", {
                   key: 0,
+                  type: "button",
                   class: "list-view__area-header",
-                  style: normalizeStyle(group.areaColor ? { borderLeftColor: group.areaColor } : {})
+                  style: normalizeStyle(group.areaColor ? { borderLeftColor: group.areaColor } : {}),
+                  "aria-expanded": !isGroupCollapsed(group),
+                  "aria-controls": groupElementId(group),
+                  onClick: ($event) => unref(toggleArea)(group.areaId)
                 }, [
-                  createBaseVNode("span", _hoisted_8$1, toDisplayString(group.areaName), 1),
+                  createVNode(unref(NcIconSvgWrapper), {
+                    path: unref(mdiChevronDown),
+                    size: 18,
+                    class: normalizeClass(["list-view__area-chevron", { "list-view__area-chevron--collapsed": isGroupCollapsed(group) }])
+                  }, null, 8, ["path", "class"]),
+                  createBaseVNode("span", {
+                    class: normalizeClass(["list-view__area-name", { "list-view__area-name--muted": !group.areaName }])
+                  }, toDisplayString(group.areaName || unref(uncategorizedText)), 3),
                   createBaseVNode("span", _hoisted_9$1, toDisplayString(group.items.length), 1)
-                ], 4)) : localGroups.value.length > 1 ? (openBlock(), createElementBlock("div", _hoisted_10$1, [
-                  createBaseVNode("span", _hoisted_11$1, toDisplayString(unref(uncategorizedText)), 1),
-                  createBaseVNode("span", _hoisted_12$1, toDisplayString(group.items.length), 1)
-                ])) : createCommentVNode("", true),
-                createVNode(unref(draggable), {
+                ], 12, _hoisted_8$1)) : createCommentVNode("", true),
+                withDirectives(createVNode(unref(draggable), {
+                  id: groupElementId(group),
                   modelValue: localGroups.value[groupIndex].items,
                   "onUpdate:modelValue": ($event) => localGroups.value[groupIndex].items = $event,
                   "item-key": "id",
@@ -16299,20 +16311,22 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
                     }, null, 8, ["item-id", "list-id", "can-edit", "editing"])
                   ]),
                   _: 1
-                }, 8, ["modelValue", "onUpdate:modelValue", "disabled"])
+                }, 8, ["id", "modelValue", "onUpdate:modelValue", "disabled"]), [
+                  [vShow, !isGroupCollapsed(group)]
+                ])
               ]);
             }), 128))
           ], 64))
         ]),
-        !unref(itemsStore).loading && unref(itemsStore).checkedItems.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_13$1, [
-          createBaseVNode("div", _hoisted_14$1, [
+        !unref(itemsStore).loading && unref(itemsStore).checkedItems.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_10$1, [
+          createBaseVNode("div", _hoisted_11$1, [
             createBaseVNode("h3", {
               onClick: _cache[4] || (_cache[4] = ($event) => showChecked.value = !showChecked.value)
             }, [
               createTextVNode(toDisplayString(unref(boughtText)) + " (" + toDisplayString(unref(itemsStore).checkedItems.length) + ") ", 1),
-              createBaseVNode("span", _hoisted_15$1, toDisplayString(showChecked.value ? "▾" : "▸"), 1)
+              createBaseVNode("span", _hoisted_12$1, toDisplayString(showChecked.value ? "▾" : "▸"), 1)
             ]),
-            canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_16$1, [
+            canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_13$1, [
               createBaseVNode("button", {
                 class: "list-view__action-btn",
                 onClick: onUncheckAll
@@ -16323,7 +16337,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
               }, toDisplayString(unref(clearCheckedText)), 1)
             ])) : createCommentVNode("", true)
           ]),
-          showChecked.value ? (openBlock(), createElementBlock("div", _hoisted_17$1, [
+          showChecked.value ? (openBlock(), createElementBlock("div", _hoisted_14$1, [
             (openBlock(true), createElementBlock(Fragment, null, renderList(checkedItemIds.value, (itemId) => {
               return openBlock(), createBlock(ItemRow, {
                 key: itemId,
@@ -16346,7 +16360,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ListView = /* @__PURE__ */ _export_sfc$1(_sfc_main$3, [["__scopeId", "data-v-0af7deef"]]);
+const ListView = /* @__PURE__ */ _export_sfc$1(_sfc_main$3, [["__scopeId", "data-v-5f61c89f"]]);
 const _hoisted_1$1 = { class: "area-settings" };
 const _hoisted_2$1 = { class: "area-settings__header" };
 const _hoisted_3$1 = { class: "area-settings__desc" };
@@ -16947,7 +16961,7 @@ function usePush() {
   if (hasPushServer) {
     try {
       __vitePreload(async () => {
-        const { listen } = await import("./index-C3GEyPk4.chunk.mjs").then((n) => n.i);
+        const { listen } = await import("./index-CWkT3IJr.chunk.mjs").then((n) => n.i);
         return { listen };
       }, true ? __vite__mapDeps([0,1,2]) : void 0, import.meta.url).then(({ listen }) => {
         listen("shopping_list_item_update", () => {
