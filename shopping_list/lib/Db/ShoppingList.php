@@ -29,6 +29,9 @@ class ShoppingList extends Entity implements JsonSerializable {
 	/** @var bool Whether the current user owns this list */
 	private bool $isOwner = true;
 
+	/** @var bool|null Per-user pin state (null = no preference row) */
+	private ?bool $isPinned = null;
+
 	public function __construct() {
 		$this->addType('id', 'integer');
 		$this->addType('createdAt', 'datetime');
@@ -51,6 +54,14 @@ class ShoppingList extends Entity implements JsonSerializable {
 		return $this->isOwner;
 	}
 
+	public function setIsPinned(?bool $isPinned): void {
+		$this->isPinned = $isPinned;
+	}
+
+	public function getIsPinned(): ?bool {
+		return $this->isPinned;
+	}
+
 	public function jsonSerialize(): array {
 		return [
 			'id' => $this->id,
@@ -58,6 +69,7 @@ class ShoppingList extends Entity implements JsonSerializable {
 			'title' => $this->title,
 			'permission' => $this->permission,
 			'isOwner' => $this->isOwner,
+			'isPinned' => $this->isPinned,
 			'createdAt' => $this->createdAt?->format(\DateTimeInterface::ATOM),
 			'updatedAt' => $this->updatedAt?->format(\DateTimeInterface::ATOM),
 		];
