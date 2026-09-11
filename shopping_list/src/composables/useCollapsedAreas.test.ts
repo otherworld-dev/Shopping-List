@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { nextTick, ref } from 'vue'
 import { useCollapsedAreas } from './useCollapsedAreas'
 import { saveCollapsed } from '../utils/collapsedAreas'
-import type { StorageLike } from '../utils/collapsedAreas'
+import type { StorageLike } from '../utils/browserStorage'
 
 function memoryStorage(): StorageLike {
 	const data: Record<string, string> = {}

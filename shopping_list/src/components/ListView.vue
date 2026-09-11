@@ -27,6 +27,15 @@
 						@click="onCopyAsText">
 						{{ copyAsTextText }}
 					</NcActionButton>
+					<NcActionSeparator />
+					<NcActionCaption :name="sortCheckedText" />
+					<NcActionRadio v-for="option in boughtSortOptions"
+						:key="option.value"
+						v-model="boughtSort"
+						name="shopping-list-bought-sort"
+						:value="option.value">
+						{{ option.label }}
+					</NcActionRadio>
 				</NcActions>
 			</div>
 		</div>
@@ -131,14 +140,17 @@
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import {
 	NcActionButton,
+	NcActionCaption,
+	NcActionRadio,
 	NcActions,
+	NcActionSeparator,
 	NcAvatar,
 	NcEmptyContent,
 	NcIconSvgWrapper,
 	NcLoadingIcon,
 } from '@nextcloud/vue'
 import { showError, showSuccess } from '@nextcloud/dialogs'
-import { t } from '@nextcloud/l10n'
+import { getLanguage, t } from '@nextcloud/l10n'
 import { getCurrentUser } from '@nextcloud/auth'
 import { mdiChevronDown } from '@mdi/js'
 import { useListsStore } from '../stores/lists'
@@ -152,6 +164,9 @@ import ItemRow from './ItemRow.vue'
 import ItemEditor from './ItemEditor.vue'
 import ShareDialog from './ShareDialog.vue'
 import { formatListAsText } from '../utils/listText'
+import { browserStorage } from '../utils/browserStorage'
+import { loadBoughtSort, saveBoughtSort, sortBought } from '../utils/boughtSort'
+import type { BoughtSort } from '../utils/boughtSort'
 import { useCollapsedAreas } from '../composables/useCollapsedAreas'
 
 const listsStore = useListsStore()
@@ -216,6 +231,25 @@ const uncategorizedText = t('shopping_list', 'Uncategorized')
 const boughtText = t('shopping_list', 'Checked off')
 const uncheckAllText = t('shopping_list', 'Restore all')
 const clearCheckedText = t('shopping_list', 'Delete all')
+const sortCheckedText = t('shopping_list', 'Sort checked-off items')
+
+const boughtSortOptions: { value: BoughtSort, label: string }[] = [
+	{ value: 'list', label: t('shopping_list', 'List order') },
+	{ value: 'alpha', label: t('shopping_list', 'Alphabetical') },
+	{ value: 'recent', label: t('shopping_list', 'Most recent first') },
+]
+
+// How the checked-off section is ordered. One choice for all lists, kept in
+// this browser only.
+const storage = browserStorage()
+const savedBoughtSort = ref<BoughtSort>(loadBoughtSort(storage))
+const boughtSort = computed({
+	get: () => savedBoughtSort.value,
+	set: (sort: BoughtSort) => {
+		savedBoughtSort.value = sort
+		saveBoughtSort(storage, sort)
+	},
+})
 
 // Copies the outstanding items as plain text, in the format the add box
 // accepts when pasted, so a list round trips into a chat message and back.
@@ -352,8 +386,10 @@ async function onDragEnd() {
 	])
 }
 
+const language = getLanguage()
+
 const checkedItemIds = computed(() =>
-	itemsStore.checkedItems.map(i => i.id),
+	sortBought(itemsStore.checkedItems, boughtSort.value, language).map(i => i.id),
 )
 
 const cartIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.25,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.59 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z" fill="currentColor"/></svg>'

@@ -254,6 +254,26 @@ msgstr ""
 msgid "Delete all"
 msgstr ""
 
+#. Heading in the list's menu, above the three ways to order the checked-off section.
+#: src/components/ListView.vue
+msgid "Sort checked-off items"
+msgstr ""
+
+#. Sort option: keep checked-off items in the order they had on the list.
+#: src/components/ListView.vue
+msgid "List order"
+msgstr ""
+
+#. Sort option: checked-off items by name, A to Z.
+#: src/components/ListView.vue
+msgid "Alphabetical"
+msgstr ""
+
+#. Sort option: the item checked off last comes first.
+#: src/components/ListView.vue
+msgid "Most recent first"
+msgstr ""
+
 #: src/components/ShareDialog.vue
 msgid "Share list"
 msgstr ""

@@ -15,6 +15,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   areas for each list, so they stay folded after a reload. Folding is your
   own view: it changes nothing for the others sharing the list. Public share
   links can fold areas too. Thanks to rubo77 for the idea (#42)
+- The checked-off items can be sorted. The list's menu (the three dots) now
+  has "Sort checked-off items" with three choices: List order, the order they
+  had on the list, as before; Alphabetical, by name in your language; and
+  Most recent first, so the item you just ticked is on top. Your browser
+  remembers the choice for all your lists, and it changes nothing for the
+  others sharing a list. Thanks to rubo77 for the idea (#43)
 
 ## [1.7.1] - 2026-09-02
 

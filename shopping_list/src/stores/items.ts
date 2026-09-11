@@ -207,9 +207,12 @@ export const useItemsStore = defineStore('items', () => {
 		const item = items.find(i => i.id === id)
 		if (!item) return
 
-		// Optimistic update
+		// Optimistic update. The server stamps updatedAt on a check too; doing
+		// it here as well lets "Recently bought" put the item on top at once.
 		const previousState = item.checked
+		const previousUpdatedAt = item.updatedAt
 		item.checked = !item.checked
+		item.updatedAt = new Date().toISOString()
 
 		if (!isOnline.value) {
 			await enqueue({ type: 'item.check', listId, itemId: id, payload: { checked: item.checked } })
@@ -223,6 +226,7 @@ export const useItemsStore = defineStore('items', () => {
 				await enqueue({ type: 'item.check', listId, itemId: id, payload: { checked: item.checked } })
 			} else {
 				item.checked = previousState
+				item.updatedAt = previousUpdatedAt
 				showError(t('shopping_list', 'Failed to update item'))
 				console.error(e)
 			}

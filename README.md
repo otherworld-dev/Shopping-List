@@ -31,7 +31,7 @@ Shopping List is developed by Otherworld Dev. These are the **official** links �
 - **Auto-pluralization** — item names pluralize automatically when quantity goes above 1
 - **Offline mode** — data persists locally so the app works without network; changes queue and sync automatically when connectivity returns
 - **Real-time sync** — changes from other users appear via Nextcloud's notify_push or polling fallback
-- **Check off items** — tick items as you shop; checked items collapse into a separate section
+- **Check off items** — tick items as you shop; checked items collapse into a separate section, sorted by list order, alphabetically, or most recent first
 - **Bulk actions** — restore all checked items or delete them in one click
 
 ## Requirements
