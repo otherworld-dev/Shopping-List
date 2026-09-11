@@ -17,7 +17,7 @@ Shopping List is developed by Otherworld Dev. These are the **official** links �
 
 ## Features
 
-- **Multiple lists** — organize by store, meal plan, or occasion
+- **Multiple lists** — organize by store, meal plan, or occasion; pin the ones you use most to the top of the sidebar
 - **Shop area grouping** — items grouped by aisle/department (Produce, Dairy, Bakery, etc.) with color-coded headers; click a header to collapse that area, and each list remembers which areas you folded away. Or sort A to Z, within each area or as one list
 - **Inline editing** — click any item to edit name or quantity in place
 - **Ingredient parsing** — paste a recipe ingredient list and items are parsed automatically (e.g. "2 cups flour" splits into quantity and name)

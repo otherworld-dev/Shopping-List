@@ -3,8 +3,10 @@
 		<NcAppNavigationNew :text="newListText"
 			@click="onNewList" />
 
-		<template v-if="listsStore.ownedLists.length > 0">
-			<NcAppNavigationItem v-for="list in listsStore.ownedLists"
+		<template v-for="section in ownedSections" :key="section.key">
+			<NcAppNavigationCaption v-if="section.caption"
+				:name="section.caption" />
+			<NcAppNavigationItem v-for="list in section.lists"
 				:key="list.id"
 				:name="list.title"
 				:active="list.id === listsStore.currentListId"
@@ -18,6 +20,9 @@
 					</span>
 				</template>
 				<template #actions>
+					<NcActionButton @click="listsStore.setPinned(list.id, !list.isPinned)">
+						{{ list.isPinned ? unpinText : pinText }}
+					</NcActionButton>
 					<NcActionButton @click="onDelete(list.id)">
 						{{ deleteText }}
 					</NcActionButton>
@@ -66,6 +71,7 @@ import {
 	NcIconSvgWrapper,
 } from '@nextcloud/vue'
 import { t } from '@nextcloud/l10n'
+import { computed } from 'vue'
 import { useListsStore } from '../stores/lists'
 import { useItemsStore } from '../stores/items'
 
@@ -84,6 +90,22 @@ const sharedText = t('shopping_list', 'Shared with me')
 const emptyName = t('shopping_list', 'No shopping lists')
 const emptyDesc = t('shopping_list', 'Create your first shopping list to get started')
 const settingsText = t('shopping_list', 'Manage Areas')
+const pinnedText = t('shopping_list', 'Pinned')
+const othersText = t('shopping_list', 'Others')
+const pinText = t('shopping_list', 'Pin list')
+const unpinText = t('shopping_list', 'Unpin list')
+
+// Your own lists, split into Pinned and Others once something is pinned.
+// With nothing pinned they show as one uncaptioned group, as before.
+const ownedSections = computed(() => {
+	if (listsStore.pinnedLists.length === 0) {
+		return [{ key: 'owned', caption: '', lists: listsStore.ownedLists }]
+	}
+	return [
+		{ key: 'pinned', caption: pinnedText, lists: listsStore.pinnedLists },
+		{ key: 'others', caption: othersText, lists: listsStore.unpinnedLists },
+	].filter(section => section.lists.length > 0)
+})
 
 function getUncheckedCount(listId: number): number {
 	const items = itemsStore.itemsByList[listId] ?? []

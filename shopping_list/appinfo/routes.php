@@ -14,6 +14,7 @@ return [
 		['name' => 'list#create', 'url' => '/api/v1/lists', 'verb' => 'POST'],
 		['name' => 'list#update', 'url' => '/api/v1/lists/{id}', 'verb' => 'PUT'],
 		['name' => 'list#destroy', 'url' => '/api/v1/lists/{id}', 'verb' => 'DELETE'],
+		['name' => 'preferences#update', 'url' => '/api/v1/lists/{id}/preferences', 'verb' => 'PATCH'],
 
 		// Items — static routes before parameterized ones
 		['name' => 'item#index', 'url' => '/api/v1/lists/{listId}/items', 'verb' => 'GET'],

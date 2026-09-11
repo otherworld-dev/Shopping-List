@@ -7,6 +7,8 @@ namespace OCA\Shopping_List\Service;
 use DateTime;
 use OCA\Shopping_List\Db\ShoppingList;
 use OCA\Shopping_List\Db\ShoppingListMapper;
+use OCA\Shopping_List\Db\UserListPreference;
+use OCA\Shopping_List\Db\UserListPreferenceMapper;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\IDBConnection;
 use OCP\IGroupManager;
@@ -21,6 +23,7 @@ class ListService {
 		private IUserManager $userManager,
 		private IDBConnection $db,
 		private PushService $pushService,
+		private UserListPreferenceMapper $preferenceMapper,
 	) {
 	}
 
@@ -59,7 +62,13 @@ class ListService {
 			$list->setPermission($sharedListPermissions[$list->getId()] ?? 0);
 		}
 
-		return array_merge($ownedLists, $sharedLists);
+		$lists = array_merge($ownedLists, $sharedLists);
+		$preferences = $this->preferenceMapper->findAllByUser($userId);
+		foreach ($lists as $list) {
+			$list->setIsPinned(($preferences[$list->getId()] ?? null)?->getIsPinned());
+		}
+
+		return $lists;
 	}
 
 	/**
@@ -74,6 +83,7 @@ class ListService {
 		} else {
 			$list->setPermission($this->getPermission($id, $userId));
 		}
+		$list->setIsPinned($this->getPinned($id, $userId));
 		return $list;
 	}
 
@@ -106,8 +116,28 @@ class ListService {
 		$list = $this->mapper->update($list);
 		$list->setIsOwner($list->getUserId() === $userId);
 		$list->setPermission($list->getIsOwner() ? 1 : $this->getPermission($id, $userId));
+		$list->setIsPinned($this->getPinned($id, $userId));
 		$this->pushService->notifyListUpdate($id, $userId);
 		return $list;
+	}
+
+	/**
+	 * Pin or unpin a list for this user only. Anyone who can see the list may
+	 * pin it; the others sharing it are not affected.
+	 *
+	 * @throws NotFoundException
+	 */
+	public function setPinned(int $id, bool $isPinned, string $userId): UserListPreference {
+		$this->assertAccess($id, $userId);
+		return $this->preferenceMapper->setPinned($userId, $id, $isPinned);
+	}
+
+	private function getPinned(int $listId, string $userId): ?bool {
+		try {
+			return $this->preferenceMapper->find($userId, $listId)->getIsPinned();
+		} catch (DoesNotExistException) {
+			return null;
+		}
 	}
 
 	/**
@@ -216,6 +246,9 @@ class ListService {
 		$qb->delete('shopping_list_shares')
 			->where($qb->expr()->eq('list_id', $qb->createNamedParameter($listId)))
 			->executeStatement();
+
+		// Delete every user's preferences for the list
+		$this->preferenceMapper->deleteByList($listId);
 
 		// Delete areas
 		$qb = $this->db->getQueryBuilder();

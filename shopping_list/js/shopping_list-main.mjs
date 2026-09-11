@@ -1,7 +1,7 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-CoccE7Ip.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/useCollapsedAreas-D8OIu1tK.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/useCollapsedAreas-23fjjBcZ.chunk.css')])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-BmvAZn3f.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/useCollapsedAreas-hIb1s_qg.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/useCollapsedAreas-23fjjBcZ.chunk.css')])))=>i.map(i=>d[i]);
 const appName = "shopping_list";
 const appVersion = "1.7.1";
-import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, A as ActionGlobalMixin, a as NcIconSvgWrapper, r as resolveComponent, b as createBaseVNode, w as withDirectives, v as vModelRadio, n as normalizeClass, d as createVNode, m as mdiRadioboxMarked, e as mdiRadioboxBlank, u as useModel, f as createElementId, g as NcButton, h as withCtx, i as createTextVNode, j as renderSlot, k as defineComponent, l as createCommentVNode, p as unref, q as getDefaultExportFromCjs, s as getGettextBuilder, x as getLoggerBuilder, y as defineStore, z as ref, B as computed, C as api, D as markServerFetched, E as translate, F as getLanguage, G as loadValue, H as saveValue, I as readonly, J as Fragment, K as renderList, L as createBlock, M as NcActionButton, O as NcAppNavigationItem, P as NcAppNavigationCaption, Q as _export_sfc$1, R as NOOP, S as extend$1, T as isString, U as NO, V as isSymbol, W as isBuiltInDirective, X as capitalize, Y as camelize, Z as EMPTY_OBJ, $ as isObject, a0 as toHandlerKey, a1 as isArray, a2 as isOn, a3 as isReservedProp, a4 as isVoidTag, a5 as isHTMLTag, a6 as isSVGTag, a7 as isMathMLTag, a8 as parseStringStyle, a9 as makeMap, aa as generateCodeFrame, ab as getAugmentedNamespace, ac as runtimeDom_esmBundler, ad as shared_esmBundler, ae as watch, af as onMounted, ag as onUnmounted, ah as withKeys, ai as withModifiers, aj as vModelText, ak as normalizeStyle, al as Teleport, am as NcActions, an as Permission, ao as nextTick, ap as NcPopover, aq as mdiHelpCircleOutline, ar as generateOcsUrl, as as cancelableClient, at as ShareType, au as generateUrl, av as getCurrentUser, aw as browserStorage, ax as useCollapsedAreas, ay as NcAvatar, az as isRef, aA as NcLoadingIcon, aB as mdiChevronDown, aC as vShow, aD as shallowRef, aE as vModelSelect, aF as Transition, aG as NcAppNavigation, aH as NcAppContent, aI as NcContent, aJ as createPinia, aK as offlinePersistPlugin, aL as createApp } from "./useCollapsedAreas-D8OIu1tK.chunk.mjs";
+import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, A as ActionGlobalMixin, a as NcIconSvgWrapper, r as resolveComponent, b as createBaseVNode, w as withDirectives, v as vModelRadio, n as normalizeClass, d as createVNode, m as mdiRadioboxMarked, e as mdiRadioboxBlank, u as useModel, f as createElementId, g as NcButton, h as withCtx, i as createTextVNode, j as renderSlot, k as defineComponent, l as createCommentVNode, p as unref, q as getDefaultExportFromCjs, s as getGettextBuilder, x as getLoggerBuilder, y as defineStore, z as ref, B as computed, C as api, D as markServerFetched, E as translate, F as getLanguage, G as loadValue, H as saveValue, I as readonly, J as Fragment, K as renderList, L as createBlock, M as NcAppNavigationCaption, O as NcActionButton, P as NcAppNavigationItem, Q as _export_sfc$1, R as NOOP, S as extend$1, T as isString, U as NO, V as isSymbol, W as isBuiltInDirective, X as capitalize, Y as camelize, Z as EMPTY_OBJ, $ as isObject, a0 as toHandlerKey, a1 as isArray, a2 as isOn, a3 as isReservedProp, a4 as isVoidTag, a5 as isHTMLTag, a6 as isSVGTag, a7 as isMathMLTag, a8 as parseStringStyle, a9 as makeMap, aa as generateCodeFrame, ab as getAugmentedNamespace, ac as runtimeDom_esmBundler, ad as shared_esmBundler, ae as watch, af as onMounted, ag as onUnmounted, ah as withKeys, ai as withModifiers, aj as vModelText, ak as normalizeStyle, al as Teleport, am as NcActions, an as Permission, ao as nextTick, ap as NcPopover, aq as mdiHelpCircleOutline, ar as generateOcsUrl, as as cancelableClient, at as ShareType, au as generateUrl, av as getCurrentUser, aw as browserStorage, ax as useCollapsedAreas, ay as NcAvatar, az as isRef, aA as NcLoadingIcon, aB as mdiChevronDown, aC as vShow, aD as shallowRef, aE as vModelSelect, aF as Transition, aG as NcAppNavigation, aH as NcAppContent, aI as NcContent, aJ as createPinia, aK as offlinePersistPlugin, aL as createApp } from "./useCollapsedAreas-hIb1s_qg.chunk.mjs";
 const _sfc_main$c = {
   name: "NcActionCaption",
   inject: {
@@ -745,6 +745,12 @@ const useListsStore = defineStore("lists", () => {
   const sharedLists = computed(
     () => lists.value.filter((l) => !l.isOwner)
   );
+  const pinnedLists = computed(
+    () => ownedLists.value.filter((l) => l.isPinned === true)
+  );
+  const unpinnedLists = computed(
+    () => ownedLists.value.filter((l) => l.isPinned !== true)
+  );
   async function fetchAll() {
     loading.value = true;
     try {
@@ -799,6 +805,18 @@ const useListsStore = defineStore("lists", () => {
   function selectList(id) {
     currentListId.value = id;
   }
+  async function setPinned(id, isPinned) {
+    try {
+      await api.lists.setPinned(id, isPinned);
+      const list = lists.value.find((l) => l.id === id);
+      if (list) {
+        list.isPinned = isPinned;
+      }
+    } catch (e) {
+      showError(isPinned ? translate("shopping_list", "Failed to pin list") : translate("shopping_list", "Failed to unpin list"));
+      console.error(e);
+    }
+  }
   return {
     lists,
     currentListId,
@@ -806,11 +824,14 @@ const useListsStore = defineStore("lists", () => {
     currentList,
     ownedLists,
     sharedLists,
+    pinnedLists,
+    unpinnedLists,
     fetchAll,
     create,
     update,
     remove,
-    selectList
+    selectList,
+    setPinned
   };
 });
 const useShopAreasStore = defineStore("shopAreas", () => {
@@ -1824,7 +1845,7 @@ const _hoisted_2$6 = {
   class: "count-bubble"
 };
 const _hoisted_3$6 = {
-  key: 2,
+  key: 1,
   class: "sidebar-settings"
 };
 const listIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,4H7V8H3V4M9,5V7H21V5H9M3,10H7V14H3V10M9,11V13H21V11H9M3,16H7V20H3V16M9,17V19H21V17H9" fill="currentColor"/></svg>';
@@ -1841,6 +1862,19 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
     const emptyName = translate("shopping_list", "No shopping lists");
     const emptyDesc = translate("shopping_list", "Create your first shopping list to get started");
     const settingsText = translate("shopping_list", "Manage Areas");
+    const pinnedText = translate("shopping_list", "Pinned");
+    const othersText = translate("shopping_list", "Others");
+    const pinText = translate("shopping_list", "Pin list");
+    const unpinText = translate("shopping_list", "Unpin list");
+    const ownedSections = computed(() => {
+      if (listsStore.pinnedLists.length === 0) {
+        return [{ key: "owned", caption: "", lists: listsStore.ownedLists }];
+      }
+      return [
+        { key: "pinned", caption: pinnedText, lists: listsStore.pinnedLists },
+        { key: "others", caption: othersText, lists: listsStore.unpinnedLists }
+      ].filter((section) => section.lists.length > 0);
+    });
     function getUncheckedCount(listId) {
       const items = itemsStore.itemsByList[listId] ?? [];
       return items.filter((i) => !i.checked).length;
@@ -1862,34 +1896,52 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
           text: unref(newListText),
           onClick: onNewList
         }, null, 8, ["text"]),
-        unref(listsStore).ownedLists.length > 0 ? (openBlock(true), createElementBlock(Fragment, { key: 0 }, renderList(unref(listsStore).ownedLists, (list) => {
-          return openBlock(), createBlock(unref(NcAppNavigationItem), {
-            key: list.id,
-            name: list.title,
-            active: list.id === unref(listsStore).currentListId,
-            editable: true,
-            "edit-label": unref(renameText),
-            onClick: ($event) => unref(listsStore).selectList(list.id),
-            "onUpdate:name": (name) => onRename(list.id, name)
-          }, {
-            counter: withCtx(() => [
-              getUncheckedCount(list.id) > 0 ? (openBlock(), createElementBlock("span", _hoisted_1$6, toDisplayString(getUncheckedCount(list.id)), 1)) : createCommentVNode("", true)
-            ]),
-            actions: withCtx(() => [
-              createVNode(unref(NcActionButton), {
-                onClick: ($event) => onDelete(list.id)
+        (openBlock(true), createElementBlock(Fragment, null, renderList(ownedSections.value, (section) => {
+          return openBlock(), createElementBlock(Fragment, {
+            key: section.key
+          }, [
+            section.caption ? (openBlock(), createBlock(unref(NcAppNavigationCaption), {
+              key: 0,
+              name: section.caption
+            }, null, 8, ["name"])) : createCommentVNode("", true),
+            (openBlock(true), createElementBlock(Fragment, null, renderList(section.lists, (list) => {
+              return openBlock(), createBlock(unref(NcAppNavigationItem), {
+                key: list.id,
+                name: list.title,
+                active: list.id === unref(listsStore).currentListId,
+                editable: true,
+                "edit-label": unref(renameText),
+                onClick: ($event) => unref(listsStore).selectList(list.id),
+                "onUpdate:name": (name) => onRename(list.id, name)
               }, {
-                default: withCtx(() => [
-                  createTextVNode(toDisplayString(unref(deleteText)), 1)
+                counter: withCtx(() => [
+                  getUncheckedCount(list.id) > 0 ? (openBlock(), createElementBlock("span", _hoisted_1$6, toDisplayString(getUncheckedCount(list.id)), 1)) : createCommentVNode("", true)
                 ]),
-                _: 1
-              }, 8, ["onClick"])
-            ]),
-            _: 2
-          }, 1032, ["name", "active", "edit-label", "onClick", "onUpdate:name"]);
-        }), 128)) : createCommentVNode("", true),
+                actions: withCtx(() => [
+                  createVNode(unref(NcActionButton), {
+                    onClick: ($event) => unref(listsStore).setPinned(list.id, !list.isPinned)
+                  }, {
+                    default: withCtx(() => [
+                      createTextVNode(toDisplayString(list.isPinned ? unref(unpinText) : unref(pinText)), 1)
+                    ]),
+                    _: 2
+                  }, 1032, ["onClick"]),
+                  createVNode(unref(NcActionButton), {
+                    onClick: ($event) => onDelete(list.id)
+                  }, {
+                    default: withCtx(() => [
+                      createTextVNode(toDisplayString(unref(deleteText)), 1)
+                    ]),
+                    _: 1
+                  }, 8, ["onClick"])
+                ]),
+                _: 2
+              }, 1032, ["name", "active", "edit-label", "onClick", "onUpdate:name"]);
+            }), 128))
+          ], 64);
+        }), 128)),
         unref(listsStore).sharedLists.length > 0 ? (openBlock(), createBlock(unref(NcAppNavigationCaption), {
-          key: 1,
+          key: 0,
           name: unref(sharedText)
         }, null, 8, ["name"])) : createCommentVNode("", true),
         (openBlock(true), createElementBlock(Fragment, null, renderList(unref(listsStore).sharedLists, (list) => {
@@ -1912,7 +1964,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
           }, " ⚙ " + toDisplayString(unref(settingsText)), 1)
         ])) : createCommentVNode("", true),
         !unref(listsStore).loading && unref(listsStore).lists.length === 0 ? (openBlock(), createBlock(unref(NcEmptyContent), {
-          key: 3,
+          key: 2,
           name: unref(emptyName),
           description: unref(emptyDesc)
         }, {
@@ -1925,7 +1977,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ListSidebar = /* @__PURE__ */ _export_sfc$1(_sfc_main$7, [["__scopeId", "data-v-417c9458"]]);
+const ListSidebar = /* @__PURE__ */ _export_sfc$1(_sfc_main$7, [["__scopeId", "data-v-ca4f1097"]]);
 const useSharesStore = defineStore("shares", () => {
   const sharesByList = ref({});
   async function fetchByList(listId) {
@@ -17199,7 +17251,7 @@ function usePush() {
   if (hasPushServer) {
     try {
       __vitePreload(async () => {
-        const { listen } = await import("./index-CoccE7Ip.chunk.mjs").then((n) => n.i);
+        const { listen } = await import("./index-BmvAZn3f.chunk.mjs").then((n) => n.i);
         return { listen };
       }, true ? __vite__mapDeps([0,1,2]) : void 0, import.meta.url).then(({ listen }) => {
         listen("shopping_list_item_update", () => {
