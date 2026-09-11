@@ -33,6 +33,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   the same in every browser you use. Thanks to Shiva (shining-cat) for the
   feature (#45)
 
+### Changed
+- German, Finnish, French, Dutch and Slovak are fully translated again
+  (151/151 strings each), including the new pinning, sorting and input
+  help. The new strings were filled in on Crowdin, where the translators
+  can still review them
+- The input help's example lines are translated, with a unit each
+  language's parser recognises, so the help shows what a paste in that
+  language really does
+
 ## [1.7.1] - 2026-09-02
 
 ### Added
