@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-09-11 13:37\n"
+"PO-Revision-Date: 2026-09-11 16:10\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -115,55 +115,55 @@ msgstr "Ajouter un élément à la liste..."
 
 #: src/components/ItemEditor.vue
 msgid "Add an item or paste a list..."
-msgstr ""
+msgstr "Ajouter un article ou coller une liste..."
 
 #. Accessible name and tooltip of the round question-mark button in the add box
 #: src/components/ItemEditor.vue
 msgid "Input format help"
-msgstr ""
+msgstr "Aide sur le format de saisie"
 
 #: src/components/ItemEditor.vue
 msgid "Type one item, or paste a whole list"
-msgstr ""
+msgstr "Saisissez un article ou collez une liste entière"
 
 #: src/components/ItemEditor.vue
 msgid "Every pasted line becomes its own item. Amounts, units and list markers are read for you."
-msgstr ""
+msgstr "Chaque ligne collée devient un article distinct. Les quantités, les unités et les puces de liste sont reconnues automatiquement."
 
 #. Column heading in the input help: the example line as the user would type it
 #: src/components/ItemEditor.vue
 msgid "You type"
-msgstr ""
+msgstr "Vous saisissez"
 
 #. Column heading in the input help: the item the app makes from that line
 #: src/components/ItemEditor.vue
 msgid "You get"
-msgstr ""
+msgstr "Vous obtenez"
 
 #. Example line in the input help. Translate the words, keep the "- " bullet.
 #: src/utils/inputExamples.ts
 msgid "- Apples"
-msgstr ""
+msgstr "- Pommes"
 
 #. Example line in the input help. Translate the words, keep the "[ ] " checkbox and the number.
 #: src/utils/inputExamples.ts
 msgid "[ ] 3 Bananas"
-msgstr ""
+msgstr "[ ] 3 bananes"
 
 #. Example line in the input help. Translate the word, keep the "[x] " ticked checkbox.
 #: src/utils/inputExamples.ts
 msgid "[x] Eggs"
-msgstr ""
+msgstr "[x] Œufs"
 
 #. Example line in the input help. Use a unit from your language's parsing pack so it is recognised.
 #: src/utils/inputExamples.ts
 msgid "2 cups flour"
-msgstr ""
+msgstr "2 tasses de farine"
 
 #. Example line in the input help. Translate the word, keep the "1. " numbering.
 #: src/utils/inputExamples.ts
 msgid "1. Milk"
-msgstr ""
+msgstr "1. Lait"
 
 #: src/components/ItemEditor.vue
 msgid "Area"
@@ -196,22 +196,22 @@ msgstr "Supprimer la liste"
 #. Menu action on a list in the sidebar: keep it at the top, above the user's other lists.
 #: src/components/ListSidebar.vue
 msgid "Pin list"
-msgstr ""
+msgstr "Épingler la liste"
 
 #. Menu action on a pinned list in the sidebar: put it back among the user's other lists.
 #: src/components/ListSidebar.vue
 msgid "Unpin list"
-msgstr ""
+msgstr "Désépingler la liste"
 
 #. Sidebar heading above the lists the user has pinned.
 #: src/components/ListSidebar.vue
 msgid "Pinned"
-msgstr ""
+msgstr "Épinglées"
 
 #. Sidebar heading above the user's own lists that are not pinned, shown below the Pinned heading.
 #: src/components/ListSidebar.vue
 msgid "Others"
-msgstr ""
+msgstr "Autres"
 
 #: src/components/ListSidebar.vue
 msgid "Shared with me"
@@ -235,19 +235,19 @@ msgstr "Partager"
 
 #: src/components/ListView.vue
 msgid "List actions"
-msgstr ""
+msgstr "Actions de la liste"
 
 #: src/components/ListView.vue
 msgid "Copy list as text"
-msgstr ""
+msgstr "Copier la liste en texte"
 
 #: src/components/ListView.vue
 msgid "List copied to clipboard"
-msgstr ""
+msgstr "Liste copiée dans le presse-papiers"
 
 #: src/components/ListView.vue
 msgid "Could not copy the list"
-msgstr ""
+msgstr "Impossible de copier la liste"
 
 #: src/components/ListView.vue src/components/PublicListView.vue
 msgid "No items yet"
@@ -276,32 +276,32 @@ msgstr "Tout supprimer"
 #. Heading in the list's menu, above the three ways to order the open items.
 #: src/components/ListView.vue
 msgid "Sort items"
-msgstr ""
+msgstr "Trier les articles"
 
 #. Heading in the list's menu, above the three ways to order the checked-off section.
 #: src/components/ListView.vue
 msgid "Sort checked-off items"
-msgstr ""
+msgstr "Trier les articles cochés"
 
 #. Sort option, used for both open and checked-off items: grouped by shop area, in the area order of the list.
 #: src/components/ListView.vue
 msgid "By area"
-msgstr ""
+msgstr "Par allée"
 
 #. Sort option for open items: grouped by shop area, and by name inside each area.
 #: src/components/ListView.vue
 msgid "By area, A to Z"
-msgstr ""
+msgstr "Par allée, de A à Z"
 
 #. Sort option, used for both open and checked-off items: by name, ignoring the shop areas.
 #: src/components/ListView.vue
 msgid "A to Z"
-msgstr ""
+msgstr "De A à Z"
 
 #. Sort option for checked-off items: the item checked off last comes first.
 #: src/components/ListView.vue
 msgid "Most recent first"
-msgstr ""
+msgstr "Les plus récents d'abord"
 
 #: src/components/ShareDialog.vue
 msgid "Share list"
@@ -441,11 +441,11 @@ msgstr "Impossible de supprimer la liste"
 
 #: src/stores/lists.ts
 msgid "Failed to pin list"
-msgstr ""
+msgstr "Impossible d'épingler la liste"
 
 #: src/stores/lists.ts
 msgid "Failed to unpin list"
-msgstr ""
+msgstr "Impossible de désépingler la liste"
 
 #: src/stores/shares.ts
 msgid "Failed to load shares"
