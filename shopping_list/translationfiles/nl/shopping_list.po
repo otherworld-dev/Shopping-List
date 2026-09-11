@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-09-11 13:38\n"
+"PO-Revision-Date: 2026-09-11 16:10\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -115,55 +115,55 @@ msgstr "Voeg een item toe aan de lijst..."
 
 #: src/components/ItemEditor.vue
 msgid "Add an item or paste a list..."
-msgstr ""
+msgstr "Voeg een item toe of plak een lijst..."
 
 #. Accessible name and tooltip of the round question-mark button in the add box
 #: src/components/ItemEditor.vue
 msgid "Input format help"
-msgstr ""
+msgstr "Hulp bij invoerformaat"
 
 #: src/components/ItemEditor.vue
 msgid "Type one item, or paste a whole list"
-msgstr ""
+msgstr "Typ één item of plak een hele lijst"
 
 #: src/components/ItemEditor.vue
 msgid "Every pasted line becomes its own item. Amounts, units and list markers are read for you."
-msgstr ""
+msgstr "Elke geplakte regel wordt een eigen item. Hoeveelheden, eenheden en lijsttekens worden voor je herkend."
 
 #. Column heading in the input help: the example line as the user would type it
 #: src/components/ItemEditor.vue
 msgid "You type"
-msgstr ""
+msgstr "Je typt"
 
 #. Column heading in the input help: the item the app makes from that line
 #: src/components/ItemEditor.vue
 msgid "You get"
-msgstr ""
+msgstr "Je krijgt"
 
 #. Example line in the input help. Translate the words, keep the "- " bullet.
 #: src/utils/inputExamples.ts
 msgid "- Apples"
-msgstr ""
+msgstr "- Appels"
 
 #. Example line in the input help. Translate the words, keep the "[ ] " checkbox and the number.
 #: src/utils/inputExamples.ts
 msgid "[ ] 3 Bananas"
-msgstr ""
+msgstr "[ ] 3 bananen"
 
 #. Example line in the input help. Translate the word, keep the "[x] " ticked checkbox.
 #: src/utils/inputExamples.ts
 msgid "[x] Eggs"
-msgstr ""
+msgstr "[x] Eieren"
 
 #. Example line in the input help. Use a unit from your language's parsing pack so it is recognised.
 #: src/utils/inputExamples.ts
 msgid "2 cups flour"
-msgstr ""
+msgstr "500 g bloem"
 
 #. Example line in the input help. Translate the word, keep the "1. " numbering.
 #: src/utils/inputExamples.ts
 msgid "1. Milk"
-msgstr ""
+msgstr "1. Melk"
 
 #: src/components/ItemEditor.vue
 msgid "Area"
@@ -196,22 +196,22 @@ msgstr "Lijst verwijderen"
 #. Menu action on a list in the sidebar: keep it at the top, above the user's other lists.
 #: src/components/ListSidebar.vue
 msgid "Pin list"
-msgstr ""
+msgstr "Lijst vastmaken"
 
 #. Menu action on a pinned list in the sidebar: put it back among the user's other lists.
 #: src/components/ListSidebar.vue
 msgid "Unpin list"
-msgstr ""
+msgstr "Lijst losmaken"
 
 #. Sidebar heading above the lists the user has pinned.
 #: src/components/ListSidebar.vue
 msgid "Pinned"
-msgstr ""
+msgstr "Vastgemaakt"
 
 #. Sidebar heading above the user's own lists that are not pinned, shown below the Pinned heading.
 #: src/components/ListSidebar.vue
 msgid "Others"
-msgstr ""
+msgstr "Overige"
 
 #: src/components/ListSidebar.vue
 msgid "Shared with me"
@@ -235,19 +235,19 @@ msgstr "Delen"
 
 #: src/components/ListView.vue
 msgid "List actions"
-msgstr ""
+msgstr "Lijstacties"
 
 #: src/components/ListView.vue
 msgid "Copy list as text"
-msgstr ""
+msgstr "Lijst kopiëren als tekst"
 
 #: src/components/ListView.vue
 msgid "List copied to clipboard"
-msgstr ""
+msgstr "Lijst gekopieerd naar klembord"
 
 #: src/components/ListView.vue
 msgid "Could not copy the list"
-msgstr ""
+msgstr "Kan de lijst niet kopiëren"
 
 #: src/components/ListView.vue src/components/PublicListView.vue
 msgid "No items yet"
@@ -276,32 +276,32 @@ msgstr "Alles verwijderen"
 #. Heading in the list's menu, above the three ways to order the open items.
 #: src/components/ListView.vue
 msgid "Sort items"
-msgstr ""
+msgstr "Items sorteren"
 
 #. Heading in the list's menu, above the three ways to order the checked-off section.
 #: src/components/ListView.vue
 msgid "Sort checked-off items"
-msgstr ""
+msgstr "Afgevinkte items sorteren"
 
 #. Sort option, used for both open and checked-off items: grouped by shop area, in the area order of the list.
 #: src/components/ListView.vue
 msgid "By area"
-msgstr ""
+msgstr "Per afdeling"
 
 #. Sort option for open items: grouped by shop area, and by name inside each area.
 #: src/components/ListView.vue
 msgid "By area, A to Z"
-msgstr ""
+msgstr "Per afdeling, A tot Z"
 
 #. Sort option, used for both open and checked-off items: by name, ignoring the shop areas.
 #: src/components/ListView.vue
 msgid "A to Z"
-msgstr ""
+msgstr "A tot Z"
 
 #. Sort option for checked-off items: the item checked off last comes first.
 #: src/components/ListView.vue
 msgid "Most recent first"
-msgstr ""
+msgstr "Nieuwste eerst"
 
 #: src/components/ShareDialog.vue
 msgid "Share list"
@@ -441,11 +441,11 @@ msgstr "Lijst verwijderen mislukt"
 
 #: src/stores/lists.ts
 msgid "Failed to pin list"
-msgstr ""
+msgstr "Lijst vastmaken mislukt"
 
 #: src/stores/lists.ts
 msgid "Failed to unpin list"
-msgstr ""
+msgstr "Lijst losmaken mislukt"
 
 #: src/stores/shares.ts
 msgid "Failed to load shares"
@@ -497,19 +497,19 @@ msgstr "Kopiëren"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Load keywords for my language"
-msgstr ""
+msgstr "Trefwoorden voor mijn taal laden"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Adds your language's grocery keywords to the default areas, so items auto-sort correctly. Existing keywords are kept."
-msgstr ""
+msgstr "Voegt de boodschappentrefwoorden van je taal toe aan de standaardafdelingen, zodat items automatisch goed worden ingedeeld. Bestaande trefwoorden blijven behouden."
 
 #: src/stores/shopAreas.ts
 msgid "Keywords for your language added"
-msgstr ""
+msgstr "Trefwoorden voor je taal toegevoegd"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to add keywords"
-msgstr ""
+msgstr "Trefwoorden toevoegen mislukt"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to create shop area"
@@ -561,7 +561,7 @@ msgstr "Dranken"
 
 #: lib/Service/ShopAreaService.php
 msgid "Snacks"
-msgstr ""
+msgstr "Snacks"
 
 #: lib/Service/ShopAreaService.php
 msgid "Household"
@@ -625,17 +625,17 @@ msgstr "{count} wijzigingen in behandeling"
 
 #: appinfo/info.xml lib/Notification/Notifier.php
 msgid "Shopping List"
-msgstr ""
+msgstr "Boodschappenlijst"
 
 #: lib/Notification/Notifier.php
 msgid "Shopping List is now on Android"
-msgstr ""
+msgstr "Shopping List is nu beschikbaar voor Android"
 
 #: lib/Notification/Notifier.php
 msgid "Take your lists shopping — a companion Android app is now available on Google Play."
-msgstr ""
+msgstr "Neem je lijsten mee naar de winkel: er is nu een Android-app beschikbaar in Google Play."
 
 #: lib/Notification/Notifier.php
 msgid "Get it on Google Play"
-msgstr ""
+msgstr "Ontdek het op Google Play"
 
