@@ -1,7 +1,7 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-DYc9KUm4.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/useCollapsedAreas-DnAPiZb5.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/useCollapsedAreas-23fjjBcZ.chunk.css')])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-CoccE7Ip.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/useCollapsedAreas-D8OIu1tK.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/useCollapsedAreas-23fjjBcZ.chunk.css')])))=>i.map(i=>d[i]);
 const appName = "shopping_list";
 const appVersion = "1.7.1";
-import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, A as ActionGlobalMixin, a as NcIconSvgWrapper, r as resolveComponent, b as createBaseVNode, w as withDirectives, v as vModelRadio, n as normalizeClass, d as createVNode, m as mdiRadioboxMarked, e as mdiRadioboxBlank, u as useModel, f as createElementId, g as NcButton, h as withCtx, i as createTextVNode, j as renderSlot, k as defineComponent, l as createCommentVNode, p as unref, q as getDefaultExportFromCjs, s as getGettextBuilder, x as getLoggerBuilder, y as defineStore, z as ref, B as computed, C as api, D as markServerFetched, E as translate, F as getLanguage, G as loadValue, H as saveValue, I as readonly, J as Fragment, K as renderList, L as createBlock, M as NcActionButton, O as NcAppNavigationItem, P as NcAppNavigationCaption, Q as _export_sfc$1, R as NOOP, S as extend$1, T as isString, U as NO, V as isSymbol, W as isBuiltInDirective, X as capitalize, Y as camelize, Z as EMPTY_OBJ, $ as isObject, a0 as toHandlerKey, a1 as isArray, a2 as isOn, a3 as isReservedProp, a4 as isVoidTag, a5 as isHTMLTag, a6 as isSVGTag, a7 as isMathMLTag, a8 as parseStringStyle, a9 as makeMap, aa as generateCodeFrame, ab as getAugmentedNamespace, ac as runtimeDom_esmBundler, ad as shared_esmBundler, ae as watch, af as onMounted, ag as onUnmounted, ah as withKeys, ai as withModifiers, aj as vModelText, ak as normalizeStyle, al as Teleport, am as NcActions, an as Permission, ao as nextTick, ap as NcPopover, aq as mdiHelpCircleOutline, ar as generateOcsUrl, as as cancelableClient, at as ShareType, au as generateUrl, av as getCurrentUser, aw as browserStorage, ax as useCollapsedAreas, ay as NcAvatar, az as NcLoadingIcon, aA as mdiChevronDown, aB as vShow, aC as vModelSelect, aD as Transition, aE as NcAppNavigation, aF as NcAppContent, aG as NcContent, aH as createPinia, aI as offlinePersistPlugin, aJ as createApp } from "./useCollapsedAreas-DnAPiZb5.chunk.mjs";
+import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, A as ActionGlobalMixin, a as NcIconSvgWrapper, r as resolveComponent, b as createBaseVNode, w as withDirectives, v as vModelRadio, n as normalizeClass, d as createVNode, m as mdiRadioboxMarked, e as mdiRadioboxBlank, u as useModel, f as createElementId, g as NcButton, h as withCtx, i as createTextVNode, j as renderSlot, k as defineComponent, l as createCommentVNode, p as unref, q as getDefaultExportFromCjs, s as getGettextBuilder, x as getLoggerBuilder, y as defineStore, z as ref, B as computed, C as api, D as markServerFetched, E as translate, F as getLanguage, G as loadValue, H as saveValue, I as readonly, J as Fragment, K as renderList, L as createBlock, M as NcActionButton, O as NcAppNavigationItem, P as NcAppNavigationCaption, Q as _export_sfc$1, R as NOOP, S as extend$1, T as isString, U as NO, V as isSymbol, W as isBuiltInDirective, X as capitalize, Y as camelize, Z as EMPTY_OBJ, $ as isObject, a0 as toHandlerKey, a1 as isArray, a2 as isOn, a3 as isReservedProp, a4 as isVoidTag, a5 as isHTMLTag, a6 as isSVGTag, a7 as isMathMLTag, a8 as parseStringStyle, a9 as makeMap, aa as generateCodeFrame, ab as getAugmentedNamespace, ac as runtimeDom_esmBundler, ad as shared_esmBundler, ae as watch, af as onMounted, ag as onUnmounted, ah as withKeys, ai as withModifiers, aj as vModelText, ak as normalizeStyle, al as Teleport, am as NcActions, an as Permission, ao as nextTick, ap as NcPopover, aq as mdiHelpCircleOutline, ar as generateOcsUrl, as as cancelableClient, at as ShareType, au as generateUrl, av as getCurrentUser, aw as browserStorage, ax as useCollapsedAreas, ay as NcAvatar, az as isRef, aA as NcLoadingIcon, aB as mdiChevronDown, aC as vShow, aD as shallowRef, aE as vModelSelect, aF as Transition, aG as NcAppNavigation, aH as NcAppContent, aI as NcContent, aJ as createPinia, aK as offlinePersistPlugin, aL as createApp } from "./useCollapsedAreas-D8OIu1tK.chunk.mjs";
 const _sfc_main$c = {
   name: "NcActionCaption",
   inject: {
@@ -16111,41 +16111,94 @@ function formatListAsText(items) {
     return parts.join(" ");
   }).join("\n");
 }
-const SORTS = ["list", "alpha", "recent"];
-const STORAGE_KEY = "shopping_list.boughtSort";
+const OPEN_SORTS = ["area", "areaAlpha", "alpha"];
+const BOUGHT_SORTS = ["area", "alpha", "recent"];
+const OPEN_SORT_KEY = "shopping_list.openSort";
+const BOUGHT_SORT_KEY = "shopping_list.boughtSort";
+function byName(language) {
+  const collator = new Intl.Collator(language, { sensitivity: "base", numeric: true });
+  return (a, b) => collator.compare(a.name, b.name);
+}
 function time(item) {
   const ms = Date.parse(item.updatedAt);
   return Number.isNaN(ms) ? -Infinity : ms;
 }
-function sortBought(items, sort2, language) {
-  const sorted = [...items];
+function groupOpenItems(items, areas, sort2, language) {
+  if (items.length === 0) return [];
   if (sort2 === "alpha") {
-    const collator = new Intl.Collator(language, { sensitivity: "base", numeric: true });
-    sorted.sort((a, b) => collator.compare(a.name, b.name));
-  } else if (sort2 === "recent") {
+    return [{ areaId: null, areaName: null, areaColor: null, items: [...items].sort(byName(language)) }];
+  }
+  const grouped = /* @__PURE__ */ new Map();
+  for (const item of items) {
+    const list = grouped.get(item.shopAreaId);
+    if (list) {
+      list.push(item);
+    } else {
+      grouped.set(item.shopAreaId, [item]);
+    }
+  }
+  const result = [];
+  for (const area of areas) {
+    const areaItems = grouped.get(area.id);
+    if (areaItems) {
+      result.push({ areaId: area.id, areaName: area.name, areaColor: area.color, items: areaItems });
+      grouped.delete(area.id);
+    }
+  }
+  const uncategorized = [...grouped.values()].flat();
+  if (uncategorized.length > 0) {
+    result.push({ areaId: null, areaName: null, areaColor: null, items: uncategorized });
+  }
+  if (sort2 === "areaAlpha") {
+    const compare = byName(language);
+    for (const group of result) group.items.sort(compare);
+  }
+  return result;
+}
+function sortBought(items, sort2, areas, language) {
+  const sorted = [...items];
+  if (sort2 === "area") {
+    const position = new Map(areas.map((area, index2) => [area.id, index2]));
+    const rank = (item) => (item.shopAreaId === null ? void 0 : position.get(item.shopAreaId)) ?? areas.length;
+    sorted.sort((a, b) => rank(a) - rank(b));
+  } else if (sort2 === "alpha") {
+    sorted.sort(byName(language));
+  } else {
     sorted.sort((a, b) => time(b) - time(a));
   }
   return sorted;
 }
-function loadBoughtSort(storage) {
-  if (!storage) return "list";
+function loadChoice(storage, key, choices) {
+  if (!storage) return choices[0];
   try {
-    const raw = storage.getItem(STORAGE_KEY);
-    return SORTS.find((sort2) => sort2 === raw) ?? "list";
+    const raw = storage.getItem(key);
+    return choices.find((choice) => choice === raw) ?? choices[0];
   } catch {
-    return "list";
+    return choices[0];
   }
 }
-function saveBoughtSort(storage, sort2) {
+function saveChoice(storage, key, choices, value) {
   if (!storage) return;
   try {
-    if (sort2 === "list") {
-      storage.removeItem(STORAGE_KEY);
+    if (value === choices[0]) {
+      storage.removeItem(key);
     } else {
-      storage.setItem(STORAGE_KEY, sort2);
+      storage.setItem(key, value);
     }
   } catch {
   }
+}
+function loadOpenSort(storage) {
+  return loadChoice(storage, OPEN_SORT_KEY, OPEN_SORTS);
+}
+function saveOpenSort(storage, sort2) {
+  saveChoice(storage, OPEN_SORT_KEY, OPEN_SORTS, sort2);
+}
+function loadBoughtSort(storage) {
+  return loadChoice(storage, BOUGHT_SORT_KEY, BOUGHT_SORTS);
+}
+function saveBoughtSort(storage, sort2) {
+  saveChoice(storage, BOUGHT_SORT_KEY, BOUGHT_SORTS, sort2);
 }
 const _hoisted_1$2 = { class: "list-view" };
 const _hoisted_2$2 = { class: "list-view__header" };
@@ -16228,21 +16281,33 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
     const boughtText = translate("shopping_list", "Checked off");
     const uncheckAllText = translate("shopping_list", "Restore all");
     const clearCheckedText = translate("shopping_list", "Delete all");
+    const sortItemsText = translate("shopping_list", "Sort items");
     const sortCheckedText = translate("shopping_list", "Sort checked-off items");
+    const byAreaText = translate("shopping_list", "By area");
+    const aToZText = translate("shopping_list", "A to Z");
+    const openSortOptions = [
+      { value: "area", label: byAreaText },
+      { value: "areaAlpha", label: translate("shopping_list", "By area, A to Z") },
+      { value: "alpha", label: aToZText }
+    ];
     const boughtSortOptions = [
-      { value: "list", label: translate("shopping_list", "List order") },
-      { value: "alpha", label: translate("shopping_list", "Alphabetical") },
+      { value: "area", label: byAreaText },
+      { value: "alpha", label: aToZText },
       { value: "recent", label: translate("shopping_list", "Most recent first") }
     ];
     const storage = browserStorage();
-    const savedBoughtSort = ref(loadBoughtSort(storage));
-    const boughtSort = computed({
-      get: () => savedBoughtSort.value,
-      set: (sort2) => {
-        savedBoughtSort.value = sort2;
-        saveBoughtSort(storage, sort2);
-      }
-    });
+    function storedChoice(initial, save2) {
+      const current = shallowRef(initial);
+      return computed({
+        get: () => current.value,
+        set: (value) => {
+          current.value = value;
+          save2(value);
+        }
+      });
+    }
+    const openSort = storedChoice(loadOpenSort(storage), (sort2) => saveOpenSort(storage, sort2));
+    const boughtSort = storedChoice(loadBoughtSort(storage), (sort2) => saveBoughtSort(storage, sort2));
     async function onCopyAsText() {
       const text = formatListAsText(itemsStore.uncheckedItems);
       if (!text) return;
@@ -16281,35 +16346,14 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
     function groupElementId(group) {
       return `list-view-area-${group.areaId ?? "none"}`;
     }
-    const areaGroups = computed(() => {
-      const unchecked = itemsStore.uncheckedItems;
-      if (unchecked.length === 0) return [];
-      const grouped = /* @__PURE__ */ new Map();
-      for (const item of unchecked) {
-        const key = item.shopAreaId;
-        if (!grouped.has(key)) {
-          grouped.set(key, []);
-        }
-        grouped.get(key).push(item);
-      }
-      const areas = listsStore.currentListId ? shopAreasStore.areasByList[listsStore.currentListId] ?? [] : [];
-      const result = [];
-      for (const area of areas) {
-        const items = grouped.get(area.id);
-        if (items && items.length > 0) {
-          result.push({ areaId: area.id, areaName: area.name, areaColor: area.color, items });
-          grouped.delete(area.id);
-        }
-      }
-      const uncategorizedItems = [];
-      for (const [, items] of grouped) {
-        uncategorizedItems.push(...items);
-      }
-      if (uncategorizedItems.length > 0) {
-        result.push({ areaId: null, areaName: null, areaColor: null, items: uncategorizedItems });
-      }
-      return result;
-    });
+    const language = getLanguage();
+    const currentAreas = computed(
+      () => listsStore.currentListId ? shopAreasStore.areasByList[listsStore.currentListId] ?? [] : []
+    );
+    const areaGroups = computed(
+      () => groupOpenItems(itemsStore.uncheckedItems, currentAreas.value, openSort.value, language)
+    );
+    const canDrag = computed(() => canEdit.value && openSort.value === "area");
     const localGroups = ref([]);
     watch(areaGroups, (groups) => {
       if (!isDragging.value) {
@@ -16335,9 +16379,8 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
         itemsStore.reorder(listId, allSortedIds)
       ]);
     }
-    const language = getLanguage();
     const checkedItemIds = computed(
-      () => sortBought(itemsStore.checkedItems, boughtSort.value, language).map((i) => i.id)
+      () => sortBought(itemsStore.checkedItems, boughtSort.value, currentAreas.value, language).map((i) => i.id)
     );
     watch(() => listsStore.currentListId, async (newId) => {
       if (newId !== null) {
@@ -16402,12 +16445,28 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
                   _: 1
                 }, 8, ["disabled"]),
                 createVNode(unref(NcActionSeparator)),
+                createVNode(unref(NcActionCaption), { name: unref(sortItemsText) }, null, 8, ["name"]),
+                (openBlock(), createElementBlock(Fragment, null, renderList(openSortOptions, (option2) => {
+                  return createVNode(unref(NcActionRadio), {
+                    key: option2.value,
+                    modelValue: unref(openSort),
+                    "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => isRef(openSort) ? openSort.value = $event : null),
+                    name: "shopping-list-open-sort",
+                    value: option2.value
+                  }, {
+                    default: withCtx(() => [
+                      createTextVNode(toDisplayString(option2.label), 1)
+                    ]),
+                    _: 2
+                  }, 1032, ["modelValue", "value"]);
+                }), 64)),
+                createVNode(unref(NcActionSeparator)),
                 createVNode(unref(NcActionCaption), { name: unref(sortCheckedText) }, null, 8, ["name"]),
                 (openBlock(), createElementBlock(Fragment, null, renderList(boughtSortOptions, (option2) => {
                   return createVNode(unref(NcActionRadio), {
                     key: option2.value,
-                    modelValue: boughtSort.value,
-                    "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => boughtSort.value = $event),
+                    modelValue: unref(boughtSort),
+                    "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => isRef(boughtSort) ? boughtSort.value = $event : null),
                     name: "shopping-list-bought-sort",
                     value: option2.value
                   }, {
@@ -16471,13 +16530,13 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
                   "onUpdate:modelValue": ($event) => localGroups.value[groupIndex].items = $event,
                   "item-key": "id",
                   group: { name: "items" },
-                  disabled: !canEdit.value,
+                  disabled: !canDrag.value,
                   animation: 150,
                   delay: 150,
                   "delay-on-touch-only": true,
                   class: "list-view__items",
                   "ghost-class": "list-view__item--ghost",
-                  onStart: _cache[4] || (_cache[4] = ($event) => isDragging.value = true),
+                  onStart: _cache[5] || (_cache[5] = ($event) => isDragging.value = true),
                   onEnd: onDragEnd
                 }, {
                   item: withCtx(({ element }) => [
@@ -16486,7 +16545,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
                       "list-id": unref(listsStore).currentList.id,
                       "can-edit": canEdit.value,
                       editing: editingItemId.value === element.id,
-                      onCloseEdit: _cache[3] || (_cache[3] = ($event) => editingItemId.value = null)
+                      onCloseEdit: _cache[4] || (_cache[4] = ($event) => editingItemId.value = null)
                     }, null, 8, ["item-id", "list-id", "can-edit", "editing"])
                   ]),
                   _: 1
@@ -16500,7 +16559,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
         !unref(itemsStore).loading && unref(itemsStore).checkedItems.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_10$1, [
           createBaseVNode("div", _hoisted_11$1, [
             createBaseVNode("h3", {
-              onClick: _cache[5] || (_cache[5] = ($event) => showChecked.value = !showChecked.value)
+              onClick: _cache[6] || (_cache[6] = ($event) => showChecked.value = !showChecked.value)
             }, [
               createTextVNode(toDisplayString(unref(boughtText)) + " (" + toDisplayString(unref(itemsStore).checkedItems.length) + ") ", 1),
               createBaseVNode("span", _hoisted_12$1, toDisplayString(showChecked.value ? "▾" : "▸"), 1)
@@ -16533,13 +16592,13 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
           "list-id": unref(listsStore).currentList.id,
           "is-owner": unref(listsStore).currentList.isOwner,
           "current-user-id": unref(currentUserId),
-          onClose: _cache[6] || (_cache[6] = ($event) => showShareDialog.value = false)
+          onClose: _cache[7] || (_cache[7] = ($event) => showShareDialog.value = false)
         }, null, 8, ["list-id", "is-owner", "current-user-id"])) : createCommentVNode("", true)
       ]);
     };
   }
 });
-const ListView = /* @__PURE__ */ _export_sfc$1(_sfc_main$3, [["__scopeId", "data-v-af7601f9"]]);
+const ListView = /* @__PURE__ */ _export_sfc$1(_sfc_main$3, [["__scopeId", "data-v-16cb1859"]]);
 const _hoisted_1$1 = { class: "area-settings" };
 const _hoisted_2$1 = { class: "area-settings__header" };
 const _hoisted_3$1 = { class: "area-settings__desc" };
@@ -17140,7 +17199,7 @@ function usePush() {
   if (hasPushServer) {
     try {
       __vitePreload(async () => {
-        const { listen } = await import("./index-DYc9KUm4.chunk.mjs").then((n) => n.i);
+        const { listen } = await import("./index-CoccE7Ip.chunk.mjs").then((n) => n.i);
         return { listen };
       }, true ? __vite__mapDeps([0,1,2]) : void 0, import.meta.url).then(({ listen }) => {
         listen("shopping_list_item_update", () => {

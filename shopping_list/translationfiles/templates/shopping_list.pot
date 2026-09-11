@@ -254,22 +254,32 @@ msgstr ""
 msgid "Delete all"
 msgstr ""
 
+#. Heading in the list's menu, above the three ways to order the open items.
+#: src/components/ListView.vue
+msgid "Sort items"
+msgstr ""
+
 #. Heading in the list's menu, above the three ways to order the checked-off section.
 #: src/components/ListView.vue
 msgid "Sort checked-off items"
 msgstr ""
 
-#. Sort option: keep checked-off items in the order they had on the list.
+#. Sort option, used for both open and checked-off items: grouped by shop area, in the area order of the list.
 #: src/components/ListView.vue
-msgid "List order"
+msgid "By area"
 msgstr ""
 
-#. Sort option: checked-off items by name, A to Z.
+#. Sort option for open items: grouped by shop area, and by name inside each area.
 #: src/components/ListView.vue
-msgid "Alphabetical"
+msgid "By area, A to Z"
 msgstr ""
 
-#. Sort option: the item checked off last comes first.
+#. Sort option, used for both open and checked-off items: by name, ignoring the shop areas.
+#: src/components/ListView.vue
+msgid "A to Z"
+msgstr ""
+
+#. Sort option for checked-off items: the item checked off last comes first.
 #: src/components/ListView.vue
 msgid "Most recent first"
 msgstr ""

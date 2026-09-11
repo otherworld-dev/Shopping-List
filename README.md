@@ -18,7 +18,7 @@ Shopping List is developed by Otherworld Dev. These are the **official** links �
 ## Features
 
 - **Multiple lists** — organize by store, meal plan, or occasion
-- **Shop area grouping** — items grouped by aisle/department (Produce, Dairy, Bakery, etc.) with color-coded headers; click a header to collapse that area, and each list remembers which areas you folded away
+- **Shop area grouping** — items grouped by aisle/department (Produce, Dairy, Bakery, etc.) with color-coded headers; click a header to collapse that area, and each list remembers which areas you folded away. Or sort A to Z, within each area or as one list
 - **Inline editing** — click any item to edit name or quantity in place
 - **Ingredient parsing** — paste a recipe ingredient list and items are parsed automatically (e.g. "2 cups flour" splits into quantity and name)
 - **Area auto-detection** — new items are automatically assigned to a shop area based on configurable keyword mappings
@@ -31,7 +31,7 @@ Shopping List is developed by Otherworld Dev. These are the **official** links �
 - **Auto-pluralization** — item names pluralize automatically when quantity goes above 1
 - **Offline mode** — data persists locally so the app works without network; changes queue and sync automatically when connectivity returns
 - **Real-time sync** — changes from other users appear via Nextcloud's notify_push or polling fallback
-- **Check off items** — tick items as you shop; checked items collapse into a separate section, sorted by list order, alphabetically, or most recent first
+- **Check off items** — tick items as you shop; checked items collapse into a separate section, sorted by area, A to Z, or most recent first
 - **Bulk actions** — restore all checked items or delete them in one click
 
 ## Requirements

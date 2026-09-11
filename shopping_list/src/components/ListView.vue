@@ -28,6 +28,15 @@
 						{{ copyAsTextText }}
 					</NcActionButton>
 					<NcActionSeparator />
+					<NcActionCaption :name="sortItemsText" />
+					<NcActionRadio v-for="option in openSortOptions"
+						:key="option.value"
+						v-model="openSort"
+						name="shopping-list-open-sort"
+						:value="option.value">
+						{{ option.label }}
+					</NcActionRadio>
+					<NcActionSeparator />
 					<NcActionCaption :name="sortCheckedText" />
 					<NcActionRadio v-for="option in boughtSortOptions"
 						:key="option.value"
@@ -83,7 +92,7 @@
 						v-model="localGroups[groupIndex].items"
 						item-key="id"
 						:group="{ name: 'items' }"
-						:disabled="!canEdit"
+						:disabled="!canDrag"
 						:animation="150"
 						:delay="150"
 						:delay-on-touch-only="true"
@@ -137,7 +146,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
+import { ref, computed, shallowRef, watch, onMounted, onUnmounted } from 'vue'
 import {
 	NcActionButton,
 	NcActionCaption,
@@ -156,7 +165,6 @@ import { mdiChevronDown } from '@mdi/js'
 import { useListsStore } from '../stores/lists'
 import { useItemsStore } from '../stores/items'
 import { useShopAreasStore } from '../stores/shopAreas'
-import type { Item } from '../types'
 import { Permission, ShareType } from '../types'
 import { useSharesStore } from '../stores/shares'
 import draggable from 'vuedraggable'
@@ -165,8 +173,15 @@ import ItemEditor from './ItemEditor.vue'
 import ShareDialog from './ShareDialog.vue'
 import { formatListAsText } from '../utils/listText'
 import { browserStorage } from '../utils/browserStorage'
-import { loadBoughtSort, saveBoughtSort, sortBought } from '../utils/boughtSort'
-import type { BoughtSort } from '../utils/boughtSort'
+import {
+	groupOpenItems,
+	loadBoughtSort,
+	loadOpenSort,
+	saveBoughtSort,
+	saveOpenSort,
+	sortBought,
+} from '../utils/itemSort'
+import type { AreaGroup, BoughtSort, OpenSort } from '../utils/itemSort'
 import { useCollapsedAreas } from '../composables/useCollapsedAreas'
 
 const listsStore = useListsStore()
@@ -231,25 +246,40 @@ const uncategorizedText = t('shopping_list', 'Uncategorized')
 const boughtText = t('shopping_list', 'Checked off')
 const uncheckAllText = t('shopping_list', 'Restore all')
 const clearCheckedText = t('shopping_list', 'Delete all')
+const sortItemsText = t('shopping_list', 'Sort items')
 const sortCheckedText = t('shopping_list', 'Sort checked-off items')
+const byAreaText = t('shopping_list', 'By area')
+const aToZText = t('shopping_list', 'A to Z')
+
+const openSortOptions: { value: OpenSort, label: string }[] = [
+	{ value: 'area', label: byAreaText },
+	{ value: 'areaAlpha', label: t('shopping_list', 'By area, A to Z') },
+	{ value: 'alpha', label: aToZText },
+]
 
 const boughtSortOptions: { value: BoughtSort, label: string }[] = [
-	{ value: 'list', label: t('shopping_list', 'List order') },
-	{ value: 'alpha', label: t('shopping_list', 'Alphabetical') },
+	{ value: 'area', label: byAreaText },
+	{ value: 'alpha', label: aToZText },
 	{ value: 'recent', label: t('shopping_list', 'Most recent first') },
 ]
 
-// How the checked-off section is ordered. One choice for all lists, kept in
-// this browser only.
+// How the open and checked-off items are ordered. One choice each for all
+// lists, kept in this browser only.
 const storage = browserStorage()
-const savedBoughtSort = ref<BoughtSort>(loadBoughtSort(storage))
-const boughtSort = computed({
-	get: () => savedBoughtSort.value,
-	set: (sort: BoughtSort) => {
-		savedBoughtSort.value = sort
-		saveBoughtSort(storage, sort)
-	},
-})
+
+function storedChoice<T>(initial: T, save: (value: T) => void) {
+	const current = shallowRef(initial)
+	return computed({
+		get: () => current.value,
+		set: (value: T) => {
+			current.value = value
+			save(value)
+		},
+	})
+}
+
+const openSort = storedChoice(loadOpenSort(storage), sort => saveOpenSort(storage, sort))
+const boughtSort = storedChoice(loadBoughtSort(storage), sort => saveBoughtSort(storage, sort))
 
 // Copies the outstanding items as plain text, in the format the add box
 // accepts when pasted, so a list round trips into a chat message and back.
@@ -288,13 +318,6 @@ const canEdit = computed(() =>
 	listsStore.currentList !== null && listsStore.currentList.permission >= Permission.WRITE,
 )
 
-interface AreaGroup {
-	areaId: number | null
-	areaName: string | null
-	areaColor: string | null
-	items: Item[]
-}
-
 const isDragging = ref(false)
 
 const { isCollapsed, toggle: toggleArea } = useCollapsedAreas(() => listsStore.currentListId)
@@ -314,43 +337,22 @@ function groupElementId(group: AreaGroup): string {
 	return `list-view-area-${group.areaId ?? 'none'}`
 }
 
-const areaGroups = computed((): AreaGroup[] => {
-	const unchecked = itemsStore.uncheckedItems
-	if (unchecked.length === 0) return []
+const language = getLanguage()
 
-	const grouped = new Map<number | null, Item[]>()
-
-	for (const item of unchecked) {
-		const key = item.shopAreaId
-		if (!grouped.has(key)) {
-			grouped.set(key, [])
-		}
-		grouped.get(key)!.push(item)
-	}
-
-	const areas = listsStore.currentListId
+const currentAreas = computed(() =>
+	listsStore.currentListId
 		? (shopAreasStore.areasByList[listsStore.currentListId] ?? [])
-		: []
-	const result: AreaGroup[] = []
+		: [],
+)
 
-	for (const area of areas) {
-		const items = grouped.get(area.id)
-		if (items && items.length > 0) {
-			result.push({ areaId: area.id, areaName: area.name, areaColor: area.color, items })
-			grouped.delete(area.id)
-		}
-	}
+const areaGroups = computed((): AreaGroup[] =>
+	groupOpenItems(itemsStore.uncheckedItems, currentAreas.value, openSort.value, language),
+)
 
-	const uncategorizedItems: Item[] = []
-	for (const [, items] of grouped) {
-		uncategorizedItems.push(...items)
-	}
-	if (uncategorizedItems.length > 0) {
-		result.push({ areaId: null, areaName: null, areaColor: null, items: uncategorizedItems })
-	}
-
-	return result
-})
+// Dragging sets the order and area by hand, which only means something when
+// the list shows that order. In the A to Z modes the sort decides where an
+// item goes, so a drop would just snap back.
+const canDrag = computed(() => canEdit.value && openSort.value === 'area')
 
 // Local mutable copy of groups for vuedraggable to manipulate
 const localGroups = ref<AreaGroup[]>([])
@@ -386,10 +388,8 @@ async function onDragEnd() {
 	])
 }
 
-const language = getLanguage()
-
 const checkedItemIds = computed(() =>
-	sortBought(itemsStore.checkedItems, boughtSort.value, language).map(i => i.id),
+	sortBought(itemsStore.checkedItems, boughtSort.value, currentAreas.value, language).map(i => i.id),
 )
 
 const cartIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.25,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.59 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z" fill="currentColor"/></svg>'
