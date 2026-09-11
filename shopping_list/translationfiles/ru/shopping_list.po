@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-09-02 23:36\n"
+"PO-Revision-Date: 2026-09-11 01:22\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -251,6 +251,36 @@ msgstr ""
 
 #: src/components/ListView.vue
 msgid "Delete all"
+msgstr ""
+
+#. Heading in the list's menu, above the three ways to order the open items.
+#: src/components/ListView.vue
+msgid "Sort items"
+msgstr ""
+
+#. Heading in the list's menu, above the three ways to order the checked-off section.
+#: src/components/ListView.vue
+msgid "Sort checked-off items"
+msgstr ""
+
+#. Sort option, used for both open and checked-off items: grouped by shop area, in the area order of the list.
+#: src/components/ListView.vue
+msgid "By area"
+msgstr ""
+
+#. Sort option for open items: grouped by shop area, and by name inside each area.
+#: src/components/ListView.vue
+msgid "By area, A to Z"
+msgstr ""
+
+#. Sort option, used for both open and checked-off items: by name, ignoring the shop areas.
+#: src/components/ListView.vue
+msgid "A to Z"
+msgstr ""
+
+#. Sort option for checked-off items: the item checked off last comes first.
+#: src/components/ListView.vue
+msgid "Most recent first"
 msgstr ""
 
 #: src/components/ShareDialog.vue
