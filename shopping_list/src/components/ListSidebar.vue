@@ -3,15 +3,16 @@
 		<NcAppNavigationNew :text="newListText"
 			@click="onNewList" />
 
-		<template v-for="section in ownedSections" :key="section.key">
+		<template v-for="section in sections" :key="section.key">
 			<NcAppNavigationCaption v-if="section.caption"
 				:name="section.caption" />
 			<NcAppNavigationItem v-for="list in section.lists"
 				:key="list.id"
 				:name="list.title"
 				:active="list.id === listsStore.currentListId"
-				:editable="true"
+				:editable="list.isOwner"
 				:edit-label="renameText"
+				force-menu
 				@click="listsStore.selectList(list.id)"
 				@update:name="(name: string) => onRename(list.id, name)">
 				<template #counter>
@@ -23,27 +24,12 @@
 					<NcActionButton @click="listsStore.setPinned(list.id, !list.isPinned)">
 						{{ list.isPinned ? unpinText : pinText }}
 					</NcActionButton>
-					<NcActionButton @click="onDelete(list.id)">
+					<NcActionButton v-if="list.isOwner" @click="onDelete(list.id)">
 						{{ deleteText }}
 					</NcActionButton>
 				</template>
 			</NcAppNavigationItem>
 		</template>
-
-		<NcAppNavigationCaption v-if="listsStore.sharedLists.length > 0"
-			:name="sharedText" />
-
-		<NcAppNavigationItem v-for="list in listsStore.sharedLists"
-			:key="list.id"
-			:name="list.title"
-			:active="list.id === listsStore.currentListId"
-			@click="listsStore.selectList(list.id)">
-			<template #counter>
-				<span v-if="getUncheckedCount(list.id) > 0" class="count-bubble">
-					{{ getUncheckedCount(list.id) }}
-				</span>
-			</template>
-		</NcAppNavigationItem>
 
 		<div v-if="listsStore.currentListId !== null" class="sidebar-settings">
 			<button class="sidebar-settings__btn" @click="$emit('showSettings')">
@@ -95,15 +81,15 @@ const othersText = t('shopping_list', 'Others')
 const pinText = t('shopping_list', 'Pin list')
 const unpinText = t('shopping_list', 'Unpin list')
 
-// Your own lists, split into Pinned and Others once something is pinned.
-// With nothing pinned they show as one uncaptioned group, as before.
-const ownedSections = computed(() => {
-	if (listsStore.pinnedLists.length === 0) {
-		return [{ key: 'owned', caption: '', lists: listsStore.ownedLists }]
-	}
+// Pinned lists, yours and shared ones, go first. Your other lists follow,
+// captioned Others only when there is a Pinned section above them, and
+// the unpinned shared lists stay under Shared with me.
+const sections = computed(() => {
+	const hasPinned = listsStore.pinnedLists.length > 0
 	return [
 		{ key: 'pinned', caption: pinnedText, lists: listsStore.pinnedLists },
-		{ key: 'others', caption: othersText, lists: listsStore.unpinnedLists },
+		{ key: 'owned', caption: hasPinned ? othersText : '', lists: listsStore.unpinnedOwnedLists },
+		{ key: 'shared', caption: sharedText, lists: listsStore.unpinnedSharedLists },
 	].filter(section => section.lists.length > 0)
 })
 

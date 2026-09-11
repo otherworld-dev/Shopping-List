@@ -26,11 +26,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   sort in your language. Your browser remembers both choices for all your
   lists, and they change nothing for the others sharing a list. Thanks to
   rubo77 for the ideas (#43, #44)
-- Your own lists can be pinned. Choose "Pin list" from a list's menu in the
-  sidebar and it moves up into a Pinned section, above your other lists.
-  The pin is yours alone: people you share the list with keep their own
-  order. It is saved on the server, so it is the same in every browser you
-  use. Thanks to Shiva (shining-cat) for the feature (#45)
+- Lists can be pinned, your own and those shared with you. Choose "Pin
+  list" from a list's menu in the sidebar and it moves up into a Pinned
+  section, above your other lists. The pin is yours alone: the others on a
+  shared list keep their own order. It is saved on the server, so it is
+  the same in every browser you use. Thanks to Shiva (shining-cat) for the
+  feature (#45)
 
 ## [1.7.1] - 2026-09-02
 

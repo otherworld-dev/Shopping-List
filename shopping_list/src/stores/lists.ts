@@ -23,13 +23,16 @@ export const useListsStore = defineStore('lists', () => {
 		lists.value.filter(l => !l.isOwner),
 	)
 
-	// Pinning splits the owned lists only; shared lists keep their own section
 	const pinnedLists = computed(() =>
-		ownedLists.value.filter(l => l.isPinned === true),
+		lists.value.filter(l => l.isPinned === true),
 	)
 
-	const unpinnedLists = computed(() =>
+	const unpinnedOwnedLists = computed(() =>
 		ownedLists.value.filter(l => l.isPinned !== true),
+	)
+
+	const unpinnedSharedLists = computed(() =>
+		sharedLists.value.filter(l => l.isPinned !== true),
 	)
 
 	async function fetchAll() {
@@ -114,7 +117,8 @@ export const useListsStore = defineStore('lists', () => {
 		ownedLists,
 		sharedLists,
 		pinnedLists,
-		unpinnedLists,
+		unpinnedOwnedLists,
+		unpinnedSharedLists,
 		fetchAll,
 		create,
 		update,

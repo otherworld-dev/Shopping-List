@@ -1,10 +1,10 @@
 
-.sidebar-settings[data-v-ca4f1097] {
+.sidebar-settings[data-v-353e1312] {
 	padding: 8px 10px;
 	border-top: 1px solid var(--color-border);
 	margin-top: auto;
 }
-.sidebar-settings__btn[data-v-ca4f1097] {
+.sidebar-settings__btn[data-v-353e1312] {
 	width: 100%;
 	padding: 8px 12px;
 	background: none;
@@ -15,11 +15,11 @@
 	cursor: pointer;
 	text-align: left;
 }
-.sidebar-settings__btn[data-v-ca4f1097]:hover {
+.sidebar-settings__btn[data-v-353e1312]:hover {
 	background: var(--color-background-hover);
 	color: var(--color-main-text);
 }
-.count-bubble[data-v-ca4f1097] {
+.count-bubble[data-v-353e1312] {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;

@@ -157,7 +157,7 @@ const _sfc_main$b = {
 };
 const _hoisted_1$a = ["role"];
 const _hoisted_2$8 = ["role", "aria-checked"];
-const _hoisted_3$8 = { class: "action-radio__icon" };
+const _hoisted_3$7 = { class: "action-radio__icon" };
 const _hoisted_4$7 = ["id", "value", "name", "disabled"];
 const _hoisted_5$7 = { class: "action-radio__text" };
 function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
@@ -171,7 +171,7 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
       role: $options.isInSemanticMenu && "menuitemradio",
       "aria-checked": $options.isInSemanticMenu && $options.checked.toString()
     }, [
-      createBaseVNode("span", _hoisted_3$8, [
+      createBaseVNode("span", _hoisted_3$7, [
         withDirectives(createBaseVNode("input", {
           id: $props.id,
           "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => $setup.model = $event),
@@ -275,7 +275,7 @@ const _hoisted_2$7 = {
   class: "empty-content__icon",
   "aria-hidden": "true"
 };
-const _hoisted_3$7 = ["id"];
+const _hoisted_3$6 = ["id"];
 const _hoisted_4$6 = {
   key: 2,
   class: "empty-content__description"
@@ -309,7 +309,7 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
           renderSlot(_ctx.$slots, "name", {}, () => [
             createTextVNode(toDisplayString(_ctx.name), 1)
           ], true)
-        ], 8, _hoisted_3$7)) : createCommentVNode("", true),
+        ], 8, _hoisted_3$6)) : createCommentVNode("", true),
         _ctx.description !== "" || _ctx.$slots.description ? (openBlock(), createElementBlock("p", _hoisted_4$6, [
           renderSlot(_ctx.$slots, "description", {}, () => [
             createTextVNode(toDisplayString(_ctx.description), 1)
@@ -746,10 +746,13 @@ const useListsStore = defineStore("lists", () => {
     () => lists.value.filter((l) => !l.isOwner)
   );
   const pinnedLists = computed(
-    () => ownedLists.value.filter((l) => l.isPinned === true)
+    () => lists.value.filter((l) => l.isPinned === true)
   );
-  const unpinnedLists = computed(
+  const unpinnedOwnedLists = computed(
     () => ownedLists.value.filter((l) => l.isPinned !== true)
+  );
+  const unpinnedSharedLists = computed(
+    () => sharedLists.value.filter((l) => l.isPinned !== true)
   );
   async function fetchAll() {
     loading.value = true;
@@ -825,7 +828,8 @@ const useListsStore = defineStore("lists", () => {
     ownedLists,
     sharedLists,
     pinnedLists,
-    unpinnedLists,
+    unpinnedOwnedLists,
+    unpinnedSharedLists,
     fetchAll,
     create,
     update,
@@ -1842,10 +1846,6 @@ const _hoisted_1$6 = {
 };
 const _hoisted_2$6 = {
   key: 0,
-  class: "count-bubble"
-};
-const _hoisted_3$6 = {
-  key: 1,
   class: "sidebar-settings"
 };
 const listIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,4H7V8H3V4M9,5V7H21V5H9M3,10H7V14H3V10M9,11V13H21V11H9M3,16H7V20H3V16M9,17V19H21V17H9" fill="currentColor"/></svg>';
@@ -1866,13 +1866,12 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
     const othersText = translate("shopping_list", "Others");
     const pinText = translate("shopping_list", "Pin list");
     const unpinText = translate("shopping_list", "Unpin list");
-    const ownedSections = computed(() => {
-      if (listsStore.pinnedLists.length === 0) {
-        return [{ key: "owned", caption: "", lists: listsStore.ownedLists }];
-      }
+    const sections = computed(() => {
+      const hasPinned = listsStore.pinnedLists.length > 0;
       return [
         { key: "pinned", caption: pinnedText, lists: listsStore.pinnedLists },
-        { key: "others", caption: othersText, lists: listsStore.unpinnedLists }
+        { key: "owned", caption: hasPinned ? othersText : "", lists: listsStore.unpinnedOwnedLists },
+        { key: "shared", caption: sharedText, lists: listsStore.unpinnedSharedLists }
       ].filter((section) => section.lists.length > 0);
     });
     function getUncheckedCount(listId) {
@@ -1896,7 +1895,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
           text: unref(newListText),
           onClick: onNewList
         }, null, 8, ["text"]),
-        (openBlock(true), createElementBlock(Fragment, null, renderList(ownedSections.value, (section) => {
+        (openBlock(true), createElementBlock(Fragment, null, renderList(sections.value, (section) => {
           return openBlock(), createElementBlock(Fragment, {
             key: section.key
           }, [
@@ -1909,8 +1908,9 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
                 key: list.id,
                 name: list.title,
                 active: list.id === unref(listsStore).currentListId,
-                editable: true,
+                editable: list.isOwner,
                 "edit-label": unref(renameText),
+                "force-menu": "",
                 onClick: ($event) => unref(listsStore).selectList(list.id),
                 "onUpdate:name": (name) => onRename(list.id, name)
               }, {
@@ -1926,45 +1926,29 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
                     ]),
                     _: 2
                   }, 1032, ["onClick"]),
-                  createVNode(unref(NcActionButton), {
+                  list.isOwner ? (openBlock(), createBlock(unref(NcActionButton), {
+                    key: 0,
                     onClick: ($event) => onDelete(list.id)
                   }, {
                     default: withCtx(() => [
                       createTextVNode(toDisplayString(unref(deleteText)), 1)
                     ]),
                     _: 1
-                  }, 8, ["onClick"])
+                  }, 8, ["onClick"])) : createCommentVNode("", true)
                 ]),
                 _: 2
-              }, 1032, ["name", "active", "edit-label", "onClick", "onUpdate:name"]);
+              }, 1032, ["name", "active", "editable", "edit-label", "onClick", "onUpdate:name"]);
             }), 128))
           ], 64);
         }), 128)),
-        unref(listsStore).sharedLists.length > 0 ? (openBlock(), createBlock(unref(NcAppNavigationCaption), {
-          key: 0,
-          name: unref(sharedText)
-        }, null, 8, ["name"])) : createCommentVNode("", true),
-        (openBlock(true), createElementBlock(Fragment, null, renderList(unref(listsStore).sharedLists, (list) => {
-          return openBlock(), createBlock(unref(NcAppNavigationItem), {
-            key: list.id,
-            name: list.title,
-            active: list.id === unref(listsStore).currentListId,
-            onClick: ($event) => unref(listsStore).selectList(list.id)
-          }, {
-            counter: withCtx(() => [
-              getUncheckedCount(list.id) > 0 ? (openBlock(), createElementBlock("span", _hoisted_2$6, toDisplayString(getUncheckedCount(list.id)), 1)) : createCommentVNode("", true)
-            ]),
-            _: 2
-          }, 1032, ["name", "active", "onClick"]);
-        }), 128)),
-        unref(listsStore).currentListId !== null ? (openBlock(), createElementBlock("div", _hoisted_3$6, [
+        unref(listsStore).currentListId !== null ? (openBlock(), createElementBlock("div", _hoisted_2$6, [
           createBaseVNode("button", {
             class: "sidebar-settings__btn",
             onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("showSettings"))
           }, " ⚙ " + toDisplayString(unref(settingsText)), 1)
         ])) : createCommentVNode("", true),
         !unref(listsStore).loading && unref(listsStore).lists.length === 0 ? (openBlock(), createBlock(unref(NcEmptyContent), {
-          key: 2,
+          key: 1,
           name: unref(emptyName),
           description: unref(emptyDesc)
         }, {
@@ -1977,7 +1961,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ListSidebar = /* @__PURE__ */ _export_sfc$1(_sfc_main$7, [["__scopeId", "data-v-ca4f1097"]]);
+const ListSidebar = /* @__PURE__ */ _export_sfc$1(_sfc_main$7, [["__scopeId", "data-v-353e1312"]]);
 const useSharesStore = defineStore("shares", () => {
   const sharesByList = ref({});
   async function fetchByList(listId) {
