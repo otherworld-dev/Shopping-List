@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { areaKey, loadCollapsed, saveCollapsed, storageKey } from './collapsedAreas'
-import type { StorageLike } from './collapsedAreas'
+import type { StorageLike } from './browserStorage'
 
 // An in-memory stand-in for localStorage. Only the three methods the helpers
 // use are needed.

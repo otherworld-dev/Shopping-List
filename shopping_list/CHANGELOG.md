@@ -15,6 +15,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   areas for each list, so they stay folded after a reload. Folding is your
   own view: it changes nothing for the others sharing the list. Public share
   links can fold areas too. Thanks to rubo77 for the idea (#42)
+- Items can be sorted from the list's menu (the three dots). "Sort items"
+  orders the open items: By area (grouped by shop area in your own drag
+  order, as before), By area, A to Z (grouped, and by name inside each area),
+  or A to Z (one list by name, each item still showing its area). Dragging
+  works in By area only, since the other two decide the order themselves.
+  "Sort checked-off items" orders the checked-off section: By area, A to Z,
+  or Most recent first, so the item you just ticked is on top. By area is
+  new there: before, that section kept an order that looked random. Names
+  sort in your language. Your browser remembers both choices for all your
+  lists, and they change nothing for the others sharing a list. Thanks to
+  rubo77 for the ideas (#43, #44)
 
 ## [1.7.1] - 2026-09-02
 

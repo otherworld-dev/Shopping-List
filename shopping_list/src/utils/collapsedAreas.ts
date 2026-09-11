@@ -7,8 +7,7 @@
  * entry per list, and never goes to the server.
  */
 
-/** The part of the Web Storage API these helpers use, so tests can fake it. */
-export type StorageLike = Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>
+import type { StorageLike } from './browserStorage'
 
 /** A stable key for an area group. Items with no area form their own group. */
 export function areaKey(areaId: number | null): string {

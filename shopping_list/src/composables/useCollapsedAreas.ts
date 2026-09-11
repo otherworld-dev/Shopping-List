@@ -1,16 +1,7 @@
 import { ref, watch } from 'vue'
+import { browserStorage } from '../utils/browserStorage'
 import { areaKey, loadCollapsed, saveCollapsed } from '../utils/collapsedAreas'
-import type { StorageLike } from '../utils/collapsedAreas'
-
-// Reading window.localStorage can itself throw, for example when the browser
-// blocks site data, so it is fetched inside a try.
-function browserStorage(): StorageLike | null {
-	try {
-		return window.localStorage
-	} catch {
-		return null
-	}
-}
+import type { StorageLike } from '../utils/browserStorage'
 
 /**
  * Tracks which shop-area groups are collapsed on the current list, and keeps
