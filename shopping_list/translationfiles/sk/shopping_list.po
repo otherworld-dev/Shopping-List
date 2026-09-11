@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-09-11 13:38\n"
+"PO-Revision-Date: 2026-09-11 16:10\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "Language: sk_SK\n"
@@ -115,55 +115,55 @@ msgstr "Pridať položku do zoznamu..."
 
 #: src/components/ItemEditor.vue
 msgid "Add an item or paste a list..."
-msgstr ""
+msgstr "Pridajte položku alebo vložte zoznam..."
 
 #. Accessible name and tooltip of the round question-mark button in the add box
 #: src/components/ItemEditor.vue
 msgid "Input format help"
-msgstr ""
+msgstr "Pomocník k formátu zadávania"
 
 #: src/components/ItemEditor.vue
 msgid "Type one item, or paste a whole list"
-msgstr ""
+msgstr "Napíšte jednu položku alebo vložte celý zoznam"
 
 #: src/components/ItemEditor.vue
 msgid "Every pasted line becomes its own item. Amounts, units and list markers are read for you."
-msgstr ""
+msgstr "Každý vložený riadok sa stane samostatnou položkou. Množstvá, jednotky a značky zoznamu sa rozpoznajú automaticky."
 
 #. Column heading in the input help: the example line as the user would type it
 #: src/components/ItemEditor.vue
 msgid "You type"
-msgstr ""
+msgstr "Napíšete"
 
 #. Column heading in the input help: the item the app makes from that line
 #: src/components/ItemEditor.vue
 msgid "You get"
-msgstr ""
+msgstr "Dostanete"
 
 #. Example line in the input help. Translate the words, keep the "- " bullet.
 #: src/utils/inputExamples.ts
 msgid "- Apples"
-msgstr ""
+msgstr "- Jablká"
 
 #. Example line in the input help. Translate the words, keep the "[ ] " checkbox and the number.
 #: src/utils/inputExamples.ts
 msgid "[ ] 3 Bananas"
-msgstr ""
+msgstr "[ ] 3 banány"
 
 #. Example line in the input help. Translate the word, keep the "[x] " ticked checkbox.
 #: src/utils/inputExamples.ts
 msgid "[x] Eggs"
-msgstr ""
+msgstr "[x] Vajcia"
 
 #. Example line in the input help. Use a unit from your language's parsing pack so it is recognised.
 #: src/utils/inputExamples.ts
 msgid "2 cups flour"
-msgstr ""
+msgstr "2 šálky múky"
 
 #. Example line in the input help. Translate the word, keep the "1. " numbering.
 #: src/utils/inputExamples.ts
 msgid "1. Milk"
-msgstr ""
+msgstr "1. Mlieko"
 
 #: src/components/ItemEditor.vue
 msgid "Area"
@@ -196,22 +196,22 @@ msgstr "Odstrániť zoznam"
 #. Menu action on a list in the sidebar: keep it at the top, above the user's other lists.
 #: src/components/ListSidebar.vue
 msgid "Pin list"
-msgstr ""
+msgstr "Pripnúť zoznam"
 
 #. Menu action on a pinned list in the sidebar: put it back among the user's other lists.
 #: src/components/ListSidebar.vue
 msgid "Unpin list"
-msgstr ""
+msgstr "Odopnúť zoznam"
 
 #. Sidebar heading above the lists the user has pinned.
 #: src/components/ListSidebar.vue
 msgid "Pinned"
-msgstr ""
+msgstr "Pripnuté"
 
 #. Sidebar heading above the user's own lists that are not pinned, shown below the Pinned heading.
 #: src/components/ListSidebar.vue
 msgid "Others"
-msgstr ""
+msgstr "Ostatné"
 
 #: src/components/ListSidebar.vue
 msgid "Shared with me"
@@ -235,19 +235,19 @@ msgstr "Zdielať"
 
 #: src/components/ListView.vue
 msgid "List actions"
-msgstr ""
+msgstr "Akcie zoznamu"
 
 #: src/components/ListView.vue
 msgid "Copy list as text"
-msgstr ""
+msgstr "Kopírovať zoznam ako text"
 
 #: src/components/ListView.vue
 msgid "List copied to clipboard"
-msgstr ""
+msgstr "Zoznam skopírovaný do schránky"
 
 #: src/components/ListView.vue
 msgid "Could not copy the list"
-msgstr ""
+msgstr "Zoznam sa nepodarilo skopírovať"
 
 #: src/components/ListView.vue src/components/PublicListView.vue
 msgid "No items yet"
@@ -276,32 +276,32 @@ msgstr "Odstrániť všetko"
 #. Heading in the list's menu, above the three ways to order the open items.
 #: src/components/ListView.vue
 msgid "Sort items"
-msgstr ""
+msgstr "Zoradiť položky"
 
 #. Heading in the list's menu, above the three ways to order the checked-off section.
 #: src/components/ListView.vue
 msgid "Sort checked-off items"
-msgstr ""
+msgstr "Zoradiť zaškrtnuté položky"
 
 #. Sort option, used for both open and checked-off items: grouped by shop area, in the area order of the list.
 #: src/components/ListView.vue
 msgid "By area"
-msgstr ""
+msgstr "Podľa oblasti"
 
 #. Sort option for open items: grouped by shop area, and by name inside each area.
 #: src/components/ListView.vue
 msgid "By area, A to Z"
-msgstr ""
+msgstr "Podľa oblasti, od A po Z"
 
 #. Sort option, used for both open and checked-off items: by name, ignoring the shop areas.
 #: src/components/ListView.vue
 msgid "A to Z"
-msgstr ""
+msgstr "Od A po Z"
 
 #. Sort option for checked-off items: the item checked off last comes first.
 #: src/components/ListView.vue
 msgid "Most recent first"
-msgstr ""
+msgstr "Najnovšie ako prvé"
 
 #: src/components/ShareDialog.vue
 msgid "Share list"
@@ -365,7 +365,7 @@ msgstr "Heslo"
 
 #: src/components/ShareDialog.vue
 msgid "Password set"
-msgstr ""
+msgstr "Heslo nastavené"
 
 #: src/components/ShareDialog.vue
 msgid "Optional"
@@ -393,7 +393,7 @@ msgstr "Pridať značky..."
 
 #: src/stores/items.ts
 msgid "Failed to load items"
-msgstr ""
+msgstr "Nepodarilo sa načítať položky"
 
 #: src/stores/items.ts
 msgid "\"{name}\" updated — quantity merged"
@@ -417,7 +417,7 @@ msgstr "Nepodarilo sa preusporiadať položky"
 
 #: src/stores/items.ts
 msgid "Failed to clear checked items"
-msgstr ""
+msgstr "Nepodarilo sa vymazať zaškrtnuté položky"
 
 #: src/stores/items.ts
 msgid "Failed to uncheck items"
@@ -429,11 +429,11 @@ msgstr "Nepodarilo sa načítať nákupné zoznamy"
 
 #: src/stores/lists.ts
 msgid "Failed to create list"
-msgstr ""
+msgstr "Nepodarilo sa vytvoriť zoznam"
 
 #: src/stores/lists.ts
 msgid "Failed to update list"
-msgstr ""
+msgstr "Nepodarilo sa aktualizovať zoznam"
 
 #: src/stores/lists.ts
 msgid "Failed to delete list"
@@ -441,23 +441,23 @@ msgstr "Nepodarilo sa odstrániť zoznam"
 
 #: src/stores/lists.ts
 msgid "Failed to pin list"
-msgstr ""
+msgstr "Nepodarilo sa pripnúť zoznam"
 
 #: src/stores/lists.ts
 msgid "Failed to unpin list"
-msgstr ""
+msgstr "Nepodarilo sa odopnúť zoznam"
 
 #: src/stores/shares.ts
 msgid "Failed to load shares"
-msgstr ""
+msgstr "Nepodarilo sa načítať zdieľania"
 
 #: src/stores/shares.ts
 msgid "Failed to share list"
-msgstr ""
+msgstr "Nepodarilo sa zdieľať zoznam"
 
 #: src/stores/shares.ts
 msgid "Failed to update share"
-msgstr ""
+msgstr "Nepodarilo sa aktualizovať zdieľanie"
 
 #: src/stores/shares.ts
 msgid "Failed to remove share"
@@ -465,11 +465,11 @@ msgstr "Nepodarilo sa odstrániť zoznam"
 
 #: src/stores/shares.ts
 msgid "Failed to create public link"
-msgstr ""
+msgstr "Nepodarilo sa vytvoriť verejný odkaz"
 
 #: src/stores/shares.ts
 msgid "Failed to update public link"
-msgstr ""
+msgstr "Nepodarilo sa aktualizovať verejný odkaz"
 
 #: src/stores/shares.ts
 msgid "Failed to remove public link"
@@ -477,7 +477,7 @@ msgstr "Nepodarilo sa odstrániť verejný odkaz"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to load shop areas"
-msgstr ""
+msgstr "Nepodarilo sa načítať oblasti obchodu"
 
 #: src/stores/shopAreas.ts
 msgid "Categories copied"
@@ -485,7 +485,7 @@ msgstr "Kategórie skopírované"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to copy categories"
-msgstr ""
+msgstr "Nepodarilo sa skopírovať kategórie"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Copy categories from…"
@@ -497,39 +497,39 @@ msgstr "Kopírovať"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Load keywords for my language"
-msgstr ""
+msgstr "Načítať kľúčové slová pre môj jazyk"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Adds your language's grocery keywords to the default areas, so items auto-sort correctly. Existing keywords are kept."
-msgstr ""
+msgstr "Pridá kľúčové slová potravín vo vašom jazyku do predvolených oblastí, aby sa položky automaticky správne zaradili. Existujúce kľúčové slová zostanú zachované."
 
 #: src/stores/shopAreas.ts
 msgid "Keywords for your language added"
-msgstr ""
+msgstr "Kľúčové slová pre váš jazyk boli pridané"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to add keywords"
-msgstr ""
+msgstr "Nepodarilo sa pridať kľúčové slová"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to create shop area"
-msgstr ""
+msgstr "Nepodarilo sa vytvoriť oblasť obchodu"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to update shop area"
-msgstr ""
+msgstr "Nepodarilo sa aktualizovať oblasť obchodu"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to delete shop area"
-msgstr ""
+msgstr "Nepodarilo sa odstrániť oblasť obchodu"
 
 #: src/stores/tags.ts
 msgid "Failed to load tags"
-msgstr ""
+msgstr "Nepodarilo sa načítať značky"
 
 #: src/stores/tags.ts
 msgid "Failed to create tag"
-msgstr ""
+msgstr "Nepodarilo sa vytvoriť značku"
 
 #: src/stores/tags.ts
 msgid "Failed to delete tag"
@@ -609,7 +609,7 @@ msgstr "Synchronizujú sa zmeny…"
 
 #: src/components/OfflineIndicator.vue
 msgid "Offline — {count} pending"
-msgstr ""
+msgstr "Offline — {count} čakajúcich"
 
 #: src/components/OfflineIndicator.vue
 msgid "You're offline"
@@ -617,7 +617,7 @@ msgstr "Ste offline"
 
 #: src/components/OfflineIndicator.vue
 msgid "All changes synced"
-msgstr ""
+msgstr "Všetky zmeny sú synchronizované"
 
 #: src/components/OfflineIndicator.vue
 msgid "{count} changes pending"
@@ -625,17 +625,17 @@ msgstr "{count} čakajúcich zmien"
 
 #: appinfo/info.xml lib/Notification/Notifier.php
 msgid "Shopping List"
-msgstr ""
+msgstr "Nákupný zoznam"
 
 #: lib/Notification/Notifier.php
 msgid "Shopping List is now on Android"
-msgstr ""
+msgstr "Aplikácia Shopping List je teraz dostupná pre Android"
 
 #: lib/Notification/Notifier.php
 msgid "Take your lists shopping — a companion Android app is now available on Google Play."
-msgstr ""
+msgstr "Vezmite si zoznamy so sebou na nákup: sprievodná aplikácia pre Android je teraz dostupná na Google Play."
 
 #: lib/Notification/Notifier.php
 msgid "Get it on Google Play"
-msgstr ""
+msgstr "Teraz na Google Play"
 
