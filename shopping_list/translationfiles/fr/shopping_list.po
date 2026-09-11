@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-09-11 01:22\n"
+"PO-Revision-Date: 2026-09-11 13:37\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -192,6 +192,26 @@ msgstr "Renommer la liste"
 #: src/components/ListSidebar.vue
 msgid "Delete list"
 msgstr "Supprimer la liste"
+
+#. Menu action on a list in the sidebar: keep it at the top, above the user's other lists.
+#: src/components/ListSidebar.vue
+msgid "Pin list"
+msgstr ""
+
+#. Menu action on a pinned list in the sidebar: put it back among the user's other lists.
+#: src/components/ListSidebar.vue
+msgid "Unpin list"
+msgstr ""
+
+#. Sidebar heading above the lists the user has pinned.
+#: src/components/ListSidebar.vue
+msgid "Pinned"
+msgstr ""
+
+#. Sidebar heading above the user's own lists that are not pinned, shown below the Pinned heading.
+#: src/components/ListSidebar.vue
+msgid "Others"
+msgstr ""
 
 #: src/components/ListSidebar.vue
 msgid "Shared with me"
@@ -418,6 +438,14 @@ msgstr "Impossible de mettre à jour la liste"
 #: src/stores/lists.ts
 msgid "Failed to delete list"
 msgstr "Impossible de supprimer la liste"
+
+#: src/stores/lists.ts
+msgid "Failed to pin list"
+msgstr ""
+
+#: src/stores/lists.ts
+msgid "Failed to unpin list"
+msgstr ""
 
 #: src/stores/shares.ts
 msgid "Failed to load shares"
