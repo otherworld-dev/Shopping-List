@@ -42759,7 +42759,8 @@ const api = {
     get: (id) => cancelableClient.get(url(`lists/${id}`)),
     create: (title) => cancelableClient.post(url("lists"), { title }),
     update: (id, title) => cancelableClient.put(url(`lists/${id}`), { title }),
-    delete: (id) => cancelableClient.delete(url(`lists/${id}`))
+    delete: (id) => cancelableClient.delete(url(`lists/${id}`)),
+    setPinned: (id, isPinned) => cancelableClient.patch(url(`lists/${id}/preferences`), { isPinned })
   },
   items: {
     getAll: (listId) => cancelableClient.get(url(`lists/${listId}/items`)),
@@ -42989,10 +42990,10 @@ export {
   Fragment as J,
   renderList as K,
   createBlock as L,
-  NcActionButton as M,
+  NcAppNavigationCaption as M,
   NC_ACTIONS_IS_SEMANTIC_MENU as N,
-  NcAppNavigationItem as O,
-  NcAppNavigationCaption as P,
+  NcActionButton as O,
+  NcAppNavigationItem as P,
   _export_sfc as Q,
   NOOP as R,
   extend$1 as S,
@@ -43088,4 +43089,4 @@ export {
   defineStore as y,
   ref as z
 };
-//# sourceMappingURL=useCollapsedAreas-D8OIu1tK.chunk.mjs.map
+//# sourceMappingURL=useCollapsedAreas-hIb1s_qg.chunk.mjs.map

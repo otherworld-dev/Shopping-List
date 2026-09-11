@@ -12,6 +12,8 @@ export const api = {
 		create: (title: string) => axios.post(url('lists'), { title }),
 		update: (id: number, title: string) => axios.put(url(`lists/${id}`), { title }),
 		delete: (id: number) => axios.delete(url(`lists/${id}`)),
+		setPinned: (id: number, isPinned: boolean) =>
+			axios.patch(url(`lists/${id}/preferences`), { isPinned }),
 	},
 	items: {
 		getAll: (listId: number) => axios.get(url(`lists/${listId}/items`)),

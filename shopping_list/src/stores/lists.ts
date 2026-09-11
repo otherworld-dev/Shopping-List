@@ -23,6 +23,15 @@ export const useListsStore = defineStore('lists', () => {
 		lists.value.filter(l => !l.isOwner),
 	)
 
+	// Pinning splits the owned lists only; shared lists keep their own section
+	const pinnedLists = computed(() =>
+		ownedLists.value.filter(l => l.isPinned === true),
+	)
+
+	const unpinnedLists = computed(() =>
+		ownedLists.value.filter(l => l.isPinned !== true),
+	)
+
 	async function fetchAll() {
 		loading.value = true
 		try {
@@ -82,6 +91,21 @@ export const useListsStore = defineStore('lists', () => {
 		currentListId.value = id
 	}
 
+	async function setPinned(id: number, isPinned: boolean) {
+		try {
+			await api.lists.setPinned(id, isPinned)
+			const list = lists.value.find(l => l.id === id)
+			if (list) {
+				list.isPinned = isPinned
+			}
+		} catch (e) {
+			showError(isPinned
+				? t('shopping_list', 'Failed to pin list')
+				: t('shopping_list', 'Failed to unpin list'))
+			console.error(e)
+		}
+	}
+
 	return {
 		lists,
 		currentListId,
@@ -89,10 +113,13 @@ export const useListsStore = defineStore('lists', () => {
 		currentList,
 		ownedLists,
 		sharedLists,
+		pinnedLists,
+		unpinnedLists,
 		fetchAll,
 		create,
 		update,
 		remove,
 		selectList,
+		setPinned,
 	}
 })

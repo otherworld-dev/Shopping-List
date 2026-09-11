@@ -20,6 +20,8 @@ export interface ShoppingList {
 	title: string
 	permission: Permission
 	isOwner: boolean
+	/** The current user's own pin; null until they first pin or unpin the list */
+	isPinned: boolean | null
 	createdAt: string
 	updatedAt: string
 }
