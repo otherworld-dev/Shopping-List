@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-08-29 22:51\n"
+"PO-Revision-Date: 2026-09-11 16:10\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Language: fi_FI\n"
@@ -109,9 +109,61 @@ msgstr "Lisää osasto"
 msgid "Delete \"{name}\"? Items in this area will become uncategorized."
 msgstr "Poistetaanko \"{name}\"? Tämän osaston tuotteet muuttuvat luokittelemattomiksi."
 
-#: src/components/ItemEditor.vue src/components/PublicListView.vue
+#: src/components/PublicListView.vue
 msgid "Add an item to list..."
 msgstr "Lisää tuote listalle..."
+
+#: src/components/ItemEditor.vue
+msgid "Add an item or paste a list..."
+msgstr "Lisää tuote tai liitä lista..."
+
+#. Accessible name and tooltip of the round question-mark button in the add box
+#: src/components/ItemEditor.vue
+msgid "Input format help"
+msgstr "Syötemuodon ohje"
+
+#: src/components/ItemEditor.vue
+msgid "Type one item, or paste a whole list"
+msgstr "Kirjoita yksi tuote tai liitä koko lista"
+
+#: src/components/ItemEditor.vue
+msgid "Every pasted line becomes its own item. Amounts, units and list markers are read for you."
+msgstr "Jokaisesta liitetystä rivistä tulee oma tuotteensa. Määrät, yksiköt ja listamerkit tunnistetaan puolestasi."
+
+#. Column heading in the input help: the example line as the user would type it
+#: src/components/ItemEditor.vue
+msgid "You type"
+msgstr "Kirjoitat"
+
+#. Column heading in the input help: the item the app makes from that line
+#: src/components/ItemEditor.vue
+msgid "You get"
+msgstr "Saat"
+
+#. Example line in the input help. Translate the words, keep the "- " bullet.
+#: src/utils/inputExamples.ts
+msgid "- Apples"
+msgstr "- Omenat"
+
+#. Example line in the input help. Translate the words, keep the "[ ] " checkbox and the number.
+#: src/utils/inputExamples.ts
+msgid "[ ] 3 Bananas"
+msgstr "[ ] 3 banaania"
+
+#. Example line in the input help. Translate the word, keep the "[x] " ticked checkbox.
+#: src/utils/inputExamples.ts
+msgid "[x] Eggs"
+msgstr "[x] Kananmunat"
+
+#. Example line in the input help. Use a unit from your language's parsing pack so it is recognised.
+#: src/utils/inputExamples.ts
+msgid "2 cups flour"
+msgstr "2 kupillista jauhoja"
+
+#. Example line in the input help. Translate the word, keep the "1. " numbering.
+#: src/utils/inputExamples.ts
+msgid "1. Milk"
+msgstr "1. Maito"
 
 #: src/components/ItemEditor.vue
 msgid "Area"
@@ -141,6 +193,26 @@ msgstr "Nimeä lista uudelleen"
 msgid "Delete list"
 msgstr "Poista lista"
 
+#. Menu action on a list in the sidebar: keep it at the top, above the user's other lists.
+#: src/components/ListSidebar.vue
+msgid "Pin list"
+msgstr "Kiinnitä lista"
+
+#. Menu action on a pinned list in the sidebar: put it back among the user's other lists.
+#: src/components/ListSidebar.vue
+msgid "Unpin list"
+msgstr "Irrota lista"
+
+#. Sidebar heading above the lists the user has pinned.
+#: src/components/ListSidebar.vue
+msgid "Pinned"
+msgstr "Kiinnitetyt"
+
+#. Sidebar heading above the user's own lists that are not pinned, shown below the Pinned heading.
+#: src/components/ListSidebar.vue
+msgid "Others"
+msgstr "Muut"
+
 #: src/components/ListSidebar.vue
 msgid "Shared with me"
 msgstr "Jaettu minulle"
@@ -163,19 +235,19 @@ msgstr "Jaa"
 
 #: src/components/ListView.vue
 msgid "List actions"
-msgstr ""
+msgstr "Listan toiminnot"
 
 #: src/components/ListView.vue
 msgid "Copy list as text"
-msgstr ""
+msgstr "Kopioi lista tekstinä"
 
 #: src/components/ListView.vue
 msgid "List copied to clipboard"
-msgstr ""
+msgstr "Lista kopioitu leikepöydälle"
 
 #: src/components/ListView.vue
 msgid "Could not copy the list"
-msgstr ""
+msgstr "Listan kopioiminen epäonnistui"
 
 #: src/components/ListView.vue src/components/PublicListView.vue
 msgid "No items yet"
@@ -189,7 +261,7 @@ msgstr "Lisää ensimmäinen tuotteesi ylhäällä"
 msgid "Uncategorized"
 msgstr "Luokittelematon"
 
-#: src/components/ListView.vue src/components/PublicListView.vue
+#: src/components/ListView.vue src/components/PublicListView.vue src/components/ItemEditor.vue
 msgid "Checked off"
 msgstr "Valitsematon"
 
@@ -200,6 +272,36 @@ msgstr "Palauta kaikki"
 #: src/components/ListView.vue
 msgid "Delete all"
 msgstr "Poista kaikki"
+
+#. Heading in the list's menu, above the three ways to order the open items.
+#: src/components/ListView.vue
+msgid "Sort items"
+msgstr "Järjestä tuotteet"
+
+#. Heading in the list's menu, above the three ways to order the checked-off section.
+#: src/components/ListView.vue
+msgid "Sort checked-off items"
+msgstr "Järjestä valitut tuotteet"
+
+#. Sort option, used for both open and checked-off items: grouped by shop area, in the area order of the list.
+#: src/components/ListView.vue
+msgid "By area"
+msgstr "Osastoittain"
+
+#. Sort option for open items: grouped by shop area, and by name inside each area.
+#: src/components/ListView.vue
+msgid "By area, A to Z"
+msgstr "Osastoittain, A–Ö"
+
+#. Sort option, used for both open and checked-off items: by name, ignoring the shop areas.
+#: src/components/ListView.vue
+msgid "A to Z"
+msgstr "A–Ö"
+
+#. Sort option for checked-off items: the item checked off last comes first.
+#: src/components/ListView.vue
+msgid "Most recent first"
+msgstr "Uusin ensin"
 
 #: src/components/ShareDialog.vue
 msgid "Share list"
@@ -336,6 +438,14 @@ msgstr "Listan päivittäminen epäonnistui"
 #: src/stores/lists.ts
 msgid "Failed to delete list"
 msgstr "Listan poistaminen epäonnistui"
+
+#: src/stores/lists.ts
+msgid "Failed to pin list"
+msgstr "Listan kiinnittäminen epäonnistui"
+
+#: src/stores/lists.ts
+msgid "Failed to unpin list"
+msgstr "Listan irrottaminen epäonnistui"
 
 #: src/stores/shares.ts
 msgid "Failed to load shares"
@@ -519,13 +629,13 @@ msgstr "Ostoslista"
 
 #: lib/Notification/Notifier.php
 msgid "Shopping List is now on Android"
-msgstr ""
+msgstr "Shopping List on nyt saatavilla Androidille"
 
 #: lib/Notification/Notifier.php
 msgid "Take your lists shopping — a companion Android app is now available on Google Play."
-msgstr ""
+msgstr "Ota listasi mukaan kauppaan: Android-sovellus on nyt saatavilla Google Playsta."
 
 #: lib/Notification/Notifier.php
 msgid "Get it on Google Play"
-msgstr ""
+msgstr "Saatavana Google Playssa"
 

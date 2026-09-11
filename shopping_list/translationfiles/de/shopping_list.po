@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-08-29 22:51\n"
+"PO-Revision-Date: 2026-09-11 16:10\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -109,9 +109,61 @@ msgstr "Kategorie hinzufügen"
 msgid "Delete \"{name}\"? Items in this area will become uncategorized."
 msgstr "\"{name}\" löschen? Elemente in dieser Kategorie werden unkategorisiert."
 
-#: src/components/ItemEditor.vue src/components/PublicListView.vue
+#: src/components/PublicListView.vue
 msgid "Add an item to list..."
 msgstr "Artikel zur Liste hinzufügen..."
+
+#: src/components/ItemEditor.vue
+msgid "Add an item or paste a list..."
+msgstr "Artikel hinzufügen oder Liste einfügen..."
+
+#. Accessible name and tooltip of the round question-mark button in the add box
+#: src/components/ItemEditor.vue
+msgid "Input format help"
+msgstr "Hilfe zum Eingabeformat"
+
+#: src/components/ItemEditor.vue
+msgid "Type one item, or paste a whole list"
+msgstr "Gib einen Artikel ein oder füge eine ganze Liste ein"
+
+#: src/components/ItemEditor.vue
+msgid "Every pasted line becomes its own item. Amounts, units and list markers are read for you."
+msgstr "Jede eingefügte Zeile wird ein eigener Artikel. Mengen, Einheiten und Listenzeichen werden automatisch erkannt."
+
+#. Column heading in the input help: the example line as the user would type it
+#: src/components/ItemEditor.vue
+msgid "You type"
+msgstr "Eingabe"
+
+#. Column heading in the input help: the item the app makes from that line
+#: src/components/ItemEditor.vue
+msgid "You get"
+msgstr "Ergebnis"
+
+#. Example line in the input help. Translate the words, keep the "- " bullet.
+#: src/utils/inputExamples.ts
+msgid "- Apples"
+msgstr "- Äpfel"
+
+#. Example line in the input help. Translate the words, keep the "[ ] " checkbox and the number.
+#: src/utils/inputExamples.ts
+msgid "[ ] 3 Bananas"
+msgstr "[ ] 3 Bananen"
+
+#. Example line in the input help. Translate the word, keep the "[x] " ticked checkbox.
+#: src/utils/inputExamples.ts
+msgid "[x] Eggs"
+msgstr "[x] Eier"
+
+#. Example line in the input help. Use a unit from your language's parsing pack so it is recognised.
+#: src/utils/inputExamples.ts
+msgid "2 cups flour"
+msgstr "2 Tassen Mehl"
+
+#. Example line in the input help. Translate the word, keep the "1. " numbering.
+#: src/utils/inputExamples.ts
+msgid "1. Milk"
+msgstr "1. Milch"
 
 #: src/components/ItemEditor.vue
 msgid "Area"
@@ -141,6 +193,26 @@ msgstr "Liste umbenennen"
 msgid "Delete list"
 msgstr "Liste löschen"
 
+#. Menu action on a list in the sidebar: keep it at the top, above the user's other lists.
+#: src/components/ListSidebar.vue
+msgid "Pin list"
+msgstr "Liste anheften"
+
+#. Menu action on a pinned list in the sidebar: put it back among the user's other lists.
+#: src/components/ListSidebar.vue
+msgid "Unpin list"
+msgstr "Liste lösen"
+
+#. Sidebar heading above the lists the user has pinned.
+#: src/components/ListSidebar.vue
+msgid "Pinned"
+msgstr "Angeheftet"
+
+#. Sidebar heading above the user's own lists that are not pinned, shown below the Pinned heading.
+#: src/components/ListSidebar.vue
+msgid "Others"
+msgstr "Weitere"
+
 #: src/components/ListSidebar.vue
 msgid "Shared with me"
 msgstr "Mit mir geteilt"
@@ -163,19 +235,19 @@ msgstr "Freigeben"
 
 #: src/components/ListView.vue
 msgid "List actions"
-msgstr ""
+msgstr "Listenaktionen"
 
 #: src/components/ListView.vue
 msgid "Copy list as text"
-msgstr ""
+msgstr "Liste als Text kopieren"
 
 #: src/components/ListView.vue
 msgid "List copied to clipboard"
-msgstr ""
+msgstr "Liste in die Zwischenablage kopiert"
 
 #: src/components/ListView.vue
 msgid "Could not copy the list"
-msgstr ""
+msgstr "Die Liste konnte nicht kopiert werden"
 
 #: src/components/ListView.vue src/components/PublicListView.vue
 msgid "No items yet"
@@ -189,7 +261,7 @@ msgstr "Ersten Artikel oben hinzufügen"
 msgid "Uncategorized"
 msgstr "Unkategorisiert"
 
-#: src/components/ListView.vue src/components/PublicListView.vue
+#: src/components/ListView.vue src/components/PublicListView.vue src/components/ItemEditor.vue
 msgid "Checked off"
 msgstr "Deaktiviert"
 
@@ -200,6 +272,36 @@ msgstr "Alle wiederherstellen"
 #: src/components/ListView.vue
 msgid "Delete all"
 msgstr "Alle löschen"
+
+#. Heading in the list's menu, above the three ways to order the open items.
+#: src/components/ListView.vue
+msgid "Sort items"
+msgstr "Artikel sortieren"
+
+#. Heading in the list's menu, above the three ways to order the checked-off section.
+#: src/components/ListView.vue
+msgid "Sort checked-off items"
+msgstr "Abgehakte Artikel sortieren"
+
+#. Sort option, used for both open and checked-off items: grouped by shop area, in the area order of the list.
+#: src/components/ListView.vue
+msgid "By area"
+msgstr "Nach Kategorie"
+
+#. Sort option for open items: grouped by shop area, and by name inside each area.
+#: src/components/ListView.vue
+msgid "By area, A to Z"
+msgstr "Nach Kategorie, A bis Z"
+
+#. Sort option, used for both open and checked-off items: by name, ignoring the shop areas.
+#: src/components/ListView.vue
+msgid "A to Z"
+msgstr "A bis Z"
+
+#. Sort option for checked-off items: the item checked off last comes first.
+#: src/components/ListView.vue
+msgid "Most recent first"
+msgstr "Neueste zuerst"
 
 #: src/components/ShareDialog.vue
 msgid "Share list"
@@ -337,6 +439,14 @@ msgstr "Liste konnte nicht aktualisiert werden"
 msgid "Failed to delete list"
 msgstr "Liste konnte nicht gelöscht werden"
 
+#: src/stores/lists.ts
+msgid "Failed to pin list"
+msgstr "Liste konnte nicht angeheftet werden"
+
+#: src/stores/lists.ts
+msgid "Failed to unpin list"
+msgstr "Liste konnte nicht gelöst werden"
+
 #: src/stores/shares.ts
 msgid "Failed to load shares"
 msgstr "Fehler beim Laden der Freigaben"
@@ -371,35 +481,35 @@ msgstr "Fehler beim Laden der Shopkategorien"
 
 #: src/stores/shopAreas.ts
 msgid "Categories copied"
-msgstr ""
+msgstr "Kategorien kopiert"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to copy categories"
-msgstr ""
+msgstr "Kategorien konnten nicht kopiert werden"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Copy categories from…"
-msgstr ""
+msgstr "Kategorien kopieren von…"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Copy"
-msgstr ""
+msgstr "Kopieren"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Load keywords for my language"
-msgstr ""
+msgstr "Stichwörter für meine Sprache laden"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Adds your language's grocery keywords to the default areas, so items auto-sort correctly. Existing keywords are kept."
-msgstr ""
+msgstr "Fügt den Standardkategorien die Stichwörter deiner Sprache hinzu, damit Artikel automatisch richtig einsortiert werden. Vorhandene Stichwörter bleiben erhalten."
 
 #: src/stores/shopAreas.ts
 msgid "Keywords for your language added"
-msgstr ""
+msgstr "Stichwörter für deine Sprache hinzugefügt"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to add keywords"
-msgstr ""
+msgstr "Stichwörter konnten nicht hinzugefügt werden"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to create shop area"
@@ -479,19 +589,19 @@ msgstr "\"{name}\" löschen?"
 
 #: src/components/ItemRow.vue
 msgid "Move to list"
-msgstr ""
+msgstr "In Liste verschieben"
 
 #: src/stores/items.ts
 msgid "Failed to move item"
-msgstr ""
+msgstr "Artikel konnte nicht verschoben werden"
 
 #: src/stores/items.ts
 msgid "Moved \"{name}\" to {list}"
-msgstr ""
+msgstr "\"{name}\" nach {list} verschoben"
 
 #: src/stores/items.ts
 msgid "You're offline — moving items requires a connection"
-msgstr ""
+msgstr "Du bist offline — zum Verschieben von Artikeln ist eine Verbindung nötig"
 
 #: src/components/OfflineIndicator.vue
 msgid "Syncing changes…"
@@ -515,17 +625,17 @@ msgstr "{count} ausstehende Änderungen"
 
 #: appinfo/info.xml lib/Notification/Notifier.php
 msgid "Shopping List"
-msgstr ""
+msgstr "Einkaufsliste"
 
 #: lib/Notification/Notifier.php
 msgid "Shopping List is now on Android"
-msgstr ""
+msgstr "Shopping List gibt es jetzt für Android"
 
 #: lib/Notification/Notifier.php
 msgid "Take your lists shopping — a companion Android app is now available on Google Play."
-msgstr ""
+msgstr "Nimm deine Listen mit zum Einkaufen: Eine begleitende Android-App ist jetzt bei Google Play erhältlich."
 
 #: lib/Notification/Notifier.php
 msgid "Get it on Google Play"
-msgstr ""
+msgstr "Jetzt bei Google Play"
 
