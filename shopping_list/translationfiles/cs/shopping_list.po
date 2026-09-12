@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-09-11 13:38\n"
+"PO-Revision-Date: 2026-09-12 10:56\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "Language: cs_CZ\n"
@@ -187,7 +187,7 @@ msgstr ""
 
 #: src/components/ListSidebar.vue
 msgid "Rename list"
-msgstr ""
+msgstr "Přejmenovat seznam"
 
 #: src/components/ListSidebar.vue
 msgid "Delete list"
@@ -227,7 +227,7 @@ msgstr ""
 
 #: src/components/ListSidebar.vue
 msgid "New shopping list"
-msgstr ""
+msgstr "Nový nákupní seznam"
 
 #: src/components/ListView.vue
 msgid "Share"
