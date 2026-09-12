@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-09-12 10:56\n"
+"PO-Revision-Date: 2026-09-12 11:57\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "Language: cs_CZ\n"
@@ -19,171 +19,171 @@ msgstr ""
 
 #: src/App.vue
 msgid "No list selected"
-msgstr ""
+msgstr "Není vybrán žádný seznam"
 
 #: src/App.vue
 msgid "Select a list from the sidebar or create a new one"
-msgstr ""
+msgstr "Vyberte seznam z postranního panelu nebo vytvořte nový seznam"
 
 #: src/PublicApp.vue
 msgid "Password required"
-msgstr ""
+msgstr "Heslo je vyžadováno"
 
 #: src/PublicApp.vue
 msgid "This list is password protected."
-msgstr ""
+msgstr "Tento seznam je chráněný heslem."
 
 #: src/PublicApp.vue
 msgid "Enter password"
-msgstr ""
+msgstr "Zadejte heslo"
 
 #: src/PublicApp.vue
 msgid "Unlock"
-msgstr ""
+msgstr "Odemknout"
 
 #: src/PublicApp.vue
 msgid "Incorrect password"
-msgstr ""
+msgstr "Nesprávné heslo"
 
 #: src/PublicApp.vue
 msgid "Not found"
-msgstr ""
+msgstr "Nenalezeno"
 
 #: src/PublicApp.vue
 msgid "This shared list does not exist or has expired."
-msgstr ""
+msgstr "Tento sdílený seznam neexistuje nebo vypršela jeho platnost."
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Back to list"
-msgstr ""
+msgstr "Zpět na seznam"
 
 #: src/components/AreaKeywordsSettings.vue src/components/ListSidebar.vue
 msgid "Manage Areas"
-msgstr ""
+msgstr "Správa oblastí"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Manage shop areas, keywords, and display order. Keywords auto-detect which area an item belongs to when added or pasted."
-msgstr ""
+msgstr "Spravovat oblasti nakupování, klíčová slova a zobrazení pořadí položek. Klíčová slova jsou použita k automatickému rozpoznání oblastí, do kterých položka patří."
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Search keywords..."
-msgstr ""
+msgstr "Vyhledat klíčová slova..."
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Add keyword..."
-msgstr ""
+msgstr "Přidat klíčové slovo..."
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "No keywords"
-msgstr ""
+msgstr "Žádná klíčová slova"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Rename"
-msgstr ""
+msgstr "Přejmenovat"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Delete area"
-msgstr ""
+msgstr "Smazat oblast"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Move up"
-msgstr ""
+msgstr "Posunout nahoru"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Move down"
-msgstr ""
+msgstr "Posunout dolů"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Change color"
-msgstr ""
+msgstr "Změnit barvu"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "New area name..."
-msgstr ""
+msgstr "Název nové oblasti..."
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Add area"
-msgstr ""
+msgstr "Přidat oblast"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Delete \"{name}\"? Items in this area will become uncategorized."
-msgstr ""
+msgstr "Smazat \"{name}\"? Položky z této oblasti budou bez kategorie."
 
 #: src/components/PublicListView.vue
 msgid "Add an item to list..."
-msgstr ""
+msgstr "Přidat položku do seznamu..."
 
 #: src/components/ItemEditor.vue
 msgid "Add an item or paste a list..."
-msgstr ""
+msgstr "Přidat položku nebo vložit seznam..."
 
 #. Accessible name and tooltip of the round question-mark button in the add box
 #: src/components/ItemEditor.vue
 msgid "Input format help"
-msgstr ""
+msgstr "Nápověda k formátování vstupu"
 
 #: src/components/ItemEditor.vue
 msgid "Type one item, or paste a whole list"
-msgstr ""
+msgstr "Zadejte jednu položku nebo vložte celý seznam"
 
 #: src/components/ItemEditor.vue
 msgid "Every pasted line becomes its own item. Amounts, units and list markers are read for you."
-msgstr ""
+msgstr "Každý vložený řádek se stane položkou. Částky, jednotky a značky seznamu se přečtou."
 
 #. Column heading in the input help: the example line as the user would type it
 #: src/components/ItemEditor.vue
 msgid "You type"
-msgstr ""
+msgstr "Zadali jste"
 
 #. Column heading in the input help: the item the app makes from that line
 #: src/components/ItemEditor.vue
 msgid "You get"
-msgstr ""
+msgstr "Dostanete"
 
 #. Example line in the input help. Translate the words, keep the "- " bullet.
 #: src/utils/inputExamples.ts
 msgid "- Apples"
-msgstr ""
+msgstr "- jablka"
 
 #. Example line in the input help. Translate the words, keep the "[ ] " checkbox and the number.
 #: src/utils/inputExamples.ts
 msgid "[ ] 3 Bananas"
-msgstr ""
+msgstr "[ ] 3 banány"
 
 #. Example line in the input help. Translate the word, keep the "[x] " ticked checkbox.
 #: src/utils/inputExamples.ts
 msgid "[x] Eggs"
-msgstr ""
+msgstr "[x] vejce"
 
 #. Example line in the input help. Use a unit from your language's parsing pack so it is recognised.
 #: src/utils/inputExamples.ts
 msgid "2 cups flour"
-msgstr ""
+msgstr "2 šálky mouky"
 
 #. Example line in the input help. Translate the word, keep the "1. " numbering.
 #: src/utils/inputExamples.ts
 msgid "1. Milk"
-msgstr ""
+msgstr "1. mléko"
 
 #: src/components/ItemEditor.vue
 msgid "Area"
-msgstr ""
+msgstr "Oblast"
 
 #: src/components/ItemEditor.vue
 msgid "No match"
-msgstr ""
+msgstr "Žádná shoda"
 
 #: src/components/ItemRow.vue
 msgid "Qty"
-msgstr ""
+msgstr "Množství"
 
 #: src/components/ItemRow.vue
 msgid "Delete"
-msgstr ""
+msgstr "Smazat"
 
 #: src/components/ListSidebar.vue
 msgid "New list"
-msgstr ""
+msgstr "Nový seznam"
 
 #: src/components/ListSidebar.vue
 msgid "Rename list"
@@ -191,39 +191,39 @@ msgstr "Přejmenovat seznam"
 
 #: src/components/ListSidebar.vue
 msgid "Delete list"
-msgstr ""
+msgstr "Smazat seznam"
 
 #. Menu action on a list in the sidebar: keep it at the top, above the user's other lists.
 #: src/components/ListSidebar.vue
 msgid "Pin list"
-msgstr ""
+msgstr "Připnout seznam"
 
 #. Menu action on a pinned list in the sidebar: put it back among the user's other lists.
 #: src/components/ListSidebar.vue
 msgid "Unpin list"
-msgstr ""
+msgstr "Odepnout seznam"
 
 #. Sidebar heading above the lists the user has pinned.
 #: src/components/ListSidebar.vue
 msgid "Pinned"
-msgstr ""
+msgstr "Připnuto"
 
 #. Sidebar heading above the user's own lists that are not pinned, shown below the Pinned heading.
 #: src/components/ListSidebar.vue
 msgid "Others"
-msgstr ""
+msgstr "Ostatní"
 
 #: src/components/ListSidebar.vue
 msgid "Shared with me"
-msgstr ""
+msgstr "Sdíleno se mnou"
 
 #: src/components/ListSidebar.vue
 msgid "No shopping lists"
-msgstr ""
+msgstr "Žádné nákupní seznamy"
 
 #: src/components/ListSidebar.vue
 msgid "Create your first shopping list to get started"
-msgstr ""
+msgstr "Vytvořte svůj první nákupní seznam abyste mohli začít"
 
 #: src/components/ListSidebar.vue
 msgid "New shopping list"
@@ -231,411 +231,411 @@ msgstr "Nový nákupní seznam"
 
 #: src/components/ListView.vue
 msgid "Share"
-msgstr ""
+msgstr "Sdílet"
 
 #: src/components/ListView.vue
 msgid "List actions"
-msgstr ""
+msgstr "Akce seznamů"
 
 #: src/components/ListView.vue
 msgid "Copy list as text"
-msgstr ""
+msgstr "Kopírovat seznam jako text"
 
 #: src/components/ListView.vue
 msgid "List copied to clipboard"
-msgstr ""
+msgstr "Seznam zkopírován do schránky"
 
 #: src/components/ListView.vue
 msgid "Could not copy the list"
-msgstr ""
+msgstr "Nepodařilo se zkopírovat seznam"
 
 #: src/components/ListView.vue src/components/PublicListView.vue
 msgid "No items yet"
-msgstr ""
+msgstr "Zatím žádné položky"
 
 #: src/components/ListView.vue
 msgid "Add your first item above"
-msgstr ""
+msgstr "Výše přidejte svoji první položku"
 
 #: src/components/ListView.vue src/components/PublicListView.vue
 msgid "Uncategorized"
-msgstr ""
+msgstr "Bez kategorie"
 
 #: src/components/ListView.vue src/components/PublicListView.vue src/components/ItemEditor.vue
 msgid "Checked off"
-msgstr ""
+msgstr "Odškrtnuto"
 
 #: src/components/ListView.vue
 msgid "Restore all"
-msgstr ""
+msgstr "Obnovit vše"
 
 #: src/components/ListView.vue
 msgid "Delete all"
-msgstr ""
+msgstr "Smazat vše"
 
 #. Heading in the list's menu, above the three ways to order the open items.
 #: src/components/ListView.vue
 msgid "Sort items"
-msgstr ""
+msgstr "Seřadit položky"
 
 #. Heading in the list's menu, above the three ways to order the checked-off section.
 #: src/components/ListView.vue
 msgid "Sort checked-off items"
-msgstr ""
+msgstr "Seřadit odškrtnuté položky"
 
 #. Sort option, used for both open and checked-off items: grouped by shop area, in the area order of the list.
 #: src/components/ListView.vue
 msgid "By area"
-msgstr ""
+msgstr "Podle oblasti"
 
 #. Sort option for open items: grouped by shop area, and by name inside each area.
 #: src/components/ListView.vue
 msgid "By area, A to Z"
-msgstr ""
+msgstr "Podle oblasti, A až Z"
 
 #. Sort option, used for both open and checked-off items: by name, ignoring the shop areas.
 #: src/components/ListView.vue
 msgid "A to Z"
-msgstr ""
+msgstr "Od A do Z"
 
 #. Sort option for checked-off items: the item checked off last comes first.
 #: src/components/ListView.vue
 msgid "Most recent first"
-msgstr ""
+msgstr "Od nejnovějších"
 
 #: src/components/ShareDialog.vue
 msgid "Share list"
-msgstr ""
+msgstr "Sdílet seznam"
 
 #: src/components/ShareDialog.vue
 msgid "Search users or groups..."
-msgstr ""
+msgstr "Vyhledat uživatele nebo skupiny..."
 
 #: src/components/ShareDialog.vue
 msgid "No users found"
-msgstr ""
+msgstr "Nebyli nalezeni žádní uživatelé"
 
 #: src/components/ShareDialog.vue
 msgid "Group"
-msgstr ""
+msgstr "Skupina"
 
 #: src/components/ShareDialog.vue
 msgid "Shared with"
-msgstr ""
+msgstr "Sdíleno s"
 
 #: src/components/ShareDialog.vue
 msgid "Can view"
-msgstr ""
+msgstr "Může zobrazit"
 
 #: src/components/ShareDialog.vue
 msgid "Can edit"
-msgstr ""
+msgstr "Může upravovat"
 
 #: src/components/ShareDialog.vue
 msgid "Search above to share this list with other users."
-msgstr ""
+msgstr "Vyhledejte výše pro sdílení tohoto seznamu s ostatními uživateli."
 
 #: src/components/ShareDialog.vue
 msgid "group"
-msgstr ""
+msgstr "skupina"
 
 #: src/components/ShareDialog.vue
 msgid "Public link"
-msgstr ""
+msgstr "Veřejný odkaz"
 
 #: src/components/ShareDialog.vue
 msgid "Create public link"
-msgstr ""
+msgstr "Vytvořit veřejný odkaz"
 
 #: src/components/ShareDialog.vue
 msgid "Copy link"
-msgstr ""
+msgstr "Kopírovat odkaz"
 
 #: src/components/ShareDialog.vue
 msgid "Copied!"
-msgstr ""
+msgstr "Zkopírováno!"
 
 #: src/components/ShareDialog.vue
 msgid "Permission"
-msgstr ""
+msgstr "Oprávnění"
 
 #: src/components/ShareDialog.vue
 msgid "Password"
-msgstr ""
+msgstr "Heslo"
 
 #: src/components/ShareDialog.vue
 msgid "Password set"
-msgstr ""
+msgstr "Heslo nastaveno"
 
 #: src/components/ShareDialog.vue
 msgid "Optional"
-msgstr ""
+msgstr "Volitelné"
 
 #: src/components/ShareDialog.vue
 msgid "Set"
-msgstr ""
+msgstr "Nastavit"
 
 #: src/components/ShareDialog.vue
 msgid "Remove"
-msgstr ""
+msgstr "Odstranit"
 
 #: src/components/ShareDialog.vue
 msgid "Expires"
-msgstr ""
+msgstr "Platnost do"
 
 #: src/components/ShareDialog.vue
 msgid "Delete public link"
-msgstr ""
+msgstr "Smazat veřejný odkaz"
 
 #: src/components/TagInput.vue
 msgid "Add tags..."
-msgstr ""
+msgstr "Přidat tagy..."
 
 #: src/stores/items.ts
 msgid "Failed to load items"
-msgstr ""
+msgstr "Načtení položek se nezdařilo"
 
 #: src/stores/items.ts
 msgid "\"{name}\" updated — quantity merged"
-msgstr ""
+msgstr "\"{name}\" aktualizováno — množství sloučeno"
 
 #: src/stores/items.ts
 msgid "Failed to add item"
-msgstr ""
+msgstr "Přidání položky se nezdařilo"
 
 #: src/stores/items.ts
 msgid "Failed to update item"
-msgstr ""
+msgstr "Aktualizace položky se nezdařila"
 
 #: src/stores/items.ts
 msgid "Failed to delete item"
-msgstr ""
+msgstr "Nepodařilo se smazat položku"
 
 #: src/stores/items.ts
 msgid "Failed to reorder items"
-msgstr ""
+msgstr "Nepodařilo se změnit pořadí položek"
 
 #: src/stores/items.ts
 msgid "Failed to clear checked items"
-msgstr ""
+msgstr "Nepodařilo se odstranit zaškrtnuté položky"
 
 #: src/stores/items.ts
 msgid "Failed to uncheck items"
-msgstr ""
+msgstr "Zrušení zaškrtnutí položek se nezdařilo"
 
 #: src/stores/lists.ts
 msgid "Failed to load shopping lists"
-msgstr ""
+msgstr "Nepodařilo se načíst nákupní seznamy"
 
 #: src/stores/lists.ts
 msgid "Failed to create list"
-msgstr ""
+msgstr "Vytvoření seznamu se nezdařilo"
 
 #: src/stores/lists.ts
 msgid "Failed to update list"
-msgstr ""
+msgstr "Aktualizace seznamu se nezdařila"
 
 #: src/stores/lists.ts
 msgid "Failed to delete list"
-msgstr ""
+msgstr "Smazání seznamu se nezdařilo"
 
 #: src/stores/lists.ts
 msgid "Failed to pin list"
-msgstr ""
+msgstr "Připnutí seznamu se nezdařilo"
 
 #: src/stores/lists.ts
 msgid "Failed to unpin list"
-msgstr ""
+msgstr "Odepnutí seznamu se nezdařilo"
 
 #: src/stores/shares.ts
 msgid "Failed to load shares"
-msgstr ""
+msgstr "Nepodařilo se načíst sdílení"
 
 #: src/stores/shares.ts
 msgid "Failed to share list"
-msgstr ""
+msgstr "Sdílení seznamu se nezdařilo"
 
 #: src/stores/shares.ts
 msgid "Failed to update share"
-msgstr ""
+msgstr "Aktualizace sdílení selhala"
 
 #: src/stores/shares.ts
 msgid "Failed to remove share"
-msgstr ""
+msgstr "Nepodařilo se odstranit sdílení"
 
 #: src/stores/shares.ts
 msgid "Failed to create public link"
-msgstr ""
+msgstr "Nepodařilo se vytvořit veřejný odkaz"
 
 #: src/stores/shares.ts
 msgid "Failed to update public link"
-msgstr ""
+msgstr "Nepodařilo se aktualizovat veřejný odkaz"
 
 #: src/stores/shares.ts
 msgid "Failed to remove public link"
-msgstr ""
+msgstr "Nepodařilo se odstranit veřejný odkaz"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to load shop areas"
-msgstr ""
+msgstr "Nepodařilo se načíst oblasti obchodu"
 
 #: src/stores/shopAreas.ts
 msgid "Categories copied"
-msgstr ""
+msgstr "Kategorie zkopírovány"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to copy categories"
-msgstr ""
+msgstr "Kopírování kategorií se nezdařilo"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Copy categories from…"
-msgstr ""
+msgstr "Zkopírovat kategorie z…"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Copy"
-msgstr ""
+msgstr "Kopírovat"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Load keywords for my language"
-msgstr ""
+msgstr "Načíst klíčová slova pro můj jazyk"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Adds your language's grocery keywords to the default areas, so items auto-sort correctly. Existing keywords are kept."
-msgstr ""
+msgstr "Přidá klíčová slova vašeho jazyka do výchozích oblastí, takže položky automaticky seřadí správně. Existující klíčová slova jsou zachována."
 
 #: src/stores/shopAreas.ts
 msgid "Keywords for your language added"
-msgstr ""
+msgstr "Klíčová slova pro váš jazyk přidána"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to add keywords"
-msgstr ""
+msgstr "Přidání klíčových slov se nezdařilo"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to create shop area"
-msgstr ""
+msgstr "Vytvoření oblasti obchodu se nezdařilo"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to update shop area"
-msgstr ""
+msgstr "Aktualizace oblasti obchodu se nezdařila"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to delete shop area"
-msgstr ""
+msgstr "Odstranění oblasti obchodu se nezdařilo"
 
 #: src/stores/tags.ts
 msgid "Failed to load tags"
-msgstr ""
+msgstr "Štítky se nepodařilo načíst"
 
 #: src/stores/tags.ts
 msgid "Failed to create tag"
-msgstr ""
+msgstr "Nepodařilo se vytvořit štítek"
 
 #: src/stores/tags.ts
 msgid "Failed to delete tag"
-msgstr ""
+msgstr "Smazání štítku se nezdařilo"
 
 #: lib/Service/ShopAreaService.php
 msgid "Produce"
-msgstr ""
+msgstr "Čerstvé produkty"
 
 #: lib/Service/ShopAreaService.php
 msgid "Dairy"
-msgstr ""
+msgstr "Mléčné výrobky"
 
 #: lib/Service/ShopAreaService.php
 msgid "Bakery"
-msgstr ""
+msgstr "Pekárna"
 
 #: lib/Service/ShopAreaService.php
 msgid "Meat & Seafood"
-msgstr ""
+msgstr "Maso a mořské plody"
 
 #: lib/Service/ShopAreaService.php
 msgid "Frozen"
-msgstr ""
+msgstr "Mražené"
 
 #: lib/Service/ShopAreaService.php
 msgid "Beverages"
-msgstr ""
+msgstr "Nápoje"
 
 #: lib/Service/ShopAreaService.php
 msgid "Snacks"
-msgstr ""
+msgstr "Chuťovky"
 
 #: lib/Service/ShopAreaService.php
 msgid "Household"
-msgstr ""
+msgstr "Domácnost"
 
 #: lib/Service/ShopAreaService.php
 msgid "Personal Care"
-msgstr ""
+msgstr "Osobní péče"
 
 #: lib/Service/ShopAreaService.php
 msgid "General"
-msgstr ""
+msgstr "Obecné"
 
 #: lib/Service/ShopAreaService.php
 msgid "Pets"
-msgstr ""
+msgstr "Domácí mazlíčci"
 
 #: lib/Service/ShopAreaService.php
 msgid "Other"
-msgstr ""
+msgstr "Ostatní"
 
 #: src/components/ItemRow.vue
 msgid "Delete \"{name}\"?"
-msgstr ""
+msgstr "Smazat „{name}“?"
 
 #: src/components/ItemRow.vue
 msgid "Move to list"
-msgstr ""
+msgstr "Přesunout do seznamu"
 
 #: src/stores/items.ts
 msgid "Failed to move item"
-msgstr ""
+msgstr "Nepodařilo se přesunout položku"
 
 #: src/stores/items.ts
 msgid "Moved \"{name}\" to {list}"
-msgstr ""
+msgstr "Přesunuto \"{name}\" do {list}"
 
 #: src/stores/items.ts
 msgid "You're offline — moving items requires a connection"
-msgstr ""
+msgstr "Jste offline — přesouvání položek vyžaduje připojení"
 
 #: src/components/OfflineIndicator.vue
 msgid "Syncing changes…"
-msgstr ""
+msgstr "Synchronizuji změny…"
 
 #: src/components/OfflineIndicator.vue
 msgid "Offline — {count} pending"
-msgstr ""
+msgstr "Offline — {count} čeká"
 
 #: src/components/OfflineIndicator.vue
 msgid "You're offline"
-msgstr ""
+msgstr "Jste offline"
 
 #: src/components/OfflineIndicator.vue
 msgid "All changes synced"
-msgstr ""
+msgstr "Všechny změny synchronizovány"
 
 #: src/components/OfflineIndicator.vue
 msgid "{count} changes pending"
-msgstr ""
+msgstr "{count} čeká na změny"
 
 #: appinfo/info.xml lib/Notification/Notifier.php
 msgid "Shopping List"
-msgstr ""
+msgstr "Nákupní seznam"
 
 #: lib/Notification/Notifier.php
 msgid "Shopping List is now on Android"
-msgstr ""
+msgstr "Nákupní seznam je nyní na Androidu"
 
 #: lib/Notification/Notifier.php
 msgid "Take your lists shopping — a companion Android app is now available on Google Play."
-msgstr ""
+msgstr "Vezměte si svůj nákupní seznam sebou - aplikace pro Android je nyní dostupná na Google Play a na F-droid."
 
 #: lib/Notification/Notifier.php
 msgid "Get it on Google Play"
-msgstr ""
+msgstr "Stáhněte z Google Play"
 
