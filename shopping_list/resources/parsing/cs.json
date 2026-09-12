@@ -41,8 +41,8 @@
 		"kusů",
 		"plátek",
 		"plátků",
-		"hlava",
-		"hlav",
+		"hlávka",
+		"hlávek",
 		"stalk",
 		"stalks",
 		"sprig",
@@ -56,10 +56,10 @@
 		"fl oz"
 	],
 	"leadingUnits": [
-		"pinch",
-		"pinches",
-		"bunch",
-		"bunches",
+		"špetka",
+		"špetek",
+		"trs",
+		"trsů",
 		"zest",
 		"dash",
 		"handful"
@@ -68,6 +68,6 @@
 		"of"
 	],
 	"decimalSeparators": [
-		","
+		"\",\""
 	]
 }
