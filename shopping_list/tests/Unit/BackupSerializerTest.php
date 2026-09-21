@@ -189,13 +189,22 @@ class BackupSerializerTest extends TestCase {
 
 		self::assertCount(1, $parsed);
 		self::assertSame('Weekly shop', $parsed[0]['title']);
+		self::assertSame('2026-04-06T18:00:00+00:00', $parsed[0]['createdAt']);
+		self::assertSame('2026-09-20T19:20:00+00:00', $parsed[0]['updatedAt']);
 		self::assertTrue($parsed[0]['pinned']);
 		self::assertSame('Produce', $parsed[0]['areas'][0]['name']);
 		self::assertSame('Produce', $parsed[0]['areas'][0]['nameKey']);
+		self::assertSame('9a3412', $parsed[0]['areas'][0]['color']);
+		self::assertSame(1, $parsed[0]['areas'][0]['sortOrder']);
 		self::assertSame(['apple'], $parsed[0]['areas'][0]['keywords']);
 		self::assertSame('Milk', $parsed[0]['items'][0]['name']);
+		self::assertSame('2', $parsed[0]['items'][0]['quantity']);
+		self::assertSame('l', $parsed[0]['items'][0]['unit']);
 		self::assertSame('Produce', $parsed[0]['items'][0]['area']);
 		self::assertTrue($parsed[0]['items'][0]['checked']);
+		self::assertSame(3, $parsed[0]['items'][0]['sortOrder']);
+		self::assertSame('2026-09-01T08:00:00+00:00', $parsed[0]['items'][0]['createdAt']);
+		self::assertSame('2026-09-01T08:00:00+00:00', $parsed[0]['items'][0]['updatedAt']);
 		self::assertSame(['organic'], $parsed[0]['items'][0]['tags']);
 	}
 
@@ -226,6 +235,34 @@ class BackupSerializerTest extends TestCase {
 				'areas' => [],
 				'items' => [['quantity' => '1']],
 			]],
+		]);
+	}
+
+	public function testParseRefusesAnAreaWithoutAName(): void {
+		$this->expectException(BackupFormatException::class);
+		$this->serializer->parse([
+			'version' => 1,
+			'lists' => [[
+				'title' => 'Weekly shop',
+				'areas' => [['color' => '9a3412']],
+				'items' => [],
+			]],
+		]);
+	}
+
+	public function testParseRefusesListsThatAreNotAnArray(): void {
+		$this->expectException(BackupFormatException::class);
+		$this->serializer->parse([
+			'version' => 1,
+			'lists' => 'nope',
+		]);
+	}
+
+	public function testParseRefusesAListEntryThatIsNotAnObject(): void {
+		$this->expectException(BackupFormatException::class);
+		$this->serializer->parse([
+			'version' => 1,
+			'lists' => ['nope'],
 		]);
 	}
 
