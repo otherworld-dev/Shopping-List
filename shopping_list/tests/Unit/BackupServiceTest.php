@@ -13,6 +13,7 @@ use OCA\Shopping_List\Db\ShoppingList;
 use OCA\Shopping_List\Db\ShoppingListMapper;
 use OCA\Shopping_List\Db\Tag;
 use OCA\Shopping_List\Db\TagMapper;
+use OCA\Shopping_List\Db\UserListPreference;
 use OCA\Shopping_List\Db\UserListPreferenceMapper;
 use OCA\Shopping_List\Service\BackupSerializer;
 use OCA\Shopping_List\Service\BackupService;
@@ -65,31 +66,138 @@ class BackupServiceTest extends TestCase {
 		self::assertSame([], $result['lists']);
 	}
 
+	public function testExportBuildsThePayloadForRealLists(): void {
+		$weeklyShop = new ShoppingList();
+		$weeklyShop->setId(7);
+		$weeklyShop->setTitle('Weekly shop');
+
+		$camping = new ShoppingList();
+		$camping->setId(8);
+		$camping->setTitle('Camping');
+
+		$this->listMapper->method('findAllByUser')
+			->with('alice')
+			->willReturn([$weeklyShop, $camping]);
+
+		// Only the camping list is pinned; the weekly shop list has no row
+		// at all, which export() must still read as "not pinned".
+		$pinned = new UserListPreference();
+		$pinned->setListId(8);
+		$pinned->setUserId('alice');
+		$pinned->setIsPinned(true);
+		$this->preferenceMapper->method('findAllByUser')->willReturn([8 => $pinned]);
+
+		$tag = new Tag();
+		$tag->setId(70);
+		$tag->setName('organic');
+		$this->tagMapper->method('findByUser')->willReturn([$tag]);
+
+		$produce = new ShopArea();
+		$produce->setId(20);
+		$produce->setListId(7);
+		$produce->setName('Produce');
+		$produce->setSortOrder(0);
+		$produce->setKeywordsArray([]);
+
+		$gear = new ShopArea();
+		$gear->setId(21);
+		$gear->setListId(8);
+		$gear->setName('Gear');
+		$gear->setSortOrder(0);
+		$gear->setKeywordsArray([]);
+
+		$this->areaMapper->method('findByList')->willReturnMap([
+			[7, [$produce]],
+			[8, [$gear]],
+		]);
+
+		$milk = new Item();
+		$milk->setId(30);
+		$milk->setListId(7);
+		$milk->setName('Milk');
+		$milk->setShopAreaId(20);
+		$milk->setChecked(false);
+		$milk->setSortOrder(0);
+
+		$this->itemMapper->method('findAllByList')->willReturnMap([
+			[7, [$milk]],
+			// Camping has no items at all.
+			[8, []],
+		]);
+
+		// One call for the whole list's items, never one per item, and
+		// never called at all for the list with no items.
+		$this->itemTagMapper->expects(self::once())
+			->method('findTagIdsByItems')
+			->with([30])
+			->willReturn([30 => [70]]);
+
+		$result = $this->service->export('alice');
+
+		self::assertCount(2, $result['lists']);
+		[$weeklyShopPayload, $campingPayload] = $result['lists'];
+
+		self::assertSame('Weekly shop', $weeklyShopPayload['title']);
+		self::assertFalse($weeklyShopPayload['pinned']);
+		self::assertSame('Produce', $weeklyShopPayload['areas'][0]['name']);
+		self::assertSame('Milk', $weeklyShopPayload['items'][0]['name']);
+		self::assertSame(['organic'], $weeklyShopPayload['items'][0]['tags']);
+
+		self::assertSame('Camping', $campingPayload['title']);
+		self::assertTrue($campingPayload['pinned']);
+		self::assertSame('Gear', $campingPayload['areas'][0]['name']);
+		self::assertSame([], $campingPayload['items']);
+	}
+
 	public function testImportCreatesTheListWithoutSeedingDefaultAreas(): void {
 		$this->db->expects(self::once())->method('beginTransaction');
 		$this->db->expects(self::once())->method('commit');
 
-		$inserted = new ShoppingList();
-		$inserted->setId(99);
-		$inserted->setTitle('Weekly shop');
-		$inserted->setUserId('alice');
-
 		$this->listMapper->expects(self::once())
 			->method('insert')
-			->willReturn($inserted);
+			->willReturnCallback(function (ShoppingList $list): ShoppingList {
+				self::assertSame('Weekly shop', $list->getTitle());
+				self::assertSame('alice', $list->getUserId());
 
-		$area = new ShopArea();
-		$area->setId(50);
-		$area->setName('Produce');
+				$inserted = new ShoppingList();
+				$inserted->setId(99);
+				$inserted->setTitle($list->getTitle());
+				$inserted->setUserId($list->getUserId());
+				return $inserted;
+			});
+
 		$this->areaMapper->expects(self::once())
 			->method('insert')
-			->willReturn($area);
+			->willReturnCallback(function (ShopArea $area): ShopArea {
+				self::assertSame(99, $area->getListId());
+				self::assertSame('Produce', $area->getName());
+				// Stable English key for default areas, so a restored
+				// default area is still translated live per viewer rather
+				// than freezing into the exporting user's language.
+				self::assertSame('Produce', $area->getNameKey());
+				self::assertSame('9a3412', $area->getColor());
+				self::assertSame(1, $area->getSortOrder());
+				self::assertSame(['apple'], $area->getKeywordsArray());
 
-		$item = new Item();
-		$item->setId(60);
+				$inserted = new ShopArea();
+				$inserted->setId(50);
+				$inserted->setName($area->getName());
+				return $inserted;
+			});
+
 		$this->itemMapper->expects(self::once())
 			->method('insert')
-			->willReturn($item);
+			->willReturnCallback(function (Item $item): Item {
+				self::assertSame(99, $item->getListId());
+				self::assertSame('Milk', $item->getName());
+				self::assertSame(50, $item->getShopAreaId());
+				self::assertNull($item->getCheckedBy());
+				self::assertSame('1', $item->getQuantity());
+
+				$inserted = new Item();
+				$inserted->setId(60);
+				return $inserted;
+			});
 
 		$tag = new Tag();
 		$tag->setId(70);
