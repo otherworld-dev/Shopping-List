@@ -31,27 +31,40 @@ class BackupController extends Controller {
 
 	#[NoAdminRequired]
 	#[NoCSRFRequired]
-	public function download(): DataDownloadResponse {
+	public function download(): DataDownloadResponse|JSONResponse {
 		$backup = $this->service->export($this->userId);
 		$filename = 'shopping-list-backup-' . date('Y-m-d') . '.json';
 
-		return new DataDownloadResponse(
-			json_encode($backup, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
-			$filename,
-			'application/json',
-		);
+		try {
+			return new DataDownloadResponse(
+				json_encode($backup, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR),
+				$filename,
+				'application/json',
+			);
+		} catch (\Throwable $e) {
+			return new JSONResponse(['message' => 'Could not build the backup file.'], Http::STATUS_INTERNAL_SERVER_ERROR);
+		}
 	}
 
+	/**
+	 * Only the two fields the backup format defines are read as named
+	 * parameters, so route and query parameters (e.g. a stray
+	 * `?version=2` on the POST) can never contaminate the payload the way
+	 * pulling the whole `getParams()` union would. Left untyped
+	 * deliberately: a query-string shadow then arrives as a string rather
+	 * than being coerced, and fails `parse()`'s strict version check
+	 * instead of being silently accepted.
+	 */
 	#[NoAdminRequired]
-	public function restore(): JSONResponse {
-		// The whole decoded backup arrives as the request body.
-		$payload = $this->request->getParams();
-		unset($payload['_route']);
+	public function restore($version = null, $lists = null): JSONResponse {
+		$payload = ['version' => $version, 'lists' => $lists];
 
 		try {
 			return new JSONResponse($this->service->import($this->userId, $payload));
 		} catch (BackupFormatException $e) {
 			return new JSONResponse(['message' => $e->getMessage()], Http::STATUS_BAD_REQUEST);
+		} catch (\Throwable $e) {
+			return new JSONResponse(['message' => 'Could not restore the backup.'], Http::STATUS_INTERNAL_SERVER_ERROR);
 		}
 	}
 }
