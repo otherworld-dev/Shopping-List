@@ -192,7 +192,9 @@ class BackupServiceTest extends TestCase {
 				self::assertSame('Milk', $item->getName());
 				self::assertSame(50, $item->getShopAreaId());
 				self::assertNull($item->getCheckedBy());
-				self::assertSame('1', $item->getQuantity());
+				// The fixture item carries no quantity at all, and a restore
+				// must not invent one.
+				self::assertNull($item->getQuantity());
 
 				$inserted = new Item();
 				$inserted->setId(60);
@@ -211,6 +213,12 @@ class BackupServiceTest extends TestCase {
 			->method('setPinned')
 			->with('alice', 99, true);
 
+		// The headline safety property: a restore only ever creates rows.
+		foreach ([$this->listMapper, $this->areaMapper, $this->itemMapper] as $mapper) {
+			$mapper->expects(self::never())->method('update');
+			$mapper->expects(self::never())->method('delete');
+		}
+
 		$summary = $this->service->import('alice', [
 			'version' => 1,
 			'lists' => [[
@@ -227,6 +235,50 @@ class BackupServiceTest extends TestCase {
 		]);
 
 		self::assertSame(['lists' => 1, 'areas' => 1, 'items' => 1], $summary);
+	}
+
+	public function testImportDedupesTagsThatTrimToTheSameName(): void {
+		$this->db->method('beginTransaction');
+		$this->db->method('commit');
+
+		$this->listMapper->method('insert')->willReturnCallback(function (ShoppingList $list): ShoppingList {
+			$inserted = new ShoppingList();
+			$inserted->setId(99);
+			$inserted->setTitle($list->getTitle());
+			$inserted->setUserId($list->getUserId());
+			return $inserted;
+		});
+
+		$this->itemMapper->method('insert')->willReturnCallback(function (Item $item): Item {
+			$inserted = new Item();
+			$inserted->setId(60);
+			return $inserted;
+		});
+
+		$tag = new Tag();
+		$tag->setId(70);
+		$tag->setName('organic');
+		// "organic" and "organic " both trim to the same name and resolve to
+		// the same tag here, exactly as two real tag rows could.
+		$this->tagMapper->method('findOrCreate')->willReturn($tag);
+
+		// Without array_unique() in insertItem(), this would be called with
+		// [70, 70], which shopping_list_itags' (item_id, tag_id) primary key
+		// rejects and aborts the whole restore.
+		$this->itemTagMapper->expects(self::once())
+			->method('setTagsForItem')
+			->with(60, [70]);
+
+		$this->service->import('alice', [
+			'version' => 1,
+			'lists' => [[
+				'title' => 'Weekly shop',
+				'areas' => [],
+				'items' => [[
+					'name' => 'Milk', 'tags' => ['organic', 'organic '],
+				]],
+			]],
+		]);
 	}
 
 	public function testImportRollsBackWhenTheFileIsBad(): void {
