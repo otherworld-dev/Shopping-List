@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- Your lists can be backed up and restored. Open Backup at the bottom of the
+  sidebar and choose "Download backup" to get a JSON file holding your own
+  lists, with their items, areas, tags and pins. "Restore from backup" reads
+  that file back. A restore always adds lists rather than replacing the ones
+  you have, so nothing you already had can be lost, and restoring the same file
+  twice gives you two copies. Shares are not included, so a restored list
+  starts private and you share it again yourself. The same data is carried by
+  Nextcloud's user migration if your administrator has the User Migration app
+  installed. Thanks to rostmodern for the idea (#47)
+
+### Changed
+- The PHP test suite runs again. `composer run test` pointed at a phpunit
+  configuration that had never been committed, so `make test` failed on a clean
+  checkout. The harness is in place, with unit tests covering the backup format
+  and the restore path
+
 ## [1.8.0] - 2026-09-12
 
 ### Added
