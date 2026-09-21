@@ -113,8 +113,18 @@ class BackupSerializerTest extends TestCase {
 		$area->setSortOrder(1);
 		$area->setKeywordsArray([]);
 
+		$item = new Item();
+		$item->setId(30);
+		$item->setListId(7);
+		$item->setName('Milk');
+		$item->setShopAreaId(20);
+		$item->setChecked(false);
+		$item->setSortOrder(0);
+		$item->setCreatedAt(new DateTime());
+		$item->setUpdatedAt(new DateTime());
+
 		$result = $this->serializer->serialize(
-			[$list], [7 => [$area]], [7 => []], [], [], new DateTime(),
+			[$list], [7 => [$area]], [7 => [$item]], [], [], new DateTime(),
 		);
 
 		self::assertSame([], $this->findKeys($result, ['id', 'listId', 'list_id', 'userId', 'user_id', 'shopAreaId']));
