@@ -44,8 +44,6 @@
 				<NcIconSvgWrapper :svg="listIcon" />
 			</template>
 		</NcEmptyContent>
-
-		<BackupSettings />
 	</div>
 </template>
 
@@ -62,7 +60,6 @@ import { t } from '@nextcloud/l10n'
 import { computed } from 'vue'
 import { useListsStore } from '../stores/lists'
 import { useItemsStore } from '../stores/items'
-import BackupSettings from './BackupSettings.vue'
 
 defineEmits<{ showSettings: [] }>()
 

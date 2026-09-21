@@ -2,6 +2,9 @@
 	<NcContent app-name="shopping_list">
 		<NcAppNavigation>
 			<ListSidebar @show-settings="showSettings = true" />
+			<template #footer>
+				<BackupSettings />
+			</template>
 		</NcAppNavigation>
 		<NcAppContent>
 			<AreaKeywordsSettings v-if="showSettings && listsStore.currentList" :key="listsStore.currentListId" @back="showSettings = false" />
@@ -32,6 +35,7 @@ import ListSidebar from './components/ListSidebar.vue'
 import ListView from './components/ListView.vue'
 import AreaKeywordsSettings from './components/AreaKeywordsSettings.vue'
 import OfflineIndicator from './components/OfflineIndicator.vue'
+import BackupSettings from './components/BackupSettings.vue'
 import { useListsStore } from './stores/lists'
 import { usePush } from './composables/usePush'
 
