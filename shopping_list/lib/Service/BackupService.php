@@ -181,7 +181,12 @@ class BackupService {
 				// duplicating them.
 				$tagIds[] = $this->tagMapper->findOrCreate($name, $userId)->getId();
 			}
-			$this->itemTagMapper->setTagsForItem($item->getId(), $tagIds);
+			// Two differently-spelled tag names (e.g. "organic" and
+			// "organic ") can both fold to the same tag id here, and
+			// shopping_list_itags has a primary key of (item_id, tag_id), so
+			// an undeduped list would throw a duplicate-key error and abort
+			// the whole restore.
+			$this->itemTagMapper->setTagsForItem($item->getId(), array_values(array_unique($tagIds)));
 		}
 
 		return $item;
