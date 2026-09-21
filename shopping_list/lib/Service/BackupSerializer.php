@@ -206,11 +206,21 @@ class BackupSerializer {
 			}
 		}
 
+		// Must be normalised the same way parseArea() normalises the name it
+		// is matched against, or the item-to-area join silently misses.
+		$area = $this->stringOrNull($raw, 'area');
+		if ($area !== null) {
+			$area = trim($area);
+			if ($area === '') {
+				$area = null;
+			}
+		}
+
 		return [
 			'name' => trim($name),
 			'quantity' => $this->stringOrNull($raw, 'quantity'),
 			'unit' => $this->stringOrNull($raw, 'unit'),
-			'area' => $this->stringOrNull($raw, 'area'),
+			'area' => $area,
 			'checked' => ($raw['checked'] ?? false) === true,
 			'sortOrder' => (int)($raw['sortOrder'] ?? 0),
 			'createdAt' => $this->stringOrNull($raw, 'createdAt'),

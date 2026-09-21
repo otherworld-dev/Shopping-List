@@ -162,7 +162,8 @@ class BackupService {
 		$item = new Item();
 		$item->setListId($listId);
 		$item->setName($parsed['name']);
-		$item->setQuantity($parsed['quantity'] ?? '1');
+		// A null quantity is preserved deliberately: the item had none.
+		$item->setQuantity($parsed['quantity']);
 		$item->setUnit($parsed['unit']);
 		$item->setShopAreaId($parsed['area'] !== null ? ($areaIdsByName[$parsed['area']] ?? null) : null);
 		$item->setChecked($parsed['checked']);

@@ -32,10 +32,10 @@ class BackupController extends Controller {
 	#[NoAdminRequired]
 	#[NoCSRFRequired]
 	public function download(): DataDownloadResponse|JSONResponse {
-		$backup = $this->service->export($this->userId);
-		$filename = 'shopping-list-backup-' . date('Y-m-d') . '.json';
-
 		try {
+			$backup = $this->service->export($this->userId);
+			$filename = 'shopping-list-backup-' . date('Y-m-d') . '.json';
+
 			return new DataDownloadResponse(
 				json_encode($backup, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR),
 				$filename,
