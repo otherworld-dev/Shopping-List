@@ -16,6 +16,7 @@
 			type="file"
 			accept="application/json,.json"
 			class="backup__file"
+			:aria-label="restoreText"
 			@change="onFileChosen">
 	</NcAppNavigationSettings>
 </template>
@@ -37,9 +38,25 @@ const hintText = t('shopping_list', 'A backup holds your own lists, their items,
 const downloadText = t('shopping_list', 'Download backup')
 const restoreText = t('shopping_list', 'Restore from backup')
 const restoringText = t('shopping_list', 'Restoring...')
+const downloadFailedText = t('shopping_list', 'Could not download the backup')
 
-function onDownload() {
-	window.location.href = api.backup.downloadUrl()
+async function onDownload() {
+	// Not a plain `location.href`: the endpoint's error path returns JSON
+	// with no attachment disposition, which would navigate the SPA away
+	// with no feedback instead of showing a toast.
+	try {
+		const response = await api.backup.download()
+		const filename = `shopping-list-backup-${new Date().toISOString().slice(0, 10)}.json`
+		const objectUrl = URL.createObjectURL(response.data)
+		const link = document.createElement('a')
+		link.href = objectUrl
+		link.download = filename
+		link.click()
+		URL.revokeObjectURL(objectUrl)
+	} catch (e) {
+		showError(downloadFailedText)
+		console.error(e)
+	}
 }
 
 async function onFileChosen(event: Event) {
@@ -48,12 +65,13 @@ async function onFileChosen(event: Event) {
 	if (!file) return
 
 	restoring.value = true
+	let restored = false
 	try {
 		const payload = JSON.parse(await file.text())
 		const response = await api.backup.restore(payload)
 		const added = response.data.lists ?? 0
 		showSuccess(n('shopping_list', 'Restored %n list', 'Restored %n lists', added))
-		await listsStore.fetchAll()
+		restored = true
 	} catch (e) {
 		showError(t('shopping_list', 'That file could not be restored'))
 		console.error(e)
@@ -61,6 +79,10 @@ async function onFileChosen(event: Event) {
 		restoring.value = false
 		// Clear it so choosing the same file again still fires a change event.
 		input.value = ''
+	}
+
+	if (restored) {
+		await listsStore.fetchAll()
 	}
 }
 </script>

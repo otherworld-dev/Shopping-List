@@ -42881,7 +42881,7 @@ const api = {
     delete: (id) => cancelableClient.delete(url(`tags/${id}`))
   },
   backup: {
-    downloadUrl: () => generateUrl("/apps/shopping_list/backup/download"),
+    download: () => cancelableClient.get(generateUrl("/apps/shopping_list/backup/download"), { responseType: "blob" }),
     restore: (payload) => cancelableClient.post(generateUrl("/apps/shopping_list/backup/restore"), payload)
   }
 };
@@ -43180,4 +43180,4 @@ export {
   defineStore as y,
   ref as z
 };
-//# sourceMappingURL=useCollapsedAreas-DKqT52VA.chunk.mjs.map
+//# sourceMappingURL=useCollapsedAreas-Bus8Yphc.chunk.mjs.map

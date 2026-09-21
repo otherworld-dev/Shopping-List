@@ -65,7 +65,7 @@ export const api = {
 		delete: (id: number) => axios.delete(url(`tags/${id}`)),
 	},
 	backup: {
-		downloadUrl: () => generateUrl('/apps/shopping_list/backup/download'),
+		download: () => axios.get(generateUrl('/apps/shopping_list/backup/download'), { responseType: 'blob' }),
 		restore: (payload: unknown) =>
 			axios.post(generateUrl('/apps/shopping_list/backup/restore'), payload),
 	},

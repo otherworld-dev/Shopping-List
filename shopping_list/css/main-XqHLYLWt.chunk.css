@@ -1297,11 +1297,11 @@ to { transform: rotate(360deg);
 	transform: translateY(10px);
 }
 
-.backup__hint[data-v-8f2c19f1] {
+.backup__hint[data-v-5165f3e4] {
 	margin-bottom: 8px;
 	color: var(--color-text-maxcontrast);
 	font-size: 0.85em;
 }
-.backup__file[data-v-8f2c19f1] {
+.backup__file[data-v-5165f3e4] {
 	display: none;
 }
