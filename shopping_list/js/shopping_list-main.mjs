@@ -1,7 +1,7 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-BmvAZn3f.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/useCollapsedAreas-hIb1s_qg.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/useCollapsedAreas-23fjjBcZ.chunk.css')])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-WN4aSizN.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/useCollapsedAreas-CgChpfQN.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/useCollapsedAreas-23fjjBcZ.chunk.css')])))=>i.map(i=>d[i]);
 const appName = "shopping_list";
-const appVersion = "1.7.1";
-import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, A as ActionGlobalMixin, a as NcIconSvgWrapper, r as resolveComponent, b as createBaseVNode, w as withDirectives, v as vModelRadio, n as normalizeClass, d as createVNode, m as mdiRadioboxMarked, e as mdiRadioboxBlank, u as useModel, f as createElementId, g as NcButton, h as withCtx, i as createTextVNode, j as renderSlot, k as defineComponent, l as createCommentVNode, p as unref, q as getDefaultExportFromCjs, s as getGettextBuilder, x as getLoggerBuilder, y as defineStore, z as ref, B as computed, C as api, D as markServerFetched, E as translate, F as getLanguage, G as loadValue, H as saveValue, I as readonly, J as Fragment, K as renderList, L as createBlock, M as NcAppNavigationCaption, O as NcActionButton, P as NcAppNavigationItem, Q as _export_sfc$1, R as NOOP, S as extend$1, T as isString, U as NO, V as isSymbol, W as isBuiltInDirective, X as capitalize, Y as camelize, Z as EMPTY_OBJ, $ as isObject, a0 as toHandlerKey, a1 as isArray, a2 as isOn, a3 as isReservedProp, a4 as isVoidTag, a5 as isHTMLTag, a6 as isSVGTag, a7 as isMathMLTag, a8 as parseStringStyle, a9 as makeMap, aa as generateCodeFrame, ab as getAugmentedNamespace, ac as runtimeDom_esmBundler, ad as shared_esmBundler, ae as watch, af as onMounted, ag as onUnmounted, ah as withKeys, ai as withModifiers, aj as vModelText, ak as normalizeStyle, al as Teleport, am as NcActions, an as Permission, ao as nextTick, ap as NcPopover, aq as mdiHelpCircleOutline, ar as generateOcsUrl, as as cancelableClient, at as ShareType, au as generateUrl, av as getCurrentUser, aw as browserStorage, ax as useCollapsedAreas, ay as NcAvatar, az as isRef, aA as NcLoadingIcon, aB as mdiChevronDown, aC as vShow, aD as shallowRef, aE as vModelSelect, aF as Transition, aG as NcAppNavigation, aH as NcAppContent, aI as NcContent, aJ as createPinia, aK as offlinePersistPlugin, aL as createApp } from "./useCollapsedAreas-hIb1s_qg.chunk.mjs";
+const appVersion = "1.8.0";
+import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, A as ActionGlobalMixin, a as NcIconSvgWrapper, r as resolveComponent, b as createBaseVNode, w as withDirectives, v as vModelRadio, n as normalizeClass, d as createVNode, m as mdiRadioboxMarked, e as mdiRadioboxBlank, u as useModel, f as createElementId, g as NcLoadingIcon, h as NcInputConfirmCancel, i as createBlock, j as renderSlot, k as createCommentVNode, l as defineComponent, p as unref, q as createTextVNode, s as getDefaultExportFromCjs, x as getGettextBuilder, y as getLoggerBuilder, z as defineStore, B as ref, C as computed, D as api, E as markServerFetched, F as translate, G as getLanguage, H as loadValue, I as saveValue, J as readonly, K as watch, L as withCtx, M as mdiPlus, O as Fragment, P as renderList, Q as NcAppNavigationCaption, R as NcActionButton, S as NcAppNavigationItem, T as _export_sfc$1, U as NOOP, V as extend$1, W as isString, X as NO, Y as isSymbol, Z as isBuiltInDirective, $ as capitalize, a0 as camelize, a1 as EMPTY_OBJ, a2 as isObject, a3 as toHandlerKey, a4 as isArray, a5 as isOn, a6 as isReservedProp, a7 as isVoidTag, a8 as isHTMLTag, a9 as isSVGTag, aa as isMathMLTag, ab as parseStringStyle, ac as makeMap, ad as generateCodeFrame, ae as getAugmentedNamespace, af as runtimeDom_esmBundler, ag as shared_esmBundler, ah as onMounted, ai as onUnmounted, aj as withKeys, ak as withModifiers, al as vModelText, am as normalizeStyle, an as Teleport, ao as NcActions, ap as Permission, aq as nextTick, ar as NcPopover, as as NcButton, at as mdiHelpCircleOutline, au as browserStorage, av as useCollapsedAreas, aw as ShareType, ax as NcAvatar, ay as isRef, az as mdiChevronDown, aA as vShow, aB as shallowRef, aC as vModelSelect, aD as Transition, aE as generateOcsUrl, aF as cancelableClient, aG as generateUrl, aH as getCurrentUser, aI as NcAppNavigation, aJ as NcAppContent, aK as NcContent, aL as createPinia, aM as offlinePersistPlugin, aN as createApp } from "./useCollapsedAreas-CgChpfQN.chunk.mjs";
 const _sfc_main$c = {
   name: "NcActionCaption",
   inject: {
@@ -156,7 +156,7 @@ const _sfc_main$b = {
   }
 };
 const _hoisted_1$a = ["role"];
-const _hoisted_2$8 = ["role", "aria-checked"];
+const _hoisted_2$9 = ["role", "aria-checked"];
 const _hoisted_3$7 = { class: "action-radio__icon" };
 const _hoisted_4$7 = ["id", "value", "name", "disabled"];
 const _hoisted_5$7 = { class: "action-radio__text" };
@@ -190,7 +190,7 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
         }, null, 8, ["path"])
       ]),
       createBaseVNode("span", _hoisted_5$7, toDisplayString(_ctx.text), 1)
-    ], 8, _hoisted_2$8)
+    ], 8, _hoisted_2$9)
   ], 10, _hoisted_1$a);
 }
 const NcActionRadio = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["render", _sfc_render$2], ["__scopeId", "data-v-6c208ddd"]]);
@@ -206,69 +206,117 @@ function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
 }
 const NcActionSeparator = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$1], ["__scopeId", "data-v-3e2324b7"]]);
 const _sfc_main$9 = {
+  name: "NcAppNavigationNewItem",
   components: {
-    NcButton
+    NcInputConfirmCancel,
+    NcLoadingIcon
   },
   props: {
     /**
-     * Id of the button
+     * The name of the element.
      */
-    buttonId: {
-      type: String,
-      required: false,
-      default: ""
-    },
-    /**
-     * Disabled state of the button
-     */
-    disabled: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-    /**
-     * Main text of the button
-     */
-    text: {
+    name: {
       type: String,
       required: true
     },
     /**
-     * The color variant to use.
-     *
-     * @default 'primary'
+     * Refers to the icon on the left, this prop accepts a class
+     * like 'icon-category-enabled'.
      */
-    variant: {
+    icon: {
       type: String,
-      default: "primary",
-      validator(value) {
-        return ["primary", "secondary", "tertiary"].indexOf(value) !== -1;
-      }
+      default: ""
+    },
+    /**
+     * Displays a loading animated icon on the left of the element
+     * instead of the icon.
+     */
+    loading: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Only for 'editable' items, sets label for the edit action button.
+     */
+    editLabel: {
+      type: String,
+      default: ""
+    },
+    /**
+     * Sets the placeholder text for the editing form.
+     */
+    editPlaceholder: {
+      type: String,
+      default: ""
     }
   },
-  emits: ["click"]
+  emits: ["newItem"],
+  data() {
+    return {
+      newItemValue: "",
+      newItemActive: false
+    };
+  },
+  methods: {
+    handleNewItem() {
+      if (!this.loading) {
+        this.newItemActive = true;
+        this.$nextTick(() => {
+          this.$refs.newItemInput.focusInput();
+        });
+      }
+    },
+    cancelNewItem() {
+      this.newItemActive = false;
+    },
+    handleNewItemDone() {
+      this.$emit("newItem", this.newItemValue);
+      this.newItemValue = "";
+      this.newItemActive = false;
+    }
+  }
 };
-const _hoisted_1$8 = { class: "app-navigation-new" };
+const _hoisted_1$8 = ["title"];
+const _hoisted_2$8 = {
+  key: 1,
+  class: "newItemContainer"
+};
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
-  const _component_NcButton = resolveComponent("NcButton");
-  return openBlock(), createElementBlock("div", _hoisted_1$8, [
-    createVNode(_component_NcButton, {
-      id: $props.buttonId,
-      disabled: $props.disabled,
-      variant: $props.variant,
-      onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("click"))
-    }, {
-      icon: withCtx(() => [
-        renderSlot(_ctx.$slots, "icon", {}, void 0, true)
-      ]),
-      default: withCtx(() => [
-        createTextVNode(" " + toDisplayString($props.text), 1)
-      ]),
-      _: 3
-    }, 8, ["id", "disabled", "variant"])
-  ]);
+  const _component_NcLoadingIcon = resolveComponent("NcLoadingIcon");
+  const _component_NcInputConfirmCancel = resolveComponent("NcInputConfirmCancel");
+  return openBlock(), createElementBlock("li", {
+    class: normalizeClass(["app-navigation-entry", {
+      "app-navigation-entry--newItemActive": $data.newItemActive
+    }])
+  }, [
+    createBaseVNode("button", {
+      class: "app-navigation-entry-button",
+      onClick: _cache[1] || (_cache[1] = (...args) => $options.handleNewItem && $options.handleNewItem(...args))
+    }, [
+      createBaseVNode("span", {
+        class: normalizeClass(["app-navigation-entry-icon", { [$props.icon]: !$props.loading }])
+      }, [
+        $props.loading ? (openBlock(), createBlock(_component_NcLoadingIcon, { key: 0 })) : renderSlot(_ctx.$slots, "icon", { key: 1 }, void 0, true)
+      ], 2),
+      !$data.newItemActive ? (openBlock(), createElementBlock("span", {
+        key: 0,
+        class: "app-navigation-new-item__name",
+        title: $props.name
+      }, toDisplayString($props.name), 9, _hoisted_1$8)) : createCommentVNode("", true),
+      $data.newItemActive ? (openBlock(), createElementBlock("span", _hoisted_2$8, [
+        createVNode(_component_NcInputConfirmCancel, {
+          ref: "newItemInput",
+          modelValue: $data.newItemValue,
+          "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => $data.newItemValue = $event),
+          placeholder: $props.editPlaceholder !== "" ? $props.editPlaceholder : $props.name,
+          onCancel: $options.cancelNewItem,
+          onConfirm: $options.handleNewItemDone
+        }, null, 8, ["modelValue", "placeholder", "onCancel", "onConfirm"])
+      ])) : createCommentVNode("", true)
+    ])
+  ], 2);
 }
-const NcAppNavigationNew = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render], ["__scopeId", "data-v-0ba6c9df"]]);
+const NcAppNavigationNewItem = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render], ["__scopeId", "data-v-ee07f8f8"]]);
 const _hoisted_1$7 = ["aria-labelledby"];
 const _hoisted_2$7 = {
   key: 0,
@@ -1851,13 +1899,16 @@ const _hoisted_2$6 = {
 const listIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,4H7V8H3V4M9,5V7H21V5H9M3,10H7V14H3V10M9,11V13H21V11H9M3,16H7V20H3V16M9,17V19H21V17H9" fill="currentColor"/></svg>';
 const _sfc_main$7 = /* @__PURE__ */ defineComponent({
   __name: "ListSidebar",
-  emits: ["showSettings"],
+  emits: ["showSettings", "share"],
   setup(__props) {
     const listsStore = useListsStore();
     const itemsStore = useItemsStore();
     const newListText = translate("shopping_list", "New list");
+    const listNamePlaceholder = translate("shopping_list", "List name");
+    const newListFallback = translate("shopping_list", "New shopping list");
     const renameText = translate("shopping_list", "Rename list");
     const deleteText = translate("shopping_list", "Delete list");
+    const shareText = translate("shopping_list", "Share list");
     const sharedText = translate("shopping_list", "Shared with me");
     const emptyName = translate("shopping_list", "No shopping lists");
     const emptyDesc = translate("shopping_list", "Create your first shopping list to get started");
@@ -1878,8 +1929,14 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
       const items = itemsStore.itemsByList[listId] ?? [];
       return items.filter((i) => !i.checked).length;
     }
-    async function onNewList() {
-      await listsStore.create(translate("shopping_list", "New shopping list"));
+    const newItemRef = ref(null);
+    watch(() => newItemRef.value?.newItemActive, (active, wasActive) => {
+      if (active && !wasActive && newItemRef.value) {
+        newItemRef.value.newItemValue = "";
+      }
+    });
+    async function onNewList(name) {
+      await listsStore.create(name.trim() || newListFallback);
     }
     async function onRename(id, name) {
       if (name.trim()) {
@@ -1891,10 +1948,18 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
     }
     return (_ctx, _cache) => {
       return openBlock(), createElementBlock("div", null, [
-        createVNode(unref(NcAppNavigationNew), {
-          text: unref(newListText),
-          onClick: onNewList
-        }, null, 8, ["text"]),
+        createVNode(unref(NcAppNavigationNewItem), {
+          ref_key: "newItemRef",
+          ref: newItemRef,
+          name: unref(newListText),
+          "edit-placeholder": unref(listNamePlaceholder),
+          onNewItem: onNewList
+        }, {
+          icon: withCtx(() => [
+            createVNode(unref(NcIconSvgWrapper), { path: unref(mdiPlus) }, null, 8, ["path"])
+          ]),
+          _: 1
+        }, 8, ["name", "edit-placeholder"]),
         (openBlock(true), createElementBlock(Fragment, null, renderList(sections.value, (section) => {
           return openBlock(), createElementBlock(Fragment, {
             key: section.key
@@ -1918,6 +1983,16 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
                   getUncheckedCount(list.id) > 0 ? (openBlock(), createElementBlock("span", _hoisted_1$6, toDisplayString(getUncheckedCount(list.id)), 1)) : createCommentVNode("", true)
                 ]),
                 actions: withCtx(() => [
+                  list.isOwner ? (openBlock(), createBlock(unref(NcActionButton), {
+                    key: 0,
+                    "close-after-click": "",
+                    onClick: ($event) => _ctx.$emit("share", list.id)
+                  }, {
+                    default: withCtx(() => [
+                      createTextVNode(toDisplayString(unref(shareText)), 1)
+                    ]),
+                    _: 1
+                  }, 8, ["onClick"])) : createCommentVNode("", true),
                   createVNode(unref(NcActionButton), {
                     onClick: ($event) => unref(listsStore).setPinned(list.id, !list.isPinned)
                   }, {
@@ -1927,7 +2002,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
                     _: 2
                   }, 1032, ["onClick"]),
                   list.isOwner ? (openBlock(), createBlock(unref(NcActionButton), {
-                    key: 0,
+                    key: 1,
                     onClick: ($event) => onDelete(list.id)
                   }, {
                     default: withCtx(() => [
@@ -1961,7 +2036,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ListSidebar = /* @__PURE__ */ _export_sfc$1(_sfc_main$7, [["__scopeId", "data-v-353e1312"]]);
+const ListSidebar = /* @__PURE__ */ _export_sfc$1(_sfc_main$7, [["__scopeId", "data-v-ff0ab222"]]);
 const useSharesStore = defineStore("shares", () => {
   const sharesByList = ref({});
   async function fetchByList(listId) {
@@ -15773,369 +15848,6 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
   }
 });
 const ItemEditor = /* @__PURE__ */ _export_sfc$1(_sfc_main$5, [["__scopeId", "data-v-4fab3c34"]]);
-const _hoisted_1$3 = { class: "share-modal" };
-const _hoisted_2$3 = { class: "share-modal__header" };
-const _hoisted_3$3 = { class: "share-modal__search" };
-const _hoisted_4$3 = ["placeholder"];
-const _hoisted_5$3 = {
-  key: 0,
-  class: "share-modal__results"
-};
-const _hoisted_6$2 = ["onClick"];
-const _hoisted_7$2 = { class: "share-modal__icon" };
-const _hoisted_8$2 = { class: "share-modal__result-info" };
-const _hoisted_9$2 = { class: "share-modal__result-name" };
-const _hoisted_10$2 = {
-  key: 0,
-  class: "share-modal__result-type"
-};
-const _hoisted_11$2 = {
-  key: 1,
-  class: "share-modal__no-results"
-};
-const _hoisted_12$2 = {
-  key: 2,
-  class: "share-modal__shares"
-};
-const _hoisted_13$2 = { class: "share-modal__section-title" };
-const _hoisted_14$2 = { class: "share-modal__icon" };
-const _hoisted_15$1 = { class: "share-modal__share-info" };
-const _hoisted_16$1 = { class: "share-modal__share-name" };
-const _hoisted_17$1 = {
-  key: 0,
-  class: "share-modal__share-type"
-};
-const _hoisted_18$1 = ["value", "onChange"];
-const _hoisted_19$1 = { value: 0 };
-const _hoisted_20$1 = { value: 1 };
-const _hoisted_21$1 = ["onClick"];
-const _hoisted_22$1 = {
-  key: 3,
-  class: "share-modal__link-section"
-};
-const _hoisted_23$1 = { class: "share-modal__section-title" };
-const _hoisted_24$1 = {
-  key: 0,
-  class: "share-modal__link-create"
-};
-const _hoisted_25$1 = {
-  key: 1,
-  class: "share-modal__link-details"
-};
-const _hoisted_26$1 = { class: "share-modal__link-url-row" };
-const _hoisted_27$1 = ["value"];
-const _hoisted_28$1 = { class: "share-modal__link-options" };
-const _hoisted_29$1 = { class: "share-modal__link-option" };
-const _hoisted_30$1 = ["value"];
-const _hoisted_31$1 = { value: 0 };
-const _hoisted_32$1 = { value: 1 };
-const _hoisted_33 = { class: "share-modal__link-option" };
-const _hoisted_34 = { class: "share-modal__link-password-row" };
-const _hoisted_35 = ["placeholder"];
-const _hoisted_36 = { class: "share-modal__link-option" };
-const _hoisted_37 = ["value", "min"];
-const _hoisted_38 = {
-  key: 4,
-  class: "share-modal__empty"
-};
-const _sfc_main$4 = /* @__PURE__ */ defineComponent({
-  __name: "ShareDialog",
-  props: {
-    listId: {},
-    isOwner: { type: Boolean },
-    currentUserId: {}
-  },
-  emits: ["close"],
-  setup(__props) {
-    const props = __props;
-    const sharesStore = useSharesStore();
-    const searchRef = ref(null);
-    const linkUrlRef = ref(null);
-    const shareTitle = translate("shopping_list", "Share list");
-    const searchPlaceholder = translate("shopping_list", "Search users or groups...");
-    const noResultsText = translate("shopping_list", "No users found");
-    const groupText = translate("shopping_list", "Group");
-    const sharedWithText = translate("shopping_list", "Shared with");
-    const canViewText = translate("shopping_list", "Can view");
-    const canEditText = translate("shopping_list", "Can edit");
-    const emptyText = translate("shopping_list", "Search above to share this list with other users.");
-    const groupLabel = translate("shopping_list", "group");
-    const publicLinkText = translate("shopping_list", "Public link");
-    const createLinkText = translate("shopping_list", "Create public link");
-    const copyText = translate("shopping_list", "Copy link");
-    const copiedText = translate("shopping_list", "Copied!");
-    const permissionLabel = translate("shopping_list", "Permission");
-    const passwordLabel = translate("shopping_list", "Password");
-    const passwordSetText = translate("shopping_list", "Password set");
-    const passwordPlaceholder = translate("shopping_list", "Optional");
-    const saveText = translate("shopping_list", "Set");
-    const removeText = translate("shopping_list", "Remove");
-    const expiryLabel = translate("shopping_list", "Expires");
-    const deleteLinkText = translate("shopping_list", "Delete public link");
-    const searchQuery = ref("");
-    const searching = ref(false);
-    const shareeResults = ref([]);
-    const linkPassword = ref("");
-    const copiedLink = ref(false);
-    const shares = computed(
-      () => (sharesStore.sharesByList[props.listId] ?? []).filter((s) => s.sharedWithType !== ShareType.LINK)
-    );
-    const linkShare = computed(
-      () => sharesStore.getLinkShare(props.listId)
-    );
-    const linkUrl = computed(() => {
-      if (!linkShare.value?.token) return "";
-      return window.location.origin + generateUrl(`/apps/shopping_list/s/${linkShare.value.token}`);
-    });
-    const todayStr = (/* @__PURE__ */ new Date()).toISOString().split("T")[0];
-    let searchTimeout = null;
-    onMounted(async () => {
-      await sharesStore.fetchByList(props.listId);
-      await nextTick();
-      searchRef.value?.focus();
-    });
-    function onSearchInput() {
-      if (searchTimeout) clearTimeout(searchTimeout);
-      const query = searchQuery.value.trim();
-      if (!query) {
-        shareeResults.value = [];
-        return;
-      }
-      searching.value = true;
-      searchTimeout = setTimeout(async () => {
-        try {
-          const url = generateOcsUrl("apps/files_sharing/api/v1/sharees");
-          const response = await cancelableClient.get(url, {
-            params: { search: query, itemType: "file", perPage: 10 }
-          });
-          const data = response.data.ocs.data;
-          const options = [];
-          for (const user of (data.exact?.users ?? []).concat(data.users ?? [])) {
-            if (user.value.shareWith !== props.currentUserId) {
-              options.push({
-                label: user.label,
-                value: user.value.shareWith,
-                type: ShareType.USER
-              });
-            }
-          }
-          for (const group of (data.exact?.groups ?? []).concat(data.groups ?? [])) {
-            options.push({
-              label: `${group.label} (${groupLabel})`,
-              value: group.value.shareWith,
-              type: ShareType.GROUP
-            });
-          }
-          shareeResults.value = options;
-        } catch (e) {
-          console.error("Failed to search sharees", e);
-        } finally {
-          searching.value = false;
-        }
-      }, 300);
-    }
-    async function onSelectSharee(sharee) {
-      await sharesStore.create(props.listId, sharee.value, sharee.type, Permission.WRITE);
-      searchQuery.value = "";
-      shareeResults.value = [];
-    }
-    async function onPermissionChange(shareId, permission) {
-      await sharesStore.updatePermission(shareId, permission, props.listId);
-    }
-    async function onRemoveShare(shareId) {
-      await sharesStore.remove(shareId, props.listId);
-    }
-    async function onCreateLink() {
-      await sharesStore.createLinkShare(props.listId, Permission.READ);
-    }
-    async function onCopyLink() {
-      if (linkUrl.value) {
-        await navigator.clipboard.writeText(linkUrl.value);
-        copiedLink.value = true;
-        setTimeout(() => {
-          copiedLink.value = false;
-        }, 2e3);
-      }
-    }
-    async function onLinkPermissionChange(permission) {
-      if (linkShare.value) {
-        await sharesStore.updateLinkShare(linkShare.value.id, props.listId, { permission });
-      }
-    }
-    async function onSetPassword() {
-      if (linkShare.value && linkPassword.value) {
-        await sharesStore.updateLinkShare(linkShare.value.id, props.listId, { password: linkPassword.value });
-        linkPassword.value = "";
-      }
-    }
-    async function onRemovePassword() {
-      if (linkShare.value) {
-        await sharesStore.updateLinkShare(linkShare.value.id, props.listId, { removePassword: true });
-      }
-    }
-    async function onExpiryChange(value) {
-      if (linkShare.value) {
-        await sharesStore.updateLinkShare(linkShare.value.id, props.listId, {
-          expiresAt: value || null
-        });
-      }
-    }
-    async function onDeleteLink() {
-      if (linkShare.value) {
-        await sharesStore.removeLinkShare(linkShare.value.id, props.listId);
-      }
-    }
-    return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", {
-        class: "share-overlay",
-        onClick: _cache[6] || (_cache[6] = withModifiers(($event) => _ctx.$emit("close"), ["self"]))
-      }, [
-        createBaseVNode("div", _hoisted_1$3, [
-          createBaseVNode("div", _hoisted_2$3, [
-            createBaseVNode("h3", null, toDisplayString(unref(shareTitle)), 1),
-            createBaseVNode("button", {
-              class: "share-modal__close",
-              onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("close"))
-            }, " ✕ ")
-          ]),
-          createBaseVNode("div", _hoisted_3$3, [
-            withDirectives(createBaseVNode("input", {
-              ref_key: "searchRef",
-              ref: searchRef,
-              "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => searchQuery.value = $event),
-              type: "text",
-              placeholder: unref(searchPlaceholder),
-              class: "share-modal__search-input",
-              onInput: onSearchInput
-            }, null, 40, _hoisted_4$3), [
-              [vModelText, searchQuery.value]
-            ])
-          ]),
-          shareeResults.value.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_5$3, [
-            (openBlock(true), createElementBlock(Fragment, null, renderList(shareeResults.value, (sharee) => {
-              return openBlock(), createElementBlock("div", {
-                key: sharee.value + sharee.type,
-                class: "share-modal__result",
-                onClick: ($event) => onSelectSharee(sharee)
-              }, [
-                createBaseVNode("span", _hoisted_7$2, toDisplayString(sharee.type === 1 ? "👥" : "👤"), 1),
-                createBaseVNode("div", _hoisted_8$2, [
-                  createBaseVNode("span", _hoisted_9$2, toDisplayString(sharee.label), 1),
-                  sharee.type === 1 ? (openBlock(), createElementBlock("span", _hoisted_10$2, toDisplayString(unref(groupText)), 1)) : createCommentVNode("", true)
-                ])
-              ], 8, _hoisted_6$2);
-            }), 128))
-          ])) : searchQuery.value.length > 0 && !searching.value ? (openBlock(), createElementBlock("div", _hoisted_11$2, toDisplayString(unref(noResultsText)), 1)) : createCommentVNode("", true),
-          shares.value.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_12$2, [
-            createBaseVNode("div", _hoisted_13$2, toDisplayString(unref(sharedWithText)), 1),
-            (openBlock(true), createElementBlock(Fragment, null, renderList(shares.value, (share) => {
-              return openBlock(), createElementBlock("div", {
-                key: share.id,
-                class: "share-modal__share"
-              }, [
-                createBaseVNode("span", _hoisted_14$2, toDisplayString(share.sharedWithType === 1 ? "👥" : "👤"), 1),
-                createBaseVNode("div", _hoisted_15$1, [
-                  createBaseVNode("span", _hoisted_16$1, toDisplayString(share.sharedWithDisplayName), 1),
-                  share.sharedWithType === 1 ? (openBlock(), createElementBlock("span", _hoisted_17$1, toDisplayString(unref(groupText)), 1)) : createCommentVNode("", true)
-                ]),
-                __props.isOwner ? (openBlock(), createElementBlock("select", {
-                  key: 0,
-                  class: "share-modal__permission",
-                  value: share.permission,
-                  onChange: ($event) => onPermissionChange(share.id, Number($event.target.value))
-                }, [
-                  createBaseVNode("option", _hoisted_19$1, toDisplayString(unref(canViewText)), 1),
-                  createBaseVNode("option", _hoisted_20$1, toDisplayString(unref(canEditText)), 1)
-                ], 40, _hoisted_18$1)) : createCommentVNode("", true),
-                __props.isOwner || share.sharedWith === __props.currentUserId ? (openBlock(), createElementBlock("button", {
-                  key: 1,
-                  class: "share-modal__remove",
-                  onClick: ($event) => onRemoveShare(share.id)
-                }, " ✕ ", 8, _hoisted_21$1)) : createCommentVNode("", true)
-              ]);
-            }), 128))
-          ])) : createCommentVNode("", true),
-          __props.isOwner ? (openBlock(), createElementBlock("div", _hoisted_22$1, [
-            createBaseVNode("div", _hoisted_23$1, toDisplayString(unref(publicLinkText)), 1),
-            !linkShare.value ? (openBlock(), createElementBlock("div", _hoisted_24$1, [
-              createBaseVNode("button", {
-                class: "share-modal__link-btn",
-                onClick: onCreateLink
-              }, toDisplayString(unref(createLinkText)), 1)
-            ])) : (openBlock(), createElementBlock("div", _hoisted_25$1, [
-              createBaseVNode("div", _hoisted_26$1, [
-                createBaseVNode("input", {
-                  ref_key: "linkUrlRef",
-                  ref: linkUrlRef,
-                  value: linkUrl.value,
-                  readonly: "",
-                  class: "share-modal__link-url",
-                  onFocus: _cache[2] || (_cache[2] = ($event) => $event.target.select())
-                }, null, 40, _hoisted_27$1),
-                createBaseVNode("button", {
-                  class: "share-modal__link-copy",
-                  onClick: onCopyLink
-                }, toDisplayString(copiedLink.value ? unref(copiedText) : unref(copyText)), 1)
-              ]),
-              createBaseVNode("div", _hoisted_28$1, [
-                createBaseVNode("label", _hoisted_29$1, [
-                  createTextVNode(toDisplayString(unref(permissionLabel)) + " ", 1),
-                  createBaseVNode("select", {
-                    value: linkShare.value.permission,
-                    class: "share-modal__permission",
-                    onChange: _cache[3] || (_cache[3] = ($event) => onLinkPermissionChange(Number($event.target.value)))
-                  }, [
-                    createBaseVNode("option", _hoisted_31$1, toDisplayString(unref(canViewText)), 1),
-                    createBaseVNode("option", _hoisted_32$1, toDisplayString(unref(canEditText)), 1)
-                  ], 40, _hoisted_30$1)
-                ]),
-                createBaseVNode("label", _hoisted_33, [
-                  createTextVNode(toDisplayString(unref(passwordLabel)) + " ", 1),
-                  createBaseVNode("div", _hoisted_34, [
-                    withDirectives(createBaseVNode("input", {
-                      "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => linkPassword.value = $event),
-                      type: "password",
-                      placeholder: linkShare.value.hasPassword ? unref(passwordSetText) : unref(passwordPlaceholder),
-                      class: "share-modal__link-input"
-                    }, null, 8, _hoisted_35), [
-                      [vModelText, linkPassword.value]
-                    ]),
-                    linkPassword.value ? (openBlock(), createElementBlock("button", {
-                      key: 0,
-                      class: "share-modal__link-btn share-modal__link-btn--small",
-                      onClick: onSetPassword
-                    }, toDisplayString(unref(saveText)), 1)) : createCommentVNode("", true),
-                    linkShare.value.hasPassword && !linkPassword.value ? (openBlock(), createElementBlock("button", {
-                      key: 1,
-                      class: "share-modal__link-btn share-modal__link-btn--small share-modal__link-btn--danger",
-                      onClick: onRemovePassword
-                    }, toDisplayString(unref(removeText)), 1)) : createCommentVNode("", true)
-                  ])
-                ]),
-                createBaseVNode("label", _hoisted_36, [
-                  createTextVNode(toDisplayString(unref(expiryLabel)) + " ", 1),
-                  createBaseVNode("input", {
-                    type: "date",
-                    value: linkShare.value.expiresAt?.split("T")[0] ?? "",
-                    min: unref(todayStr),
-                    class: "share-modal__link-input",
-                    onChange: _cache[5] || (_cache[5] = ($event) => onExpiryChange($event.target.value))
-                  }, null, 40, _hoisted_37)
-                ])
-              ]),
-              createBaseVNode("button", {
-                class: "share-modal__link-btn share-modal__link-btn--danger",
-                onClick: onDeleteLink
-              }, toDisplayString(unref(deleteLinkText)), 1)
-            ]))
-          ])) : createCommentVNode("", true),
-          shares.value.length === 0 && searchQuery.value.length === 0 && !linkShare.value ? (openBlock(), createElementBlock("div", _hoisted_38, toDisplayString(unref(emptyText)), 1)) : createCommentVNode("", true)
-        ])
-      ]);
-    };
-  }
-});
-const ShareDialog = /* @__PURE__ */ _export_sfc$1(_sfc_main$4, [["__scopeId", "data-v-8ef27d4b"]]);
 function formatListAsText(items) {
   return items.filter((item) => !item.checked).map((item) => {
     const parts = [];
@@ -16236,43 +15948,44 @@ function loadBoughtSort(storage) {
 function saveBoughtSort(storage, sort2) {
   saveChoice(storage, BOUGHT_SORT_KEY, BOUGHT_SORTS, sort2);
 }
-const _hoisted_1$2 = { class: "list-view" };
-const _hoisted_2$2 = { class: "list-view__header" };
-const _hoisted_3$2 = { class: "list-view__actions" };
-const _hoisted_4$2 = {
+const _hoisted_1$3 = { class: "list-view" };
+const _hoisted_2$3 = { class: "list-view__header" };
+const _hoisted_3$3 = { class: "list-view__actions" };
+const _hoisted_4$3 = {
   key: 0,
   class: "list-view__avatar-overflow"
 };
-const _hoisted_5$2 = { class: "list-view__card" };
-const _hoisted_6$1 = {
+const _hoisted_5$3 = { class: "list-view__card" };
+const _hoisted_6$2 = {
   key: 1,
   class: "list-view__loading"
 };
-const _hoisted_7$1 = {
+const _hoisted_7$2 = {
   key: 0,
   class: "list-view__empty"
 };
-const _hoisted_8$1 = ["aria-expanded", "aria-controls", "onClick"];
-const _hoisted_9$1 = { class: "list-view__area-count" };
-const _hoisted_10$1 = {
+const _hoisted_8$2 = ["aria-expanded", "aria-controls", "onClick"];
+const _hoisted_9$2 = { class: "list-view__area-count" };
+const _hoisted_10$2 = {
   key: 0,
   class: "list-view__bought"
 };
-const _hoisted_11$1 = { class: "list-view__bought-header" };
-const _hoisted_12$1 = { class: "list-view__toggle" };
-const _hoisted_13$1 = {
+const _hoisted_11$2 = { class: "list-view__bought-header" };
+const _hoisted_12$2 = { class: "list-view__toggle" };
+const _hoisted_13$2 = {
   key: 0,
   class: "list-view__bought-actions"
 };
-const _hoisted_14$1 = {
+const _hoisted_14$2 = {
   key: 0,
   class: "list-view__bought-card"
 };
 const MAX_VISIBLE_AVATARS = 3;
 const cartIcon$1 = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.25,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.59 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z" fill="currentColor"/></svg>';
-const _sfc_main$3 = /* @__PURE__ */ defineComponent({
+const _sfc_main$4 = /* @__PURE__ */ defineComponent({
   __name: "ListView",
-  setup(__props) {
+  emits: ["share"],
+  setup(__props, { emit: __emit }) {
     const listsStore = useListsStore();
     const itemsStore = useItemsStore();
     const shopAreasStore = useShopAreasStore();
@@ -16283,10 +15996,13 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
     });
     const visibleShares = computed(() => currentShares.value.slice(0, MAX_VISIBLE_AVATARS));
     const overflowCount = computed(() => Math.max(0, currentShares.value.length - MAX_VISIBLE_AVATARS));
+    const emit = __emit;
     const showChecked = ref(true);
-    const showShareDialog = ref(false);
-    const currentUserId = getCurrentUser()?.uid ?? "";
     const editingItemId = ref(null);
+    function onShare() {
+      const listId = listsStore.currentListId;
+      if (listId !== null) emit("share", listId);
+    }
     function onCaptureClick(e) {
       const target = e.target;
       if (target.closest(".item-row__check") || target.closest(".item-row__actions")) return;
@@ -16438,14 +16154,14 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
       }
     }
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$2, [
-        createBaseVNode("div", _hoisted_2$2, [
+      return openBlock(), createElementBlock("div", _hoisted_1$3, [
+        createBaseVNode("div", _hoisted_2$3, [
           createBaseVNode("h2", null, toDisplayString(unref(listsStore).currentList?.title), 1),
-          createBaseVNode("div", _hoisted_3$2, [
+          createBaseVNode("div", _hoisted_3$3, [
             currentShares.value.length > 0 ? (openBlock(), createElementBlock("div", {
               key: 0,
               class: "list-view__avatars",
-              onClick: _cache[0] || (_cache[0] = ($event) => showShareDialog.value = true)
+              onClick: onShare
             }, [
               (openBlock(true), createElementBlock(Fragment, null, renderList(visibleShares.value, (share) => {
                 return openBlock(), createBlock(unref(NcAvatar), {
@@ -16458,13 +16174,14 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
                   class: "list-view__avatar"
                 }, null, 8, ["user", "display-name", "is-no-user"]);
               }), 128)),
-              overflowCount.value > 0 ? (openBlock(), createElementBlock("span", _hoisted_4$2, " +" + toDisplayString(overflowCount.value), 1)) : createCommentVNode("", true)
+              overflowCount.value > 0 ? (openBlock(), createElementBlock("span", _hoisted_4$3, " +" + toDisplayString(overflowCount.value), 1)) : createCommentVNode("", true)
             ])) : createCommentVNode("", true),
             createVNode(unref(NcActions), { "aria-label": unref(listActionsText) }, {
               default: withCtx(() => [
                 unref(listsStore).currentList?.isOwner ? (openBlock(), createBlock(unref(NcActionButton), {
                   key: 0,
-                  onClick: _cache[1] || (_cache[1] = ($event) => showShareDialog.value = true)
+                  "close-after-click": "",
+                  onClick: onShare
                 }, {
                   default: withCtx(() => [
                     createTextVNode(toDisplayString(unref(shareText)), 1)
@@ -16486,7 +16203,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
                   return createVNode(unref(NcActionRadio), {
                     key: option2.value,
                     modelValue: unref(openSort),
-                    "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => isRef(openSort) ? openSort.value = $event : null),
+                    "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => isRef(openSort) ? openSort.value = $event : null),
                     name: "shopping-list-open-sort",
                     value: option2.value
                   }, {
@@ -16502,7 +16219,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
                   return createVNode(unref(NcActionRadio), {
                     key: option2.value,
                     modelValue: unref(boughtSort),
-                    "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => isRef(boughtSort) ? boughtSort.value = $event : null),
+                    "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => isRef(boughtSort) ? boughtSort.value = $event : null),
                     name: "shopping-list-bought-sort",
                     value: option2.value
                   }, {
@@ -16517,15 +16234,15 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
             }, 8, ["aria-label"])
           ])
         ]),
-        createBaseVNode("div", _hoisted_5$2, [
+        createBaseVNode("div", _hoisted_5$3, [
           canEdit.value ? (openBlock(), createBlock(ItemEditor, {
             key: 0,
             "list-id": unref(listsStore).currentList.id
           }, null, 8, ["list-id"])) : createCommentVNode("", true),
-          unref(itemsStore).loading ? (openBlock(), createElementBlock("div", _hoisted_6$1, [
+          unref(itemsStore).loading ? (openBlock(), createElementBlock("div", _hoisted_6$2, [
             createVNode(unref(NcLoadingIcon))
           ])) : (openBlock(), createElementBlock(Fragment, { key: 2 }, [
-            unref(itemsStore).uncheckedItems.length === 0 && unref(itemsStore).checkedItems.length === 0 ? (openBlock(), createElementBlock("div", _hoisted_7$1, [
+            unref(itemsStore).uncheckedItems.length === 0 && unref(itemsStore).checkedItems.length === 0 ? (openBlock(), createElementBlock("div", _hoisted_7$2, [
               createVNode(unref(NcEmptyContent), {
                 name: unref(emptyName),
                 description: unref(emptyDesc)
@@ -16558,8 +16275,8 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
                   createBaseVNode("span", {
                     class: normalizeClass(["list-view__area-name", { "list-view__area-name--muted": !group.areaName }])
                   }, toDisplayString(group.areaName || unref(uncategorizedText)), 3),
-                  createBaseVNode("span", _hoisted_9$1, toDisplayString(group.items.length), 1)
-                ], 12, _hoisted_8$1)) : createCommentVNode("", true),
+                  createBaseVNode("span", _hoisted_9$2, toDisplayString(group.items.length), 1)
+                ], 12, _hoisted_8$2)) : createCommentVNode("", true),
                 withDirectives(createVNode(unref(draggable), {
                   id: groupElementId(group),
                   modelValue: localGroups.value[groupIndex].items,
@@ -16572,7 +16289,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
                   "delay-on-touch-only": true,
                   class: "list-view__items",
                   "ghost-class": "list-view__item--ghost",
-                  onStart: _cache[5] || (_cache[5] = ($event) => isDragging.value = true),
+                  onStart: _cache[3] || (_cache[3] = ($event) => isDragging.value = true),
                   onEnd: onDragEnd
                 }, {
                   item: withCtx(({ element }) => [
@@ -16581,7 +16298,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
                       "list-id": unref(listsStore).currentList.id,
                       "can-edit": canEdit.value,
                       editing: editingItemId.value === element.id,
-                      onCloseEdit: _cache[4] || (_cache[4] = ($event) => editingItemId.value = null)
+                      onCloseEdit: _cache[2] || (_cache[2] = ($event) => editingItemId.value = null)
                     }, null, 8, ["item-id", "list-id", "can-edit", "editing"])
                   ]),
                   _: 1
@@ -16592,15 +16309,15 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
             }), 128))
           ], 64))
         ]),
-        !unref(itemsStore).loading && unref(itemsStore).checkedItems.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_10$1, [
-          createBaseVNode("div", _hoisted_11$1, [
+        !unref(itemsStore).loading && unref(itemsStore).checkedItems.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_10$2, [
+          createBaseVNode("div", _hoisted_11$2, [
             createBaseVNode("h3", {
-              onClick: _cache[6] || (_cache[6] = ($event) => showChecked.value = !showChecked.value)
+              onClick: _cache[4] || (_cache[4] = ($event) => showChecked.value = !showChecked.value)
             }, [
               createTextVNode(toDisplayString(unref(boughtText)) + " (" + toDisplayString(unref(itemsStore).checkedItems.length) + ") ", 1),
-              createBaseVNode("span", _hoisted_12$1, toDisplayString(showChecked.value ? "▾" : "▸"), 1)
+              createBaseVNode("span", _hoisted_12$2, toDisplayString(showChecked.value ? "▾" : "▸"), 1)
             ]),
-            canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_13$1, [
+            canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_13$2, [
               createBaseVNode("button", {
                 class: "list-view__action-btn",
                 onClick: onUncheckAll
@@ -16611,7 +16328,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
               }, toDisplayString(unref(clearCheckedText)), 1)
             ])) : createCommentVNode("", true)
           ]),
-          showChecked.value ? (openBlock(), createElementBlock("div", _hoisted_14$1, [
+          showChecked.value ? (openBlock(), createElementBlock("div", _hoisted_14$2, [
             (openBlock(true), createElementBlock(Fragment, null, renderList(checkedItemIds.value, (itemId) => {
               return openBlock(), createBlock(ItemRow, {
                 key: itemId,
@@ -16622,70 +16339,63 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
               }, null, 8, ["item-id", "list-id", "can-edit"]);
             }), 128))
           ])) : createCommentVNode("", true)
-        ])) : createCommentVNode("", true),
-        showShareDialog.value && unref(listsStore).currentList ? (openBlock(), createBlock(ShareDialog, {
-          key: 1,
-          "list-id": unref(listsStore).currentList.id,
-          "is-owner": unref(listsStore).currentList.isOwner,
-          "current-user-id": unref(currentUserId),
-          onClose: _cache[7] || (_cache[7] = ($event) => showShareDialog.value = false)
-        }, null, 8, ["list-id", "is-owner", "current-user-id"])) : createCommentVNode("", true)
+        ])) : createCommentVNode("", true)
       ]);
     };
   }
 });
-const ListView = /* @__PURE__ */ _export_sfc$1(_sfc_main$3, [["__scopeId", "data-v-16cb1859"]]);
-const _hoisted_1$1 = { class: "area-settings" };
-const _hoisted_2$1 = { class: "area-settings__header" };
-const _hoisted_3$1 = { class: "area-settings__desc" };
-const _hoisted_4$1 = {
+const ListView = /* @__PURE__ */ _export_sfc$1(_sfc_main$4, [["__scopeId", "data-v-7b133cf5"]]);
+const _hoisted_1$2 = { class: "area-settings" };
+const _hoisted_2$2 = { class: "area-settings__header" };
+const _hoisted_3$2 = { class: "area-settings__desc" };
+const _hoisted_4$2 = {
   key: 0,
   class: "area-settings__create"
 };
-const _hoisted_5$1 = ["placeholder", "onKeydown"];
-const _hoisted_6 = ["title"];
-const _hoisted_7 = ["disabled"];
-const _hoisted_8 = {
+const _hoisted_5$2 = ["placeholder", "onKeydown"];
+const _hoisted_6$1 = ["title"];
+const _hoisted_7$1 = ["disabled"];
+const _hoisted_8$1 = {
   key: 1,
   class: "area-settings__copy"
 };
-const _hoisted_9 = { value: null };
-const _hoisted_10 = ["value"];
-const _hoisted_11 = ["disabled"];
-const _hoisted_12 = {
+const _hoisted_9$1 = { value: null };
+const _hoisted_10$1 = ["value"];
+const _hoisted_11$1 = ["disabled"];
+const _hoisted_12$1 = {
   key: 2,
   class: "area-settings__loadlang"
 };
-const _hoisted_13 = ["disabled", "title"];
-const _hoisted_14 = { class: "area-settings__search" };
-const _hoisted_15 = ["placeholder"];
-const _hoisted_16 = ["onClick"];
-const _hoisted_17 = { class: "area-settings__section-toggle" };
-const _hoisted_18 = ["value", "title", "onInput"];
-const _hoisted_19 = ["onKeydown", "onBlur"];
-const _hoisted_20 = ["onDblclick"];
-const _hoisted_21 = ["title", "onClick"];
-const _hoisted_22 = { class: "area-settings__section-count" };
-const _hoisted_23 = ["disabled", "title", "onClick"];
-const _hoisted_24 = ["disabled", "title", "onClick"];
-const _hoisted_25 = ["title", "onClick"];
-const _hoisted_26 = {
+const _hoisted_13$1 = ["disabled", "title"];
+const _hoisted_14$1 = { class: "area-settings__search" };
+const _hoisted_15$1 = ["placeholder"];
+const _hoisted_16$1 = ["onClick"];
+const _hoisted_17$1 = { class: "area-settings__section-toggle" };
+const _hoisted_18$1 = ["value", "title", "onInput"];
+const _hoisted_19$1 = ["onKeydown", "onBlur"];
+const _hoisted_20$1 = ["onDblclick"];
+const _hoisted_21$1 = ["title", "onClick"];
+const _hoisted_22$1 = { class: "area-settings__section-count" };
+const _hoisted_23$1 = ["disabled", "title", "onClick"];
+const _hoisted_24$1 = ["disabled", "title", "onClick"];
+const _hoisted_25$1 = ["title", "onClick"];
+const _hoisted_26$1 = {
   key: 0,
   class: "area-settings__section-body"
 };
-const _hoisted_27 = {
+const _hoisted_27$1 = {
   key: 0,
   class: "area-settings__add"
 };
-const _hoisted_28 = ["onUpdate:modelValue", "placeholder", "onKeydown"];
-const _hoisted_29 = ["disabled", "onClick"];
-const _hoisted_30 = { class: "area-settings__keywords" };
-const _hoisted_31 = ["onClick"];
-const _hoisted_32 = {
+const _hoisted_28$1 = ["onUpdate:modelValue", "placeholder", "onKeydown"];
+const _hoisted_29$1 = ["disabled", "onClick"];
+const _hoisted_30$1 = { class: "area-settings__keywords" };
+const _hoisted_31$1 = ["onClick"];
+const _hoisted_32$1 = {
   key: 0,
   class: "area-settings__empty"
 };
-const _sfc_main$2 = /* @__PURE__ */ defineComponent({
+const _sfc_main$3 = /* @__PURE__ */ defineComponent({
   __name: "AreaKeywordsSettings",
   emits: ["back"],
   setup(__props) {
@@ -16857,23 +16567,23 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
       await shopAreasStore.remove(listId.value, area.id);
     }
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$1, [
-        createBaseVNode("div", _hoisted_2$1, [
+      return openBlock(), createElementBlock("div", _hoisted_1$2, [
+        createBaseVNode("div", _hoisted_2$2, [
           createBaseVNode("button", {
             class: "area-settings__back",
             onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("back"))
           }, " ← " + toDisplayString(unref(backText)), 1),
           createBaseVNode("h2", null, toDisplayString(unref(title)), 1),
-          createBaseVNode("p", _hoisted_3$1, toDisplayString(unref(description)), 1)
+          createBaseVNode("p", _hoisted_3$2, toDisplayString(unref(description)), 1)
         ]),
-        canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_4$1, [
+        canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_4$2, [
           withDirectives(createBaseVNode("input", {
             "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => newAreaName.value = $event),
             type: "text",
             placeholder: unref(newAreaPlaceholder),
             class: "area-settings__create-input",
             onKeydown: withKeys(withModifiers(onCreateArea, ["prevent"]), ["enter"])
-          }, null, 40, _hoisted_5$1), [
+          }, null, 40, _hoisted_5$2), [
             [vModelText, newAreaName.value]
           ]),
           withDirectives(createBaseVNode("input", {
@@ -16881,26 +16591,26 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
             type: "color",
             class: "area-settings__create-color",
             title: unref(colorTitle)
-          }, null, 8, _hoisted_6), [
+          }, null, 8, _hoisted_6$1), [
             [vModelText, newAreaColor.value]
           ]),
           createBaseVNode("button", {
             class: "area-settings__create-btn",
             disabled: !newAreaName.value.trim(),
             onClick: onCreateArea
-          }, toDisplayString(unref(addAreaText)), 9, _hoisted_7)
+          }, toDisplayString(unref(addAreaText)), 9, _hoisted_7$1)
         ])) : createCommentVNode("", true),
-        canEdit.value && otherLists.value.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_8, [
+        canEdit.value && otherLists.value.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_8$1, [
           withDirectives(createBaseVNode("select", {
             "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => copySourceId.value = $event),
             class: "area-settings__copy-select"
           }, [
-            createBaseVNode("option", _hoisted_9, toDisplayString(unref(copyFromPlaceholder)), 1),
+            createBaseVNode("option", _hoisted_9$1, toDisplayString(unref(copyFromPlaceholder)), 1),
             (openBlock(true), createElementBlock(Fragment, null, renderList(otherLists.value, (l) => {
               return openBlock(), createElementBlock("option", {
                 key: l.id,
                 value: l.id
-              }, toDisplayString(l.title), 9, _hoisted_10);
+              }, toDisplayString(l.title), 9, _hoisted_10$1);
             }), 128))
           ], 512), [
             [vModelSelect, copySourceId.value]
@@ -16909,23 +16619,23 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
             class: "area-settings__copy-btn",
             disabled: copySourceId.value === null || copying.value,
             onClick: onCopyFrom
-          }, toDisplayString(unref(copyText)), 9, _hoisted_11)
+          }, toDisplayString(unref(copyText)), 9, _hoisted_11$1)
         ])) : createCommentVNode("", true),
-        canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_12, [
+        canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_12$1, [
           createBaseVNode("button", {
             class: "area-settings__loadlang-btn",
             disabled: loadingLang.value,
             title: unref(loadLangHint),
             onClick: onLoadLanguageKeywords
-          }, toDisplayString(unref(loadLangText)), 9, _hoisted_13)
+          }, toDisplayString(unref(loadLangText)), 9, _hoisted_13$1)
         ])) : createCommentVNode("", true),
-        createBaseVNode("div", _hoisted_14, [
+        createBaseVNode("div", _hoisted_14$1, [
           withDirectives(createBaseVNode("input", {
             "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => search.value = $event),
             type: "text",
             placeholder: unref(searchPlaceholder),
             class: "area-settings__search-input"
-          }, null, 8, _hoisted_15), [
+          }, null, 8, _hoisted_15$1), [
             [vModelText, search.value]
           ])
         ]),
@@ -16938,7 +16648,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
               class: "area-settings__section-header",
               onClick: ($event) => toggleSection(area.id)
             }, [
-              createBaseVNode("span", _hoisted_17, toDisplayString(openSections.value[area.id] ? "▾" : "▸"), 1),
+              createBaseVNode("span", _hoisted_17$1, toDisplayString(openSections.value[area.id] ? "▾" : "▸"), 1),
               canEdit.value ? (openBlock(), createElementBlock("input", {
                 key: 0,
                 type: "color",
@@ -16948,7 +16658,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
                 onClick: _cache[5] || (_cache[5] = withModifiers(() => {
                 }, ["stop"])),
                 onInput: ($event) => onColorChange(area.id, $event.target.value)
-              }, null, 40, _hoisted_18)) : (openBlock(), createElementBlock("span", {
+              }, null, 40, _hoisted_18$1)) : (openBlock(), createElementBlock("span", {
                 key: 1,
                 class: "area-settings__color-swatch",
                 style: normalizeStyle({ backgroundColor: area.color || "#9E9E9E" })
@@ -16968,59 +16678,59 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
                   withKeys(withModifiers(cancelRename, ["prevent"]), ["escape"])
                 ],
                 onBlur: ($event) => saveRename(area.id)
-              }, null, 40, _hoisted_19)), [
+              }, null, 40, _hoisted_19$1)), [
                 [vModelText, renameValue.value]
               ]) : (openBlock(), createElementBlock(Fragment, { key: 3 }, [
                 createBaseVNode("span", {
                   class: "area-settings__section-name",
                   onDblclick: withModifiers(($event) => canEdit.value && startRename(area), ["stop"])
-                }, toDisplayString(area.name), 41, _hoisted_20),
+                }, toDisplayString(area.name), 41, _hoisted_20$1),
                 canEdit.value ? (openBlock(), createElementBlock("button", {
                   key: 0,
                   class: "area-settings__action-btn area-settings__action-btn--rename",
                   title: unref(renameText),
                   onClick: withModifiers(($event) => startRename(area), ["stop"])
-                }, " ✎ ", 8, _hoisted_21)) : createCommentVNode("", true)
+                }, " ✎ ", 8, _hoisted_21$1)) : createCommentVNode("", true)
               ], 64)),
-              createBaseVNode("span", _hoisted_22, toDisplayString(filteredKeywords(area).length), 1),
+              createBaseVNode("span", _hoisted_22$1, toDisplayString(filteredKeywords(area).length), 1),
               canEdit.value ? (openBlock(), createElementBlock(Fragment, { key: 4 }, [
                 createBaseVNode("button", {
                   class: "area-settings__action-btn",
                   disabled: index2 === 0,
                   title: unref(moveUpText),
                   onClick: withModifiers(($event) => moveArea(index2, -1), ["stop"])
-                }, " ▲ ", 8, _hoisted_23),
+                }, " ▲ ", 8, _hoisted_23$1),
                 createBaseVNode("button", {
                   class: "area-settings__action-btn",
                   disabled: index2 === areas.value.length - 1,
                   title: unref(moveDownText),
                   onClick: withModifiers(($event) => moveArea(index2, 1), ["stop"])
-                }, " ▼ ", 8, _hoisted_24),
+                }, " ▼ ", 8, _hoisted_24$1),
                 createBaseVNode("button", {
                   class: "area-settings__action-btn area-settings__action-btn--delete",
                   title: unref(deleteText),
                   onClick: withModifiers(($event) => onDeleteArea(area), ["stop"])
-                }, " ✕ ", 8, _hoisted_25)
+                }, " ✕ ", 8, _hoisted_25$1)
               ], 64)) : createCommentVNode("", true)
-            ], 8, _hoisted_16),
-            openSections.value[area.id] ? (openBlock(), createElementBlock("div", _hoisted_26, [
-              canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_27, [
+            ], 8, _hoisted_16$1),
+            openSections.value[area.id] ? (openBlock(), createElementBlock("div", _hoisted_26$1, [
+              canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_27$1, [
                 withDirectives(createBaseVNode("input", {
                   "onUpdate:modelValue": ($event) => newKeyword.value[area.id] = $event,
                   type: "text",
                   placeholder: unref(addPlaceholder),
                   class: "area-settings__add-input",
                   onKeydown: withKeys(withModifiers(($event) => onAddKeyword(area), ["prevent"]), ["enter"])
-                }, null, 40, _hoisted_28), [
+                }, null, 40, _hoisted_28$1), [
                   [vModelText, newKeyword.value[area.id]]
                 ]),
                 createBaseVNode("button", {
                   class: "area-settings__add-btn",
                   disabled: !newKeyword.value[area.id]?.trim(),
                   onClick: ($event) => onAddKeyword(area)
-                }, " + ", 8, _hoisted_29)
+                }, " + ", 8, _hoisted_29$1)
               ])) : createCommentVNode("", true),
-              createBaseVNode("div", _hoisted_30, [
+              createBaseVNode("div", _hoisted_30$1, [
                 (openBlock(true), createElementBlock(Fragment, null, renderList(filteredKeywords(area), (word) => {
                   return openBlock(), createElementBlock("span", {
                     key: word,
@@ -17031,10 +16741,10 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
                       key: 0,
                       class: "area-settings__keyword-remove",
                       onClick: ($event) => onRemoveKeyword(area, word)
-                    }, "✕", 8, _hoisted_31)) : createCommentVNode("", true)
+                    }, "✕", 8, _hoisted_31$1)) : createCommentVNode("", true)
                   ]);
                 }), 128)),
-                filteredKeywords(area).length === 0 ? (openBlock(), createElementBlock("span", _hoisted_32, toDisplayString(unref(noKeywordsText)), 1)) : createCommentVNode("", true)
+                filteredKeywords(area).length === 0 ? (openBlock(), createElementBlock("span", _hoisted_32$1, toDisplayString(unref(noKeywordsText)), 1)) : createCommentVNode("", true)
               ])
             ])) : createCommentVNode("", true)
           ]);
@@ -17043,7 +16753,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const AreaKeywordsSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$2, [["__scopeId", "data-v-5614877a"]]);
+const AreaKeywordsSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$3, [["__scopeId", "data-v-5614877a"]]);
 const syncing = ref(false);
 const pendingCount = ref(0);
 let draining = false;
@@ -17150,24 +16860,24 @@ function useSyncEngine() {
     drain
   };
 }
-const _hoisted_1 = {
+const _hoisted_1$1 = {
   key: 0,
   class: "offline-indicator__icon spinning"
 };
-const _hoisted_2 = {
+const _hoisted_2$1 = {
   key: 1,
   class: "offline-indicator__icon"
 };
-const _hoisted_3 = {
+const _hoisted_3$1 = {
   key: 2,
   class: "offline-indicator__icon"
 };
-const _hoisted_4 = { class: "offline-indicator__text" };
-const _hoisted_5 = {
+const _hoisted_4$1 = { class: "offline-indicator__text" };
+const _hoisted_5$1 = {
   key: 3,
   class: "offline-indicator__badge"
 };
-const _sfc_main$1 = /* @__PURE__ */ defineComponent({
+const _sfc_main$2 = /* @__PURE__ */ defineComponent({
   __name: "OfflineIndicator",
   setup(__props) {
     const { isOnline: isOnline2 } = useNetworkStatus();
@@ -17210,9 +16920,9 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
             key: 0,
             class: normalizeClass(["offline-indicator", statusClass.value])
           }, [
-            unref(syncing2) ? (openBlock(), createElementBlock("span", _hoisted_1, "↻")) : !unref(isOnline2) ? (openBlock(), createElementBlock("span", _hoisted_2, "⚠")) : (openBlock(), createElementBlock("span", _hoisted_3, "✓")),
-            createBaseVNode("span", _hoisted_4, toDisplayString(statusText.value), 1),
-            unref(pendingCount2) > 0 && !unref(syncing2) ? (openBlock(), createElementBlock("span", _hoisted_5, toDisplayString(unref(pendingCount2)), 1)) : createCommentVNode("", true)
+            unref(syncing2) ? (openBlock(), createElementBlock("span", _hoisted_1$1, "↻")) : !unref(isOnline2) ? (openBlock(), createElementBlock("span", _hoisted_2$1, "⚠")) : (openBlock(), createElementBlock("span", _hoisted_3$1, "✓")),
+            createBaseVNode("span", _hoisted_4$1, toDisplayString(statusText.value), 1),
+            unref(pendingCount2) > 0 && !unref(syncing2) ? (openBlock(), createElementBlock("span", _hoisted_5$1, toDisplayString(unref(pendingCount2)), 1)) : createCommentVNode("", true)
           ], 2)) : createCommentVNode("", true)
         ]),
         _: 1
@@ -17220,7 +16930,370 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const OfflineIndicator = /* @__PURE__ */ _export_sfc$1(_sfc_main$1, [["__scopeId", "data-v-a30bd77e"]]);
+const OfflineIndicator = /* @__PURE__ */ _export_sfc$1(_sfc_main$2, [["__scopeId", "data-v-a30bd77e"]]);
+const _hoisted_1 = { class: "share-modal" };
+const _hoisted_2 = { class: "share-modal__header" };
+const _hoisted_3 = { class: "share-modal__search" };
+const _hoisted_4 = ["placeholder"];
+const _hoisted_5 = {
+  key: 0,
+  class: "share-modal__results"
+};
+const _hoisted_6 = ["onClick"];
+const _hoisted_7 = { class: "share-modal__icon" };
+const _hoisted_8 = { class: "share-modal__result-info" };
+const _hoisted_9 = { class: "share-modal__result-name" };
+const _hoisted_10 = {
+  key: 0,
+  class: "share-modal__result-type"
+};
+const _hoisted_11 = {
+  key: 1,
+  class: "share-modal__no-results"
+};
+const _hoisted_12 = {
+  key: 2,
+  class: "share-modal__shares"
+};
+const _hoisted_13 = { class: "share-modal__section-title" };
+const _hoisted_14 = { class: "share-modal__icon" };
+const _hoisted_15 = { class: "share-modal__share-info" };
+const _hoisted_16 = { class: "share-modal__share-name" };
+const _hoisted_17 = {
+  key: 0,
+  class: "share-modal__share-type"
+};
+const _hoisted_18 = ["value", "onChange"];
+const _hoisted_19 = { value: 0 };
+const _hoisted_20 = { value: 1 };
+const _hoisted_21 = ["onClick"];
+const _hoisted_22 = {
+  key: 3,
+  class: "share-modal__link-section"
+};
+const _hoisted_23 = { class: "share-modal__section-title" };
+const _hoisted_24 = {
+  key: 0,
+  class: "share-modal__link-create"
+};
+const _hoisted_25 = {
+  key: 1,
+  class: "share-modal__link-details"
+};
+const _hoisted_26 = { class: "share-modal__link-url-row" };
+const _hoisted_27 = ["value"];
+const _hoisted_28 = { class: "share-modal__link-options" };
+const _hoisted_29 = { class: "share-modal__link-option" };
+const _hoisted_30 = ["value"];
+const _hoisted_31 = { value: 0 };
+const _hoisted_32 = { value: 1 };
+const _hoisted_33 = { class: "share-modal__link-option" };
+const _hoisted_34 = { class: "share-modal__link-password-row" };
+const _hoisted_35 = ["placeholder"];
+const _hoisted_36 = { class: "share-modal__link-option" };
+const _hoisted_37 = ["value", "min"];
+const _hoisted_38 = {
+  key: 4,
+  class: "share-modal__empty"
+};
+const _sfc_main$1 = /* @__PURE__ */ defineComponent({
+  __name: "ShareDialog",
+  props: {
+    listId: {},
+    isOwner: { type: Boolean },
+    currentUserId: {}
+  },
+  emits: ["close"],
+  setup(__props) {
+    const props = __props;
+    const sharesStore = useSharesStore();
+    const searchRef = ref(null);
+    const linkUrlRef = ref(null);
+    const shareTitle = translate("shopping_list", "Share list");
+    const searchPlaceholder = translate("shopping_list", "Search users or groups...");
+    const noResultsText = translate("shopping_list", "No users found");
+    const groupText = translate("shopping_list", "Group");
+    const sharedWithText = translate("shopping_list", "Shared with");
+    const canViewText = translate("shopping_list", "Can view");
+    const canEditText = translate("shopping_list", "Can edit");
+    const emptyText = translate("shopping_list", "Search above to share this list with other users.");
+    const groupLabel = translate("shopping_list", "group");
+    const publicLinkText = translate("shopping_list", "Public link");
+    const createLinkText = translate("shopping_list", "Create public link");
+    const copyText = translate("shopping_list", "Copy link");
+    const copiedText = translate("shopping_list", "Copied!");
+    const permissionLabel = translate("shopping_list", "Permission");
+    const passwordLabel = translate("shopping_list", "Password");
+    const passwordSetText = translate("shopping_list", "Password set");
+    const passwordPlaceholder = translate("shopping_list", "Optional");
+    const saveText = translate("shopping_list", "Set");
+    const removeText = translate("shopping_list", "Remove");
+    const expiryLabel = translate("shopping_list", "Expires");
+    const deleteLinkText = translate("shopping_list", "Delete public link");
+    const searchQuery = ref("");
+    const searching = ref(false);
+    const shareeResults = ref([]);
+    const linkPassword = ref("");
+    const copiedLink = ref(false);
+    const shares = computed(
+      () => (sharesStore.sharesByList[props.listId] ?? []).filter((s) => s.sharedWithType !== ShareType.LINK)
+    );
+    const linkShare = computed(
+      () => sharesStore.getLinkShare(props.listId)
+    );
+    const linkUrl = computed(() => {
+      if (!linkShare.value?.token) return "";
+      return window.location.origin + generateUrl(`/apps/shopping_list/s/${linkShare.value.token}`);
+    });
+    const todayStr = (/* @__PURE__ */ new Date()).toISOString().split("T")[0];
+    let searchTimeout = null;
+    onMounted(async () => {
+      await sharesStore.fetchByList(props.listId);
+      await nextTick();
+      searchRef.value?.focus();
+    });
+    function onSearchInput() {
+      if (searchTimeout) clearTimeout(searchTimeout);
+      const query = searchQuery.value.trim();
+      if (!query) {
+        shareeResults.value = [];
+        return;
+      }
+      searching.value = true;
+      searchTimeout = setTimeout(async () => {
+        try {
+          const url = generateOcsUrl("apps/files_sharing/api/v1/sharees");
+          const response = await cancelableClient.get(url, {
+            params: { search: query, itemType: "file", perPage: 10 }
+          });
+          const data = response.data.ocs.data;
+          const options = [];
+          for (const user of (data.exact?.users ?? []).concat(data.users ?? [])) {
+            if (user.value.shareWith !== props.currentUserId) {
+              options.push({
+                label: user.label,
+                value: user.value.shareWith,
+                type: ShareType.USER
+              });
+            }
+          }
+          for (const group of (data.exact?.groups ?? []).concat(data.groups ?? [])) {
+            options.push({
+              label: `${group.label} (${groupLabel})`,
+              value: group.value.shareWith,
+              type: ShareType.GROUP
+            });
+          }
+          shareeResults.value = options;
+        } catch (e) {
+          console.error("Failed to search sharees", e);
+        } finally {
+          searching.value = false;
+        }
+      }, 300);
+    }
+    async function onSelectSharee(sharee) {
+      await sharesStore.create(props.listId, sharee.value, sharee.type, Permission.WRITE);
+      searchQuery.value = "";
+      shareeResults.value = [];
+    }
+    async function onPermissionChange(shareId, permission) {
+      await sharesStore.updatePermission(shareId, permission, props.listId);
+    }
+    async function onRemoveShare(shareId) {
+      await sharesStore.remove(shareId, props.listId);
+    }
+    async function onCreateLink() {
+      await sharesStore.createLinkShare(props.listId, Permission.READ);
+    }
+    async function onCopyLink() {
+      if (linkUrl.value) {
+        await navigator.clipboard.writeText(linkUrl.value);
+        copiedLink.value = true;
+        setTimeout(() => {
+          copiedLink.value = false;
+        }, 2e3);
+      }
+    }
+    async function onLinkPermissionChange(permission) {
+      if (linkShare.value) {
+        await sharesStore.updateLinkShare(linkShare.value.id, props.listId, { permission });
+      }
+    }
+    async function onSetPassword() {
+      if (linkShare.value && linkPassword.value) {
+        await sharesStore.updateLinkShare(linkShare.value.id, props.listId, { password: linkPassword.value });
+        linkPassword.value = "";
+      }
+    }
+    async function onRemovePassword() {
+      if (linkShare.value) {
+        await sharesStore.updateLinkShare(linkShare.value.id, props.listId, { removePassword: true });
+      }
+    }
+    async function onExpiryChange(value) {
+      if (linkShare.value) {
+        await sharesStore.updateLinkShare(linkShare.value.id, props.listId, {
+          expiresAt: value || null
+        });
+      }
+    }
+    async function onDeleteLink() {
+      if (linkShare.value) {
+        await sharesStore.removeLinkShare(linkShare.value.id, props.listId);
+      }
+    }
+    return (_ctx, _cache) => {
+      return openBlock(), createElementBlock("div", {
+        class: "share-overlay",
+        onClick: _cache[6] || (_cache[6] = withModifiers(($event) => _ctx.$emit("close"), ["self"]))
+      }, [
+        createBaseVNode("div", _hoisted_1, [
+          createBaseVNode("div", _hoisted_2, [
+            createBaseVNode("h3", null, toDisplayString(unref(shareTitle)), 1),
+            createBaseVNode("button", {
+              class: "share-modal__close",
+              onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("close"))
+            }, " ✕ ")
+          ]),
+          createBaseVNode("div", _hoisted_3, [
+            withDirectives(createBaseVNode("input", {
+              ref_key: "searchRef",
+              ref: searchRef,
+              "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => searchQuery.value = $event),
+              type: "text",
+              placeholder: unref(searchPlaceholder),
+              class: "share-modal__search-input",
+              onInput: onSearchInput
+            }, null, 40, _hoisted_4), [
+              [vModelText, searchQuery.value]
+            ])
+          ]),
+          shareeResults.value.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_5, [
+            (openBlock(true), createElementBlock(Fragment, null, renderList(shareeResults.value, (sharee) => {
+              return openBlock(), createElementBlock("div", {
+                key: sharee.value + sharee.type,
+                class: "share-modal__result",
+                onClick: ($event) => onSelectSharee(sharee)
+              }, [
+                createBaseVNode("span", _hoisted_7, toDisplayString(sharee.type === 1 ? "👥" : "👤"), 1),
+                createBaseVNode("div", _hoisted_8, [
+                  createBaseVNode("span", _hoisted_9, toDisplayString(sharee.label), 1),
+                  sharee.type === 1 ? (openBlock(), createElementBlock("span", _hoisted_10, toDisplayString(unref(groupText)), 1)) : createCommentVNode("", true)
+                ])
+              ], 8, _hoisted_6);
+            }), 128))
+          ])) : searchQuery.value.length > 0 && !searching.value ? (openBlock(), createElementBlock("div", _hoisted_11, toDisplayString(unref(noResultsText)), 1)) : createCommentVNode("", true),
+          shares.value.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_12, [
+            createBaseVNode("div", _hoisted_13, toDisplayString(unref(sharedWithText)), 1),
+            (openBlock(true), createElementBlock(Fragment, null, renderList(shares.value, (share) => {
+              return openBlock(), createElementBlock("div", {
+                key: share.id,
+                class: "share-modal__share"
+              }, [
+                createBaseVNode("span", _hoisted_14, toDisplayString(share.sharedWithType === 1 ? "👥" : "👤"), 1),
+                createBaseVNode("div", _hoisted_15, [
+                  createBaseVNode("span", _hoisted_16, toDisplayString(share.sharedWithDisplayName), 1),
+                  share.sharedWithType === 1 ? (openBlock(), createElementBlock("span", _hoisted_17, toDisplayString(unref(groupText)), 1)) : createCommentVNode("", true)
+                ]),
+                __props.isOwner ? (openBlock(), createElementBlock("select", {
+                  key: 0,
+                  class: "share-modal__permission",
+                  value: share.permission,
+                  onChange: ($event) => onPermissionChange(share.id, Number($event.target.value))
+                }, [
+                  createBaseVNode("option", _hoisted_19, toDisplayString(unref(canViewText)), 1),
+                  createBaseVNode("option", _hoisted_20, toDisplayString(unref(canEditText)), 1)
+                ], 40, _hoisted_18)) : createCommentVNode("", true),
+                __props.isOwner || share.sharedWith === __props.currentUserId ? (openBlock(), createElementBlock("button", {
+                  key: 1,
+                  class: "share-modal__remove",
+                  onClick: ($event) => onRemoveShare(share.id)
+                }, " ✕ ", 8, _hoisted_21)) : createCommentVNode("", true)
+              ]);
+            }), 128))
+          ])) : createCommentVNode("", true),
+          __props.isOwner ? (openBlock(), createElementBlock("div", _hoisted_22, [
+            createBaseVNode("div", _hoisted_23, toDisplayString(unref(publicLinkText)), 1),
+            !linkShare.value ? (openBlock(), createElementBlock("div", _hoisted_24, [
+              createBaseVNode("button", {
+                class: "share-modal__link-btn",
+                onClick: onCreateLink
+              }, toDisplayString(unref(createLinkText)), 1)
+            ])) : (openBlock(), createElementBlock("div", _hoisted_25, [
+              createBaseVNode("div", _hoisted_26, [
+                createBaseVNode("input", {
+                  ref_key: "linkUrlRef",
+                  ref: linkUrlRef,
+                  value: linkUrl.value,
+                  readonly: "",
+                  class: "share-modal__link-url",
+                  onFocus: _cache[2] || (_cache[2] = ($event) => $event.target.select())
+                }, null, 40, _hoisted_27),
+                createBaseVNode("button", {
+                  class: "share-modal__link-copy",
+                  onClick: onCopyLink
+                }, toDisplayString(copiedLink.value ? unref(copiedText) : unref(copyText)), 1)
+              ]),
+              createBaseVNode("div", _hoisted_28, [
+                createBaseVNode("label", _hoisted_29, [
+                  createTextVNode(toDisplayString(unref(permissionLabel)) + " ", 1),
+                  createBaseVNode("select", {
+                    value: linkShare.value.permission,
+                    class: "share-modal__permission",
+                    onChange: _cache[3] || (_cache[3] = ($event) => onLinkPermissionChange(Number($event.target.value)))
+                  }, [
+                    createBaseVNode("option", _hoisted_31, toDisplayString(unref(canViewText)), 1),
+                    createBaseVNode("option", _hoisted_32, toDisplayString(unref(canEditText)), 1)
+                  ], 40, _hoisted_30)
+                ]),
+                createBaseVNode("label", _hoisted_33, [
+                  createTextVNode(toDisplayString(unref(passwordLabel)) + " ", 1),
+                  createBaseVNode("div", _hoisted_34, [
+                    withDirectives(createBaseVNode("input", {
+                      "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => linkPassword.value = $event),
+                      type: "password",
+                      placeholder: linkShare.value.hasPassword ? unref(passwordSetText) : unref(passwordPlaceholder),
+                      class: "share-modal__link-input"
+                    }, null, 8, _hoisted_35), [
+                      [vModelText, linkPassword.value]
+                    ]),
+                    linkPassword.value ? (openBlock(), createElementBlock("button", {
+                      key: 0,
+                      class: "share-modal__link-btn share-modal__link-btn--small",
+                      onClick: onSetPassword
+                    }, toDisplayString(unref(saveText)), 1)) : createCommentVNode("", true),
+                    linkShare.value.hasPassword && !linkPassword.value ? (openBlock(), createElementBlock("button", {
+                      key: 1,
+                      class: "share-modal__link-btn share-modal__link-btn--small share-modal__link-btn--danger",
+                      onClick: onRemovePassword
+                    }, toDisplayString(unref(removeText)), 1)) : createCommentVNode("", true)
+                  ])
+                ]),
+                createBaseVNode("label", _hoisted_36, [
+                  createTextVNode(toDisplayString(unref(expiryLabel)) + " ", 1),
+                  createBaseVNode("input", {
+                    type: "date",
+                    value: linkShare.value.expiresAt?.split("T")[0] ?? "",
+                    min: unref(todayStr),
+                    class: "share-modal__link-input",
+                    onChange: _cache[5] || (_cache[5] = ($event) => onExpiryChange($event.target.value))
+                  }, null, 40, _hoisted_37)
+                ])
+              ]),
+              createBaseVNode("button", {
+                class: "share-modal__link-btn share-modal__link-btn--danger",
+                onClick: onDeleteLink
+              }, toDisplayString(unref(deleteLinkText)), 1)
+            ]))
+          ])) : createCommentVNode("", true),
+          shares.value.length === 0 && searchQuery.value.length === 0 && !linkShare.value ? (openBlock(), createElementBlock("div", _hoisted_38, toDisplayString(unref(emptyText)), 1)) : createCommentVNode("", true)
+        ])
+      ]);
+    };
+  }
+});
+const ShareDialog = /* @__PURE__ */ _export_sfc$1(_sfc_main$1, [["__scopeId", "data-v-8ef27d4b"]]);
 let initialized = false;
 function usePush() {
   if (initialized) return;
@@ -17235,7 +17308,7 @@ function usePush() {
   if (hasPushServer) {
     try {
       __vitePreload(async () => {
-        const { listen } = await import("./index-BmvAZn3f.chunk.mjs").then((n) => n.i);
+        const { listen } = await import("./index-WN4aSizN.chunk.mjs").then((n) => n.i);
         return { listen };
       }, true ? __vite__mapDeps([0,1,2]) : void 0, import.meta.url).then(({ listen }) => {
         listen("shopping_list_item_update", () => {
@@ -17280,6 +17353,11 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
   setup(__props) {
     const listsStore = useListsStore();
     const showSettings = ref(false);
+    const shareListId = ref(null);
+    const currentUserId = getCurrentUser()?.uid ?? "";
+    const shareList = computed(
+      () => listsStore.lists.find((l) => l.id === shareListId.value) ?? null
+    );
     const noListName = translate("shopping_list", "No list selected");
     const noListDesc = translate("shopping_list", "Select a list from the sidebar or create a new one");
     onMounted(async () => {
@@ -17296,7 +17374,8 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
             createVNode(unref(NcAppNavigation), null, {
               default: withCtx(() => [
                 createVNode(ListSidebar, {
-                  onShowSettings: _cache[0] || (_cache[0] = ($event) => showSettings.value = true)
+                  onShowSettings: _cache[0] || (_cache[0] = ($event) => showSettings.value = true),
+                  onShare: _cache[1] || (_cache[1] = ($event) => shareListId.value = $event)
                 })
               ]),
               _: 1
@@ -17305,8 +17384,11 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
               default: withCtx(() => [
                 showSettings.value && unref(listsStore).currentList ? (openBlock(), createBlock(AreaKeywordsSettings, {
                   key: unref(listsStore).currentListId,
-                  onBack: _cache[1] || (_cache[1] = ($event) => showSettings.value = false)
-                })) : unref(listsStore).currentList ? (openBlock(), createBlock(ListView, { key: 1 })) : (openBlock(), createBlock(unref(NcEmptyContent), {
+                  onBack: _cache[2] || (_cache[2] = ($event) => showSettings.value = false)
+                })) : unref(listsStore).currentList ? (openBlock(), createBlock(ListView, {
+                  key: 1,
+                  onShare: _cache[3] || (_cache[3] = ($event) => shareListId.value = $event)
+                })) : (openBlock(), createBlock(unref(NcEmptyContent), {
                   key: 2,
                   name: unref(noListName),
                   description: unref(noListDesc)
@@ -17322,6 +17404,13 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
           ]),
           _: 1
         }),
+        shareList.value ? (openBlock(), createBlock(ShareDialog, {
+          key: 0,
+          "list-id": shareList.value.id,
+          "is-owner": shareList.value.isOwner,
+          "current-user-id": unref(currentUserId),
+          onClose: _cache[4] || (_cache[4] = ($event) => shareListId.value = null)
+        }, null, 8, ["list-id", "is-owner", "current-user-id"])) : createCommentVNode("", true),
         createVNode(OfflineIndicator)
       ], 64);
     };

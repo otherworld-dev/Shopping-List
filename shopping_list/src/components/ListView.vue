@@ -5,7 +5,7 @@
 			<div class="list-view__actions">
 				<div v-if="currentShares.length > 0"
 					class="list-view__avatars"
-					@click="showShareDialog = true">
+					@click="onShare">
 					<NcAvatar v-for="share in visibleShares"
 						:key="share.id"
 						:user="share.sharedWithType === ShareType.USER ? share.sharedWith : undefined"
@@ -20,7 +20,8 @@
 				</div>
 				<NcActions :aria-label="listActionsText">
 					<NcActionButton v-if="listsStore.currentList?.isOwner"
-						@click="showShareDialog = true">
+						close-after-click
+						@click="onShare">
 						{{ shareText }}
 					</NcActionButton>
 					<NcActionButton :disabled="itemsStore.uncheckedItems.length === 0"
@@ -136,12 +137,6 @@
 					:editing="false" />
 			</div>
 		</div>
-
-		<ShareDialog v-if="showShareDialog && listsStore.currentList"
-			:list-id="listsStore.currentList.id"
-			:is-owner="listsStore.currentList.isOwner"
-			:current-user-id="currentUserId"
-			@close="showShareDialog = false" />
 	</div>
 </template>
 
@@ -160,7 +155,6 @@ import {
 } from '@nextcloud/vue'
 import { showError, showSuccess } from '@nextcloud/dialogs'
 import { getLanguage, t } from '@nextcloud/l10n'
-import { getCurrentUser } from '@nextcloud/auth'
 import { mdiChevronDown } from '@mdi/js'
 import { useListsStore } from '../stores/lists'
 import { useItemsStore } from '../stores/items'
@@ -170,7 +164,6 @@ import { useSharesStore } from '../stores/shares'
 import draggable from 'vuedraggable'
 import ItemRow from './ItemRow.vue'
 import ItemEditor from './ItemEditor.vue'
-import ShareDialog from './ShareDialog.vue'
 import { formatListAsText } from '../utils/listText'
 import { browserStorage } from '../utils/browserStorage'
 import {
@@ -199,10 +192,16 @@ const currentShares = computed(() => {
 const visibleShares = computed(() => currentShares.value.slice(0, MAX_VISIBLE_AVATARS))
 const overflowCount = computed(() => Math.max(0, currentShares.value.length - MAX_VISIBLE_AVATARS))
 
+const emit = defineEmits<{ share: [listId: number] }>()
+
 const showChecked = ref(true)
-const showShareDialog = ref(false)
-const currentUserId = getCurrentUser()?.uid ?? ''
 const editingItemId = ref<number | null>(null)
+
+// The dialog itself lives in App.vue so the sidebar can open it too.
+function onShare() {
+	const listId = listsStore.currentListId
+	if (listId !== null) emit('share', listId)
+}
 
 // Capture-phase click listener to bypass Nextcloud's click interception
 // on non-interactive elements. Editable rows use a ::after overlay that
