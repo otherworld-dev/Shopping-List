@@ -8,6 +8,7 @@ use DateTime;
 use OCA\Shopping_List\Db\Item;
 use OCA\Shopping_List\Db\ShopArea;
 use OCA\Shopping_List\Db\ShoppingList;
+use OCA\Shopping_List\Service\BackupFormatException;
 use OCA\Shopping_List\Service\BackupSerializer;
 use PHPUnit\Framework\TestCase;
 
@@ -149,5 +150,94 @@ class BackupSerializerTest extends TestCase {
 			}
 		}
 		return array_values(array_unique($found));
+	}
+
+	public function testRoundTripPreservesEverythingThatMatters(): void {
+		$list = new ShoppingList();
+		$list->setId(7);
+		$list->setTitle('Weekly shop');
+		$list->setCreatedAt(new DateTime('2026-04-06T18:00:00+00:00'));
+		$list->setUpdatedAt(new DateTime('2026-09-20T19:20:00+00:00'));
+
+		$produce = new ShopArea();
+		$produce->setId(20);
+		$produce->setListId(7);
+		$produce->setName('Produce');
+		$produce->setNameKey('Produce');
+		$produce->setColor('9a3412');
+		$produce->setSortOrder(1);
+		$produce->setKeywordsArray(['apple']);
+
+		$item = new Item();
+		$item->setId(30);
+		$item->setListId(7);
+		$item->setName('Milk');
+		$item->setQuantity('2');
+		$item->setUnit('l');
+		$item->setShopAreaId(20);
+		$item->setChecked(true);
+		$item->setSortOrder(3);
+		$item->setCreatedAt(new DateTime('2026-09-01T08:00:00+00:00'));
+		$item->setUpdatedAt(new DateTime('2026-09-01T08:00:00+00:00'));
+
+		$exported = $this->serializer->serialize(
+			[$list], [7 => [$produce]], [7 => [$item]], [30 => ['organic']], [7 => true],
+			new DateTime('2026-09-21T09:15:00+00:00'),
+		);
+
+		$parsed = $this->serializer->parse($exported);
+
+		self::assertCount(1, $parsed);
+		self::assertSame('Weekly shop', $parsed[0]['title']);
+		self::assertTrue($parsed[0]['pinned']);
+		self::assertSame('Produce', $parsed[0]['areas'][0]['name']);
+		self::assertSame('Produce', $parsed[0]['areas'][0]['nameKey']);
+		self::assertSame(['apple'], $parsed[0]['areas'][0]['keywords']);
+		self::assertSame('Milk', $parsed[0]['items'][0]['name']);
+		self::assertSame('Produce', $parsed[0]['items'][0]['area']);
+		self::assertTrue($parsed[0]['items'][0]['checked']);
+		self::assertSame(['organic'], $parsed[0]['items'][0]['tags']);
+	}
+
+	public function testParseRefusesAnUnknownVersion(): void {
+		$this->expectException(BackupFormatException::class);
+		$this->serializer->parse(['version' => 2, 'lists' => []]);
+	}
+
+	public function testParseRefusesAMissingVersion(): void {
+		$this->expectException(BackupFormatException::class);
+		$this->serializer->parse(['lists' => []]);
+	}
+
+	public function testParseRefusesAListWithoutATitle(): void {
+		$this->expectException(BackupFormatException::class);
+		$this->serializer->parse([
+			'version' => 1,
+			'lists' => [['areas' => [], 'items' => []]],
+		]);
+	}
+
+	public function testParseRefusesAnItemWithoutAName(): void {
+		$this->expectException(BackupFormatException::class);
+		$this->serializer->parse([
+			'version' => 1,
+			'lists' => [[
+				'title' => 'Weekly shop',
+				'areas' => [],
+				'items' => [['quantity' => '1']],
+			]],
+		]);
+	}
+
+	public function testParseFillsInOptionalFields(): void {
+		$parsed = $this->serializer->parse([
+			'version' => 1,
+			'lists' => [['title' => 'Bare minimum']],
+		]);
+
+		self::assertSame('Bare minimum', $parsed[0]['title']);
+		self::assertFalse($parsed[0]['pinned']);
+		self::assertSame([], $parsed[0]['areas']);
+		self::assertSame([], $parsed[0]['items']);
 	}
 }

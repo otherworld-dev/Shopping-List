@@ -97,4 +97,135 @@ class BackupSerializer {
 		}
 		return $areaNamesById[$areaId] ?? null;
 	}
+
+	/**
+	 * Validate a decoded backup payload and normalise it for BackupService.
+	 * Nothing is written by this method; a bad file fails here, before the
+	 * import touches the database.
+	 *
+	 * @throws BackupFormatException
+	 */
+	public function parse(array $payload): array {
+		$version = $payload['version'] ?? null;
+		if ($version !== self::VERSION) {
+			// Refused rather than guessed at, because a later format could
+			// mean anything and a wrong guess writes wrong data.
+			throw new BackupFormatException(
+				'Unsupported backup version: ' . var_export($version, true),
+			);
+		}
+
+		$rawLists = $payload['lists'] ?? [];
+		if (!is_array($rawLists)) {
+			throw new BackupFormatException('The lists entry is not a list');
+		}
+
+		$lists = [];
+		foreach ($rawLists as $index => $rawList) {
+			$lists[] = $this->parseList($rawList, (int)$index);
+		}
+		return $lists;
+	}
+
+	/**
+	 * @throws BackupFormatException
+	 */
+	private function parseList(mixed $raw, int $index): array {
+		if (!is_array($raw)) {
+			throw new BackupFormatException("List at position {$index} is not an object");
+		}
+		$title = $raw['title'] ?? null;
+		if (!is_string($title) || trim($title) === '') {
+			throw new BackupFormatException("List at position {$index} has no title");
+		}
+
+		$areas = [];
+		foreach ($this->arrayAt($raw, 'areas') as $areaIndex => $rawArea) {
+			$areas[] = $this->parseArea($rawArea, $index, (int)$areaIndex);
+		}
+
+		$items = [];
+		foreach ($this->arrayAt($raw, 'items') as $itemIndex => $rawItem) {
+			$items[] = $this->parseItem($rawItem, $index, (int)$itemIndex);
+		}
+
+		return [
+			'title' => trim($title),
+			'createdAt' => $this->stringOrNull($raw, 'createdAt'),
+			'updatedAt' => $this->stringOrNull($raw, 'updatedAt'),
+			'pinned' => ($raw['pinned'] ?? false) === true,
+			'areas' => $areas,
+			'items' => $items,
+		];
+	}
+
+	/**
+	 * @throws BackupFormatException
+	 */
+	private function parseArea(mixed $raw, int $listIndex, int $areaIndex): array {
+		if (!is_array($raw)) {
+			throw new BackupFormatException("Area {$areaIndex} in list {$listIndex} is not an object");
+		}
+		$name = $raw['name'] ?? null;
+		if (!is_string($name) || trim($name) === '') {
+			throw new BackupFormatException("Area {$areaIndex} in list {$listIndex} has no name");
+		}
+
+		$keywords = [];
+		foreach ($this->arrayAt($raw, 'keywords') as $keyword) {
+			if (is_string($keyword) && trim($keyword) !== '') {
+				$keywords[] = trim($keyword);
+			}
+		}
+
+		return [
+			'name' => trim($name),
+			'nameKey' => $this->stringOrNull($raw, 'nameKey'),
+			'color' => $this->stringOrNull($raw, 'color'),
+			'sortOrder' => (int)($raw['sortOrder'] ?? 0),
+			'keywords' => $keywords,
+		];
+	}
+
+	/**
+	 * @throws BackupFormatException
+	 */
+	private function parseItem(mixed $raw, int $listIndex, int $itemIndex): array {
+		if (!is_array($raw)) {
+			throw new BackupFormatException("Item {$itemIndex} in list {$listIndex} is not an object");
+		}
+		$name = $raw['name'] ?? null;
+		if (!is_string($name) || trim($name) === '') {
+			throw new BackupFormatException("Item {$itemIndex} in list {$listIndex} has no name");
+		}
+
+		$tags = [];
+		foreach ($this->arrayAt($raw, 'tags') as $tag) {
+			if (is_string($tag) && trim($tag) !== '') {
+				$tags[] = trim($tag);
+			}
+		}
+
+		return [
+			'name' => trim($name),
+			'quantity' => $this->stringOrNull($raw, 'quantity'),
+			'unit' => $this->stringOrNull($raw, 'unit'),
+			'area' => $this->stringOrNull($raw, 'area'),
+			'checked' => ($raw['checked'] ?? false) === true,
+			'sortOrder' => (int)($raw['sortOrder'] ?? 0),
+			'createdAt' => $this->stringOrNull($raw, 'createdAt'),
+			'updatedAt' => $this->stringOrNull($raw, 'updatedAt'),
+			'tags' => $tags,
+		];
+	}
+
+	private function arrayAt(array $raw, string $key): array {
+		$value = $raw[$key] ?? [];
+		return is_array($value) ? $value : [];
+	}
+
+	private function stringOrNull(array $raw, string $key): ?string {
+		$value = $raw[$key] ?? null;
+		return is_string($value) && $value !== '' ? $value : null;
+	}
 }
