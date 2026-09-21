@@ -641,3 +641,33 @@ msgstr ""
 #: lib/Notification/Notifier.php
 msgid "Get it on Google Play"
 msgstr ""
+
+#: src/components/BackupSettings.vue
+msgid "Backup"
+msgstr ""
+
+#: src/components/BackupSettings.vue
+msgid "A backup holds your own lists, their items, areas and tags. Shares are not included, and restoring adds lists rather than replacing the ones you have."
+msgstr ""
+
+#: src/components/BackupSettings.vue
+msgid "Download backup"
+msgstr ""
+
+#: src/components/BackupSettings.vue
+msgid "Restore from backup"
+msgstr ""
+
+#: src/components/BackupSettings.vue
+msgid "Restoring..."
+msgstr ""
+
+#: src/components/BackupSettings.vue
+msgid "That file could not be restored"
+msgstr ""
+
+#: src/components/BackupSettings.vue
+msgid "Restored %n list"
+msgid_plural "Restored %n lists"
+msgstr[0] ""
+msgstr[1] ""

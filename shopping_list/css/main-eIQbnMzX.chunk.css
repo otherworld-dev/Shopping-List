@@ -1,10 +1,19 @@
 
-.sidebar-settings[data-v-353e1312] {
+.backup__hint[data-v-8f2c19f1] {
+	margin-bottom: 8px;
+	color: var(--color-text-maxcontrast);
+	font-size: 0.85em;
+}
+.backup__file[data-v-8f2c19f1] {
+	display: none;
+}
+
+.sidebar-settings[data-v-d22c2da3] {
 	padding: 8px 10px;
 	border-top: 1px solid var(--color-border);
 	margin-top: auto;
 }
-.sidebar-settings__btn[data-v-353e1312] {
+.sidebar-settings__btn[data-v-d22c2da3] {
 	width: 100%;
 	padding: 8px 12px;
 	background: none;
@@ -15,11 +24,11 @@
 	cursor: pointer;
 	text-align: left;
 }
-.sidebar-settings__btn[data-v-353e1312]:hover {
+.sidebar-settings__btn[data-v-d22c2da3]:hover {
 	background: var(--color-background-hover);
 	color: var(--color-main-text);
 }
-.count-bubble[data-v-353e1312] {
+.count-bubble[data-v-d22c2da3] {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;

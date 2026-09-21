@@ -1,5 +1,5 @@
 import axios from '@nextcloud/axios'
-import { generateOcsUrl } from '@nextcloud/router'
+import { generateOcsUrl, generateUrl } from '@nextcloud/router'
 
 function url(path: string): string {
 	return generateOcsUrl('apps/shopping_list/api/v1/' + path)
@@ -63,6 +63,11 @@ export const api = {
 		getAll: () => axios.get(url('tags')),
 		create: (name: string) => axios.post(url('tags'), { name }),
 		delete: (id: number) => axios.delete(url(`tags/${id}`)),
+	},
+	backup: {
+		downloadUrl: () => generateUrl('/apps/shopping_list/backup/download'),
+		restore: (payload: unknown) =>
+			axios.post(generateUrl('/apps/shopping_list/backup/restore'), payload),
 	},
 }
 
