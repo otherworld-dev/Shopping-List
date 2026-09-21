@@ -277,4 +277,37 @@ class BackupSerializerTest extends TestCase {
 		self::assertSame([], $parsed[0]['areas']);
 		self::assertSame([], $parsed[0]['items']);
 	}
+
+	/**
+	 * parseArea() trims the area name, and BackupService joins an item to its
+	 * area by looking that trimmed name up in a map keyed by it. If an item's
+	 * own area back-reference is not trimmed the same way, a trailing space
+	 * from a real export makes the lookup miss and the item silently loses
+	 * its area on restore.
+	 */
+	public function testItemAreaReferenceIsNormalisedLikeTheAreaName(): void {
+		$parsed = $this->serializer->parse([
+			'version' => 1,
+			'lists' => [[
+				'title' => 'Weekly shop',
+				'areas' => [['name' => 'Produce ']],
+				'items' => [['name' => 'Milk', 'area' => 'Produce ']],
+			]],
+		]);
+
+		self::assertSame('Produce', $parsed[0]['areas'][0]['name']);
+		self::assertSame('Produce', $parsed[0]['items'][0]['area']);
+		self::assertSame($parsed[0]['areas'][0]['name'], $parsed[0]['items'][0]['area']);
+
+		$parsedBlank = $this->serializer->parse([
+			'version' => 1,
+			'lists' => [[
+				'title' => 'Weekly shop',
+				'areas' => [],
+				'items' => [['name' => 'Milk', 'area' => '   ']],
+			]],
+		]);
+
+		self::assertNull($parsedBlank[0]['items'][0]['area']);
+	}
 }
