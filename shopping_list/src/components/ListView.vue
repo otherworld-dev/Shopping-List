@@ -236,21 +236,22 @@ function onCaptureClick(e: MouseEvent) {
 onMounted(() => document.addEventListener('click', onCaptureClick, true))
 onUnmounted(() => document.removeEventListener('click', onCaptureClick, true))
 
-// A file dropped anywhere but on a row would make the browser open it and
-// leave the app. Refuse those drops while images are on; the rows handle
-// their own. Sortable's row drags never carry files, so they pass through.
 const { enabled: imagesEnabled } = useImagePreference()
 
+// A file dropped anywhere but on a row that takes it would make the browser
+// open the file and leave the app. Cancel the default for every file drag;
+// a row that accepts one marks itself with item-row--drop-target on
+// dragenter and sets the copy effect itself, everywhere else the cursor
+// says no. Sortable's row drags never carry files, so they pass through.
 function onDocumentDragOver(e: DragEvent) {
-	if (!isFileDrag(e.dataTransfer) || (e.target as Element | null)?.closest?.('.item-row')) return
+	if (!isFileDrag(e.dataTransfer)) return
 	e.preventDefault()
-	if (e.dataTransfer) e.dataTransfer.dropEffect = 'none'
+	const accepting = (e.target as Element | null)?.closest?.('.item-row--drop-target')
+	if (!accepting && e.dataTransfer) e.dataTransfer.dropEffect = 'none'
 }
 
 function onDocumentDrop(e: DragEvent) {
-	if (isFileDrag(e.dataTransfer) && !(e.target as Element | null)?.closest?.('.item-row')) {
-		e.preventDefault()
-	}
+	if (isFileDrag(e.dataTransfer)) e.preventDefault()
 }
 
 function removeDropGuard() {
