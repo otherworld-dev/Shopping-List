@@ -15350,12 +15350,14 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
       await itemsStore.move(props.listId, props.itemId, targetListId);
     }
     const { enabled: imagesEnabled } = useImagePreference();
+    const { isOnline: isOnline2 } = useNetworkStatus();
     const addImageText = translate("shopping_list", "Add image");
     const replaceImageText = translate("shopping_list", "Replace image");
     const removeImageText = translate("shopping_list", "Remove image");
     const viewImageLabel = translate("shopping_list", "View image");
     const uploadingText = translate("shopping_list", "Uploading image…");
     const notAnImageText = translate("shopping_list", "Only image files can be attached");
+    const offlineText = translate("shopping_list", "You're offline — adding images requires a connection");
     const thumbBroken = ref(false);
     watch(() => item.value?.imageKey, () => {
       thumbBroken.value = false;
@@ -15367,6 +15369,10 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
     const viewerOpen = ref(false);
     const fileInputRef = ref(null);
     function pickFile() {
+      if (!isOnline2.value) {
+        showError(offlineText);
+        return;
+      }
       fileInputRef.value?.click();
     }
     function onFilePicked(e) {
@@ -15646,7 +15652,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ItemRow = /* @__PURE__ */ _export_sfc$1(_sfc_main$7, [["__scopeId", "data-v-cd823a1f"]]);
+const ItemRow = /* @__PURE__ */ _export_sfc$1(_sfc_main$7, [["__scopeId", "data-v-cd26862a"]]);
 function escapeRe(s) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
