@@ -5,6 +5,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- Items can carry a photo. Turn on "Show item images" on the settings
+  screen (the gear in the sidebar), then choose "Add image" from an item's
+  menu to take or pick one, or paste or drop an image onto the item. A
+  small thumbnail sits at the start of the row; tap it to see the whole
+  photo. The switch is off to begin with, and while it is off nothing
+  changes: no thumbnails, no menu entries. It is saved on the server, so it
+  is the same in every browser you use. Photos belong to the list, so
+  everyone with access sees them, on public share links too, though a link
+  cannot add or remove them. Uploads are shrunk to 1280 px and saved as
+  JPEG, which also strips the location a phone writes into a photo. Adding
+  or removing a photo needs a connection. Thanks to rostmodern for the
+  request (#49)
+
+### Changed
+- Deleting an item from a public share link now removes its tags and
+  tells the others on the list straight away, as deleting in the app
+  already did
+
+### Upgrade
+- Database migration: one column is added to the items table for the
+  photo key. Photos themselves are kept in the app's own data folder, not
+  in anyone's Files, so they take no space from a user's quota
+
 ## [1.8.0] - 2026-09-12
 
 ### Added
