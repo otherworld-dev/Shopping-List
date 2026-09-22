@@ -1,18 +1,18 @@
 
-.public-list h2[data-v-63733b33] {
+.public-list h2[data-v-4624d33e] {
 	margin: 0 0 16px;
 	font-size: 1.5em;
 	font-weight: 700;
 	color: var(--color-main-text, #fff);
 }
-.public-list__card[data-v-63733b33] {
+.public-list__card[data-v-4624d33e] {
 	border: 1px solid var(--color-border, rgba(255, 255, 255, 0.15));
 	border-radius: var(--border-radius-large, 10px);
 	background-color: var(--color-main-background, rgba(0, 0, 0, 0.35));
 	backdrop-filter: blur(10px);
 	overflow: hidden;
 }
-.public-list__editor[data-v-63733b33] {
+.public-list__editor[data-v-4624d33e] {
 	display: flex;
 	align-items: center;
 	height: 42px;
@@ -21,7 +21,7 @@
 	border-bottom: 1px solid var(--color-border, rgba(255, 255, 255, 0.1));
 	padding: 0 4px 0 0;
 }
-.public-list__editor-plus[data-v-63733b33] {
+.public-list__editor-plus[data-v-4624d33e] {
 	flex: 0 0 auto;
 	font-size: 1.2em;
 	color: var(--color-primary-element);
@@ -29,7 +29,7 @@
 	user-select: none;
 	font-weight: 700;
 }
-.public-list__editor-input[data-v-63733b33] {
+.public-list__editor-input[data-v-4624d33e] {
 	flex: 1 1 0%;
 	min-width: 0;
 	height: 100%;
@@ -40,21 +40,21 @@
 	outline: none;
 	padding: 0;
 }
-.public-list__editor-input[data-v-63733b33]::placeholder {
+.public-list__editor-input[data-v-4624d33e]::placeholder {
 	color: var(--color-text-maxcontrast);
 	font-style: italic;
 }
-.public-list__loading[data-v-63733b33] {
+.public-list__loading[data-v-4624d33e] {
 	display: flex;
 	justify-content: center;
 	padding: 40px;
 }
-.public-list__empty[data-v-63733b33] {
+.public-list__empty[data-v-4624d33e] {
 	padding: 40px;
 	text-align: center;
 	color: var(--color-text-maxcontrast);
 }
-.public-list__area-group[data-v-63733b33] {
+.public-list__area-group[data-v-4624d33e] {
 	border-top: 1px solid var(--color-border);
 }
 
@@ -63,7 +63,7 @@
    rules are specific enough to beat a single class: they would paint the
    left border near-black and flash the background white on press. The card
    and group classes in front keep these rules ahead without !important. */
-.public-list__card .public-list__area-group > button.public-list__area-header[data-v-63733b33] {
+.public-list__card .public-list__area-group > button.public-list__area-header[data-v-4624d33e] {
 	display: flex;
 	align-items: center;
 	gap: 6px;
@@ -81,14 +81,14 @@
 	text-align: start;
 	cursor: pointer;
 }
-.public-list__card .public-list__area-group > button.public-list__area-header[data-v-63733b33]:is(:hover, :focus, :active) {
+.public-list__card .public-list__area-group > button.public-list__area-header[data-v-4624d33e]:is(:hover, :focus, :active) {
 	border-left-color: var(--color-border-dark, rgba(255, 255, 255, 0.2));
 	color: inherit;
 }
-.public-list__card .public-list__area-group > button.public-list__area-header[data-v-63733b33]:is(:hover, :active) {
+.public-list__card .public-list__area-group > button.public-list__area-header[data-v-4624d33e]:is(:hover, :active) {
 	background-color: var(--color-background-darker, rgba(0, 0, 0, 0.3));
 }
-.public-list__card .public-list__area-group > button.public-list__area-header[data-v-63733b33]:focus-visible {
+.public-list__card .public-list__area-group > button.public-list__area-header[data-v-4624d33e]:focus-visible {
 	outline: 2px solid var(--color-main-text, #fff);
 	outline-offset: -2px;
 }
@@ -96,7 +96,7 @@
 /* The icon wrapper is a 34px box by default, sized for a clickable icon on
    its own. Here it sits inside the header button, so it shrinks to the
    glyph. The header class in front outranks the wrapper's own rule. */
-.public-list__area-header .public-list__area-chevron[data-v-63733b33] {
+.public-list__area-header .public-list__area-chevron[data-v-4624d33e] {
 	display: flex;
 	flex: 0 0 auto;
 	align-items: center;
@@ -108,18 +108,18 @@
 	color: var(--color-text-maxcontrast);
 	transition: transform 0.15s ease;
 }
-.public-list__area-chevron--collapsed[data-v-63733b33] {
+.public-list__area-chevron--collapsed[data-v-4624d33e] {
 	transform: rotate(-90deg);
 }
-.public-list__area-chevron--collapsed[data-v-63733b33]:dir(rtl) {
+.public-list__area-chevron--collapsed[data-v-4624d33e]:dir(rtl) {
 	transform: rotate(90deg);
 }
 @media (prefers-reduced-motion: reduce) {
-.public-list__area-header .public-list__area-chevron[data-v-63733b33] {
+.public-list__area-header .public-list__area-chevron[data-v-4624d33e] {
 		transition: none;
 }
 }
-.public-list__area-name[data-v-63733b33] {
+.public-list__area-name[data-v-4624d33e] {
 	min-width: 0;
 	overflow-wrap: anywhere;
 	font-size: 0.8em;
@@ -128,21 +128,21 @@
 	letter-spacing: 0.5px;
 	color: var(--color-text-maxcontrast);
 }
-.public-list__area-name--muted[data-v-63733b33] {
+.public-list__area-name--muted[data-v-4624d33e] {
 	font-weight: 500;
 }
-.public-list__area-count[data-v-63733b33] {
+.public-list__area-count[data-v-4624d33e] {
 	flex: 0 0 auto;
 	color: var(--color-text-maxcontrast);
 	font-size: 0.75em;
 	opacity: 0.7;
 }
-.public-list__items[data-v-63733b33] {
+.public-list__items[data-v-4624d33e] {
 	display: flex;
 	flex-direction: column;
 	min-width: 0;
 }
-.public-list__item[data-v-63733b33] {
+.public-list__item[data-v-4624d33e] {
 	display: flex;
 	align-items: center;
 	min-width: 0;
@@ -152,42 +152,74 @@
 	gap: 0;
 	color: var(--color-main-text, #fff);
 }
-.public-list__item[data-v-63733b33]:last-child {
+.public-list__item[data-v-4624d33e]:last-child {
 	border-bottom: none;
 }
-.public-list__check[data-v-63733b33] {
+.public-list__check[data-v-4624d33e] {
 	flex: 0 0 auto;
 	display: flex;
 	align-items: center;
 	padding: 0 10px 0 4px;
 	cursor: pointer;
 }
-.public-list__check input[type="checkbox"][data-v-63733b33] {
+.public-list__check input[type="checkbox"][data-v-4624d33e] {
 	width: 18px;
 	height: 18px;
 	cursor: pointer;
 	accent-color: var(--color-primary-element);
 	margin: 0;
 }
-.public-list__quantity[data-v-63733b33] {
+
+/* Thumbnail. The card and item classes in front keep these rules ahead of
+   Nextcloud's global button styling without !important. */
+.public-list .public-list__item > button.public-list__thumb[data-v-4624d33e] {
+	flex: 0 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	min-height: 0;
+	margin: 0 8px 0 0;
+	padding: 0;
+	border: none;
+	border-radius: var(--border-radius, 3px);
+	background-color: var(--color-background-dark, rgba(0, 0, 0, 0.2));
+	overflow: hidden;
+	cursor: zoom-in;
+}
+.public-list .public-list__item > button.public-list__thumb[data-v-4624d33e]:is(:hover, :focus, :active) {
+	background-color: var(--color-background-dark, rgba(0, 0, 0, 0.2));
+}
+.public-list .public-list__item > button.public-list__thumb[data-v-4624d33e]:focus-visible {
+	outline: 2px solid var(--color-main-text, #fff);
+	outline-offset: 1px;
+}
+.public-list__thumb img[data-v-4624d33e] {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.public-list__quantity[data-v-4624d33e] {
 	flex: 0 0 auto;
 	color: var(--color-text-maxcontrast);
 	font-size: 0.85em;
 	white-space: nowrap;
 	padding-right: 8px;
 }
-.public-list__name[data-v-63733b33] {
+.public-list__name[data-v-4624d33e] {
 	flex: 1 1 0%;
 	min-width: 0;
 	font-size: 0.95em;
 	padding-right: 8px;
 	overflow-wrap: anywhere;
 }
-.public-list__name--checked[data-v-63733b33] {
+.public-list__name--checked[data-v-4624d33e] {
 	text-decoration: line-through;
 	color: var(--color-text-maxcontrast);
 }
-.public-list__area[data-v-63733b33] {
+.public-list__area[data-v-4624d33e] {
 	display: inline-flex;
 	align-items: center;
 	gap: 5px;
@@ -200,16 +232,16 @@
 	white-space: nowrap;
 	padding: 0 8px;
 }
-.public-list__area-dot[data-v-63733b33] {
+.public-list__area-dot[data-v-4624d33e] {
 	width: 6px;
 	height: 6px;
 	border-radius: 50%;
 	flex-shrink: 0;
 }
-.public-list__bought[data-v-63733b33] {
+.public-list__bought[data-v-4624d33e] {
 	margin-top: 20px;
 }
-.public-list__bought h3[data-v-63733b33] {
+.public-list__bought h3[data-v-4624d33e] {
 	margin: 0 0 8px;
 	font-size: 0.9em;
 	color: var(--color-text-maxcontrast);
@@ -217,10 +249,10 @@
 	cursor: pointer;
 	user-select: none;
 }
-.public-list__toggle[data-v-63733b33] {
+.public-list__toggle[data-v-4624d33e] {
 	margin-left: 4px;
 }
-.public-list__bought-card[data-v-63733b33] {
+.public-list__bought-card[data-v-4624d33e] {
 	border: 1px solid var(--color-border, rgba(255, 255, 255, 0.15));
 	border-radius: var(--border-radius-large, 10px);
 	background-color: var(--color-main-background, rgba(0, 0, 0, 0.35));
