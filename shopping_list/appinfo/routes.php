@@ -27,6 +27,10 @@ return [
 		['name' => 'list#destroy', 'url' => '/api/v1/lists/{id}', 'verb' => 'DELETE'],
 		['name' => 'preferences#update', 'url' => '/api/v1/lists/{id}/preferences', 'verb' => 'PATCH'],
 
+		// The user's own settings (not per list)
+		['name' => 'settings#index', 'url' => '/api/v1/settings', 'verb' => 'GET'],
+		['name' => 'settings#update', 'url' => '/api/v1/settings', 'verb' => 'PATCH'],
+
 		// Items — static routes before parameterized ones
 		['name' => 'item#index', 'url' => '/api/v1/lists/{listId}/items', 'verb' => 'GET'],
 		['name' => 'item#create', 'url' => '/api/v1/lists/{listId}/items', 'verb' => 'POST'],
