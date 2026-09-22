@@ -47,8 +47,9 @@ export async function shrinkImage(file: File, maxEdge = MAX_EDGE, quality = JPEG
 		ctx.drawImage(decoded.source, 0, 0, canvas.width, canvas.height)
 		const blob = await new Promise<Blob | null>(resolve => canvas.toBlob(resolve, 'image/jpeg', quality))
 		if (!blob) return file
-		// A small PNG can come out bigger as a JPEG; keep the original then.
-		return scale < 1 || blob.size < file.size ? blob : file
+		// Send whichever is smaller. A well-compressed original can beat the
+		// re-encoded JPEG even after a downscale, and the server normalises anyway.
+		return blob.size < file.size ? blob : file
 	} catch {
 		return file
 	} finally {
