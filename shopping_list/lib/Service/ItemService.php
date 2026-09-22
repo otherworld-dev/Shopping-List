@@ -17,6 +17,7 @@ class ItemService {
 		private ShopAreaService $shopAreaService,
 		private PushService $pushService,
 		private IDBConnection $db,
+		private ItemImageStorage $imageStorage,
 	) {
 	}
 
@@ -173,8 +174,19 @@ class ItemService {
 			throw new NotFoundException('Item not found');
 		}
 
+		$this->listService->assertWriteAccess($item->getListId(), $userId);
+		$this->deleteEntity($item, $userId);
+	}
+
+	/**
+	 * Remove an item the caller has already checked access to: its tag rows,
+	 * the row itself, its photo files, then a push to the others on the list.
+	 * The public link controller uses this too, with an empty exclude id so
+	 * everyone is told.
+	 */
+	public function deleteEntity(Item $item, string $excludeUserId): void {
+		$id = $item->getId();
 		$listId = $item->getListId();
-		$this->listService->assertWriteAccess($listId, $userId);
 
 		// Delete item tags
 		$qb = $this->db->getQueryBuilder();
@@ -183,7 +195,9 @@ class ItemService {
 			->executeStatement();
 
 		$this->mapper->delete($item);
-		$this->pushService->notifyItemUpdate($listId, $id, 'deleted', $userId);
+		// After the row, not before: an orphan file is harmless, a key with no file is not.
+		$this->imageStorage->delete($id);
+		$this->pushService->notifyItemUpdate($listId, $id, 'deleted', $excludeUserId);
 	}
 
 	public function reorder(int $listId, array $sortedIds, string $userId): void {
@@ -207,6 +221,7 @@ class ItemService {
 				->where($qb->expr()->in('item_id', $qb->createNamedParameter($deletedIds, \OCP\DB\QueryBuilder\IQueryBuilder::PARAM_INT_ARRAY)))
 				->executeStatement();
 		}
+		$this->imageStorage->deleteMany($deletedIds);
 		$this->pushService->notifyItemUpdate($listId, 0, 'cleared', $userId);
 	}
 

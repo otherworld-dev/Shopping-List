@@ -24,6 +24,7 @@ class ListService {
 		private IDBConnection $db,
 		private PushService $pushService,
 		private UserListPreferenceMapper $preferenceMapper,
+		private ItemImageStorage $imageStorage,
 	) {
 	}
 
@@ -240,6 +241,9 @@ class ListService {
 		$qb->delete('shopping_list_items')
 			->where($qb->expr()->eq('list_id', $qb->createNamedParameter($listId)))
 			->executeStatement();
+
+		// Delete the items' photos, by the ids collected above
+		$this->imageStorage->deleteMany(array_map('intval', $itemIds));
 
 		// Delete shares
 		$qb = $this->db->getQueryBuilder();

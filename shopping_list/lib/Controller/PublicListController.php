@@ -13,6 +13,7 @@ use OCA\Shopping_List\Service\NotFoundException;
 use OCA\Shopping_List\Service\PasswordRequiredException;
 use OCA\Shopping_List\Service\ShopAreaService;
 use OCA\Shopping_List\Db\ShopAreaMapper;
+use OCA\Shopping_List\Service\ItemService;
 use OCA\Shopping_List\Service\ShareService;
 use DateTime;
 use OCP\AppFramework\Http;
@@ -34,6 +35,7 @@ class PublicListController extends OCSController {
 		private ShopAreaMapper $areaMapper,
 		private ShopAreaService $areaService,
 		private ISession $session,
+		private ItemService $itemService,
 	) {
 		parent::__construct($appName, $request);
 	}
@@ -229,7 +231,7 @@ class PublicListController extends OCSController {
 				throw new NotFoundException('Item not found');
 			}
 
-			$this->itemMapper->delete($item);
+			$this->itemService->deleteEntity($item, '');
 			return new DataResponse(null, Http::STATUS_NO_CONTENT);
 		} catch (PasswordRequiredException) {
 			return new DataResponse(['passwordRequired' => true], Http::STATUS_FORBIDDEN);
