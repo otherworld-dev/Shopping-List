@@ -594,6 +594,34 @@ msgstr ""
 msgid "Move to list"
 msgstr ""
 
+#: src/components/ItemRow.vue
+msgid "Add image"
+msgstr ""
+
+#: src/components/ItemRow.vue
+msgid "Replace image"
+msgstr ""
+
+#: src/components/ItemRow.vue
+msgid "Remove image"
+msgstr ""
+
+#: src/components/ItemRow.vue src/components/PublicListView.vue
+msgid "View image"
+msgstr ""
+
+#: src/components/ItemRow.vue
+msgid "Uploading image…"
+msgstr ""
+
+#: src/components/ItemRow.vue
+msgid "Only image files can be attached"
+msgstr ""
+
+#: src/components/ImageViewer.vue
+msgid "Could not load image"
+msgstr ""
+
 #: src/stores/items.ts
 msgid "Failed to move item"
 msgstr ""

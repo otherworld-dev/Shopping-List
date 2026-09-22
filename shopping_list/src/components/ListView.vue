@@ -183,6 +183,8 @@ import {
 } from '../utils/itemSort'
 import type { AreaGroup, BoughtSort, OpenSort } from '../utils/itemSort'
 import { useCollapsedAreas } from '../composables/useCollapsedAreas'
+import { useImagePreference } from '../composables/useImagePreference'
+import { isFileDrag } from '../utils/imageFiles'
 
 const listsStore = useListsStore()
 const itemsStore = useItemsStore()
@@ -212,7 +214,7 @@ function onCaptureClick(e: MouseEvent) {
 
 	// Don't hijack clicks on the checkbox or the actions (⋮) kebab — let those
 	// handle their own click so the menu can open instead of entering edit mode.
-	if (target.closest('.item-row__check') || target.closest('.item-row__actions')) return
+	if (target.closest('.item-row__check') || target.closest('.item-row__actions') || target.closest('.item-row__thumb')) return
 	if ((target as HTMLInputElement).type === 'checkbox') return
 
 	if (isDragging.value) return
@@ -233,6 +235,38 @@ function onCaptureClick(e: MouseEvent) {
 
 onMounted(() => document.addEventListener('click', onCaptureClick, true))
 onUnmounted(() => document.removeEventListener('click', onCaptureClick, true))
+
+// A file dropped anywhere but on a row would make the browser open it and
+// leave the app. Refuse those drops while images are on; the rows handle
+// their own. Sortable's row drags never carry files, so they pass through.
+const { enabled: imagesEnabled } = useImagePreference()
+
+function onDocumentDragOver(e: DragEvent) {
+	if (!isFileDrag(e.dataTransfer) || (e.target as Element | null)?.closest?.('.item-row')) return
+	e.preventDefault()
+	if (e.dataTransfer) e.dataTransfer.dropEffect = 'none'
+}
+
+function onDocumentDrop(e: DragEvent) {
+	if (isFileDrag(e.dataTransfer) && !(e.target as Element | null)?.closest?.('.item-row')) {
+		e.preventDefault()
+	}
+}
+
+function removeDropGuard() {
+	document.removeEventListener('dragover', onDocumentDragOver)
+	document.removeEventListener('drop', onDocumentDrop)
+}
+
+watch(imagesEnabled, (on) => {
+	removeDropGuard()
+	if (on) {
+		document.addEventListener('dragover', onDocumentDragOver)
+		document.addEventListener('drop', onDocumentDrop)
+	}
+}, { immediate: true })
+
+onUnmounted(removeDropGuard)
 
 // Pre-compute translations once
 const shareText = t('shopping_list', 'Share')
