@@ -634,7 +634,7 @@ msgstr ""
 msgid "You're offline — moving items requires a connection"
 msgstr ""
 
-#: src/stores/items.ts
+#: src/components/ItemRow.vue src/stores/items.ts
 msgid "You're offline — adding images requires a connection"
 msgstr ""
 

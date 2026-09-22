@@ -158,6 +158,7 @@ import { NcActions, NcActionButton, NcActionCaption, NcActionSeparator, NcLoadin
 import { showError } from '@nextcloud/dialogs'
 import ImageViewer from './ImageViewer.vue'
 import { useImagePreference } from '../composables/useImagePreference'
+import { useNetworkStatus } from '../offline/networkStatus'
 import { itemImageUrl } from '../utils/imageUrls'
 import { isFileDrag, isImageFile, pickImageFile } from '../utils/imageFiles'
 import { useItemsStore } from '../stores/items'
@@ -398,12 +399,14 @@ async function onMove(targetListId: number) {
 // --- Photo ---
 
 const { enabled: imagesEnabled } = useImagePreference()
+const { isOnline } = useNetworkStatus()
 const addImageText = t('shopping_list', 'Add image')
 const replaceImageText = t('shopping_list', 'Replace image')
 const removeImageText = t('shopping_list', 'Remove image')
 const viewImageLabel = t('shopping_list', 'View image')
 const uploadingText = t('shopping_list', 'Uploading image…')
 const notAnImageText = t('shopping_list', 'Only image files can be attached')
+const offlineText = t('shopping_list', 'You\'re offline — adding images requires a connection')
 
 // A thumbnail that failed to load is hidden until the key changes; the row
 // then looks like one without a photo, and Replace and Remove stay in the menu.
@@ -419,6 +422,11 @@ const viewerOpen = ref(false)
 const fileInputRef = ref<HTMLInputElement | null>(null)
 
 function pickFile() {
+	// The store would refuse anyway, but opening the picker first is a tease.
+	if (!isOnline.value) {
+		showError(offlineText)
+		return
+	}
 	// Synchronous inside the click, so Safari still counts it as user activation.
 	fileInputRef.value?.click()
 }
