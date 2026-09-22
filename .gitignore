@@ -2,6 +2,11 @@ node_modules/
 vendor/
 .php-cs-fixer.cache
 *.tar.gz
+
+# Claude
 .claude/
+CLAUDE.md
+.mcp.json
+
 shopping_list/build/
 shopping_list/tests/.phpunit.cache/
