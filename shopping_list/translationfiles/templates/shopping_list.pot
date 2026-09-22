@@ -606,6 +606,30 @@ msgstr ""
 msgid "You're offline — moving items requires a connection"
 msgstr ""
 
+#: src/stores/items.ts
+msgid "You're offline — adding images requires a connection"
+msgstr ""
+
+#: src/stores/items.ts
+msgid "You're offline — removing images requires a connection"
+msgstr ""
+
+#: src/stores/items.ts
+msgid "Image is too large"
+msgstr ""
+
+#: src/stores/items.ts
+msgid "This file is not a supported image"
+msgstr ""
+
+#: src/stores/items.ts
+msgid "Failed to upload image"
+msgstr ""
+
+#: src/stores/items.ts
+msgid "Failed to remove image"
+msgstr ""
+
 #: src/components/OfflineIndicator.vue
 msgid "Syncing changes…"
 msgstr ""
