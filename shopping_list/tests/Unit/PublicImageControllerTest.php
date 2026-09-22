@@ -39,6 +39,7 @@ class PublicImageControllerTest extends TestCase {
 
 		self::assertInstanceOf(FileDisplayResponse::class, $response);
 		self::assertSame('image/jpeg', $response->getHeaders()['Content-Type']);
+		self::assertSame('private, max-age=31536000, immutable', $response->getHeaders()['Cache-Control']);
 	}
 
 	public function testALockedLinkAnswersPasswordRequired(): void {

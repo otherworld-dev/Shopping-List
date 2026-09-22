@@ -6,6 +6,7 @@ namespace OCA\Shopping_List\Tests\Unit;
 
 use OCA\Shopping_List\Controller\ItemImageController;
 use OCA\Shopping_List\Db\Item;
+use OCA\Shopping_List\Service\ImageProcessor;
 use OCA\Shopping_List\Service\ImageTooLargeException;
 use OCA\Shopping_List\Service\InvalidImageException;
 use OCA\Shopping_List\Service\ItemImageService;
@@ -98,5 +99,23 @@ class ItemImageControllerTest extends TestCase {
 		$this->service->method('remove')->willThrowException(new NotFoundException('Item not found'));
 
 		self::assertSame(Http::STATUS_NOT_FOUND, $this->controller->remove(5, 42)->getStatus());
+	}
+
+	public function testAFileOverTheAppLimitIsRefusedBeforeItIsRead(): void {
+		$file = $this->upload('tiny');
+		$file['size'] = ImageProcessor::MAX_UPLOAD_BYTES + 1;
+		$this->request->method('getUploadedFile')->willReturn($file);
+		$this->service->expects(self::never())->method('attach');
+
+		self::assertSame(Http::STATUS_REQUEST_ENTITY_TOO_LARGE, $this->controller->upload(5, 42)->getStatus());
+	}
+
+	public function testSeveralFilesInOneFieldAreRefused(): void {
+		$file = $this->upload('BYTES');
+		$file['name'] = ['a.jpg', 'b.jpg'];
+		$this->request->method('getUploadedFile')->willReturn($file);
+		$this->service->expects(self::never())->method('attach');
+
+		self::assertSame(Http::STATUS_BAD_REQUEST, $this->controller->upload(5, 42)->getStatus());
 	}
 }
