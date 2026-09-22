@@ -8,6 +8,7 @@ use OCA\Shopping_List\Service\ItemImageStorage;
 use OCP\Files\AppData\IAppDataFactory;
 use OCP\Files\IAppData;
 use OCP\Files\NotFoundException;
+use OCP\Files\NotPermittedException;
 use OCP\Files\SimpleFS\ISimpleFile;
 use OCP\Files\SimpleFS\ISimpleFolder;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -16,13 +17,15 @@ use Psr\Log\LoggerInterface;
 
 class ItemImageStorageTest extends TestCase {
 	private IAppData&MockObject $appData;
+	private LoggerInterface&MockObject $logger;
 	private ItemImageStorage $storage;
 
 	protected function setUp(): void {
 		$this->appData = $this->createMock(IAppData::class);
 		$factory = $this->createMock(IAppDataFactory::class);
 		$factory->method('get')->with('shopping_list')->willReturn($this->appData);
-		$this->storage = new ItemImageStorage($factory, $this->createMock(LoggerInterface::class));
+		$this->logger = $this->createMock(LoggerInterface::class);
+		$this->storage = new ItemImageStorage($factory, $this->logger);
 	}
 
 	public function testFileNamesAreKeyedByItemId(): void {
@@ -99,5 +102,30 @@ class ItemImageStorageTest extends TestCase {
 		$this->storage->deleteMany([]);
 		$this->storage->deleteMany([1, 2]);
 		$this->storage->delete(3);
+	}
+
+	public function testDeleteManySurvivesAnUnreadableAppdata(): void {
+		$this->appData->method('getFolder')->willThrowException(new NotPermittedException());
+
+		$this->logger->expects(self::atLeastOnce())->method('warning');
+
+		$this->storage->deleteMany([7]);
+		$this->storage->delete(8);
+	}
+
+	public function testStoreTakesTheFolderAnotherRequestJustCreated(): void {
+		$folder = $this->createMock(ISimpleFolder::class);
+		$calls = 0;
+		$this->appData->method('getFolder')->willReturnCallback(function () use (&$calls, $folder) {
+			if ($calls++ === 0) {
+				throw new NotFoundException();
+			}
+			return $folder;
+		});
+		$this->appData->method('newFolder')->willThrowException(new NotPermittedException());
+		$folder->method('fileExists')->willReturn(false);
+		$folder->expects(self::exactly(2))->method('newFile')->willReturn($this->createMock(ISimpleFile::class));
+
+		$this->storage->store(42, 'FULL', 'THUMB');
 	}
 }

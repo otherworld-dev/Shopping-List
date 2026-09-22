@@ -67,7 +67,17 @@ class ItemImageStorage {
 		if ($itemIds === []) {
 			return;
 		}
-		$folder = $this->folder(false);
+		try {
+			$folder = $this->folder(false);
+		} catch (\Exception $e) {
+			// The rows are already gone; a broken appdata must not turn that
+			// into a failed request. Log it and leave the files for later.
+			$this->logger->warning('Could not open the item images folder', [
+				'app' => Application::APP_ID,
+				'exception' => $e,
+			]);
+			return;
+		}
 		if ($folder === null) {
 			return;
 		}
@@ -108,7 +118,15 @@ class ItemImageStorage {
 		try {
 			return $this->appData->getFolder(self::FOLDER);
 		} catch (NotFoundException) {
-			return $create ? $this->appData->newFolder(self::FOLDER) : null;
+			if (!$create) {
+				return null;
+			}
+		}
+		try {
+			return $this->appData->newFolder(self::FOLDER);
+		} catch (NotPermittedException) {
+			// Two first-ever uploads raced to create it and the other one won.
+			return $this->appData->getFolder(self::FOLDER);
 		}
 	}
 }
