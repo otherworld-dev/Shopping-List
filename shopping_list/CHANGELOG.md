@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Items can carry a photo. Turn on "Show item images" on the settings
   screen (the gear in the sidebar), then choose "Add image" from an item's
   menu to take or pick one, or paste or drop an image onto the item. A
-  small thumbnail sits at the start of the row; tap it to see the whole
+  small thumbnail sits next to the checkbox; tap it to see the whole
   photo. The switch is off to begin with, and while it is off nothing
   changes: no thumbnails, no menu entries. It is saved on the server, so it
   is the same in every browser you use. Photos belong to the list, so
