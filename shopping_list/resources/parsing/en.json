@@ -53,7 +53,15 @@
 		"packets",
 		"bag",
 		"bags",
-		"fl oz"
+		"fl oz",
+		"jar",
+		"jars",
+		"tub",
+		"tubs",
+		"pot",
+		"pots",
+		"leaf",
+		"leaves"
 	],
 	"leadingUnits": [
 		"pinch",
