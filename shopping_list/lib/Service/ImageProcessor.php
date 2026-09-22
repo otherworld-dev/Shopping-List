@@ -104,7 +104,20 @@ class ImageProcessor {
 		if (!function_exists('exif_read_data')) {
 			return 1;
 		}
-		$exif = @exif_read_data('data://image/jpeg;base64,' . base64_encode($raw));
+		// A php://memory stream rather than a data:// URL: data:// is a URL
+		// wrapper gated by allow_url_fopen, which hardened hosts turn off, and
+		// then every portrait photo would quietly be stored on its side.
+		$stream = fopen('php://memory', 'r+');
+		if ($stream === false) {
+			return 1;
+		}
+		try {
+			fwrite($stream, $raw);
+			rewind($stream);
+			$exif = @exif_read_data($stream);
+		} finally {
+			fclose($stream);
+		}
 		$orientation = is_array($exif) ? (int)($exif['Orientation'] ?? 1) : 1;
 		return $orientation >= 1 && $orientation <= 8 ? $orientation : 1;
 	}
