@@ -25,7 +25,7 @@ class ImageProcessor {
 	public const JPEG_QUALITY = 82;
 
 	/** Image types GD can decode here. HEIC is not among them. */
-	private const DECODABLE = [IMAGETYPE_JPEG, IMAGETYPE_PNG, IMAGETYPE_GIF, IMAGETYPE_WEBP, IMAGETYPE_BMP];
+	private const DECODABLE = [IMAGETYPE_JPEG, IMAGETYPE_PNG, IMAGETYPE_GIF, IMAGETYPE_WEBP, IMAGETYPE_BMP, IMAGETYPE_AVIF];
 
 	/**
 	 * @throws ImageTooLargeException over the byte, pixel or memory limit
@@ -80,6 +80,7 @@ class ImageProcessor {
 		return match ($type) {
 			IMAGETYPE_WEBP => (imagetypes() & IMG_WEBP) !== 0,
 			IMAGETYPE_BMP => (imagetypes() & IMG_BMP) !== 0,
+			IMAGETYPE_AVIF => defined('IMG_AVIF') && (imagetypes() & IMG_AVIF) !== 0,
 			default => true,
 		};
 	}
