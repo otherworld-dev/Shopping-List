@@ -59,7 +59,8 @@ class ImageProcessor {
 		}
 
 		$full = $this->scaleDown($source, self::MAX_SIDE);
-		// The decoded original can be 100 MB. Let it go before rotating.
+		// When the original was larger than MAX_SIDE this frees it before
+		// rotating; otherwise $full is the same image and nothing is lost.
 		unset($source);
 		if ($type === IMAGETYPE_JPEG) {
 			$full = $this->applyOrientation($full, $this->orientation($raw));
