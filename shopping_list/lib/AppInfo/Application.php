@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace OCA\Shopping_List\AppInfo;
 
+use OCA\Shopping_List\Capabilities;
 use OCA\Shopping_List\Notification\Notifier;
 use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootContext;
@@ -19,6 +20,7 @@ class Application extends App implements IBootstrap {
 
 	public function register(IRegistrationContext $context): void {
 		$context->registerNotifierService(Notifier::class);
+		$context->registerCapability(Capabilities::class);
 	}
 
 	public function boot(IBootContext $context): void {
