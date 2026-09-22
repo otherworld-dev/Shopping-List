@@ -626,6 +626,22 @@ msgstr ""
 msgid "{count} changes pending"
 msgstr ""
 
+#: src/components/ItemImagesSettings.vue
+msgid "Item images"
+msgstr ""
+
+#: src/components/ItemImagesSettings.vue
+msgid "Show item images"
+msgstr ""
+
+#: src/components/ItemImagesSettings.vue
+msgid "Attach a photo to an item from its menu, or paste or drop one onto it. Photos are part of the list, so everyone with access can see them. This switch only changes what you see."
+msgstr ""
+
+#: src/components/ItemImagesSettings.vue
+msgid "Failed to save setting"
+msgstr ""
+
 #: appinfo/info.xml lib/Notification/Notifier.php
 msgid "Shopping List"
 msgstr ""

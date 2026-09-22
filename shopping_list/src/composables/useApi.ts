@@ -64,6 +64,10 @@ export const api = {
 		create: (name: string) => axios.post(url('tags'), { name }),
 		delete: (id: number) => axios.delete(url(`tags/${id}`)),
 	},
+	settings: {
+		get: () => axios.get(url('settings')),
+		update: (data: { showImages?: boolean }) => axios.patch(url('settings'), data),
+	},
 }
 
 export const publicApi = {

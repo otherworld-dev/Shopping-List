@@ -4,7 +4,10 @@
 			<ListSidebar @show-settings="showSettings = true" />
 		</NcAppNavigation>
 		<NcAppContent>
-			<AreaKeywordsSettings v-if="showSettings && listsStore.currentList" :key="listsStore.currentListId" @back="showSettings = false" />
+			<div v-if="showSettings && listsStore.currentList" class="settings-screen">
+				<AreaKeywordsSettings :key="listsStore.currentListId" @back="showSettings = false" />
+				<ItemImagesSettings />
+			</div>
 			<ListView v-else-if="listsStore.currentList" />
 			<NcEmptyContent v-else
 				:name="noListName"
@@ -31,6 +34,7 @@ import { t } from '@nextcloud/l10n'
 import ListSidebar from './components/ListSidebar.vue'
 import ListView from './components/ListView.vue'
 import AreaKeywordsSettings from './components/AreaKeywordsSettings.vue'
+import ItemImagesSettings from './components/ItemImagesSettings.vue'
 import OfflineIndicator from './components/OfflineIndicator.vue'
 import { useListsStore } from './stores/lists'
 import { usePush } from './composables/usePush'
