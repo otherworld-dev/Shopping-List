@@ -1,24 +1,29 @@
 <template>
-	<section class="image-settings">
-		<h3 class="image-settings__title">
-			{{ title }}
-		</h3>
-		<NcCheckboxRadioSwitch type="switch"
-			:model-value="enabled"
-			:loading="saving"
-			:description="hint"
-			@update:model-value="onToggle">
-			{{ switchLabel }}
-		</NcCheckboxRadioSwitch>
-	</section>
+	<NcAppNavigationSettings>
+		<section class="image-settings">
+			<h3 class="image-settings__title">
+				{{ title }}
+			</h3>
+			<NcCheckboxRadioSwitch type="switch"
+				:model-value="enabled"
+				:loading="saving"
+				:description="hint"
+				@update:model-value="onToggle">
+				{{ switchLabel }}
+			</NcCheckboxRadioSwitch>
+		</section>
+	</NcAppNavigationSettings>
 </template>
 
 <script setup lang="ts">
-import { NcCheckboxRadioSwitch } from '@nextcloud/vue'
+import { NcAppNavigationSettings, NcCheckboxRadioSwitch } from '@nextcloud/vue'
 import { showError } from '@nextcloud/dialogs'
 import { t } from '@nextcloud/l10n'
 import { useImagePreference } from '../composables/useImagePreference'
 
+// Your own settings, not a list's, so they live in the Settings drawer at
+// the bottom of the navigation, where Nextcloud apps keep them. The drawer's
+// name comes translated from @nextcloud/vue.
 const { enabled, saving, setEnabled } = useImagePreference()
 
 const title = t('shopping_list', 'Item images')
@@ -38,14 +43,12 @@ async function onToggle(value: boolean) {
 
 <style scoped>
 .image-settings {
-	max-width: 800px;
-	margin: 0 auto;
-	padding: 0 20px 20px;
+	padding: 0 0 4px;
 }
 
 .image-settings__title {
 	margin: 0 0 4px;
-	font-size: 1.1em;
+	font-size: 1em;
 	font-weight: 600;
 }
 </style>

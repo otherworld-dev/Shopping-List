@@ -8,8 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- Items can carry a photo. Turn on "Show item images" on the settings
-  screen (the gear in the sidebar), then choose "Add image" from an item's
+- Items can carry a photo. Turn on "Show item images" in Settings at
+  the bottom of the list sidebar, then choose "Add image" from an item's
   menu to take or pick one, or paste or drop an image onto the item. A
   small thumbnail sits next to the checkbox; tap it to see the whole
   photo. The switch is off to begin with, and while it is off nothing
@@ -25,6 +25,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deleting an item from a public share link now removes its tags and
   tells the others on the list straight away, as deleting in the app
   already did
+- The gear entry under the lists is now called List settings and opens a
+  page of that name, headed by the list it belongs to, with the shop areas
+  as its first section. Settings that are yours rather than a list's,
+  starting with Show item images, live in the Settings drawer at the
+  bottom of the list sidebar, where Nextcloud apps keep them
 
 ### Upgrade
 - Database migration: one column is added to the items table for the

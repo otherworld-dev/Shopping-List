@@ -59,7 +59,11 @@ msgid "Back to list"
 msgstr ""
 
 #: src/components/AreaKeywordsSettings.vue src/components/ListSidebar.vue
-msgid "Manage Areas"
+msgid "List settings"
+msgstr ""
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Shop areas"
 msgstr ""
 
 #: src/components/AreaKeywordsSettings.vue

@@ -2,12 +2,12 @@
 	<NcContent app-name="shopping_list">
 		<NcAppNavigation>
 			<ListSidebar @show-settings="showSettings = true" />
+			<template #footer>
+				<ItemImagesSettings />
+			</template>
 		</NcAppNavigation>
 		<NcAppContent>
-			<div v-if="showSettings && listsStore.currentList" class="settings-screen">
-				<AreaKeywordsSettings :key="listsStore.currentListId" @back="showSettings = false" />
-				<ItemImagesSettings />
-			</div>
+			<AreaKeywordsSettings v-if="showSettings && listsStore.currentList" :key="listsStore.currentListId" @back="showSettings = false" />
 			<ListView v-else-if="listsStore.currentList" />
 			<NcEmptyContent v-else
 				:name="noListName"

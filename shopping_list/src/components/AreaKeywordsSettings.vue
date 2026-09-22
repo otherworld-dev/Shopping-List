@@ -4,7 +4,13 @@
 			<button class="area-settings__back" @click="$emit('back')">
 				← {{ backText }}
 			</button>
-			<h2>{{ title }}</h2>
+			<h2>
+				{{ title }}
+				<span v-if="listsStore.currentList" class="area-settings__list">{{ listsStore.currentList.title }}</span>
+			</h2>
+			<h3 class="area-settings__group-heading">
+				{{ areasTitle }}
+			</h3>
 			<p class="area-settings__desc">
 				{{ description }}
 			</p>
@@ -169,7 +175,8 @@ const listsStore = useListsStore()
 defineEmits<{ back: [] }>()
 
 const backText = t('shopping_list', 'Back to list')
-const title = t('shopping_list', 'Manage Areas')
+const title = t('shopping_list', 'List settings')
+const areasTitle = t('shopping_list', 'Shop areas')
 const description = t('shopping_list', 'Manage shop areas, keywords, and display order. Keywords auto-detect which area an item belongs to when added or pasted.')
 const searchPlaceholder = t('shopping_list', 'Search keywords...')
 const addPlaceholder = t('shopping_list', 'Add keyword...')
@@ -415,6 +422,21 @@ async function onDeleteArea(area: ShopArea) {
 	margin: 0 0 4px;
 	font-size: 1.4em;
 	font-weight: 700;
+}
+
+/* The list this page belongs to, beside the title */
+.area-settings__list {
+	margin-left: 8px;
+	font-size: 0.7em;
+	font-weight: 400;
+	color: var(--color-text-maxcontrast);
+}
+
+/* Heading of a group of settings on this page (area-settings__section is the collapsible area card) */
+.area-settings__group-heading {
+	margin: 12px 0 4px;
+	font-size: 1.1em;
+	font-weight: 600;
 }
 
 .area-settings__desc {
