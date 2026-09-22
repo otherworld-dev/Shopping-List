@@ -6,6 +6,17 @@ return [
 	'routes' => [
 		['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
 		['name' => 'public_page#index', 'url' => '/s/{token}', 'verb' => 'GET'],
+
+		// Item photos. Binary, so outside the OCS envelope. {key} is the item's
+		// current imageKey; it changes on every replace, so these cache for good.
+		['name' => 'image#show', 'url' => '/lists/{listId}/items/{id}/image/{key}', 'verb' => 'GET',
+			'requirements' => ['listId' => '\d+', 'id' => '\d+', 'key' => '[a-f0-9]{16}']],
+		['name' => 'image#thumbnail', 'url' => '/lists/{listId}/items/{id}/thumbnail/{key}', 'verb' => 'GET',
+			'requirements' => ['listId' => '\d+', 'id' => '\d+', 'key' => '[a-f0-9]{16}']],
+		['name' => 'public_image#show', 'url' => '/s/{token}/items/{id}/image/{key}', 'verb' => 'GET',
+			'requirements' => ['id' => '\d+', 'key' => '[a-f0-9]{16}']],
+		['name' => 'public_image#thumbnail', 'url' => '/s/{token}/items/{id}/thumbnail/{key}', 'verb' => 'GET',
+			'requirements' => ['id' => '\d+', 'key' => '[a-f0-9]{16}']],
 	],
 	'ocs' => [
 		// Lists
@@ -26,6 +37,10 @@ return [
 		['name' => 'item#check', 'url' => '/api/v1/lists/{listId}/items/{id}/check', 'verb' => 'PUT'],
 		['name' => 'item#move', 'url' => '/api/v1/lists/{listId}/items/{id}/move', 'verb' => 'POST'],
 		['name' => 'item#destroy', 'url' => '/api/v1/lists/{listId}/items/{id}', 'verb' => 'DELETE'],
+
+		// Item photos (upload and removal; the bytes are served by the plain routes above)
+		['name' => 'item_image#upload', 'url' => '/api/v1/lists/{listId}/items/{id}/image', 'verb' => 'POST'],
+		['name' => 'item_image#remove', 'url' => '/api/v1/lists/{listId}/items/{id}/image', 'verb' => 'DELETE'],
 
 		// Shares
 		['name' => 'share#index', 'url' => '/api/v1/lists/{listId}/shares', 'verb' => 'GET'],

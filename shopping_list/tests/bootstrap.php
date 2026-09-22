@@ -18,6 +18,25 @@ namespace {
 			require_once $path;
 		}
 	});
+
+	// OCP\AppFramework\Http\Response::getHeaders() asks the server container
+	// for the request id, and nothing else. No server runs under PHPUnit, so
+	// this stand-in answers any get() with an object that has a getId(), which
+	// lets the controller tests read the headers a response would send.
+	if (!class_exists('OC')) {
+		class OC {
+			public static $server;
+		}
+		OC::$server = new class {
+			public function get(string $class): object {
+				return new class {
+					public function getId(): string {
+						return 'phpunit';
+					}
+				};
+			}
+		};
+	}
 }
 
 namespace Doctrine\DBAL {
