@@ -76,8 +76,8 @@ namespace Doctrine\DBAL {
 namespace Doctrine\DBAL\Query\Expression {
 	// Same situation as ParameterType above: OCP\DB\QueryBuilder\IExpressionBuilder
 	// defines its EQ/NEQ/LT/LTE/GT/GTE constants in terms of Doctrine's own
-	// ExpressionBuilder::EQ etc., so reflecting on IExpressionBuilder — which
-	// PHPUnit's mock generator does the moment it is mocked — forces this class
+	// ExpressionBuilder::EQ etc., so reflecting on IExpressionBuilder, which
+	// PHPUnit's mock generator does the moment it is mocked, forces this class
 	// to load. A minimal stand-in with the real operator strings is enough.
 	if (!class_exists(ExpressionBuilder::class)) {
 		class ExpressionBuilder {

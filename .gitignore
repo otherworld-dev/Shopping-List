@@ -4,3 +4,4 @@ vendor/
 *.tar.gz
 .claude/
 shopping_list/build/
+shopping_list/tests/.phpunit.cache/
