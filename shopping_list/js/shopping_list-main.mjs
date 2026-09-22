@@ -1,7 +1,7 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-pCY6MjJs.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/useCollapsedAreas-wqIaE6uS.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/useCollapsedAreas-C0KEPIGM.chunk.css')])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-CqLseTRU.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/useCollapsedAreas-DqoYb6dt.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/useCollapsedAreas-C0KEPIGM.chunk.css')])))=>i.map(i=>d[i]);
 const appName = "shopping_list";
 const appVersion = "1.8.0";
-import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, A as ActionGlobalMixin, a as NcIconSvgWrapper, r as resolveComponent, b as createBaseVNode, w as withDirectives, v as vModelRadio, n as normalizeClass, d as createVNode, m as mdiRadioboxMarked, e as mdiRadioboxBlank, u as useModel, f as createElementId, g as NcButton, h as withCtx, i as createTextVNode, j as renderSlot, k as defineComponent, l as createCommentVNode, p as unref, q as getDefaultExportFromCjs, s as getGettextBuilder, x as getLoggerBuilder, y as defineStore, z as ref, B as computed, C as api, D as markServerFetched, E as translate, F as getLanguage, G as loadValue, H as saveValue, I as readonly, J as Fragment, K as renderList, L as createBlock, M as NcAppNavigationCaption, O as NcActionButton, P as NcAppNavigationItem, Q as _export_sfc$1, R as NOOP, S as extend$1, T as isString, U as NO, V as isSymbol, W as isBuiltInDirective, X as capitalize, Y as camelize, Z as EMPTY_OBJ, $ as isObject, a0 as toHandlerKey, a1 as isArray, a2 as isOn, a3 as isReservedProp, a4 as isVoidTag, a5 as isHTMLTag, a6 as isSVGTag, a7 as isMathMLTag, a8 as parseStringStyle, a9 as makeMap, aa as generateCodeFrame, ab as getAugmentedNamespace, ac as runtimeDom_esmBundler, ad as shared_esmBundler, ae as loadState, af as watch, ag as onMounted, ah as onUnmounted, ai as NcLoadingIcon, aj as withKeys, ak as withModifiers, al as vModelText, am as normalizeStyle, an as Teleport, ao as NcActions, ap as ImageViewer, aq as Permission, ar as nextTick, as as itemImageUrl, at as NcPopover, au as mdiHelpCircleOutline, av as generateOcsUrl, aw as cancelableClient, ax as ShareType, ay as generateUrl, az as getCurrentUser, aA as browserStorage, aB as useCollapsedAreas, aC as NcAvatar, aD as isRef, aE as mdiChevronDown, aF as vShow, aG as shallowRef, aH as vModelSelect, aI as NcCheckboxRadioSwitch, aJ as Transition, aK as NcAppNavigation, aL as NcAppContent, aM as NcContent, aN as createPinia, aO as offlinePersistPlugin, aP as createApp } from "./useCollapsedAreas-wqIaE6uS.chunk.mjs";
+import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, A as ActionGlobalMixin, a as NcIconSvgWrapper, r as resolveComponent, b as createBaseVNode, w as withDirectives, v as vModelRadio, n as normalizeClass, d as createVNode, m as mdiRadioboxMarked, e as mdiRadioboxBlank, u as useModel, f as createElementId, g as NcButton, h as withCtx, i as createTextVNode, j as renderSlot, k as defineComponent, l as createCommentVNode, p as unref, q as getDefaultExportFromCjs, s as getGettextBuilder, x as getLoggerBuilder, y as defineStore, z as ref, B as computed, C as api, D as markServerFetched, E as translate, F as getLanguage, G as loadValue, H as saveValue, I as readonly, J as Fragment, K as renderList, L as createBlock, M as NcAppNavigationCaption, O as NcActionButton, P as NcAppNavigationItem, Q as _export_sfc$1, R as NOOP, S as extend$1, T as isString, U as NO, V as isSymbol, W as isBuiltInDirective, X as capitalize, Y as camelize, Z as EMPTY_OBJ, $ as isObject, a0 as toHandlerKey, a1 as isArray, a2 as isOn, a3 as isReservedProp, a4 as isVoidTag, a5 as isHTMLTag, a6 as isSVGTag, a7 as isMathMLTag, a8 as parseStringStyle, a9 as makeMap, aa as generateCodeFrame, ab as getAugmentedNamespace, ac as runtimeDom_esmBundler, ad as shared_esmBundler, ae as loadState, af as watch, ag as onMounted, ah as onUnmounted, ai as NcLoadingIcon, aj as withKeys, ak as withModifiers, al as vModelText, am as normalizeStyle, an as Teleport, ao as NcActions, ap as ImageViewer, aq as Permission, ar as nextTick, as as itemImageUrl, at as NcPopover, au as mdiHelpCircleOutline, av as generateOcsUrl, aw as cancelableClient, ax as ShareType, ay as generateUrl, az as getCurrentUser, aA as browserStorage, aB as useCollapsedAreas, aC as NcAvatar, aD as isRef, aE as mdiChevronDown, aF as vShow, aG as shallowRef, aH as vModelSelect, aI as NcCheckboxRadioSwitch, aJ as NcAppNavigationSettings, aK as Transition, aL as NcAppNavigation, aM as NcAppContent, aN as NcContent, aO as createPinia, aP as offlinePersistPlugin, aQ as createApp } from "./useCollapsedAreas-DqoYb6dt.chunk.mjs";
 const _sfc_main$d = {
   name: "NcActionCaption",
   inject: {
@@ -20,12 +20,12 @@ const _sfc_main$d = {
     }
   }
 };
-const _hoisted_1$d = ["role"];
+const _hoisted_1$c = ["role"];
 function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("li", {
     class: "app-navigation-caption",
     role: $options.isInSemanticMenu && "presentation"
-  }, toDisplayString($props.name), 9, _hoisted_1$d);
+  }, toDisplayString($props.name), 9, _hoisted_1$c);
 }
 const NcActionCaption = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$3], ["__scopeId", "data-v-1009e96c"]]);
 const scriptRel = "modulepreload";
@@ -155,7 +155,7 @@ const _sfc_main$c = {
     }
   }
 };
-const _hoisted_1$c = ["role"];
+const _hoisted_1$b = ["role"];
 const _hoisted_2$9 = ["role", "aria-checked"];
 const _hoisted_3$7 = { class: "action-radio__icon" };
 const _hoisted_4$7 = ["id", "value", "name", "disabled"];
@@ -191,18 +191,18 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
       ]),
       createBaseVNode("span", _hoisted_5$7, toDisplayString(_ctx.text), 1)
     ], 8, _hoisted_2$9)
-  ], 10, _hoisted_1$c);
+  ], 10, _hoisted_1$b);
 }
 const NcActionRadio = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$2], ["__scopeId", "data-v-6c208ddd"]]);
 const _sfc_main$b = {
   name: "NcActionSeparator"
 };
-const _hoisted_1$b = {
+const _hoisted_1$a = {
   class: "action action-separator action--disabled",
   role: "separator"
 };
 function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("li", _hoisted_1$b);
+  return openBlock(), createElementBlock("li", _hoisted_1$a);
 }
 const NcActionSeparator = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["render", _sfc_render$1], ["__scopeId", "data-v-3e2324b7"]]);
 const _sfc_main$a = {
@@ -248,10 +248,10 @@ const _sfc_main$a = {
   },
   emits: ["click"]
 };
-const _hoisted_1$a = { class: "app-navigation-new" };
+const _hoisted_1$9 = { class: "app-navigation-new" };
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_NcButton = resolveComponent("NcButton");
-  return openBlock(), createElementBlock("div", _hoisted_1$a, [
+  return openBlock(), createElementBlock("div", _hoisted_1$9, [
     createVNode(_component_NcButton, {
       id: $props.buttonId,
       disabled: $props.disabled,
@@ -269,7 +269,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   ]);
 }
 const NcAppNavigationNew = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render], ["__scopeId", "data-v-0ba6c9df"]]);
-const _hoisted_1$9 = ["aria-labelledby"];
+const _hoisted_1$8 = ["aria-labelledby"];
 const _hoisted_2$8 = {
   key: 0,
   class: "empty-content__icon",
@@ -318,7 +318,7 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
         _ctx.$slots.action ? (openBlock(), createElementBlock("div", _hoisted_5$6, [
           renderSlot(_ctx.$slots, "action", {}, void 0, true)
         ])) : createCommentVNode("", true)
-      ], 8, _hoisted_1$9);
+      ], 8, _hoisted_1$8);
     };
   }
 });
@@ -1946,7 +1946,7 @@ const useItemsStore = defineStore("items", () => {
     isImageUploading
   };
 });
-const _hoisted_1$8 = {
+const _hoisted_1$7 = {
   key: 0,
   class: "count-bubble"
 };
@@ -1967,7 +1967,7 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
     const sharedText = translate("shopping_list", "Shared with me");
     const emptyName = translate("shopping_list", "No shopping lists");
     const emptyDesc = translate("shopping_list", "Create your first shopping list to get started");
-    const settingsText = translate("shopping_list", "Manage Areas");
+    const settingsText = translate("shopping_list", "List settings");
     const pinnedText = translate("shopping_list", "Pinned");
     const othersText = translate("shopping_list", "Others");
     const pinText = translate("shopping_list", "Pin list");
@@ -2021,7 +2021,7 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
                 "onUpdate:name": (name) => onRename(list.id, name)
               }, {
                 counter: withCtx(() => [
-                  getUncheckedCount(list.id) > 0 ? (openBlock(), createElementBlock("span", _hoisted_1$8, toDisplayString(getUncheckedCount(list.id)), 1)) : createCommentVNode("", true)
+                  getUncheckedCount(list.id) > 0 ? (openBlock(), createElementBlock("span", _hoisted_1$7, toDisplayString(getUncheckedCount(list.id)), 1)) : createCommentVNode("", true)
                 ]),
                 actions: withCtx(() => [
                   createVNode(unref(NcActionButton), {
@@ -2067,7 +2067,7 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ListSidebar = /* @__PURE__ */ _export_sfc$1(_sfc_main$8, [["__scopeId", "data-v-353e1312"]]);
+const ListSidebar = /* @__PURE__ */ _export_sfc$1(_sfc_main$8, [["__scopeId", "data-v-f2e83ef9"]]);
 const useSharesStore = defineStore("shares", () => {
   const sharesByList = ref({});
   async function fetchByList(listId) {
@@ -15141,7 +15141,7 @@ function pickImageFile(dt) {
   }
   return files.find(isImageFile) ?? null;
 }
-const _hoisted_1$7 = ["data-item-id"];
+const _hoisted_1$6 = ["data-item-id"];
 const _hoisted_2$6 = { class: "item-row__check" };
 const _hoisted_3$5 = ["checked", "disabled"];
 const _hoisted_4$5 = {
@@ -15648,7 +15648,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
           name: item.value.name,
           onClose: _cache[7] || (_cache[7] = ($event) => viewerOpen.value = false)
         }, null, 8, ["src", "name"])) : createCommentVNode("", true)
-      ], 42, _hoisted_1$7)) : createCommentVNode("", true);
+      ], 42, _hoisted_1$6)) : createCommentVNode("", true);
     };
   }
 });
@@ -15764,7 +15764,7 @@ const INPUT_EXAMPLES = [
   "2 cups flour",
   "1. Milk"
 ];
-const _hoisted_1$6 = { class: "item-editor" };
+const _hoisted_1$5 = { class: "item-editor" };
 const _hoisted_2$5 = { class: "item-editor__main" };
 const _hoisted_3$4 = ["placeholder", "onKeydown"];
 const _hoisted_4$4 = ["placeholder", "onKeydown"];
@@ -15949,7 +15949,7 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
       nameRef.value?.focus();
     }
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$6, [
+      return openBlock(), createElementBlock("div", _hoisted_1$5, [
         createBaseVNode("div", _hoisted_2$5, [
           _cache[6] || (_cache[6] = createBaseVNode("span", { class: "item-editor__plus" }, "+", -1)),
           withDirectives(createBaseVNode("input", {
@@ -16082,7 +16082,7 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
   }
 });
 const ItemEditor = /* @__PURE__ */ _export_sfc$1(_sfc_main$6, [["__scopeId", "data-v-4fab3c34"]]);
-const _hoisted_1$5 = { class: "share-modal" };
+const _hoisted_1$4 = { class: "share-modal" };
 const _hoisted_2$4 = { class: "share-modal__header" };
 const _hoisted_3$3 = { class: "share-modal__search" };
 const _hoisted_4$3 = ["placeholder"];
@@ -16138,8 +16138,8 @@ const _hoisted_29$1 = { class: "share-modal__link-option" };
 const _hoisted_30$1 = ["value"];
 const _hoisted_31$1 = { value: 0 };
 const _hoisted_32$1 = { value: 1 };
-const _hoisted_33 = { class: "share-modal__link-option" };
-const _hoisted_34 = { class: "share-modal__link-password-row" };
+const _hoisted_33$1 = { class: "share-modal__link-option" };
+const _hoisted_34$1 = { class: "share-modal__link-password-row" };
 const _hoisted_35 = ["placeholder"];
 const _hoisted_36 = { class: "share-modal__link-option" };
 const _hoisted_37 = ["value", "min"];
@@ -16299,7 +16299,7 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
         class: "share-overlay",
         onClick: _cache[6] || (_cache[6] = withModifiers(($event) => _ctx.$emit("close"), ["self"]))
       }, [
-        createBaseVNode("div", _hoisted_1$5, [
+        createBaseVNode("div", _hoisted_1$4, [
           createBaseVNode("div", _hoisted_2$4, [
             createBaseVNode("h3", null, toDisplayString(unref(shareTitle)), 1),
             createBaseVNode("button", {
@@ -16398,9 +16398,9 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
                     createBaseVNode("option", _hoisted_32$1, toDisplayString(unref(canEditText)), 1)
                   ], 40, _hoisted_30$1)
                 ]),
-                createBaseVNode("label", _hoisted_33, [
+                createBaseVNode("label", _hoisted_33$1, [
                   createTextVNode(toDisplayString(unref(passwordLabel)) + " ", 1),
-                  createBaseVNode("div", _hoisted_34, [
+                  createBaseVNode("div", _hoisted_34$1, [
                     withDirectives(createBaseVNode("input", {
                       "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => linkPassword.value = $event),
                       type: "password",
@@ -16545,7 +16545,7 @@ function loadBoughtSort(storage) {
 function saveBoughtSort(storage, sort2) {
   saveChoice(storage, BOUGHT_SORT_KEY, BOUGHT_SORTS, sort2);
 }
-const _hoisted_1$4 = { class: "list-view" };
+const _hoisted_1$3 = { class: "list-view" };
 const _hoisted_2$3 = { class: "list-view__header" };
 const _hoisted_3$2 = { class: "list-view__actions" };
 const _hoisted_4$2 = {
@@ -16769,7 +16769,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
       }
     }
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$4, [
+      return openBlock(), createElementBlock("div", _hoisted_1$3, [
         createBaseVNode("div", _hoisted_2$3, [
           createBaseVNode("h2", null, toDisplayString(unref(listsStore).currentList?.title), 1),
           createBaseVNode("div", _hoisted_3$2, [
@@ -16966,53 +16966,58 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
   }
 });
 const ListView = /* @__PURE__ */ _export_sfc$1(_sfc_main$4, [["__scopeId", "data-v-72f5483c"]]);
-const _hoisted_1$3 = { class: "area-settings" };
+const _hoisted_1$2 = { class: "area-settings" };
 const _hoisted_2$2 = { class: "area-settings__header" };
-const _hoisted_3$1 = { class: "area-settings__desc" };
-const _hoisted_4$1 = {
+const _hoisted_3$1 = {
+  key: 0,
+  class: "area-settings__list"
+};
+const _hoisted_4$1 = { class: "area-settings__group-heading" };
+const _hoisted_5$1 = { class: "area-settings__desc" };
+const _hoisted_6 = {
   key: 0,
   class: "area-settings__create"
 };
-const _hoisted_5$1 = ["placeholder", "onKeydown"];
-const _hoisted_6 = ["title"];
-const _hoisted_7 = ["disabled"];
-const _hoisted_8 = {
+const _hoisted_7 = ["placeholder", "onKeydown"];
+const _hoisted_8 = ["title"];
+const _hoisted_9 = ["disabled"];
+const _hoisted_10 = {
   key: 1,
   class: "area-settings__copy"
 };
-const _hoisted_9 = { value: null };
-const _hoisted_10 = ["value"];
-const _hoisted_11 = ["disabled"];
-const _hoisted_12 = {
+const _hoisted_11 = { value: null };
+const _hoisted_12 = ["value"];
+const _hoisted_13 = ["disabled"];
+const _hoisted_14 = {
   key: 2,
   class: "area-settings__loadlang"
 };
-const _hoisted_13 = ["disabled", "title"];
-const _hoisted_14 = { class: "area-settings__search" };
-const _hoisted_15 = ["placeholder"];
-const _hoisted_16 = ["onClick"];
-const _hoisted_17 = { class: "area-settings__section-toggle" };
-const _hoisted_18 = ["value", "title", "onInput"];
-const _hoisted_19 = ["onKeydown", "onBlur"];
-const _hoisted_20 = ["onDblclick"];
-const _hoisted_21 = ["title", "onClick"];
-const _hoisted_22 = { class: "area-settings__section-count" };
-const _hoisted_23 = ["disabled", "title", "onClick"];
-const _hoisted_24 = ["disabled", "title", "onClick"];
-const _hoisted_25 = ["title", "onClick"];
-const _hoisted_26 = {
+const _hoisted_15 = ["disabled", "title"];
+const _hoisted_16 = { class: "area-settings__search" };
+const _hoisted_17 = ["placeholder"];
+const _hoisted_18 = ["onClick"];
+const _hoisted_19 = { class: "area-settings__section-toggle" };
+const _hoisted_20 = ["value", "title", "onInput"];
+const _hoisted_21 = ["onKeydown", "onBlur"];
+const _hoisted_22 = ["onDblclick"];
+const _hoisted_23 = ["title", "onClick"];
+const _hoisted_24 = { class: "area-settings__section-count" };
+const _hoisted_25 = ["disabled", "title", "onClick"];
+const _hoisted_26 = ["disabled", "title", "onClick"];
+const _hoisted_27 = ["title", "onClick"];
+const _hoisted_28 = {
   key: 0,
   class: "area-settings__section-body"
 };
-const _hoisted_27 = {
+const _hoisted_29 = {
   key: 0,
   class: "area-settings__add"
 };
-const _hoisted_28 = ["onUpdate:modelValue", "placeholder", "onKeydown"];
-const _hoisted_29 = ["disabled", "onClick"];
-const _hoisted_30 = { class: "area-settings__keywords" };
-const _hoisted_31 = ["onClick"];
-const _hoisted_32 = {
+const _hoisted_30 = ["onUpdate:modelValue", "placeholder", "onKeydown"];
+const _hoisted_31 = ["disabled", "onClick"];
+const _hoisted_32 = { class: "area-settings__keywords" };
+const _hoisted_33 = ["onClick"];
+const _hoisted_34 = {
   key: 0,
   class: "area-settings__empty"
 };
@@ -17023,7 +17028,8 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
     const shopAreasStore = useShopAreasStore();
     const listsStore = useListsStore();
     const backText = translate("shopping_list", "Back to list");
-    const title = translate("shopping_list", "Manage Areas");
+    const title = translate("shopping_list", "List settings");
+    const areasTitle = translate("shopping_list", "Shop areas");
     const description = translate("shopping_list", "Manage shop areas, keywords, and display order. Keywords auto-detect which area an item belongs to when added or pasted.");
     const searchPlaceholder = translate("shopping_list", "Search keywords...");
     const addPlaceholder = translate("shopping_list", "Add keyword...");
@@ -17188,23 +17194,27 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
       await shopAreasStore.remove(listId.value, area.id);
     }
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$3, [
+      return openBlock(), createElementBlock("div", _hoisted_1$2, [
         createBaseVNode("div", _hoisted_2$2, [
           createBaseVNode("button", {
             class: "area-settings__back",
             onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("back"))
           }, " ← " + toDisplayString(unref(backText)), 1),
-          createBaseVNode("h2", null, toDisplayString(unref(title)), 1),
-          createBaseVNode("p", _hoisted_3$1, toDisplayString(unref(description)), 1)
+          createBaseVNode("h2", null, [
+            createTextVNode(toDisplayString(unref(title)) + " ", 1),
+            unref(listsStore).currentList ? (openBlock(), createElementBlock("span", _hoisted_3$1, toDisplayString(unref(listsStore).currentList.title), 1)) : createCommentVNode("", true)
+          ]),
+          createBaseVNode("h3", _hoisted_4$1, toDisplayString(unref(areasTitle)), 1),
+          createBaseVNode("p", _hoisted_5$1, toDisplayString(unref(description)), 1)
         ]),
-        canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_4$1, [
+        canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_6, [
           withDirectives(createBaseVNode("input", {
             "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => newAreaName.value = $event),
             type: "text",
             placeholder: unref(newAreaPlaceholder),
             class: "area-settings__create-input",
             onKeydown: withKeys(withModifiers(onCreateArea, ["prevent"]), ["enter"])
-          }, null, 40, _hoisted_5$1), [
+          }, null, 40, _hoisted_7), [
             [vModelText, newAreaName.value]
           ]),
           withDirectives(createBaseVNode("input", {
@@ -17212,26 +17222,26 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
             type: "color",
             class: "area-settings__create-color",
             title: unref(colorTitle)
-          }, null, 8, _hoisted_6), [
+          }, null, 8, _hoisted_8), [
             [vModelText, newAreaColor.value]
           ]),
           createBaseVNode("button", {
             class: "area-settings__create-btn",
             disabled: !newAreaName.value.trim(),
             onClick: onCreateArea
-          }, toDisplayString(unref(addAreaText)), 9, _hoisted_7)
+          }, toDisplayString(unref(addAreaText)), 9, _hoisted_9)
         ])) : createCommentVNode("", true),
-        canEdit.value && otherLists.value.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_8, [
+        canEdit.value && otherLists.value.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_10, [
           withDirectives(createBaseVNode("select", {
             "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => copySourceId.value = $event),
             class: "area-settings__copy-select"
           }, [
-            createBaseVNode("option", _hoisted_9, toDisplayString(unref(copyFromPlaceholder)), 1),
+            createBaseVNode("option", _hoisted_11, toDisplayString(unref(copyFromPlaceholder)), 1),
             (openBlock(true), createElementBlock(Fragment, null, renderList(otherLists.value, (l) => {
               return openBlock(), createElementBlock("option", {
                 key: l.id,
                 value: l.id
-              }, toDisplayString(l.title), 9, _hoisted_10);
+              }, toDisplayString(l.title), 9, _hoisted_12);
             }), 128))
           ], 512), [
             [vModelSelect, copySourceId.value]
@@ -17240,23 +17250,23 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
             class: "area-settings__copy-btn",
             disabled: copySourceId.value === null || copying.value,
             onClick: onCopyFrom
-          }, toDisplayString(unref(copyText)), 9, _hoisted_11)
+          }, toDisplayString(unref(copyText)), 9, _hoisted_13)
         ])) : createCommentVNode("", true),
-        canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_12, [
+        canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_14, [
           createBaseVNode("button", {
             class: "area-settings__loadlang-btn",
             disabled: loadingLang.value,
             title: unref(loadLangHint),
             onClick: onLoadLanguageKeywords
-          }, toDisplayString(unref(loadLangText)), 9, _hoisted_13)
+          }, toDisplayString(unref(loadLangText)), 9, _hoisted_15)
         ])) : createCommentVNode("", true),
-        createBaseVNode("div", _hoisted_14, [
+        createBaseVNode("div", _hoisted_16, [
           withDirectives(createBaseVNode("input", {
             "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => search.value = $event),
             type: "text",
             placeholder: unref(searchPlaceholder),
             class: "area-settings__search-input"
-          }, null, 8, _hoisted_15), [
+          }, null, 8, _hoisted_17), [
             [vModelText, search.value]
           ])
         ]),
@@ -17269,7 +17279,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
               class: "area-settings__section-header",
               onClick: ($event) => toggleSection(area.id)
             }, [
-              createBaseVNode("span", _hoisted_17, toDisplayString(openSections.value[area.id] ? "▾" : "▸"), 1),
+              createBaseVNode("span", _hoisted_19, toDisplayString(openSections.value[area.id] ? "▾" : "▸"), 1),
               canEdit.value ? (openBlock(), createElementBlock("input", {
                 key: 0,
                 type: "color",
@@ -17279,7 +17289,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
                 onClick: _cache[5] || (_cache[5] = withModifiers(() => {
                 }, ["stop"])),
                 onInput: ($event) => onColorChange(area.id, $event.target.value)
-              }, null, 40, _hoisted_18)) : (openBlock(), createElementBlock("span", {
+              }, null, 40, _hoisted_20)) : (openBlock(), createElementBlock("span", {
                 key: 1,
                 class: "area-settings__color-swatch",
                 style: normalizeStyle({ backgroundColor: area.color || "#9E9E9E" })
@@ -17299,59 +17309,59 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
                   withKeys(withModifiers(cancelRename, ["prevent"]), ["escape"])
                 ],
                 onBlur: ($event) => saveRename(area.id)
-              }, null, 40, _hoisted_19)), [
+              }, null, 40, _hoisted_21)), [
                 [vModelText, renameValue.value]
               ]) : (openBlock(), createElementBlock(Fragment, { key: 3 }, [
                 createBaseVNode("span", {
                   class: "area-settings__section-name",
                   onDblclick: withModifiers(($event) => canEdit.value && startRename(area), ["stop"])
-                }, toDisplayString(area.name), 41, _hoisted_20),
+                }, toDisplayString(area.name), 41, _hoisted_22),
                 canEdit.value ? (openBlock(), createElementBlock("button", {
                   key: 0,
                   class: "area-settings__action-btn area-settings__action-btn--rename",
                   title: unref(renameText),
                   onClick: withModifiers(($event) => startRename(area), ["stop"])
-                }, " ✎ ", 8, _hoisted_21)) : createCommentVNode("", true)
+                }, " ✎ ", 8, _hoisted_23)) : createCommentVNode("", true)
               ], 64)),
-              createBaseVNode("span", _hoisted_22, toDisplayString(filteredKeywords(area).length), 1),
+              createBaseVNode("span", _hoisted_24, toDisplayString(filteredKeywords(area).length), 1),
               canEdit.value ? (openBlock(), createElementBlock(Fragment, { key: 4 }, [
                 createBaseVNode("button", {
                   class: "area-settings__action-btn",
                   disabled: index2 === 0,
                   title: unref(moveUpText),
                   onClick: withModifiers(($event) => moveArea(index2, -1), ["stop"])
-                }, " ▲ ", 8, _hoisted_23),
+                }, " ▲ ", 8, _hoisted_25),
                 createBaseVNode("button", {
                   class: "area-settings__action-btn",
                   disabled: index2 === areas.value.length - 1,
                   title: unref(moveDownText),
                   onClick: withModifiers(($event) => moveArea(index2, 1), ["stop"])
-                }, " ▼ ", 8, _hoisted_24),
+                }, " ▼ ", 8, _hoisted_26),
                 createBaseVNode("button", {
                   class: "area-settings__action-btn area-settings__action-btn--delete",
                   title: unref(deleteText),
                   onClick: withModifiers(($event) => onDeleteArea(area), ["stop"])
-                }, " ✕ ", 8, _hoisted_25)
+                }, " ✕ ", 8, _hoisted_27)
               ], 64)) : createCommentVNode("", true)
-            ], 8, _hoisted_16),
-            openSections.value[area.id] ? (openBlock(), createElementBlock("div", _hoisted_26, [
-              canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_27, [
+            ], 8, _hoisted_18),
+            openSections.value[area.id] ? (openBlock(), createElementBlock("div", _hoisted_28, [
+              canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_29, [
                 withDirectives(createBaseVNode("input", {
                   "onUpdate:modelValue": ($event) => newKeyword.value[area.id] = $event,
                   type: "text",
                   placeholder: unref(addPlaceholder),
                   class: "area-settings__add-input",
                   onKeydown: withKeys(withModifiers(($event) => onAddKeyword(area), ["prevent"]), ["enter"])
-                }, null, 40, _hoisted_28), [
+                }, null, 40, _hoisted_30), [
                   [vModelText, newKeyword.value[area.id]]
                 ]),
                 createBaseVNode("button", {
                   class: "area-settings__add-btn",
                   disabled: !newKeyword.value[area.id]?.trim(),
                   onClick: ($event) => onAddKeyword(area)
-                }, " + ", 8, _hoisted_29)
+                }, " + ", 8, _hoisted_31)
               ])) : createCommentVNode("", true),
-              createBaseVNode("div", _hoisted_30, [
+              createBaseVNode("div", _hoisted_32, [
                 (openBlock(true), createElementBlock(Fragment, null, renderList(filteredKeywords(area), (word) => {
                   return openBlock(), createElementBlock("span", {
                     key: word,
@@ -17362,10 +17372,10 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
                       key: 0,
                       class: "area-settings__keyword-remove",
                       onClick: ($event) => onRemoveKeyword(area, word)
-                    }, "✕", 8, _hoisted_31)) : createCommentVNode("", true)
+                    }, "✕", 8, _hoisted_33)) : createCommentVNode("", true)
                   ]);
                 }), 128)),
-                filteredKeywords(area).length === 0 ? (openBlock(), createElementBlock("span", _hoisted_32, toDisplayString(unref(noKeywordsText)), 1)) : createCommentVNode("", true)
+                filteredKeywords(area).length === 0 ? (openBlock(), createElementBlock("span", _hoisted_34, toDisplayString(unref(noKeywordsText)), 1)) : createCommentVNode("", true)
               ])
             ])) : createCommentVNode("", true)
           ]);
@@ -17374,8 +17384,8 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const AreaKeywordsSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$3, [["__scopeId", "data-v-5614877a"]]);
-const _hoisted_1$2 = { class: "image-settings" };
+const AreaKeywordsSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$3, [["__scopeId", "data-v-70484337"]]);
+const _hoisted_1$1 = { class: "image-settings" };
 const _hoisted_2$1 = { class: "image-settings__title" };
 const _sfc_main$2 = /* @__PURE__ */ defineComponent({
   __name: "ItemImagesSettings",
@@ -17394,25 +17404,30 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
       }
     }
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("section", _hoisted_1$2, [
-        createBaseVNode("h3", _hoisted_2$1, toDisplayString(unref(title)), 1),
-        createVNode(unref(NcCheckboxRadioSwitch), {
-          type: "switch",
-          "model-value": unref(enabled),
-          loading: unref(saving),
-          description: unref(hint),
-          "onUpdate:modelValue": onToggle
-        }, {
-          default: withCtx(() => [
-            createTextVNode(toDisplayString(unref(switchLabel)), 1)
-          ]),
-          _: 1
-        }, 8, ["model-value", "loading", "description"])
-      ]);
+      return openBlock(), createBlock(unref(NcAppNavigationSettings), null, {
+        default: withCtx(() => [
+          createBaseVNode("section", _hoisted_1$1, [
+            createBaseVNode("h3", _hoisted_2$1, toDisplayString(unref(title)), 1),
+            createVNode(unref(NcCheckboxRadioSwitch), {
+              type: "switch",
+              "model-value": unref(enabled),
+              loading: unref(saving),
+              description: unref(hint),
+              "onUpdate:modelValue": onToggle
+            }, {
+              default: withCtx(() => [
+                createTextVNode(toDisplayString(unref(switchLabel)), 1)
+              ]),
+              _: 1
+            }, 8, ["model-value", "loading", "description"])
+          ])
+        ]),
+        _: 1
+      });
     };
   }
 });
-const ItemImagesSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$2, [["__scopeId", "data-v-779ebce9"]]);
+const ItemImagesSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$2, [["__scopeId", "data-v-43079529"]]);
 const syncing = ref(false);
 const pendingCount = ref(0);
 let draining = false;
@@ -17519,7 +17534,7 @@ function useSyncEngine() {
     drain
   };
 }
-const _hoisted_1$1 = {
+const _hoisted_1 = {
   key: 0,
   class: "offline-indicator__icon spinning"
 };
@@ -17579,7 +17594,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
             key: 0,
             class: normalizeClass(["offline-indicator", statusClass.value])
           }, [
-            unref(syncing2) ? (openBlock(), createElementBlock("span", _hoisted_1$1, "↻")) : !unref(isOnline2) ? (openBlock(), createElementBlock("span", _hoisted_2, "⚠")) : (openBlock(), createElementBlock("span", _hoisted_3, "✓")),
+            unref(syncing2) ? (openBlock(), createElementBlock("span", _hoisted_1, "↻")) : !unref(isOnline2) ? (openBlock(), createElementBlock("span", _hoisted_2, "⚠")) : (openBlock(), createElementBlock("span", _hoisted_3, "✓")),
             createBaseVNode("span", _hoisted_4, toDisplayString(statusText.value), 1),
             unref(pendingCount2) > 0 && !unref(syncing2) ? (openBlock(), createElementBlock("span", _hoisted_5, toDisplayString(unref(pendingCount2)), 1)) : createCommentVNode("", true)
           ], 2)) : createCommentVNode("", true)
@@ -17604,7 +17619,7 @@ function usePush() {
   if (hasPushServer) {
     try {
       __vitePreload(async () => {
-        const { listen } = await import("./index-pCY6MjJs.chunk.mjs").then((n) => n.i);
+        const { listen } = await import("./index-CqLseTRU.chunk.mjs").then((n) => n.i);
         return { listen };
       }, true ? __vite__mapDeps([0,1,2]) : void 0, import.meta.url).then(({ listen }) => {
         listen("shopping_list_item_update", () => {
@@ -17643,10 +17658,6 @@ function usePush() {
   }
   drain();
 }
-const _hoisted_1 = {
-  key: 0,
-  class: "settings-screen"
-};
 const cartIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.25,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.59 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z" fill="currentColor"/></svg>';
 const _sfc_main = /* @__PURE__ */ defineComponent({
   __name: "App",
@@ -17667,6 +17678,9 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
         createVNode(unref(NcContent), { "app-name": "shopping_list" }, {
           default: withCtx(() => [
             createVNode(unref(NcAppNavigation), null, {
+              footer: withCtx(() => [
+                createVNode(ItemImagesSettings)
+              ]),
               default: withCtx(() => [
                 createVNode(ListSidebar, {
                   onShowSettings: _cache[0] || (_cache[0] = ($event) => showSettings.value = true)
@@ -17676,13 +17690,10 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
             }),
             createVNode(unref(NcAppContent), null, {
               default: withCtx(() => [
-                showSettings.value && unref(listsStore).currentList ? (openBlock(), createElementBlock("div", _hoisted_1, [
-                  (openBlock(), createBlock(AreaKeywordsSettings, {
-                    key: unref(listsStore).currentListId,
-                    onBack: _cache[1] || (_cache[1] = ($event) => showSettings.value = false)
-                  })),
-                  createVNode(ItemImagesSettings)
-                ])) : unref(listsStore).currentList ? (openBlock(), createBlock(ListView, { key: 1 })) : (openBlock(), createBlock(unref(NcEmptyContent), {
+                showSettings.value && unref(listsStore).currentList ? (openBlock(), createBlock(AreaKeywordsSettings, {
+                  key: unref(listsStore).currentListId,
+                  onBack: _cache[1] || (_cache[1] = ($event) => showSettings.value = false)
+                })) : unref(listsStore).currentList ? (openBlock(), createBlock(ListView, { key: 1 })) : (openBlock(), createBlock(unref(NcEmptyContent), {
                   key: 2,
                   name: unref(noListName),
                   description: unref(noListDesc)

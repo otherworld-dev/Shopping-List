@@ -2951,7 +2951,7 @@ const resolveTarget = (props, select) => {
 const TeleportImpl = {
   name: "Teleport",
   __isTeleport: true,
-  process(n1, n2, container, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized, internals) {
+  process(n1, n2, container2, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized, internals) {
     const {
       mc: mountChildren,
       pc: patchChildren,
@@ -2960,11 +2960,11 @@ const TeleportImpl = {
     } = internals;
     const disabled = isTeleportDisabled(n2.props);
     let { dynamicChildren } = n2;
-    const mount = (vnode, container2, anchor2) => {
+    const mount = (vnode, container22, anchor2) => {
       if (vnode.shapeFlag & 16) {
         mountChildren(
           vnode.children,
-          container2,
+          container22,
           anchor2,
           parentComponent,
           parentSuspense,
@@ -2998,7 +2998,7 @@ const TeleportImpl = {
         if (pendingMounts.get(vnode) !== mountJob) return;
         pendingMounts.delete(vnode);
         if (isTeleportDisabled(vnode.props)) {
-          mount(vnode, container, vnode.anchor);
+          mount(vnode, container2, vnode.anchor);
           updateCssVars(vnode, true);
         }
         mountToTarget(vnode);
@@ -3009,14 +3009,14 @@ const TeleportImpl = {
     if (n1 == null) {
       const placeholder = n2.el = createText("");
       const mainAnchor = n2.anchor = createText("");
-      insert(placeholder, container, anchor);
-      insert(mainAnchor, container, anchor);
+      insert(placeholder, container2, anchor);
+      insert(mainAnchor, container2, anchor);
       if (isTeleportDeferred(n2.props) || parentSuspense && parentSuspense.pendingBranch) {
         queuePendingMount(n2);
         return;
       }
       if (disabled) {
-        mount(n2, container, mainAnchor);
+        mount(n2, container2, mainAnchor);
         updateCssVars(n2, true);
       }
       mountToTarget();
@@ -3034,7 +3034,7 @@ const TeleportImpl = {
       const target = n2.target = n1.target;
       const targetAnchor = n2.targetAnchor = n1.targetAnchor;
       const wasDisabled = isTeleportDisabled(n1.props);
-      const currentContainer = wasDisabled ? container : target;
+      const currentContainer = wasDisabled ? container2 : target;
       const currentAnchor = wasDisabled ? mainAnchor : targetAnchor;
       if (namespace === "svg" || isTargetSVG(target)) {
         namespace = "svg";
@@ -3069,7 +3069,7 @@ const TeleportImpl = {
         if (!wasDisabled) {
           moveTeleport(
             n2,
-            container,
+            container2,
             mainAnchor,
             internals,
             1
@@ -3145,21 +3145,21 @@ const TeleportImpl = {
   move: moveTeleport,
   hydrate: hydrateTeleport
 };
-function moveTeleport(vnode, container, parentAnchor, { o: { insert }, m: move }, moveType = 2) {
+function moveTeleport(vnode, container2, parentAnchor, { o: { insert }, m: move }, moveType = 2) {
   if (moveType === 0) {
-    insert(vnode.targetAnchor, container, parentAnchor);
+    insert(vnode.targetAnchor, container2, parentAnchor);
   }
   const { el, anchor, shapeFlag, children, props } = vnode;
   const isReorder = moveType === 2;
   if (isReorder) {
-    insert(el, container, parentAnchor);
+    insert(el, container2, parentAnchor);
   }
   if (!isReorder || isTeleportDisabled(props)) {
     if (shapeFlag & 16) {
       for (let i2 = 0; i2 < children.length; i2++) {
         move(
           children[i2],
-          container,
+          container2,
           parentAnchor,
           2
         );
@@ -3167,7 +3167,7 @@ function moveTeleport(vnode, container, parentAnchor, { o: { insert }, m: move }
     }
   }
   if (isReorder) {
-    insert(anchor, container, parentAnchor);
+    insert(anchor, container2, parentAnchor);
   }
 }
 function hydrateTeleport(node, vnode, parentComponent, parentSuspense, slotScopeIds, optimized, {
@@ -3790,12 +3790,12 @@ const logMismatchError = () => {
   console.error("Hydration completed but contains mismatches.");
   hasLoggedMismatchError = true;
 };
-const isSVGContainer = (container) => container.namespaceURI.includes("svg") && container.tagName !== "foreignObject";
-const isMathMLContainer = (container) => container.namespaceURI.includes("MathML");
-const getContainerType = (container) => {
-  if (container.nodeType !== 1) return void 0;
-  if (isSVGContainer(container)) return "svg";
-  if (isMathMLContainer(container)) return "mathml";
+const isSVGContainer = (container2) => container2.namespaceURI.includes("svg") && container2.tagName !== "foreignObject";
+const isMathMLContainer = (container2) => container2.namespaceURI.includes("MathML");
+const getContainerType = (container2) => {
+  if (container2.nodeType !== 1) return void 0;
+  if (isSVGContainer(container2)) return "svg";
+  if (isMathMLContainer(container2)) return "mathml";
   return void 0;
 };
 const isComment = (node) => node.nodeType === 8;
@@ -3813,16 +3813,16 @@ function createHydrationFunctions(rendererInternals) {
       createComment
     }
   } = rendererInternals;
-  const hydrate2 = (vnode, container) => {
-    if (!container.hasChildNodes()) {
-      patch(null, vnode, container);
+  const hydrate2 = (vnode, container2) => {
+    if (!container2.hasChildNodes()) {
+      patch(null, vnode, container2);
       flushPostFlushCbs();
-      container._vnode = vnode;
+      container2._vnode = vnode;
       return;
     }
-    hydrateNode(container.firstChild, vnode, null, null, null);
+    hydrateNode(container2.firstChild, vnode, null, null, null);
     flushPostFlushCbs();
-    container._vnode = vnode;
+    container2._vnode = vnode;
   };
   const hydrateNode = (node, vnode, parentComponent, parentSuspense, slotScopeIds, optimized = false) => {
     optimized = optimized || !!vnode.dynamicChildren;
@@ -3925,7 +3925,7 @@ function createHydrationFunctions(rendererInternals) {
           }
         } else if (shapeFlag & 6) {
           vnode.slotScopeIds = slotScopeIds;
-          const container = parentNode(node);
+          const container2 = parentNode(node);
           if (isFragmentStart) {
             nextNode = locateClosingAnchor(node);
           } else if (isComment(node) && node.data === "teleport start") {
@@ -3935,18 +3935,18 @@ function createHydrationFunctions(rendererInternals) {
           }
           mountComponent(
             vnode,
-            container,
+            container2,
             null,
             parentComponent,
             parentSuspense,
-            getContainerType(container),
+            getContainerType(container2),
             optimized
           );
           if (isAsyncWrapper(vnode) && !vnode.type.__asyncResolved) {
             let subTree;
             if (isFragmentStart) {
               subTree = createVNode(Fragment);
-              subTree.anchor = nextNode ? nextNode.previousSibling : container.lastChild;
+              subTree.anchor = nextNode ? nextNode.previousSibling : container2.lastChild;
             } else {
               subTree = node.nodeType === 3 ? createTextVNode("") : createVNode("div");
             }
@@ -4002,14 +4002,14 @@ function createHydrationFunctions(rendererInternals) {
           // no need check parentSuspense in hydration
           transition
         ) && parentComponent && parentComponent.vnode.props && parentComponent.vnode.props.appear;
-        const content = el.content.firstChild;
+        const content2 = el.content.firstChild;
         if (needCallTransitionHooks) {
-          const cls = content.getAttribute("class");
-          if (cls) content.$cls = cls;
-          transition.beforeEnter(content);
+          const cls = content2.getAttribute("class");
+          if (cls) content2.$cls = cls;
+          transition.beforeEnter(content2);
         }
-        replaceNode(content, el, parentComponent);
-        vnode.el = el = content;
+        replaceNode(content2, el, parentComponent);
+        vnode.el = el = content2;
       }
       if (shapeFlag & 16 && // skip if element has innerHTML / textContent
       !(props && (props.innerHTML || props.textContent))) {
@@ -4091,7 +4091,7 @@ function createHydrationFunctions(rendererInternals) {
     }
     return el.nextSibling;
   };
-  const hydrateChildren = (node, parentVNode, container, parentComponent, parentSuspense, slotScopeIds, optimized) => {
+  const hydrateChildren = (node, parentVNode, container2, parentComponent, parentSuspense, slotScopeIds, optimized) => {
     optimized = optimized || !!parentVNode.dynamicChildren;
     const children = parentVNode.children;
     const l2 = children.length;
@@ -4105,7 +4105,7 @@ function createHydrationFunctions(rendererInternals) {
               createText(
                 node.data.slice(vnode.children.length)
               ),
-              container,
+              container2,
               nextSibling(node)
             );
             node.data = vnode.children;
@@ -4120,10 +4120,10 @@ function createHydrationFunctions(rendererInternals) {
           optimized
         );
       } else if (isText && !vnode.children) {
-        insert(vnode.el = createText(""), container);
+        insert(vnode.el = createText(""), container2);
       } else {
         if (!isMismatchAllowed(
-          container,
+          container2,
           1
           /* CHILDREN */
         )) {
@@ -4132,11 +4132,11 @@ function createHydrationFunctions(rendererInternals) {
         patch(
           null,
           vnode,
-          container,
+          container2,
           null,
           parentComponent,
           parentSuspense,
-          getContainerType(container),
+          getContainerType(container2),
           slotScopeIds
         );
       }
@@ -4148,11 +4148,11 @@ function createHydrationFunctions(rendererInternals) {
     if (fragmentSlotScopeIds) {
       slotScopeIds = slotScopeIds ? slotScopeIds.concat(fragmentSlotScopeIds) : fragmentSlotScopeIds;
     }
-    const container = parentNode(node);
+    const container2 = parentNode(node);
     const next = hydrateChildren(
       nextSibling(node),
       vnode,
-      container,
+      container2,
       parentComponent,
       parentSuspense,
       slotScopeIds,
@@ -4162,7 +4162,7 @@ function createHydrationFunctions(rendererInternals) {
       return nextSibling(vnode.anchor = next);
     } else {
       logMismatchError();
-      insert(vnode.anchor = createComment(`]`), container, next);
+      insert(vnode.anchor = createComment(`]`), container2, next);
       return next;
     }
   };
@@ -4187,16 +4187,16 @@ function createHydrationFunctions(rendererInternals) {
       }
     }
     const next = nextSibling(node);
-    const container = parentNode(node);
+    const container2 = parentNode(node);
     remove2(node);
     patch(
       null,
       vnode,
-      container,
+      container2,
       next,
       parentComponent,
       parentSuspense,
-      getContainerType(container),
+      getContainerType(container2),
       slotScopeIds
     );
     if (parentComponent) {
@@ -4563,13 +4563,13 @@ const KeepAliveImpl = {
       }
     } = sharedContext;
     const storageContainer = createElement("div");
-    sharedContext.activate = (vnode, container, anchor, namespace, optimized) => {
+    sharedContext.activate = (vnode, container2, anchor, namespace, optimized) => {
       const instance2 = vnode.component;
-      move(vnode, container, anchor, 0, parentSuspense);
+      move(vnode, container2, anchor, 0, parentSuspense);
       patch(
         instance2.vnode,
         vnode,
-        container,
+        container2,
         anchor,
         instance2,
         parentSuspense,
@@ -6469,7 +6469,7 @@ function baseCreateRenderer(options, createHydrationFns) {
     setScopeId: hostSetScopeId = NOOP,
     insertStaticContent: hostInsertStaticContent
   } = options;
-  const patch = (n1, n2, container, anchor = null, parentComponent = null, parentSuspense = null, namespace = void 0, slotScopeIds = null, optimized = !!n2.dynamicChildren) => {
+  const patch = (n1, n2, container2, anchor = null, parentComponent = null, parentSuspense = null, namespace = void 0, slotScopeIds = null, optimized = !!n2.dynamicChildren) => {
     if (n1 === n2) {
       return;
     }
@@ -6485,21 +6485,21 @@ function baseCreateRenderer(options, createHydrationFns) {
     const { type, ref: ref3, shapeFlag } = n2;
     switch (type) {
       case Text:
-        processText(n1, n2, container, anchor);
+        processText(n1, n2, container2, anchor);
         break;
       case Comment:
-        processCommentNode(n1, n2, container, anchor);
+        processCommentNode(n1, n2, container2, anchor);
         break;
       case Static:
         if (n1 == null) {
-          mountStaticNode(n2, container, anchor, namespace);
+          mountStaticNode(n2, container2, anchor, namespace);
         }
         break;
       case Fragment:
         processFragment(
           n1,
           n2,
-          container,
+          container2,
           anchor,
           parentComponent,
           parentSuspense,
@@ -6513,7 +6513,7 @@ function baseCreateRenderer(options, createHydrationFns) {
           processElement(
             n1,
             n2,
-            container,
+            container2,
             anchor,
             parentComponent,
             parentSuspense,
@@ -6525,7 +6525,7 @@ function baseCreateRenderer(options, createHydrationFns) {
           processComponent(
             n1,
             n2,
-            container,
+            container2,
             anchor,
             parentComponent,
             parentSuspense,
@@ -6537,7 +6537,7 @@ function baseCreateRenderer(options, createHydrationFns) {
           type.process(
             n1,
             n2,
-            container,
+            container2,
             anchor,
             parentComponent,
             parentSuspense,
@@ -6550,7 +6550,7 @@ function baseCreateRenderer(options, createHydrationFns) {
           type.process(
             n1,
             n2,
-            container,
+            container2,
             anchor,
             parentComponent,
             parentSuspense,
@@ -6567,11 +6567,11 @@ function baseCreateRenderer(options, createHydrationFns) {
       setRef(n1.ref, null, parentSuspense, n1, true);
     }
   };
-  const processText = (n1, n2, container, anchor) => {
+  const processText = (n1, n2, container2, anchor) => {
     if (n1 == null) {
       hostInsert(
         n2.el = hostCreateText(n2.children),
-        container,
+        container2,
         anchor
       );
     } else {
@@ -6581,35 +6581,35 @@ function baseCreateRenderer(options, createHydrationFns) {
       }
     }
   };
-  const processCommentNode = (n1, n2, container, anchor) => {
+  const processCommentNode = (n1, n2, container2, anchor) => {
     if (n1 == null) {
       hostInsert(
         n2.el = hostCreateComment(n2.children || ""),
-        container,
+        container2,
         anchor
       );
     } else {
       n2.el = n1.el;
     }
   };
-  const mountStaticNode = (n2, container, anchor, namespace) => {
+  const mountStaticNode = (n2, container2, anchor, namespace) => {
     [n2.el, n2.anchor] = hostInsertStaticContent(
       n2.children,
-      container,
+      container2,
       anchor,
       namespace,
       n2.el,
       n2.anchor
     );
   };
-  const moveStaticNode = ({ el, anchor }, container, nextSibling) => {
+  const moveStaticNode = ({ el, anchor }, container2, nextSibling) => {
     let next;
     while (el && el !== anchor) {
       next = hostNextSibling(el);
-      hostInsert(el, container, nextSibling);
+      hostInsert(el, container2, nextSibling);
       el = next;
     }
-    hostInsert(anchor, container, nextSibling);
+    hostInsert(anchor, container2, nextSibling);
   };
   const removeStaticNode = ({ el, anchor }) => {
     let next;
@@ -6620,7 +6620,7 @@ function baseCreateRenderer(options, createHydrationFns) {
     }
     hostRemove(anchor);
   };
-  const processElement = (n1, n2, container, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized) => {
+  const processElement = (n1, n2, container2, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized) => {
     if (n2.type === "svg") {
       namespace = "svg";
     } else if (n2.type === "math") {
@@ -6629,7 +6629,7 @@ function baseCreateRenderer(options, createHydrationFns) {
     if (n1 == null) {
       mountElement(
         n2,
-        container,
+        container2,
         anchor,
         parentComponent,
         parentSuspense,
@@ -6659,7 +6659,7 @@ function baseCreateRenderer(options, createHydrationFns) {
       }
     }
   };
-  const mountElement = (vnode, container, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized) => {
+  const mountElement = (vnode, container2, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized) => {
     let el;
     let vnodeHook;
     const { props, shapeFlag, transition, dirs } = vnode;
@@ -6707,7 +6707,7 @@ function baseCreateRenderer(options, createHydrationFns) {
     if (needCallTransitionHooks) {
       transition.beforeEnter(el);
     }
-    hostInsert(el, container, anchor);
+    hostInsert(el, container2, anchor);
     if ((vnodeHook = props && props.onVnodeMounted) || needCallTransitionHooks || dirs) {
       queuePostRenderEffect(() => {
         try {
@@ -6742,13 +6742,13 @@ function baseCreateRenderer(options, createHydrationFns) {
       }
     }
   };
-  const mountChildren = (children, container, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized, start = 0) => {
+  const mountChildren = (children, container2, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized, start = 0) => {
     for (let i2 = start; i2 < children.length; i2++) {
       const child = children[i2] = optimized ? cloneIfMounted(children[i2]) : normalizeVNode(children[i2]);
       patch(
         null,
         child,
-        container,
+        container2,
         anchor,
         parentComponent,
         parentSuspense,
@@ -6842,7 +6842,7 @@ function baseCreateRenderer(options, createHydrationFns) {
     for (let i2 = 0; i2 < newChildren.length; i2++) {
       const oldVNode = oldChildren[i2];
       const newVNode = newChildren[i2];
-      const container = (
+      const container2 = (
         // oldVNode may be an errored async setup() component inside Suspense
         // which will not have a mounted element
         oldVNode.el && // - In the case of a Fragment, we need to provide the actual parent
@@ -6859,7 +6859,7 @@ function baseCreateRenderer(options, createHydrationFns) {
       patch(
         oldVNode,
         newVNode,
-        container,
+        container2,
         null,
         parentComponent,
         parentSuspense,
@@ -6898,7 +6898,7 @@ function baseCreateRenderer(options, createHydrationFns) {
       }
     }
   };
-  const processFragment = (n1, n2, container, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized) => {
+  const processFragment = (n1, n2, container2, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized) => {
     const fragmentStartAnchor = n2.el = n1 ? n1.el : hostCreateText("");
     const fragmentEndAnchor = n2.anchor = n1 ? n1.anchor : hostCreateText("");
     let { patchFlag, dynamicChildren, slotScopeIds: fragmentSlotScopeIds } = n2;
@@ -6906,15 +6906,15 @@ function baseCreateRenderer(options, createHydrationFns) {
       slotScopeIds = slotScopeIds ? slotScopeIds.concat(fragmentSlotScopeIds) : fragmentSlotScopeIds;
     }
     if (n1 == null) {
-      hostInsert(fragmentStartAnchor, container, anchor);
-      hostInsert(fragmentEndAnchor, container, anchor);
+      hostInsert(fragmentStartAnchor, container2, anchor);
+      hostInsert(fragmentEndAnchor, container2, anchor);
       mountChildren(
         // #10007
         // such fragment like `<></>` will be compiled into
         // a fragment which doesn't have a children.
         // In this case fallback to an empty array
         n2.children || [],
-        container,
+        container2,
         fragmentEndAnchor,
         parentComponent,
         parentSuspense,
@@ -6929,7 +6929,7 @@ function baseCreateRenderer(options, createHydrationFns) {
         patchBlockChildren(
           n1.dynamicChildren,
           dynamicChildren,
-          container,
+          container2,
           parentComponent,
           parentSuspense,
           namespace,
@@ -6953,7 +6953,7 @@ function baseCreateRenderer(options, createHydrationFns) {
         patchChildren(
           n1,
           n2,
-          container,
+          container2,
           fragmentEndAnchor,
           parentComponent,
           parentSuspense,
@@ -6964,13 +6964,13 @@ function baseCreateRenderer(options, createHydrationFns) {
       }
     }
   };
-  const processComponent = (n1, n2, container, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized) => {
+  const processComponent = (n1, n2, container2, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized) => {
     n2.slotScopeIds = slotScopeIds;
     if (n1 == null) {
       if (n2.shapeFlag & 512) {
         parentComponent.ctx.activate(
           n2,
-          container,
+          container2,
           anchor,
           namespace,
           optimized
@@ -6978,7 +6978,7 @@ function baseCreateRenderer(options, createHydrationFns) {
       } else {
         mountComponent(
           n2,
-          container,
+          container2,
           anchor,
           parentComponent,
           parentSuspense,
@@ -6990,7 +6990,7 @@ function baseCreateRenderer(options, createHydrationFns) {
       updateComponent(n1, n2, optimized);
     }
   };
-  const mountComponent = (initialVNode, container, anchor, parentComponent, parentSuspense, namespace, optimized) => {
+  const mountComponent = (initialVNode, container2, anchor, parentComponent, parentSuspense, namespace, optimized) => {
     const instance = initialVNode.component = createComponentInstance(
       initialVNode,
       parentComponent,
@@ -7006,14 +7006,14 @@ function baseCreateRenderer(options, createHydrationFns) {
       parentSuspense && parentSuspense.registerDep(instance, setupRenderEffect, optimized);
       if (!initialVNode.el) {
         const placeholder = instance.subTree = createVNode(Comment);
-        processCommentNode(null, placeholder, container, anchor);
+        processCommentNode(null, placeholder, container2, anchor);
         initialVNode.placeholder = placeholder.el;
       }
     } else {
       setupRenderEffect(
         instance,
         initialVNode,
-        container,
+        container2,
         anchor,
         parentSuspense,
         namespace,
@@ -7036,7 +7036,7 @@ function baseCreateRenderer(options, createHydrationFns) {
       instance.vnode = n2;
     }
   };
-  const setupRenderEffect = (instance, initialVNode, container, anchor, parentSuspense, namespace, optimized) => {
+  const setupRenderEffect = (instance, initialVNode, container2, anchor, parentSuspense, namespace, optimized) => {
     const componentUpdateFn = () => {
       if (!instance.isMounted) {
         let vnodeHook;
@@ -7082,7 +7082,7 @@ function baseCreateRenderer(options, createHydrationFns) {
           patch(
             null,
             subTree,
-            container,
+            container2,
             anchor,
             instance,
             parentSuspense,
@@ -7104,7 +7104,7 @@ function baseCreateRenderer(options, createHydrationFns) {
           instance.a && queuePostRenderEffect(instance.a, parentSuspense);
         }
         instance.isMounted = true;
-        initialVNode = container = anchor = null;
+        initialVNode = container2 = anchor = null;
       } else {
         let { next, bu, u: u2, parent, vnode } = instance;
         {
@@ -7189,7 +7189,7 @@ function baseCreateRenderer(options, createHydrationFns) {
     flushPreFlushCbs(instance);
     resetTracking();
   };
-  const patchChildren = (n1, n2, container, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized = false) => {
+  const patchChildren = (n1, n2, container2, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized = false) => {
     const c1 = n1 && n1.children;
     const prevShapeFlag = n1 ? n1.shapeFlag : 0;
     const c2 = n2.children;
@@ -7199,7 +7199,7 @@ function baseCreateRenderer(options, createHydrationFns) {
         patchKeyedChildren(
           c1,
           c2,
-          container,
+          container2,
           anchor,
           parentComponent,
           parentSuspense,
@@ -7212,7 +7212,7 @@ function baseCreateRenderer(options, createHydrationFns) {
         patchUnkeyedChildren(
           c1,
           c2,
-          container,
+          container2,
           anchor,
           parentComponent,
           parentSuspense,
@@ -7228,7 +7228,7 @@ function baseCreateRenderer(options, createHydrationFns) {
         unmountChildren(c1, parentComponent, parentSuspense);
       }
       if (c2 !== c1) {
-        hostSetElementText(container, c2);
+        hostSetElementText(container2, c2);
       }
     } else {
       if (prevShapeFlag & 16) {
@@ -7236,7 +7236,7 @@ function baseCreateRenderer(options, createHydrationFns) {
           patchKeyedChildren(
             c1,
             c2,
-            container,
+            container2,
             anchor,
             parentComponent,
             parentSuspense,
@@ -7249,12 +7249,12 @@ function baseCreateRenderer(options, createHydrationFns) {
         }
       } else {
         if (prevShapeFlag & 8) {
-          hostSetElementText(container, "");
+          hostSetElementText(container2, "");
         }
         if (shapeFlag & 16) {
           mountChildren(
             c2,
-            container,
+            container2,
             anchor,
             parentComponent,
             parentSuspense,
@@ -7266,7 +7266,7 @@ function baseCreateRenderer(options, createHydrationFns) {
       }
     }
   };
-  const patchUnkeyedChildren = (c1, c2, container, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized) => {
+  const patchUnkeyedChildren = (c1, c2, container2, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized) => {
     c1 = c1 || EMPTY_ARR;
     c2 = c2 || EMPTY_ARR;
     const oldLength = c1.length;
@@ -7278,7 +7278,7 @@ function baseCreateRenderer(options, createHydrationFns) {
       patch(
         c1[i2],
         nextChild,
-        container,
+        container2,
         null,
         parentComponent,
         parentSuspense,
@@ -7299,7 +7299,7 @@ function baseCreateRenderer(options, createHydrationFns) {
     } else {
       mountChildren(
         c2,
-        container,
+        container2,
         anchor,
         parentComponent,
         parentSuspense,
@@ -7310,7 +7310,7 @@ function baseCreateRenderer(options, createHydrationFns) {
       );
     }
   };
-  const patchKeyedChildren = (c1, c2, container, parentAnchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized) => {
+  const patchKeyedChildren = (c1, c2, container2, parentAnchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized) => {
     let i2 = 0;
     const l2 = c2.length;
     let e1 = c1.length - 1;
@@ -7322,7 +7322,7 @@ function baseCreateRenderer(options, createHydrationFns) {
         patch(
           n1,
           n2,
-          container,
+          container2,
           null,
           parentComponent,
           parentSuspense,
@@ -7342,7 +7342,7 @@ function baseCreateRenderer(options, createHydrationFns) {
         patch(
           n1,
           n2,
-          container,
+          container2,
           null,
           parentComponent,
           parentSuspense,
@@ -7364,7 +7364,7 @@ function baseCreateRenderer(options, createHydrationFns) {
           patch(
             null,
             c2[i2] = optimized ? cloneIfMounted(c2[i2]) : normalizeVNode(c2[i2]),
-            container,
+            container2,
             anchor,
             parentComponent,
             parentSuspense,
@@ -7426,7 +7426,7 @@ function baseCreateRenderer(options, createHydrationFns) {
           patch(
             prevChild,
             c2[newIndex],
-            container,
+            container2,
             null,
             parentComponent,
             parentSuspense,
@@ -7451,7 +7451,7 @@ function baseCreateRenderer(options, createHydrationFns) {
           patch(
             null,
             nextChild,
-            container,
+            container2,
             anchor,
             parentComponent,
             parentSuspense,
@@ -7461,7 +7461,7 @@ function baseCreateRenderer(options, createHydrationFns) {
           );
         } else if (moved) {
           if (j < 0 || i2 !== increasingNewIndexSequence[j]) {
-            move(nextChild, container, anchor, 2);
+            move(nextChild, container2, anchor, 2);
           } else {
             j--;
           }
@@ -7469,37 +7469,37 @@ function baseCreateRenderer(options, createHydrationFns) {
       }
     }
   };
-  const move = (vnode, container, anchor, moveType, parentSuspense = null) => {
+  const move = (vnode, container2, anchor, moveType, parentSuspense = null) => {
     const { el, type, transition, children, shapeFlag } = vnode;
     if (shapeFlag & 6) {
-      move(vnode.component.subTree, container, anchor, moveType);
+      move(vnode.component.subTree, container2, anchor, moveType);
       return;
     }
     if (shapeFlag & 128) {
-      vnode.suspense.move(container, anchor, moveType);
+      vnode.suspense.move(container2, anchor, moveType);
       return;
     }
     if (shapeFlag & 64) {
-      type.move(vnode, container, anchor, internals);
+      type.move(vnode, container2, anchor, internals);
       return;
     }
     if (type === Fragment) {
-      hostInsert(el, container, anchor);
+      hostInsert(el, container2, anchor);
       for (let i2 = 0; i2 < children.length; i2++) {
-        move(children[i2], container, anchor, moveType);
+        move(children[i2], container2, anchor, moveType);
       }
-      hostInsert(vnode.anchor, container, anchor);
+      hostInsert(vnode.anchor, container2, anchor);
       return;
     }
     if (type === Static) {
-      moveStaticNode(vnode, container, anchor);
+      moveStaticNode(vnode, container2, anchor);
       return;
     }
     const needTransition2 = moveType !== 2 && shapeFlag & 1 && transition;
     if (needTransition2) {
       if (moveType === 0) {
         transition.beforeEnter(el);
-        hostInsert(el, container, anchor);
+        hostInsert(el, container2, anchor);
         queuePostRenderEffect(() => transition.enter(el), parentSuspense);
       } else {
         const { leave, delayLeave, afterLeave } = transition;
@@ -7507,7 +7507,7 @@ function baseCreateRenderer(options, createHydrationFns) {
           if (vnode.ctx.isUnmounted) {
             hostRemove(el);
           } else {
-            hostInsert(el, container, anchor);
+            hostInsert(el, container2, anchor);
           }
         };
         const performLeave = () => {
@@ -7529,7 +7529,7 @@ function baseCreateRenderer(options, createHydrationFns) {
         }
       }
     } else {
-      hostInsert(el, container, anchor);
+      hostInsert(el, container2, anchor);
     }
   };
   const unmount = (vnode, parentComponent, parentSuspense, doRemove = false, optimized = false) => {
@@ -7691,25 +7691,25 @@ function baseCreateRenderer(options, createHydrationFns) {
     return teleportEnd ? hostNextSibling(teleportEnd) : el;
   };
   let isFlushing = false;
-  const render2 = (vnode, container, namespace) => {
+  const render2 = (vnode, container2, namespace) => {
     let instance;
     if (vnode == null) {
-      if (container._vnode) {
-        unmount(container._vnode, null, null, true);
-        instance = container._vnode.component;
+      if (container2._vnode) {
+        unmount(container2._vnode, null, null, true);
+        instance = container2._vnode.component;
       }
     } else {
       patch(
-        container._vnode || null,
+        container2._vnode || null,
         vnode,
-        container,
+        container2,
         null,
         null,
         null,
         namespace
       );
     }
-    container._vnode = vnode;
+    container2._vnode = vnode;
     if (!isFlushing) {
       isFlushing = true;
       flushPreFlushCbs(instance);
@@ -7859,11 +7859,11 @@ const SuspenseImpl = {
   // on a vnode's type and calls the `process` method, passing in renderer
   // internals.
   __isSuspense: true,
-  process(n1, n2, container, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized, rendererInternals) {
+  process(n1, n2, container2, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized, rendererInternals) {
     if (n1 == null) {
       mountSuspense(
         n2,
-        container,
+        container2,
         anchor,
         parentComponent,
         parentSuspense,
@@ -7882,7 +7882,7 @@ const SuspenseImpl = {
       patchSuspense(
         n1,
         n2,
-        container,
+        container2,
         anchor,
         parentComponent,
         namespace,
@@ -7902,7 +7902,7 @@ function triggerEvent(vnode, name) {
     eventListener();
   }
 }
-function mountSuspense(vnode, container, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized, rendererInternals) {
+function mountSuspense(vnode, container2, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized, rendererInternals) {
   const {
     p: patch,
     o: { createElement }
@@ -7912,7 +7912,7 @@ function mountSuspense(vnode, container, anchor, parentComponent, parentSuspense
     vnode,
     parentSuspense,
     parentComponent,
-    container,
+    container2,
     hiddenContainer,
     anchor,
     namespace,
@@ -7936,7 +7936,7 @@ function mountSuspense(vnode, container, anchor, parentComponent, parentSuspense
     patch(
       null,
       vnode.ssFallback,
-      container,
+      container2,
       anchor,
       parentComponent,
       null,
@@ -7949,7 +7949,7 @@ function mountSuspense(vnode, container, anchor, parentComponent, parentSuspense
     suspense.resolve(false, true);
   }
 }
-function patchSuspense(n1, n2, container, anchor, parentComponent, namespace, slotScopeIds, optimized, { p: patch, um: unmount, o: { createElement } }) {
+function patchSuspense(n1, n2, container2, anchor, parentComponent, namespace, slotScopeIds, optimized, { p: patch, um: unmount, o: { createElement } }) {
   const suspense = n2.suspense = n1.suspense;
   suspense.vnode = n2;
   n2.el = n1.el;
@@ -7977,7 +7977,7 @@ function patchSuspense(n1, n2, container, anchor, parentComponent, namespace, sl
           patch(
             activeBranch,
             newFallback,
-            container,
+            container2,
             anchor,
             parentComponent,
             null,
@@ -8018,7 +8018,7 @@ function patchSuspense(n1, n2, container, anchor, parentComponent, namespace, sl
           patch(
             activeBranch,
             newFallback,
-            container,
+            container2,
             anchor,
             parentComponent,
             null,
@@ -8033,7 +8033,7 @@ function patchSuspense(n1, n2, container, anchor, parentComponent, namespace, sl
         patch(
           activeBranch,
           newBranch,
-          container,
+          container2,
           anchor,
           parentComponent,
           suspense,
@@ -8064,7 +8064,7 @@ function patchSuspense(n1, n2, container, anchor, parentComponent, namespace, sl
       patch(
         activeBranch,
         newBranch,
-        container,
+        container2,
         anchor,
         parentComponent,
         suspense,
@@ -8109,7 +8109,7 @@ function patchSuspense(n1, n2, container, anchor, parentComponent, namespace, sl
     }
   }
 }
-function createSuspenseBoundary(vnode, parentSuspense, parentComponent, container, hiddenContainer, anchor, namespace, slotScopeIds, optimized, rendererInternals, isHydrating = false) {
+function createSuspenseBoundary(vnode, parentSuspense, parentComponent, container2, hiddenContainer, anchor, namespace, slotScopeIds, optimized, rendererInternals, isHydrating = false) {
   const {
     p: patch,
     m: move,
@@ -8132,7 +8132,7 @@ function createSuspenseBoundary(vnode, parentSuspense, parentComponent, containe
     parent: parentSuspense,
     parentComponent,
     namespace,
-    container,
+    container: container2,
     hiddenContainer,
     deps: 0,
     pendingId: suspenseId++,
@@ -8152,7 +8152,7 @@ function createSuspenseBoundary(vnode, parentSuspense, parentComponent, containe
         pendingId,
         effects,
         parentComponent: parentComponent2,
-        container: container2,
+        container: container22,
         isInFallback
       } = suspense;
       let delayEnter = false;
@@ -8165,7 +8165,7 @@ function createSuspenseBoundary(vnode, parentSuspense, parentComponent, containe
             if (pendingId === suspense.pendingId) {
               move(
                 pendingBranch,
-                container2,
+                container22,
                 anchor === initialAnchor ? next(activeBranch) : anchor,
                 0
               );
@@ -8177,7 +8177,7 @@ function createSuspenseBoundary(vnode, parentSuspense, parentComponent, containe
           };
         }
         if (activeBranch && !suspense.isFallbackMountPending) {
-          if (parentNode(activeBranch.el) === container2) {
+          if (parentNode(activeBranch.el) === container22) {
             anchor = next(activeBranch);
           }
           unmount(activeBranch, parentComponent2, suspense, true);
@@ -8186,7 +8186,7 @@ function createSuspenseBoundary(vnode, parentSuspense, parentComponent, containe
           }
         }
         if (!delayEnter) {
-          move(pendingBranch, container2, anchor, 0);
+          move(pendingBranch, container22, anchor, 0);
         }
       }
       suspense.isFallbackMountPending = false;
@@ -8221,7 +8221,7 @@ function createSuspenseBoundary(vnode, parentSuspense, parentComponent, containe
       if (!suspense.pendingBranch) {
         return;
       }
-      const { vnode: vnode2, activeBranch, parentComponent: parentComponent2, container: container2, namespace: namespace2 } = suspense;
+      const { vnode: vnode2, activeBranch, parentComponent: parentComponent2, container: container22, namespace: namespace2 } = suspense;
       triggerEvent(vnode2, "onFallback");
       const anchor2 = next(activeBranch);
       const mountFallback = () => {
@@ -8232,7 +8232,7 @@ function createSuspenseBoundary(vnode, parentSuspense, parentComponent, containe
         patch(
           null,
           fallbackVNode,
-          container2,
+          container22,
           anchor2,
           parentComponent2,
           null,
@@ -8261,9 +8261,9 @@ function createSuspenseBoundary(vnode, parentSuspense, parentComponent, containe
         mountFallback();
       }
     },
-    move(container2, anchor2, type) {
-      suspense.activeBranch && move(suspense.activeBranch, container2, anchor2, type);
-      suspense.container = container2;
+    move(container22, anchor2, type) {
+      suspense.activeBranch && move(suspense.activeBranch, container22, anchor2, type);
+      suspense.container = container22;
     },
     next() {
       return suspense.activeBranch && next(suspense.activeBranch);
@@ -8662,8 +8662,8 @@ function cloneVNode(vnode, extraProps, mergeRef = false, cloneTransition = false
 function createTextVNode(text2 = " ", flag = 0) {
   return createVNode(Text, null, text2, flag);
 }
-function createStaticVNode(content, numberOfNodes) {
-  const vnode = createVNode(Static, null, content);
+function createStaticVNode(content2, numberOfNodes) {
+  const vnode = createVNode(Static, null, content2);
   vnode.staticCount = numberOfNodes;
   return vnode;
 }
@@ -9214,7 +9214,7 @@ const nodeOps = {
   // Reason: innerHTML.
   // Static content here can only come from compiled templates.
   // As long as the user only uses trusted templates, this is safe.
-  insertStaticContent(content, parent, anchor, namespace, start, end) {
+  insertStaticContent(content2, parent, anchor, namespace, start, end) {
     const before = anchor ? anchor.previousSibling : parent.lastChild;
     if (start && (start === end || start.nextSibling)) {
       while (true) {
@@ -9223,7 +9223,7 @@ const nodeOps = {
       }
     } else {
       templateContainer.innerHTML = unsafeToTrustedHTML(
-        namespace === "svg" ? `<svg>${content}</svg>` : namespace === "mathml" ? `<math>${content}</math>` : content
+        namespace === "svg" ? `<svg>${content2}</svg>` : namespace === "mathml" ? `<math>${content2}</math>` : content2
       );
       const template = templateContainer.content;
       if (namespace === "svg" || namespace === "mathml") {
@@ -10311,10 +10311,10 @@ class VueElement extends BaseClass {
     for (let i2 = 0; i2 < outlets.length; i2++) {
       const o2 = outlets[i2];
       const slotName = o2.getAttribute("name") || "default";
-      const content = this._slots[slotName];
+      const content2 = this._slots[slotName];
       const parent = o2.parentNode;
-      if (content) {
-        for (const n2 of content) {
+      if (content2) {
+        for (const n2 of content2) {
           if (scopeId && n2.nodeType === 1) {
             const id = scopeId + "-s";
             const walker = document.createTreeWalker(n2, 1);
@@ -10556,10 +10556,10 @@ function hasCSSTransform(el, root, moveClass) {
   }
   moveClass.split(/\s+/).forEach((c2) => c2 && clone2.classList.add(c2));
   clone2.style.display = "none";
-  const container = root.nodeType === 1 ? root : root.parentNode;
-  container.appendChild(clone2);
+  const container2 = root.nodeType === 1 ? root : root.parentNode;
+  container2.appendChild(clone2);
   const { hasTransform } = getTransitionInfo(clone2);
-  container.removeChild(clone2);
+  container2.removeChild(clone2);
   return hasTransform;
 }
 const getModelAssigner = (vnode) => {
@@ -10908,19 +10908,19 @@ const createApp = ((...args) => {
   const app = ensureRenderer().createApp(...args);
   const { mount } = app;
   app.mount = (containerOrSelector) => {
-    const container = normalizeContainer(containerOrSelector);
-    if (!container) return;
+    const container2 = normalizeContainer(containerOrSelector);
+    if (!container2) return;
     const component = app._component;
     if (!isFunction$2(component) && !component.render && !component.template) {
-      component.template = container.innerHTML;
+      component.template = container2.innerHTML;
     }
-    if (container.nodeType === 1) {
-      container.textContent = "";
+    if (container2.nodeType === 1) {
+      container2.textContent = "";
     }
-    const proxy = mount(container, false, resolveRootNamespace(container));
-    if (container instanceof Element) {
-      container.removeAttribute("v-cloak");
-      container.setAttribute("data-v-app", "");
+    const proxy = mount(container2, false, resolveRootNamespace(container2));
+    if (container2 instanceof Element) {
+      container2.removeAttribute("v-cloak");
+      container2.setAttribute("data-v-app", "");
     }
     return proxy;
   };
@@ -10930,27 +10930,27 @@ const createSSRApp = ((...args) => {
   const app = ensureHydrationRenderer().createApp(...args);
   const { mount } = app;
   app.mount = (containerOrSelector) => {
-    const container = normalizeContainer(containerOrSelector);
-    if (container) {
-      return mount(container, true, resolveRootNamespace(container));
+    const container2 = normalizeContainer(containerOrSelector);
+    if (container2) {
+      return mount(container2, true, resolveRootNamespace(container2));
     }
   };
   return app;
 });
-function resolveRootNamespace(container) {
-  if (container instanceof SVGElement) {
+function resolveRootNamespace(container2) {
+  if (container2 instanceof SVGElement) {
     return "svg";
   }
-  if (typeof MathMLElement === "function" && container instanceof MathMLElement) {
+  if (typeof MathMLElement === "function" && container2 instanceof MathMLElement) {
     return "mathml";
   }
 }
-function normalizeContainer(container) {
-  if (isString$1(container)) {
-    const res = document.querySelector(container);
+function normalizeContainer(container2) {
+  if (isString$1(container2)) {
+    const res = document.querySelector(container2);
     return res;
   }
-  return container;
+  return container2;
 }
 let ssrDirectiveInitialized = false;
 const initDirectivesForSSR = () => {
@@ -11487,6 +11487,8 @@ var mdiChevronRight = "M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.5
 var mdiChevronUp = "M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z";
 var mdiClock = "M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M16.2,16.2L11,13V7H12.5V12.2L17,14.9L16.2,16.2Z";
 var mdiClose = "M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z";
+var mdiCog = "M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z";
+var mdiCogOutline = "M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10M10,22C9.75,22 9.54,21.82 9.5,21.58L9.13,18.93C8.5,18.68 7.96,18.34 7.44,17.94L4.95,18.95C4.73,19.03 4.46,18.95 4.34,18.73L2.34,15.27C2.21,15.05 2.27,14.78 2.46,14.63L4.57,12.97L4.5,12L4.57,11L2.46,9.37C2.27,9.22 2.21,8.95 2.34,8.73L4.34,5.27C4.46,5.05 4.73,4.96 4.95,5.05L7.44,6.05C7.96,5.66 8.5,5.32 9.13,5.07L9.5,2.42C9.54,2.18 9.75,2 10,2H14C14.25,2 14.46,2.18 14.5,2.42L14.87,5.07C15.5,5.32 16.04,5.66 16.56,6.05L19.05,5.05C19.27,4.96 19.54,5.05 19.66,5.27L21.66,8.73C21.79,8.95 21.73,9.22 21.54,9.37L19.43,11L19.5,12L19.43,13L21.54,14.63C21.73,14.78 21.79,15.05 21.66,15.27L19.66,18.73C19.54,18.95 19.27,19.04 19.05,18.95L16.56,17.95C16.04,18.34 15.5,18.68 14.87,18.93L14.5,21.58C14.46,21.82 14.25,22 14,22H10M11.25,4L10.88,6.61C9.68,6.86 8.62,7.5 7.85,8.39L5.44,7.35L4.69,8.65L6.8,10.2C6.4,11.37 6.4,12.64 6.8,13.8L4.68,15.36L5.43,16.66L7.86,15.62C8.63,16.5 9.68,17.14 10.87,17.38L11.24,20H12.76L13.13,17.39C14.32,17.14 15.37,16.5 16.14,15.62L18.57,16.66L19.32,15.36L17.2,13.81C17.6,12.64 17.6,11.37 17.2,10.2L19.31,8.65L18.56,7.35L16.15,8.39C15.38,7.5 14.32,6.86 13.12,6.62L12.75,4H11.25Z";
 var mdiMenu = "M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z";
 var mdiMenuOpen = "M21,15.61L19.59,17L14.58,12L19.59,7L21,8.39L17.44,12L21,15.61M3,6H16V8H3V6M3,13V11H13V13H3M3,18V16H16V18H3Z";
 var mdiPause = "M14,19H18V5H14M6,19H10V5H6V19Z";
@@ -12159,7 +12161,7 @@ function createDOMPurify() {
     });
   }
   const _sanitizeElements = function _sanitizeElements2(currentNode) {
-    let content = null;
+    let content2 = null;
     _executeHooks(hooks.beforeSanitizeElements, currentNode, null);
     if (_isClobbered(currentNode)) {
       _forceRemove(currentNode);
@@ -12215,15 +12217,15 @@ function createDOMPurify() {
       return true;
     }
     if (SAFE_FOR_TEMPLATES && currentNode.nodeType === NODE_TYPE.text) {
-      content = currentNode.textContent;
+      content2 = currentNode.textContent;
       arrayForEach([MUSTACHE_EXPR2, ERB_EXPR2, TMPLIT_EXPR2], (expr) => {
-        content = stringReplace(content, expr, " ");
+        content2 = stringReplace(content2, expr, " ");
       });
-      if (currentNode.textContent !== content) {
+      if (currentNode.textContent !== content2) {
         arrayPush(DOMPurify.removed, {
           element: currentNode.cloneNode()
         });
-        currentNode.textContent = content;
+        currentNode.textContent = content2;
       }
     }
     _executeHooks(hooks.afterSanitizeElements, currentNode, null);
@@ -12518,7 +12520,7 @@ const _export_sfc$1 = (sfc, props) => {
   }
   return target;
 };
-const _hoisted_1$t = ["aria-hidden", "aria-label"];
+const _hoisted_1$u = ["aria-hidden", "aria-label"];
 const _hoisted_2$p = {
   key: 0,
   viewBox: "0 0 24 24",
@@ -12526,7 +12528,7 @@ const _hoisted_2$p = {
 };
 const _hoisted_3$n = ["d"];
 const _hoisted_4$i = ["innerHTML"];
-const _sfc_main$w = /* @__PURE__ */ defineComponent({
+const _sfc_main$x = /* @__PURE__ */ defineComponent({
   __name: "NcIconSvgWrapper",
   props: {
     directional: { type: Boolean },
@@ -12572,11 +12574,11 @@ const _sfc_main$w = /* @__PURE__ */ defineComponent({
           key: 1,
           innerHTML: cleanSvg.value
         }, null, 8, _hoisted_4$i))
-      ], 10, _hoisted_1$t);
+      ], 10, _hoisted_1$u);
     };
   }
 });
-const NcIconSvgWrapper = /* @__PURE__ */ _export_sfc$1(_sfc_main$w, [["__scopeId", "data-v-aaedb1c3"]]);
+const NcIconSvgWrapper = /* @__PURE__ */ _export_sfc$1(_sfc_main$x, [["__scopeId", "data-v-aaedb1c3"]]);
 const NC_ACTIONS_IS_SEMANTIC_MENU = /* @__PURE__ */ Symbol.for("NcActions:isSemanticMenu");
 const NC_ACTIONS_CLOSE_MENU = /* @__PURE__ */ Symbol.for("NcActions:closeMenu");
 const ActionGlobalMixin = {
@@ -12674,7 +12676,7 @@ const ActionTextMixin = {
     }
   }
 };
-const _sfc_main$v = {
+const _sfc_main$w = {
   name: "NcActionButton",
   components: {
     NcIconSvgWrapper
@@ -12821,7 +12823,7 @@ const _sfc_main$v = {
     }
   }
 };
-const _hoisted_1$s = ["role"];
+const _hoisted_1$t = ["role"];
 const _hoisted_2$o = ["aria-label", "disabled", "title", "type"];
 const _hoisted_3$m = { class: "action-button__longtext-wrapper" };
 const _hoisted_4$h = {
@@ -12888,9 +12890,9 @@ function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
       }, null, 8, ["path"])) : $options.isChecked === false ? (openBlock(), createElementBlock("span", _hoisted_8)) : createCommentVNode("", true),
       createCommentVNode("", true)
     ], 16, _hoisted_2$o)
-  ], 10, _hoisted_1$s);
+  ], 10, _hoisted_1$t);
 }
-const NcActionButton = /* @__PURE__ */ _export_sfc$1(_sfc_main$v, [["render", _sfc_render$n], ["__scopeId", "data-v-6c2daf4e"]]);
+const NcActionButton = /* @__PURE__ */ _export_sfc$1(_sfc_main$w, [["render", _sfc_render$n], ["__scopeId", "data-v-6c2daf4e"]]);
 const generateOcsUrl = (url2, params, options) => {
   const allOptions = Object.assign({
     ocsVersion: 2
@@ -14664,11 +14666,11 @@ const extend = (a2, b2, thisArg, { allOwnKeys } = {}) => {
   );
   return a2;
 };
-const stripBOM = (content) => {
-  if (content.charCodeAt(0) === 65279) {
-    content = content.slice(1);
+const stripBOM = (content2) => {
+  if (content2.charCodeAt(0) === 65279) {
+    content2 = content2.slice(1);
   }
-  return content;
+  return content2;
 };
 const inherits = (constructor, superConstructor, props, descriptors) => {
   constructor.prototype = Object.create(superConstructor.prototype, descriptors);
@@ -17240,8 +17242,8 @@ const parseHeaders = (rawHeaders) => {
   return parsed;
 };
 const $internals = /* @__PURE__ */ Symbol("internals");
-function normalizeHeader(header) {
-  return header && String(header).trim().toLowerCase();
+function normalizeHeader(header2) {
+  return header2 && String(header2).trim().toLowerCase();
 }
 function normalizeValue(value) {
   if (value === false || value == null) {
@@ -17259,12 +17261,12 @@ function parseTokens(str) {
   return tokens;
 }
 const isValidHeaderName = (str) => /^[-_a-zA-Z0-9^`|~,!#$%&'*+.]+$/.test(str.trim());
-function matchHeaderValue(context, value, header, filter2, isHeaderNameFilter) {
+function matchHeaderValue(context, value, header2, filter2, isHeaderNameFilter) {
   if (utils$1.isFunction(filter2)) {
-    return filter2.call(this, value, header);
+    return filter2.call(this, value, header2);
   }
   if (isHeaderNameFilter) {
-    value = header;
+    value = header2;
   }
   if (!utils$1.isString(value)) return;
   if (utils$1.isString(filter2)) {
@@ -17274,17 +17276,17 @@ function matchHeaderValue(context, value, header, filter2, isHeaderNameFilter) {
     return filter2.test(value);
   }
 }
-function formatHeader(header) {
-  return header.trim().toLowerCase().replace(/([a-z\d])(\w*)/g, (w2, char, str) => {
+function formatHeader(header2) {
+  return header2.trim().toLowerCase().replace(/([a-z\d])(\w*)/g, (w2, char, str) => {
     return char.toUpperCase() + str;
   });
 }
-function buildAccessors(obj, header) {
-  const accessorName = utils$1.toCamelCase(" " + header);
+function buildAccessors(obj, header2) {
+  const accessorName = utils$1.toCamelCase(" " + header2);
   ["get", "set", "has"].forEach((methodName) => {
     Object.defineProperty(obj, methodName + accessorName, {
       value: function(arg1, arg2, arg3) {
-        return this[methodName].call(this, header, arg1, arg2, arg3);
+        return this[methodName].call(this, header2, arg1, arg2, arg3);
       },
       configurable: true
     });
@@ -17294,7 +17296,7 @@ let AxiosHeaders$1 = class AxiosHeaders {
   constructor(headers) {
     headers && this.set(headers);
   }
-  set(header, valueOrRewrite, rewrite) {
+  set(header2, valueOrRewrite, rewrite) {
     const self2 = this;
     function setHeader(_value, _header, _rewrite) {
       const lHeader = normalizeHeader(_header);
@@ -17307,13 +17309,13 @@ let AxiosHeaders$1 = class AxiosHeaders {
       }
     }
     const setHeaders = (headers, _rewrite) => utils$1.forEach(headers, (_value, _header) => setHeader(_value, _header, _rewrite));
-    if (utils$1.isPlainObject(header) || header instanceof this.constructor) {
-      setHeaders(header, valueOrRewrite);
-    } else if (utils$1.isString(header) && (header = header.trim()) && !isValidHeaderName(header)) {
-      setHeaders(parseHeaders(header), valueOrRewrite);
-    } else if (utils$1.isObject(header) && utils$1.isIterable(header)) {
+    if (utils$1.isPlainObject(header2) || header2 instanceof this.constructor) {
+      setHeaders(header2, valueOrRewrite);
+    } else if (utils$1.isString(header2) && (header2 = header2.trim()) && !isValidHeaderName(header2)) {
+      setHeaders(parseHeaders(header2), valueOrRewrite);
+    } else if (utils$1.isObject(header2) && utils$1.isIterable(header2)) {
       let obj = {}, dest, key;
-      for (const entry of header) {
+      for (const entry of header2) {
         if (!utils$1.isArray(entry)) {
           throw TypeError("Object iterator must return a key-value pair");
         }
@@ -17321,14 +17323,14 @@ let AxiosHeaders$1 = class AxiosHeaders {
       }
       setHeaders(obj, valueOrRewrite);
     } else {
-      header != null && setHeader(valueOrRewrite, header, rewrite);
+      header2 != null && setHeader(valueOrRewrite, header2, rewrite);
     }
     return this;
   }
-  get(header, parser) {
-    header = normalizeHeader(header);
-    if (header) {
-      const key = utils$1.findKey(this, header);
+  get(header2, parser) {
+    header2 = normalizeHeader(header2);
+    if (header2) {
+      const key = utils$1.findKey(this, header2);
       if (key) {
         const value = this[key];
         if (!parser) {
@@ -17347,15 +17349,15 @@ let AxiosHeaders$1 = class AxiosHeaders {
       }
     }
   }
-  has(header, matcher) {
-    header = normalizeHeader(header);
-    if (header) {
-      const key = utils$1.findKey(this, header);
+  has(header2, matcher) {
+    header2 = normalizeHeader(header2);
+    if (header2) {
+      const key = utils$1.findKey(this, header2);
       return !!(key && this[key] !== void 0 && (!matcher || matchHeaderValue(this, this[key], key, matcher)));
     }
     return false;
   }
-  delete(header, matcher) {
+  delete(header2, matcher) {
     const self2 = this;
     let deleted = false;
     function deleteHeader(_header) {
@@ -17368,10 +17370,10 @@ let AxiosHeaders$1 = class AxiosHeaders {
         }
       }
     }
-    if (utils$1.isArray(header)) {
-      header.forEach(deleteHeader);
+    if (utils$1.isArray(header2)) {
+      header2.forEach(deleteHeader);
     } else {
-      deleteHeader(header);
+      deleteHeader(header2);
     }
     return deleted;
   }
@@ -17391,16 +17393,16 @@ let AxiosHeaders$1 = class AxiosHeaders {
   normalize(format2) {
     const self2 = this;
     const headers = {};
-    utils$1.forEach(this, (value, header) => {
-      const key = utils$1.findKey(headers, header);
+    utils$1.forEach(this, (value, header2) => {
+      const key = utils$1.findKey(headers, header2);
       if (key) {
         self2[key] = normalizeValue(value);
-        delete self2[header];
+        delete self2[header2];
         return;
       }
-      const normalized = format2 ? formatHeader(header) : String(header).trim();
-      if (normalized !== header) {
-        delete self2[header];
+      const normalized = format2 ? formatHeader(header2) : String(header2).trim();
+      if (normalized !== header2) {
+        delete self2[header2];
       }
       self2[normalized] = normalizeValue(value);
       headers[normalized] = true;
@@ -17412,8 +17414,8 @@ let AxiosHeaders$1 = class AxiosHeaders {
   }
   toJSON(asStrings) {
     const obj = /* @__PURE__ */ Object.create(null);
-    utils$1.forEach(this, (value, header) => {
-      value != null && value !== false && (obj[header] = asStrings && utils$1.isArray(value) ? value.join(", ") : value);
+    utils$1.forEach(this, (value, header2) => {
+      value != null && value !== false && (obj[header2] = asStrings && utils$1.isArray(value) ? value.join(", ") : value);
     });
     return obj;
   }
@@ -17421,7 +17423,7 @@ let AxiosHeaders$1 = class AxiosHeaders {
     return Object.entries(this.toJSON())[Symbol.iterator]();
   }
   toString() {
-    return Object.entries(this.toJSON()).map(([header, value]) => header + ": " + value).join("\n");
+    return Object.entries(this.toJSON()).map(([header2, value]) => header2 + ": " + value).join("\n");
   }
   getSetCookie() {
     return this.get("set-cookie") || [];
@@ -17437,7 +17439,7 @@ let AxiosHeaders$1 = class AxiosHeaders {
     targets.forEach((target) => computed2.set(target));
     return computed2;
   }
-  static accessor(header) {
+  static accessor(header2) {
     const internals = this[$internals] = this[$internals] = {
       accessors: {}
     };
@@ -17450,7 +17452,7 @@ let AxiosHeaders$1 = class AxiosHeaders {
         accessors[lHeader] = true;
       }
     }
-    utils$1.isArray(header) ? header.forEach(defineAccessor) : defineAccessor(header);
+    utils$1.isArray(header2) ? header2.forEach(defineAccessor) : defineAccessor(header2);
     return this;
   }
 };
@@ -19084,10 +19086,10 @@ function useNcFormBox() {
     formBoxItemClass: void 0
   });
 }
-const _hoisted_1$r = { class: "button-vue__wrapper" };
+const _hoisted_1$s = { class: "button-vue__wrapper" };
 const _hoisted_2$n = { class: "button-vue__icon" };
 const _hoisted_3$l = { class: "button-vue__text" };
-const _sfc_main$u = /* @__PURE__ */ defineComponent({
+const _sfc_main$v = /* @__PURE__ */ defineComponent({
   __name: "NcButton",
   props: {
     alignment: { default: "center" },
@@ -19180,7 +19182,7 @@ const _sfc_main$u = /* @__PURE__ */ defineComponent({
         "aria-label": _ctx.ariaLabel
       }, attrs.value, { onClick }), {
         default: withCtx(() => [
-          createBaseVNode("span", _hoisted_1$r, [
+          createBaseVNode("span", _hoisted_1$s, [
             createBaseVNode("span", _hoisted_2$n, [
               renderSlot(_ctx.$slots, "icon", {}, void 0, true)
             ]),
@@ -19196,8 +19198,8 @@ const _sfc_main$u = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const NcButton = /* @__PURE__ */ _export_sfc$1(_sfc_main$u, [["__scopeId", "data-v-09093702"]]);
-const _hoisted_1$q = { class: "input-field__main-wrapper" };
+const NcButton = /* @__PURE__ */ _export_sfc$1(_sfc_main$v, [["__scopeId", "data-v-09093702"]]);
+const _hoisted_1$r = { class: "input-field__main-wrapper" };
 const _hoisted_2$m = ["id", "aria-describedby", "disabled", "placeholder", "type", "value"];
 const _hoisted_3$k = ["for"];
 const _hoisted_4$g = { class: "input-field__icon input-field__icon--leading" };
@@ -19206,7 +19208,7 @@ const _hoisted_5$6 = {
   class: "input-field__icon input-field__icon--trailing"
 };
 const _hoisted_6$5 = ["id"];
-const _sfc_main$t = /* @__PURE__ */ defineComponent({
+const _sfc_main$u = /* @__PURE__ */ defineComponent({
   ...{
     inheritAttrs: false
   },
@@ -19288,7 +19290,7 @@ const _sfc_main$t = /* @__PURE__ */ defineComponent({
           "input-field--legacy": unref(isLegacy)
         }, _ctx.$props.class]])
       }, [
-        createBaseVNode("div", _hoisted_1$q, [
+        createBaseVNode("div", _hoisted_1$r, [
           createBaseVNode("input", mergeProps(_ctx.$attrs, {
             id: _ctx.id,
             ref: "input",
@@ -19355,7 +19357,7 @@ const _sfc_main$t = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const NcInputField = /* @__PURE__ */ _export_sfc$1(_sfc_main$t, [["__scopeId", "data-v-fccfce00"]]);
+const NcInputField = /* @__PURE__ */ _export_sfc$1(_sfc_main$u, [["__scopeId", "data-v-fccfce00"]]);
 var LogLevel = /* @__PURE__ */ ((LogLevel2) => {
   LogLevel2[LogLevel2["Debug"] = 0] = "Debug";
   LogLevel2[LogLevel2["Info"] = 1] = "Info";
@@ -19518,7 +19520,7 @@ register(t49);
     }
   }
 });
-const _sfc_main$s = {
+const _sfc_main$t = {
   name: "NcActionLink",
   mixins: [ActionTextMixin],
   inject: {
@@ -19568,7 +19570,7 @@ const _sfc_main$s = {
     }
   }
 };
-const _hoisted_1$p = ["role"];
+const _hoisted_1$q = ["role"];
 const _hoisted_2$l = ["download", "href", "aria-label", "target", "title", "role"];
 const _hoisted_3$j = {
   key: 0,
@@ -19618,10 +19620,10 @@ function _sfc_render$m(_ctx, _cache, $props, $setup, $data, $options) {
       }, null, 8, _hoisted_6$4)) : (openBlock(), createElementBlock("span", _hoisted_7$2, toDisplayString(_ctx.text), 1)),
       createCommentVNode("", true)
     ], 8, _hoisted_2$l)
-  ], 8, _hoisted_1$p);
+  ], 8, _hoisted_1$q);
 }
-const NcActionLink = /* @__PURE__ */ _export_sfc$1(_sfc_main$s, [["render", _sfc_render$m], ["__scopeId", "data-v-32f01b7a"]]);
-const _sfc_main$r = {
+const NcActionLink = /* @__PURE__ */ _export_sfc$1(_sfc_main$t, [["render", _sfc_render$m], ["__scopeId", "data-v-32f01b7a"]]);
+const _sfc_main$s = {
   name: "NcActionRouter",
   mixins: [ActionTextMixin],
   inject: {
@@ -19640,7 +19642,7 @@ const _sfc_main$r = {
     }
   }
 };
-const _hoisted_1$o = ["role"];
+const _hoisted_1$p = ["role"];
 const _hoisted_2$k = {
   key: 0,
   class: "action-router__longtext-wrapper"
@@ -19691,9 +19693,9 @@ function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
       ]),
       _: 3
     }, 8, ["aria-label", "role", "title", "to", "onClick"])
-  ], 8, _hoisted_1$o);
+  ], 8, _hoisted_1$p);
 }
-const NcActionRouter = /* @__PURE__ */ _export_sfc$1(_sfc_main$r, [["render", _sfc_render$l], ["__scopeId", "data-v-87267750"]]);
+const NcActionRouter = /* @__PURE__ */ _export_sfc$1(_sfc_main$s, [["render", _sfc_render$l], ["__scopeId", "data-v-87267750"]]);
 function getTrapStack() {
   window._nc_focus_trap ??= [];
   return window._nc_focus_trap;
@@ -22230,8 +22232,8 @@ var _getCandidatesIteratively = function getCandidatesIteratively(elements, incl
     }
     if (element.tagName === "SLOT") {
       var assigned = element.assignedElements();
-      var content = assigned.length ? assigned : element.children;
-      var nestedCandidates = _getCandidatesIteratively(content, true, options);
+      var content2 = assigned.length ? assigned : element.children;
+      var nestedCandidates = _getCandidatesIteratively(content2, true, options);
       if (options.flatten) {
         candidates.push.apply(candidates, nestedCandidates);
       } else {
@@ -22479,32 +22481,32 @@ var _sortByOrder = function sortByOrder(candidates) {
     return acc;
   }, []).concat(regularTabbables);
 };
-var tabbable = function tabbable2(container, options) {
+var tabbable = function tabbable2(container2, options) {
   options = options || {};
   var candidates;
   if (options.getShadowRoot) {
-    candidates = _getCandidatesIteratively([container], options.includeContainer, {
+    candidates = _getCandidatesIteratively([container2], options.includeContainer, {
       filter: isNodeMatchingSelectorTabbable.bind(null, options),
       flatten: false,
       getShadowRoot: options.getShadowRoot,
       shadowRootFilter: isShadowRootTabbable
     });
   } else {
-    candidates = getCandidates(container, options.includeContainer, isNodeMatchingSelectorTabbable.bind(null, options));
+    candidates = getCandidates(container2, options.includeContainer, isNodeMatchingSelectorTabbable.bind(null, options));
   }
   return _sortByOrder(candidates);
 };
-var focusable = function focusable2(container, options) {
+var focusable = function focusable2(container2, options) {
   options = options || {};
   var candidates;
   if (options.getShadowRoot) {
-    candidates = _getCandidatesIteratively([container], options.includeContainer, {
+    candidates = _getCandidatesIteratively([container2], options.includeContainer, {
       filter: isNodeMatchingSelectorFocusable.bind(null, options),
       flatten: true,
       getShadowRoot: options.getShadowRoot
     });
   } else {
-    candidates = getCandidates(container, options.includeContainer, isNodeMatchingSelectorFocusable.bind(null, options));
+    candidates = getCandidates(container2, options.includeContainer, isNodeMatchingSelectorFocusable.bind(null, options));
   }
   return candidates;
 };
@@ -22899,12 +22901,12 @@ var createFocusTrap = function createFocusTrap2(elements, userOptions) {
   var findContainerIndex = function findContainerIndex2(element, event) {
     var composedPath = typeof (event === null || event === void 0 ? void 0 : event.composedPath) === "function" ? event.composedPath() : void 0;
     return state.containerGroups.findIndex(function(_ref) {
-      var container = _ref.container, tabbableNodes = _ref.tabbableNodes;
-      return container.contains(element) || // fall back to explicit tabbable search which will take into consideration any
+      var container2 = _ref.container, tabbableNodes = _ref.tabbableNodes;
+      return container2.contains(element) || // fall back to explicit tabbable search which will take into consideration any
       //  web components if the `tabbableOptions.getShadowRoot` option was used for
       //  the trap, enabling shadow DOM support in tabbable (`Node.contains()` doesn't
       //  look inside web components even if open)
-      (composedPath === null || composedPath === void 0 ? void 0 : composedPath.includes(container)) || tabbableNodes.find(function(node) {
+      (composedPath === null || composedPath === void 0 ? void 0 : composedPath.includes(container2)) || tabbableNodes.find(function(node) {
         return node === element;
       });
     });
@@ -22963,9 +22965,9 @@ var createFocusTrap = function createFocusTrap2(elements, userOptions) {
     return node;
   };
   var updateTabbableNodes = function updateTabbableNodes2() {
-    state.containerGroups = state.containers.map(function(container) {
-      var tabbableNodes = tabbable(container, config.tabbableOptions);
-      var focusableNodes = focusable(container, config.tabbableOptions);
+    state.containerGroups = state.containers.map(function(container2) {
+      var tabbableNodes = tabbable(container2, config.tabbableOptions);
+      var focusableNodes = focusable(container2, config.tabbableOptions);
       var firstTabbableNode = tabbableNodes.length > 0 ? tabbableNodes[0] : void 0;
       var lastTabbableNode = tabbableNodes.length > 0 ? tabbableNodes[tabbableNodes.length - 1] : void 0;
       var firstDomTabbableNode = focusableNodes.find(function(node) {
@@ -22978,7 +22980,7 @@ var createFocusTrap = function createFocusTrap2(elements, userOptions) {
         return getTabIndex(node) > 0;
       });
       return {
-        container,
+        container: container2,
         tabbableNodes,
         focusableNodes,
         /** True if at least one node with positive `tabindex` was found in this container. */
@@ -23290,10 +23292,10 @@ var createFocusTrap = function createFocusTrap2(elements, userOptions) {
     var _iterator = _createForOfIteratorHelper(containers), _step;
     try {
       for (_iterator.s(); !(_step = _iterator.n()).done; ) {
-        var container = _step.value;
-        containerAncestors.add(container);
-        var insideShadowRoot = typeof ShadowRoot !== "undefined" && container.getRootNode() instanceof ShadowRoot;
-        var current = container;
+        var container2 = _step.value;
+        containerAncestors.add(container2);
+        var insideShadowRoot = typeof ShadowRoot !== "undefined" && container2.getRootNode() instanceof ShadowRoot;
+        var current = container2;
         while (current) {
           containerAncestors.add(current);
           var parent = current.parentElement;
@@ -23359,8 +23361,8 @@ var createFocusTrap = function createFocusTrap2(elements, userOptions) {
     }
     mutationObserver.disconnect();
     if (state.active && !state.paused) {
-      state.containers.map(function(container) {
-        mutationObserver.observe(container, {
+      state.containers.map(function(container2) {
+        mutationObserver.observe(container2, {
           subtree: true,
           childList: true
         });
@@ -23639,13 +23641,13 @@ const _sfc_main$1$6 = /* @__PURE__ */ defineComponent({
   }
 });
 const ncPopover = "_ncPopover_HjJ88";
-const style0$1 = {
+const style0$2 = {
   "material-design-icon": "_material-design-icon_FKPyJ",
   ncPopover
 };
 const theme = "nc-popover-9";
 Ht$1.themes[theme] = structuredClone(Ht$1.themes.dropdown);
-const _sfc_main$q = {
+const _sfc_main$r = {
   name: "NcPopover",
   components: {
     Dropdown: kt,
@@ -24015,10 +24017,10 @@ function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
     _: 3
   }, 8, ["shown", "autoHide", "boundary", "container", "delay", "placement", "popperClass", "popperTriggers", "popperHideTriggers", "popperShowTriggers", "theme", "triggers", "hideTriggers", "showTriggers", "onApplyShow", "onApplyHide"]);
 }
-const cssModules$1 = {
-  "$style": style0$1
+const cssModules$2 = {
+  "$style": style0$2
 };
-const NcPopover = /* @__PURE__ */ _export_sfc$1(_sfc_main$q, [["render", _sfc_render$k], ["__cssModules", cssModules$1]]);
+const NcPopover = /* @__PURE__ */ _export_sfc$1(_sfc_main$r, [["render", _sfc_render$k], ["__cssModules", cssModules$2]]);
 const _sfc_main$1$5 = {
   name: "DotsHorizontalIcon",
   emits: ["click"],
@@ -24036,7 +24038,7 @@ const _sfc_main$1$5 = {
     }
   }
 };
-const _hoisted_1$n = ["aria-hidden", "aria-label"];
+const _hoisted_1$o = ["aria-hidden", "aria-label"];
 const _hoisted_2$j = ["fill", "width", "height"];
 const _hoisted_3$h = { d: "M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z" };
 const _hoisted_4$d = { key: 0 };
@@ -24059,7 +24061,7 @@ function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
         $props.title ? (openBlock(), createElementBlock("title", _hoisted_4$d, toDisplayString($props.title), 1)) : createCommentVNode("", true)
       ])
     ], 8, _hoisted_2$j))
-  ], 16, _hoisted_1$n);
+  ], 16, _hoisted_1$o);
 }
 const IconDotsHorizontal = /* @__PURE__ */ _export_sfc$1(_sfc_main$1$5, [["render", _sfc_render$j]]);
 register(t4);
@@ -24081,7 +24083,7 @@ function isSlotPopulated(vnodes) {
   });
 }
 const focusableSelector = ".focusable";
-const _sfc_main$p = {
+const _sfc_main$q = {
   name: "NcActions",
   components: {
     NcButton,
@@ -24519,8 +24521,8 @@ const _sfc_main$p = {
     focusFirstAction(event) {
       if (this.opened) {
         this.preventIfEvent(event);
-        const firstCheckedIndex = [...this.getFocusableMenuItemElements()].findIndex((button) => {
-          return button.getAttribute("aria-checked") === "true" && button.getAttribute("role") === "menuitemradio";
+        const firstCheckedIndex = [...this.getFocusableMenuItemElements()].findIndex((button2) => {
+          return button2.getAttribute("aria-checked") === "true" && button2.getAttribute("role") === "menuitemradio";
         });
         this.focusIndex = firstCheckedIndex > -1 ? firstCheckedIndex : 0;
         this.focusAction();
@@ -24766,8 +24768,8 @@ const _sfc_main$p = {
     );
   }
 };
-const NcActions = /* @__PURE__ */ _export_sfc$1(_sfc_main$p, [["__scopeId", "data-v-5f7eed6b"]]);
-const _sfc_main$o = {
+const NcActions = /* @__PURE__ */ _export_sfc$1(_sfc_main$q, [["__scopeId", "data-v-5f7eed6b"]]);
+const _sfc_main$p = {
   name: "NcActionText",
   mixins: [ActionTextMixin],
   inject: {
@@ -24777,7 +24779,7 @@ const _sfc_main$o = {
     }
   }
 };
-const _hoisted_1$m = ["role"];
+const _hoisted_1$n = ["role"];
 const _hoisted_2$i = {
   key: 0,
   class: "action-text__longtext-wrapper"
@@ -24819,9 +24821,9 @@ function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
       }, null, 8, _hoisted_5$3)) : (openBlock(), createElementBlock("span", _hoisted_6$2, toDisplayString(_ctx.text), 1)),
       createCommentVNode("", true)
     ])
-  ], 8, _hoisted_1$m);
+  ], 8, _hoisted_1$n);
 }
-const NcActionText = /* @__PURE__ */ _export_sfc$1(_sfc_main$o, [["render", _sfc_render$i], ["__scopeId", "data-v-fa684b48"]]);
+const NcActionText = /* @__PURE__ */ _export_sfc$1(_sfc_main$p, [["render", _sfc_render$i], ["__scopeId", "data-v-fa684b48"]]);
 function tryOnScopeDispose(fn2, failSilently) {
   if (getCurrentScope()) {
     onScopeDispose(fn2, failSilently);
@@ -25650,7 +25652,7 @@ const _sfc_main$1$4 = /* @__PURE__ */ defineComponent({
 const NcAppContentDetailsToggle = /* @__PURE__ */ _export_sfc$1(_sfc_main$1$4, [["__scopeId", "data-v-a28923a1"]]);
 const browserStorage$2 = getBuilder("nextcloud").persist().build();
 const instanceName = getCapabilities().theming?.name ?? "Nextcloud";
-const _sfc_main$n = {
+const _sfc_main$o = {
   name: "NcAppContent",
   components: {
     NcAppContentDetailsToggle,
@@ -25887,7 +25889,7 @@ const _sfc_main$n = {
     }
   }
 };
-const _hoisted_1$l = {
+const _hoisted_1$m = {
   key: 0,
   class: "hidden-visually"
 };
@@ -25904,7 +25906,7 @@ function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
     id: "app-content-vue",
     class: normalizeClass(["app-content no-snapper", { "app-content--has-list": !!_ctx.$slots.list }])
   }, [
-    $props.pageHeading ? (openBlock(), createElementBlock("h1", _hoisted_1$l, toDisplayString($props.pageHeading), 1)) : createCommentVNode("", true),
+    $props.pageHeading ? (openBlock(), createElementBlock("h1", _hoisted_1$m, toDisplayString($props.pageHeading), 1)) : createCommentVNode("", true),
     !!_ctx.$slots.list ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
       $setup.isMobile || $props.layout === "no-split" ? (openBlock(), createElementBlock("div", {
         key: 0,
@@ -25965,17 +25967,17 @@ function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
     !_ctx.$slots.list ? renderSlot(_ctx.$slots, "default", { key: 2 }, void 0, true) : createCommentVNode("", true)
   ], 2);
 }
-const NcAppContent = /* @__PURE__ */ _export_sfc$1(_sfc_main$n, [["render", _sfc_render$h], ["__scopeId", "data-v-ea1e6879"]]);
-const _sfc_main$m = {
+const NcAppContent = /* @__PURE__ */ _export_sfc$1(_sfc_main$o, [["render", _sfc_render$h], ["__scopeId", "data-v-ea1e6879"]]);
+const _sfc_main$n = {
   name: "NcAppNavigationList"
 };
-const _hoisted_1$k = { class: "app-navigation-list" };
+const _hoisted_1$l = { class: "app-navigation-list" };
 function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("ul", _hoisted_1$k, [
+  return openBlock(), createElementBlock("ul", _hoisted_1$l, [
     renderSlot(_ctx.$slots, "default", {}, void 0, true)
   ]);
 }
-const NcAppNavigationList = /* @__PURE__ */ _export_sfc$1(_sfc_main$m, [["render", _sfc_render$g], ["__scopeId", "data-v-d72957ed"]]);
+const NcAppNavigationList = /* @__PURE__ */ _export_sfc$1(_sfc_main$n, [["render", _sfc_render$g], ["__scopeId", "data-v-d72957ed"]]);
 /*!
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -26017,9 +26019,9 @@ const _sfc_main$1$3 = /* @__PURE__ */ defineComponent({
   }
 });
 const NcAppNavigationToggle = /* @__PURE__ */ _export_sfc$1(_sfc_main$1$3, [["__scopeId", "data-v-5a15295d"]]);
-const _hoisted_1$j = ["aria-hidden", "aria-label", "aria-labelledby", "inert"];
+const _hoisted_1$k = ["aria-hidden", "aria-label", "aria-labelledby", "inert"];
 const _hoisted_2$g = { class: "app-navigation__search" };
-const _sfc_main$l = /* @__PURE__ */ defineComponent({
+const _sfc_main$m = /* @__PURE__ */ defineComponent({
   __name: "NcAppNavigation",
   props: {
     ariaLabel: {},
@@ -26127,7 +26129,7 @@ const _sfc_main$l = /* @__PURE__ */ defineComponent({
             _: 3
           })) : createCommentVNode("", true),
           renderSlot(_ctx.$slots, "footer", {}, void 0, true)
-        ], 40, _hoisted_1$j),
+        ], 40, _hoisted_1$k),
         createVNode(NcAppNavigationToggle, {
           open: open.value,
           "onUpdate:open": toggleNavigation
@@ -26136,8 +26138,8 @@ const _sfc_main$l = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const NcAppNavigation = /* @__PURE__ */ _export_sfc$1(_sfc_main$l, [["__scopeId", "data-v-d5ce90cd"]]);
-const _sfc_main$k = {
+const NcAppNavigation = /* @__PURE__ */ _export_sfc$1(_sfc_main$m, [["__scopeId", "data-v-d5ce90cd"]]);
+const _sfc_main$l = {
   name: "NcAppNavigationCaption",
   components: {
     NcActions
@@ -26194,7 +26196,7 @@ const _sfc_main$k = {
     }
   }
 };
-const _hoisted_1$i = {
+const _hoisted_1$j = {
   key: 0,
   class: "app-navigation-caption__actions"
 };
@@ -26213,7 +26215,7 @@ function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
         ]),
         _: 1
       }, 8, ["id"])),
-      !!_ctx.$slots.actions ? (openBlock(), createElementBlock("div", _hoisted_1$i, [
+      !!_ctx.$slots.actions ? (openBlock(), createElementBlock("div", _hoisted_1$j, [
         createVNode(_component_NcActions, normalizeProps(guardReactiveProps($options.actionsProps)), {
           icon: withCtx(() => [
             renderSlot(_ctx.$slots, "actionsTriggerIcon", {}, void 0, true)
@@ -26228,8 +26230,8 @@ function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
     _: 3
   }, 8, ["class"]);
 }
-const NcAppNavigationCaption = /* @__PURE__ */ _export_sfc$1(_sfc_main$k, [["render", _sfc_render$f], ["__scopeId", "data-v-21e6b451"]]);
-const _sfc_main$j = {
+const NcAppNavigationCaption = /* @__PURE__ */ _export_sfc$1(_sfc_main$l, [["render", _sfc_render$f], ["__scopeId", "data-v-21e6b451"]]);
+const _sfc_main$k = {
   name: "ChevronDownIcon",
   emits: ["click"],
   props: {
@@ -26246,7 +26248,7 @@ const _sfc_main$j = {
     }
   }
 };
-const _hoisted_1$h = ["aria-hidden", "aria-label"];
+const _hoisted_1$i = ["aria-hidden", "aria-label"];
 const _hoisted_2$f = ["fill", "width", "height"];
 const _hoisted_3$e = { d: "M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" };
 const _hoisted_4$b = { key: 0 };
@@ -26269,10 +26271,10 @@ function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
         $props.title ? (openBlock(), createElementBlock("title", _hoisted_4$b, toDisplayString($props.title), 1)) : createCommentVNode("", true)
       ])
     ], 8, _hoisted_2$f))
-  ], 16, _hoisted_1$h);
+  ], 16, _hoisted_1$i);
 }
-const ChevronDown = /* @__PURE__ */ _export_sfc$1(_sfc_main$j, [["render", _sfc_render$e]]);
-const _sfc_main$i = {
+const ChevronDown = /* @__PURE__ */ _export_sfc$1(_sfc_main$k, [["render", _sfc_render$e]]);
+const _sfc_main$j = {
   name: "ChevronUpIcon",
   emits: ["click"],
   props: {
@@ -26289,7 +26291,7 @@ const _sfc_main$i = {
     }
   }
 };
-const _hoisted_1$g = ["aria-hidden", "aria-label"];
+const _hoisted_1$h = ["aria-hidden", "aria-label"];
 const _hoisted_2$e = ["fill", "width", "height"];
 const _hoisted_3$d = { d: "M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" };
 const _hoisted_4$a = { key: 0 };
@@ -26312,10 +26314,10 @@ function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
         $props.title ? (openBlock(), createElementBlock("title", _hoisted_4$a, toDisplayString($props.title), 1)) : createCommentVNode("", true)
       ])
     ], 8, _hoisted_2$e))
-  ], 16, _hoisted_1$g);
+  ], 16, _hoisted_1$h);
 }
-const ChevronUp = /* @__PURE__ */ _export_sfc$1(_sfc_main$i, [["render", _sfc_render$d]]);
-const _sfc_main$h = {
+const ChevronUp = /* @__PURE__ */ _export_sfc$1(_sfc_main$j, [["render", _sfc_render$d]]);
+const _sfc_main$i = {
   name: "ArrowRightIcon",
   emits: ["click"],
   props: {
@@ -26332,7 +26334,7 @@ const _sfc_main$h = {
     }
   }
 };
-const _hoisted_1$f = ["aria-hidden", "aria-label"];
+const _hoisted_1$g = ["aria-hidden", "aria-label"];
 const _hoisted_2$d = ["fill", "width", "height"];
 const _hoisted_3$c = { d: "M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" };
 const _hoisted_4$9 = { key: 0 };
@@ -26355,10 +26357,10 @@ function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
         $props.title ? (openBlock(), createElementBlock("title", _hoisted_4$9, toDisplayString($props.title), 1)) : createCommentVNode("", true)
       ])
     ], 8, _hoisted_2$d))
-  ], 16, _hoisted_1$f);
+  ], 16, _hoisted_1$g);
 }
-const IconArrowRight = /* @__PURE__ */ _export_sfc$1(_sfc_main$h, [["render", _sfc_render$c]]);
-const _sfc_main$g = {
+const IconArrowRight = /* @__PURE__ */ _export_sfc$1(_sfc_main$i, [["render", _sfc_render$c]]);
+const _sfc_main$h = {
   name: "CloseIcon",
   emits: ["click"],
   props: {
@@ -26375,7 +26377,7 @@ const _sfc_main$g = {
     }
   }
 };
-const _hoisted_1$e = ["aria-hidden", "aria-label"];
+const _hoisted_1$f = ["aria-hidden", "aria-label"];
 const _hoisted_2$c = ["fill", "width", "height"];
 const _hoisted_3$b = { d: "M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" };
 const _hoisted_4$8 = { key: 0 };
@@ -26398,11 +26400,11 @@ function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
         $props.title ? (openBlock(), createElementBlock("title", _hoisted_4$8, toDisplayString($props.title), 1)) : createCommentVNode("", true)
       ])
     ], 8, _hoisted_2$c))
-  ], 16, _hoisted_1$e);
+  ], 16, _hoisted_1$f);
 }
-const IconClose = /* @__PURE__ */ _export_sfc$1(_sfc_main$g, [["render", _sfc_render$b]]);
+const IconClose = /* @__PURE__ */ _export_sfc$1(_sfc_main$h, [["render", _sfc_render$b]]);
 register(t14);
-const _sfc_main$f = {
+const _sfc_main$g = {
   name: "NcInputConfirmCancel",
   components: {
     IconArrowRight,
@@ -26465,13 +26467,13 @@ const _sfc_main$f = {
     }
   }
 };
-const _hoisted_1$d = { class: "app-navigation-input-confirm" };
+const _hoisted_1$e = { class: "app-navigation-input-confirm" };
 const _hoisted_2$b = ["placeholder"];
 function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_IconArrowRight = resolveComponent("IconArrowRight");
   const _component_NcButton = resolveComponent("NcButton");
   const _component_IconClose = resolveComponent("IconClose");
-  return openBlock(), createElementBlock("div", _hoisted_1$d, [
+  return openBlock(), createElementBlock("div", _hoisted_1$e, [
     createBaseVNode("form", {
       onSubmit: _cache[1] || (_cache[1] = withModifiers((...args) => $options.confirm && $options.confirm(...args), ["prevent"])),
       onKeydown: _cache[2] || (_cache[2] = withKeys(withModifiers((...args) => $options.cancel && $options.cancel(...args), ["exact", "stop", "prevent"]), ["esc"])),
@@ -26512,13 +26514,13 @@ function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
     ], 32)
   ]);
 }
-const NcInputConfirmCancel = /* @__PURE__ */ _export_sfc$1(_sfc_main$f, [["render", _sfc_render$a], ["__scopeId", "data-v-dd457d48"]]);
-const _hoisted_1$c = ["aria-label"];
+const NcInputConfirmCancel = /* @__PURE__ */ _export_sfc$1(_sfc_main$g, [["render", _sfc_render$a], ["__scopeId", "data-v-dd457d48"]]);
+const _hoisted_1$d = ["aria-label"];
 const _hoisted_2$a = ["width", "height"];
 const _hoisted_3$a = ["fill"];
 const _hoisted_4$7 = ["fill"];
 const _hoisted_5$2 = { key: 0 };
-const _sfc_main$e = /* @__PURE__ */ defineComponent({
+const _sfc_main$f = /* @__PURE__ */ defineComponent({
   __name: "NcLoadingIcon",
   props: {
     appearance: { default: "auto" },
@@ -26558,12 +26560,12 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
             _ctx.name ? (openBlock(), createElementBlock("title", _hoisted_5$2, toDisplayString(_ctx.name), 1)) : createCommentVNode("", true)
           ], 8, _hoisted_4$7)
         ], 8, _hoisted_2$a))
-      ], 8, _hoisted_1$c);
+      ], 8, _hoisted_1$d);
     };
   }
 });
-const NcLoadingIcon = /* @__PURE__ */ _export_sfc$1(_sfc_main$e, [["__scopeId", "data-v-cf399190"]]);
-const _sfc_main$d = /* @__PURE__ */ defineComponent({
+const NcLoadingIcon = /* @__PURE__ */ _export_sfc$1(_sfc_main$f, [["__scopeId", "data-v-cf399190"]]);
+const _sfc_main$e = /* @__PURE__ */ defineComponent({
   name: "NcVNodes",
   props: {
     /**
@@ -26730,7 +26732,7 @@ function _sfc_render$1$2(_ctx, _cache, $props, $setup, $data, $options) {
 }
 const NcAppNavigationIconCollapsible = /* @__PURE__ */ _export_sfc$1(_sfc_main$1$2, [["render", _sfc_render$1$2], ["__scopeId", "data-v-e6236e50"]]);
 register(t23, t51);
-const _sfc_main$c = {
+const _sfc_main$d = {
   name: "NcAppNavigationItem",
   components: {
     NcActions,
@@ -26738,7 +26740,7 @@ const _sfc_main$c = {
     NcAppNavigationIconCollapsible,
     NcInputConfirmCancel,
     NcLoadingIcon,
-    NcVNodes: _sfc_main$d,
+    NcVNodes: _sfc_main$e,
     Pencil,
     Undo
   },
@@ -27050,7 +27052,7 @@ const _sfc_main$c = {
     }
   }
 };
-const _hoisted_1$b = ["id"];
+const _hoisted_1$c = ["id"];
 const _hoisted_2$9 = ["aria-current", "aria-description", "aria-expanded", "href", "target", "title", "onClick"];
 const _hoisted_3$9 = {
   key: 0,
@@ -27201,9 +27203,9 @@ function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
     $options.canHaveChildren && !!_ctx.$slots.default ? (openBlock(), createElementBlock("ul", _hoisted_7$1, [
       renderSlot(_ctx.$slots, "default", {}, void 0, true)
     ])) : createCommentVNode("", true)
-  ], 10, _hoisted_1$b);
+  ], 10, _hoisted_1$c);
 }
-const NcAppNavigationItem = /* @__PURE__ */ _export_sfc$1(_sfc_main$c, [["render", _sfc_render$9], ["__scopeId", "data-v-f925f8d0"]]);
+const NcAppNavigationItem = /* @__PURE__ */ _export_sfc$1(_sfc_main$d, [["render", _sfc_render$9], ["__scopeId", "data-v-f925f8d0"]]);
 register(t16, t44);
 /* @__PURE__ */ defineComponent({
   __name: "NcAppNavigationSearch",
@@ -27297,6 +27299,89 @@ register(t16, t44);
   }
 });
 register(t47);
+const _hoisted_1$b = ["id"];
+const _sfc_main$c = /* @__PURE__ */ defineComponent({
+  __name: "NcAppNavigationSettings",
+  props: {
+    excludeClickOutsideSelectors: { default: () => [] },
+    name: { default: () => t("Settings") }
+  },
+  setup(__props) {
+    const contentId = createElementId();
+    const open = /* @__PURE__ */ ref(false);
+    const container2 = useTemplateRef("wrapperElement");
+    const ignore = computed(() => Array.isArray(__props.excludeClickOutsideSelectors) ? __props.excludeClickOutsideSelectors : __props.excludeClickOutsideSelectors.split(" "));
+    onClickOutside(container2, () => {
+      open.value = false;
+    }, { ignore });
+    return (_ctx, _cache) => {
+      return openBlock(), createElementBlock("div", {
+        ref: "wrapperElement",
+        class: normalizeClass(_ctx.$style.container)
+      }, [
+        createBaseVNode("div", {
+          class: normalizeClass(_ctx.$style.header)
+        }, [
+          createVNode(NcButton, {
+            "aria-controls": unref(contentId),
+            "aria-expanded": open.value ? "true" : "false",
+            class: normalizeClass(_ctx.$style.button),
+            alignment: "start",
+            variant: "tertiary",
+            wide: "",
+            onClick: _cache[0] || (_cache[0] = ($event) => open.value = !open.value)
+          }, {
+            icon: withCtx(() => [
+              createVNode(NcIconSvgWrapper, {
+                path: unref(isLegacy) ? unref(mdiCog) : unref(mdiCogOutline)
+              }, null, 8, ["path"])
+            ]),
+            default: withCtx(() => [
+              createTextVNode(" " + toDisplayString(_ctx.name), 1)
+            ]),
+            _: 1
+          }, 8, ["aria-controls", "aria-expanded", "class"])
+        ], 2),
+        createVNode(Transition, {
+          enterActiveClass: _ctx.$style.animationActive,
+          leaveActiveClass: _ctx.$style.animationActive,
+          enterFromClass: _ctx.$style.animationStop,
+          leaveToClass: _ctx.$style.animationStop
+        }, {
+          default: withCtx(() => [
+            withDirectives(createBaseVNode("div", {
+              id: unref(contentId),
+              class: normalizeClass(_ctx.$style.content)
+            }, [
+              renderSlot(_ctx.$slots, "default")
+            ], 10, _hoisted_1$b), [
+              [vShow, open.value]
+            ])
+          ]),
+          _: 3
+        }, 8, ["enterActiveClass", "leaveActiveClass", "enterFromClass", "leaveToClass"])
+      ], 2);
+    };
+  }
+});
+const container = "_container_RFk6U";
+const header = "_header_2CtDS";
+const button = "_button_tAyis";
+const content = "_content_--KYD";
+const animationActive = "_animationActive_DAG1p";
+const animationStop = "_animationStop_fWYQj";
+const style0$1 = {
+  container,
+  header,
+  button,
+  content,
+  animationActive,
+  animationStop
+};
+const cssModules$1 = {
+  "$style": style0$1
+};
+const NcAppNavigationSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$c, [["__cssModules", cssModules$1]]);
 register(t33);
 register(t2);
 ({
@@ -28088,7 +28173,7 @@ MultiToken.prototype = {
     const href = this.toHref(options.get("defaultProtocol"));
     const formattedHref = options.get("formatHref", href, this);
     const tagName = options.get("tagName", href, token2);
-    const content = this.toFormattedString(options);
+    const content2 = this.toFormattedString(options);
     const attributes = {};
     const className = options.get("className", href, token2);
     const target = options.get("target", href, token2);
@@ -28111,7 +28196,7 @@ MultiToken.prototype = {
     return {
       tagName,
       attributes,
-      content,
+      content: content2,
       eventListeners
     };
   }
@@ -33632,10 +33717,10 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     const currentFocus = /* @__PURE__ */ ref();
     const currentImage = computed(() => currentFocus.value === "navigation" ? navigationSvg : contentSvg);
     onBeforeMount(() => {
-      const container = document.getElementById("skip-actions");
-      if (container) {
-        container.innerHTML = "";
-        container.classList.add("vue-skip-actions");
+      const container2 = document.getElementById("skip-actions");
+      if (container2) {
+        container2.innerHTML = "";
+        container2.classList.add("vue-skip-actions");
       }
     });
     function openAppNavigation() {
@@ -44450,22 +44535,23 @@ export {
   shallowRef as aG,
   vModelSelect as aH,
   NcCheckboxRadioSwitch as aI,
-  Transition as aJ,
-  NcAppNavigation as aK,
-  NcAppContent as aL,
-  NcContent as aM,
-  createPinia as aN,
-  offlinePersistPlugin as aO,
-  createApp as aP,
-  publicApi as aQ,
-  publicItemImageUrl as aR,
-  dist as aS,
-  requireMajor as aT,
-  requireValid as aU,
-  dist$1 as aV,
-  process$1 as aW,
-  commonjsGlobal as aX,
-  Buffer as aY,
+  NcAppNavigationSettings as aJ,
+  Transition as aK,
+  NcAppNavigation as aL,
+  NcAppContent as aM,
+  NcContent as aN,
+  createPinia as aO,
+  offlinePersistPlugin as aP,
+  createApp as aQ,
+  publicApi as aR,
+  publicItemImageUrl as aS,
+  dist as aT,
+  requireMajor as aU,
+  requireValid as aV,
+  dist$1 as aW,
+  process$1 as aX,
+  commonjsGlobal as aY,
+  Buffer as aZ,
   generateCodeFrame as aa,
   getAugmentedNamespace as ab,
   runtimeDom_esmBundler as ac,
@@ -44518,4 +44604,4 @@ export {
   defineStore as y,
   ref as z
 };
-//# sourceMappingURL=useCollapsedAreas-wqIaE6uS.chunk.mjs.map
+//# sourceMappingURL=useCollapsedAreas-DqoYb6dt.chunk.mjs.map
