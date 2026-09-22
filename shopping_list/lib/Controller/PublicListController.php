@@ -14,6 +14,7 @@ use OCA\Shopping_List\Service\PasswordRequiredException;
 use OCA\Shopping_List\Service\ShopAreaService;
 use OCA\Shopping_List\Db\ShopAreaMapper;
 use OCA\Shopping_List\Service\ItemService;
+use OCA\Shopping_List\Service\PublicShareAccess;
 use OCA\Shopping_List\Service\ShareService;
 use DateTime;
 use OCP\AppFramework\Http;
@@ -23,7 +24,6 @@ use OCP\AppFramework\Http\Attribute\PublicPage;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\OCSController;
 use OCP\IRequest;
-use OCP\ISession;
 
 class PublicListController extends OCSController {
 	public function __construct(
@@ -34,7 +34,7 @@ class PublicListController extends OCSController {
 		private ItemMapper $itemMapper,
 		private ShopAreaMapper $areaMapper,
 		private ShopAreaService $areaService,
-		private ISession $session,
+		private PublicShareAccess $access,
 		private ItemService $itemService,
 	) {
 		parent::__construct($appName, $request);
@@ -44,24 +44,11 @@ class PublicListController extends OCSController {
 	 * Validate token and check session-based password auth.
 	 */
 	private function authenticate(string $token): ListShare {
-		// Validate token exists and hasn't expired (no password check)
-		$share = $this->shareService->findValidShare($token);
-
-		// For password-protected shares, require session auth
-		if ($share->getPasswordHash() !== null) {
-			$sessionKey = 'shopping_list_public_' . $token;
-			if (!$this->session->get($sessionKey)) {
-				throw new PasswordRequiredException('Password required');
-			}
-		}
-
-		return $share;
+		return $this->access->resolve($token);
 	}
 
 	private function assertWrite(ListShare $share): void {
-		if ($share->getPermission() < 1) {
-			throw new NoPermissionException('Read-only access');
-		}
+		$this->access->assertWrite($share);
 	}
 
 	#[PublicPage]
@@ -88,9 +75,7 @@ class PublicListController extends OCSController {
 	public function auth(string $token): DataResponse {
 		try {
 			$share = $this->shareService->validatePublicAccess($token, $this->request->getParam('password'));
-			// Store auth in session
-			$sessionKey = 'shopping_list_public_' . $token;
-			$this->session->set($sessionKey, true);
+			$this->access->grant($token);
 			return new DataResponse([
 				'title' => $this->listMapper->find($share->getListId())->getTitle(),
 				'permission' => $share->getPermission(),
