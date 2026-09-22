@@ -122,6 +122,7 @@ export const useItemsStore = defineStore('items', () => {
 				checked: Boolean(data.checked),
 				checkedBy: null,
 				sortOrder: existingItems.length,
+				imageKey: null,
 				tags: [],
 				createdAt: new Date().toISOString(),
 				updatedAt: new Date().toISOString(),

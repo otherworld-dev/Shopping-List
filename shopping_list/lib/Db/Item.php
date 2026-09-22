@@ -24,6 +24,8 @@ use OCP\AppFramework\Db\Entity;
  * @method void setCheckedBy(?string $checkedBy)
  * @method int getSortOrder()
  * @method void setSortOrder(int $sortOrder)
+ * @method ?string getImageKey()
+ * @method void setImageKey(?string $imageKey)
  * @method \DateTime getCreatedAt()
  * @method void setCreatedAt(\DateTime $createdAt)
  * @method \DateTime getUpdatedAt()
@@ -38,6 +40,8 @@ class Item extends Entity implements JsonSerializable {
 	protected $checked;
 	protected $checkedBy;
 	protected $sortOrder;
+	/** Random 16-hex handle for the item's photo in appdata; rotates on replace, null when there is none */
+	protected $imageKey;
 	protected $createdAt;
 	protected $updatedAt;
 
@@ -73,6 +77,7 @@ class Item extends Entity implements JsonSerializable {
 			'checked' => $this->checked,
 			'checkedBy' => $this->checkedBy,
 			'sortOrder' => $this->sortOrder,
+			'imageKey' => $this->imageKey,
 			'tags' => $this->tags,
 			'createdAt' => $this->createdAt?->format(\DateTimeInterface::ATOM),
 			'updatedAt' => $this->updatedAt?->format(\DateTimeInterface::ATOM),

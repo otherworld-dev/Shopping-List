@@ -13,6 +13,7 @@ const item = (partial: Partial<Item>): Item => ({
 	checked: false,
 	checkedBy: null,
 	sortOrder: 0,
+	imageKey: null,
 	tags: [],
 	createdAt: '',
 	updatedAt: '',
