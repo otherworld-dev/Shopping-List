@@ -698,6 +698,14 @@ msgstr ""
 msgid "Failed to save setting"
 msgstr ""
 
+#: src/components/AndroidAppLink.vue
+msgid "Get the Android app"
+msgstr ""
+
+#: src/components/AndroidAppLink.vue
+msgid "Hide this link"
+msgstr ""
+
 #: appinfo/info.xml lib/Notification/Notifier.php
 msgid "Shopping List"
 msgstr ""

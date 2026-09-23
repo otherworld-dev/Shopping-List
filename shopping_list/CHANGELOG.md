@@ -24,6 +24,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   JPEG, which also strips the location a phone writes into a photo. Adding
   or removing a photo needs a connection. Thanks to rostmodern for the
   request (#49)
+- A "Get the Android app" link above Settings at the bottom of the list
+  sidebar, which opens the companion app's Google Play listing in a new
+  tab. If you don't need it, choose "Hide this link" from its menu and it
+  stays hidden in that browser.
 
 ### Changed
 - Deleting an item from a public share link now removes its tags and
