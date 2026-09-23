@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-09-11 16:10\n"
+"PO-Revision-Date: 2026-09-23 01:36\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -58,8 +58,12 @@ msgid "Back to list"
 msgstr "Terug naar lijst"
 
 #: src/components/AreaKeywordsSettings.vue src/components/ListSidebar.vue
-msgid "Manage Areas"
-msgstr "Afdelingen beheren"
+msgid "List settings"
+msgstr "Lijstinstellingen"
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Shop areas"
+msgstr "Winkelafdelingen"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Manage shop areas, keywords, and display order. Keywords auto-detect which area an item belongs to when added or pasted."
@@ -591,6 +595,34 @@ msgstr "\"{name}\" verwijderen?"
 msgid "Move to list"
 msgstr "Verplaatsen naar lijst"
 
+#: src/components/ItemRow.vue
+msgid "Add image"
+msgstr "Afbeelding toevoegen"
+
+#: src/components/ItemRow.vue
+msgid "Replace image"
+msgstr "Afbeelding vervangen"
+
+#: src/components/ItemRow.vue
+msgid "Remove image"
+msgstr "Afbeelding verwijderen"
+
+#: src/components/ItemRow.vue src/components/PublicListView.vue
+msgid "View image"
+msgstr "Afbeelding bekijken"
+
+#: src/components/ItemRow.vue
+msgid "Uploading image…"
+msgstr "Afbeelding uploaden…"
+
+#: src/components/ItemRow.vue
+msgid "Only image files can be attached"
+msgstr "Alleen afbeeldingsbestanden kunnen worden toegevoegd"
+
+#: src/components/ImageViewer.vue
+msgid "Could not load image"
+msgstr "Kan de afbeelding niet laden"
+
 #: src/stores/items.ts
 msgid "Failed to move item"
 msgstr "Item verplaatsen mislukt"
@@ -602,6 +634,30 @@ msgstr "\"{name}\" verplaatst naar {list}"
 #: src/stores/items.ts
 msgid "You're offline — moving items requires a connection"
 msgstr "Je bent offline — je moet online zijn om items te verplaatsen"
+
+#: src/components/ItemRow.vue src/stores/items.ts
+msgid "You're offline — adding images requires a connection"
+msgstr "Je bent offline — je moet online zijn om afbeeldingen toe te voegen"
+
+#: src/stores/items.ts
+msgid "You're offline — removing images requires a connection"
+msgstr "Je bent offline — je moet online zijn om afbeeldingen te verwijderen"
+
+#: src/stores/items.ts
+msgid "Image is too large"
+msgstr "De afbeelding is te groot"
+
+#: src/stores/items.ts
+msgid "This file is not a supported image"
+msgstr "Dit bestand is geen ondersteunde afbeelding"
+
+#: src/stores/items.ts
+msgid "Failed to upload image"
+msgstr "Afbeelding uploaden mislukt"
+
+#: src/stores/items.ts
+msgid "Failed to remove image"
+msgstr "Afbeelding verwijderen mislukt"
 
 #: src/components/OfflineIndicator.vue
 msgid "Syncing changes…"
@@ -622,6 +678,30 @@ msgstr "Alle wijzigingen gesynchroniseerd"
 #: src/components/OfflineIndicator.vue
 msgid "{count} changes pending"
 msgstr "{count} wijzigingen in behandeling"
+
+#: src/components/ItemImagesSettings.vue
+msgid "Item images"
+msgstr "Afbeeldingen bij items"
+
+#: src/components/ItemImagesSettings.vue
+msgid "Show item images"
+msgstr "Afbeeldingen bij items tonen"
+
+#: src/components/ItemImagesSettings.vue
+msgid "Attach a photo to an item from its menu, or paste or drop one onto it. Photos are part of the list, so everyone with access can see them. This switch only changes what you see."
+msgstr "Voeg via het menu van een item een foto toe, of plak of sleep er een op het item. Foto's horen bij de lijst, dus iedereen met toegang kan ze zien. Deze schakelaar verandert alleen wat jij ziet."
+
+#: src/components/ItemImagesSettings.vue
+msgid "Failed to save setting"
+msgstr "Instelling opslaan mislukt"
+
+#: src/components/AndroidAppLink.vue
+msgid "Get the Android app"
+msgstr "Download de Android-app"
+
+#: src/components/AndroidAppLink.vue
+msgid "Hide this link"
+msgstr "Deze link verbergen"
 
 #: appinfo/info.xml lib/Notification/Notifier.php
 msgid "Shopping List"

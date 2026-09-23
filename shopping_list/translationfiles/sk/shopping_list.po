@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-09-11 16:10\n"
+"PO-Revision-Date: 2026-09-23 01:36\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "Language: sk_SK\n"
@@ -58,8 +58,12 @@ msgid "Back to list"
 msgstr "Späť na zoznam"
 
 #: src/components/AreaKeywordsSettings.vue src/components/ListSidebar.vue
-msgid "Manage Areas"
-msgstr "Spravovať oblasti"
+msgid "List settings"
+msgstr "Nastavenia zoznamu"
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Shop areas"
+msgstr "Oblasti obchodu"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Manage shop areas, keywords, and display order. Keywords auto-detect which area an item belongs to when added or pasted."
@@ -591,6 +595,34 @@ msgstr "Odstrániť \"{name}\"?"
 msgid "Move to list"
 msgstr "Presunúť do zoznamu"
 
+#: src/components/ItemRow.vue
+msgid "Add image"
+msgstr "Pridať obrázok"
+
+#: src/components/ItemRow.vue
+msgid "Replace image"
+msgstr "Nahradiť obrázok"
+
+#: src/components/ItemRow.vue
+msgid "Remove image"
+msgstr "Odstrániť obrázok"
+
+#: src/components/ItemRow.vue src/components/PublicListView.vue
+msgid "View image"
+msgstr "Zobraziť obrázok"
+
+#: src/components/ItemRow.vue
+msgid "Uploading image…"
+msgstr "Nahráva sa obrázok…"
+
+#: src/components/ItemRow.vue
+msgid "Only image files can be attached"
+msgstr "Priložiť možno iba obrázkové súbory"
+
+#: src/components/ImageViewer.vue
+msgid "Could not load image"
+msgstr "Obrázok sa nepodarilo načítať"
+
 #: src/stores/items.ts
 msgid "Failed to move item"
 msgstr "Nepodarilo sa presunúť položku"
@@ -602,6 +634,30 @@ msgstr "Presunúť \"{name}\" do {list}"
 #: src/stores/items.ts
 msgid "You're offline — moving items requires a connection"
 msgstr "Ste offline — presúvanie položiek vyžaduje pripojenie"
+
+#: src/components/ItemRow.vue src/stores/items.ts
+msgid "You're offline — adding images requires a connection"
+msgstr "Ste offline — pridávanie obrázkov vyžaduje pripojenie"
+
+#: src/stores/items.ts
+msgid "You're offline — removing images requires a connection"
+msgstr "Ste offline — odstraňovanie obrázkov vyžaduje pripojenie"
+
+#: src/stores/items.ts
+msgid "Image is too large"
+msgstr "Obrázok je príliš veľký"
+
+#: src/stores/items.ts
+msgid "This file is not a supported image"
+msgstr "Tento súbor nie je podporovaný obrázok"
+
+#: src/stores/items.ts
+msgid "Failed to upload image"
+msgstr "Nepodarilo sa nahrať obrázok"
+
+#: src/stores/items.ts
+msgid "Failed to remove image"
+msgstr "Nepodarilo sa odstrániť obrázok"
 
 #: src/components/OfflineIndicator.vue
 msgid "Syncing changes…"
@@ -622,6 +678,30 @@ msgstr "Všetky zmeny sú synchronizované"
 #: src/components/OfflineIndicator.vue
 msgid "{count} changes pending"
 msgstr "{count} čakajúcich zmien"
+
+#: src/components/ItemImagesSettings.vue
+msgid "Item images"
+msgstr "Obrázky položiek"
+
+#: src/components/ItemImagesSettings.vue
+msgid "Show item images"
+msgstr "Zobraziť obrázky položiek"
+
+#: src/components/ItemImagesSettings.vue
+msgid "Attach a photo to an item from its menu, or paste or drop one onto it. Photos are part of the list, so everyone with access can see them. This switch only changes what you see."
+msgstr "Fotografiu k položke pripojíte z jej ponuky alebo ju na položku vložte či pretiahnite. Fotografie sú súčasťou zoznamu, takže ich vidí každý, kto k nemu má prístup. Tento prepínač mení iba to, čo vidíte vy."
+
+#: src/components/ItemImagesSettings.vue
+msgid "Failed to save setting"
+msgstr "Nastavenie sa nepodarilo uložiť"
+
+#: src/components/AndroidAppLink.vue
+msgid "Get the Android app"
+msgstr "Získať aplikáciu pre Android"
+
+#: src/components/AndroidAppLink.vue
+msgid "Hide this link"
+msgstr "Skryť tento odkaz"
 
 #: appinfo/info.xml lib/Notification/Notifier.php
 msgid "Shopping List"
