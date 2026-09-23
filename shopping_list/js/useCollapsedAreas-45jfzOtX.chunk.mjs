@@ -44408,7 +44408,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ImageViewer = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-44bdedff"]]);
+const ImageViewer = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-ad4d9464"]]);
 function segment(size2) {
   return size2 === "full" ? "image" : "thumbnail";
 }
@@ -44604,4 +44604,4 @@ export {
   defineStore as y,
   ref as z
 };
-//# sourceMappingURL=useCollapsedAreas-DqoYb6dt.chunk.mjs.map
+//# sourceMappingURL=useCollapsedAreas-45jfzOtX.chunk.mjs.map

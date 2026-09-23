@@ -10055,19 +10055,19 @@ a[data-v-8639a666]:not(.rich-text--component) {
   padding-block: 0;
   padding-inline: 4px 0;
 }
-.image-viewer[data-v-44bdedff] {
+.image-viewer[data-v-ad4d9464] {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	min-height: 120px;
 	padding: 8px;
 }
-.image-viewer__img[data-v-44bdedff] {
+.image-viewer__img[data-v-ad4d9464] {
 	max-width: 100%;
 	max-height: 80vh;
 	object-fit: contain;
 	border-radius: var(--border-radius);
 }
-.image-viewer__error[data-v-44bdedff] {
+.image-viewer__error[data-v-ad4d9464] {
 	color: var(--color-text-maxcontrast);
 }
