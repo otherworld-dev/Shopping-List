@@ -1553,6 +1553,28 @@ async function shrinkImage(file, maxEdge = MAX_EDGE, quality = JPEG_QUALITY) {
     decoded?.cleanup();
   }
 }
+function imageNameKey(name) {
+  return name.trim().toLowerCase();
+}
+function spreadImageKey(items, name, imageKey) {
+  const key = imageNameKey(name);
+  if (key === "") {
+    return;
+  }
+  for (const item of items) {
+    if (imageNameKey(item.name) === key) {
+      item.imageKey = imageKey;
+    }
+  }
+}
+function clearImageKeys(items, imageKey, name) {
+  const key = imageNameKey(name);
+  for (const item of items) {
+    if (item.imageKey === imageKey || key !== "" && imageNameKey(item.name) === key) {
+      item.imageKey = null;
+    }
+  }
+}
 const imageUploads = ref({});
 const useItemsStore = defineStore("items", () => {
   const itemsByList = ref({});
@@ -1886,7 +1908,11 @@ const useItemsStore = defineStore("items", () => {
       const blob = await shrinkImage(file);
       const filename = blob === file ? file.name : "image.jpg";
       const response = await api.items.uploadImage(listId, id, blob, filename);
-      replaceItem(listId, response.data.ocs.data);
+      const updated = response.data.ocs.data;
+      replaceItem(listId, updated);
+      if (updated.imageKey) {
+        spreadImageKey(itemsByList.value[listId] ?? [], updated.name, updated.imageKey);
+      }
     } catch (e) {
       const status = e.response?.status;
       if (status === 413) {
@@ -1912,14 +1938,17 @@ const useItemsStore = defineStore("items", () => {
       showError(translate("shopping_list", "You're offline — removing images requires a connection"));
       return;
     }
-    const previousKey = item.imageKey;
-    item.imageKey = null;
+    const before = new Map((itemsByList.value[listId] ?? []).map((i) => [i.id, i.imageKey]));
+    clearImageKeys(itemsByList.value[listId] ?? [], item.imageKey, item.name);
     try {
       const response = await api.items.deleteImage(listId, id);
       replaceItem(listId, response.data.ocs.data);
     } catch (e) {
-      const live = itemsByList.value[listId]?.find((i) => i.id === id);
-      if (live) live.imageKey = previousKey;
+      for (const live of itemsByList.value[listId] ?? []) {
+        if (before.has(live.id) && live.imageKey === null) {
+          live.imageKey = before.get(live.id) ?? null;
+        }
+      }
       showError(translate("shopping_list", "Failed to remove image"));
       console.error(e);
     }
@@ -2067,7 +2096,7 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ListSidebar = /* @__PURE__ */ _export_sfc$1(_sfc_main$8, [["__scopeId", "data-v-f2e83ef9"]]);
+const ListSidebar = /* @__PURE__ */ _export_sfc$1(_sfc_main$8, [["__scopeId", "data-v-aeae57c9"]]);
 const useSharesStore = defineStore("shares", () => {
   const sharesByList = ref({});
   async function fetchByList(listId) {
@@ -15652,7 +15681,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ItemRow = /* @__PURE__ */ _export_sfc$1(_sfc_main$7, [["__scopeId", "data-v-cd26862a"]]);
+const ItemRow = /* @__PURE__ */ _export_sfc$1(_sfc_main$7, [["__scopeId", "data-v-258df9f0"]]);
 function escapeRe(s) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
@@ -16081,7 +16110,7 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ItemEditor = /* @__PURE__ */ _export_sfc$1(_sfc_main$6, [["__scopeId", "data-v-4fab3c34"]]);
+const ItemEditor = /* @__PURE__ */ _export_sfc$1(_sfc_main$6, [["__scopeId", "data-v-247edc4d"]]);
 const _hoisted_1$4 = { class: "share-modal" };
 const _hoisted_2$4 = { class: "share-modal__header" };
 const _hoisted_3$3 = { class: "share-modal__search" };
@@ -16599,7 +16628,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     function onCaptureClick(e) {
       const target = e.target;
       if (target.closest(".item-row__check") || target.closest(".item-row__actions") || target.closest(".item-row__thumb")) return;
-      if (target.type === "checkbox") return;
+      if (target.type === "checkbox" || target.type === "file") return;
       if (isDragging.value) return;
       const row = target.closest(".item-row:not(.item-row--checked)");
       if (row) {
@@ -16876,7 +16905,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
                   key: 0,
                   type: "button",
                   class: "list-view__area-header",
-                  style: normalizeStyle(group.areaColor ? { borderLeftColor: group.areaColor } : {}),
+                  style: normalizeStyle(group.areaColor ? { borderInlineStartColor: group.areaColor } : {}),
                   "aria-expanded": !isGroupCollapsed(group),
                   "aria-controls": groupElementId(group),
                   onClick: ($event) => unref(toggleArea)(group.areaId)
@@ -16965,7 +16994,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ListView = /* @__PURE__ */ _export_sfc$1(_sfc_main$4, [["__scopeId", "data-v-72f5483c"]]);
+const ListView = /* @__PURE__ */ _export_sfc$1(_sfc_main$4, [["__scopeId", "data-v-f409d1bb"]]);
 const _hoisted_1$2 = { class: "area-settings" };
 const _hoisted_2$2 = { class: "area-settings__header" };
 const _hoisted_3$1 = {
@@ -17384,7 +17413,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const AreaKeywordsSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$3, [["__scopeId", "data-v-70484337"]]);
+const AreaKeywordsSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$3, [["__scopeId", "data-v-08060dbd"]]);
 const _hoisted_1$1 = { class: "image-settings" };
 const _hoisted_2$1 = { class: "image-settings__title" };
 const _sfc_main$2 = /* @__PURE__ */ defineComponent({
@@ -17604,7 +17633,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const OfflineIndicator = /* @__PURE__ */ _export_sfc$1(_sfc_main$1, [["__scopeId", "data-v-a30bd77e"]]);
+const OfflineIndicator = /* @__PURE__ */ _export_sfc$1(_sfc_main$1, [["__scopeId", "data-v-214ff348"]]);
 let initialized = false;
 function usePush() {
   if (initialized) return;

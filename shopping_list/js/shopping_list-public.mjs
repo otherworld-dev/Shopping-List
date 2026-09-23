@@ -192,7 +192,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
                   key: 0,
                   type: "button",
                   class: "public-list__area-header",
-                  style: normalizeStyle(group.areaColor ? { borderLeftColor: group.areaColor } : {}),
+                  style: normalizeStyle(group.areaColor ? { borderInlineStartColor: group.areaColor } : {}),
                   "aria-expanded": !isGroupCollapsed(group),
                   "aria-controls": groupElementId(group),
                   onClick: ($event) => unref(toggleArea)(group.areaId)
@@ -314,7 +314,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const PublicListView = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-4624d33e"]]);
+const PublicListView = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-3871c038"]]);
 const _hoisted_1 = { class: "public-app" };
 const _hoisted_2 = {
   key: 0,
