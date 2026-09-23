@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.9.0] - 2026-09-23
+
 ### Added
 - Items can carry a photo. Turn on "Show item images" in Settings at
   the bottom of the list sidebar, then choose "Add image" from an item's
@@ -27,7 +29,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - A "Get the Android app" link above Settings at the bottom of the list
   sidebar, which opens the companion app's Google Play listing in a new
   tab. If you don't need it, choose "Hide this link" from its menu and it
-  stays hidden in that browser.
+  stays hidden in that browser
+- Czech, translated on Crowdin. 149 of the 170 strings are done, the
+  newest ones show in English for now
 
 ### Changed
 - Deleting an item from a public share link now removes its tags and
@@ -38,6 +42,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   as its first section. Settings that are yours rather than a list's,
   starting with Show item images, live in the Settings drawer at the
   bottom of the list sidebar, where Nextcloud apps keep them
+- German, Finnish, French, Dutch and Slovak are fully translated again
+  (170/170 strings each), including photos, the settings split and the
+  Android link. The new strings were filled in on Crowdin, where the
+  translators can still review them
+- The app's capabilities now carry its version, a feature list starting
+  with item-images, and the photo size limits, so the Android app can
+  tell what a server supports without trying
 
 ### Fixed
 - Deleting a Nextcloud account now clears up after it. Their own lists are
