@@ -33,6 +33,14 @@ export const api = {
 			axios.delete(url(`lists/${listId}/items/checked`)),
 		uncheckAll: (listId: number) =>
 			axios.post(url(`lists/${listId}/items/uncheck-all`)),
+		uploadImage: (listId: number, id: number, image: Blob, filename: string) => {
+			const form = new FormData()
+			form.append('image', image, filename)
+			// No Content-Type here: axios writes multipart/form-data with the boundary itself.
+			return axios.post(url(`lists/${listId}/items/${id}/image`), form)
+		},
+		deleteImage: (listId: number, id: number) =>
+			axios.delete(url(`lists/${listId}/items/${id}/image`)),
 	},
 	shares: {
 		getAll: (listId: number) => axios.get(url(`lists/${listId}/shares`)),
@@ -63,6 +71,10 @@ export const api = {
 		getAll: () => axios.get(url('tags')),
 		create: (name: string) => axios.post(url('tags'), { name }),
 		delete: (id: number) => axios.delete(url(`tags/${id}`)),
+	},
+	settings: {
+		get: () => axios.get(url('settings')),
+		update: (data: { showImages?: boolean }) => axios.patch(url('settings'), data),
 	},
 }
 

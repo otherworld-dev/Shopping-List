@@ -73,4 +73,13 @@ class ListShareMapper extends QBMapper {
 			return null;
 		}
 	}
+
+	/** Remove every share made to this user directly (group and link shares are kept). */
+	public function deleteSharedWithUser(string $userId): void {
+		$qb = $this->db->getQueryBuilder();
+		$qb->delete($this->getTableName())
+			->where($qb->expr()->eq('shared_with', $qb->createNamedParameter($userId)))
+			->andWhere($qb->expr()->eq('shared_with_type', $qb->createNamedParameter(0, IQueryBuilder::PARAM_INT)))
+			->executeStatement();
+	}
 }

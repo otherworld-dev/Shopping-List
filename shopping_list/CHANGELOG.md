@@ -5,6 +5,66 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+## [1.9.0] - 2026-09-23
+
+### Added
+- Items can carry a photo. Turn on "Show item images" in Settings at
+  the bottom of the list sidebar, then choose "Add image" from an item's
+  menu to take or pick one, or paste or drop an image onto the item. A
+  small thumbnail sits next to the checkbox; tap it to see the whole
+  photo. The switch is off to begin with, and while it is off nothing
+  changes: no thumbnails, no menu entries. It is saved on the server, so it
+  is the same in every browser you use. A photo belongs to the item's
+  name rather than the one item, so a photo of cheese shows on every
+  cheese in the lists you can edit, and comes back when cheese is added
+  again, even after the list has been emptied. Removing it forgets it for
+  that name. Everyone with access to a list sees its photos, on public
+  share links too, though a link cannot add or remove them. Uploads are
+  shrunk to 1280 px and saved as
+  JPEG, which also strips the location a phone writes into a photo. Adding
+  or removing a photo needs a connection. Thanks to rostmodern for the
+  request (#49)
+- A "Get the Android app" link above Settings at the bottom of the list
+  sidebar, which opens the companion app's Google Play listing in a new
+  tab. If you don't need it, choose "Hide this link" from its menu and it
+  stays hidden in that browser
+- Czech, translated on Crowdin. 149 of the 170 strings are done, the
+  newest ones show in English for now
+
+### Changed
+- Deleting an item from a public share link now removes its tags and
+  tells the others on the list straight away, as deleting in the app
+  already did
+- The gear entry under the lists is now called List settings and opens a
+  page of that name, headed by the list it belongs to, with the shop areas
+  as its first section. Settings that are yours rather than a list's,
+  starting with Show item images, live in the Settings drawer at the
+  bottom of the list sidebar, where Nextcloud apps keep them
+- German, Finnish, French, Dutch and Slovak are fully translated again
+  (170/170 strings each), including photos, the settings split and the
+  Android link. The new strings were filled in on Crowdin, where the
+  translators can still review them
+- The app's capabilities now carry its version, a feature list starting
+  with item-images, and the photo size limits, so the Android app can
+  tell what a server supports without trying
+
+### Fixed
+- Deleting a Nextcloud account now clears up after it. Their own lists are
+  deleted as if they had deleted them, so anyone they were shared with is
+  told, and their shares, pins, tags and photos go too. Before this it all
+  stayed in the database
+- The layout now mirrors properly in right-to-left languages such as
+  Arabic and Hebrew. The shop area colour bar, the spacing around item
+  names and the offline notice all used fixed left and right sides
+
+### Upgrade
+- Database migration: one column is added to the items table for the
+  photo key, and a new table holds the photo remembered for each item
+  name. Photos themselves are kept in the app's own data folder, not in
+  anyone's Files, so they take no space from a user's quota
+
 ## [1.8.0] - 2026-09-12
 
 ### Added

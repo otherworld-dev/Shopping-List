@@ -45,6 +45,7 @@ function item(name: string, shopAreaId: number | null = null, updatedAt = '2026-
 		checked: false,
 		checkedBy: null,
 		sortOrder: 0,
+		imageKey: null,
 		tags: [],
 		createdAt: '2026-09-01T09:00:00Z',
 		updatedAt,

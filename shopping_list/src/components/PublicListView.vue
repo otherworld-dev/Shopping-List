@@ -28,7 +28,7 @@
 					<button v-if="hasHeader(group)"
 						type="button"
 						class="public-list__area-header"
-						:style="group.areaColor ? { borderLeftColor: group.areaColor } : {}"
+						:style="group.areaColor ? { borderInlineStartColor: group.areaColor } : {}"
 						:aria-expanded="!isGroupCollapsed(group)"
 						:aria-controls="groupElementId(group)"
 						@click="toggleArea(group.areaId)">
@@ -55,6 +55,18 @@
 									:disabled="!canEdit"
 									@change="onToggleCheck(item)">
 							</label>
+							<button v-if="thumbUrl(item)"
+								type="button"
+								class="public-list__thumb"
+								:aria-label="viewImageLabel"
+								@click="viewerItem = item">
+								<img :src="thumbUrl(item)!"
+									alt=""
+									draggable="false"
+									loading="lazy"
+									decoding="async"
+									@error="brokenThumbs.add(item.id)">
+							</button>
 							<span v-if="item.quantity" class="public-list__quantity">
 								{{ item.quantity }}{{ item.unit ? ' ' + item.unit : '' }}
 							</span>
@@ -88,6 +100,18 @@
 							:disabled="!canEdit"
 							@change="onToggleCheck(item)">
 					</label>
+					<button v-if="thumbUrl(item)"
+						type="button"
+						class="public-list__thumb"
+						:aria-label="viewImageLabel"
+						@click="viewerItem = item">
+						<img :src="thumbUrl(item)!"
+							alt=""
+							draggable="false"
+							loading="lazy"
+							decoding="async"
+							@error="brokenThumbs.add(item.id)">
+					</button>
 					<span v-if="item.quantity" class="public-list__quantity">
 						{{ item.quantity }}{{ item.unit ? ' ' + item.unit : '' }}
 					</span>
@@ -95,6 +119,11 @@
 				</div>
 			</div>
 		</div>
+
+		<ImageViewer v-if="viewerItem && viewerUrl"
+			:src="viewerUrl"
+			:name="viewerItem.name"
+			@close="viewerItem = null" />
 	</div>
 </template>
 
@@ -107,6 +136,8 @@ import { publicApi } from '../composables/useApi'
 import type { Item, ShopArea } from '../types'
 import { Permission } from '../types'
 import { useCollapsedAreas } from '../composables/useCollapsedAreas'
+import ImageViewer from './ImageViewer.vue'
+import { publicItemImageUrl } from '../utils/imageUrls'
 
 const props = defineProps<{
 	token: string
@@ -123,11 +154,23 @@ const emptyText = t('shopping_list', 'No items yet')
 const uncategorizedText = t('shopping_list', 'Uncategorized')
 const boughtText = t('shopping_list', 'Checked off')
 const addItemText = t('shopping_list', 'Add an item to list...')
+const viewImageLabel = t('shopping_list', 'View image')
 
 const editorRef = ref<HTMLInputElement | null>(null)
 const newItemName = ref('')
 
 const canEdit = computed(() => props.permission >= Permission.WRITE)
+
+// Photos show whenever an item has one. There is no switch here: nobody is
+// signed in to remember one for, and a link cannot add or remove photos.
+const brokenThumbs = ref(new Set<number>())
+const viewerItem = ref<Item | null>(null)
+const viewerUrl = computed(() => (viewerItem.value ? publicItemImageUrl(props.token, viewerItem.value, 'full') : null))
+
+function thumbUrl(item: Item): string | null {
+	if (brokenThumbs.value.has(item.id)) return null
+	return publicItemImageUrl(props.token, item, 'thumbnail')
+}
 
 const uncheckedItems = computed(() => items.value.filter(i => !i.checked))
 const checkedItems = computed(() => items.value.filter(i => i.checked))
@@ -323,9 +366,10 @@ async function onToggleCheck(item: Item) {
 	min-width: 0;
 	min-height: 0;
 	margin: 0;
-	padding: 6px 16px 6px 10px;
+	padding-block: 6px;
+	padding-inline: 10px 16px;
 	border: none;
-	border-left: 3px solid var(--color-border-dark, rgba(255, 255, 255, 0.2));
+	border-inline-start: 3px solid var(--color-border-dark, rgba(255, 255, 255, 0.2));
 	border-radius: 0;
 	background-color: var(--color-background-dark, rgba(0, 0, 0, 0.2));
 	color: inherit;
@@ -335,7 +379,7 @@ async function onToggleCheck(item: Item) {
 }
 
 .public-list__card .public-list__area-group > button.public-list__area-header:is(:hover, :focus, :active) {
-	border-left-color: var(--color-border-dark, rgba(255, 255, 255, 0.2));
+	border-inline-start-color: var(--color-border-dark, rgba(255, 255, 255, 0.2));
 	color: inherit;
 }
 
@@ -436,19 +480,54 @@ async function onToggleCheck(item: Item) {
 	margin: 0;
 }
 
+/* Thumbnail. The card and item classes in front keep these rules ahead of
+   Nextcloud's global button styling without !important. */
+.public-list .public-list__item > button.public-list__thumb {
+	flex: 0 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	min-height: 0;
+	margin: 0 8px 0 0;
+	padding: 0;
+	border: none;
+	border-radius: var(--border-radius, 3px);
+	background-color: var(--color-background-dark, rgba(0, 0, 0, 0.2));
+	overflow: hidden;
+	cursor: zoom-in;
+}
+
+.public-list .public-list__item > button.public-list__thumb:is(:hover, :focus, :active) {
+	background-color: var(--color-background-dark, rgba(0, 0, 0, 0.2));
+}
+
+.public-list .public-list__item > button.public-list__thumb:focus-visible {
+	outline: 2px solid var(--color-main-text, #fff);
+	outline-offset: 1px;
+}
+
+.public-list__thumb img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
 .public-list__quantity {
 	flex: 0 0 auto;
 	color: var(--color-text-maxcontrast);
 	font-size: 0.85em;
 	white-space: nowrap;
-	padding-right: 8px;
+	padding-inline-end: 8px;
 }
 
 .public-list__name {
 	flex: 1 1 0%;
 	min-width: 0;
 	font-size: 0.95em;
-	padding-right: 8px;
+	padding-inline-end: 8px;
 	overflow-wrap: anywhere;
 }
 
@@ -492,7 +571,7 @@ async function onToggleCheck(item: Item) {
 }
 
 .public-list__toggle {
-	margin-left: 4px;
+	margin-inline-start: 4px;
 }
 
 .public-list__bought-card {

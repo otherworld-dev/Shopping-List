@@ -362,7 +362,7 @@ async function onSubmit() {
 	position: relative;
 	display: flex;
 	align-items: center;
-	border-left: 1px solid var(--color-border);
+	border-inline-start: 1px solid var(--color-border);
 }
 
 .item-editor__area-input {
@@ -386,7 +386,7 @@ async function onSubmit() {
 
 .item-editor__area-clear {
 	position: absolute;
-	right: 4px;
+	inset-inline-end: 4px;
 	top: 50%;
 	transform: translateY(-50%);
 	background: none;
@@ -405,8 +405,7 @@ async function onSubmit() {
 .item-editor__dropdown {
 	position: absolute;
 	top: 100%;
-	left: 0;
-	right: 0;
+	inset-inline: 0;
 	min-width: 160px;
 	max-height: 220px;
 	overflow-y: auto;
@@ -510,7 +509,7 @@ async function onSubmit() {
 	color: var(--color-text-maxcontrast);
 	font-size: 0.85em;
 	white-space: nowrap;
-	padding-right: 8px;
+	padding-inline-end: 8px;
 }
 
 /* A ticked example is drawn the way a checked-off item is in the list. */
@@ -523,6 +522,6 @@ async function onSubmit() {
 	color: var(--color-text-maxcontrast);
 	font-size: 0.8em;
 	white-space: nowrap;
-	padding-left: 6px;
+	padding-inline-start: 6px;
 }
 </style>

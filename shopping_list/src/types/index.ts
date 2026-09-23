@@ -36,6 +36,8 @@ export interface Item {
 	checked: boolean
 	checkedBy: string | null
 	sortOrder: number
+	/** Server-managed handle for the item's photo, rotated on every replace; null when there is none */
+	imageKey: string | null
 	tags: Tag[]
 	createdAt: string
 	updatedAt: string

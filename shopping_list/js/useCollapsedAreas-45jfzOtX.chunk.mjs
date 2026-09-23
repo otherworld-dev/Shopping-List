@@ -1,5 +1,5 @@
 const appName = "shopping_list";
-const appVersion = "1.7.1";
+const appVersion = "1.8.0";
 const global$1 = globalThis || void 0 || self;
 /**
 * @vue/shared v3.5.32
@@ -2951,7 +2951,7 @@ const resolveTarget = (props, select) => {
 const TeleportImpl = {
   name: "Teleport",
   __isTeleport: true,
-  process(n1, n2, container, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized, internals) {
+  process(n1, n2, container2, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized, internals) {
     const {
       mc: mountChildren,
       pc: patchChildren,
@@ -2960,11 +2960,11 @@ const TeleportImpl = {
     } = internals;
     const disabled = isTeleportDisabled(n2.props);
     let { dynamicChildren } = n2;
-    const mount = (vnode, container2, anchor2) => {
+    const mount = (vnode, container22, anchor2) => {
       if (vnode.shapeFlag & 16) {
         mountChildren(
           vnode.children,
-          container2,
+          container22,
           anchor2,
           parentComponent,
           parentSuspense,
@@ -2998,7 +2998,7 @@ const TeleportImpl = {
         if (pendingMounts.get(vnode) !== mountJob) return;
         pendingMounts.delete(vnode);
         if (isTeleportDisabled(vnode.props)) {
-          mount(vnode, container, vnode.anchor);
+          mount(vnode, container2, vnode.anchor);
           updateCssVars(vnode, true);
         }
         mountToTarget(vnode);
@@ -3009,14 +3009,14 @@ const TeleportImpl = {
     if (n1 == null) {
       const placeholder = n2.el = createText("");
       const mainAnchor = n2.anchor = createText("");
-      insert(placeholder, container, anchor);
-      insert(mainAnchor, container, anchor);
+      insert(placeholder, container2, anchor);
+      insert(mainAnchor, container2, anchor);
       if (isTeleportDeferred(n2.props) || parentSuspense && parentSuspense.pendingBranch) {
         queuePendingMount(n2);
         return;
       }
       if (disabled) {
-        mount(n2, container, mainAnchor);
+        mount(n2, container2, mainAnchor);
         updateCssVars(n2, true);
       }
       mountToTarget();
@@ -3034,7 +3034,7 @@ const TeleportImpl = {
       const target = n2.target = n1.target;
       const targetAnchor = n2.targetAnchor = n1.targetAnchor;
       const wasDisabled = isTeleportDisabled(n1.props);
-      const currentContainer = wasDisabled ? container : target;
+      const currentContainer = wasDisabled ? container2 : target;
       const currentAnchor = wasDisabled ? mainAnchor : targetAnchor;
       if (namespace === "svg" || isTargetSVG(target)) {
         namespace = "svg";
@@ -3069,7 +3069,7 @@ const TeleportImpl = {
         if (!wasDisabled) {
           moveTeleport(
             n2,
-            container,
+            container2,
             mainAnchor,
             internals,
             1
@@ -3145,21 +3145,21 @@ const TeleportImpl = {
   move: moveTeleport,
   hydrate: hydrateTeleport
 };
-function moveTeleport(vnode, container, parentAnchor, { o: { insert }, m: move }, moveType = 2) {
+function moveTeleport(vnode, container2, parentAnchor, { o: { insert }, m: move }, moveType = 2) {
   if (moveType === 0) {
-    insert(vnode.targetAnchor, container, parentAnchor);
+    insert(vnode.targetAnchor, container2, parentAnchor);
   }
   const { el, anchor, shapeFlag, children, props } = vnode;
   const isReorder = moveType === 2;
   if (isReorder) {
-    insert(el, container, parentAnchor);
+    insert(el, container2, parentAnchor);
   }
   if (!isReorder || isTeleportDisabled(props)) {
     if (shapeFlag & 16) {
       for (let i2 = 0; i2 < children.length; i2++) {
         move(
           children[i2],
-          container,
+          container2,
           parentAnchor,
           2
         );
@@ -3167,7 +3167,7 @@ function moveTeleport(vnode, container, parentAnchor, { o: { insert }, m: move }
     }
   }
   if (isReorder) {
-    insert(anchor, container, parentAnchor);
+    insert(anchor, container2, parentAnchor);
   }
 }
 function hydrateTeleport(node, vnode, parentComponent, parentSuspense, slotScopeIds, optimized, {
@@ -3790,12 +3790,12 @@ const logMismatchError = () => {
   console.error("Hydration completed but contains mismatches.");
   hasLoggedMismatchError = true;
 };
-const isSVGContainer = (container) => container.namespaceURI.includes("svg") && container.tagName !== "foreignObject";
-const isMathMLContainer = (container) => container.namespaceURI.includes("MathML");
-const getContainerType = (container) => {
-  if (container.nodeType !== 1) return void 0;
-  if (isSVGContainer(container)) return "svg";
-  if (isMathMLContainer(container)) return "mathml";
+const isSVGContainer = (container2) => container2.namespaceURI.includes("svg") && container2.tagName !== "foreignObject";
+const isMathMLContainer = (container2) => container2.namespaceURI.includes("MathML");
+const getContainerType = (container2) => {
+  if (container2.nodeType !== 1) return void 0;
+  if (isSVGContainer(container2)) return "svg";
+  if (isMathMLContainer(container2)) return "mathml";
   return void 0;
 };
 const isComment = (node) => node.nodeType === 8;
@@ -3813,16 +3813,16 @@ function createHydrationFunctions(rendererInternals) {
       createComment
     }
   } = rendererInternals;
-  const hydrate2 = (vnode, container) => {
-    if (!container.hasChildNodes()) {
-      patch(null, vnode, container);
+  const hydrate2 = (vnode, container2) => {
+    if (!container2.hasChildNodes()) {
+      patch(null, vnode, container2);
       flushPostFlushCbs();
-      container._vnode = vnode;
+      container2._vnode = vnode;
       return;
     }
-    hydrateNode(container.firstChild, vnode, null, null, null);
+    hydrateNode(container2.firstChild, vnode, null, null, null);
     flushPostFlushCbs();
-    container._vnode = vnode;
+    container2._vnode = vnode;
   };
   const hydrateNode = (node, vnode, parentComponent, parentSuspense, slotScopeIds, optimized = false) => {
     optimized = optimized || !!vnode.dynamicChildren;
@@ -3925,7 +3925,7 @@ function createHydrationFunctions(rendererInternals) {
           }
         } else if (shapeFlag & 6) {
           vnode.slotScopeIds = slotScopeIds;
-          const container = parentNode(node);
+          const container2 = parentNode(node);
           if (isFragmentStart) {
             nextNode = locateClosingAnchor(node);
           } else if (isComment(node) && node.data === "teleport start") {
@@ -3935,18 +3935,18 @@ function createHydrationFunctions(rendererInternals) {
           }
           mountComponent(
             vnode,
-            container,
+            container2,
             null,
             parentComponent,
             parentSuspense,
-            getContainerType(container),
+            getContainerType(container2),
             optimized
           );
           if (isAsyncWrapper(vnode) && !vnode.type.__asyncResolved) {
             let subTree;
             if (isFragmentStart) {
               subTree = createVNode(Fragment);
-              subTree.anchor = nextNode ? nextNode.previousSibling : container.lastChild;
+              subTree.anchor = nextNode ? nextNode.previousSibling : container2.lastChild;
             } else {
               subTree = node.nodeType === 3 ? createTextVNode("") : createVNode("div");
             }
@@ -4002,14 +4002,14 @@ function createHydrationFunctions(rendererInternals) {
           // no need check parentSuspense in hydration
           transition
         ) && parentComponent && parentComponent.vnode.props && parentComponent.vnode.props.appear;
-        const content = el.content.firstChild;
+        const content2 = el.content.firstChild;
         if (needCallTransitionHooks) {
-          const cls = content.getAttribute("class");
-          if (cls) content.$cls = cls;
-          transition.beforeEnter(content);
+          const cls = content2.getAttribute("class");
+          if (cls) content2.$cls = cls;
+          transition.beforeEnter(content2);
         }
-        replaceNode(content, el, parentComponent);
-        vnode.el = el = content;
+        replaceNode(content2, el, parentComponent);
+        vnode.el = el = content2;
       }
       if (shapeFlag & 16 && // skip if element has innerHTML / textContent
       !(props && (props.innerHTML || props.textContent))) {
@@ -4091,7 +4091,7 @@ function createHydrationFunctions(rendererInternals) {
     }
     return el.nextSibling;
   };
-  const hydrateChildren = (node, parentVNode, container, parentComponent, parentSuspense, slotScopeIds, optimized) => {
+  const hydrateChildren = (node, parentVNode, container2, parentComponent, parentSuspense, slotScopeIds, optimized) => {
     optimized = optimized || !!parentVNode.dynamicChildren;
     const children = parentVNode.children;
     const l2 = children.length;
@@ -4105,7 +4105,7 @@ function createHydrationFunctions(rendererInternals) {
               createText(
                 node.data.slice(vnode.children.length)
               ),
-              container,
+              container2,
               nextSibling(node)
             );
             node.data = vnode.children;
@@ -4120,10 +4120,10 @@ function createHydrationFunctions(rendererInternals) {
           optimized
         );
       } else if (isText && !vnode.children) {
-        insert(vnode.el = createText(""), container);
+        insert(vnode.el = createText(""), container2);
       } else {
         if (!isMismatchAllowed(
-          container,
+          container2,
           1
           /* CHILDREN */
         )) {
@@ -4132,11 +4132,11 @@ function createHydrationFunctions(rendererInternals) {
         patch(
           null,
           vnode,
-          container,
+          container2,
           null,
           parentComponent,
           parentSuspense,
-          getContainerType(container),
+          getContainerType(container2),
           slotScopeIds
         );
       }
@@ -4148,11 +4148,11 @@ function createHydrationFunctions(rendererInternals) {
     if (fragmentSlotScopeIds) {
       slotScopeIds = slotScopeIds ? slotScopeIds.concat(fragmentSlotScopeIds) : fragmentSlotScopeIds;
     }
-    const container = parentNode(node);
+    const container2 = parentNode(node);
     const next = hydrateChildren(
       nextSibling(node),
       vnode,
-      container,
+      container2,
       parentComponent,
       parentSuspense,
       slotScopeIds,
@@ -4162,7 +4162,7 @@ function createHydrationFunctions(rendererInternals) {
       return nextSibling(vnode.anchor = next);
     } else {
       logMismatchError();
-      insert(vnode.anchor = createComment(`]`), container, next);
+      insert(vnode.anchor = createComment(`]`), container2, next);
       return next;
     }
   };
@@ -4187,16 +4187,16 @@ function createHydrationFunctions(rendererInternals) {
       }
     }
     const next = nextSibling(node);
-    const container = parentNode(node);
+    const container2 = parentNode(node);
     remove2(node);
     patch(
       null,
       vnode,
-      container,
+      container2,
       next,
       parentComponent,
       parentSuspense,
-      getContainerType(container),
+      getContainerType(container2),
       slotScopeIds
     );
     if (parentComponent) {
@@ -4563,13 +4563,13 @@ const KeepAliveImpl = {
       }
     } = sharedContext;
     const storageContainer = createElement("div");
-    sharedContext.activate = (vnode, container, anchor, namespace, optimized) => {
+    sharedContext.activate = (vnode, container2, anchor, namespace, optimized) => {
       const instance2 = vnode.component;
-      move(vnode, container, anchor, 0, parentSuspense);
+      move(vnode, container2, anchor, 0, parentSuspense);
       patch(
         instance2.vnode,
         vnode,
-        container,
+        container2,
         anchor,
         instance2,
         parentSuspense,
@@ -6469,7 +6469,7 @@ function baseCreateRenderer(options, createHydrationFns) {
     setScopeId: hostSetScopeId = NOOP,
     insertStaticContent: hostInsertStaticContent
   } = options;
-  const patch = (n1, n2, container, anchor = null, parentComponent = null, parentSuspense = null, namespace = void 0, slotScopeIds = null, optimized = !!n2.dynamicChildren) => {
+  const patch = (n1, n2, container2, anchor = null, parentComponent = null, parentSuspense = null, namespace = void 0, slotScopeIds = null, optimized = !!n2.dynamicChildren) => {
     if (n1 === n2) {
       return;
     }
@@ -6485,21 +6485,21 @@ function baseCreateRenderer(options, createHydrationFns) {
     const { type, ref: ref3, shapeFlag } = n2;
     switch (type) {
       case Text:
-        processText(n1, n2, container, anchor);
+        processText(n1, n2, container2, anchor);
         break;
       case Comment:
-        processCommentNode(n1, n2, container, anchor);
+        processCommentNode(n1, n2, container2, anchor);
         break;
       case Static:
         if (n1 == null) {
-          mountStaticNode(n2, container, anchor, namespace);
+          mountStaticNode(n2, container2, anchor, namespace);
         }
         break;
       case Fragment:
         processFragment(
           n1,
           n2,
-          container,
+          container2,
           anchor,
           parentComponent,
           parentSuspense,
@@ -6513,7 +6513,7 @@ function baseCreateRenderer(options, createHydrationFns) {
           processElement(
             n1,
             n2,
-            container,
+            container2,
             anchor,
             parentComponent,
             parentSuspense,
@@ -6525,7 +6525,7 @@ function baseCreateRenderer(options, createHydrationFns) {
           processComponent(
             n1,
             n2,
-            container,
+            container2,
             anchor,
             parentComponent,
             parentSuspense,
@@ -6537,7 +6537,7 @@ function baseCreateRenderer(options, createHydrationFns) {
           type.process(
             n1,
             n2,
-            container,
+            container2,
             anchor,
             parentComponent,
             parentSuspense,
@@ -6550,7 +6550,7 @@ function baseCreateRenderer(options, createHydrationFns) {
           type.process(
             n1,
             n2,
-            container,
+            container2,
             anchor,
             parentComponent,
             parentSuspense,
@@ -6567,11 +6567,11 @@ function baseCreateRenderer(options, createHydrationFns) {
       setRef(n1.ref, null, parentSuspense, n1, true);
     }
   };
-  const processText = (n1, n2, container, anchor) => {
+  const processText = (n1, n2, container2, anchor) => {
     if (n1 == null) {
       hostInsert(
         n2.el = hostCreateText(n2.children),
-        container,
+        container2,
         anchor
       );
     } else {
@@ -6581,35 +6581,35 @@ function baseCreateRenderer(options, createHydrationFns) {
       }
     }
   };
-  const processCommentNode = (n1, n2, container, anchor) => {
+  const processCommentNode = (n1, n2, container2, anchor) => {
     if (n1 == null) {
       hostInsert(
         n2.el = hostCreateComment(n2.children || ""),
-        container,
+        container2,
         anchor
       );
     } else {
       n2.el = n1.el;
     }
   };
-  const mountStaticNode = (n2, container, anchor, namespace) => {
+  const mountStaticNode = (n2, container2, anchor, namespace) => {
     [n2.el, n2.anchor] = hostInsertStaticContent(
       n2.children,
-      container,
+      container2,
       anchor,
       namespace,
       n2.el,
       n2.anchor
     );
   };
-  const moveStaticNode = ({ el, anchor }, container, nextSibling) => {
+  const moveStaticNode = ({ el, anchor }, container2, nextSibling) => {
     let next;
     while (el && el !== anchor) {
       next = hostNextSibling(el);
-      hostInsert(el, container, nextSibling);
+      hostInsert(el, container2, nextSibling);
       el = next;
     }
-    hostInsert(anchor, container, nextSibling);
+    hostInsert(anchor, container2, nextSibling);
   };
   const removeStaticNode = ({ el, anchor }) => {
     let next;
@@ -6620,7 +6620,7 @@ function baseCreateRenderer(options, createHydrationFns) {
     }
     hostRemove(anchor);
   };
-  const processElement = (n1, n2, container, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized) => {
+  const processElement = (n1, n2, container2, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized) => {
     if (n2.type === "svg") {
       namespace = "svg";
     } else if (n2.type === "math") {
@@ -6629,7 +6629,7 @@ function baseCreateRenderer(options, createHydrationFns) {
     if (n1 == null) {
       mountElement(
         n2,
-        container,
+        container2,
         anchor,
         parentComponent,
         parentSuspense,
@@ -6659,7 +6659,7 @@ function baseCreateRenderer(options, createHydrationFns) {
       }
     }
   };
-  const mountElement = (vnode, container, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized) => {
+  const mountElement = (vnode, container2, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized) => {
     let el;
     let vnodeHook;
     const { props, shapeFlag, transition, dirs } = vnode;
@@ -6707,7 +6707,7 @@ function baseCreateRenderer(options, createHydrationFns) {
     if (needCallTransitionHooks) {
       transition.beforeEnter(el);
     }
-    hostInsert(el, container, anchor);
+    hostInsert(el, container2, anchor);
     if ((vnodeHook = props && props.onVnodeMounted) || needCallTransitionHooks || dirs) {
       queuePostRenderEffect(() => {
         try {
@@ -6742,13 +6742,13 @@ function baseCreateRenderer(options, createHydrationFns) {
       }
     }
   };
-  const mountChildren = (children, container, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized, start = 0) => {
+  const mountChildren = (children, container2, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized, start = 0) => {
     for (let i2 = start; i2 < children.length; i2++) {
       const child = children[i2] = optimized ? cloneIfMounted(children[i2]) : normalizeVNode(children[i2]);
       patch(
         null,
         child,
-        container,
+        container2,
         anchor,
         parentComponent,
         parentSuspense,
@@ -6842,7 +6842,7 @@ function baseCreateRenderer(options, createHydrationFns) {
     for (let i2 = 0; i2 < newChildren.length; i2++) {
       const oldVNode = oldChildren[i2];
       const newVNode = newChildren[i2];
-      const container = (
+      const container2 = (
         // oldVNode may be an errored async setup() component inside Suspense
         // which will not have a mounted element
         oldVNode.el && // - In the case of a Fragment, we need to provide the actual parent
@@ -6859,7 +6859,7 @@ function baseCreateRenderer(options, createHydrationFns) {
       patch(
         oldVNode,
         newVNode,
-        container,
+        container2,
         null,
         parentComponent,
         parentSuspense,
@@ -6898,7 +6898,7 @@ function baseCreateRenderer(options, createHydrationFns) {
       }
     }
   };
-  const processFragment = (n1, n2, container, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized) => {
+  const processFragment = (n1, n2, container2, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized) => {
     const fragmentStartAnchor = n2.el = n1 ? n1.el : hostCreateText("");
     const fragmentEndAnchor = n2.anchor = n1 ? n1.anchor : hostCreateText("");
     let { patchFlag, dynamicChildren, slotScopeIds: fragmentSlotScopeIds } = n2;
@@ -6906,15 +6906,15 @@ function baseCreateRenderer(options, createHydrationFns) {
       slotScopeIds = slotScopeIds ? slotScopeIds.concat(fragmentSlotScopeIds) : fragmentSlotScopeIds;
     }
     if (n1 == null) {
-      hostInsert(fragmentStartAnchor, container, anchor);
-      hostInsert(fragmentEndAnchor, container, anchor);
+      hostInsert(fragmentStartAnchor, container2, anchor);
+      hostInsert(fragmentEndAnchor, container2, anchor);
       mountChildren(
         // #10007
         // such fragment like `<></>` will be compiled into
         // a fragment which doesn't have a children.
         // In this case fallback to an empty array
         n2.children || [],
-        container,
+        container2,
         fragmentEndAnchor,
         parentComponent,
         parentSuspense,
@@ -6929,7 +6929,7 @@ function baseCreateRenderer(options, createHydrationFns) {
         patchBlockChildren(
           n1.dynamicChildren,
           dynamicChildren,
-          container,
+          container2,
           parentComponent,
           parentSuspense,
           namespace,
@@ -6953,7 +6953,7 @@ function baseCreateRenderer(options, createHydrationFns) {
         patchChildren(
           n1,
           n2,
-          container,
+          container2,
           fragmentEndAnchor,
           parentComponent,
           parentSuspense,
@@ -6964,13 +6964,13 @@ function baseCreateRenderer(options, createHydrationFns) {
       }
     }
   };
-  const processComponent = (n1, n2, container, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized) => {
+  const processComponent = (n1, n2, container2, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized) => {
     n2.slotScopeIds = slotScopeIds;
     if (n1 == null) {
       if (n2.shapeFlag & 512) {
         parentComponent.ctx.activate(
           n2,
-          container,
+          container2,
           anchor,
           namespace,
           optimized
@@ -6978,7 +6978,7 @@ function baseCreateRenderer(options, createHydrationFns) {
       } else {
         mountComponent(
           n2,
-          container,
+          container2,
           anchor,
           parentComponent,
           parentSuspense,
@@ -6990,7 +6990,7 @@ function baseCreateRenderer(options, createHydrationFns) {
       updateComponent(n1, n2, optimized);
     }
   };
-  const mountComponent = (initialVNode, container, anchor, parentComponent, parentSuspense, namespace, optimized) => {
+  const mountComponent = (initialVNode, container2, anchor, parentComponent, parentSuspense, namespace, optimized) => {
     const instance = initialVNode.component = createComponentInstance(
       initialVNode,
       parentComponent,
@@ -7006,14 +7006,14 @@ function baseCreateRenderer(options, createHydrationFns) {
       parentSuspense && parentSuspense.registerDep(instance, setupRenderEffect, optimized);
       if (!initialVNode.el) {
         const placeholder = instance.subTree = createVNode(Comment);
-        processCommentNode(null, placeholder, container, anchor);
+        processCommentNode(null, placeholder, container2, anchor);
         initialVNode.placeholder = placeholder.el;
       }
     } else {
       setupRenderEffect(
         instance,
         initialVNode,
-        container,
+        container2,
         anchor,
         parentSuspense,
         namespace,
@@ -7036,7 +7036,7 @@ function baseCreateRenderer(options, createHydrationFns) {
       instance.vnode = n2;
     }
   };
-  const setupRenderEffect = (instance, initialVNode, container, anchor, parentSuspense, namespace, optimized) => {
+  const setupRenderEffect = (instance, initialVNode, container2, anchor, parentSuspense, namespace, optimized) => {
     const componentUpdateFn = () => {
       if (!instance.isMounted) {
         let vnodeHook;
@@ -7082,7 +7082,7 @@ function baseCreateRenderer(options, createHydrationFns) {
           patch(
             null,
             subTree,
-            container,
+            container2,
             anchor,
             instance,
             parentSuspense,
@@ -7104,7 +7104,7 @@ function baseCreateRenderer(options, createHydrationFns) {
           instance.a && queuePostRenderEffect(instance.a, parentSuspense);
         }
         instance.isMounted = true;
-        initialVNode = container = anchor = null;
+        initialVNode = container2 = anchor = null;
       } else {
         let { next, bu, u: u2, parent, vnode } = instance;
         {
@@ -7189,7 +7189,7 @@ function baseCreateRenderer(options, createHydrationFns) {
     flushPreFlushCbs(instance);
     resetTracking();
   };
-  const patchChildren = (n1, n2, container, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized = false) => {
+  const patchChildren = (n1, n2, container2, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized = false) => {
     const c1 = n1 && n1.children;
     const prevShapeFlag = n1 ? n1.shapeFlag : 0;
     const c2 = n2.children;
@@ -7199,7 +7199,7 @@ function baseCreateRenderer(options, createHydrationFns) {
         patchKeyedChildren(
           c1,
           c2,
-          container,
+          container2,
           anchor,
           parentComponent,
           parentSuspense,
@@ -7212,7 +7212,7 @@ function baseCreateRenderer(options, createHydrationFns) {
         patchUnkeyedChildren(
           c1,
           c2,
-          container,
+          container2,
           anchor,
           parentComponent,
           parentSuspense,
@@ -7228,7 +7228,7 @@ function baseCreateRenderer(options, createHydrationFns) {
         unmountChildren(c1, parentComponent, parentSuspense);
       }
       if (c2 !== c1) {
-        hostSetElementText(container, c2);
+        hostSetElementText(container2, c2);
       }
     } else {
       if (prevShapeFlag & 16) {
@@ -7236,7 +7236,7 @@ function baseCreateRenderer(options, createHydrationFns) {
           patchKeyedChildren(
             c1,
             c2,
-            container,
+            container2,
             anchor,
             parentComponent,
             parentSuspense,
@@ -7249,12 +7249,12 @@ function baseCreateRenderer(options, createHydrationFns) {
         }
       } else {
         if (prevShapeFlag & 8) {
-          hostSetElementText(container, "");
+          hostSetElementText(container2, "");
         }
         if (shapeFlag & 16) {
           mountChildren(
             c2,
-            container,
+            container2,
             anchor,
             parentComponent,
             parentSuspense,
@@ -7266,7 +7266,7 @@ function baseCreateRenderer(options, createHydrationFns) {
       }
     }
   };
-  const patchUnkeyedChildren = (c1, c2, container, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized) => {
+  const patchUnkeyedChildren = (c1, c2, container2, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized) => {
     c1 = c1 || EMPTY_ARR;
     c2 = c2 || EMPTY_ARR;
     const oldLength = c1.length;
@@ -7278,7 +7278,7 @@ function baseCreateRenderer(options, createHydrationFns) {
       patch(
         c1[i2],
         nextChild,
-        container,
+        container2,
         null,
         parentComponent,
         parentSuspense,
@@ -7299,7 +7299,7 @@ function baseCreateRenderer(options, createHydrationFns) {
     } else {
       mountChildren(
         c2,
-        container,
+        container2,
         anchor,
         parentComponent,
         parentSuspense,
@@ -7310,7 +7310,7 @@ function baseCreateRenderer(options, createHydrationFns) {
       );
     }
   };
-  const patchKeyedChildren = (c1, c2, container, parentAnchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized) => {
+  const patchKeyedChildren = (c1, c2, container2, parentAnchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized) => {
     let i2 = 0;
     const l2 = c2.length;
     let e1 = c1.length - 1;
@@ -7322,7 +7322,7 @@ function baseCreateRenderer(options, createHydrationFns) {
         patch(
           n1,
           n2,
-          container,
+          container2,
           null,
           parentComponent,
           parentSuspense,
@@ -7342,7 +7342,7 @@ function baseCreateRenderer(options, createHydrationFns) {
         patch(
           n1,
           n2,
-          container,
+          container2,
           null,
           parentComponent,
           parentSuspense,
@@ -7364,7 +7364,7 @@ function baseCreateRenderer(options, createHydrationFns) {
           patch(
             null,
             c2[i2] = optimized ? cloneIfMounted(c2[i2]) : normalizeVNode(c2[i2]),
-            container,
+            container2,
             anchor,
             parentComponent,
             parentSuspense,
@@ -7426,7 +7426,7 @@ function baseCreateRenderer(options, createHydrationFns) {
           patch(
             prevChild,
             c2[newIndex],
-            container,
+            container2,
             null,
             parentComponent,
             parentSuspense,
@@ -7451,7 +7451,7 @@ function baseCreateRenderer(options, createHydrationFns) {
           patch(
             null,
             nextChild,
-            container,
+            container2,
             anchor,
             parentComponent,
             parentSuspense,
@@ -7461,7 +7461,7 @@ function baseCreateRenderer(options, createHydrationFns) {
           );
         } else if (moved) {
           if (j < 0 || i2 !== increasingNewIndexSequence[j]) {
-            move(nextChild, container, anchor, 2);
+            move(nextChild, container2, anchor, 2);
           } else {
             j--;
           }
@@ -7469,37 +7469,37 @@ function baseCreateRenderer(options, createHydrationFns) {
       }
     }
   };
-  const move = (vnode, container, anchor, moveType, parentSuspense = null) => {
+  const move = (vnode, container2, anchor, moveType, parentSuspense = null) => {
     const { el, type, transition, children, shapeFlag } = vnode;
     if (shapeFlag & 6) {
-      move(vnode.component.subTree, container, anchor, moveType);
+      move(vnode.component.subTree, container2, anchor, moveType);
       return;
     }
     if (shapeFlag & 128) {
-      vnode.suspense.move(container, anchor, moveType);
+      vnode.suspense.move(container2, anchor, moveType);
       return;
     }
     if (shapeFlag & 64) {
-      type.move(vnode, container, anchor, internals);
+      type.move(vnode, container2, anchor, internals);
       return;
     }
     if (type === Fragment) {
-      hostInsert(el, container, anchor);
+      hostInsert(el, container2, anchor);
       for (let i2 = 0; i2 < children.length; i2++) {
-        move(children[i2], container, anchor, moveType);
+        move(children[i2], container2, anchor, moveType);
       }
-      hostInsert(vnode.anchor, container, anchor);
+      hostInsert(vnode.anchor, container2, anchor);
       return;
     }
     if (type === Static) {
-      moveStaticNode(vnode, container, anchor);
+      moveStaticNode(vnode, container2, anchor);
       return;
     }
     const needTransition2 = moveType !== 2 && shapeFlag & 1 && transition;
     if (needTransition2) {
       if (moveType === 0) {
         transition.beforeEnter(el);
-        hostInsert(el, container, anchor);
+        hostInsert(el, container2, anchor);
         queuePostRenderEffect(() => transition.enter(el), parentSuspense);
       } else {
         const { leave, delayLeave, afterLeave } = transition;
@@ -7507,7 +7507,7 @@ function baseCreateRenderer(options, createHydrationFns) {
           if (vnode.ctx.isUnmounted) {
             hostRemove(el);
           } else {
-            hostInsert(el, container, anchor);
+            hostInsert(el, container2, anchor);
           }
         };
         const performLeave = () => {
@@ -7529,7 +7529,7 @@ function baseCreateRenderer(options, createHydrationFns) {
         }
       }
     } else {
-      hostInsert(el, container, anchor);
+      hostInsert(el, container2, anchor);
     }
   };
   const unmount = (vnode, parentComponent, parentSuspense, doRemove = false, optimized = false) => {
@@ -7691,25 +7691,25 @@ function baseCreateRenderer(options, createHydrationFns) {
     return teleportEnd ? hostNextSibling(teleportEnd) : el;
   };
   let isFlushing = false;
-  const render2 = (vnode, container, namespace) => {
+  const render2 = (vnode, container2, namespace) => {
     let instance;
     if (vnode == null) {
-      if (container._vnode) {
-        unmount(container._vnode, null, null, true);
-        instance = container._vnode.component;
+      if (container2._vnode) {
+        unmount(container2._vnode, null, null, true);
+        instance = container2._vnode.component;
       }
     } else {
       patch(
-        container._vnode || null,
+        container2._vnode || null,
         vnode,
-        container,
+        container2,
         null,
         null,
         null,
         namespace
       );
     }
-    container._vnode = vnode;
+    container2._vnode = vnode;
     if (!isFlushing) {
       isFlushing = true;
       flushPreFlushCbs(instance);
@@ -7859,11 +7859,11 @@ const SuspenseImpl = {
   // on a vnode's type and calls the `process` method, passing in renderer
   // internals.
   __isSuspense: true,
-  process(n1, n2, container, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized, rendererInternals) {
+  process(n1, n2, container2, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized, rendererInternals) {
     if (n1 == null) {
       mountSuspense(
         n2,
-        container,
+        container2,
         anchor,
         parentComponent,
         parentSuspense,
@@ -7882,7 +7882,7 @@ const SuspenseImpl = {
       patchSuspense(
         n1,
         n2,
-        container,
+        container2,
         anchor,
         parentComponent,
         namespace,
@@ -7902,7 +7902,7 @@ function triggerEvent(vnode, name) {
     eventListener();
   }
 }
-function mountSuspense(vnode, container, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized, rendererInternals) {
+function mountSuspense(vnode, container2, anchor, parentComponent, parentSuspense, namespace, slotScopeIds, optimized, rendererInternals) {
   const {
     p: patch,
     o: { createElement }
@@ -7912,7 +7912,7 @@ function mountSuspense(vnode, container, anchor, parentComponent, parentSuspense
     vnode,
     parentSuspense,
     parentComponent,
-    container,
+    container2,
     hiddenContainer,
     anchor,
     namespace,
@@ -7936,7 +7936,7 @@ function mountSuspense(vnode, container, anchor, parentComponent, parentSuspense
     patch(
       null,
       vnode.ssFallback,
-      container,
+      container2,
       anchor,
       parentComponent,
       null,
@@ -7949,7 +7949,7 @@ function mountSuspense(vnode, container, anchor, parentComponent, parentSuspense
     suspense.resolve(false, true);
   }
 }
-function patchSuspense(n1, n2, container, anchor, parentComponent, namespace, slotScopeIds, optimized, { p: patch, um: unmount, o: { createElement } }) {
+function patchSuspense(n1, n2, container2, anchor, parentComponent, namespace, slotScopeIds, optimized, { p: patch, um: unmount, o: { createElement } }) {
   const suspense = n2.suspense = n1.suspense;
   suspense.vnode = n2;
   n2.el = n1.el;
@@ -7977,7 +7977,7 @@ function patchSuspense(n1, n2, container, anchor, parentComponent, namespace, sl
           patch(
             activeBranch,
             newFallback,
-            container,
+            container2,
             anchor,
             parentComponent,
             null,
@@ -8018,7 +8018,7 @@ function patchSuspense(n1, n2, container, anchor, parentComponent, namespace, sl
           patch(
             activeBranch,
             newFallback,
-            container,
+            container2,
             anchor,
             parentComponent,
             null,
@@ -8033,7 +8033,7 @@ function patchSuspense(n1, n2, container, anchor, parentComponent, namespace, sl
         patch(
           activeBranch,
           newBranch,
-          container,
+          container2,
           anchor,
           parentComponent,
           suspense,
@@ -8064,7 +8064,7 @@ function patchSuspense(n1, n2, container, anchor, parentComponent, namespace, sl
       patch(
         activeBranch,
         newBranch,
-        container,
+        container2,
         anchor,
         parentComponent,
         suspense,
@@ -8109,7 +8109,7 @@ function patchSuspense(n1, n2, container, anchor, parentComponent, namespace, sl
     }
   }
 }
-function createSuspenseBoundary(vnode, parentSuspense, parentComponent, container, hiddenContainer, anchor, namespace, slotScopeIds, optimized, rendererInternals, isHydrating = false) {
+function createSuspenseBoundary(vnode, parentSuspense, parentComponent, container2, hiddenContainer, anchor, namespace, slotScopeIds, optimized, rendererInternals, isHydrating = false) {
   const {
     p: patch,
     m: move,
@@ -8132,7 +8132,7 @@ function createSuspenseBoundary(vnode, parentSuspense, parentComponent, containe
     parent: parentSuspense,
     parentComponent,
     namespace,
-    container,
+    container: container2,
     hiddenContainer,
     deps: 0,
     pendingId: suspenseId++,
@@ -8152,7 +8152,7 @@ function createSuspenseBoundary(vnode, parentSuspense, parentComponent, containe
         pendingId,
         effects,
         parentComponent: parentComponent2,
-        container: container2,
+        container: container22,
         isInFallback
       } = suspense;
       let delayEnter = false;
@@ -8165,7 +8165,7 @@ function createSuspenseBoundary(vnode, parentSuspense, parentComponent, containe
             if (pendingId === suspense.pendingId) {
               move(
                 pendingBranch,
-                container2,
+                container22,
                 anchor === initialAnchor ? next(activeBranch) : anchor,
                 0
               );
@@ -8177,7 +8177,7 @@ function createSuspenseBoundary(vnode, parentSuspense, parentComponent, containe
           };
         }
         if (activeBranch && !suspense.isFallbackMountPending) {
-          if (parentNode(activeBranch.el) === container2) {
+          if (parentNode(activeBranch.el) === container22) {
             anchor = next(activeBranch);
           }
           unmount(activeBranch, parentComponent2, suspense, true);
@@ -8186,7 +8186,7 @@ function createSuspenseBoundary(vnode, parentSuspense, parentComponent, containe
           }
         }
         if (!delayEnter) {
-          move(pendingBranch, container2, anchor, 0);
+          move(pendingBranch, container22, anchor, 0);
         }
       }
       suspense.isFallbackMountPending = false;
@@ -8221,7 +8221,7 @@ function createSuspenseBoundary(vnode, parentSuspense, parentComponent, containe
       if (!suspense.pendingBranch) {
         return;
       }
-      const { vnode: vnode2, activeBranch, parentComponent: parentComponent2, container: container2, namespace: namespace2 } = suspense;
+      const { vnode: vnode2, activeBranch, parentComponent: parentComponent2, container: container22, namespace: namespace2 } = suspense;
       triggerEvent(vnode2, "onFallback");
       const anchor2 = next(activeBranch);
       const mountFallback = () => {
@@ -8232,7 +8232,7 @@ function createSuspenseBoundary(vnode, parentSuspense, parentComponent, containe
         patch(
           null,
           fallbackVNode,
-          container2,
+          container22,
           anchor2,
           parentComponent2,
           null,
@@ -8261,9 +8261,9 @@ function createSuspenseBoundary(vnode, parentSuspense, parentComponent, containe
         mountFallback();
       }
     },
-    move(container2, anchor2, type) {
-      suspense.activeBranch && move(suspense.activeBranch, container2, anchor2, type);
-      suspense.container = container2;
+    move(container22, anchor2, type) {
+      suspense.activeBranch && move(suspense.activeBranch, container22, anchor2, type);
+      suspense.container = container22;
     },
     next() {
       return suspense.activeBranch && next(suspense.activeBranch);
@@ -8662,8 +8662,8 @@ function cloneVNode(vnode, extraProps, mergeRef = false, cloneTransition = false
 function createTextVNode(text2 = " ", flag = 0) {
   return createVNode(Text, null, text2, flag);
 }
-function createStaticVNode(content, numberOfNodes) {
-  const vnode = createVNode(Static, null, content);
+function createStaticVNode(content2, numberOfNodes) {
+  const vnode = createVNode(Static, null, content2);
   vnode.staticCount = numberOfNodes;
   return vnode;
 }
@@ -9214,7 +9214,7 @@ const nodeOps = {
   // Reason: innerHTML.
   // Static content here can only come from compiled templates.
   // As long as the user only uses trusted templates, this is safe.
-  insertStaticContent(content, parent, anchor, namespace, start, end) {
+  insertStaticContent(content2, parent, anchor, namespace, start, end) {
     const before = anchor ? anchor.previousSibling : parent.lastChild;
     if (start && (start === end || start.nextSibling)) {
       while (true) {
@@ -9223,7 +9223,7 @@ const nodeOps = {
       }
     } else {
       templateContainer.innerHTML = unsafeToTrustedHTML(
-        namespace === "svg" ? `<svg>${content}</svg>` : namespace === "mathml" ? `<math>${content}</math>` : content
+        namespace === "svg" ? `<svg>${content2}</svg>` : namespace === "mathml" ? `<math>${content2}</math>` : content2
       );
       const template = templateContainer.content;
       if (namespace === "svg" || namespace === "mathml") {
@@ -10311,10 +10311,10 @@ class VueElement extends BaseClass {
     for (let i2 = 0; i2 < outlets.length; i2++) {
       const o2 = outlets[i2];
       const slotName = o2.getAttribute("name") || "default";
-      const content = this._slots[slotName];
+      const content2 = this._slots[slotName];
       const parent = o2.parentNode;
-      if (content) {
-        for (const n2 of content) {
+      if (content2) {
+        for (const n2 of content2) {
           if (scopeId && n2.nodeType === 1) {
             const id = scopeId + "-s";
             const walker = document.createTreeWalker(n2, 1);
@@ -10556,10 +10556,10 @@ function hasCSSTransform(el, root, moveClass) {
   }
   moveClass.split(/\s+/).forEach((c2) => c2 && clone2.classList.add(c2));
   clone2.style.display = "none";
-  const container = root.nodeType === 1 ? root : root.parentNode;
-  container.appendChild(clone2);
+  const container2 = root.nodeType === 1 ? root : root.parentNode;
+  container2.appendChild(clone2);
   const { hasTransform } = getTransitionInfo(clone2);
-  container.removeChild(clone2);
+  container2.removeChild(clone2);
   return hasTransform;
 }
 const getModelAssigner = (vnode) => {
@@ -10908,19 +10908,19 @@ const createApp = ((...args) => {
   const app = ensureRenderer().createApp(...args);
   const { mount } = app;
   app.mount = (containerOrSelector) => {
-    const container = normalizeContainer(containerOrSelector);
-    if (!container) return;
+    const container2 = normalizeContainer(containerOrSelector);
+    if (!container2) return;
     const component = app._component;
     if (!isFunction$2(component) && !component.render && !component.template) {
-      component.template = container.innerHTML;
+      component.template = container2.innerHTML;
     }
-    if (container.nodeType === 1) {
-      container.textContent = "";
+    if (container2.nodeType === 1) {
+      container2.textContent = "";
     }
-    const proxy = mount(container, false, resolveRootNamespace(container));
-    if (container instanceof Element) {
-      container.removeAttribute("v-cloak");
-      container.setAttribute("data-v-app", "");
+    const proxy = mount(container2, false, resolveRootNamespace(container2));
+    if (container2 instanceof Element) {
+      container2.removeAttribute("v-cloak");
+      container2.setAttribute("data-v-app", "");
     }
     return proxy;
   };
@@ -10930,27 +10930,27 @@ const createSSRApp = ((...args) => {
   const app = ensureHydrationRenderer().createApp(...args);
   const { mount } = app;
   app.mount = (containerOrSelector) => {
-    const container = normalizeContainer(containerOrSelector);
-    if (container) {
-      return mount(container, true, resolveRootNamespace(container));
+    const container2 = normalizeContainer(containerOrSelector);
+    if (container2) {
+      return mount(container2, true, resolveRootNamespace(container2));
     }
   };
   return app;
 });
-function resolveRootNamespace(container) {
-  if (container instanceof SVGElement) {
+function resolveRootNamespace(container2) {
+  if (container2 instanceof SVGElement) {
     return "svg";
   }
-  if (typeof MathMLElement === "function" && container instanceof MathMLElement) {
+  if (typeof MathMLElement === "function" && container2 instanceof MathMLElement) {
     return "mathml";
   }
 }
-function normalizeContainer(container) {
-  if (isString$1(container)) {
-    const res = document.querySelector(container);
+function normalizeContainer(container2) {
+  if (isString$1(container2)) {
+    const res = document.querySelector(container2);
     return res;
   }
-  return container;
+  return container2;
 }
 let ssrDirectiveInitialized = false;
 const initDirectivesForSSR = () => {
@@ -11487,8 +11487,12 @@ var mdiChevronRight = "M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.5
 var mdiChevronUp = "M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z";
 var mdiClock = "M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M16.2,16.2L11,13V7H12.5V12.2L17,14.9L16.2,16.2Z";
 var mdiClose = "M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z";
+var mdiCog = "M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z";
+var mdiCogOutline = "M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10M10,22C9.75,22 9.54,21.82 9.5,21.58L9.13,18.93C8.5,18.68 7.96,18.34 7.44,17.94L4.95,18.95C4.73,19.03 4.46,18.95 4.34,18.73L2.34,15.27C2.21,15.05 2.27,14.78 2.46,14.63L4.57,12.97L4.5,12L4.57,11L2.46,9.37C2.27,9.22 2.21,8.95 2.34,8.73L4.34,5.27C4.46,5.05 4.73,4.96 4.95,5.05L7.44,6.05C7.96,5.66 8.5,5.32 9.13,5.07L9.5,2.42C9.54,2.18 9.75,2 10,2H14C14.25,2 14.46,2.18 14.5,2.42L14.87,5.07C15.5,5.32 16.04,5.66 16.56,6.05L19.05,5.05C19.27,4.96 19.54,5.05 19.66,5.27L21.66,8.73C21.79,8.95 21.73,9.22 21.54,9.37L19.43,11L19.5,12L19.43,13L21.54,14.63C21.73,14.78 21.79,15.05 21.66,15.27L19.66,18.73C19.54,18.95 19.27,19.04 19.05,18.95L16.56,17.95C16.04,18.34 15.5,18.68 14.87,18.93L14.5,21.58C14.46,21.82 14.25,22 14,22H10M11.25,4L10.88,6.61C9.68,6.86 8.62,7.5 7.85,8.39L5.44,7.35L4.69,8.65L6.8,10.2C6.4,11.37 6.4,12.64 6.8,13.8L4.68,15.36L5.43,16.66L7.86,15.62C8.63,16.5 9.68,17.14 10.87,17.38L11.24,20H12.76L13.13,17.39C14.32,17.14 15.37,16.5 16.14,15.62L18.57,16.66L19.32,15.36L17.2,13.81C17.6,12.64 17.6,11.37 17.2,10.2L19.31,8.65L18.56,7.35L16.15,8.39C15.38,7.5 14.32,6.86 13.12,6.62L12.75,4H11.25Z";
 var mdiMenu = "M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z";
 var mdiMenuOpen = "M21,15.61L19.59,17L14.58,12L19.59,7L21,8.39L17.44,12L21,15.61M3,6H16V8H3V6M3,13V11H13V13H3M3,18V16H16V18H3Z";
+var mdiPause = "M14,19H18V5H14M6,19H10V5H6V19Z";
+var mdiPlay = "M8,5.14V19.14L19,12.14L8,5.14Z";
 var mdiRadioboxBlank = "M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z";
 var mdiRadioboxMarked = "M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,7A5,5 0 0,0 7,12A5,5 0 0,0 12,17A5,5 0 0,0 17,12A5,5 0 0,0 12,7Z";
 /*! @license DOMPurify 3.3.3 | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/3.3.3/LICENSE */
@@ -11639,7 +11643,7 @@ const mathMl$1 = freeze(["math", "menclose", "merror", "mfenced", "mfrac", "mgly
 const mathMlDisallowed = freeze(["maction", "maligngroup", "malignmark", "mlongdiv", "mscarries", "mscarry", "msgroup", "mstack", "msline", "msrow", "semantics", "annotation", "annotation-xml", "mprescripts", "none"]);
 const text$1 = freeze(["#text"]);
 const html = freeze(["accept", "action", "align", "alt", "autocapitalize", "autocomplete", "autopictureinpicture", "autoplay", "background", "bgcolor", "border", "capture", "cellpadding", "cellspacing", "checked", "cite", "class", "clear", "color", "cols", "colspan", "controls", "controlslist", "coords", "crossorigin", "datetime", "decoding", "default", "dir", "disabled", "disablepictureinpicture", "disableremoteplayback", "download", "draggable", "enctype", "enterkeyhint", "exportparts", "face", "for", "headers", "height", "hidden", "high", "href", "hreflang", "id", "inert", "inputmode", "integrity", "ismap", "kind", "label", "lang", "list", "loading", "loop", "low", "max", "maxlength", "media", "method", "min", "minlength", "multiple", "muted", "name", "nonce", "noshade", "novalidate", "nowrap", "open", "optimum", "part", "pattern", "placeholder", "playsinline", "popover", "popovertarget", "popovertargetaction", "poster", "preload", "pubdate", "radiogroup", "readonly", "rel", "required", "rev", "reversed", "role", "rows", "rowspan", "spellcheck", "scope", "selected", "shape", "size", "sizes", "slot", "span", "srclang", "start", "src", "srcset", "step", "style", "summary", "tabindex", "title", "translate", "type", "usemap", "valign", "value", "width", "wrap", "xmlns", "slot"]);
-const svg = freeze(["accent-height", "accumulate", "additive", "alignment-baseline", "amplitude", "ascent", "attributename", "attributetype", "azimuth", "basefrequency", "baseline-shift", "begin", "bias", "by", "class", "clip", "clippathunits", "clip-path", "clip-rule", "color", "color-interpolation", "color-interpolation-filters", "color-profile", "color-rendering", "cx", "cy", "d", "dx", "dy", "diffuseconstant", "direction", "display", "divisor", "dur", "edgemode", "elevation", "end", "exponent", "fill", "fill-opacity", "fill-rule", "filter", "filterunits", "flood-color", "flood-opacity", "font-family", "font-size", "font-size-adjust", "font-stretch", "font-style", "font-variant", "font-weight", "fx", "fy", "g1", "g2", "glyph-name", "glyphref", "gradientunits", "gradienttransform", "height", "href", "id", "image-rendering", "in", "in2", "intercept", "k", "k1", "k2", "k3", "k4", "kerning", "keypoints", "keysplines", "keytimes", "lang", "lengthadjust", "letter-spacing", "kernelmatrix", "kernelunitlength", "lighting-color", "local", "marker-end", "marker-mid", "marker-start", "markerheight", "markerunits", "markerwidth", "maskcontentunits", "maskunits", "max", "mask", "mask-type", "media", "method", "mode", "min", "name", "numoctaves", "offset", "operator", "opacity", "order", "orient", "orientation", "origin", "overflow", "paint-order", "path", "pathlength", "patterncontentunits", "patterntransform", "patternunits", "points", "preservealpha", "preserveaspectratio", "primitiveunits", "r", "rx", "ry", "radius", "refx", "refy", "repeatcount", "repeatdur", "restart", "result", "rotate", "scale", "seed", "shape-rendering", "slope", "specularconstant", "specularexponent", "spreadmethod", "startoffset", "stddeviation", "stitchtiles", "stop-color", "stop-opacity", "stroke-dasharray", "stroke-dashoffset", "stroke-linecap", "stroke-linejoin", "stroke-miterlimit", "stroke-opacity", "stroke", "stroke-width", "style", "surfacescale", "systemlanguage", "tabindex", "tablevalues", "targetx", "targety", "transform", "transform-origin", "text-anchor", "text-decoration", "text-rendering", "textlength", "type", "u1", "u2", "unicode", "values", "viewbox", "visibility", "version", "vert-adv-y", "vert-origin-x", "vert-origin-y", "width", "word-spacing", "wrap", "writing-mode", "xchannelselector", "ychannelselector", "x", "x1", "x2", "xmlns", "y", "y1", "y2", "z", "zoomandpan"]);
+const svg$2 = freeze(["accent-height", "accumulate", "additive", "alignment-baseline", "amplitude", "ascent", "attributename", "attributetype", "azimuth", "basefrequency", "baseline-shift", "begin", "bias", "by", "class", "clip", "clippathunits", "clip-path", "clip-rule", "color", "color-interpolation", "color-interpolation-filters", "color-profile", "color-rendering", "cx", "cy", "d", "dx", "dy", "diffuseconstant", "direction", "display", "divisor", "dur", "edgemode", "elevation", "end", "exponent", "fill", "fill-opacity", "fill-rule", "filter", "filterunits", "flood-color", "flood-opacity", "font-family", "font-size", "font-size-adjust", "font-stretch", "font-style", "font-variant", "font-weight", "fx", "fy", "g1", "g2", "glyph-name", "glyphref", "gradientunits", "gradienttransform", "height", "href", "id", "image-rendering", "in", "in2", "intercept", "k", "k1", "k2", "k3", "k4", "kerning", "keypoints", "keysplines", "keytimes", "lang", "lengthadjust", "letter-spacing", "kernelmatrix", "kernelunitlength", "lighting-color", "local", "marker-end", "marker-mid", "marker-start", "markerheight", "markerunits", "markerwidth", "maskcontentunits", "maskunits", "max", "mask", "mask-type", "media", "method", "mode", "min", "name", "numoctaves", "offset", "operator", "opacity", "order", "orient", "orientation", "origin", "overflow", "paint-order", "path", "pathlength", "patterncontentunits", "patterntransform", "patternunits", "points", "preservealpha", "preserveaspectratio", "primitiveunits", "r", "rx", "ry", "radius", "refx", "refy", "repeatcount", "repeatdur", "restart", "result", "rotate", "scale", "seed", "shape-rendering", "slope", "specularconstant", "specularexponent", "spreadmethod", "startoffset", "stddeviation", "stitchtiles", "stop-color", "stop-opacity", "stroke-dasharray", "stroke-dashoffset", "stroke-linecap", "stroke-linejoin", "stroke-miterlimit", "stroke-opacity", "stroke", "stroke-width", "style", "surfacescale", "systemlanguage", "tabindex", "tablevalues", "targetx", "targety", "transform", "transform-origin", "text-anchor", "text-decoration", "text-rendering", "textlength", "type", "u1", "u2", "unicode", "values", "viewbox", "visibility", "version", "vert-adv-y", "vert-origin-x", "vert-origin-y", "width", "word-spacing", "wrap", "writing-mode", "xchannelselector", "ychannelselector", "x", "x1", "x2", "xmlns", "y", "y1", "y2", "z", "zoomandpan"]);
 const mathMl = freeze(["accent", "accentunder", "align", "bevelled", "close", "columnsalign", "columnlines", "columnspan", "denomalign", "depth", "dir", "display", "displaystyle", "encoding", "fence", "frame", "height", "href", "id", "largeop", "length", "linethickness", "lspace", "lquote", "mathbackground", "mathcolor", "mathsize", "mathvariant", "maxsize", "minsize", "movablelimits", "notation", "numalign", "open", "rowalign", "rowlines", "rowspacing", "rowspan", "rspace", "rquote", "scriptlevel", "scriptminsize", "scriptsizemultiplier", "selection", "separator", "separators", "stretchy", "subscriptshift", "supscriptshift", "symmetric", "voffset", "width", "xmlns"]);
 const xml = freeze(["xlink:href", "xml:id", "xlink:title", "xml:space", "xmlns:xlink"]);
 const MUSTACHE_EXPR = seal(/\{\{[\w\W]*|[\w\W]*\}\}/gm);
@@ -11785,7 +11789,7 @@ function createDOMPurify() {
   let ALLOWED_TAGS = null;
   const DEFAULT_ALLOWED_TAGS = addToSet({}, [...html$1, ...svg$1, ...svgFilters, ...mathMl$1, ...text$1]);
   let ALLOWED_ATTR = null;
-  const DEFAULT_ALLOWED_ATTR = addToSet({}, [...html, ...svg, ...mathMl, ...xml]);
+  const DEFAULT_ALLOWED_ATTR = addToSet({}, [...html, ...svg$2, ...mathMl, ...xml]);
   let CUSTOM_ELEMENT_HANDLING = Object.seal(create(null, {
     tagNameCheck: {
       writable: true,
@@ -11930,12 +11934,12 @@ function createDOMPurify() {
       }
       if (USE_PROFILES.svg === true) {
         addToSet(ALLOWED_TAGS, svg$1);
-        addToSet(ALLOWED_ATTR, svg);
+        addToSet(ALLOWED_ATTR, svg$2);
         addToSet(ALLOWED_ATTR, xml);
       }
       if (USE_PROFILES.svgFilters === true) {
         addToSet(ALLOWED_TAGS, svgFilters);
-        addToSet(ALLOWED_ATTR, svg);
+        addToSet(ALLOWED_ATTR, svg$2);
         addToSet(ALLOWED_ATTR, xml);
       }
       if (USE_PROFILES.mathMl === true) {
@@ -12157,7 +12161,7 @@ function createDOMPurify() {
     });
   }
   const _sanitizeElements = function _sanitizeElements2(currentNode) {
-    let content = null;
+    let content2 = null;
     _executeHooks(hooks.beforeSanitizeElements, currentNode, null);
     if (_isClobbered(currentNode)) {
       _forceRemove(currentNode);
@@ -12213,15 +12217,15 @@ function createDOMPurify() {
       return true;
     }
     if (SAFE_FOR_TEMPLATES && currentNode.nodeType === NODE_TYPE.text) {
-      content = currentNode.textContent;
+      content2 = currentNode.textContent;
       arrayForEach([MUSTACHE_EXPR2, ERB_EXPR2, TMPLIT_EXPR2], (expr) => {
-        content = stringReplace(content, expr, " ");
+        content2 = stringReplace(content2, expr, " ");
       });
-      if (currentNode.textContent !== content) {
+      if (currentNode.textContent !== content2) {
         arrayPush(DOMPurify.removed, {
           element: currentNode.cloneNode()
         });
-        currentNode.textContent = content;
+        currentNode.textContent = content2;
       }
     }
     _executeHooks(hooks.afterSanitizeElements, currentNode, null);
@@ -12516,15 +12520,15 @@ const _export_sfc$1 = (sfc, props) => {
   }
   return target;
 };
-const _hoisted_1$p = ["aria-hidden", "aria-label"];
-const _hoisted_2$l = {
+const _hoisted_1$u = ["aria-hidden", "aria-label"];
+const _hoisted_2$p = {
   key: 0,
   viewBox: "0 0 24 24",
   xmlns: "http://www.w3.org/2000/svg"
 };
-const _hoisted_3$h = ["d"];
-const _hoisted_4$e = ["innerHTML"];
-const _sfc_main$s = /* @__PURE__ */ defineComponent({
+const _hoisted_3$n = ["d"];
+const _hoisted_4$i = ["innerHTML"];
+const _sfc_main$x = /* @__PURE__ */ defineComponent({
   __name: "NcIconSvgWrapper",
   props: {
     directional: { type: Boolean },
@@ -12564,17 +12568,17 @@ const _sfc_main$s = /* @__PURE__ */ defineComponent({
         }]),
         role: "img"
       }, [
-        !cleanSvg.value ? (openBlock(), createElementBlock("svg", _hoisted_2$l, [
-          createBaseVNode("path", { d: _ctx.path }, null, 8, _hoisted_3$h)
+        !cleanSvg.value ? (openBlock(), createElementBlock("svg", _hoisted_2$p, [
+          createBaseVNode("path", { d: _ctx.path }, null, 8, _hoisted_3$n)
         ])) : (openBlock(), createElementBlock("span", {
           key: 1,
           innerHTML: cleanSvg.value
-        }, null, 8, _hoisted_4$e))
-      ], 10, _hoisted_1$p);
+        }, null, 8, _hoisted_4$i))
+      ], 10, _hoisted_1$u);
     };
   }
 });
-const NcIconSvgWrapper = /* @__PURE__ */ _export_sfc$1(_sfc_main$s, [["__scopeId", "data-v-aaedb1c3"]]);
+const NcIconSvgWrapper = /* @__PURE__ */ _export_sfc$1(_sfc_main$x, [["__scopeId", "data-v-aaedb1c3"]]);
 const NC_ACTIONS_IS_SEMANTIC_MENU = /* @__PURE__ */ Symbol.for("NcActions:isSemanticMenu");
 const NC_ACTIONS_CLOSE_MENU = /* @__PURE__ */ Symbol.for("NcActions:closeMenu");
 const ActionGlobalMixin = {
@@ -12672,7 +12676,7 @@ const ActionTextMixin = {
     }
   }
 };
-const _sfc_main$r = {
+const _sfc_main$w = {
   name: "NcActionButton",
   components: {
     NcIconSvgWrapper
@@ -12819,24 +12823,24 @@ const _sfc_main$r = {
     }
   }
 };
-const _hoisted_1$o = ["role"];
-const _hoisted_2$k = ["aria-label", "disabled", "title", "type"];
-const _hoisted_3$g = { class: "action-button__longtext-wrapper" };
-const _hoisted_4$d = {
+const _hoisted_1$t = ["role"];
+const _hoisted_2$o = ["aria-label", "disabled", "title", "type"];
+const _hoisted_3$m = { class: "action-button__longtext-wrapper" };
+const _hoisted_4$h = {
   key: 0,
   class: "action-button__name"
 };
-const _hoisted_5$6 = ["textContent"];
-const _hoisted_6$5 = {
+const _hoisted_5$7 = ["textContent"];
+const _hoisted_6$6 = {
   key: 2,
   class: "action-button__text"
 };
-const _hoisted_7$2 = ["textContent"];
+const _hoisted_7$3 = ["textContent"];
 const _hoisted_8 = {
   key: 2,
   class: "action-button__pressed-icon material-design-icon"
 };
-function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_NcIconSvgWrapper = resolveComponent("NcIconSvgWrapper");
   return openBlock(), createElementBlock("li", {
     class: normalizeClass(["action", { "action--disabled": $props.disabled }]),
@@ -12861,18 +12865,18 @@ function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
           "aria-hidden": "true"
         }, null, 6)
       ], true),
-      createBaseVNode("span", _hoisted_3$g, [
-        _ctx.name ? (openBlock(), createElementBlock("strong", _hoisted_4$d, toDisplayString(_ctx.name), 1)) : createCommentVNode("", true),
+      createBaseVNode("span", _hoisted_3$m, [
+        _ctx.name ? (openBlock(), createElementBlock("strong", _hoisted_4$h, toDisplayString(_ctx.name), 1)) : createCommentVNode("", true),
         _ctx.isLongText ? (openBlock(), createElementBlock("span", {
           key: 1,
           class: "action-button__longtext",
           textContent: toDisplayString(_ctx.text)
-        }, null, 8, _hoisted_5$6)) : (openBlock(), createElementBlock("span", _hoisted_6$5, toDisplayString(_ctx.text), 1)),
+        }, null, 8, _hoisted_5$7)) : (openBlock(), createElementBlock("span", _hoisted_6$6, toDisplayString(_ctx.text), 1)),
         $props.description ? (openBlock(), createElementBlock("span", {
           key: 3,
           class: "action-button__description",
           textContent: toDisplayString($props.description)
-        }, null, 8, _hoisted_7$2)) : createCommentVNode("", true)
+        }, null, 8, _hoisted_7$3)) : createCommentVNode("", true)
       ]),
       $props.isMenu ? (openBlock(), createBlock(_component_NcIconSvgWrapper, {
         key: 0,
@@ -12885,10 +12889,10 @@ function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
         class: "action-button__pressed-icon"
       }, null, 8, ["path"])) : $options.isChecked === false ? (openBlock(), createElementBlock("span", _hoisted_8)) : createCommentVNode("", true),
       createCommentVNode("", true)
-    ], 16, _hoisted_2$k)
-  ], 10, _hoisted_1$o);
+    ], 16, _hoisted_2$o)
+  ], 10, _hoisted_1$t);
 }
-const NcActionButton = /* @__PURE__ */ _export_sfc$1(_sfc_main$r, [["render", _sfc_render$i], ["__scopeId", "data-v-6c2daf4e"]]);
+const NcActionButton = /* @__PURE__ */ _export_sfc$1(_sfc_main$w, [["render", _sfc_render$n], ["__scopeId", "data-v-6c2daf4e"]]);
 const generateOcsUrl = (url2, params, options) => {
   const allOptions = Object.assign({
     ocsVersion: 2
@@ -13501,6 +13505,7 @@ function getGettextBuilder() {
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 const gettext = getGettextBuilder().detectLanguage().build();
+const n$2 = (...args) => gettext.ngettext(...args);
 const t = (...args) => gettext.gettext(...args);
 function register(...chunks) {
   for (const chunk of chunks) {
@@ -14661,11 +14666,11 @@ const extend = (a2, b2, thisArg, { allOwnKeys } = {}) => {
   );
   return a2;
 };
-const stripBOM = (content) => {
-  if (content.charCodeAt(0) === 65279) {
-    content = content.slice(1);
+const stripBOM = (content2) => {
+  if (content2.charCodeAt(0) === 65279) {
+    content2 = content2.slice(1);
   }
-  return content;
+  return content2;
 };
 const inherits = (constructor, superConstructor, props, descriptors) => {
   constructor.prototype = Object.create(superConstructor.prototype, descriptors);
@@ -17237,8 +17242,8 @@ const parseHeaders = (rawHeaders) => {
   return parsed;
 };
 const $internals = /* @__PURE__ */ Symbol("internals");
-function normalizeHeader(header) {
-  return header && String(header).trim().toLowerCase();
+function normalizeHeader(header2) {
+  return header2 && String(header2).trim().toLowerCase();
 }
 function normalizeValue(value) {
   if (value === false || value == null) {
@@ -17256,12 +17261,12 @@ function parseTokens(str) {
   return tokens;
 }
 const isValidHeaderName = (str) => /^[-_a-zA-Z0-9^`|~,!#$%&'*+.]+$/.test(str.trim());
-function matchHeaderValue(context, value, header, filter2, isHeaderNameFilter) {
+function matchHeaderValue(context, value, header2, filter2, isHeaderNameFilter) {
   if (utils$1.isFunction(filter2)) {
-    return filter2.call(this, value, header);
+    return filter2.call(this, value, header2);
   }
   if (isHeaderNameFilter) {
-    value = header;
+    value = header2;
   }
   if (!utils$1.isString(value)) return;
   if (utils$1.isString(filter2)) {
@@ -17271,17 +17276,17 @@ function matchHeaderValue(context, value, header, filter2, isHeaderNameFilter) {
     return filter2.test(value);
   }
 }
-function formatHeader(header) {
-  return header.trim().toLowerCase().replace(/([a-z\d])(\w*)/g, (w2, char, str) => {
+function formatHeader(header2) {
+  return header2.trim().toLowerCase().replace(/([a-z\d])(\w*)/g, (w2, char, str) => {
     return char.toUpperCase() + str;
   });
 }
-function buildAccessors(obj, header) {
-  const accessorName = utils$1.toCamelCase(" " + header);
+function buildAccessors(obj, header2) {
+  const accessorName = utils$1.toCamelCase(" " + header2);
   ["get", "set", "has"].forEach((methodName) => {
     Object.defineProperty(obj, methodName + accessorName, {
       value: function(arg1, arg2, arg3) {
-        return this[methodName].call(this, header, arg1, arg2, arg3);
+        return this[methodName].call(this, header2, arg1, arg2, arg3);
       },
       configurable: true
     });
@@ -17291,7 +17296,7 @@ let AxiosHeaders$1 = class AxiosHeaders {
   constructor(headers) {
     headers && this.set(headers);
   }
-  set(header, valueOrRewrite, rewrite) {
+  set(header2, valueOrRewrite, rewrite) {
     const self2 = this;
     function setHeader(_value, _header, _rewrite) {
       const lHeader = normalizeHeader(_header);
@@ -17304,13 +17309,13 @@ let AxiosHeaders$1 = class AxiosHeaders {
       }
     }
     const setHeaders = (headers, _rewrite) => utils$1.forEach(headers, (_value, _header) => setHeader(_value, _header, _rewrite));
-    if (utils$1.isPlainObject(header) || header instanceof this.constructor) {
-      setHeaders(header, valueOrRewrite);
-    } else if (utils$1.isString(header) && (header = header.trim()) && !isValidHeaderName(header)) {
-      setHeaders(parseHeaders(header), valueOrRewrite);
-    } else if (utils$1.isObject(header) && utils$1.isIterable(header)) {
+    if (utils$1.isPlainObject(header2) || header2 instanceof this.constructor) {
+      setHeaders(header2, valueOrRewrite);
+    } else if (utils$1.isString(header2) && (header2 = header2.trim()) && !isValidHeaderName(header2)) {
+      setHeaders(parseHeaders(header2), valueOrRewrite);
+    } else if (utils$1.isObject(header2) && utils$1.isIterable(header2)) {
       let obj = {}, dest, key;
-      for (const entry of header) {
+      for (const entry of header2) {
         if (!utils$1.isArray(entry)) {
           throw TypeError("Object iterator must return a key-value pair");
         }
@@ -17318,14 +17323,14 @@ let AxiosHeaders$1 = class AxiosHeaders {
       }
       setHeaders(obj, valueOrRewrite);
     } else {
-      header != null && setHeader(valueOrRewrite, header, rewrite);
+      header2 != null && setHeader(valueOrRewrite, header2, rewrite);
     }
     return this;
   }
-  get(header, parser) {
-    header = normalizeHeader(header);
-    if (header) {
-      const key = utils$1.findKey(this, header);
+  get(header2, parser) {
+    header2 = normalizeHeader(header2);
+    if (header2) {
+      const key = utils$1.findKey(this, header2);
       if (key) {
         const value = this[key];
         if (!parser) {
@@ -17344,15 +17349,15 @@ let AxiosHeaders$1 = class AxiosHeaders {
       }
     }
   }
-  has(header, matcher) {
-    header = normalizeHeader(header);
-    if (header) {
-      const key = utils$1.findKey(this, header);
+  has(header2, matcher) {
+    header2 = normalizeHeader(header2);
+    if (header2) {
+      const key = utils$1.findKey(this, header2);
       return !!(key && this[key] !== void 0 && (!matcher || matchHeaderValue(this, this[key], key, matcher)));
     }
     return false;
   }
-  delete(header, matcher) {
+  delete(header2, matcher) {
     const self2 = this;
     let deleted = false;
     function deleteHeader(_header) {
@@ -17365,10 +17370,10 @@ let AxiosHeaders$1 = class AxiosHeaders {
         }
       }
     }
-    if (utils$1.isArray(header)) {
-      header.forEach(deleteHeader);
+    if (utils$1.isArray(header2)) {
+      header2.forEach(deleteHeader);
     } else {
-      deleteHeader(header);
+      deleteHeader(header2);
     }
     return deleted;
   }
@@ -17388,16 +17393,16 @@ let AxiosHeaders$1 = class AxiosHeaders {
   normalize(format2) {
     const self2 = this;
     const headers = {};
-    utils$1.forEach(this, (value, header) => {
-      const key = utils$1.findKey(headers, header);
+    utils$1.forEach(this, (value, header2) => {
+      const key = utils$1.findKey(headers, header2);
       if (key) {
         self2[key] = normalizeValue(value);
-        delete self2[header];
+        delete self2[header2];
         return;
       }
-      const normalized = format2 ? formatHeader(header) : String(header).trim();
-      if (normalized !== header) {
-        delete self2[header];
+      const normalized = format2 ? formatHeader(header2) : String(header2).trim();
+      if (normalized !== header2) {
+        delete self2[header2];
       }
       self2[normalized] = normalizeValue(value);
       headers[normalized] = true;
@@ -17409,8 +17414,8 @@ let AxiosHeaders$1 = class AxiosHeaders {
   }
   toJSON(asStrings) {
     const obj = /* @__PURE__ */ Object.create(null);
-    utils$1.forEach(this, (value, header) => {
-      value != null && value !== false && (obj[header] = asStrings && utils$1.isArray(value) ? value.join(", ") : value);
+    utils$1.forEach(this, (value, header2) => {
+      value != null && value !== false && (obj[header2] = asStrings && utils$1.isArray(value) ? value.join(", ") : value);
     });
     return obj;
   }
@@ -17418,7 +17423,7 @@ let AxiosHeaders$1 = class AxiosHeaders {
     return Object.entries(this.toJSON())[Symbol.iterator]();
   }
   toString() {
-    return Object.entries(this.toJSON()).map(([header, value]) => header + ": " + value).join("\n");
+    return Object.entries(this.toJSON()).map(([header2, value]) => header2 + ": " + value).join("\n");
   }
   getSetCookie() {
     return this.get("set-cookie") || [];
@@ -17434,7 +17439,7 @@ let AxiosHeaders$1 = class AxiosHeaders {
     targets.forEach((target) => computed2.set(target));
     return computed2;
   }
-  static accessor(header) {
+  static accessor(header2) {
     const internals = this[$internals] = this[$internals] = {
       accessors: {}
     };
@@ -17447,7 +17452,7 @@ let AxiosHeaders$1 = class AxiosHeaders {
         accessors[lHeader] = true;
       }
     }
-    utils$1.isArray(header) ? header.forEach(defineAccessor) : defineAccessor(header);
+    utils$1.isArray(header2) ? header2.forEach(defineAccessor) : defineAccessor(header2);
     return this;
   }
 };
@@ -19081,10 +19086,10 @@ function useNcFormBox() {
     formBoxItemClass: void 0
   });
 }
-const _hoisted_1$n = { class: "button-vue__wrapper" };
-const _hoisted_2$j = { class: "button-vue__icon" };
-const _hoisted_3$f = { class: "button-vue__text" };
-const _sfc_main$q = /* @__PURE__ */ defineComponent({
+const _hoisted_1$s = { class: "button-vue__wrapper" };
+const _hoisted_2$n = { class: "button-vue__icon" };
+const _hoisted_3$l = { class: "button-vue__text" };
+const _sfc_main$v = /* @__PURE__ */ defineComponent({
   __name: "NcButton",
   props: {
     alignment: { default: "center" },
@@ -19177,11 +19182,11 @@ const _sfc_main$q = /* @__PURE__ */ defineComponent({
         "aria-label": _ctx.ariaLabel
       }, attrs.value, { onClick }), {
         default: withCtx(() => [
-          createBaseVNode("span", _hoisted_1$n, [
-            createBaseVNode("span", _hoisted_2$j, [
+          createBaseVNode("span", _hoisted_1$s, [
+            createBaseVNode("span", _hoisted_2$n, [
               renderSlot(_ctx.$slots, "icon", {}, void 0, true)
             ]),
-            createBaseVNode("span", _hoisted_3$f, [
+            createBaseVNode("span", _hoisted_3$l, [
               renderSlot(_ctx.$slots, "default", {}, () => [
                 createTextVNode(toDisplayString(_ctx.text), 1)
               ], true)
@@ -19193,17 +19198,17 @@ const _sfc_main$q = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const NcButton = /* @__PURE__ */ _export_sfc$1(_sfc_main$q, [["__scopeId", "data-v-09093702"]]);
-const _hoisted_1$m = { class: "input-field__main-wrapper" };
-const _hoisted_2$i = ["id", "aria-describedby", "disabled", "placeholder", "type", "value"];
-const _hoisted_3$e = ["for"];
-const _hoisted_4$c = { class: "input-field__icon input-field__icon--leading" };
-const _hoisted_5$5 = {
+const NcButton = /* @__PURE__ */ _export_sfc$1(_sfc_main$v, [["__scopeId", "data-v-09093702"]]);
+const _hoisted_1$r = { class: "input-field__main-wrapper" };
+const _hoisted_2$m = ["id", "aria-describedby", "disabled", "placeholder", "type", "value"];
+const _hoisted_3$k = ["for"];
+const _hoisted_4$g = { class: "input-field__icon input-field__icon--leading" };
+const _hoisted_5$6 = {
   key: 2,
   class: "input-field__icon input-field__icon--trailing"
 };
-const _hoisted_6$4 = ["id"];
-const _sfc_main$p = /* @__PURE__ */ defineComponent({
+const _hoisted_6$5 = ["id"];
+const _sfc_main$u = /* @__PURE__ */ defineComponent({
   ...{
     inheritAttrs: false
   },
@@ -19285,7 +19290,7 @@ const _sfc_main$p = /* @__PURE__ */ defineComponent({
           "input-field--legacy": unref(isLegacy)
         }, _ctx.$props.class]])
       }, [
-        createBaseVNode("div", _hoisted_1$m, [
+        createBaseVNode("div", _hoisted_1$r, [
           createBaseVNode("input", mergeProps(_ctx.$attrs, {
             id: _ctx.id,
             ref: "input",
@@ -19297,13 +19302,13 @@ const _sfc_main$p = /* @__PURE__ */ defineComponent({
             type: _ctx.type,
             value: modelValue.value.toString(),
             onInput: handleInput
-          }), null, 16, _hoisted_2$i),
+          }), null, 16, _hoisted_2$m),
           !_ctx.labelOutside && isValidLabel.value ? (openBlock(), createElementBlock("label", {
             key: 0,
             class: "input-field__label",
             for: _ctx.id
-          }, toDisplayString(_ctx.label), 9, _hoisted_3$e)) : createCommentVNode("", true),
-          withDirectives(createBaseVNode("div", _hoisted_4$c, [
+          }, toDisplayString(_ctx.label), 9, _hoisted_3$k)) : createCommentVNode("", true),
+          withDirectives(createBaseVNode("div", _hoisted_4$g, [
             renderSlot(_ctx.$slots, "icon", {}, void 0, true)
           ], 512), [
             [vShow, !!_ctx.$slots.icon]
@@ -19320,7 +19325,7 @@ const _sfc_main$p = /* @__PURE__ */ defineComponent({
               renderSlot(_ctx.$slots, "trailing-button-icon", {}, void 0, true)
             ]),
             _: 3
-          }, 8, ["aria-label", "disabled"])) : _ctx.success || _ctx.error ? (openBlock(), createElementBlock("div", _hoisted_5$5, [
+          }, 8, ["aria-label", "disabled"])) : _ctx.success || _ctx.error ? (openBlock(), createElementBlock("div", _hoisted_5$6, [
             _ctx.success ? (openBlock(), createBlock(NcIconSvgWrapper, {
               key: 0,
               path: unref(mdiCheck)
@@ -19347,12 +19352,12 @@ const _sfc_main$p = /* @__PURE__ */ defineComponent({
             inline: ""
           }, null, 8, ["path"])) : createCommentVNode("", true),
           createTextVNode(" " + toDisplayString(_ctx.helperText), 1)
-        ], 8, _hoisted_6$4)) : createCommentVNode("", true)
+        ], 8, _hoisted_6$5)) : createCommentVNode("", true)
       ], 2);
     };
   }
 });
-const NcInputField = /* @__PURE__ */ _export_sfc$1(_sfc_main$p, [["__scopeId", "data-v-fccfce00"]]);
+const NcInputField = /* @__PURE__ */ _export_sfc$1(_sfc_main$u, [["__scopeId", "data-v-fccfce00"]]);
 var LogLevel = /* @__PURE__ */ ((LogLevel2) => {
   LogLevel2[LogLevel2["Debug"] = 0] = "Debug";
   LogLevel2[LogLevel2["Info"] = 1] = "Info";
@@ -19515,7 +19520,7 @@ register(t49);
     }
   }
 });
-const _sfc_main$o = {
+const _sfc_main$t = {
   name: "NcActionLink",
   mixins: [ActionTextMixin],
   inject: {
@@ -19565,20 +19570,20 @@ const _sfc_main$o = {
     }
   }
 };
-const _hoisted_1$l = ["role"];
-const _hoisted_2$h = ["download", "href", "aria-label", "target", "title", "role"];
-const _hoisted_3$d = {
+const _hoisted_1$q = ["role"];
+const _hoisted_2$l = ["download", "href", "aria-label", "target", "title", "role"];
+const _hoisted_3$j = {
   key: 0,
   class: "action-link__longtext-wrapper"
 };
-const _hoisted_4$b = { class: "action-link__name" };
-const _hoisted_5$4 = ["textContent"];
-const _hoisted_6$3 = ["textContent"];
-const _hoisted_7$1 = {
+const _hoisted_4$f = { class: "action-link__name" };
+const _hoisted_5$5 = ["textContent"];
+const _hoisted_6$4 = ["textContent"];
+const _hoisted_7$2 = {
   key: 2,
   class: "action-link__text"
 };
-function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$m(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("li", {
     class: "action",
     role: $options.isInSemanticMenu && "presentation"
@@ -19601,24 +19606,24 @@ function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
           style: normalizeStyle({ backgroundImage: _ctx.isIconUrl ? `url(${_ctx.icon})` : null })
         }, null, 6)
       ], true),
-      _ctx.name ? (openBlock(), createElementBlock("span", _hoisted_3$d, [
-        createBaseVNode("strong", _hoisted_4$b, toDisplayString(_ctx.name), 1),
+      _ctx.name ? (openBlock(), createElementBlock("span", _hoisted_3$j, [
+        createBaseVNode("strong", _hoisted_4$f, toDisplayString(_ctx.name), 1),
         _cache[1] || (_cache[1] = createBaseVNode("br", null, null, -1)),
         createBaseVNode("span", {
           class: "action-link__longtext",
           textContent: toDisplayString(_ctx.text)
-        }, null, 8, _hoisted_5$4)
+        }, null, 8, _hoisted_5$5)
       ])) : _ctx.isLongText ? (openBlock(), createElementBlock("span", {
         key: 1,
         class: "action-link__longtext",
         textContent: toDisplayString(_ctx.text)
-      }, null, 8, _hoisted_6$3)) : (openBlock(), createElementBlock("span", _hoisted_7$1, toDisplayString(_ctx.text), 1)),
+      }, null, 8, _hoisted_6$4)) : (openBlock(), createElementBlock("span", _hoisted_7$2, toDisplayString(_ctx.text), 1)),
       createCommentVNode("", true)
-    ], 8, _hoisted_2$h)
-  ], 8, _hoisted_1$l);
+    ], 8, _hoisted_2$l)
+  ], 8, _hoisted_1$q);
 }
-const NcActionLink = /* @__PURE__ */ _export_sfc$1(_sfc_main$o, [["render", _sfc_render$h], ["__scopeId", "data-v-32f01b7a"]]);
-const _sfc_main$n = {
+const NcActionLink = /* @__PURE__ */ _export_sfc$1(_sfc_main$t, [["render", _sfc_render$m], ["__scopeId", "data-v-32f01b7a"]]);
+const _sfc_main$s = {
   name: "NcActionRouter",
   mixins: [ActionTextMixin],
   inject: {
@@ -19637,19 +19642,19 @@ const _sfc_main$n = {
     }
   }
 };
-const _hoisted_1$k = ["role"];
-const _hoisted_2$g = {
+const _hoisted_1$p = ["role"];
+const _hoisted_2$k = {
   key: 0,
   class: "action-router__longtext-wrapper"
 };
-const _hoisted_3$c = { class: "action-router__name" };
-const _hoisted_4$a = ["textContent"];
-const _hoisted_5$3 = ["textContent"];
-const _hoisted_6$2 = {
+const _hoisted_3$i = { class: "action-router__name" };
+const _hoisted_4$e = ["textContent"];
+const _hoisted_5$4 = ["textContent"];
+const _hoisted_6$3 = {
   key: 2,
   class: "action-router__text"
 };
-function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_RouterLink = resolveComponent("RouterLink");
   return openBlock(), createElementBlock("li", {
     class: "action",
@@ -19672,25 +19677,25 @@ function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
             style: normalizeStyle({ backgroundImage: _ctx.isIconUrl ? `url(${_ctx.icon})` : null })
           }, null, 6)
         ], true),
-        _ctx.name ? (openBlock(), createElementBlock("span", _hoisted_2$g, [
-          createBaseVNode("strong", _hoisted_3$c, toDisplayString(_ctx.name), 1),
+        _ctx.name ? (openBlock(), createElementBlock("span", _hoisted_2$k, [
+          createBaseVNode("strong", _hoisted_3$i, toDisplayString(_ctx.name), 1),
           _cache[0] || (_cache[0] = createBaseVNode("br", null, null, -1)),
           createBaseVNode("span", {
             class: "action-router__longtext",
             textContent: toDisplayString(_ctx.text)
-          }, null, 8, _hoisted_4$a)
+          }, null, 8, _hoisted_4$e)
         ])) : _ctx.isLongText ? (openBlock(), createElementBlock("span", {
           key: 1,
           class: "action-router__longtext",
           textContent: toDisplayString(_ctx.text)
-        }, null, 8, _hoisted_5$3)) : (openBlock(), createElementBlock("span", _hoisted_6$2, toDisplayString(_ctx.text), 1)),
+        }, null, 8, _hoisted_5$4)) : (openBlock(), createElementBlock("span", _hoisted_6$3, toDisplayString(_ctx.text), 1)),
         createCommentVNode("", true)
       ]),
       _: 3
     }, 8, ["aria-label", "role", "title", "to", "onClick"])
-  ], 8, _hoisted_1$k);
+  ], 8, _hoisted_1$p);
 }
-const NcActionRouter = /* @__PURE__ */ _export_sfc$1(_sfc_main$n, [["render", _sfc_render$g], ["__scopeId", "data-v-87267750"]]);
+const NcActionRouter = /* @__PURE__ */ _export_sfc$1(_sfc_main$s, [["render", _sfc_render$l], ["__scopeId", "data-v-87267750"]]);
 function getTrapStack() {
   window._nc_focus_trap ??= [];
   return window._nc_focus_trap;
@@ -22227,8 +22232,8 @@ var _getCandidatesIteratively = function getCandidatesIteratively(elements, incl
     }
     if (element.tagName === "SLOT") {
       var assigned = element.assignedElements();
-      var content = assigned.length ? assigned : element.children;
-      var nestedCandidates = _getCandidatesIteratively(content, true, options);
+      var content2 = assigned.length ? assigned : element.children;
+      var nestedCandidates = _getCandidatesIteratively(content2, true, options);
       if (options.flatten) {
         candidates.push.apply(candidates, nestedCandidates);
       } else {
@@ -22476,32 +22481,32 @@ var _sortByOrder = function sortByOrder(candidates) {
     return acc;
   }, []).concat(regularTabbables);
 };
-var tabbable = function tabbable2(container, options) {
+var tabbable = function tabbable2(container2, options) {
   options = options || {};
   var candidates;
   if (options.getShadowRoot) {
-    candidates = _getCandidatesIteratively([container], options.includeContainer, {
+    candidates = _getCandidatesIteratively([container2], options.includeContainer, {
       filter: isNodeMatchingSelectorTabbable.bind(null, options),
       flatten: false,
       getShadowRoot: options.getShadowRoot,
       shadowRootFilter: isShadowRootTabbable
     });
   } else {
-    candidates = getCandidates(container, options.includeContainer, isNodeMatchingSelectorTabbable.bind(null, options));
+    candidates = getCandidates(container2, options.includeContainer, isNodeMatchingSelectorTabbable.bind(null, options));
   }
   return _sortByOrder(candidates);
 };
-var focusable = function focusable2(container, options) {
+var focusable = function focusable2(container2, options) {
   options = options || {};
   var candidates;
   if (options.getShadowRoot) {
-    candidates = _getCandidatesIteratively([container], options.includeContainer, {
+    candidates = _getCandidatesIteratively([container2], options.includeContainer, {
       filter: isNodeMatchingSelectorFocusable.bind(null, options),
       flatten: true,
       getShadowRoot: options.getShadowRoot
     });
   } else {
-    candidates = getCandidates(container, options.includeContainer, isNodeMatchingSelectorFocusable.bind(null, options));
+    candidates = getCandidates(container2, options.includeContainer, isNodeMatchingSelectorFocusable.bind(null, options));
   }
   return candidates;
 };
@@ -22896,12 +22901,12 @@ var createFocusTrap = function createFocusTrap2(elements, userOptions) {
   var findContainerIndex = function findContainerIndex2(element, event) {
     var composedPath = typeof (event === null || event === void 0 ? void 0 : event.composedPath) === "function" ? event.composedPath() : void 0;
     return state.containerGroups.findIndex(function(_ref) {
-      var container = _ref.container, tabbableNodes = _ref.tabbableNodes;
-      return container.contains(element) || // fall back to explicit tabbable search which will take into consideration any
+      var container2 = _ref.container, tabbableNodes = _ref.tabbableNodes;
+      return container2.contains(element) || // fall back to explicit tabbable search which will take into consideration any
       //  web components if the `tabbableOptions.getShadowRoot` option was used for
       //  the trap, enabling shadow DOM support in tabbable (`Node.contains()` doesn't
       //  look inside web components even if open)
-      (composedPath === null || composedPath === void 0 ? void 0 : composedPath.includes(container)) || tabbableNodes.find(function(node) {
+      (composedPath === null || composedPath === void 0 ? void 0 : composedPath.includes(container2)) || tabbableNodes.find(function(node) {
         return node === element;
       });
     });
@@ -22960,9 +22965,9 @@ var createFocusTrap = function createFocusTrap2(elements, userOptions) {
     return node;
   };
   var updateTabbableNodes = function updateTabbableNodes2() {
-    state.containerGroups = state.containers.map(function(container) {
-      var tabbableNodes = tabbable(container, config.tabbableOptions);
-      var focusableNodes = focusable(container, config.tabbableOptions);
+    state.containerGroups = state.containers.map(function(container2) {
+      var tabbableNodes = tabbable(container2, config.tabbableOptions);
+      var focusableNodes = focusable(container2, config.tabbableOptions);
       var firstTabbableNode = tabbableNodes.length > 0 ? tabbableNodes[0] : void 0;
       var lastTabbableNode = tabbableNodes.length > 0 ? tabbableNodes[tabbableNodes.length - 1] : void 0;
       var firstDomTabbableNode = focusableNodes.find(function(node) {
@@ -22975,7 +22980,7 @@ var createFocusTrap = function createFocusTrap2(elements, userOptions) {
         return getTabIndex(node) > 0;
       });
       return {
-        container,
+        container: container2,
         tabbableNodes,
         focusableNodes,
         /** True if at least one node with positive `tabindex` was found in this container. */
@@ -23287,10 +23292,10 @@ var createFocusTrap = function createFocusTrap2(elements, userOptions) {
     var _iterator = _createForOfIteratorHelper(containers), _step;
     try {
       for (_iterator.s(); !(_step = _iterator.n()).done; ) {
-        var container = _step.value;
-        containerAncestors.add(container);
-        var insideShadowRoot = typeof ShadowRoot !== "undefined" && container.getRootNode() instanceof ShadowRoot;
-        var current = container;
+        var container2 = _step.value;
+        containerAncestors.add(container2);
+        var insideShadowRoot = typeof ShadowRoot !== "undefined" && container2.getRootNode() instanceof ShadowRoot;
+        var current = container2;
         while (current) {
           containerAncestors.add(current);
           var parent = current.parentElement;
@@ -23356,8 +23361,8 @@ var createFocusTrap = function createFocusTrap2(elements, userOptions) {
     }
     mutationObserver.disconnect();
     if (state.active && !state.paused) {
-      state.containers.map(function(container) {
-        mutationObserver.observe(container, {
+      state.containers.map(function(container2) {
+        mutationObserver.observe(container2, {
           subtree: true,
           childList: true
         });
@@ -23597,7 +23602,7 @@ var createFocusTrap = function createFocusTrap2(elements, userOptions) {
   return trap;
 };
 const isRtl = isRTL$1();
-const _sfc_main$1$5 = /* @__PURE__ */ defineComponent({
+const _sfc_main$1$6 = /* @__PURE__ */ defineComponent({
   name: "NcPopoverTriggerProvider",
   provide() {
     return {
@@ -23636,17 +23641,17 @@ const _sfc_main$1$5 = /* @__PURE__ */ defineComponent({
   }
 });
 const ncPopover = "_ncPopover_HjJ88";
-const style0 = {
+const style0$2 = {
   "material-design-icon": "_material-design-icon_FKPyJ",
   ncPopover
 };
 const theme = "nc-popover-9";
 Ht$1.themes[theme] = structuredClone(Ht$1.themes.dropdown);
-const _sfc_main$m = {
+const _sfc_main$r = {
   name: "NcPopover",
   components: {
     Dropdown: kt,
-    NcPopoverTriggerProvider: _sfc_main$1$5
+    NcPopoverTriggerProvider: _sfc_main$1$6
   },
   props: {
     /**
@@ -23965,7 +23970,7 @@ const _sfc_main$m = {
     }
   }
 };
-function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_NcPopoverTriggerProvider = resolveComponent("NcPopoverTriggerProvider");
   const _component_Dropdown = resolveComponent("Dropdown");
   return openBlock(), createBlock(_component_Dropdown, {
@@ -24012,11 +24017,11 @@ function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
     _: 3
   }, 8, ["shown", "autoHide", "boundary", "container", "delay", "placement", "popperClass", "popperTriggers", "popperHideTriggers", "popperShowTriggers", "theme", "triggers", "hideTriggers", "showTriggers", "onApplyShow", "onApplyHide"]);
 }
-const cssModules = {
-  "$style": style0
+const cssModules$2 = {
+  "$style": style0$2
 };
-const NcPopover = /* @__PURE__ */ _export_sfc$1(_sfc_main$m, [["render", _sfc_render$f], ["__cssModules", cssModules]]);
-const _sfc_main$1$4 = {
+const NcPopover = /* @__PURE__ */ _export_sfc$1(_sfc_main$r, [["render", _sfc_render$k], ["__cssModules", cssModules$2]]);
+const _sfc_main$1$5 = {
   name: "DotsHorizontalIcon",
   emits: ["click"],
   props: {
@@ -24033,11 +24038,11 @@ const _sfc_main$1$4 = {
     }
   }
 };
-const _hoisted_1$j = ["aria-hidden", "aria-label"];
-const _hoisted_2$f = ["fill", "width", "height"];
-const _hoisted_3$b = { d: "M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z" };
-const _hoisted_4$9 = { key: 0 };
-function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$o = ["aria-hidden", "aria-label"];
+const _hoisted_2$j = ["fill", "width", "height"];
+const _hoisted_3$h = { d: "M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z" };
+const _hoisted_4$d = { key: 0 };
+function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("span", mergeProps(_ctx.$attrs, {
     "aria-hidden": $props.title ? null : "true",
     "aria-label": $props.title,
@@ -24052,13 +24057,13 @@ function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
       height: $props.size,
       viewBox: "0 0 24 24"
     }, [
-      createBaseVNode("path", _hoisted_3$b, [
-        $props.title ? (openBlock(), createElementBlock("title", _hoisted_4$9, toDisplayString($props.title), 1)) : createCommentVNode("", true)
+      createBaseVNode("path", _hoisted_3$h, [
+        $props.title ? (openBlock(), createElementBlock("title", _hoisted_4$d, toDisplayString($props.title), 1)) : createCommentVNode("", true)
       ])
-    ], 8, _hoisted_2$f))
-  ], 16, _hoisted_1$j);
+    ], 8, _hoisted_2$j))
+  ], 16, _hoisted_1$o);
 }
-const IconDotsHorizontal = /* @__PURE__ */ _export_sfc$1(_sfc_main$1$4, [["render", _sfc_render$e]]);
+const IconDotsHorizontal = /* @__PURE__ */ _export_sfc$1(_sfc_main$1$5, [["render", _sfc_render$j]]);
 register(t4);
 function isSlotPopulated(vnodes) {
   return Array.isArray(vnodes) && vnodes.some((node) => {
@@ -24078,7 +24083,7 @@ function isSlotPopulated(vnodes) {
   });
 }
 const focusableSelector = ".focusable";
-const _sfc_main$l = {
+const _sfc_main$q = {
   name: "NcActions",
   components: {
     NcButton,
@@ -24516,8 +24521,8 @@ const _sfc_main$l = {
     focusFirstAction(event) {
       if (this.opened) {
         this.preventIfEvent(event);
-        const firstCheckedIndex = [...this.getFocusableMenuItemElements()].findIndex((button) => {
-          return button.getAttribute("aria-checked") === "true" && button.getAttribute("role") === "menuitemradio";
+        const firstCheckedIndex = [...this.getFocusableMenuItemElements()].findIndex((button2) => {
+          return button2.getAttribute("aria-checked") === "true" && button2.getAttribute("role") === "menuitemradio";
         });
         this.focusIndex = firstCheckedIndex > -1 ? firstCheckedIndex : 0;
         this.focusAction();
@@ -24763,8 +24768,8 @@ const _sfc_main$l = {
     );
   }
 };
-const NcActions = /* @__PURE__ */ _export_sfc$1(_sfc_main$l, [["__scopeId", "data-v-5f7eed6b"]]);
-const _sfc_main$k = {
+const NcActions = /* @__PURE__ */ _export_sfc$1(_sfc_main$q, [["__scopeId", "data-v-5f7eed6b"]]);
+const _sfc_main$p = {
   name: "NcActionText",
   mixins: [ActionTextMixin],
   inject: {
@@ -24774,19 +24779,19 @@ const _sfc_main$k = {
     }
   }
 };
-const _hoisted_1$i = ["role"];
-const _hoisted_2$e = {
+const _hoisted_1$n = ["role"];
+const _hoisted_2$i = {
   key: 0,
   class: "action-text__longtext-wrapper"
 };
-const _hoisted_3$a = { class: "action-text__name" };
-const _hoisted_4$8 = ["textContent"];
-const _hoisted_5$2 = ["textContent"];
-const _hoisted_6$1 = {
+const _hoisted_3$g = { class: "action-text__name" };
+const _hoisted_4$c = ["textContent"];
+const _hoisted_5$3 = ["textContent"];
+const _hoisted_6$2 = {
   key: 2,
   class: "action-text__text"
 };
-function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("li", {
     class: "action",
     role: $options.isInSemanticMenu && "presentation"
@@ -24803,22 +24808,22 @@ function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
           style: normalizeStyle({ backgroundImage: _ctx.isIconUrl ? `url(${_ctx.icon})` : null })
         }, null, 6)) : createCommentVNode("", true)
       ], true),
-      _ctx.name ? (openBlock(), createElementBlock("span", _hoisted_2$e, [
-        createBaseVNode("strong", _hoisted_3$a, toDisplayString(_ctx.name), 1),
+      _ctx.name ? (openBlock(), createElementBlock("span", _hoisted_2$i, [
+        createBaseVNode("strong", _hoisted_3$g, toDisplayString(_ctx.name), 1),
         createBaseVNode("span", {
           class: "action-text__longtext",
           textContent: toDisplayString(_ctx.text)
-        }, null, 8, _hoisted_4$8)
+        }, null, 8, _hoisted_4$c)
       ])) : _ctx.isLongText ? (openBlock(), createElementBlock("span", {
         key: 1,
         class: "action-text__longtext",
         textContent: toDisplayString(_ctx.text)
-      }, null, 8, _hoisted_5$2)) : (openBlock(), createElementBlock("span", _hoisted_6$1, toDisplayString(_ctx.text), 1)),
+      }, null, 8, _hoisted_5$3)) : (openBlock(), createElementBlock("span", _hoisted_6$2, toDisplayString(_ctx.text), 1)),
       createCommentVNode("", true)
     ])
-  ], 8, _hoisted_1$i);
+  ], 8, _hoisted_1$n);
 }
-const NcActionText = /* @__PURE__ */ _export_sfc$1(_sfc_main$k, [["render", _sfc_render$d], ["__scopeId", "data-v-fa684b48"]]);
+const NcActionText = /* @__PURE__ */ _export_sfc$1(_sfc_main$p, [["render", _sfc_render$i], ["__scopeId", "data-v-fa684b48"]]);
 function tryOnScopeDispose(fn2, failSilently) {
   if (getCurrentScope()) {
     onScopeDispose(fn2, failSilently);
@@ -24872,6 +24877,39 @@ function createSharedComposable(composable) {
     tryOnScopeDispose(dispose);
     return state;
   });
+}
+function useIntervalFn(cb, interval = 1e3, options = {}) {
+  const { immediate = true, immediateCallback = false } = options;
+  let timer = null;
+  const isActive = /* @__PURE__ */ shallowRef(false);
+  function clean() {
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+  }
+  function pause() {
+    isActive.value = false;
+    clean();
+  }
+  function resume() {
+    const intervalValue = toValue(interval);
+    if (intervalValue <= 0) return;
+    isActive.value = true;
+    if (immediateCallback) cb();
+    clean();
+    if (isActive.value) timer = setInterval(cb, intervalValue);
+  }
+  if (immediate && isClient) resume();
+  if (/* @__PURE__ */ isRef(interval) || typeof interval === "function") tryOnScopeDispose(watch(interval, () => {
+    if (isActive.value && isClient) resume();
+  }));
+  tryOnScopeDispose(pause);
+  return {
+    isActive: /* @__PURE__ */ shallowReadonly(isActive),
+    pause,
+    resume
+  };
 }
 function watchImmediate(source, cb, options) {
   return watch(source, cb, {
@@ -25071,6 +25109,40 @@ function onElementRemoval(target, callback, options = {}) {
   };
   tryOnScopeDispose(stopHandle);
   return stopHandle;
+}
+function createKeyPredicate(keyFilter) {
+  if (typeof keyFilter === "function") return keyFilter;
+  else if (typeof keyFilter === "string") return (event) => event.key === keyFilter;
+  else if (Array.isArray(keyFilter)) return (event) => keyFilter.includes(event.key);
+  return () => true;
+}
+function onKeyStroke(...args) {
+  let key;
+  let handler;
+  let options = {};
+  if (args.length === 3) {
+    key = args[0];
+    handler = args[1];
+    options = args[2];
+  } else if (args.length === 2) if (typeof args[1] === "object") {
+    key = true;
+    handler = args[0];
+    options = args[1];
+  } else {
+    key = args[0];
+    handler = args[1];
+  }
+  else {
+    key = true;
+    handler = args[0];
+  }
+  const { target = defaultWindow, eventName = "keydown", passive = false, dedupe = false } = options;
+  const predicate = createKeyPredicate(key);
+  const listener = (e) => {
+    if (e.repeat && toValue(dedupe)) return;
+    if (predicate(e)) handler(e);
+  };
+  return useEventListener(target, eventName, listener, passive);
 }
 // @__NO_SIDE_EFFECTS__
 function useActiveElement(options = {}) {
@@ -25537,7 +25609,7 @@ const useLocalizedAppName = once(() => {
   return apps.find(({ id }) => id === realAppName2)?.name ?? realAppName2;
 });
 register(t27);
-const _sfc_main$1$3 = /* @__PURE__ */ defineComponent({
+const _sfc_main$1$4 = /* @__PURE__ */ defineComponent({
   __name: "NcAppContentDetailsToggle",
   setup(__props) {
     const isMobile2 = useIsMobile();
@@ -25577,10 +25649,10 @@ const _sfc_main$1$3 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const NcAppContentDetailsToggle = /* @__PURE__ */ _export_sfc$1(_sfc_main$1$3, [["__scopeId", "data-v-a28923a1"]]);
+const NcAppContentDetailsToggle = /* @__PURE__ */ _export_sfc$1(_sfc_main$1$4, [["__scopeId", "data-v-a28923a1"]]);
 const browserStorage$2 = getBuilder("nextcloud").persist().build();
 const instanceName = getCapabilities().theming?.name ?? "Nextcloud";
-const _sfc_main$j = {
+const _sfc_main$o = {
   name: "NcAppContent",
   components: {
     NcAppContentDetailsToggle,
@@ -25817,16 +25889,16 @@ const _sfc_main$j = {
     }
   }
 };
-const _hoisted_1$h = {
+const _hoisted_1$m = {
   key: 0,
   class: "hidden-visually"
 };
-const _hoisted_2$d = { class: "app-content-wrapper__list" };
-const _hoisted_3$9 = {
+const _hoisted_2$h = { class: "app-content-wrapper__list" };
+const _hoisted_3$f = {
   key: 1,
   class: "app-content-wrapper"
 };
-function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_NcAppContentDetailsToggle = resolveComponent("NcAppContentDetailsToggle");
   const _component_Pane = resolveComponent("Pane");
   const _component_Splitpanes = resolveComponent("Splitpanes");
@@ -25834,7 +25906,7 @@ function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
     id: "app-content-vue",
     class: normalizeClass(["app-content no-snapper", { "app-content--has-list": !!_ctx.$slots.list }])
   }, [
-    $props.pageHeading ? (openBlock(), createElementBlock("h1", _hoisted_1$h, toDisplayString($props.pageHeading), 1)) : createCommentVNode("", true),
+    $props.pageHeading ? (openBlock(), createElementBlock("h1", _hoisted_1$m, toDisplayString($props.pageHeading), 1)) : createCommentVNode("", true),
     !!_ctx.$slots.list ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
       $setup.isMobile || $props.layout === "no-split" ? (openBlock(), createElementBlock("div", {
         key: 0,
@@ -25848,13 +25920,13 @@ function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
           key: 0,
           onClick: withModifiers($options.hideDetails, ["stop", "prevent"])
         }, null, 8, ["onClick"])) : createCommentVNode("", true),
-        withDirectives(createBaseVNode("div", _hoisted_2$d, [
+        withDirectives(createBaseVNode("div", _hoisted_2$h, [
           renderSlot(_ctx.$slots, "list", {}, void 0, true)
         ], 512), [
           [vShow, !$props.showDetails]
         ]),
         $props.showDetails ? renderSlot(_ctx.$slots, "default", { key: 1 }, void 0, true) : createCommentVNode("", true)
-      ], 2)) : $props.layout === "vertical-split" || $props.layout === "horizontal-split" ? (openBlock(), createElementBlock("div", _hoisted_3$9, [
+      ], 2)) : $props.layout === "vertical-split" || $props.layout === "horizontal-split" ? (openBlock(), createElementBlock("div", _hoisted_3$f, [
         createVNode(_component_Splitpanes, {
           horizontal: $props.layout === "horizontal-split",
           class: normalizeClass(["default-theme", {
@@ -25895,17 +25967,17 @@ function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
     !_ctx.$slots.list ? renderSlot(_ctx.$slots, "default", { key: 2 }, void 0, true) : createCommentVNode("", true)
   ], 2);
 }
-const NcAppContent = /* @__PURE__ */ _export_sfc$1(_sfc_main$j, [["render", _sfc_render$c], ["__scopeId", "data-v-ea1e6879"]]);
-const _sfc_main$i = {
+const NcAppContent = /* @__PURE__ */ _export_sfc$1(_sfc_main$o, [["render", _sfc_render$h], ["__scopeId", "data-v-ea1e6879"]]);
+const _sfc_main$n = {
   name: "NcAppNavigationList"
 };
-const _hoisted_1$g = { class: "app-navigation-list" };
-function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("ul", _hoisted_1$g, [
+const _hoisted_1$l = { class: "app-navigation-list" };
+function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("ul", _hoisted_1$l, [
     renderSlot(_ctx.$slots, "default", {}, void 0, true)
   ]);
 }
-const NcAppNavigationList = /* @__PURE__ */ _export_sfc$1(_sfc_main$i, [["render", _sfc_render$b], ["__scopeId", "data-v-d72957ed"]]);
+const NcAppNavigationList = /* @__PURE__ */ _export_sfc$1(_sfc_main$n, [["render", _sfc_render$g], ["__scopeId", "data-v-d72957ed"]]);
 /*!
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -25913,8 +25985,8 @@ const NcAppNavigationList = /* @__PURE__ */ _export_sfc$1(_sfc_main$i, [["render
 const HAS_APP_NAVIGATION_KEY = /* @__PURE__ */ Symbol.for("NcContent:setHasAppNavigation");
 const CONTENT_SELECTOR_KEY = /* @__PURE__ */ Symbol.for("NcContent:selector");
 register(t20);
-const _hoisted_1$1$2 = { class: "app-navigation-toggle-wrapper" };
-const _sfc_main$1$2 = /* @__PURE__ */ defineComponent({
+const _hoisted_1$1$3 = { class: "app-navigation-toggle-wrapper" };
+const _sfc_main$1$3 = /* @__PURE__ */ defineComponent({
   __name: "NcAppNavigationToggle",
   props: {
     "open": { type: Boolean, ...{ required: true } },
@@ -25925,7 +25997,7 @@ const _sfc_main$1$2 = /* @__PURE__ */ defineComponent({
     const open = useModel(__props, "open");
     const title = computed(() => open.value ? t("Close navigation") : t("Open navigation"));
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$1$2, [
+      return openBlock(), createElementBlock("div", _hoisted_1$1$3, [
         createVNode(unref(NcButton), {
           class: "app-navigation-toggle",
           "aria-controls": "app-navigation-vue",
@@ -25946,10 +26018,10 @@ const _sfc_main$1$2 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const NcAppNavigationToggle = /* @__PURE__ */ _export_sfc$1(_sfc_main$1$2, [["__scopeId", "data-v-5a15295d"]]);
-const _hoisted_1$f = ["aria-hidden", "aria-label", "aria-labelledby", "inert"];
-const _hoisted_2$c = { class: "app-navigation__search" };
-const _sfc_main$h = /* @__PURE__ */ defineComponent({
+const NcAppNavigationToggle = /* @__PURE__ */ _export_sfc$1(_sfc_main$1$3, [["__scopeId", "data-v-5a15295d"]]);
+const _hoisted_1$k = ["aria-hidden", "aria-label", "aria-labelledby", "inert"];
+const _hoisted_2$g = { class: "app-navigation__search" };
+const _sfc_main$m = /* @__PURE__ */ defineComponent({
   __name: "NcAppNavigation",
   props: {
     ariaLabel: {},
@@ -26039,7 +26111,7 @@ const _sfc_main$h = /* @__PURE__ */ defineComponent({
           inert: !open.value || void 0,
           onKeydown: withKeys(handleEsc, ["esc"])
         }, [
-          createBaseVNode("div", _hoisted_2$c, [
+          createBaseVNode("div", _hoisted_2$g, [
             renderSlot(_ctx.$slots, "search", {}, void 0, true)
           ]),
           createBaseVNode("div", {
@@ -26057,7 +26129,7 @@ const _sfc_main$h = /* @__PURE__ */ defineComponent({
             _: 3
           })) : createCommentVNode("", true),
           renderSlot(_ctx.$slots, "footer", {}, void 0, true)
-        ], 40, _hoisted_1$f),
+        ], 40, _hoisted_1$k),
         createVNode(NcAppNavigationToggle, {
           open: open.value,
           "onUpdate:open": toggleNavigation
@@ -26066,8 +26138,8 @@ const _sfc_main$h = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const NcAppNavigation = /* @__PURE__ */ _export_sfc$1(_sfc_main$h, [["__scopeId", "data-v-d5ce90cd"]]);
-const _sfc_main$g = {
+const NcAppNavigation = /* @__PURE__ */ _export_sfc$1(_sfc_main$m, [["__scopeId", "data-v-d5ce90cd"]]);
+const _sfc_main$l = {
   name: "NcAppNavigationCaption",
   components: {
     NcActions
@@ -26124,11 +26196,11 @@ const _sfc_main$g = {
     }
   }
 };
-const _hoisted_1$e = {
+const _hoisted_1$j = {
   key: 0,
   class: "app-navigation-caption__actions"
 };
-function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_NcActions = resolveComponent("NcActions");
   return openBlock(), createBlock(resolveDynamicComponent($options.wrapperTag), {
     class: normalizeClass(["app-navigation-caption", { "app-navigation-caption--heading": $props.isHeading }])
@@ -26143,7 +26215,7 @@ function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
         ]),
         _: 1
       }, 8, ["id"])),
-      !!_ctx.$slots.actions ? (openBlock(), createElementBlock("div", _hoisted_1$e, [
+      !!_ctx.$slots.actions ? (openBlock(), createElementBlock("div", _hoisted_1$j, [
         createVNode(_component_NcActions, normalizeProps(guardReactiveProps($options.actionsProps)), {
           icon: withCtx(() => [
             renderSlot(_ctx.$slots, "actionsTriggerIcon", {}, void 0, true)
@@ -26158,8 +26230,8 @@ function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
     _: 3
   }, 8, ["class"]);
 }
-const NcAppNavigationCaption = /* @__PURE__ */ _export_sfc$1(_sfc_main$g, [["render", _sfc_render$a], ["__scopeId", "data-v-21e6b451"]]);
-const _sfc_main$f = {
+const NcAppNavigationCaption = /* @__PURE__ */ _export_sfc$1(_sfc_main$l, [["render", _sfc_render$f], ["__scopeId", "data-v-21e6b451"]]);
+const _sfc_main$k = {
   name: "ChevronDownIcon",
   emits: ["click"],
   props: {
@@ -26176,11 +26248,11 @@ const _sfc_main$f = {
     }
   }
 };
-const _hoisted_1$d = ["aria-hidden", "aria-label"];
-const _hoisted_2$b = ["fill", "width", "height"];
-const _hoisted_3$8 = { d: "M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" };
-const _hoisted_4$7 = { key: 0 };
-function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$i = ["aria-hidden", "aria-label"];
+const _hoisted_2$f = ["fill", "width", "height"];
+const _hoisted_3$e = { d: "M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" };
+const _hoisted_4$b = { key: 0 };
+function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("span", mergeProps(_ctx.$attrs, {
     "aria-hidden": $props.title ? null : "true",
     "aria-label": $props.title,
@@ -26195,14 +26267,14 @@ function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
       height: $props.size,
       viewBox: "0 0 24 24"
     }, [
-      createBaseVNode("path", _hoisted_3$8, [
-        $props.title ? (openBlock(), createElementBlock("title", _hoisted_4$7, toDisplayString($props.title), 1)) : createCommentVNode("", true)
+      createBaseVNode("path", _hoisted_3$e, [
+        $props.title ? (openBlock(), createElementBlock("title", _hoisted_4$b, toDisplayString($props.title), 1)) : createCommentVNode("", true)
       ])
-    ], 8, _hoisted_2$b))
-  ], 16, _hoisted_1$d);
+    ], 8, _hoisted_2$f))
+  ], 16, _hoisted_1$i);
 }
-const ChevronDown = /* @__PURE__ */ _export_sfc$1(_sfc_main$f, [["render", _sfc_render$9]]);
-const _sfc_main$e = {
+const ChevronDown = /* @__PURE__ */ _export_sfc$1(_sfc_main$k, [["render", _sfc_render$e]]);
+const _sfc_main$j = {
   name: "ChevronUpIcon",
   emits: ["click"],
   props: {
@@ -26219,11 +26291,11 @@ const _sfc_main$e = {
     }
   }
 };
-const _hoisted_1$c = ["aria-hidden", "aria-label"];
-const _hoisted_2$a = ["fill", "width", "height"];
-const _hoisted_3$7 = { d: "M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" };
-const _hoisted_4$6 = { key: 0 };
-function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$h = ["aria-hidden", "aria-label"];
+const _hoisted_2$e = ["fill", "width", "height"];
+const _hoisted_3$d = { d: "M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" };
+const _hoisted_4$a = { key: 0 };
+function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("span", mergeProps(_ctx.$attrs, {
     "aria-hidden": $props.title ? null : "true",
     "aria-label": $props.title,
@@ -26238,14 +26310,14 @@ function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
       height: $props.size,
       viewBox: "0 0 24 24"
     }, [
-      createBaseVNode("path", _hoisted_3$7, [
-        $props.title ? (openBlock(), createElementBlock("title", _hoisted_4$6, toDisplayString($props.title), 1)) : createCommentVNode("", true)
+      createBaseVNode("path", _hoisted_3$d, [
+        $props.title ? (openBlock(), createElementBlock("title", _hoisted_4$a, toDisplayString($props.title), 1)) : createCommentVNode("", true)
       ])
-    ], 8, _hoisted_2$a))
-  ], 16, _hoisted_1$c);
+    ], 8, _hoisted_2$e))
+  ], 16, _hoisted_1$h);
 }
-const ChevronUp = /* @__PURE__ */ _export_sfc$1(_sfc_main$e, [["render", _sfc_render$8]]);
-const _sfc_main$d = {
+const ChevronUp = /* @__PURE__ */ _export_sfc$1(_sfc_main$j, [["render", _sfc_render$d]]);
+const _sfc_main$i = {
   name: "ArrowRightIcon",
   emits: ["click"],
   props: {
@@ -26262,11 +26334,11 @@ const _sfc_main$d = {
     }
   }
 };
-const _hoisted_1$b = ["aria-hidden", "aria-label"];
-const _hoisted_2$9 = ["fill", "width", "height"];
-const _hoisted_3$6 = { d: "M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" };
-const _hoisted_4$5 = { key: 0 };
-function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$g = ["aria-hidden", "aria-label"];
+const _hoisted_2$d = ["fill", "width", "height"];
+const _hoisted_3$c = { d: "M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" };
+const _hoisted_4$9 = { key: 0 };
+function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("span", mergeProps(_ctx.$attrs, {
     "aria-hidden": $props.title ? null : "true",
     "aria-label": $props.title,
@@ -26281,14 +26353,14 @@ function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
       height: $props.size,
       viewBox: "0 0 24 24"
     }, [
-      createBaseVNode("path", _hoisted_3$6, [
-        $props.title ? (openBlock(), createElementBlock("title", _hoisted_4$5, toDisplayString($props.title), 1)) : createCommentVNode("", true)
+      createBaseVNode("path", _hoisted_3$c, [
+        $props.title ? (openBlock(), createElementBlock("title", _hoisted_4$9, toDisplayString($props.title), 1)) : createCommentVNode("", true)
       ])
-    ], 8, _hoisted_2$9))
-  ], 16, _hoisted_1$b);
+    ], 8, _hoisted_2$d))
+  ], 16, _hoisted_1$g);
 }
-const IconArrowRight = /* @__PURE__ */ _export_sfc$1(_sfc_main$d, [["render", _sfc_render$7]]);
-const _sfc_main$c = {
+const IconArrowRight = /* @__PURE__ */ _export_sfc$1(_sfc_main$i, [["render", _sfc_render$c]]);
+const _sfc_main$h = {
   name: "CloseIcon",
   emits: ["click"],
   props: {
@@ -26305,11 +26377,11 @@ const _sfc_main$c = {
     }
   }
 };
-const _hoisted_1$a = ["aria-hidden", "aria-label"];
-const _hoisted_2$8 = ["fill", "width", "height"];
-const _hoisted_3$5 = { d: "M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" };
-const _hoisted_4$4 = { key: 0 };
-function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$f = ["aria-hidden", "aria-label"];
+const _hoisted_2$c = ["fill", "width", "height"];
+const _hoisted_3$b = { d: "M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" };
+const _hoisted_4$8 = { key: 0 };
+function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("span", mergeProps(_ctx.$attrs, {
     "aria-hidden": $props.title ? null : "true",
     "aria-label": $props.title,
@@ -26324,15 +26396,15 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
       height: $props.size,
       viewBox: "0 0 24 24"
     }, [
-      createBaseVNode("path", _hoisted_3$5, [
-        $props.title ? (openBlock(), createElementBlock("title", _hoisted_4$4, toDisplayString($props.title), 1)) : createCommentVNode("", true)
+      createBaseVNode("path", _hoisted_3$b, [
+        $props.title ? (openBlock(), createElementBlock("title", _hoisted_4$8, toDisplayString($props.title), 1)) : createCommentVNode("", true)
       ])
-    ], 8, _hoisted_2$8))
-  ], 16, _hoisted_1$a);
+    ], 8, _hoisted_2$c))
+  ], 16, _hoisted_1$f);
 }
-const IconClose = /* @__PURE__ */ _export_sfc$1(_sfc_main$c, [["render", _sfc_render$6]]);
+const IconClose = /* @__PURE__ */ _export_sfc$1(_sfc_main$h, [["render", _sfc_render$b]]);
 register(t14);
-const _sfc_main$b = {
+const _sfc_main$g = {
   name: "NcInputConfirmCancel",
   components: {
     IconArrowRight,
@@ -26395,13 +26467,13 @@ const _sfc_main$b = {
     }
   }
 };
-const _hoisted_1$9 = { class: "app-navigation-input-confirm" };
-const _hoisted_2$7 = ["placeholder"];
-function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$e = { class: "app-navigation-input-confirm" };
+const _hoisted_2$b = ["placeholder"];
+function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_IconArrowRight = resolveComponent("IconArrowRight");
   const _component_NcButton = resolveComponent("NcButton");
   const _component_IconClose = resolveComponent("IconClose");
-  return openBlock(), createElementBlock("div", _hoisted_1$9, [
+  return openBlock(), createElementBlock("div", _hoisted_1$e, [
     createBaseVNode("form", {
       onSubmit: _cache[1] || (_cache[1] = withModifiers((...args) => $options.confirm && $options.confirm(...args), ["prevent"])),
       onKeydown: _cache[2] || (_cache[2] = withKeys(withModifiers((...args) => $options.cancel && $options.cancel(...args), ["exact", "stop", "prevent"]), ["esc"])),
@@ -26414,7 +26486,7 @@ function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
         type: "text",
         class: "app-navigation-input-confirm__input",
         placeholder: $props.placeholder
-      }, null, 8, _hoisted_2$7), [
+      }, null, 8, _hoisted_2$b), [
         [vModelText, $options.valueModel]
       ]),
       createVNode(_component_NcButton, {
@@ -26442,13 +26514,13 @@ function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
     ], 32)
   ]);
 }
-const NcInputConfirmCancel = /* @__PURE__ */ _export_sfc$1(_sfc_main$b, [["render", _sfc_render$5], ["__scopeId", "data-v-dd457d48"]]);
-const _hoisted_1$8 = ["aria-label"];
-const _hoisted_2$6 = ["width", "height"];
-const _hoisted_3$4 = ["fill"];
-const _hoisted_4$3 = ["fill"];
-const _hoisted_5$1 = { key: 0 };
-const _sfc_main$a = /* @__PURE__ */ defineComponent({
+const NcInputConfirmCancel = /* @__PURE__ */ _export_sfc$1(_sfc_main$g, [["render", _sfc_render$a], ["__scopeId", "data-v-dd457d48"]]);
+const _hoisted_1$d = ["aria-label"];
+const _hoisted_2$a = ["width", "height"];
+const _hoisted_3$a = ["fill"];
+const _hoisted_4$7 = ["fill"];
+const _hoisted_5$2 = { key: 0 };
+const _sfc_main$f = /* @__PURE__ */ defineComponent({
   __name: "NcLoadingIcon",
   props: {
     appearance: { default: "auto" },
@@ -26480,20 +26552,20 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
           createBaseVNode("path", {
             fill: colors.value[0],
             d: "M12,4V2A10,10 0 1,0 22,12H20A8,8 0 1,1 12,4Z"
-          }, null, 8, _hoisted_3$4),
+          }, null, 8, _hoisted_3$a),
           createBaseVNode("path", {
             fill: colors.value[1],
             d: "M12,4V2A10,10 0 0,1 22,12H20A8,8 0 0,0 12,4Z"
           }, [
-            _ctx.name ? (openBlock(), createElementBlock("title", _hoisted_5$1, toDisplayString(_ctx.name), 1)) : createCommentVNode("", true)
-          ], 8, _hoisted_4$3)
-        ], 8, _hoisted_2$6))
-      ], 8, _hoisted_1$8);
+            _ctx.name ? (openBlock(), createElementBlock("title", _hoisted_5$2, toDisplayString(_ctx.name), 1)) : createCommentVNode("", true)
+          ], 8, _hoisted_4$7)
+        ], 8, _hoisted_2$a))
+      ], 8, _hoisted_1$d);
     };
   }
 });
-const NcLoadingIcon = /* @__PURE__ */ _export_sfc$1(_sfc_main$a, [["__scopeId", "data-v-cf399190"]]);
-const _sfc_main$9 = /* @__PURE__ */ defineComponent({
+const NcLoadingIcon = /* @__PURE__ */ _export_sfc$1(_sfc_main$f, [["__scopeId", "data-v-cf399190"]]);
+const _sfc_main$e = /* @__PURE__ */ defineComponent({
   name: "NcVNodes",
   props: {
     /**
@@ -26511,7 +26583,7 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
     return this.vnodes || this.$slots?.default?.({});
   }
 });
-const _sfc_main$3$1 = {
+const _sfc_main$3$2 = {
   name: "PencilIcon",
   emits: ["click"],
   props: {
@@ -26528,11 +26600,11 @@ const _sfc_main$3$1 = {
     }
   }
 };
-const _hoisted_1$2$1 = ["aria-hidden", "aria-label"];
-const _hoisted_2$2$1 = ["fill", "width", "height"];
-const _hoisted_3$2 = { d: "M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" };
-const _hoisted_4$2 = { key: 0 };
-function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$2$2 = ["aria-hidden", "aria-label"];
+const _hoisted_2$2$2 = ["fill", "width", "height"];
+const _hoisted_3$2$1 = { d: "M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" };
+const _hoisted_4$2$1 = { key: 0 };
+function _sfc_render$3$1(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("span", mergeProps(_ctx.$attrs, {
     "aria-hidden": $props.title ? null : "true",
     "aria-label": $props.title,
@@ -26547,14 +26619,14 @@ function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
       height: $props.size,
       viewBox: "0 0 24 24"
     }, [
-      createBaseVNode("path", _hoisted_3$2, [
-        $props.title ? (openBlock(), createElementBlock("title", _hoisted_4$2, toDisplayString($props.title), 1)) : createCommentVNode("", true)
+      createBaseVNode("path", _hoisted_3$2$1, [
+        $props.title ? (openBlock(), createElementBlock("title", _hoisted_4$2$1, toDisplayString($props.title), 1)) : createCommentVNode("", true)
       ])
-    ], 8, _hoisted_2$2$1))
-  ], 16, _hoisted_1$2$1);
+    ], 8, _hoisted_2$2$2))
+  ], 16, _hoisted_1$2$2);
 }
-const Pencil = /* @__PURE__ */ _export_sfc$1(_sfc_main$3$1, [["render", _sfc_render$3]]);
-const _sfc_main$2$1 = {
+const Pencil = /* @__PURE__ */ _export_sfc$1(_sfc_main$3$2, [["render", _sfc_render$3$1]]);
+const _sfc_main$2$2 = {
   name: "UndoIcon",
   emits: ["click"],
   props: {
@@ -26571,10 +26643,10 @@ const _sfc_main$2$1 = {
     }
   }
 };
-const _hoisted_1$1$1 = ["aria-hidden", "aria-label"];
-const _hoisted_2$1$1 = ["fill", "width", "height"];
-const _hoisted_3$1$1 = { d: "M12.5,8C9.85,8 7.45,9 5.6,10.6L2,7V16H11L7.38,12.38C8.77,11.22 10.54,10.5 12.5,10.5C16.04,10.5 19.05,12.81 20.1,16L22.47,15.22C21.08,11.03 17.15,8 12.5,8Z" };
-const _hoisted_4$1 = { key: 0 };
+const _hoisted_1$1$2 = ["aria-hidden", "aria-label"];
+const _hoisted_2$1$2 = ["fill", "width", "height"];
+const _hoisted_3$1$2 = { d: "M12.5,8C9.85,8 7.45,9 5.6,10.6L2,7V16H11L7.38,12.38C8.77,11.22 10.54,10.5 12.5,10.5C16.04,10.5 19.05,12.81 20.1,16L22.47,15.22C21.08,11.03 17.15,8 12.5,8Z" };
+const _hoisted_4$1$1 = { key: 0 };
 function _sfc_render$2$1(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("span", mergeProps(_ctx.$attrs, {
     "aria-hidden": $props.title ? null : "true",
@@ -26590,15 +26662,15 @@ function _sfc_render$2$1(_ctx, _cache, $props, $setup, $data, $options) {
       height: $props.size,
       viewBox: "0 0 24 24"
     }, [
-      createBaseVNode("path", _hoisted_3$1$1, [
-        $props.title ? (openBlock(), createElementBlock("title", _hoisted_4$1, toDisplayString($props.title), 1)) : createCommentVNode("", true)
+      createBaseVNode("path", _hoisted_3$1$2, [
+        $props.title ? (openBlock(), createElementBlock("title", _hoisted_4$1$1, toDisplayString($props.title), 1)) : createCommentVNode("", true)
       ])
-    ], 8, _hoisted_2$1$1))
-  ], 16, _hoisted_1$1$1);
+    ], 8, _hoisted_2$1$2))
+  ], 16, _hoisted_1$1$2);
 }
-const Undo = /* @__PURE__ */ _export_sfc$1(_sfc_main$2$1, [["render", _sfc_render$2$1]]);
+const Undo = /* @__PURE__ */ _export_sfc$1(_sfc_main$2$2, [["render", _sfc_render$2$1]]);
 register(t21);
-const _sfc_main$1$1 = {
+const _sfc_main$1$2 = {
   name: "NcAppNavigationIconCollapsible",
   components: {
     NcButton,
@@ -26633,7 +26705,7 @@ const _sfc_main$1$1 = {
     }
   }
 };
-function _sfc_render$1$1(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$1$2(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ChevronUp = resolveComponent("ChevronUp");
   const _component_ChevronDown = resolveComponent("ChevronDown");
   const _component_NcButton = resolveComponent("NcButton");
@@ -26658,9 +26730,9 @@ function _sfc_render$1$1(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
   }, 8, ["class", "aria-label", "variant", "onClick"]);
 }
-const NcAppNavigationIconCollapsible = /* @__PURE__ */ _export_sfc$1(_sfc_main$1$1, [["render", _sfc_render$1$1], ["__scopeId", "data-v-e6236e50"]]);
+const NcAppNavigationIconCollapsible = /* @__PURE__ */ _export_sfc$1(_sfc_main$1$2, [["render", _sfc_render$1$2], ["__scopeId", "data-v-e6236e50"]]);
 register(t23, t51);
-const _sfc_main$8 = {
+const _sfc_main$d = {
   name: "NcAppNavigationItem",
   components: {
     NcActions,
@@ -26668,7 +26740,7 @@ const _sfc_main$8 = {
     NcAppNavigationIconCollapsible,
     NcInputConfirmCancel,
     NcLoadingIcon,
-    NcVNodes: _sfc_main$9,
+    NcVNodes: _sfc_main$e,
     Pencil,
     Undo
   },
@@ -26980,26 +27052,26 @@ const _sfc_main$8 = {
     }
   }
 };
-const _hoisted_1$7 = ["id"];
-const _hoisted_2$5 = ["aria-current", "aria-description", "aria-expanded", "href", "target", "title", "onClick"];
-const _hoisted_3$3 = {
+const _hoisted_1$c = ["id"];
+const _hoisted_2$9 = ["aria-current", "aria-description", "aria-expanded", "href", "target", "title", "onClick"];
+const _hoisted_3$9 = {
   key: 0,
   class: "editingContainer"
 };
-const _hoisted_4 = {
+const _hoisted_4$6 = {
   key: 1,
   class: "app-navigation-entry__deleted"
 };
-const _hoisted_5 = { class: "app-navigation-entry__deleted-description" };
-const _hoisted_6 = {
+const _hoisted_5$1 = { class: "app-navigation-entry__deleted-description" };
+const _hoisted_6$1 = {
   key: 0,
   class: "app-navigation-entry__counter-wrapper"
 };
-const _hoisted_7 = {
+const _hoisted_7$1 = {
   key: 0,
   class: "app-navigation-entry__children"
 };
-function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_NcLoadingIcon = resolveComponent("NcLoadingIcon");
   const _component_NcInputConfirmCancel = resolveComponent("NcInputConfirmCancel");
   const _component_Pencil = resolveComponent("Pencil");
@@ -27049,7 +27121,7 @@ function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
             createBaseVNode("span", {
               class: normalizeClass(["app-navigation-entry__name", { "hidden-visually": $data.editingActive }])
             }, toDisplayString($props.name), 3),
-            $data.editingActive ? (openBlock(), createElementBlock("div", _hoisted_3$3, [
+            $data.editingActive ? (openBlock(), createElementBlock("div", _hoisted_3$9, [
               createVNode(_component_NcInputConfirmCancel, {
                 ref: "editingInput",
                 modelValue: $data.editingValue,
@@ -27060,15 +27132,15 @@ function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
                 onConfirm: $options.handleEditingDone
               }, null, 8, ["modelValue", "placeholder", "primary", "onCancel", "onConfirm"])
             ])) : createCommentVNode("", true)
-          ], 40, _hoisted_2$5)) : createCommentVNode("", true),
-          $props.undo ? (openBlock(), createElementBlock("div", _hoisted_4, [
-            createBaseVNode("div", _hoisted_5, toDisplayString($props.name), 1)
+          ], 40, _hoisted_2$9)) : createCommentVNode("", true),
+          $props.undo ? (openBlock(), createElementBlock("div", _hoisted_4$6, [
+            createBaseVNode("div", _hoisted_5$1, toDisplayString($props.name), 1)
           ])) : createCommentVNode("", true),
           (!!_ctx.$slots.actions || !!_ctx.$slots.counter || $props.editable || $props.undo) && !$data.editingActive ? (openBlock(), createElementBlock("div", {
             key: 2,
             class: normalizeClass(["app-navigation-entry__utils", { "app-navigation-entry__utils--display-actions": $props.forceDisplayActions || $data.menuOpenLocalValue || $props.menuOpen }])
           }, [
-            !!_ctx.$slots.counter ? (openBlock(), createElementBlock("div", _hoisted_6, [
+            !!_ctx.$slots.counter ? (openBlock(), createElementBlock("div", _hoisted_6$1, [
               renderSlot(_ctx.$slots, "counter", {}, void 0, true)
             ])) : createCommentVNode("", true),
             !!_ctx.$slots.actions || $props.editable && !$data.editingActive || $props.undo ? (openBlock(), createBlock(_component_NcActions, {
@@ -27128,12 +27200,12 @@ function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
       ]),
       _: 3
     }, 16)),
-    $options.canHaveChildren && !!_ctx.$slots.default ? (openBlock(), createElementBlock("ul", _hoisted_7, [
+    $options.canHaveChildren && !!_ctx.$slots.default ? (openBlock(), createElementBlock("ul", _hoisted_7$1, [
       renderSlot(_ctx.$slots, "default", {}, void 0, true)
     ])) : createCommentVNode("", true)
-  ], 10, _hoisted_1$7);
+  ], 10, _hoisted_1$c);
 }
-const NcAppNavigationItem = /* @__PURE__ */ _export_sfc$1(_sfc_main$8, [["render", _sfc_render$4], ["__scopeId", "data-v-f925f8d0"]]);
+const NcAppNavigationItem = /* @__PURE__ */ _export_sfc$1(_sfc_main$d, [["render", _sfc_render$9], ["__scopeId", "data-v-f925f8d0"]]);
 register(t16, t44);
 /* @__PURE__ */ defineComponent({
   __name: "NcAppNavigationSearch",
@@ -27227,6 +27299,89 @@ register(t16, t44);
   }
 });
 register(t47);
+const _hoisted_1$b = ["id"];
+const _sfc_main$c = /* @__PURE__ */ defineComponent({
+  __name: "NcAppNavigationSettings",
+  props: {
+    excludeClickOutsideSelectors: { default: () => [] },
+    name: { default: () => t("Settings") }
+  },
+  setup(__props) {
+    const contentId = createElementId();
+    const open = /* @__PURE__ */ ref(false);
+    const container2 = useTemplateRef("wrapperElement");
+    const ignore = computed(() => Array.isArray(__props.excludeClickOutsideSelectors) ? __props.excludeClickOutsideSelectors : __props.excludeClickOutsideSelectors.split(" "));
+    onClickOutside(container2, () => {
+      open.value = false;
+    }, { ignore });
+    return (_ctx, _cache) => {
+      return openBlock(), createElementBlock("div", {
+        ref: "wrapperElement",
+        class: normalizeClass(_ctx.$style.container)
+      }, [
+        createBaseVNode("div", {
+          class: normalizeClass(_ctx.$style.header)
+        }, [
+          createVNode(NcButton, {
+            "aria-controls": unref(contentId),
+            "aria-expanded": open.value ? "true" : "false",
+            class: normalizeClass(_ctx.$style.button),
+            alignment: "start",
+            variant: "tertiary",
+            wide: "",
+            onClick: _cache[0] || (_cache[0] = ($event) => open.value = !open.value)
+          }, {
+            icon: withCtx(() => [
+              createVNode(NcIconSvgWrapper, {
+                path: unref(isLegacy) ? unref(mdiCog) : unref(mdiCogOutline)
+              }, null, 8, ["path"])
+            ]),
+            default: withCtx(() => [
+              createTextVNode(" " + toDisplayString(_ctx.name), 1)
+            ]),
+            _: 1
+          }, 8, ["aria-controls", "aria-expanded", "class"])
+        ], 2),
+        createVNode(Transition, {
+          enterActiveClass: _ctx.$style.animationActive,
+          leaveActiveClass: _ctx.$style.animationActive,
+          enterFromClass: _ctx.$style.animationStop,
+          leaveToClass: _ctx.$style.animationStop
+        }, {
+          default: withCtx(() => [
+            withDirectives(createBaseVNode("div", {
+              id: unref(contentId),
+              class: normalizeClass(_ctx.$style.content)
+            }, [
+              renderSlot(_ctx.$slots, "default")
+            ], 10, _hoisted_1$b), [
+              [vShow, open.value]
+            ])
+          ]),
+          _: 3
+        }, 8, ["enterActiveClass", "leaveActiveClass", "enterFromClass", "leaveToClass"])
+      ], 2);
+    };
+  }
+});
+const container = "_container_RFk6U";
+const header = "_header_2CtDS";
+const button = "_button_tAyis";
+const content = "_content_--KYD";
+const animationActive = "_animationActive_DAG1p";
+const animationStop = "_animationStop_fWYQj";
+const style0$1 = {
+  container,
+  header,
+  button,
+  content,
+  animationActive,
+  animationStop
+};
+const cssModules$1 = {
+  "$style": style0$1
+};
+const NcAppNavigationSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$c, [["__cssModules", cssModules$1]]);
 register(t33);
 register(t2);
 ({
@@ -27236,7 +27391,88 @@ register(t2);
   narrow: t("sec. ago")
   // FOR TRANSLATORS: If possible in your language an even shorter version of 'a few seconds ago'
 });
-window.OCP?.Accessibility?.disableKeyboardShortcuts?.();
+const isMac = /mac|ipad|iphone|darwin/i.test(navigator.userAgent);
+const disableKeyboardShortcuts = window.OCP?.Accessibility?.disableKeyboardShortcuts?.();
+const derivedKeysRegex = /^[a-zA-Z0-9]$/;
+const nonAsciiPrintableRegex = /^[^\x20-\x7F]$/;
+function shouldIgnoreEvent(event, options) {
+  if (!(event.target instanceof HTMLElement) || event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement || event.target instanceof HTMLSelectElement || event.target.isContentEditable) {
+    return true;
+  }
+  if (options.allowInModal) {
+    return false;
+  }
+  return Array.from(document.getElementsByClassName("modal-mask")).filter((el) => el.checkVisibility()).length > 0;
+}
+function eventHandler(callback, options) {
+  return (event) => {
+    const ctrlKeyPressed = isMac ? event.metaKey : event.ctrlKey;
+    if (ctrlKeyPressed !== Boolean(options.ctrl)) {
+      return;
+    } else if (event.altKey !== Boolean(options.alt)) {
+      return;
+    } else if (options.shift !== void 0 && event.shiftKey !== Boolean(options.shift)) {
+      return;
+    } else if (shouldIgnoreEvent(event, options)) {
+      return;
+    }
+    if (options.prevent) {
+      event.preventDefault();
+    }
+    if (options.stop) {
+      event.stopPropagation();
+    }
+    callback(event);
+  };
+}
+function useHotKey(keysOrFilter, callback = () => {
+}, options = {}) {
+  if (disableKeyboardShortcuts) {
+    return () => {
+    };
+  }
+  const validateKeyEvent = (event, key) => {
+    if (event.key === key) {
+      return true;
+    }
+    if (options.caseSensitive) {
+      const isKeyInLowerCase = key === key.toLowerCase();
+      const isEventKeyInLowerCase = event.key === event.key.toLowerCase();
+      if (isKeyInLowerCase !== isEventKeyInLowerCase) {
+        return false;
+      }
+    }
+    if (derivedKeysRegex.test(key) && nonAsciiPrintableRegex.test(event.key)) {
+      return event.code.replace(/^(?:Key|Digit|Numpad)/, "") === key.toUpperCase();
+    }
+    return event.key.toLowerCase() === key.toLowerCase();
+  };
+  const keyFilter = (event) => {
+    if (typeof keysOrFilter === "function") {
+      return keysOrFilter(event);
+    } else if (typeof keysOrFilter === "string") {
+      return validateKeyEvent(event, keysOrFilter);
+    } else if (Array.isArray(keysOrFilter)) {
+      return keysOrFilter.some((key) => validateKeyEvent(event, key));
+    } else {
+      return true;
+    }
+  };
+  const stopKeyDown = onKeyStroke(keyFilter, eventHandler(callback, options), {
+    eventName: "keydown",
+    dedupe: true,
+    passive: !options.prevent
+  });
+  const stopKeyUp = options.push ? onKeyStroke(keyFilter, eventHandler(callback, options), {
+    eventName: "keyup",
+    passive: !options.prevent
+  }) : () => {
+  };
+  return () => {
+    stopKeyDown();
+    stopKeyUp();
+  };
+}
 function checkIfDarkTheme(el = document.body) {
   const backgroundInvertIfDark = window.getComputedStyle(el).getPropertyValue("--background-invert-if-dark");
   if (backgroundInvertIfDark !== void 0) {
@@ -27284,7 +27520,418 @@ window.addEventListener("resize", () => {
 function checkIfIsFullscreen() {
   return window.outerHeight === window.screen.height;
 }
+/*!
+ * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+function getSameNodeParent(instance) {
+  if (!instance.parent) {
+    return null;
+  }
+  if ("vapor" in instance || "vapor" in instance.parent) {
+    return null;
+  }
+  if (instance.parent.subTree !== instance.vnode) {
+    return null;
+  }
+  return instance.parent;
+}
+function getSameNodeAncestors(instance) {
+  const ancestors = [instance];
+  let parent = getSameNodeParent(instance);
+  while (parent) {
+    ancestors.push(parent);
+    parent = getSameNodeParent(parent);
+  }
+  return ancestors;
+}
+function useScopeIdAttrs() {
+  const instance = getCurrentInstance();
+  if (!instance) {
+    throw new Error("useScopeId must be called within a setup context");
+  }
+  const sameNodeAncestors = getSameNodeAncestors(instance);
+  const scopeIds = sameNodeAncestors.map((instance2) => instance2.vnode.scopeId).filter(Boolean);
+  const scopeIdAttrs = Object.fromEntries(scopeIds.map((scopeId) => [scopeId, ""]));
+  return scopeIdAttrs;
+}
 register(t19, t36);
+const _hoisted_1$a = ["aria-labelledby", "aria-describedby"];
+const _hoisted_2$8 = ["data-theme-light", "data-theme-dark"];
+const _hoisted_3$8 = ["id"];
+const _hoisted_4$5 = { class: "icons-menu" };
+const _hoisted_5 = ["title"];
+const _hoisted_6 = ["id"];
+const _hoisted_7 = { class: "modal-container__content" };
+const _sfc_main$b = /* @__PURE__ */ defineComponent({
+  ...{ inheritAttrs: false },
+  __name: "NcModal",
+  props: /* @__PURE__ */ mergeModels({
+    name: { default: "" },
+    hasPrevious: { type: Boolean },
+    hasNext: { type: Boolean },
+    outTransition: { type: Boolean },
+    enableSlideshow: { type: Boolean },
+    slideshowDelay: { default: 5e3 },
+    slideshowPaused: { type: Boolean },
+    disableSwipe: { type: Boolean },
+    spreadNavigation: { type: Boolean },
+    size: { default: "normal" },
+    noClose: { type: Boolean },
+    closeOnClickOutside: { type: Boolean },
+    dark: { type: Boolean },
+    lightBackdrop: { type: Boolean },
+    container: { default: "body" },
+    closeButtonOutside: { type: Boolean },
+    additionalTrapElements: { default: () => [] },
+    inlineActions: { default: 0 },
+    labelId: { default: "" },
+    setReturnFocus: { default: void 0 }
+  }, {
+    "show": { type: Boolean, ...{ default: true } },
+    "showModifiers": {}
+  }),
+  emits: /* @__PURE__ */ mergeModels(["next", "previous", "close", "update:show"], ["update:show"]),
+  setup(__props, { emit: __emit }) {
+    useCssVars((_ctx) => ({
+      "5a2241b0": numHeaderActions.value,
+      "6e8e498c": cssSlideshowDelay.value
+    }));
+    const showModal = useModel(__props, "show");
+    const props = __props;
+    const emit2 = __emit;
+    const scopeIdAttrs = useScopeIdAttrs();
+    const modalId = createElementId();
+    const maskElement = useTemplateRef("mask");
+    let focusTrap;
+    onMounted(() => useFocusTrap());
+    onUnmounted(() => clearFocusTrap());
+    watch(() => props.additionalTrapElements, (elements) => {
+      if (focusTrap) {
+        focusTrap.updateContainerElements([maskElement.value, ...elements]);
+      }
+    });
+    const {
+      isActive: isPlaying,
+      pause: stopSlideshow,
+      resume: startSlideshow
+    } = useIntervalFn(nextSlide, /* @__PURE__ */ toRef(() => props.slideshowDelay), { immediate: false });
+    const animationKey = /* @__PURE__ */ ref(0);
+    const runSlideshow = /* @__PURE__ */ ref(false);
+    watchEffect(() => {
+      if (runSlideshow.value && !props.slideshowPaused) {
+        startSlideshow();
+      } else if (isPlaying.value) {
+        stopSlideshow();
+      }
+    });
+    const cssSlideshowDelay = computed(() => `${props.slideshowDelay}ms`);
+    const { stop: stopSwipe } = useSwipe(maskElement, {
+      onSwipeEnd: handleSwipe
+    });
+    onUnmounted(stopSwipe);
+    useHotKey("Escape", () => {
+      const trapStack = getTrapStack();
+      if (trapStack.at(-1) === focusTrap) {
+        close();
+      }
+    }, { allowInModal: true });
+    useHotKey(["ArrowLeft", "ArrowRight"], (event) => {
+      if (document.activeElement && !maskElement.value.contains(document.activeElement)) {
+        return;
+      }
+      if (event.key === "ArrowLeft" !== isRtl) {
+        previousSlide();
+      } else {
+        nextSlide();
+      }
+    }, { allowInModal: true });
+    const slots = useSlots();
+    const numHeaderActions = computed(() => {
+      let actions = 0;
+      if (props.hasNext && props.enableSlideshow) {
+        actions++;
+      }
+      if (!props.noClose && props.closeButtonOutside) {
+        actions++;
+      }
+      if (slots.actions) {
+        actions++;
+      }
+      return actions;
+    });
+    onMounted(() => {
+      if (!props.name && !props.labelId) ;
+    });
+    function nextSlide(event) {
+      if (!props.hasNext) {
+        runSlideshow.value = false;
+        return;
+      }
+      if (event && isPlaying.value) {
+        restartSlideshow();
+      }
+      emit2("next", event);
+    }
+    function previousSlide(event) {
+      if (!props.hasPrevious) {
+        return;
+      }
+      if (event && isPlaying.value) {
+        restartSlideshow();
+      }
+      emit2("previous", event);
+    }
+    function handleSwipe(e, direction) {
+      if (!props.disableSwipe) {
+        if (direction !== "left" && direction !== "right") {
+          return;
+        }
+        if (direction === "left" !== isRtl) {
+          nextSlide(e);
+        } else {
+          previousSlide(e);
+        }
+      }
+    }
+    function restartSlideshow() {
+      stopSlideshow();
+      startSlideshow();
+      animationKey.value++;
+    }
+    function close(event) {
+      if (props.noClose) {
+        return;
+      }
+      showModal.value = false;
+      setTimeout(() => {
+        emit2("close", event);
+      }, 300);
+    }
+    function handleClickModalWrapper(event) {
+      if (props.closeOnClickOutside) {
+        close(event);
+      }
+    }
+    async function useFocusTrap() {
+      if (!showModal.value || focusTrap) {
+        return;
+      }
+      await nextTick();
+      const options = {
+        allowOutsideClick: true,
+        fallbackFocus: maskElement.value,
+        trapStack: getTrapStack(),
+        // Esc can be used without stop in content or additionalTrapElements where it should not deactivate modal's focus trap.
+        // Focus trap is deactivated on modal close anyway.
+        escapeDeactivates: false,
+        setReturnFocus: props.setReturnFocus
+      };
+      focusTrap = createFocusTrap([maskElement.value, ...props.additionalTrapElements], options);
+      focusTrap.activate();
+    }
+    function clearFocusTrap() {
+      if (!focusTrap) {
+        return;
+      }
+      focusTrap?.deactivate();
+      focusTrap = void 0;
+    }
+    return (_ctx, _cache) => {
+      return openBlock(), createBlock(Teleport, {
+        disabled: _ctx.container === null,
+        to: _ctx.container
+      }, [
+        createVNode(Transition, {
+          name: "fade",
+          appear: "",
+          onAfterEnter: useFocusTrap,
+          onBeforeLeave: clearFocusTrap
+        }, {
+          default: withCtx(() => [
+            withDirectives(createBaseVNode("div", mergeProps({ ..._ctx.$attrs, ...unref(scopeIdAttrs) }, {
+              ref: "mask",
+              class: ["modal-mask", {
+                "modal-mask--opaque": _ctx.dark || _ctx.closeButtonOutside || _ctx.hasPrevious || _ctx.hasNext,
+                "modal-mask--light": _ctx.lightBackdrop
+              }],
+              role: "dialog",
+              "aria-modal": "true",
+              "aria-labelledby": _ctx.labelId || `modal-name-${unref(modalId)}`,
+              "aria-describedby": "modal-description-" + unref(modalId),
+              tabindex: "-1"
+            }), [
+              createVNode(Transition, {
+                name: "fade-visibility",
+                appear: ""
+              }, {
+                default: withCtx(() => [
+                  createBaseVNode("div", {
+                    class: "modal-header",
+                    "data-theme-light": _ctx.lightBackdrop,
+                    "data-theme-dark": !_ctx.lightBackdrop
+                  }, [
+                    _ctx.name.trim() !== "" ? (openBlock(), createElementBlock("h2", {
+                      key: 0,
+                      id: "modal-name-" + unref(modalId),
+                      class: "modal-header__name"
+                    }, toDisplayString(_ctx.name), 9, _hoisted_3$8)) : createCommentVNode("", true),
+                    createBaseVNode("div", _hoisted_4$5, [
+                      _ctx.hasNext && _ctx.enableSlideshow ? (openBlock(), createElementBlock("button", {
+                        key: 0,
+                        class: normalizeClass(["play-pause-icons", { "play-pause-icons--paused": _ctx.slideshowPaused }]),
+                        title: unref(isPlaying) ? unref(t)("Pause slideshow") : unref(t)("Start slideshow"),
+                        type: "button",
+                        onClick: _cache[0] || (_cache[0] = ($event) => runSlideshow.value = !runSlideshow.value)
+                      }, [
+                        createVNode(NcIconSvgWrapper, {
+                          class: "play-pause-icons__icon",
+                          inline: "",
+                          name: unref(isPlaying) ? unref(t)("Pause slideshow") : unref(t)("Start slideshow"),
+                          path: unref(isPlaying) ? unref(mdiPause) : unref(mdiPlay)
+                        }, null, 8, ["name", "path"]),
+                        unref(isPlaying) ? (openBlock(), createElementBlock("svg", {
+                          key: `${unref(modalId)}-animation-${animationKey.value}`,
+                          class: "progress-ring",
+                          height: "50",
+                          width: "50"
+                        }, [..._cache[1] || (_cache[1] = [
+                          createBaseVNode("circle", {
+                            class: "progress-ring__circle",
+                            stroke: "white",
+                            "stroke-width": "2",
+                            fill: "transparent",
+                            r: "15",
+                            cx: "25",
+                            cy: "25"
+                          }, null, -1)
+                        ])])) : createCommentVNode("", true)
+                      ], 10, _hoisted_5)) : createCommentVNode("", true),
+                      createVNode(NcActions, {
+                        class: "header-actions",
+                        inline: _ctx.inlineActions
+                      }, {
+                        default: withCtx(() => [
+                          renderSlot(_ctx.$slots, "actions", {}, void 0, true)
+                        ]),
+                        _: 3
+                      }, 8, ["inline"]),
+                      !_ctx.noClose && _ctx.closeButtonOutside ? (openBlock(), createBlock(NcButton, {
+                        key: 1,
+                        "aria-label": unref(t)("Close"),
+                        class: "header-close",
+                        variant: "tertiary",
+                        onClick: close
+                      }, {
+                        icon: withCtx(() => [
+                          createVNode(NcIconSvgWrapper, { path: unref(mdiClose) }, null, 8, ["path"])
+                        ]),
+                        _: 1
+                      }, 8, ["aria-label"])) : createCommentVNode("", true)
+                    ])
+                  ], 8, _hoisted_2$8)
+                ]),
+                _: 3
+              }),
+              createVNode(Transition, {
+                name: `modal-${_ctx.outTransition ? "out" : "in"}`,
+                appear: ""
+              }, {
+                default: withCtx(() => [
+                  withDirectives(createBaseVNode("div", {
+                    class: normalizeClass(["modal-wrapper", [
+                      `modal-wrapper--${_ctx.size}`,
+                      { "modal-wrapper--spread-navigation": _ctx.spreadNavigation }
+                    ]]),
+                    onMousedown: withModifiers(handleClickModalWrapper, ["self"])
+                  }, [
+                    createVNode(Transition, {
+                      name: "fade-visibility",
+                      appear: ""
+                    }, {
+                      default: withCtx(() => [
+                        withDirectives(createVNode(NcButton, {
+                          "aria-label": unref(t)("Previous"),
+                          class: "prev",
+                          variant: "tertiary-no-background",
+                          onClick: previousSlide
+                        }, {
+                          icon: withCtx(() => [
+                            createVNode(NcIconSvgWrapper, {
+                              directional: "",
+                              path: unref(mdiChevronLeft),
+                              size: 40
+                            }, null, 8, ["path"])
+                          ]),
+                          _: 1
+                        }, 8, ["aria-label"]), [
+                          [vShow, _ctx.hasPrevious]
+                        ])
+                      ]),
+                      _: 1
+                    }),
+                    createBaseVNode("div", {
+                      id: "modal-description-" + unref(modalId),
+                      class: "modal-container"
+                    }, [
+                      createBaseVNode("div", _hoisted_7, [
+                        renderSlot(_ctx.$slots, "default", {}, void 0, true)
+                      ]),
+                      !_ctx.noClose && !_ctx.closeButtonOutside ? (openBlock(), createBlock(NcButton, {
+                        key: 0,
+                        "aria-label": unref(t)("Close"),
+                        class: "modal-container__close",
+                        variant: "tertiary",
+                        onClick: close
+                      }, {
+                        icon: withCtx(() => [
+                          createVNode(NcIconSvgWrapper, { path: unref(mdiClose) }, null, 8, ["path"])
+                        ]),
+                        _: 1
+                      }, 8, ["aria-label"])) : createCommentVNode("", true)
+                    ], 8, _hoisted_6),
+                    createVNode(Transition, {
+                      name: "fade-visibility",
+                      appear: ""
+                    }, {
+                      default: withCtx(() => [
+                        withDirectives(createVNode(NcButton, {
+                          "aria-label": unref(t)("Next"),
+                          class: "next",
+                          variant: "tertiary-no-background",
+                          onClick: nextSlide
+                        }, {
+                          icon: withCtx(() => [
+                            createVNode(NcIconSvgWrapper, {
+                              directional: "",
+                              path: unref(mdiChevronRight),
+                              size: 40
+                            }, null, 8, ["path"])
+                          ]),
+                          _: 1
+                        }, 8, ["aria-label"]), [
+                          [vShow, _ctx.hasNext]
+                        ])
+                      ]),
+                      _: 1
+                    })
+                  ], 34), [
+                    [vShow, showModal.value]
+                  ])
+                ]),
+                _: 3
+              }, 8, ["name"])
+            ], 16, _hoisted_1$a), [
+              [vShow, showModal.value]
+            ])
+          ]),
+          _: 3
+        })
+      ], 8, ["disabled", "to"]);
+    };
+  }
+});
+const NcModal = /* @__PURE__ */ _export_sfc$1(_sfc_main$b, [["__scopeId", "data-v-3a70b8e0"]]);
 register(t48);
 register(t31);
 const stopClickOutsideMap = /* @__PURE__ */ new WeakMap();
@@ -27526,7 +28173,7 @@ MultiToken.prototype = {
     const href = this.toHref(options.get("defaultProtocol"));
     const formattedHref = options.get("formatHref", href, this);
     const tagName = options.get("tagName", href, token2);
-    const content = this.toFormattedString(options);
+    const content2 = this.toFormattedString(options);
     const attributes = {};
     const className = options.get("className", href, token2);
     const target = options.get("target", href, token2);
@@ -27549,7 +28196,7 @@ MultiToken.prototype = {
     return {
       tagName,
       attributes,
-      content,
+      content: content2,
       eventListeners
     };
   }
@@ -28127,8 +28774,8 @@ function getUserStatusText(status) {
       return status;
   }
 }
-const _hoisted_1$6 = ["aria-hidden", "aria-label", "innerHTML"];
-const _sfc_main$7 = /* @__PURE__ */ defineComponent({
+const _hoisted_1$9 = ["aria-hidden", "aria-label", "innerHTML"];
+const _sfc_main$a = /* @__PURE__ */ defineComponent({
   __name: "NcUserStatusIcon",
   props: /* @__PURE__ */ mergeModels({
     user: { default: void 0 },
@@ -28172,11 +28819,11 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
         "aria-label": ariaLabel.value,
         role: "img",
         innerHTML: activeSvg.value
-      }, null, 10, _hoisted_1$6)) : createCommentVNode("", true);
+      }, null, 10, _hoisted_1$9)) : createCommentVNode("", true);
     };
   }
 });
-const NcUserStatusIcon = /* @__PURE__ */ _export_sfc$1(_sfc_main$7, [["__scopeId", "data-v-881a79fb"]]);
+const NcUserStatusIcon = /* @__PURE__ */ _export_sfc$1(_sfc_main$a, [["__scopeId", "data-v-881a79fb"]]);
 register(t10);
 const userStatus = {
   data() {
@@ -28246,7 +28893,7 @@ function setUserHasAvatar(userId, flag) {
     browserStorage$1.setItem("user-has-avatar." + userId, flag);
   }
 }
-const _sfc_main$6 = {
+const _sfc_main$9 = {
   name: "NcAvatar",
   directives: {
     /** @type {import('vue').ObjectDirective} */
@@ -28715,13 +29362,13 @@ const _sfc_main$6 = {
     }
   }
 };
-const _hoisted_1$5 = ["title"];
-const _hoisted_2$4 = ["src", "srcset"];
-const _hoisted_3$1 = {
+const _hoisted_1$8 = ["title"];
+const _hoisted_2$7 = ["src", "srcset"];
+const _hoisted_3$7 = {
   key: 2,
   class: "avatardiv__user-status avatardiv__user-status--icon"
 };
-function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_NcLoadingIcon = resolveComponent("NcLoadingIcon");
   const _component_IconDotsHorizontal = resolveComponent("IconDotsHorizontal");
   const _component_NcButton = resolveComponent("NcButton");
@@ -28747,7 +29394,7 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
         src: $data.avatarUrlLoaded,
         srcset: $data.avatarSrcSetLoaded,
         alt: ""
-      }, null, 8, _hoisted_2$4)) : createCommentVNode("", true)
+      }, null, 8, _hoisted_2$7)) : createCommentVNode("", true)
     ], true),
     $options.hasMenu && $options.menu.length === 0 ? (openBlock(), createBlock(_component_NcButton, {
       key: 0,
@@ -28804,7 +29451,7 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
         key: "0"
       } : void 0
     ]), 1032, ["open", "aria-label", "container", "onClick"])) : createCommentVNode("", true),
-    $options.showUserStatusIconOnAvatar ? (openBlock(), createElementBlock("span", _hoisted_3$1, toDisplayString(_ctx.userStatus.icon), 1)) : $options.canDisplayUserStatus ? (openBlock(), createBlock(_component_NcUserStatusIcon, {
+    $options.showUserStatusIconOnAvatar ? (openBlock(), createElementBlock("span", _hoisted_3$7, toDisplayString(_ctx.userStatus.icon), 1)) : $options.canDisplayUserStatus ? (openBlock(), createBlock(_component_NcUserStatusIcon, {
       key: 3,
       class: "avatardiv__user-status",
       status: _ctx.userStatus.status,
@@ -28820,11 +29467,11 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
         class: "avatardiv__initials"
       }, toDisplayString($options.initials), 5)
     ], 4)) : createCommentVNode("", true)
-  ], 14, _hoisted_1$5)), [
+  ], 14, _hoisted_1$8)), [
     [_directive_click_outside, $options.closeMenu]
   ]);
 }
-const NcAvatar = /* @__PURE__ */ _export_sfc$1(_sfc_main$6, [["render", _sfc_render$2], ["__scopeId", "data-v-72a1eed6"]]);
+const NcAvatar = /* @__PURE__ */ _export_sfc$1(_sfc_main$9, [["render", _sfc_render$8], ["__scopeId", "data-v-72a1eed6"]]);
 var eventemitter3 = { exports: {} };
 var hasRequiredEventemitter3;
 function requireEventemitter3() {
@@ -29823,6 +30470,48 @@ class PQueue extends EventEmitter {
   }
 }
 new PQueue({ concurrency: 5 });
+const svg = `<svg
+	xmlns="http://www.w3.org/2000/svg"
+	viewBox="0 0 24 12">
+	<path d="M17,1H7A5,5 0 0,0 2,6 5,5 0 0,0 7,11H17A5,5 0 0,0 22,6 5,5 0 0,0 17,1Z" />
+	<circle
+		cy="6"
+		r="3"
+		fill="var(--color-main-background)" />
+</svg>`;
+const _sfc_main$8 = /* @__PURE__ */ defineComponent({
+  __name: "NcIconToggleSwitch",
+  props: {
+    checked: { type: Boolean },
+    size: { default: 34 },
+    inline: { type: Boolean, default: false }
+  },
+  setup(__props) {
+    useCssVars((_ctx) => ({
+      "6bd152af": color.value,
+      "16fd8ca9": cx.value
+    }));
+    const color = computed(() => __props.checked ? "var(--color-primary-element)" : "var(--color-text-maxcontrast)");
+    const cx = computed(() => __props.checked ? "calc(17 / 24 * 100%)" : "calc(7 / 24 * 100%)");
+    return (_ctx, _cache) => {
+      return openBlock(), createBlock(NcIconSvgWrapper, {
+        class: normalizeClass(_ctx.$style.iconToggleSwitch),
+        svg,
+        size: _ctx.size,
+        inline: _ctx.inline
+      }, null, 8, ["class", "size", "inline"]);
+    };
+  }
+});
+const iconToggleSwitch = "_iconToggleSwitch_WgcOx";
+const style0 = {
+  "material-design-icon": "_material-design-icon_ZYrc5",
+  iconToggleSwitch
+};
+const cssModules = {
+  "$style": style0
+};
+const NcIconToggleSwitch = /* @__PURE__ */ _export_sfc$1(_sfc_main$8, [["__cssModules", cssModules]]);
 /*!
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -29831,9 +30520,559 @@ const INSIDE_RADIO_GROUP_KEY = /* @__PURE__ */ Symbol.for("insideRadioGroup");
 function useInsideRadioGroup() {
   return inject(INSIDE_RADIO_GROUP_KEY, void 0);
 }
+const _sfc_main$6 = {
+  name: "CheckboxBlankOutlineIcon",
+  emits: ["click"],
+  props: {
+    title: {
+      type: String
+    },
+    fillColor: {
+      type: String,
+      default: "currentColor"
+    },
+    size: {
+      type: Number,
+      default: 24
+    }
+  }
+};
+const _hoisted_1$6 = ["aria-hidden", "aria-label"];
+const _hoisted_2$5 = ["fill", "width", "height"];
+const _hoisted_3$5 = { d: "M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,5V19H5V5H19Z" };
+const _hoisted_4$4 = { key: 0 };
+function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("span", mergeProps(_ctx.$attrs, {
+    "aria-hidden": $props.title ? null : "true",
+    "aria-label": $props.title,
+    class: "material-design-icon checkbox-blank-outline-icon",
+    role: "img",
+    onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("click", $event))
+  }), [
+    (openBlock(), createElementBlock("svg", {
+      fill: $props.fillColor,
+      class: "material-design-icon__svg",
+      width: $props.size,
+      height: $props.size,
+      viewBox: "0 0 24 24"
+    }, [
+      createBaseVNode("path", _hoisted_3$5, [
+        $props.title ? (openBlock(), createElementBlock("title", _hoisted_4$4, toDisplayString($props.title), 1)) : createCommentVNode("", true)
+      ])
+    ], 8, _hoisted_2$5))
+  ], 16, _hoisted_1$6);
+}
+const CheckboxBlankOutline = /* @__PURE__ */ _export_sfc$1(_sfc_main$6, [["render", _sfc_render$6]]);
+const _sfc_main$5$1 = {
+  name: "CheckboxMarkedIcon",
+  emits: ["click"],
+  props: {
+    title: {
+      type: String
+    },
+    fillColor: {
+      type: String,
+      default: "currentColor"
+    },
+    size: {
+      type: Number,
+      default: 24
+    }
+  }
+};
+const _hoisted_1$5$1 = ["aria-hidden", "aria-label"];
+const _hoisted_2$4$1 = ["fill", "width", "height"];
+const _hoisted_3$4 = { d: "M10,17L5,12L6.41,10.58L10,14.17L17.59,6.58L19,8M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z" };
+const _hoisted_4$3 = { key: 0 };
+function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("span", mergeProps(_ctx.$attrs, {
+    "aria-hidden": $props.title ? null : "true",
+    "aria-label": $props.title,
+    class: "material-design-icon checkbox-marked-icon",
+    role: "img",
+    onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("click", $event))
+  }), [
+    (openBlock(), createElementBlock("svg", {
+      fill: $props.fillColor,
+      class: "material-design-icon__svg",
+      width: $props.size,
+      height: $props.size,
+      viewBox: "0 0 24 24"
+    }, [
+      createBaseVNode("path", _hoisted_3$4, [
+        $props.title ? (openBlock(), createElementBlock("title", _hoisted_4$3, toDisplayString($props.title), 1)) : createCommentVNode("", true)
+      ])
+    ], 8, _hoisted_2$4$1))
+  ], 16, _hoisted_1$5$1);
+}
+const CheckboxMarked = /* @__PURE__ */ _export_sfc$1(_sfc_main$5$1, [["render", _sfc_render$5]]);
+const _sfc_main$4$1 = {
+  name: "MinusBoxIcon",
+  emits: ["click"],
+  props: {
+    title: {
+      type: String
+    },
+    fillColor: {
+      type: String,
+      default: "currentColor"
+    },
+    size: {
+      type: Number,
+      default: 24
+    }
+  }
+};
+const _hoisted_1$4$1 = ["aria-hidden", "aria-label"];
+const _hoisted_2$3$1 = ["fill", "width", "height"];
+const _hoisted_3$3 = { d: "M17,13H7V11H17M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z" };
+const _hoisted_4$2 = { key: 0 };
+function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("span", mergeProps(_ctx.$attrs, {
+    "aria-hidden": $props.title ? null : "true",
+    "aria-label": $props.title,
+    class: "material-design-icon minus-box-icon",
+    role: "img",
+    onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("click", $event))
+  }), [
+    (openBlock(), createElementBlock("svg", {
+      fill: $props.fillColor,
+      class: "material-design-icon__svg",
+      width: $props.size,
+      height: $props.size,
+      viewBox: "0 0 24 24"
+    }, [
+      createBaseVNode("path", _hoisted_3$3, [
+        $props.title ? (openBlock(), createElementBlock("title", _hoisted_4$2, toDisplayString($props.title), 1)) : createCommentVNode("", true)
+      ])
+    ], 8, _hoisted_2$3$1))
+  ], 16, _hoisted_1$4$1);
+}
+const MinusBox = /* @__PURE__ */ _export_sfc$1(_sfc_main$4$1, [["render", _sfc_render$4]]);
+const _sfc_main$3$1 = {
+  name: "RadioboxBlankIcon",
+  emits: ["click"],
+  props: {
+    title: {
+      type: String
+    },
+    fillColor: {
+      type: String,
+      default: "currentColor"
+    },
+    size: {
+      type: Number,
+      default: 24
+    }
+  }
+};
+const _hoisted_1$3$1 = ["aria-hidden", "aria-label"];
+const _hoisted_2$2$1 = ["fill", "width", "height"];
+const _hoisted_3$2 = { d: "M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" };
+const _hoisted_4$1 = { key: 0 };
+function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("span", mergeProps(_ctx.$attrs, {
+    "aria-hidden": $props.title ? null : "true",
+    "aria-label": $props.title,
+    class: "material-design-icon radiobox-blank-icon",
+    role: "img",
+    onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("click", $event))
+  }), [
+    (openBlock(), createElementBlock("svg", {
+      fill: $props.fillColor,
+      class: "material-design-icon__svg",
+      width: $props.size,
+      height: $props.size,
+      viewBox: "0 0 24 24"
+    }, [
+      createBaseVNode("path", _hoisted_3$2, [
+        $props.title ? (openBlock(), createElementBlock("title", _hoisted_4$1, toDisplayString($props.title), 1)) : createCommentVNode("", true)
+      ])
+    ], 8, _hoisted_2$2$1))
+  ], 16, _hoisted_1$3$1);
+}
+const RadioboxBlank = /* @__PURE__ */ _export_sfc$1(_sfc_main$3$1, [["render", _sfc_render$3]]);
+const _sfc_main$2$1 = {
+  name: "RadioboxMarkedIcon",
+  emits: ["click"],
+  props: {
+    title: {
+      type: String
+    },
+    fillColor: {
+      type: String,
+      default: "currentColor"
+    },
+    size: {
+      type: Number,
+      default: 24
+    }
+  }
+};
+const _hoisted_1$2$1 = ["aria-hidden", "aria-label"];
+const _hoisted_2$1$1 = ["fill", "width", "height"];
+const _hoisted_3$1$1 = { d: "M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,7A5,5 0 0,0 7,12A5,5 0 0,0 12,17A5,5 0 0,0 17,12A5,5 0 0,0 12,7Z" };
+const _hoisted_4 = { key: 0 };
+function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("span", mergeProps(_ctx.$attrs, {
+    "aria-hidden": $props.title ? null : "true",
+    "aria-label": $props.title,
+    class: "material-design-icon radiobox-marked-icon",
+    role: "img",
+    onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("click", $event))
+  }), [
+    (openBlock(), createElementBlock("svg", {
+      fill: $props.fillColor,
+      class: "material-design-icon__svg",
+      width: $props.size,
+      height: $props.size,
+      viewBox: "0 0 24 24"
+    }, [
+      createBaseVNode("path", _hoisted_3$1$1, [
+        $props.title ? (openBlock(), createElementBlock("title", _hoisted_4, toDisplayString($props.title), 1)) : createCommentVNode("", true)
+      ])
+    ], 8, _hoisted_2$1$1))
+  ], 16, _hoisted_1$2$1);
+}
+const RadioboxMarked = /* @__PURE__ */ _export_sfc$1(_sfc_main$2$1, [["render", _sfc_render$2]]);
+const TYPE_CHECKBOX = "checkbox";
 const TYPE_RADIO = "radio";
+const TYPE_SWITCH = "switch";
+const TYPE_BUTTON = "button";
+const _sfc_main$1$1 = {
+  name: "NcCheckboxContent",
+  components: {
+    NcLoadingIcon,
+    NcIconToggleSwitch
+  },
+  props: {
+    /**
+     * Class for the icon element
+     */
+    iconClass: {
+      type: [String, Object],
+      default: null
+    },
+    /**
+     * Class for the text element
+     */
+    textClass: {
+      type: [String, Object],
+      default: null
+    },
+    /**
+     * Type of the input. checkbox, radio, switch, or button.
+     *
+     * Only use button when used in a `tablist` container and the
+     * `tab` role is set.
+     *
+     * @type {'checkbox'|'radio'|'switch'|'button'}
+     */
+    type: {
+      type: String,
+      default: "checkbox",
+      validator: (type) => [
+        TYPE_CHECKBOX,
+        TYPE_RADIO,
+        TYPE_SWITCH,
+        TYPE_BUTTON
+      ].includes(type)
+    },
+    /**
+     * Toggle the alternative button style
+     */
+    buttonVariant: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * True if the entry is checked
+     */
+    isChecked: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Indeterminate state
+     */
+    indeterminate: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Loading state
+     */
+    loading: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Icon size
+     */
+    iconSize: {
+      type: Number,
+      default: 24
+    },
+    /**
+     * Label id attribute
+     */
+    labelId: {
+      type: String,
+      required: true
+    },
+    /**
+     * Description id attribute
+     */
+    descriptionId: {
+      type: String,
+      required: true
+    }
+  },
+  computed: {
+    isButtonType() {
+      return this.type === TYPE_BUTTON;
+    },
+    isSwitchType() {
+      return this.type === TYPE_SWITCH;
+    },
+    /**
+     * Returns the proper Material icon depending on the select case
+     *
+     * @return {object}
+     */
+    checkboxRadioIconElement() {
+      if (this.type === TYPE_RADIO) {
+        if (this.isChecked) {
+          return RadioboxMarked;
+        }
+        return RadioboxBlank;
+      }
+      if (this.indeterminate) {
+        return MinusBox;
+      }
+      if (this.isChecked) {
+        return CheckboxMarked;
+      }
+      return CheckboxBlankOutline;
+    }
+  }
+};
+const _hoisted_1$1$1 = {
+  key: 0,
+  class: "checkbox-content__wrapper"
+};
+const _hoisted_2$6 = ["id"];
+const _hoisted_3$6 = ["id"];
+function _sfc_render$1$1(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_NcLoadingIcon = resolveComponent("NcLoadingIcon");
+  const _component_NcIconToggleSwitch = resolveComponent("NcIconToggleSwitch");
+  return openBlock(), createElementBlock("span", {
+    class: normalizeClass(["checkbox-content", {
+      ["checkbox-content-" + $props.type]: true,
+      "checkbox-content--button-variant": $props.buttonVariant,
+      "checkbox-content--has-text": !!_ctx.$slots.default
+    }])
+  }, [
+    createBaseVNode("span", {
+      class: normalizeClass(["checkbox-content__icon", {
+        "checkbox-content__icon--checked": $props.isChecked,
+        "checkbox-content__icon--has-description": !$options.isButtonType && _ctx.$slots.description,
+        [$props.iconClass]: true
+      }]),
+      "aria-hidden": true,
+      inert: ""
+    }, [
+      renderSlot(_ctx.$slots, "icon", {
+        checked: $props.isChecked,
+        loading: $props.loading
+      }, () => [
+        $props.loading ? (openBlock(), createBlock(_component_NcLoadingIcon, { key: 0 })) : $options.isSwitchType ? (openBlock(), createBlock(_component_NcIconToggleSwitch, {
+          key: 1,
+          checked: $props.isChecked,
+          size: $props.iconSize,
+          inline: ""
+        }, null, 8, ["checked", "size"])) : !$props.buttonVariant ? (openBlock(), createBlock(resolveDynamicComponent($options.checkboxRadioIconElement), {
+          key: 2,
+          size: $props.iconSize
+        }, null, 8, ["size"])) : createCommentVNode("", true)
+      ], true)
+    ], 2),
+    _ctx.$slots.default || _ctx.$slots.description ? (openBlock(), createElementBlock("span", _hoisted_1$1$1, [
+      _ctx.$slots.default ? (openBlock(), createElementBlock("span", {
+        key: 0,
+        id: $props.labelId,
+        class: normalizeClass(["checkbox-content__text", $props.textClass])
+      }, [
+        renderSlot(_ctx.$slots, "default", {}, void 0, true)
+      ], 10, _hoisted_2$6)) : createCommentVNode("", true),
+      !$options.isButtonType && _ctx.$slots.description ? (openBlock(), createElementBlock("span", {
+        key: 1,
+        id: $props.descriptionId,
+        class: "checkbox-content__description"
+      }, [
+        renderSlot(_ctx.$slots, "description", {}, void 0, true)
+      ], 8, _hoisted_3$6)) : createCommentVNode("", true)
+    ])) : createCommentVNode("", true)
+  ], 2);
+}
+const NcCheckboxContent = /* @__PURE__ */ _export_sfc$1(_sfc_main$1$1, [["render", _sfc_render$1$1], ["__scopeId", "data-v-a060196e"]]);
 register();
-const _sfc_main$5 = {
+const _sfc_main$7 = {
+  name: "NcCheckboxRadioSwitch",
+  components: {
+    NcCheckboxContent
+  },
+  // We need to pass attributes to the input element
+  inheritAttrs: false,
+  props: {
+    /**
+     * Unique id attribute of the input
+     */
+    id: {
+      type: String,
+      default: () => "checkbox-radio-switch-" + createElementId(),
+      validator: (id) => id.trim() !== ""
+    },
+    /**
+     * Unique id attribute of the wrapper element
+     */
+    wrapperId: {
+      type: String,
+      default: null
+    },
+    /**
+     * Input name. Required for radio, optional for checkbox, and ignored
+     * for button.
+     */
+    name: {
+      type: String,
+      default: null
+    },
+    /**
+     * Required if no text is set.
+     * The aria-label is forwarded to the input or button.
+     */
+    ariaLabel: {
+      type: String,
+      default: ""
+    },
+    /**
+     * Type of the input. checkbox, radio, switch, or button.
+     *
+     * Only use button when used in a `tablist` container and the
+     * `tab` role is set.
+     *
+     * @type {'checkbox'|'radio'|'switch'|'button'}
+     */
+    type: {
+      type: String,
+      default: "checkbox",
+      validator: (type) => [
+        TYPE_CHECKBOX,
+        TYPE_RADIO,
+        TYPE_SWITCH,
+        TYPE_BUTTON
+      ].includes(type)
+    },
+    /**
+     * Toggle the alternative button style
+     *
+     * @deprecated - Use `NcRadioGroup` instead
+     */
+    buttonVariant: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Are the elements are all direct siblings?
+     * If so they will be grouped horizontally or vertically
+     *
+     * @type {'no'|'horizontal'|'vertical'}
+     * @deprecated - Use `NcRadioGroup` instead
+     */
+    buttonVariantGrouped: {
+      type: String,
+      default: "no",
+      validator: (v2) => ["no", "vertical", "horizontal"].includes(v2)
+    },
+    /**
+     * Checked state. To be used with `v-model:value`
+     */
+    modelValue: {
+      type: [Boolean, Array, String],
+      default: false
+    },
+    /**
+     * Value to be synced on check
+     */
+    value: {
+      type: String,
+      default: null
+    },
+    /**
+     * Disabled state
+     */
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Indeterminate state
+     */
+    indeterminate: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Required state
+     */
+    required: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Loading state
+     */
+    loading: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Wrapping element tag
+     *
+     * When `type` is set to `button` this will be ignored
+     *
+     * Defaults to `span`
+     */
+    wrapperElement: {
+      type: String,
+      default: null
+    },
+    /**
+     * The class(es) to pass to the wrapper / root element of the component
+     */
+    class: {
+      type: [String, Array, Object],
+      default: ""
+    },
+    /**
+     * The style to pass to the wrapper / root element of the component
+     */
+    style: {
+      type: [String, Array, Object],
+      default: ""
+    },
+    /**
+     * Description
+     *
+     * This is unsupported when using button has type.
+     */
+    description: {
+      type: String,
+      default: null
+    }
+  },
+  emits: ["update:modelValue"],
   setup(props, { emit: emit2 }) {
     const radioGroup = useInsideRadioGroup();
     onMounted(() => radioGroup?.value.register(false));
@@ -29859,6 +31098,126 @@ const _sfc_main$5 = {
       labelId: createElementId(),
       descriptionId: createElementId()
     };
+  },
+  computed: {
+    isButtonType() {
+      return this.internalType === TYPE_BUTTON;
+    },
+    computedWrapperElement() {
+      if (this.isButtonType) {
+        return "button";
+      }
+      if (this.wrapperElement !== null) {
+        return this.wrapperElement;
+      }
+      return "span";
+    },
+    listeners() {
+      if (this.isButtonType) {
+        return {
+          click: this.onToggle
+        };
+      }
+      return {
+        change: this.onToggle
+      };
+    },
+    iconSize() {
+      return this.internalType === TYPE_SWITCH ? 36 : 20;
+    },
+    cssIconSize() {
+      return this.iconSize + "px";
+    },
+    cssIconHeight() {
+      return this.internalType === TYPE_SWITCH ? "16px" : this.cssIconSize;
+    },
+    /**
+     * Return the input type.
+     * Switch is not an official type
+     *
+     * @return {string}
+     */
+    inputType() {
+      const nativeTypes = [
+        TYPE_CHECKBOX,
+        TYPE_RADIO,
+        TYPE_BUTTON
+      ];
+      if (nativeTypes.includes(this.internalType)) {
+        return this.internalType;
+      }
+      return TYPE_CHECKBOX;
+    },
+    /**
+     * Check if that entry is checked
+     * If value is defined, we use that as the checked value
+     * If not, we expect true/false in this.checked
+     *
+     * @return {boolean}
+     */
+    isChecked() {
+      if (this.value !== null) {
+        if (Array.isArray(this.internalModelValue)) {
+          return [...this.internalModelValue].indexOf(this.value) > -1;
+        }
+        return this.internalModelValue === this.value;
+      }
+      return this.internalModelValue === true;
+    },
+    hasIndeterminate() {
+      return [
+        TYPE_CHECKBOX,
+        TYPE_RADIO
+      ].includes(this.inputType);
+    }
+  },
+  mounted() {
+    if (this.name && this.internalType === TYPE_CHECKBOX) {
+      if (!Array.isArray(this.internalModelValue)) {
+        throw new Error("When using groups of checkboxes, the updated value will be an array.");
+      }
+    }
+    if (this.name && this.internalType === TYPE_SWITCH) {
+      throw new Error("Switches are not made to be used for data sets. Please use checkboxes instead.");
+    }
+    if (typeof this.internalModelValue !== "boolean" && this.internalType === TYPE_SWITCH) {
+      throw new Error("Switches can only be used with boolean as modelValue prop.");
+    }
+  },
+  methods: {
+    t,
+    n: n$2,
+    onToggle(event) {
+      if (this.disabled || event.target.tagName.toLowerCase() === "a") {
+        return;
+      }
+      if (this.internalType === TYPE_RADIO) {
+        this.internalModelValue = this.value;
+        return;
+      }
+      if (this.internalType === TYPE_SWITCH) {
+        this.internalModelValue = !this.isChecked;
+        return;
+      }
+      if (typeof this.internalModelValue === "boolean") {
+        this.internalModelValue = !this.internalModelValue;
+        return;
+      }
+      const values = this.getInputsSet().filter((input) => input.checked).map((input) => input.value);
+      if (values.includes(this.value)) {
+        this.internalModelValue = values.filter((v2) => v2 !== this.value);
+      } else {
+        this.internalModelValue = [...values, this.value];
+      }
+    },
+    /**
+     * Get the input set based on this name
+     *
+     * @return {Node[]}
+     */
+    getInputsSet() {
+      return [...document.getElementsByName(this.name)];
+    }
   }
 };
 const __injectCSSVars__ = () => {
@@ -29867,17 +31226,97 @@ const __injectCSSVars__ = () => {
     "698a3993": _ctx.cssIconHeight
   }));
 };
-const __setup__ = _sfc_main$5.setup;
-_sfc_main$5.setup = __setup__ ? (props, ctx) => {
+const __setup__ = _sfc_main$7.setup;
+_sfc_main$7.setup = __setup__ ? (props, ctx) => {
   __injectCSSVars__();
   return __setup__(props, ctx);
 } : __injectCSSVars__;
+const _hoisted_1$7 = ["id", "aria-labelledby", "aria-describedby", "aria-label", "disabled", "type", "value", "checked", ".indeterminate", "required", "name"];
+function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_NcCheckboxContent = resolveComponent("NcCheckboxContent");
+  return openBlock(), createBlock(resolveDynamicComponent($options.computedWrapperElement), mergeProps({
+    id: $props.wrapperId ?? ($options.isButtonType ? $props.id : null),
+    "aria-label": $options.isButtonType && $props.ariaLabel ? $props.ariaLabel : void 0,
+    class: ["checkbox-radio-switch", [
+      _ctx.$props.class,
+      {
+        ["checkbox-radio-switch-" + $setup.internalType]: $setup.internalType,
+        "checkbox-radio-switch--checked": $options.isChecked,
+        "checkbox-radio-switch--disabled": $props.disabled,
+        "checkbox-radio-switch--indeterminate": $options.hasIndeterminate ? $props.indeterminate : false,
+        "checkbox-radio-switch--button-variant": $props.buttonVariant,
+        "checkbox-radio-switch--button-variant-v-grouped": $props.buttonVariant && $props.buttonVariantGrouped === "vertical",
+        "checkbox-radio-switch--button-variant-h-grouped": $props.buttonVariant && $props.buttonVariantGrouped === "horizontal",
+        "button-vue": $options.isButtonType
+      }
+    ]],
+    style: $props.style,
+    type: $options.isButtonType ? "button" : null
+  }, $options.isButtonType ? _ctx.$attrs : {}, toHandlers($options.isButtonType ? $options.listeners : {})), {
+    default: withCtx(() => [
+      !$options.isButtonType ? (openBlock(), createElementBlock("input", mergeProps({
+        key: 0,
+        id: $props.id,
+        "aria-labelledby": !$options.isButtonType && !$props.ariaLabel ? $setup.labelId : null,
+        "aria-describedby": !$options.isButtonType && ($props.description || _ctx.$slots.description) ? $setup.descriptionId : null,
+        "aria-label": $props.ariaLabel || void 0,
+        class: "checkbox-radio-switch__input",
+        disabled: $props.disabled,
+        type: $options.inputType,
+        value: $props.value,
+        checked: $options.isChecked,
+        ".indeterminate": $options.hasIndeterminate ? $props.indeterminate : null,
+        required: $props.required,
+        name: $props.name
+      }, _ctx.$attrs, toHandlers($options.listeners, true)), null, 48, _hoisted_1$7)) : createCommentVNode("", true),
+      createVNode(_component_NcCheckboxContent, {
+        id: !$options.isButtonType ? `${$props.id}-label` : void 0,
+        class: "checkbox-radio-switch__content",
+        iconClass: "checkbox-radio-switch__icon",
+        textClass: "checkbox-radio-switch__text",
+        type: $setup.internalType,
+        indeterminate: $options.hasIndeterminate ? $props.indeterminate : false,
+        buttonVariant: $props.buttonVariant,
+        isChecked: $options.isChecked,
+        loading: $props.loading,
+        labelId: $setup.labelId,
+        descriptionId: $setup.descriptionId,
+        iconSize: $options.iconSize,
+        onClick: $options.onToggle
+      }, createSlots({
+        icon: withCtx(() => [
+          renderSlot(_ctx.$slots, "icon", {}, void 0, true)
+        ]),
+        _: 2
+      }, [
+        _ctx.$slots.description || $props.description ? {
+          name: "description",
+          fn: withCtx(() => [
+            renderSlot(_ctx.$slots, "description", {}, () => [
+              createTextVNode(toDisplayString($props.description), 1)
+            ], true)
+          ]),
+          key: "0"
+        } : void 0,
+        !!_ctx.$slots.default ? {
+          name: "default",
+          fn: withCtx(() => [
+            renderSlot(_ctx.$slots, "default", {}, void 0, true)
+          ]),
+          key: "1"
+        } : void 0
+      ]), 1032, ["id", "type", "indeterminate", "buttonVariant", "isChecked", "loading", "labelId", "descriptionId", "iconSize", "onClick"])
+    ]),
+    _: 3
+  }, 16, ["id", "aria-label", "class", "style", "type"]);
+}
+const NcCheckboxRadioSwitch = /* @__PURE__ */ _export_sfc$1(_sfc_main$7, [["render", _sfc_render$7], ["__scopeId", "data-v-6808cde4"]]);
 register(t19);
-const _hoisted_1$4 = {
+const _hoisted_1$5 = {
   key: 0,
   class: "nc-chip__icon"
 };
-const _hoisted_2$3 = { class: "nc-chip__text" };
+const _hoisted_2$4 = { class: "nc-chip__text" };
 /* @__PURE__ */ defineComponent({
   __name: "NcChip",
   props: {
@@ -29905,7 +31344,7 @@ const _hoisted_2$3 = { class: "nc-chip__text" };
           "nc-chip--no-icon": !hasIcon()
         }])
       }, [
-        hasIcon() ? (openBlock(), createElementBlock("span", _hoisted_1$4, [
+        hasIcon() ? (openBlock(), createElementBlock("span", _hoisted_1$5, [
           renderSlot(_ctx.$slots, "icon", {}, () => [
             _ctx.iconPath || _ctx.iconSvg ? (openBlock(), createBlock(NcIconSvgWrapper, {
               key: 0,
@@ -29916,7 +31355,7 @@ const _hoisted_2$3 = { class: "nc-chip__text" };
             }, null, 8, ["path", "svg"])) : createCommentVNode("", true)
           ], true)
         ])) : createCommentVNode("", true),
-        createBaseVNode("span", _hoisted_2$3, [
+        createBaseVNode("span", _hoisted_2$4, [
           renderSlot(_ctx.$slots, "default", {}, () => [
             createTextVNode(toDisplayString(_ctx.text), 1)
           ], true)
@@ -31502,7 +32941,7 @@ function findRanges(text2, search) {
   }
   return ranges;
 }
-const _sfc_main$4 = /* @__PURE__ */ defineComponent({
+const _sfc_main$5 = /* @__PURE__ */ defineComponent({
   name: "NcHighlight",
   props: {
     /**
@@ -31642,10 +33081,10 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     }));
   }
 });
-const _sfc_main$3 = {
+const _sfc_main$4 = {
   name: "NcEllipsisedOption",
   components: {
-    NcHighlight: _sfc_main$4
+    NcHighlight: _sfc_main$5
   },
   props: {
     /**
@@ -31716,7 +33155,7 @@ const _sfc_main$3 = {
     }
   }
 };
-const _hoisted_1$3 = ["title"];
+const _hoisted_1$4 = ["title"];
 function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_NcHighlight = resolveComponent("NcHighlight");
   return openBlock(), createElementBlock("span", {
@@ -31737,11 +33176,11 @@ function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
       search: $props.search,
       highlight: $options.highlight2
     }, null, 8, ["text", "search", "highlight"])) : createCommentVNode("", true)
-  ], 8, _hoisted_1$3);
+  ], 8, _hoisted_1$4);
 }
-const NcEllipsisedOption = /* @__PURE__ */ _export_sfc$1(_sfc_main$3, [["render", _sfc_render$1], ["__scopeId", "data-v-a612f185"]]);
+const NcEllipsisedOption = /* @__PURE__ */ _export_sfc$1(_sfc_main$4, [["render", _sfc_render$1], ["__scopeId", "data-v-a612f185"]]);
 register(t17);
-const _sfc_main$2 = {
+const _sfc_main$3 = {
   name: "NcSelect",
   components: {
     ChevronDown,
@@ -32176,8 +33615,8 @@ const _sfc_main$2 = {
     t
   }
 };
-const _hoisted_1$2 = ["for"];
-const _hoisted_2$2 = ["required"];
+const _hoisted_1$3 = ["for"];
+const _hoisted_2$3 = ["required"];
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ChevronDown = resolveComponent("ChevronDown");
   const _component_NcEllipsisedOption = resolveComponent("NcEllipsisedOption");
@@ -32198,7 +33637,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       }, attributes, {
         required: $options.inputRequired,
         dir: "auto"
-      }, toHandlers(events, true)), null, 16, _hoisted_2$2)
+      }, toHandlers(events, true)), null, 16, _hoisted_2$3)
     ]),
     "open-indicator": withCtx(({ attributes }) => [
       createVNode(_component_ChevronDown, mergeProps(attributes, {
@@ -32239,7 +33678,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
         createBaseVNode("label", {
           for: $props.inputId,
           class: "select__label"
-        }, toDisplayString($props.inputLabel), 9, _hoisted_1$2)
+        }, toDisplayString($props.inputLabel), 9, _hoisted_1$3)
       ]),
       key: "0"
     } : void 0,
@@ -32253,17 +33692,17 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   ]), 1040, ["class"]);
 }
-const NcSelect = /* @__PURE__ */ _export_sfc$1(_sfc_main$2, [["render", _sfc_render]]);
+const NcSelect = /* @__PURE__ */ _export_sfc$1(_sfc_main$3, [["render", _sfc_render]]);
 register(t28);
 register(t6);
 register(t1);
 register(t30);
 const contentSvg = '<!--\n  - SPDX-FileCopyrightText: 2023 Nextcloud GmbH and Nextcloud contributors\n  - SPDX-License-Identifier: AGPL-3.0-or-later\n-->\n<svg width="395" height="314" viewBox="0 0 395 314" fill="none" xmlns="http://www.w3.org/2000/svg">\n<rect width="395" height="314" rx="11" fill="#439DCD"/>\n<rect x="13" y="51" width="366" height="248" rx="8" fill="white"/>\n<rect x="22" y="111" width="92" height="12" rx="6" fill="#DEDEDE"/>\n<rect x="22" y="127" width="92" height="12" rx="6" fill="#DEDEDE"/>\n<rect x="22" y="63" width="92" height="12" rx="6" fill="#DEDEDE"/>\n<rect x="22" y="191" width="92" height="12" rx="6" fill="#DEDEDE"/>\n<rect x="22" y="143" width="92" height="12" rx="6" fill="#DEDEDE"/>\n<rect x="22" y="79" width="92" height="12" rx="6" fill="#DEDEDE"/>\n<rect x="22" y="159" width="92" height="12" rx="6" fill="#DEDEDE"/>\n<rect x="22" y="95" width="92" height="12" rx="6" fill="#DEDEDE"/>\n<rect x="22" y="175" width="92" height="12" rx="6" fill="#DEDEDE"/>\n<path d="M288 145C277.56 147.8 265.32 149 254 149C242.68 149 230.44 147.8 220 145L218 153C225.44 155 234 156.32 242 157V209H250V185H258V209H266V157C274 156.32 282.56 155 290 153L288 145ZM254 145C258.4 145 262 141.4 262 137C262 132.6 258.4 129 254 129C249.6 129 246 132.6 246 137C246 141.4 249.6 145 254 145Z" fill="#DEDEDE"/>\n<path d="M43.5358 13C38.6641 13 34.535 16.2415 33.2552 20.6333C32.143 18.3038 29.7327 16.6718 26.9564 16.6718C23.1385 16.6718 20 19.7521 20 23.4993C20 27.2465 23.1385 30.3282 26.9564 30.3282C29.7327 30.3282 32.1429 28.6952 33.2552 26.3653C34.535 30.7575 38.6641 34 43.5358 34C48.3715 34 52.4796 30.8064 53.7921 26.4637C54.9249 28.7407 57.3053 30.3282 60.0421 30.3282C63.8601 30.3282 67 27.2465 67 23.4993C67 19.7521 63.8601 16.6718 60.0421 16.6718C57.3053 16.6718 54.9249 18.2583 53.7921 20.5349C52.4796 16.1926 48.3715 13 43.5358 13ZM43.5358 17.0079C47.2134 17.0079 50.1512 19.8899 50.1512 23.4993C50.1512 27.1087 47.2134 29.9921 43.5358 29.9921C39.8583 29.9921 36.9218 27.1087 36.9218 23.4993C36.9218 19.8899 39.8583 17.0079 43.5358 17.0079ZM26.9564 20.6797C28.5677 20.6797 29.8307 21.9179 29.8307 23.4993C29.8307 25.0807 28.5677 26.3203 26.9564 26.3203C25.3452 26.3203 24.0836 25.0807 24.0836 23.4993C24.0836 21.9179 25.3452 20.6797 26.9564 20.6797ZM60.0421 20.6797C61.6534 20.6797 62.9164 21.9179 62.9164 23.4993C62.9164 25.0807 61.6534 26.3203 60.0421 26.3203C58.4309 26.3203 57.1693 25.0807 57.1693 23.4993C57.1693 21.9179 58.4309 20.6797 60.0421 20.6797Z" fill="white"/>\n<rect x="79" y="20" width="8" height="8" rx="4" fill="white"/>\n<rect x="99" y="20" width="8" height="8" rx="4" fill="white"/>\n<rect x="119" y="20" width="8" height="8" rx="4" fill="white"/>\n<rect x="139" y="20" width="8" height="8" rx="4" fill="white"/>\n<rect x="159" y="20" width="8" height="8" rx="4" fill="white"/>\n<rect x="179" y="20" width="8" height="8" rx="4" fill="white"/>\n<path fill-rule="evenodd" clip-rule="evenodd" d="M12 0C5.37258 0 0 5.37259 0 12V302C0 308.627 5.37259 314 12 314H383C389.627 314 395 308.627 395 302V12C395 5.37258 389.627 0 383 0H12ZM140 44C132.268 44 126 50.268 126 58V292C126 299.732 132.268 306 140 306H372C379.732 306 386 299.732 386 292V58C386 50.268 379.732 44 372 44H140Z" fill="black" fill-opacity="0.35"/>\n</svg>\n';
 const navigationSvg = '<!--\n  - SPDX-FileCopyrightText: 2023 Nextcloud GmbH and Nextcloud contributors\n  - SPDX-License-Identifier: AGPL-3.0-or-later\n-->\n<svg width="395" height="314" viewBox="0 0 395 314" fill="none" xmlns="http://www.w3.org/2000/svg">\n<rect width="395" height="314" rx="11" fill="#439DCD"/>\n<rect x="13" y="51" width="366" height="248" rx="8" fill="white"/>\n<rect x="22" y="111" width="92" height="12" rx="6" fill="#DEDEDE"/>\n<rect x="22" y="127" width="92" height="12" rx="6" fill="#DEDEDE"/>\n<rect x="22" y="63" width="92" height="12" rx="6" fill="#DEDEDE"/>\n<rect x="22" y="191" width="92" height="12" rx="6" fill="#DEDEDE"/>\n<rect x="22" y="143" width="92" height="12" rx="6" fill="#DEDEDE"/>\n<rect x="22" y="79" width="92" height="12" rx="6" fill="#DEDEDE"/>\n<rect x="22" y="159" width="92" height="12" rx="6" fill="#DEDEDE"/>\n<rect x="22" y="95" width="92" height="12" rx="6" fill="#DEDEDE"/>\n<rect x="22" y="175" width="92" height="12" rx="6" fill="#DEDEDE"/>\n<path d="M288 145C277.56 147.8 265.32 149 254 149C242.68 149 230.44 147.8 220 145L218 153C225.44 155 234 156.32 242 157V209H250V185H258V209H266V157C274 156.32 282.56 155 290 153L288 145ZM254 145C258.4 145 262 141.4 262 137C262 132.6 258.4 129 254 129C249.6 129 246 132.6 246 137C246 141.4 249.6 145 254 145Z" fill="#DEDEDE"/>\n<path d="M43.5358 13C38.6641 13 34.535 16.2415 33.2552 20.6333C32.143 18.3038 29.7327 16.6718 26.9564 16.6718C23.1385 16.6718 20 19.7521 20 23.4993C20 27.2465 23.1385 30.3282 26.9564 30.3282C29.7327 30.3282 32.1429 28.6952 33.2552 26.3653C34.535 30.7575 38.6641 34 43.5358 34C48.3715 34 52.4796 30.8064 53.7921 26.4637C54.9249 28.7407 57.3053 30.3282 60.0421 30.3282C63.8601 30.3282 67 27.2465 67 23.4993C67 19.7521 63.8601 16.6718 60.0421 16.6718C57.3053 16.6718 54.9249 18.2583 53.7921 20.5349C52.4796 16.1926 48.3715 13 43.5358 13ZM43.5358 17.0079C47.2134 17.0079 50.1512 19.8899 50.1512 23.4993C50.1512 27.1087 47.2134 29.9921 43.5358 29.9921C39.8583 29.9921 36.9218 27.1087 36.9218 23.4993C36.9218 19.8899 39.8583 17.0079 43.5358 17.0079ZM26.9564 20.6797C28.5677 20.6797 29.8307 21.9179 29.8307 23.4993C29.8307 25.0807 28.5677 26.3203 26.9564 26.3203C25.3452 26.3203 24.0836 25.0807 24.0836 23.4993C24.0836 21.9179 25.3452 20.6797 26.9564 20.6797ZM60.0421 20.6797C61.6534 20.6797 62.9164 21.9179 62.9164 23.4993C62.9164 25.0807 61.6534 26.3203 60.0421 26.3203C58.4309 26.3203 57.1693 25.0807 57.1693 23.4993C57.1693 21.9179 58.4309 20.6797 60.0421 20.6797Z" fill="white"/>\n<rect x="79" y="20" width="8" height="8" rx="4" fill="white"/>\n<rect x="99" y="20" width="8" height="8" rx="4" fill="white"/>\n<rect x="119" y="20" width="8" height="8" rx="4" fill="white"/>\n<rect x="139" y="20" width="8" height="8" rx="4" fill="white"/>\n<rect x="159" y="20" width="8" height="8" rx="4" fill="white"/>\n<rect x="179" y="20" width="8" height="8" rx="4" fill="white"/>\n<path fill-rule="evenodd" clip-rule="evenodd" d="M12 0C5.37258 0 0 5.37259 0 12V302C0 308.627 5.37259 314 12 314H383C389.627 314 395 308.627 395 302V12C395 5.37258 389.627 0 383 0H12ZM112 44C119.732 44 126 50.268 126 58V292C126 299.732 119.732 306 112 306H20C12.268 306 6 299.732 6 292V58C6 50.268 12.268 44 20 44H112Z" fill="black" fill-opacity="0.35"/>\n</svg>\n';
-const _hoisted_1$1 = { class: "vue-skip-actions__container" };
-const _hoisted_2$1 = { class: "vue-skip-actions__headline" };
-const _hoisted_3 = { class: "vue-skip-actions__buttons" };
-const _sfc_main$1 = /* @__PURE__ */ defineComponent({
+const _hoisted_1$2 = { class: "vue-skip-actions__container" };
+const _hoisted_2$2 = { class: "vue-skip-actions__headline" };
+const _hoisted_3$1 = { class: "vue-skip-actions__buttons" };
+const _sfc_main$2 = /* @__PURE__ */ defineComponent({
   __name: "NcContent",
   props: {
     appName: {}
@@ -32278,10 +33717,10 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     const currentFocus = /* @__PURE__ */ ref();
     const currentImage = computed(() => currentFocus.value === "navigation" ? navigationSvg : contentSvg);
     onBeforeMount(() => {
-      const container = document.getElementById("skip-actions");
-      if (container) {
-        container.innerHTML = "";
-        container.classList.add("vue-skip-actions");
+      const container2 = document.getElementById("skip-actions");
+      if (container2) {
+        container2.innerHTML = "";
+        container2.classList.add("vue-skip-actions");
       }
     });
     function openAppNavigation() {
@@ -32303,9 +33742,9 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
         class: normalizeClass(["content", `app-${_ctx.appName.toLowerCase()}`])
       }, [
         (openBlock(), createBlock(Teleport, { to: "#skip-actions" }, [
-          createBaseVNode("div", _hoisted_1$1, [
-            createBaseVNode("div", _hoisted_2$1, toDisplayString(unref(t)("Keyboard navigation help")), 1),
-            createBaseVNode("div", _hoisted_3, [
+          createBaseVNode("div", _hoisted_1$2, [
+            createBaseVNode("div", _hoisted_2$2, toDisplayString(unref(t)("Keyboard navigation help")), 1),
+            createBaseVNode("div", _hoisted_3$1, [
               withDirectives(createVNode(NcButton, {
                 href: "#app-navigation-vue",
                 variant: "tertiary",
@@ -32346,7 +33785,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const NcContent = /* @__PURE__ */ _export_sfc$1(_sfc_main$1, [["__scopeId", "data-v-d9b0d7e8"]]);
+const NcContent = /* @__PURE__ */ _export_sfc$1(_sfc_main$2, [["__scopeId", "data-v-d9b0d7e8"]]);
 register(t35);
 ({
   props: {
@@ -40810,7 +42249,7 @@ function getTimezones() {
     label: formatTimezoneId(timezoneId)
   })).sort((a2, b2) => a2.timezoneId.localeCompare(b2.timezoneId));
 }
-const _sfc_main = /* @__PURE__ */ defineComponent({
+const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   __name: "NcTimezonePicker",
   props: /* @__PURE__ */ mergeModels({
     additionalTimezones: { default: () => [] },
@@ -40859,8 +42298,8 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
   }
 });
 register(t13);
-const _hoisted_1 = { class: "vue-date-time-picker__wrapper" };
-const _hoisted_2 = {
+const _hoisted_1$1 = { class: "vue-date-time-picker__wrapper" };
+const _hoisted_2$1 = {
   ref: "target",
   class: "vue-date-time-picker__wrapper vue-date-time-picker__wrapper--teleport"
 };
@@ -41116,7 +42555,7 @@ const _hoisted_2 = {
       return a2.getFullYear() === b2.getFullYear() && a2.getMonth() === b2.getMonth() && a2.getDate() === b2.getDate();
     }
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1, [
+      return openBlock(), createElementBlock("div", _hoisted_1$1, [
         createVNode(unref(qn), mergeProps({
           ref: "picker",
           "aria-labels": ariaLabels.value,
@@ -41231,7 +42670,7 @@ const _hoisted_2 = {
           _ctx.showTimezoneSelect ? {
             name: "action-extra",
             fn: withCtx(() => [
-              createVNode(_sfc_main, {
+              createVNode(_sfc_main$1, {
                 modelValue: timezoneId.value,
                 "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => timezoneId.value = $event),
                 class: "vue-date-time-picker__timezone",
@@ -41246,7 +42685,7 @@ const _hoisted_2 = {
           to: "body",
           disabled: !_ctx.appendToBody
         }, [
-          createBaseVNode("div", _hoisted_2, null, 512)
+          createBaseVNode("div", _hoisted_2$1, null, 512)
         ], 8, ["disabled"]))
       ]);
     };
@@ -42771,7 +44210,13 @@ const api = {
     delete: (listId, id) => cancelableClient.delete(url(`lists/${listId}/items/${id}`)),
     reorder: (listId, sortedIds) => cancelableClient.post(url(`lists/${listId}/items/reorder`), { sortedIds }),
     clearChecked: (listId) => cancelableClient.delete(url(`lists/${listId}/items/checked`)),
-    uncheckAll: (listId) => cancelableClient.post(url(`lists/${listId}/items/uncheck-all`))
+    uncheckAll: (listId) => cancelableClient.post(url(`lists/${listId}/items/uncheck-all`)),
+    uploadImage: (listId, id, image, filename) => {
+      const form = new FormData();
+      form.append("image", image, filename);
+      return cancelableClient.post(url(`lists/${listId}/items/${id}/image`), form);
+    },
+    deleteImage: (listId, id) => cancelableClient.delete(url(`lists/${listId}/items/${id}/image`))
   },
   shares: {
     getAll: (listId) => cancelableClient.get(url(`lists/${listId}/shares`)),
@@ -42794,6 +44239,10 @@ const api = {
     getAll: () => cancelableClient.get(url("tags")),
     create: (name) => cancelableClient.post(url("tags"), { name }),
     delete: (id) => cancelableClient.delete(url(`tags/${id}`))
+  },
+  settings: {
+    get: () => cancelableClient.get(url("settings")),
+    update: (data) => cancelableClient.patch(url("settings"), data)
   }
 };
 const publicApi = {
@@ -42918,6 +44367,67 @@ var ShareType = /* @__PURE__ */ ((ShareType2) => {
   ShareType2[ShareType2["LINK"] = 3] = "LINK";
   return ShareType2;
 })(ShareType || {});
+const _hoisted_1 = { class: "image-viewer" };
+const _hoisted_2 = ["src", "alt"];
+const _hoisted_3 = {
+  key: 1,
+  class: "image-viewer__error"
+};
+const _sfc_main = /* @__PURE__ */ defineComponent({
+  __name: "ImageViewer",
+  props: {
+    src: {},
+    name: {}
+  },
+  emits: ["close"],
+  setup(__props) {
+    const failed = /* @__PURE__ */ ref(false);
+    const failedText = translate("shopping_list", "Could not load image");
+    return (_ctx, _cache) => {
+      return openBlock(), createBlock(unref(NcModal), {
+        show: true,
+        name: __props.name,
+        size: "large",
+        dark: "",
+        "close-on-click-outside": "",
+        onClose: _cache[1] || (_cache[1] = ($event) => _ctx.$emit("close"))
+      }, {
+        default: withCtx(() => [
+          createBaseVNode("div", _hoisted_1, [
+            !failed.value ? (openBlock(), createElementBlock("img", {
+              key: 0,
+              src: __props.src,
+              alt: __props.name,
+              class: "image-viewer__img",
+              onError: _cache[0] || (_cache[0] = ($event) => failed.value = true)
+            }, null, 40, _hoisted_2)) : (openBlock(), createElementBlock("p", _hoisted_3, toDisplayString(unref(failedText)), 1))
+          ])
+        ]),
+        _: 1
+      }, 8, ["name"]);
+    };
+  }
+});
+const ImageViewer = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-ad4d9464"]]);
+function segment(size2) {
+  return size2 === "full" ? "image" : "thumbnail";
+}
+function itemImagePath(item, size2) {
+  if (!item.imageKey) return null;
+  return `/apps/shopping_list/lists/${item.listId}/items/${item.id}/${segment(size2)}/${encodeURIComponent(item.imageKey)}`;
+}
+function publicItemImagePath(token2, item, size2) {
+  if (!item.imageKey) return null;
+  return `/apps/shopping_list/s/${encodeURIComponent(token2)}/items/${item.id}/${segment(size2)}/${encodeURIComponent(item.imageKey)}`;
+}
+function itemImageUrl(item, size2) {
+  const path2 = itemImagePath(item, size2);
+  return path2 === null ? null : generateUrl(path2);
+}
+function publicItemImageUrl(token2, item, size2) {
+  const path2 = publicItemImagePath(token2, item, size2);
+  return path2 === null ? null : generateUrl(path2);
+}
 function browserStorage() {
   try {
     return window.localStorage;
@@ -43016,53 +44526,58 @@ export {
   isMathMLTag as a7,
   parseStringStyle as a8,
   makeMap as a9,
-  NcLoadingIcon as aA,
-  mdiChevronDown as aB,
-  vShow as aC,
-  shallowRef as aD,
-  vModelSelect as aE,
-  Transition as aF,
-  NcAppNavigation as aG,
-  NcAppContent as aH,
-  NcContent as aI,
-  createPinia as aJ,
-  offlinePersistPlugin as aK,
-  createApp as aL,
-  publicApi as aM,
-  loadState as aN,
-  dist as aO,
-  requireMajor as aP,
-  requireValid as aQ,
-  dist$1 as aR,
-  process$1 as aS,
-  commonjsGlobal as aT,
-  Buffer as aU,
+  browserStorage as aA,
+  useCollapsedAreas as aB,
+  NcAvatar as aC,
+  isRef as aD,
+  mdiChevronDown as aE,
+  vShow as aF,
+  shallowRef as aG,
+  vModelSelect as aH,
+  NcCheckboxRadioSwitch as aI,
+  NcAppNavigationSettings as aJ,
+  Transition as aK,
+  NcAppNavigation as aL,
+  NcAppContent as aM,
+  NcContent as aN,
+  createPinia as aO,
+  offlinePersistPlugin as aP,
+  createApp as aQ,
+  publicApi as aR,
+  publicItemImageUrl as aS,
+  dist as aT,
+  requireMajor as aU,
+  requireValid as aV,
+  dist$1 as aW,
+  process$1 as aX,
+  commonjsGlobal as aY,
+  Buffer as aZ,
   generateCodeFrame as aa,
   getAugmentedNamespace as ab,
   runtimeDom_esmBundler as ac,
   shared_esmBundler as ad,
-  watch as ae,
-  onMounted as af,
-  onUnmounted as ag,
-  withKeys as ah,
-  withModifiers as ai,
-  vModelText as aj,
-  normalizeStyle as ak,
-  Teleport as al,
-  NcActions as am,
-  Permission as an,
-  nextTick as ao,
-  NcPopover as ap,
-  mdiHelpCircleOutline as aq,
-  generateOcsUrl as ar,
-  cancelableClient as as,
-  ShareType as at,
-  generateUrl as au,
-  getCurrentUser as av,
-  browserStorage as aw,
-  useCollapsedAreas as ax,
-  NcAvatar as ay,
-  isRef as az,
+  loadState as ae,
+  watch as af,
+  onMounted as ag,
+  onUnmounted as ah,
+  NcLoadingIcon as ai,
+  withKeys as aj,
+  withModifiers as ak,
+  vModelText as al,
+  normalizeStyle as am,
+  Teleport as an,
+  NcActions as ao,
+  ImageViewer as ap,
+  Permission as aq,
+  nextTick as ar,
+  itemImageUrl as as,
+  NcPopover as at,
+  mdiHelpCircleOutline as au,
+  generateOcsUrl as av,
+  cancelableClient as aw,
+  ShareType as ax,
+  generateUrl as ay,
+  getCurrentUser as az,
   createBaseVNode as b,
   createElementBlock as c,
   createVNode as d,
@@ -43089,4 +44604,4 @@ export {
   defineStore as y,
   ref as z
 };
-//# sourceMappingURL=useCollapsedAreas-hIb1s_qg.chunk.mjs.map
+//# sourceMappingURL=useCollapsedAreas-45jfzOtX.chunk.mjs.map

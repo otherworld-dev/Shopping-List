@@ -17,6 +17,8 @@ class ItemService {
 		private ShopAreaService $shopAreaService,
 		private PushService $pushService,
 		private IDBConnection $db,
+		private ItemImageCleanup $imageCleanup,
+		private ItemImageService $images,
 	) {
 	}
 
@@ -51,6 +53,8 @@ class ItemService {
 		$item->setChecked($checked);
 		$item->setCheckedBy($checked ? $userId : null);
 		$item->setSortOrder(0);
+		// A name that had a photo before gets it back, in any list.
+		$item->setImageKey($this->images->rememberedKey($listId, $name));
 		$now = new DateTime();
 		$item->setCreatedAt($now);
 		$item->setUpdatedAt($now);
@@ -75,7 +79,15 @@ class ItemService {
 		$this->listService->assertWriteAccess($item->getListId(), $userId);
 
 		if (isset($fields['name'])) {
+			$renamed = ItemImageService::nameKey($fields['name']) !== ItemImageService::nameKey($item->getName());
 			$item->setName($fields['name']);
+			if ($renamed) {
+				// Take the new name's photo if it has one; otherwise keep the current one.
+				$remembered = $this->images->rememberedKey($item->getListId(), $fields['name']);
+				if ($remembered !== null) {
+					$item->setImageKey($remembered);
+				}
+			}
 		}
 		if (array_key_exists('quantity', $fields)) {
 			$item->setQuantity($fields['quantity']);
@@ -135,6 +147,9 @@ class ItemService {
 
 		$item->setListId($targetListId);
 		$item->setShopAreaId($this->shopAreaService->findAreaForMove($targetListId, $sourceAreaName, $item->getName()));
+		if ($item->getImageKey() === null) {
+			$item->setImageKey($this->images->rememberedKey($targetListId, $item->getName()));
+		}
 		$item->setChecked(false);
 		$item->setCheckedBy(null);
 		$item->setSortOrder(0);
@@ -173,8 +188,20 @@ class ItemService {
 			throw new NotFoundException('Item not found');
 		}
 
+		$this->listService->assertWriteAccess($item->getListId(), $userId);
+		$this->deleteEntity($item, $userId);
+	}
+
+	/**
+	 * Remove an item the caller has already checked access to: its tag rows,
+	 * the row itself, its photo's files if nothing else uses them (a photo
+	 * stays remembered for its name), then a push to the others on the list.
+	 * The public link controller uses this too, with an empty exclude id so
+	 * everyone is told.
+	 */
+	public function deleteEntity(Item $item, string $excludeUserId): void {
+		$id = $item->getId();
 		$listId = $item->getListId();
-		$this->listService->assertWriteAccess($listId, $userId);
 
 		// Delete item tags
 		$qb = $this->db->getQueryBuilder();
@@ -183,7 +210,11 @@ class ItemService {
 			->executeStatement();
 
 		$this->mapper->delete($item);
-		$this->pushService->notifyItemUpdate($listId, $id, 'deleted', $userId);
+		// After the row, not before: an orphan file is harmless, a key with no file is not.
+		if ($item->getImageKey() !== null) {
+			$this->imageCleanup->release([$item->getImageKey()]);
+		}
+		$this->pushService->notifyItemUpdate($listId, $id, 'deleted', $excludeUserId);
 	}
 
 	public function reorder(int $listId, array $sortedIds, string $userId): void {
@@ -198,6 +229,10 @@ class ItemService {
 	public function clearChecked(int $listId, string $userId): void {
 		$this->listService->assertWriteAccess($listId, $userId);
 
+		$imageKeys = [];
+		foreach ($this->mapper->findAllByList($listId) as $item) {
+			$imageKeys[$item->getId()] = $item->getImageKey();
+		}
 		$deletedIds = $this->mapper->deleteChecked($listId);
 
 		// Clean up item_tags for deleted items
@@ -207,6 +242,10 @@ class ItemService {
 				->where($qb->expr()->in('item_id', $qb->createNamedParameter($deletedIds, \OCP\DB\QueryBuilder\IQueryBuilder::PARAM_INT_ARRAY)))
 				->executeStatement();
 		}
+		// The photos stay remembered for their names; only unused files go.
+		$this->imageCleanup->release(array_values(array_filter(
+			array_map(fn (int $id) => $imageKeys[$id] ?? null, $deletedIds),
+		)));
 		$this->pushService->notifyItemUpdate($listId, 0, 'cleared', $userId);
 	}
 

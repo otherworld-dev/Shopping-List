@@ -62,7 +62,7 @@ const statusText = computed(() => {
 .offline-indicator {
 	position: fixed;
 	bottom: 16px;
-	right: 16px;
+	inset-inline-end: 16px;
 	display: flex;
 	align-items: center;
 	gap: 8px;

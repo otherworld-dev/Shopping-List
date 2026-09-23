@@ -1,8 +1,8 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-BmvAZn3f.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/useCollapsedAreas-hIb1s_qg.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/useCollapsedAreas-23fjjBcZ.chunk.css')])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-BzKNh5RZ.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/useCollapsedAreas-45jfzOtX.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/useCollapsedAreas-CX_mg1lj.chunk.css')])))=>i.map(i=>d[i]);
 const appName = "shopping_list";
-const appVersion = "1.7.1";
-import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, A as ActionGlobalMixin, a as NcIconSvgWrapper, r as resolveComponent, b as createBaseVNode, w as withDirectives, v as vModelRadio, n as normalizeClass, d as createVNode, m as mdiRadioboxMarked, e as mdiRadioboxBlank, u as useModel, f as createElementId, g as NcButton, h as withCtx, i as createTextVNode, j as renderSlot, k as defineComponent, l as createCommentVNode, p as unref, q as getDefaultExportFromCjs, s as getGettextBuilder, x as getLoggerBuilder, y as defineStore, z as ref, B as computed, C as api, D as markServerFetched, E as translate, F as getLanguage, G as loadValue, H as saveValue, I as readonly, J as Fragment, K as renderList, L as createBlock, M as NcAppNavigationCaption, O as NcActionButton, P as NcAppNavigationItem, Q as _export_sfc$1, R as NOOP, S as extend$1, T as isString, U as NO, V as isSymbol, W as isBuiltInDirective, X as capitalize, Y as camelize, Z as EMPTY_OBJ, $ as isObject, a0 as toHandlerKey, a1 as isArray, a2 as isOn, a3 as isReservedProp, a4 as isVoidTag, a5 as isHTMLTag, a6 as isSVGTag, a7 as isMathMLTag, a8 as parseStringStyle, a9 as makeMap, aa as generateCodeFrame, ab as getAugmentedNamespace, ac as runtimeDom_esmBundler, ad as shared_esmBundler, ae as watch, af as onMounted, ag as onUnmounted, ah as withKeys, ai as withModifiers, aj as vModelText, ak as normalizeStyle, al as Teleport, am as NcActions, an as Permission, ao as nextTick, ap as NcPopover, aq as mdiHelpCircleOutline, ar as generateOcsUrl, as as cancelableClient, at as ShareType, au as generateUrl, av as getCurrentUser, aw as browserStorage, ax as useCollapsedAreas, ay as NcAvatar, az as isRef, aA as NcLoadingIcon, aB as mdiChevronDown, aC as vShow, aD as shallowRef, aE as vModelSelect, aF as Transition, aG as NcAppNavigation, aH as NcAppContent, aI as NcContent, aJ as createPinia, aK as offlinePersistPlugin, aL as createApp } from "./useCollapsedAreas-hIb1s_qg.chunk.mjs";
-const _sfc_main$c = {
+const appVersion = "1.8.0";
+import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, A as ActionGlobalMixin, a as NcIconSvgWrapper, r as resolveComponent, b as createBaseVNode, w as withDirectives, v as vModelRadio, n as normalizeClass, d as createVNode, m as mdiRadioboxMarked, e as mdiRadioboxBlank, u as useModel, f as createElementId, g as NcButton, h as withCtx, i as createTextVNode, j as renderSlot, k as defineComponent, l as createCommentVNode, p as unref, q as getDefaultExportFromCjs, s as getGettextBuilder, x as getLoggerBuilder, y as defineStore, z as ref, B as computed, C as api, D as markServerFetched, E as translate, F as getLanguage, G as loadValue, H as saveValue, I as readonly, J as Fragment, K as renderList, L as createBlock, M as NcAppNavigationCaption, O as NcActionButton, P as NcAppNavigationItem, Q as _export_sfc$1, R as NOOP, S as extend$1, T as isString, U as NO, V as isSymbol, W as isBuiltInDirective, X as capitalize, Y as camelize, Z as EMPTY_OBJ, $ as isObject, a0 as toHandlerKey, a1 as isArray, a2 as isOn, a3 as isReservedProp, a4 as isVoidTag, a5 as isHTMLTag, a6 as isSVGTag, a7 as isMathMLTag, a8 as parseStringStyle, a9 as makeMap, aa as generateCodeFrame, ab as getAugmentedNamespace, ac as runtimeDom_esmBundler, ad as shared_esmBundler, ae as loadState, af as watch, ag as onMounted, ah as onUnmounted, ai as NcLoadingIcon, aj as withKeys, ak as withModifiers, al as vModelText, am as normalizeStyle, an as Teleport, ao as NcActions, ap as ImageViewer, aq as Permission, ar as nextTick, as as itemImageUrl, at as NcPopover, au as mdiHelpCircleOutline, av as generateOcsUrl, aw as cancelableClient, ax as ShareType, ay as generateUrl, az as getCurrentUser, aA as browserStorage, aB as useCollapsedAreas, aC as NcAvatar, aD as isRef, aE as mdiChevronDown, aF as vShow, aG as shallowRef, aH as vModelSelect, aI as NcCheckboxRadioSwitch, aJ as NcAppNavigationSettings, aK as Transition, aL as NcAppNavigation, aM as NcAppContent, aN as NcContent, aO as createPinia, aP as offlinePersistPlugin, aQ as createApp } from "./useCollapsedAreas-45jfzOtX.chunk.mjs";
+const _sfc_main$e = {
   name: "NcActionCaption",
   inject: {
     isInSemanticMenu: {
@@ -20,14 +20,14 @@ const _sfc_main$c = {
     }
   }
 };
-const _hoisted_1$b = ["role"];
+const _hoisted_1$d = ["role"];
 function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("li", {
     class: "app-navigation-caption",
     role: $options.isInSemanticMenu && "presentation"
-  }, toDisplayString($props.name), 9, _hoisted_1$b);
+  }, toDisplayString($props.name), 9, _hoisted_1$d);
 }
-const NcActionCaption = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$3], ["__scopeId", "data-v-1009e96c"]]);
+const NcActionCaption = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$3], ["__scopeId", "data-v-1009e96c"]]);
 const scriptRel = "modulepreload";
 const assetsURL = function(dep, importerUrl) {
   return new URL(dep, importerUrl).href;
@@ -86,7 +86,7 @@ const __vitePreload = function preload(baseModule, deps, importerUrl) {
     return baseModule().catch(handlePreloadError);
   });
 };
-const _sfc_main$b = {
+const _sfc_main$d = {
   name: "NcActionRadio",
   components: {
     NcIconSvgWrapper
@@ -155,8 +155,8 @@ const _sfc_main$b = {
     }
   }
 };
-const _hoisted_1$a = ["role"];
-const _hoisted_2$8 = ["role", "aria-checked"];
+const _hoisted_1$c = ["role"];
+const _hoisted_2$9 = ["role", "aria-checked"];
 const _hoisted_3$7 = { class: "action-radio__icon" };
 const _hoisted_4$7 = ["id", "value", "name", "disabled"];
 const _hoisted_5$7 = { class: "action-radio__text" };
@@ -190,22 +190,22 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
         }, null, 8, ["path"])
       ]),
       createBaseVNode("span", _hoisted_5$7, toDisplayString(_ctx.text), 1)
-    ], 8, _hoisted_2$8)
-  ], 10, _hoisted_1$a);
+    ], 8, _hoisted_2$9)
+  ], 10, _hoisted_1$c);
 }
-const NcActionRadio = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["render", _sfc_render$2], ["__scopeId", "data-v-6c208ddd"]]);
-const _sfc_main$a = {
+const NcActionRadio = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$2], ["__scopeId", "data-v-6c208ddd"]]);
+const _sfc_main$c = {
   name: "NcActionSeparator"
 };
-const _hoisted_1$9 = {
+const _hoisted_1$b = {
   class: "action action-separator action--disabled",
   role: "separator"
 };
 function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("li", _hoisted_1$9);
+  return openBlock(), createElementBlock("li", _hoisted_1$b);
 }
-const NcActionSeparator = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$1], ["__scopeId", "data-v-3e2324b7"]]);
-const _sfc_main$9 = {
+const NcActionSeparator = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$1], ["__scopeId", "data-v-3e2324b7"]]);
+const _sfc_main$b = {
   components: {
     NcButton
   },
@@ -248,10 +248,10 @@ const _sfc_main$9 = {
   },
   emits: ["click"]
 };
-const _hoisted_1$8 = { class: "app-navigation-new" };
+const _hoisted_1$a = { class: "app-navigation-new" };
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_NcButton = resolveComponent("NcButton");
-  return openBlock(), createElementBlock("div", _hoisted_1$8, [
+  return openBlock(), createElementBlock("div", _hoisted_1$a, [
     createVNode(_component_NcButton, {
       id: $props.buttonId,
       disabled: $props.disabled,
@@ -268,9 +268,9 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     }, 8, ["id", "disabled", "variant"])
   ]);
 }
-const NcAppNavigationNew = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render], ["__scopeId", "data-v-0ba6c9df"]]);
-const _hoisted_1$7 = ["aria-labelledby"];
-const _hoisted_2$7 = {
+const NcAppNavigationNew = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["render", _sfc_render], ["__scopeId", "data-v-0ba6c9df"]]);
+const _hoisted_1$9 = ["aria-labelledby"];
+const _hoisted_2$8 = {
   key: 0,
   class: "empty-content__icon",
   "aria-hidden": "true"
@@ -284,7 +284,7 @@ const _hoisted_5$6 = {
   key: 3,
   class: "empty-content__action"
 };
-const _sfc_main$8 = /* @__PURE__ */ defineComponent({
+const _sfc_main$a = /* @__PURE__ */ defineComponent({
   __name: "NcEmptyContent",
   props: {
     description: { default: "" },
@@ -298,7 +298,7 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
         class: "empty-content",
         role: "note"
       }, [
-        _ctx.$slots.icon ? (openBlock(), createElementBlock("div", _hoisted_2$7, [
+        _ctx.$slots.icon ? (openBlock(), createElementBlock("div", _hoisted_2$8, [
           renderSlot(_ctx.$slots, "icon", {}, void 0, true)
         ])) : createCommentVNode("", true),
         _ctx.name !== "" || _ctx.$slots.name ? (openBlock(), createElementBlock("div", {
@@ -318,11 +318,11 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
         _ctx.$slots.action ? (openBlock(), createElementBlock("div", _hoisted_5$6, [
           renderSlot(_ctx.$slots, "action", {}, void 0, true)
         ])) : createCommentVNode("", true)
-      ], 8, _hoisted_1$7);
+      ], 8, _hoisted_1$9);
     };
   }
 });
-const NcEmptyContent = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["__scopeId", "data-v-b101d636"]]);
+const NcEmptyContent = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["__scopeId", "data-v-b101d636"]]);
 var toastify$1 = { exports: {} };
 /*!
  * Toastify js 1.12.0
@@ -1511,6 +1511,71 @@ function isNetworkError(error) {
   if (err.isAxiosError && !err.response) return true;
   return false;
 }
+const MAX_EDGE = 1280;
+const JPEG_QUALITY = 0.85;
+async function decode(file) {
+  if (typeof createImageBitmap === "function") {
+    try {
+      const bitmap = await createImageBitmap(file, { imageOrientation: "from-image" });
+      return { source: bitmap, cleanup: () => bitmap.close() };
+    } catch {
+    }
+  }
+  const url = URL.createObjectURL(file);
+  const img = new Image();
+  img.src = url;
+  try {
+    await img.decode();
+  } catch (e) {
+    URL.revokeObjectURL(url);
+    throw e;
+  }
+  return { source: img, cleanup: () => URL.revokeObjectURL(url) };
+}
+async function shrinkImage(file, maxEdge = MAX_EDGE, quality = JPEG_QUALITY) {
+  let decoded = null;
+  try {
+    decoded = await decode(file);
+    const { width, height } = decoded.source;
+    const scale = Math.min(1, maxEdge / Math.max(width, height));
+    const canvas = document.createElement("canvas");
+    canvas.width = Math.max(1, Math.round(width * scale));
+    canvas.height = Math.max(1, Math.round(height * scale));
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return file;
+    ctx.drawImage(decoded.source, 0, 0, canvas.width, canvas.height);
+    const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/jpeg", quality));
+    if (!blob) return file;
+    return blob.size < file.size ? blob : file;
+  } catch {
+    return file;
+  } finally {
+    decoded?.cleanup();
+  }
+}
+function imageNameKey(name) {
+  return name.trim().toLowerCase();
+}
+function spreadImageKey(items, name, imageKey) {
+  const key = imageNameKey(name);
+  if (key === "") {
+    return;
+  }
+  for (const item of items) {
+    if (imageNameKey(item.name) === key) {
+      item.imageKey = imageKey;
+    }
+  }
+}
+function clearImageKeys(items, imageKey, name) {
+  const key = imageNameKey(name);
+  for (const item of items) {
+    if (item.imageKey === imageKey || key !== "" && imageNameKey(item.name) === key) {
+      item.imageKey = null;
+    }
+  }
+}
+const imageUploads = ref({});
 const useItemsStore = defineStore("items", () => {
   const itemsByList = ref({});
   const loading = ref(false);
@@ -1602,6 +1667,7 @@ const useItemsStore = defineStore("items", () => {
         checked: Boolean(data.checked),
         checkedBy: null,
         sortOrder: existingItems.length,
+        imageKey: null,
         tags: [],
         createdAt: (/* @__PURE__ */ new Date()).toISOString(),
         updatedAt: (/* @__PURE__ */ new Date()).toISOString()
@@ -1821,6 +1887,72 @@ const useItemsStore = defineStore("items", () => {
       items[idx] = realItem;
     }
   }
+  function isImageUploading(id) {
+    return id in imageUploads.value;
+  }
+  function replaceItem(listId, updated) {
+    const live = itemsByList.value[listId];
+    const index2 = live?.findIndex((i) => i.id === updated.id) ?? -1;
+    if (live && index2 !== -1) {
+      live[index2] = updated;
+    }
+  }
+  async function attachImage(listId, id, file) {
+    if (!isOnline2.value) {
+      showError(translate("shopping_list", "You're offline — adding images requires a connection"));
+      return;
+    }
+    if (id < 0 || isImageUploading(id)) return;
+    imageUploads.value = { ...imageUploads.value, [id]: true };
+    try {
+      const blob = await shrinkImage(file);
+      const filename = blob === file ? file.name : "image.jpg";
+      const response = await api.items.uploadImage(listId, id, blob, filename);
+      const updated = response.data.ocs.data;
+      replaceItem(listId, updated);
+      if (updated.imageKey) {
+        spreadImageKey(itemsByList.value[listId] ?? [], updated.name, updated.imageKey);
+      }
+    } catch (e) {
+      const status = e.response?.status;
+      if (status === 413) {
+        showError(translate("shopping_list", "Image is too large"));
+      } else if (status === 415) {
+        showError(translate("shopping_list", "This file is not a supported image"));
+      } else if (status === 404) {
+        await fetchByList(listId);
+      } else {
+        showError(translate("shopping_list", "Failed to upload image"));
+      }
+      console.error(e);
+    } finally {
+      const rest = { ...imageUploads.value };
+      delete rest[id];
+      imageUploads.value = rest;
+    }
+  }
+  async function removeImage(listId, id) {
+    const item = (itemsByList.value[listId] ?? []).find((i) => i.id === id);
+    if (!item?.imageKey) return;
+    if (!isOnline2.value) {
+      showError(translate("shopping_list", "You're offline — removing images requires a connection"));
+      return;
+    }
+    const before = new Map((itemsByList.value[listId] ?? []).map((i) => [i.id, i.imageKey]));
+    clearImageKeys(itemsByList.value[listId] ?? [], item.imageKey, item.name);
+    try {
+      const response = await api.items.deleteImage(listId, id);
+      replaceItem(listId, response.data.ocs.data);
+    } catch (e) {
+      for (const live of itemsByList.value[listId] ?? []) {
+        if (before.has(live.id) && live.imageKey === null) {
+          live.imageKey = before.get(live.id) ?? null;
+        }
+      }
+      showError(translate("shopping_list", "Failed to remove image"));
+      console.error(e);
+    }
+  }
   return {
     itemsByList,
     loading,
@@ -1837,19 +1969,22 @@ const useItemsStore = defineStore("items", () => {
     reorder,
     clearChecked,
     uncheckAll,
-    replaceTempId
+    replaceTempId,
+    attachImage,
+    removeImage,
+    isImageUploading
   };
 });
-const _hoisted_1$6 = {
+const _hoisted_1$8 = {
   key: 0,
   class: "count-bubble"
 };
-const _hoisted_2$6 = {
+const _hoisted_2$7 = {
   key: 0,
   class: "sidebar-settings"
 };
 const listIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,4H7V8H3V4M9,5V7H21V5H9M3,10H7V14H3V10M9,11V13H21V11H9M3,16H7V20H3V16M9,17V19H21V17H9" fill="currentColor"/></svg>';
-const _sfc_main$7 = /* @__PURE__ */ defineComponent({
+const _sfc_main$9 = /* @__PURE__ */ defineComponent({
   __name: "ListSidebar",
   emits: ["showSettings"],
   setup(__props) {
@@ -1861,7 +1996,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
     const sharedText = translate("shopping_list", "Shared with me");
     const emptyName = translate("shopping_list", "No shopping lists");
     const emptyDesc = translate("shopping_list", "Create your first shopping list to get started");
-    const settingsText = translate("shopping_list", "Manage Areas");
+    const settingsText = translate("shopping_list", "List settings");
     const pinnedText = translate("shopping_list", "Pinned");
     const othersText = translate("shopping_list", "Others");
     const pinText = translate("shopping_list", "Pin list");
@@ -1915,7 +2050,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
                 "onUpdate:name": (name) => onRename(list.id, name)
               }, {
                 counter: withCtx(() => [
-                  getUncheckedCount(list.id) > 0 ? (openBlock(), createElementBlock("span", _hoisted_1$6, toDisplayString(getUncheckedCount(list.id)), 1)) : createCommentVNode("", true)
+                  getUncheckedCount(list.id) > 0 ? (openBlock(), createElementBlock("span", _hoisted_1$8, toDisplayString(getUncheckedCount(list.id)), 1)) : createCommentVNode("", true)
                 ]),
                 actions: withCtx(() => [
                   createVNode(unref(NcActionButton), {
@@ -1941,7 +2076,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
             }), 128))
           ], 64);
         }), 128)),
-        unref(listsStore).currentListId !== null ? (openBlock(), createElementBlock("div", _hoisted_2$6, [
+        unref(listsStore).currentListId !== null ? (openBlock(), createElementBlock("div", _hoisted_2$7, [
           createBaseVNode("button", {
             class: "sidebar-settings__btn",
             onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("showSettings"))
@@ -1961,7 +2096,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ListSidebar = /* @__PURE__ */ _export_sfc$1(_sfc_main$7, [["__scopeId", "data-v-353e1312"]]);
+const ListSidebar = /* @__PURE__ */ _export_sfc$1(_sfc_main$9, [["__scopeId", "data-v-aeae57c9"]]);
 const useSharesStore = defineStore("shares", () => {
   const sharesByList = ref({});
   async function fetchByList(listId) {
@@ -14402,8 +14537,8 @@ function requireVuedraggable_umd() {
                 });
               }
               __webpack_require__("c740");
-              function _classCallCheck(instance, Constructor) {
-                if (!(instance instanceof Constructor)) {
+              function _classCallCheck(instance2, Constructor) {
+                if (!(instance2 instanceof Constructor)) {
                   throw new TypeError("Cannot call a class as a function");
                 }
               }
@@ -14981,24 +15116,84 @@ function requireVuedraggable_umd() {
 }
 var vuedraggable_umdExports = requireVuedraggable_umd();
 const draggable = /* @__PURE__ */ getDefaultExportFromCjs(vuedraggable_umdExports);
-const _hoisted_1$5 = ["data-item-id"];
-const _hoisted_2$5 = { class: "item-row__check" };
+function createImagePreference(adapter) {
+  const enabled = ref(adapter.load());
+  const saving = ref(false);
+  async function setEnabled(value) {
+    if (value === enabled.value) return;
+    const previous = enabled.value;
+    enabled.value = value;
+    saving.value = true;
+    try {
+      await adapter.save(value);
+    } catch (e) {
+      enabled.value = previous;
+      throw e;
+    } finally {
+      saving.value = false;
+    }
+  }
+  return { enabled: readonly(enabled), saving: readonly(saving), setEnabled };
+}
+const serverAdapter = {
+  load() {
+    const settings = loadState("shopping_list", "settings", {});
+    return settings.showImages === true;
+  },
+  async save(enabled) {
+    await api.settings.update({ showImages: enabled });
+  }
+};
+let instance = null;
+function useImagePreference() {
+  if (!instance) instance = createImagePreference(serverAdapter);
+  return instance;
+}
+const IMAGE_EXTENSION = /\.(jpe?g|png|gif|webp|avif|heic|heif|bmp)$/i;
+function isFileDrag(dt) {
+  if (!dt?.types) return false;
+  return Array.from(dt.types).includes("Files");
+}
+function isImageFile(file) {
+  if (file.type.startsWith("image/")) return true;
+  return file.type === "" && IMAGE_EXTENSION.test(file.name);
+}
+function pickImageFile(dt) {
+  if (!dt) return null;
+  const files = dt.files ? Array.from(dt.files) : [];
+  if (files.length === 0 && dt.items) {
+    for (const entry of Array.from(dt.items)) {
+      if (entry.kind !== "file") continue;
+      const file = entry.getAsFile();
+      if (file) files.push(file);
+    }
+  }
+  return files.find(isImageFile) ?? null;
+}
+const _hoisted_1$7 = ["data-item-id"];
+const _hoisted_2$6 = { class: "item-row__check" };
 const _hoisted_3$5 = ["checked", "disabled"];
-const _hoisted_4$5 = ["placeholder", "onKeydown"];
-const _hoisted_5$5 = ["onKeydown"];
-const _hoisted_6$4 = ["placeholder", "onKeydown"];
-const _hoisted_7$4 = ["onMousedown"];
-const _hoisted_8$4 = {
+const _hoisted_4$5 = {
+  key: 0,
+  class: "item-row__thumb item-row__thumb--loading"
+};
+const _hoisted_5$5 = ["aria-label"];
+const _hoisted_6$4 = ["src"];
+const _hoisted_7$4 = ["placeholder", "onKeydown"];
+const _hoisted_8$4 = ["onKeydown"];
+const _hoisted_9$4 = ["placeholder", "onKeydown"];
+const _hoisted_10$4 = ["onMousedown"];
+const _hoisted_11$4 = {
   key: 0,
   class: "item-row__dropdown-empty"
 };
-const _hoisted_9$4 = {
+const _hoisted_12$4 = {
   key: 0,
   class: "item-row__quantity"
 };
-const _hoisted_10$4 = ["title"];
-const _hoisted_11$4 = { class: "item-row__area-name" };
-const _sfc_main$6 = /* @__PURE__ */ defineComponent({
+const _hoisted_13$4 = ["title"];
+const _hoisted_14$4 = { class: "item-row__area-name" };
+const _sfc_main$8 = /* @__PURE__ */ defineComponent({
   __name: "ItemRow",
   props: {
     itemId: {},
@@ -15183,16 +15378,96 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
     async function onMove(targetListId) {
       await itemsStore.move(props.listId, props.itemId, targetListId);
     }
+    const { enabled: imagesEnabled } = useImagePreference();
+    const { isOnline: isOnline2 } = useNetworkStatus();
+    const addImageText = translate("shopping_list", "Add image");
+    const replaceImageText = translate("shopping_list", "Replace image");
+    const removeImageText = translate("shopping_list", "Remove image");
+    const viewImageLabel = translate("shopping_list", "View image");
+    const uploadingText = translate("shopping_list", "Uploading image…");
+    const notAnImageText = translate("shopping_list", "Only image files can be attached");
+    const offlineText = translate("shopping_list", "You're offline — adding images requires a connection");
+    const thumbBroken = ref(false);
+    watch(() => item.value?.imageKey, () => {
+      thumbBroken.value = false;
+    });
+    const thumbUrl = computed(() => item.value && !thumbBroken.value ? itemImageUrl(item.value, "thumbnail") : null);
+    const fullUrl = computed(() => item.value ? itemImageUrl(item.value, "full") : null);
+    const uploading = computed(() => itemsStore.isImageUploading(props.itemId));
+    const showImageUi = computed(() => imagesEnabled.value && props.canEdit && props.itemId > 0);
+    const viewerOpen = ref(false);
+    const fileInputRef = ref(null);
+    function pickFile() {
+      if (!isOnline2.value) {
+        showError(offlineText);
+        return;
+      }
+      fileInputRef.value?.click();
+    }
+    function onFilePicked(e) {
+      const input = e.target;
+      const file = input.files?.[0];
+      input.value = "";
+      if (file) attach(file);
+    }
+    function attach(file) {
+      if (!isImageFile(file)) {
+        showError(notAnImageText);
+        return;
+      }
+      itemsStore.attachImage(props.listId, props.itemId, file);
+    }
+    function onRemoveImage() {
+      itemsStore.removeImage(props.listId, props.itemId);
+    }
+    function onEditPaste(e) {
+      if (!showImageUi.value) return;
+      const file = pickImageFile(e.clipboardData);
+      if (!file) return;
+      e.preventDefault();
+      attach(file);
+    }
+    const dropDepth = ref(0);
+    const dropActive = computed(() => dropDepth.value > 0);
+    function onDragEnter(e) {
+      if (!showImageUi.value || !isFileDrag(e.dataTransfer)) return;
+      e.preventDefault();
+      dropDepth.value++;
+    }
+    function onDragOver(e) {
+      if (!showImageUi.value || !isFileDrag(e.dataTransfer)) return;
+      e.preventDefault();
+      if (e.dataTransfer) e.dataTransfer.dropEffect = "copy";
+    }
+    function onDragLeave() {
+      if (dropDepth.value > 0) dropDepth.value--;
+    }
+    function onDrop(e) {
+      dropDepth.value = 0;
+      if (!showImageUi.value || !isFileDrag(e.dataTransfer)) return;
+      e.preventDefault();
+      const file = pickImageFile(e.dataTransfer);
+      if (file) {
+        attach(file);
+      } else {
+        showError(notAnImageText);
+      }
+    }
     return (_ctx, _cache) => {
       return item.value ? (openBlock(), createElementBlock("div", {
         key: 0,
         class: normalizeClass(["item-row", {
           "item-row--checked": item.value.checked,
-          "item-row--editing": __props.editing
+          "item-row--editing": __props.editing,
+          "item-row--drop-target": dropActive.value
         }]),
-        "data-item-id": __props.canEdit && !item.value.checked ? __props.itemId : void 0
+        "data-item-id": __props.canEdit && !item.value.checked ? __props.itemId : void 0,
+        onDragenter: onDragEnter,
+        onDragover: onDragOver,
+        onDragleave: onDragLeave,
+        onDrop
       }, [
-        createBaseVNode("label", _hoisted_2$5, [
+        createBaseVNode("label", _hoisted_2$6, [
           createBaseVNode("input", {
             type: "checkbox",
             checked: item.value.checked,
@@ -15200,11 +15475,34 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
             onChange: onToggleCheck
           }, null, 40, _hoisted_3$5)
         ]),
-        __props.editing ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
+        unref(imagesEnabled) && !__props.editing ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
+          uploading.value ? (openBlock(), createElementBlock("span", _hoisted_4$5, [
+            createVNode(unref(NcLoadingIcon), {
+              size: 20,
+              name: unref(uploadingText)
+            }, null, 8, ["name"])
+          ])) : thumbUrl.value ? (openBlock(), createElementBlock("button", {
+            key: 1,
+            type: "button",
+            class: "item-row__thumb",
+            "aria-label": unref(viewImageLabel),
+            onClick: _cache[1] || (_cache[1] = ($event) => viewerOpen.value = true)
+          }, [
+            createBaseVNode("img", {
+              src: thumbUrl.value,
+              alt: "",
+              draggable: "false",
+              loading: "lazy",
+              decoding: "async",
+              onError: _cache[0] || (_cache[0] = ($event) => thumbBroken.value = true)
+            }, null, 40, _hoisted_6$4)
+          ], 8, _hoisted_5$5)) : createCommentVNode("", true)
+        ], 64)) : createCommentVNode("", true),
+        __props.editing ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
           withDirectives(createBaseVNode("input", {
             ref_key: "qtyInputRef",
             ref: qtyInputRef,
-            "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => editQty.value = $event),
+            "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => editQty.value = $event),
             type: "text",
             placeholder: unref(qtyLabel),
             class: "item-row__edit-input item-row__edit-qty",
@@ -15213,14 +15511,15 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
               withKeys(withModifiers(cancelEdit, ["prevent"]), ["escape"]),
               withKeys(withModifiers(focusNameInput, ["prevent"]), ["tab"])
             ],
+            onPaste: onEditPaste,
             onBlur: onFieldBlur
-          }, null, 40, _hoisted_4$5), [
+          }, null, 40, _hoisted_7$4), [
             [vModelText, editQty.value]
           ]),
           withDirectives(createBaseVNode("input", {
             ref_key: "nameInputRef",
             ref: nameInputRef,
-            "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => editName.value = $event),
+            "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => editName.value = $event),
             type: "text",
             class: "item-row__edit-input item-row__edit-name",
             onKeydown: [
@@ -15228,8 +15527,9 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
               withKeys(withModifiers(cancelEdit, ["prevent"]), ["escape"]),
               withKeys(withModifiers(focusAreaInput, ["prevent"]), ["tab"])
             ],
+            onPaste: onEditPaste,
             onBlur: onFieldBlur
-          }, null, 40, _hoisted_5$5), [
+          }, null, 40, _hoisted_8$4), [
             [vModelText, editName.value]
           ]),
           createBaseVNode("div", {
@@ -15240,7 +15540,7 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
             withDirectives(createBaseVNode("input", {
               ref_key: "areaInputRef",
               ref: areaInputRef,
-              "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => areaSearch.value = $event),
+              "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => areaSearch.value = $event),
               type: "text",
               placeholder: editAreaName.value || unref(areaPlaceholder),
               class: "item-row__edit-input item-row__edit-area",
@@ -15249,11 +15549,12 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
                 withKeys(withModifiers(onAreaEnter, ["prevent"]), ["enter"]),
                 withKeys(closeDropdown, ["escape"]),
                 withKeys(withModifiers(onAreaTab, ["prevent"]), ["tab"]),
-                _cache[3] || (_cache[3] = withKeys(withModifiers(($event) => moveHighlight(1), ["prevent"]), ["down"])),
-                _cache[4] || (_cache[4] = withKeys(withModifiers(($event) => moveHighlight(-1), ["prevent"]), ["up"]))
+                _cache[5] || (_cache[5] = withKeys(withModifiers(($event) => moveHighlight(1), ["prevent"]), ["down"])),
+                _cache[6] || (_cache[6] = withKeys(withModifiers(($event) => moveHighlight(-1), ["prevent"]), ["up"]))
               ],
+              onPaste: onEditPaste,
               onBlur: onFieldBlur
-            }, null, 40, _hoisted_6$4), [
+            }, null, 40, _hoisted_9$4), [
               [vModelText, areaSearch.value]
             ]),
             editAreaId.value !== null ? (openBlock(), createElementBlock("button", {
@@ -15282,20 +15583,20 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
                       style: normalizeStyle({ backgroundColor: area.color })
                     }, null, 4)) : createCommentVNode("", true),
                     createTextVNode(" " + toDisplayString(area.name), 1)
-                  ], 42, _hoisted_7$4);
+                  ], 42, _hoisted_10$4);
                 }), 128)),
-                filteredAreas.value.length === 0 ? (openBlock(), createElementBlock("div", _hoisted_8$4, toDisplayString(unref(noMatchText)), 1)) : createCommentVNode("", true)
+                filteredAreas.value.length === 0 ? (openBlock(), createElementBlock("div", _hoisted_11$4, toDisplayString(unref(noMatchText)), 1)) : createCommentVNode("", true)
               ], 4)) : createCommentVNode("", true)
             ]))
           ], 512)
-        ], 64)) : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
-          item.value.quantity ? (openBlock(), createElementBlock("span", _hoisted_9$4, toDisplayString(item.value.quantity) + toDisplayString(item.value.unit ? " " + item.value.unit : ""), 1)) : createCommentVNode("", true),
+        ], 64)) : (openBlock(), createElementBlock(Fragment, { key: 2 }, [
+          item.value.quantity ? (openBlock(), createElementBlock("span", _hoisted_12$4, toDisplayString(item.value.quantity) + toDisplayString(item.value.unit ? " " + item.value.unit : ""), 1)) : createCommentVNode("", true),
           createBaseVNode("span", {
             class: normalizeClass(["item-row__name", { "item-row__name--checked": item.value.checked }])
           }, toDisplayString(item.value.name), 3)
         ], 64)),
         areaName.value && !__props.editing ? (openBlock(), createElementBlock("span", {
-          key: 2,
+          key: 3,
           class: "item-row__area",
           title: areaName.value
         }, [
@@ -15304,14 +15605,36 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
             class: "item-row__area-dot",
             style: normalizeStyle({ backgroundColor: areaColor.value })
           }, null, 4)) : createCommentVNode("", true),
-          createBaseVNode("span", _hoisted_11$4, toDisplayString(areaName.value), 1)
-        ], 8, _hoisted_10$4)) : createCommentVNode("", true),
+          createBaseVNode("span", _hoisted_14$4, toDisplayString(areaName.value), 1)
+        ], 8, _hoisted_13$4)) : createCommentVNode("", true),
         __props.canEdit && !__props.editing ? (openBlock(), createBlock(unref(NcActions), {
-          key: 3,
+          key: 4,
           class: "item-row__actions"
         }, {
           default: withCtx(() => [
-            otherLists.value.length > 0 ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
+            showImageUi.value ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
+              createVNode(unref(NcActionButton), {
+                "close-after-click": true,
+                onClick: pickFile
+              }, {
+                default: withCtx(() => [
+                  createTextVNode(toDisplayString(item.value.imageKey ? unref(replaceImageText) : unref(addImageText)), 1)
+                ]),
+                _: 1
+              }),
+              item.value.imageKey ? (openBlock(), createBlock(unref(NcActionButton), {
+                key: 0,
+                "close-after-click": true,
+                onClick: onRemoveImage
+              }, {
+                default: withCtx(() => [
+                  createTextVNode(toDisplayString(unref(removeImageText)), 1)
+                ]),
+                _: 1
+              })) : createCommentVNode("", true),
+              createVNode(unref(NcActionSeparator))
+            ], 64)) : createCommentVNode("", true),
+            otherLists.value.length > 0 ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
               createVNode(unref(NcActionCaption), { name: unref(moveToLabel) }, null, 8, ["name"]),
               (openBlock(true), createElementBlock(Fragment, null, renderList(otherLists.value, (l) => {
                 return openBlock(), createBlock(unref(NcActionButton), {
@@ -15338,12 +15661,27 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
             })
           ]),
           _: 1
-        })) : createCommentVNode("", true)
-      ], 10, _hoisted_1$5)) : createCommentVNode("", true);
+        })) : createCommentVNode("", true),
+        showImageUi.value ? (openBlock(), createElementBlock("input", {
+          key: 5,
+          ref_key: "fileInputRef",
+          ref: fileInputRef,
+          type: "file",
+          accept: "image/*",
+          class: "item-row__file-input",
+          onChange: onFilePicked
+        }, null, 544)) : createCommentVNode("", true),
+        viewerOpen.value && fullUrl.value ? (openBlock(), createBlock(ImageViewer, {
+          key: 6,
+          src: fullUrl.value,
+          name: item.value.name,
+          onClose: _cache[7] || (_cache[7] = ($event) => viewerOpen.value = false)
+        }, null, 8, ["src", "name"])) : createCommentVNode("", true)
+      ], 42, _hoisted_1$7)) : createCommentVNode("", true);
     };
   }
 });
-const ItemRow = /* @__PURE__ */ _export_sfc$1(_sfc_main$6, [["__scopeId", "data-v-43a482d9"]]);
+const ItemRow = /* @__PURE__ */ _export_sfc$1(_sfc_main$8, [["__scopeId", "data-v-258df9f0"]]);
 function escapeRe(s) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
@@ -15455,8 +15793,8 @@ const INPUT_EXAMPLES = [
   "2 cups flour",
   "1. Milk"
 ];
-const _hoisted_1$4 = { class: "item-editor" };
-const _hoisted_2$4 = { class: "item-editor__main" };
+const _hoisted_1$6 = { class: "item-editor" };
+const _hoisted_2$5 = { class: "item-editor__main" };
 const _hoisted_3$4 = ["placeholder", "onKeydown"];
 const _hoisted_4$4 = ["placeholder", "onKeydown"];
 const _hoisted_5$4 = {
@@ -15484,7 +15822,7 @@ const _hoisted_17$2 = {
   key: 1,
   class: "input-help__checked"
 };
-const _sfc_main$5 = /* @__PURE__ */ defineComponent({
+const _sfc_main$7 = /* @__PURE__ */ defineComponent({
   __name: "ItemEditor",
   props: {
     listId: {}
@@ -15640,8 +15978,8 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
       nameRef.value?.focus();
     }
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$4, [
-        createBaseVNode("div", _hoisted_2$4, [
+      return openBlock(), createElementBlock("div", _hoisted_1$6, [
+        createBaseVNode("div", _hoisted_2$5, [
           _cache[6] || (_cache[6] = createBaseVNode("span", { class: "item-editor__plus" }, "+", -1)),
           withDirectives(createBaseVNode("input", {
             ref_key: "nameRef",
@@ -15772,9 +16110,9 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ItemEditor = /* @__PURE__ */ _export_sfc$1(_sfc_main$5, [["__scopeId", "data-v-4fab3c34"]]);
-const _hoisted_1$3 = { class: "share-modal" };
-const _hoisted_2$3 = { class: "share-modal__header" };
+const ItemEditor = /* @__PURE__ */ _export_sfc$1(_sfc_main$7, [["__scopeId", "data-v-dbb53ce2"]]);
+const _hoisted_1$5 = { class: "share-modal" };
+const _hoisted_2$4 = { class: "share-modal__header" };
 const _hoisted_3$3 = { class: "share-modal__search" };
 const _hoisted_4$3 = ["placeholder"];
 const _hoisted_5$3 = {
@@ -15829,8 +16167,8 @@ const _hoisted_29$1 = { class: "share-modal__link-option" };
 const _hoisted_30$1 = ["value"];
 const _hoisted_31$1 = { value: 0 };
 const _hoisted_32$1 = { value: 1 };
-const _hoisted_33 = { class: "share-modal__link-option" };
-const _hoisted_34 = { class: "share-modal__link-password-row" };
+const _hoisted_33$1 = { class: "share-modal__link-option" };
+const _hoisted_34$1 = { class: "share-modal__link-password-row" };
 const _hoisted_35 = ["placeholder"];
 const _hoisted_36 = { class: "share-modal__link-option" };
 const _hoisted_37 = ["value", "min"];
@@ -15838,7 +16176,7 @@ const _hoisted_38 = {
   key: 4,
   class: "share-modal__empty"
 };
-const _sfc_main$4 = /* @__PURE__ */ defineComponent({
+const _sfc_main$6 = /* @__PURE__ */ defineComponent({
   __name: "ShareDialog",
   props: {
     listId: {},
@@ -15990,8 +16328,8 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
         class: "share-overlay",
         onClick: _cache[6] || (_cache[6] = withModifiers(($event) => _ctx.$emit("close"), ["self"]))
       }, [
-        createBaseVNode("div", _hoisted_1$3, [
-          createBaseVNode("div", _hoisted_2$3, [
+        createBaseVNode("div", _hoisted_1$5, [
+          createBaseVNode("div", _hoisted_2$4, [
             createBaseVNode("h3", null, toDisplayString(unref(shareTitle)), 1),
             createBaseVNode("button", {
               class: "share-modal__close",
@@ -16089,9 +16427,9 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
                     createBaseVNode("option", _hoisted_32$1, toDisplayString(unref(canEditText)), 1)
                   ], 40, _hoisted_30$1)
                 ]),
-                createBaseVNode("label", _hoisted_33, [
+                createBaseVNode("label", _hoisted_33$1, [
                   createTextVNode(toDisplayString(unref(passwordLabel)) + " ", 1),
-                  createBaseVNode("div", _hoisted_34, [
+                  createBaseVNode("div", _hoisted_34$1, [
                     withDirectives(createBaseVNode("input", {
                       "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => linkPassword.value = $event),
                       type: "password",
@@ -16135,7 +16473,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ShareDialog = /* @__PURE__ */ _export_sfc$1(_sfc_main$4, [["__scopeId", "data-v-8ef27d4b"]]);
+const ShareDialog = /* @__PURE__ */ _export_sfc$1(_sfc_main$6, [["__scopeId", "data-v-8ef27d4b"]]);
 function formatListAsText(items) {
   return items.filter((item) => !item.checked).map((item) => {
     const parts = [];
@@ -16236,8 +16574,8 @@ function loadBoughtSort(storage) {
 function saveBoughtSort(storage, sort2) {
   saveChoice(storage, BOUGHT_SORT_KEY, BOUGHT_SORTS, sort2);
 }
-const _hoisted_1$2 = { class: "list-view" };
-const _hoisted_2$2 = { class: "list-view__header" };
+const _hoisted_1$4 = { class: "list-view" };
+const _hoisted_2$3 = { class: "list-view__header" };
 const _hoisted_3$2 = { class: "list-view__actions" };
 const _hoisted_4$2 = {
   key: 0,
@@ -16270,7 +16608,7 @@ const _hoisted_14$1 = {
 };
 const MAX_VISIBLE_AVATARS = 3;
 const cartIcon$1 = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.25,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.59 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z" fill="currentColor"/></svg>';
-const _sfc_main$3 = /* @__PURE__ */ defineComponent({
+const _sfc_main$5 = /* @__PURE__ */ defineComponent({
   __name: "ListView",
   setup(__props) {
     const listsStore = useListsStore();
@@ -16289,8 +16627,8 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
     const editingItemId = ref(null);
     function onCaptureClick(e) {
       const target = e.target;
-      if (target.closest(".item-row__check") || target.closest(".item-row__actions")) return;
-      if (target.type === "checkbox") return;
+      if (target.closest(".item-row__check") || target.closest(".item-row__actions") || target.closest(".item-row__thumb")) return;
+      if (target.type === "checkbox" || target.type === "file") return;
       if (isDragging.value) return;
       const row = target.closest(".item-row:not(.item-row--checked)");
       if (row) {
@@ -16306,6 +16644,28 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
     }
     onMounted(() => document.addEventListener("click", onCaptureClick, true));
     onUnmounted(() => document.removeEventListener("click", onCaptureClick, true));
+    const { enabled: imagesEnabled } = useImagePreference();
+    function onDocumentDragOver(e) {
+      if (!isFileDrag(e.dataTransfer)) return;
+      e.preventDefault();
+      const accepting = e.target?.closest?.(".item-row--drop-target");
+      if (!accepting && e.dataTransfer) e.dataTransfer.dropEffect = "none";
+    }
+    function onDocumentDrop(e) {
+      if (isFileDrag(e.dataTransfer)) e.preventDefault();
+    }
+    function removeDropGuard() {
+      document.removeEventListener("dragover", onDocumentDragOver);
+      document.removeEventListener("drop", onDocumentDrop);
+    }
+    watch(imagesEnabled, (on2) => {
+      removeDropGuard();
+      if (on2) {
+        document.addEventListener("dragover", onDocumentDragOver);
+        document.addEventListener("drop", onDocumentDrop);
+      }
+    }, { immediate: true });
+    onUnmounted(removeDropGuard);
     const shareText = translate("shopping_list", "Share");
     const listActionsText = translate("shopping_list", "List actions");
     const copyAsTextText = translate("shopping_list", "Copy list as text");
@@ -16438,8 +16798,8 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
       }
     }
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$2, [
-        createBaseVNode("div", _hoisted_2$2, [
+      return openBlock(), createElementBlock("div", _hoisted_1$4, [
+        createBaseVNode("div", _hoisted_2$3, [
           createBaseVNode("h2", null, toDisplayString(unref(listsStore).currentList?.title), 1),
           createBaseVNode("div", _hoisted_3$2, [
             currentShares.value.length > 0 ? (openBlock(), createElementBlock("div", {
@@ -16545,7 +16905,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
                   key: 0,
                   type: "button",
                   class: "list-view__area-header",
-                  style: normalizeStyle(group.areaColor ? { borderLeftColor: group.areaColor } : {}),
+                  style: normalizeStyle(group.areaColor ? { borderInlineStartColor: group.areaColor } : {}),
                   "aria-expanded": !isGroupCollapsed(group),
                   "aria-controls": groupElementId(group),
                   onClick: ($event) => unref(toggleArea)(group.areaId)
@@ -16634,65 +16994,71 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ListView = /* @__PURE__ */ _export_sfc$1(_sfc_main$3, [["__scopeId", "data-v-16cb1859"]]);
-const _hoisted_1$1 = { class: "area-settings" };
-const _hoisted_2$1 = { class: "area-settings__header" };
-const _hoisted_3$1 = { class: "area-settings__desc" };
-const _hoisted_4$1 = {
+const ListView = /* @__PURE__ */ _export_sfc$1(_sfc_main$5, [["__scopeId", "data-v-f409d1bb"]]);
+const _hoisted_1$3 = { class: "area-settings" };
+const _hoisted_2$2 = { class: "area-settings__header" };
+const _hoisted_3$1 = {
+  key: 0,
+  class: "area-settings__list"
+};
+const _hoisted_4$1 = { class: "area-settings__group-heading" };
+const _hoisted_5$1 = { class: "area-settings__desc" };
+const _hoisted_6 = {
   key: 0,
   class: "area-settings__create"
 };
-const _hoisted_5$1 = ["placeholder", "onKeydown"];
-const _hoisted_6 = ["title"];
-const _hoisted_7 = ["disabled"];
-const _hoisted_8 = {
+const _hoisted_7 = ["placeholder", "onKeydown"];
+const _hoisted_8 = ["title"];
+const _hoisted_9 = ["disabled"];
+const _hoisted_10 = {
   key: 1,
   class: "area-settings__copy"
 };
-const _hoisted_9 = { value: null };
-const _hoisted_10 = ["value"];
-const _hoisted_11 = ["disabled"];
-const _hoisted_12 = {
+const _hoisted_11 = { value: null };
+const _hoisted_12 = ["value"];
+const _hoisted_13 = ["disabled"];
+const _hoisted_14 = {
   key: 2,
   class: "area-settings__loadlang"
 };
-const _hoisted_13 = ["disabled", "title"];
-const _hoisted_14 = { class: "area-settings__search" };
-const _hoisted_15 = ["placeholder"];
-const _hoisted_16 = ["onClick"];
-const _hoisted_17 = { class: "area-settings__section-toggle" };
-const _hoisted_18 = ["value", "title", "onInput"];
-const _hoisted_19 = ["onKeydown", "onBlur"];
-const _hoisted_20 = ["onDblclick"];
-const _hoisted_21 = ["title", "onClick"];
-const _hoisted_22 = { class: "area-settings__section-count" };
-const _hoisted_23 = ["disabled", "title", "onClick"];
-const _hoisted_24 = ["disabled", "title", "onClick"];
-const _hoisted_25 = ["title", "onClick"];
-const _hoisted_26 = {
+const _hoisted_15 = ["disabled", "title"];
+const _hoisted_16 = { class: "area-settings__search" };
+const _hoisted_17 = ["placeholder"];
+const _hoisted_18 = ["onClick"];
+const _hoisted_19 = { class: "area-settings__section-toggle" };
+const _hoisted_20 = ["value", "title", "onInput"];
+const _hoisted_21 = ["onKeydown", "onBlur"];
+const _hoisted_22 = ["onDblclick"];
+const _hoisted_23 = ["title", "onClick"];
+const _hoisted_24 = { class: "area-settings__section-count" };
+const _hoisted_25 = ["disabled", "title", "onClick"];
+const _hoisted_26 = ["disabled", "title", "onClick"];
+const _hoisted_27 = ["title", "onClick"];
+const _hoisted_28 = {
   key: 0,
   class: "area-settings__section-body"
 };
-const _hoisted_27 = {
+const _hoisted_29 = {
   key: 0,
   class: "area-settings__add"
 };
-const _hoisted_28 = ["onUpdate:modelValue", "placeholder", "onKeydown"];
-const _hoisted_29 = ["disabled", "onClick"];
-const _hoisted_30 = { class: "area-settings__keywords" };
-const _hoisted_31 = ["onClick"];
-const _hoisted_32 = {
+const _hoisted_30 = ["onUpdate:modelValue", "placeholder", "onKeydown"];
+const _hoisted_31 = ["disabled", "onClick"];
+const _hoisted_32 = { class: "area-settings__keywords" };
+const _hoisted_33 = ["onClick"];
+const _hoisted_34 = {
   key: 0,
   class: "area-settings__empty"
 };
-const _sfc_main$2 = /* @__PURE__ */ defineComponent({
+const _sfc_main$4 = /* @__PURE__ */ defineComponent({
   __name: "AreaKeywordsSettings",
   emits: ["back"],
   setup(__props) {
     const shopAreasStore = useShopAreasStore();
     const listsStore = useListsStore();
     const backText = translate("shopping_list", "Back to list");
-    const title = translate("shopping_list", "Manage Areas");
+    const title = translate("shopping_list", "List settings");
+    const areasTitle = translate("shopping_list", "Shop areas");
     const description = translate("shopping_list", "Manage shop areas, keywords, and display order. Keywords auto-detect which area an item belongs to when added or pasted.");
     const searchPlaceholder = translate("shopping_list", "Search keywords...");
     const addPlaceholder = translate("shopping_list", "Add keyword...");
@@ -16857,23 +17223,27 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
       await shopAreasStore.remove(listId.value, area.id);
     }
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$1, [
-        createBaseVNode("div", _hoisted_2$1, [
+      return openBlock(), createElementBlock("div", _hoisted_1$3, [
+        createBaseVNode("div", _hoisted_2$2, [
           createBaseVNode("button", {
             class: "area-settings__back",
             onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("back"))
           }, " ← " + toDisplayString(unref(backText)), 1),
-          createBaseVNode("h2", null, toDisplayString(unref(title)), 1),
-          createBaseVNode("p", _hoisted_3$1, toDisplayString(unref(description)), 1)
+          createBaseVNode("h2", null, [
+            createTextVNode(toDisplayString(unref(title)) + " ", 1),
+            unref(listsStore).currentList ? (openBlock(), createElementBlock("span", _hoisted_3$1, toDisplayString(unref(listsStore).currentList.title), 1)) : createCommentVNode("", true)
+          ]),
+          createBaseVNode("h3", _hoisted_4$1, toDisplayString(unref(areasTitle)), 1),
+          createBaseVNode("p", _hoisted_5$1, toDisplayString(unref(description)), 1)
         ]),
-        canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_4$1, [
+        canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_6, [
           withDirectives(createBaseVNode("input", {
             "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => newAreaName.value = $event),
             type: "text",
             placeholder: unref(newAreaPlaceholder),
             class: "area-settings__create-input",
             onKeydown: withKeys(withModifiers(onCreateArea, ["prevent"]), ["enter"])
-          }, null, 40, _hoisted_5$1), [
+          }, null, 40, _hoisted_7), [
             [vModelText, newAreaName.value]
           ]),
           withDirectives(createBaseVNode("input", {
@@ -16881,26 +17251,26 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
             type: "color",
             class: "area-settings__create-color",
             title: unref(colorTitle)
-          }, null, 8, _hoisted_6), [
+          }, null, 8, _hoisted_8), [
             [vModelText, newAreaColor.value]
           ]),
           createBaseVNode("button", {
             class: "area-settings__create-btn",
             disabled: !newAreaName.value.trim(),
             onClick: onCreateArea
-          }, toDisplayString(unref(addAreaText)), 9, _hoisted_7)
+          }, toDisplayString(unref(addAreaText)), 9, _hoisted_9)
         ])) : createCommentVNode("", true),
-        canEdit.value && otherLists.value.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_8, [
+        canEdit.value && otherLists.value.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_10, [
           withDirectives(createBaseVNode("select", {
             "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => copySourceId.value = $event),
             class: "area-settings__copy-select"
           }, [
-            createBaseVNode("option", _hoisted_9, toDisplayString(unref(copyFromPlaceholder)), 1),
+            createBaseVNode("option", _hoisted_11, toDisplayString(unref(copyFromPlaceholder)), 1),
             (openBlock(true), createElementBlock(Fragment, null, renderList(otherLists.value, (l) => {
               return openBlock(), createElementBlock("option", {
                 key: l.id,
                 value: l.id
-              }, toDisplayString(l.title), 9, _hoisted_10);
+              }, toDisplayString(l.title), 9, _hoisted_12);
             }), 128))
           ], 512), [
             [vModelSelect, copySourceId.value]
@@ -16909,23 +17279,23 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
             class: "area-settings__copy-btn",
             disabled: copySourceId.value === null || copying.value,
             onClick: onCopyFrom
-          }, toDisplayString(unref(copyText)), 9, _hoisted_11)
+          }, toDisplayString(unref(copyText)), 9, _hoisted_13)
         ])) : createCommentVNode("", true),
-        canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_12, [
+        canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_14, [
           createBaseVNode("button", {
             class: "area-settings__loadlang-btn",
             disabled: loadingLang.value,
             title: unref(loadLangHint),
             onClick: onLoadLanguageKeywords
-          }, toDisplayString(unref(loadLangText)), 9, _hoisted_13)
+          }, toDisplayString(unref(loadLangText)), 9, _hoisted_15)
         ])) : createCommentVNode("", true),
-        createBaseVNode("div", _hoisted_14, [
+        createBaseVNode("div", _hoisted_16, [
           withDirectives(createBaseVNode("input", {
             "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => search.value = $event),
             type: "text",
             placeholder: unref(searchPlaceholder),
             class: "area-settings__search-input"
-          }, null, 8, _hoisted_15), [
+          }, null, 8, _hoisted_17), [
             [vModelText, search.value]
           ])
         ]),
@@ -16938,7 +17308,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
               class: "area-settings__section-header",
               onClick: ($event) => toggleSection(area.id)
             }, [
-              createBaseVNode("span", _hoisted_17, toDisplayString(openSections.value[area.id] ? "▾" : "▸"), 1),
+              createBaseVNode("span", _hoisted_19, toDisplayString(openSections.value[area.id] ? "▾" : "▸"), 1),
               canEdit.value ? (openBlock(), createElementBlock("input", {
                 key: 0,
                 type: "color",
@@ -16948,7 +17318,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
                 onClick: _cache[5] || (_cache[5] = withModifiers(() => {
                 }, ["stop"])),
                 onInput: ($event) => onColorChange(area.id, $event.target.value)
-              }, null, 40, _hoisted_18)) : (openBlock(), createElementBlock("span", {
+              }, null, 40, _hoisted_20)) : (openBlock(), createElementBlock("span", {
                 key: 1,
                 class: "area-settings__color-swatch",
                 style: normalizeStyle({ backgroundColor: area.color || "#9E9E9E" })
@@ -16968,59 +17338,59 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
                   withKeys(withModifiers(cancelRename, ["prevent"]), ["escape"])
                 ],
                 onBlur: ($event) => saveRename(area.id)
-              }, null, 40, _hoisted_19)), [
+              }, null, 40, _hoisted_21)), [
                 [vModelText, renameValue.value]
               ]) : (openBlock(), createElementBlock(Fragment, { key: 3 }, [
                 createBaseVNode("span", {
                   class: "area-settings__section-name",
                   onDblclick: withModifiers(($event) => canEdit.value && startRename(area), ["stop"])
-                }, toDisplayString(area.name), 41, _hoisted_20),
+                }, toDisplayString(area.name), 41, _hoisted_22),
                 canEdit.value ? (openBlock(), createElementBlock("button", {
                   key: 0,
                   class: "area-settings__action-btn area-settings__action-btn--rename",
                   title: unref(renameText),
                   onClick: withModifiers(($event) => startRename(area), ["stop"])
-                }, " ✎ ", 8, _hoisted_21)) : createCommentVNode("", true)
+                }, " ✎ ", 8, _hoisted_23)) : createCommentVNode("", true)
               ], 64)),
-              createBaseVNode("span", _hoisted_22, toDisplayString(filteredKeywords(area).length), 1),
+              createBaseVNode("span", _hoisted_24, toDisplayString(filteredKeywords(area).length), 1),
               canEdit.value ? (openBlock(), createElementBlock(Fragment, { key: 4 }, [
                 createBaseVNode("button", {
                   class: "area-settings__action-btn",
                   disabled: index2 === 0,
                   title: unref(moveUpText),
                   onClick: withModifiers(($event) => moveArea(index2, -1), ["stop"])
-                }, " ▲ ", 8, _hoisted_23),
+                }, " ▲ ", 8, _hoisted_25),
                 createBaseVNode("button", {
                   class: "area-settings__action-btn",
                   disabled: index2 === areas.value.length - 1,
                   title: unref(moveDownText),
                   onClick: withModifiers(($event) => moveArea(index2, 1), ["stop"])
-                }, " ▼ ", 8, _hoisted_24),
+                }, " ▼ ", 8, _hoisted_26),
                 createBaseVNode("button", {
                   class: "area-settings__action-btn area-settings__action-btn--delete",
                   title: unref(deleteText),
                   onClick: withModifiers(($event) => onDeleteArea(area), ["stop"])
-                }, " ✕ ", 8, _hoisted_25)
+                }, " ✕ ", 8, _hoisted_27)
               ], 64)) : createCommentVNode("", true)
-            ], 8, _hoisted_16),
-            openSections.value[area.id] ? (openBlock(), createElementBlock("div", _hoisted_26, [
-              canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_27, [
+            ], 8, _hoisted_18),
+            openSections.value[area.id] ? (openBlock(), createElementBlock("div", _hoisted_28, [
+              canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_29, [
                 withDirectives(createBaseVNode("input", {
                   "onUpdate:modelValue": ($event) => newKeyword.value[area.id] = $event,
                   type: "text",
                   placeholder: unref(addPlaceholder),
                   class: "area-settings__add-input",
                   onKeydown: withKeys(withModifiers(($event) => onAddKeyword(area), ["prevent"]), ["enter"])
-                }, null, 40, _hoisted_28), [
+                }, null, 40, _hoisted_30), [
                   [vModelText, newKeyword.value[area.id]]
                 ]),
                 createBaseVNode("button", {
                   class: "area-settings__add-btn",
                   disabled: !newKeyword.value[area.id]?.trim(),
                   onClick: ($event) => onAddKeyword(area)
-                }, " + ", 8, _hoisted_29)
+                }, " + ", 8, _hoisted_31)
               ])) : createCommentVNode("", true),
-              createBaseVNode("div", _hoisted_30, [
+              createBaseVNode("div", _hoisted_32, [
                 (openBlock(true), createElementBlock(Fragment, null, renderList(filteredKeywords(area), (word) => {
                   return openBlock(), createElementBlock("span", {
                     key: word,
@@ -17031,10 +17401,10 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
                       key: 0,
                       class: "area-settings__keyword-remove",
                       onClick: ($event) => onRemoveKeyword(area, word)
-                    }, "✕", 8, _hoisted_31)) : createCommentVNode("", true)
+                    }, "✕", 8, _hoisted_33)) : createCommentVNode("", true)
                   ]);
                 }), 128)),
-                filteredKeywords(area).length === 0 ? (openBlock(), createElementBlock("span", _hoisted_32, toDisplayString(unref(noKeywordsText)), 1)) : createCommentVNode("", true)
+                filteredKeywords(area).length === 0 ? (openBlock(), createElementBlock("span", _hoisted_34, toDisplayString(unref(noKeywordsText)), 1)) : createCommentVNode("", true)
               ])
             ])) : createCommentVNode("", true)
           ]);
@@ -17043,7 +17413,111 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const AreaKeywordsSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$2, [["__scopeId", "data-v-5614877a"]]);
+const AreaKeywordsSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$4, [["__scopeId", "data-v-08060dbd"]]);
+const _hoisted_1$2 = { class: "image-settings" };
+const _hoisted_2$1 = { class: "image-settings__title" };
+const _sfc_main$3 = /* @__PURE__ */ defineComponent({
+  __name: "ItemImagesSettings",
+  setup(__props) {
+    const { enabled, saving, setEnabled } = useImagePreference();
+    const title = translate("shopping_list", "Item images");
+    const switchLabel = translate("shopping_list", "Show item images");
+    const hint = translate("shopping_list", "Attach a photo to an item from its menu, or paste or drop one onto it. Photos are part of the list, so everyone with access can see them. This switch only changes what you see.");
+    const saveFailedText = translate("shopping_list", "Failed to save setting");
+    async function onToggle(value) {
+      try {
+        await setEnabled(value);
+      } catch (e) {
+        showError(saveFailedText);
+        console.error(e);
+      }
+    }
+    return (_ctx, _cache) => {
+      return openBlock(), createBlock(unref(NcAppNavigationSettings), null, {
+        default: withCtx(() => [
+          createBaseVNode("section", _hoisted_1$2, [
+            createBaseVNode("h3", _hoisted_2$1, toDisplayString(unref(title)), 1),
+            createVNode(unref(NcCheckboxRadioSwitch), {
+              type: "switch",
+              "model-value": unref(enabled),
+              loading: unref(saving),
+              description: unref(hint),
+              "onUpdate:modelValue": onToggle
+            }, {
+              default: withCtx(() => [
+                createTextVNode(toDisplayString(unref(switchLabel)), 1)
+              ]),
+              _: 1
+            }, 8, ["model-value", "loading", "description"])
+          ])
+        ]),
+        _: 1
+      });
+    };
+  }
+});
+const ItemImagesSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$3, [["__scopeId", "data-v-64390b28"]]);
+const ANDROID_APP_URL = "https://play.google.com/store/apps/details?id=dev.otherworld.shoppinglist";
+const HIDDEN_KEY = "shopping_list.androidAppLink.hidden";
+function loadHidden(storage) {
+  if (!storage) return false;
+  try {
+    return storage.getItem(HIDDEN_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+function saveHidden(storage) {
+  if (!storage) return;
+  try {
+    storage.setItem(HIDDEN_KEY, "1");
+  } catch {
+  }
+}
+const _hoisted_1$1 = {
+  key: 0,
+  class: "android-app-link"
+};
+const phoneIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17,19H7V5H17M17,1H7C5.89,1 5,1.89 5,3V21A2,2 0 0,0 7,23H17A2,2 0 0,0 19,21V3C19,1.89 18.1,1 17,1Z" fill="currentColor"/></svg>';
+const _sfc_main$2 = /* @__PURE__ */ defineComponent({
+  __name: "AndroidAppLink",
+  setup(__props) {
+    const storage = browserStorage();
+    const hidden = ref(loadHidden(storage));
+    const linkText = translate("shopping_list", "Get the Android app");
+    const hideText = translate("shopping_list", "Hide this link");
+    function onHide() {
+      hidden.value = true;
+      saveHidden(storage);
+    }
+    return (_ctx, _cache) => {
+      return !hidden.value ? (openBlock(), createElementBlock("ul", _hoisted_1$1, [
+        createVNode(unref(NcAppNavigationItem), {
+          name: unref(linkText),
+          href: unref(ANDROID_APP_URL),
+          "force-menu": ""
+        }, {
+          icon: withCtx(() => [
+            createVNode(unref(NcIconSvgWrapper), {
+              svg: phoneIcon,
+              size: 20
+            })
+          ]),
+          actions: withCtx(() => [
+            createVNode(unref(NcActionButton), { onClick: onHide }, {
+              default: withCtx(() => [
+                createTextVNode(toDisplayString(unref(hideText)), 1)
+              ]),
+              _: 1
+            })
+          ]),
+          _: 1
+        }, 8, ["name", "href"])
+      ])) : createCommentVNode("", true);
+    };
+  }
+});
+const AndroidAppLink = /* @__PURE__ */ _export_sfc$1(_sfc_main$2, [["__scopeId", "data-v-9ecb6a23"]]);
 const syncing = ref(false);
 const pendingCount = ref(0);
 let draining = false;
@@ -17220,7 +17694,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const OfflineIndicator = /* @__PURE__ */ _export_sfc$1(_sfc_main$1, [["__scopeId", "data-v-a30bd77e"]]);
+const OfflineIndicator = /* @__PURE__ */ _export_sfc$1(_sfc_main$1, [["__scopeId", "data-v-214ff348"]]);
 let initialized = false;
 function usePush() {
   if (initialized) return;
@@ -17235,7 +17709,7 @@ function usePush() {
   if (hasPushServer) {
     try {
       __vitePreload(async () => {
-        const { listen } = await import("./index-BmvAZn3f.chunk.mjs").then((n) => n.i);
+        const { listen } = await import("./index-BzKNh5RZ.chunk.mjs").then((n) => n.i);
         return { listen };
       }, true ? __vite__mapDeps([0,1,2]) : void 0, import.meta.url).then(({ listen }) => {
         listen("shopping_list_item_update", () => {
@@ -17294,6 +17768,10 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
         createVNode(unref(NcContent), { "app-name": "shopping_list" }, {
           default: withCtx(() => [
             createVNode(unref(NcAppNavigation), null, {
+              footer: withCtx(() => [
+                createVNode(AndroidAppLink),
+                createVNode(ItemImagesSettings)
+              ]),
               default: withCtx(() => [
                 createVNode(ListSidebar, {
                   onShowSettings: _cache[0] || (_cache[0] = ($event) => showSettings.value = true)
