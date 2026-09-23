@@ -10,6 +10,13 @@ import { findMatchingItem, mergeQuantities, pluralizeName } from '../utils/itemM
 import { enqueue } from '../offline/mutationQueue'
 import { useNetworkStatus, isNetworkError } from '../offline/networkStatus'
 import { markServerFetched } from '../offline/piniaPlugin'
+import { shrinkImage } from '../utils/shrinkImage'
+import { clearImageKeys, spreadImageKey } from '../utils/imageSpread'
+
+// Ids of items whose photo is being uploaded. Deliberately outside the store's
+// state: the offline plugin snapshots state to IndexedDB as JSON, and a stale
+// "uploading" flag must never come back after a reload.
+const imageUploads = ref<Record<number, true>>({})
 
 export const useItemsStore = defineStore('items', () => {
 	const itemsByList = ref<Record<number, Item[]>>({})
@@ -122,6 +129,7 @@ export const useItemsStore = defineStore('items', () => {
 				checked: Boolean(data.checked),
 				checkedBy: null,
 				sortOrder: existingItems.length,
+				imageKey: null,
 				tags: [],
 				createdAt: new Date().toISOString(),
 				updatedAt: new Date().toISOString(),
@@ -391,6 +399,83 @@ export const useItemsStore = defineStore('items', () => {
 		}
 	}
 
+	function isImageUploading(id: number): boolean {
+		return id in imageUploads.value
+	}
+
+	/** Swap in the server's copy of an item by id. A push refetch may have replaced the array mid-await. */
+	function replaceItem(listId: number, updated: Item) {
+		const live = itemsByList.value[listId]
+		const index = live?.findIndex(i => i.id === updated.id) ?? -1
+		if (live && index !== -1) {
+			live[index] = updated
+		}
+	}
+
+	async function attachImage(listId: number, id: number, file: File) {
+		// Photos need a connection: the offline queue is JSON and cannot hold one.
+		if (!isOnline.value) {
+			showError(t('shopping_list', 'You\'re offline — adding images requires a connection'))
+			return
+		}
+		// A temp item is not on the server yet, and one upload at a time per item.
+		if (id < 0 || isImageUploading(id)) return
+
+		imageUploads.value = { ...imageUploads.value, [id]: true }
+		try {
+			const blob = await shrinkImage(file)
+			const filename = blob === file ? file.name : 'image.jpg'
+			const response = await api.items.uploadImage(listId, id, blob, filename)
+			const updated = response.data.ocs.data
+			replaceItem(listId, updated)
+			// The server gave the photo to every item with this name.
+			if (updated.imageKey) {
+				spreadImageKey(itemsByList.value[listId] ?? [], updated.name, updated.imageKey)
+			}
+		} catch (e) {
+			const status = (e as { response?: { status?: number } }).response?.status
+			if (status === 413) {
+				showError(t('shopping_list', 'Image is too large'))
+			} else if (status === 415) {
+				showError(t('shopping_list', 'This file is not a supported image'))
+			} else if (status === 404) {
+				await fetchByList(listId)
+			} else {
+				showError(t('shopping_list', 'Failed to upload image'))
+			}
+			console.error(e)
+		} finally {
+			const rest = { ...imageUploads.value }
+			delete rest[id]
+			imageUploads.value = rest
+		}
+	}
+
+	async function removeImage(listId: number, id: number) {
+		const item = (itemsByList.value[listId] ?? []).find(i => i.id === id)
+		if (!item?.imageKey) return
+		if (!isOnline.value) {
+			showError(t('shopping_list', 'You\'re offline — removing images requires a connection'))
+			return
+		}
+
+		// Optimistic: the server takes the photo off every item with this name.
+		const before = new Map((itemsByList.value[listId] ?? []).map(i => [i.id, i.imageKey]))
+		clearImageKeys(itemsByList.value[listId] ?? [], item.imageKey, item.name)
+		try {
+			const response = await api.items.deleteImage(listId, id)
+			replaceItem(listId, response.data.ocs.data)
+		} catch (e) {
+			for (const live of itemsByList.value[listId] ?? []) {
+				if (before.has(live.id) && live.imageKey === null) {
+					live.imageKey = before.get(live.id) ?? null
+				}
+			}
+			showError(t('shopping_list', 'Failed to remove image'))
+			console.error(e)
+		}
+	}
+
 	return {
 		itemsByList,
 		loading,
@@ -408,5 +493,8 @@ export const useItemsStore = defineStore('items', () => {
 		clearChecked,
 		uncheckAll,
 		replaceTempId,
+		attachImage,
+		removeImage,
+		isImageUploading,
 	}
 })

@@ -75,7 +75,7 @@ const deleteText = t('shopping_list', 'Delete list')
 const sharedText = t('shopping_list', 'Shared with me')
 const emptyName = t('shopping_list', 'No shopping lists')
 const emptyDesc = t('shopping_list', 'Create your first shopping list to get started')
-const settingsText = t('shopping_list', 'Manage Areas')
+const settingsText = t('shopping_list', 'List settings')
 const pinnedText = t('shopping_list', 'Pinned')
 const othersText = t('shopping_list', 'Others')
 const pinText = t('shopping_list', 'Pin list')
@@ -129,7 +129,7 @@ async function onDelete(id: number) {
 	color: var(--color-text-maxcontrast);
 	font-size: 0.85em;
 	cursor: pointer;
-	text-align: left;
+	text-align: start;
 }
 
 .sidebar-settings__btn:hover {

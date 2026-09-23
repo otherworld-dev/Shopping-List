@@ -4,14 +4,37 @@
 		:class="{
 			'item-row--checked': item.checked,
 			'item-row--editing': editing,
+			'item-row--drop-target': dropActive,
 		}"
-		:data-item-id="canEdit && !item.checked ? itemId : undefined">
+		:data-item-id="canEdit && !item.checked ? itemId : undefined"
+		@dragenter="onDragEnter"
+		@dragover="onDragOver"
+		@dragleave="onDragLeave"
+		@drop="onDrop">
 		<label class="item-row__check">
 			<input type="checkbox"
 				:checked="item.checked"
 				:disabled="!canEdit"
 				@change="onToggleCheck">
 		</label>
+
+		<template v-if="imagesEnabled && !editing">
+			<span v-if="uploading" class="item-row__thumb item-row__thumb--loading">
+				<NcLoadingIcon :size="20" :name="uploadingText" />
+			</span>
+			<button v-else-if="thumbUrl"
+				type="button"
+				class="item-row__thumb"
+				:aria-label="viewImageLabel"
+				@click="viewerOpen = true">
+				<img :src="thumbUrl"
+					alt=""
+					draggable="false"
+					loading="lazy"
+					decoding="async"
+					@error="thumbBroken = true">
+			</button>
+		</template>
 
 		<template v-if="editing">
 			<input ref="qtyInputRef"
@@ -22,6 +45,7 @@
 				@keydown.enter.prevent="saveEdit"
 				@keydown.escape.prevent="cancelEdit"
 				@keydown.tab.prevent="focusNameInput"
+				@paste="onEditPaste"
 				@blur="onFieldBlur">
 			<input ref="nameInputRef"
 				v-model="editName"
@@ -30,6 +54,7 @@
 				@keydown.enter.prevent="saveEdit"
 				@keydown.escape.prevent="cancelEdit"
 				@keydown.tab.prevent="focusAreaInput"
+				@paste="onEditPaste"
 				@blur="onFieldBlur">
 			<div ref="areaWrapperRef" class="item-row__area-wrapper">
 				<input ref="areaInputRef"
@@ -43,6 +68,7 @@
 					@keydown.tab.prevent="onAreaTab"
 					@keydown.down.prevent="moveHighlight(1)"
 					@keydown.up.prevent="moveHighlight(-1)"
+					@paste="onEditPaste"
 					@blur="onFieldBlur">
 				<button v-if="editAreaId !== null"
 					class="item-row__area-clear"
@@ -88,6 +114,15 @@
 		</span>
 
 		<NcActions v-if="canEdit && !editing" class="item-row__actions">
+			<template v-if="showImageUi">
+				<NcActionButton :close-after-click="true" @click="pickFile">
+					{{ item.imageKey ? replaceImageText : addImageText }}
+				</NcActionButton>
+				<NcActionButton v-if="item.imageKey" :close-after-click="true" @click="onRemoveImage">
+					{{ removeImageText }}
+				</NcActionButton>
+				<NcActionSeparator />
+			</template>
 			<template v-if="otherLists.length > 0">
 				<NcActionCaption :name="moveToLabel" />
 				<NcActionButton v-for="l in otherLists"
@@ -102,13 +137,30 @@
 				{{ deleteTitle }}
 			</NcActionButton>
 		</NcActions>
+
+		<input v-if="showImageUi"
+			ref="fileInputRef"
+			type="file"
+			accept="image/*"
+			class="item-row__file-input"
+			@change="onFilePicked">
+		<ImageViewer v-if="viewerOpen && fullUrl"
+			:src="fullUrl"
+			:name="item.name"
+			@close="viewerOpen = false" />
 	</div>
 </template>
 
 <script setup lang="ts">
 import { t } from '@nextcloud/l10n'
 import { ref, computed, watch, nextTick, onMounted, onUnmounted } from 'vue'
-import { NcActions, NcActionButton, NcActionCaption, NcActionSeparator } from '@nextcloud/vue'
+import { NcActions, NcActionButton, NcActionCaption, NcActionSeparator, NcLoadingIcon } from '@nextcloud/vue'
+import { showError } from '@nextcloud/dialogs'
+import ImageViewer from './ImageViewer.vue'
+import { useImagePreference } from '../composables/useImagePreference'
+import { useNetworkStatus } from '../offline/networkStatus'
+import { itemImageUrl } from '../utils/imageUrls'
+import { isFileDrag, isImageFile, pickImageFile } from '../utils/imageFiles'
 import { useItemsStore } from '../stores/items'
 import { useShopAreasStore } from '../stores/shopAreas'
 import { useListsStore } from '../stores/lists'
@@ -343,6 +395,103 @@ async function onDelete() {
 async function onMove(targetListId: number) {
 	await itemsStore.move(props.listId, props.itemId, targetListId)
 }
+
+// --- Photo ---
+
+const { enabled: imagesEnabled } = useImagePreference()
+const { isOnline } = useNetworkStatus()
+const addImageText = t('shopping_list', 'Add image')
+const replaceImageText = t('shopping_list', 'Replace image')
+const removeImageText = t('shopping_list', 'Remove image')
+const viewImageLabel = t('shopping_list', 'View image')
+const uploadingText = t('shopping_list', 'Uploading image…')
+const notAnImageText = t('shopping_list', 'Only image files can be attached')
+const offlineText = t('shopping_list', 'You\'re offline — adding images requires a connection')
+
+// A thumbnail that failed to load is hidden until the key changes; the row
+// then looks like one without a photo, and Replace and Remove stay in the menu.
+const thumbBroken = ref(false)
+watch(() => item.value?.imageKey, () => { thumbBroken.value = false })
+
+const thumbUrl = computed(() => (item.value && !thumbBroken.value ? itemImageUrl(item.value, 'thumbnail') : null))
+const fullUrl = computed(() => (item.value ? itemImageUrl(item.value, 'full') : null))
+const uploading = computed(() => itemsStore.isImageUploading(props.itemId))
+// A temp item (negative id) is not on the server yet, so there is nothing to attach to.
+const showImageUi = computed(() => imagesEnabled.value && props.canEdit && props.itemId > 0)
+const viewerOpen = ref(false)
+const fileInputRef = ref<HTMLInputElement | null>(null)
+
+function pickFile() {
+	// The store would refuse anyway, but opening the picker first is a tease.
+	if (!isOnline.value) {
+		showError(offlineText)
+		return
+	}
+	// Synchronous inside the click, so Safari still counts it as user activation.
+	fileInputRef.value?.click()
+}
+
+function onFilePicked(e: Event) {
+	const input = e.target as HTMLInputElement
+	const file = input.files?.[0]
+	input.value = ''
+	if (file) attach(file)
+}
+
+function attach(file: File) {
+	if (!isImageFile(file)) {
+		showError(notAnImageText)
+		return
+	}
+	itemsStore.attachImage(props.listId, props.itemId, file)
+}
+
+function onRemoveImage() {
+	itemsStore.removeImage(props.listId, props.itemId)
+}
+
+// Pasting an image while editing attaches it. A text paste is left to the input.
+function onEditPaste(e: ClipboardEvent) {
+	if (!showImageUi.value) return
+	const file = pickImageFile(e.clipboardData)
+	if (!file) return
+	e.preventDefault()
+	attach(file)
+}
+
+// Dropping an image file from the desktop onto the row attaches it. dragenter
+// and dragleave fire for every child element, so a depth counter decides
+// whether the pointer is still over the row.
+const dropDepth = ref(0)
+const dropActive = computed(() => dropDepth.value > 0)
+
+function onDragEnter(e: DragEvent) {
+	if (!showImageUi.value || !isFileDrag(e.dataTransfer)) return
+	e.preventDefault()
+	dropDepth.value++
+}
+
+function onDragOver(e: DragEvent) {
+	if (!showImageUi.value || !isFileDrag(e.dataTransfer)) return
+	e.preventDefault()
+	if (e.dataTransfer) e.dataTransfer.dropEffect = 'copy'
+}
+
+function onDragLeave() {
+	if (dropDepth.value > 0) dropDepth.value--
+}
+
+function onDrop(e: DragEvent) {
+	dropDepth.value = 0
+	if (!showImageUi.value || !isFileDrag(e.dataTransfer)) return
+	e.preventDefault()
+	const file = pickImageFile(e.dataTransfer)
+	if (file) {
+		attach(file)
+	} else {
+		showError(notAnImageText)
+	}
+}
 </script>
 
 <style scoped>
@@ -377,10 +526,7 @@ async function onMove(targetListId: number) {
 .item-row[data-item-id]::after {
 	content: '';
 	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
+	inset: 0;
 	cursor: pointer;
 }
 
@@ -406,19 +552,71 @@ async function onMove(targetListId: number) {
 	margin: 0;
 }
 
+/* Thumbnail. Nextcloud styles every button globally, so the row class in
+   front keeps these rules ahead of its :hover, :focus and :active without
+   !important. z-index lifts it above the row's click overlay. */
+.item-row > button.item-row__thumb,
+.item-row > .item-row__thumb--loading {
+	flex: 0 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	min-height: 0;
+	margin: 0 8px 0 0;
+	padding: 0;
+	border: none;
+	border-radius: var(--border-radius);
+	background-color: var(--color-background-dark);
+	overflow: hidden;
+	position: relative;
+	z-index: 1;
+}
+
+.item-row > button.item-row__thumb {
+	cursor: zoom-in;
+}
+
+.item-row > button.item-row__thumb:is(:hover, :focus, :active) {
+	background-color: var(--color-background-dark);
+}
+
+.item-row > button.item-row__thumb:focus-visible {
+	outline: 2px solid var(--color-main-text);
+	outline-offset: 1px;
+}
+
+.item-row__thumb img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.item-row--drop-target {
+	outline: 2px dashed var(--color-primary-element);
+	outline-offset: -2px;
+	background-color: var(--color-primary-element-light);
+}
+
+.item-row__file-input {
+	display: none;
+}
+
 .item-row__quantity {
 	flex: 0 0 auto;
 	color: var(--color-text-maxcontrast);
 	font-size: 0.85em;
 	white-space: nowrap;
-	padding-right: 8px;
+	padding-inline-end: 8px;
 }
 
 .item-row__name {
 	flex: 1 1 0%;
 	min-width: 0;
 	font-size: 0.95em;
-	padding-right: 8px;
+	padding-inline-end: 8px;
 	/* anywhere (not break-word) so the min-content width collapses and the flex
 	   item can shrink — a long no-space name wraps instead of overflowing. */
 	overflow-wrap: anywhere;
@@ -512,7 +710,7 @@ async function onMove(targetListId: number) {
 .item-row__edit-area {
 	width: 90px;
 	font-size: 0.85em;
-	padding-right: 20px !important;
+	padding-inline-end: 20px !important;
 }
 
 .item-row__edit-area::placeholder {
@@ -522,7 +720,7 @@ async function onMove(targetListId: number) {
 
 .item-row__area-clear {
 	position: absolute;
-	right: 4px;
+	inset-inline-end: 4px;
 	top: 50%;
 	transform: translateY(-50%);
 	background: none;
