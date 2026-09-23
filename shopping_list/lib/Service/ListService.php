@@ -24,7 +24,7 @@ class ListService {
 		private IDBConnection $db,
 		private PushService $pushService,
 		private UserListPreferenceMapper $preferenceMapper,
-		private ItemImageStorage $imageStorage,
+		private ItemImageCleanup $imageCleanup,
 	) {
 	}
 
@@ -222,12 +222,14 @@ class ListService {
 	private function cascadeDelete(int $listId): void {
 		// Collect item IDs first, then delete their tags
 		$qb = $this->db->getQueryBuilder();
-		$qb->select('id')
+		$qb->select('id', 'image_key')
 			->from('shopping_list_items')
 			->where($qb->expr()->eq('list_id', $qb->createNamedParameter($listId)));
 		$result = $qb->executeQuery();
-		$itemIds = array_column($result->fetchAll(), 'id');
+		$rows = $result->fetchAll();
 		$result->closeCursor();
+		$itemIds = array_column($rows, 'id');
+		$imageKeys = array_values(array_filter(array_column($rows, 'image_key')));
 
 		if (!empty($itemIds)) {
 			$qb = $this->db->getQueryBuilder();
@@ -242,8 +244,8 @@ class ListService {
 			->where($qb->expr()->eq('list_id', $qb->createNamedParameter($listId)))
 			->executeStatement();
 
-		// Delete the items' photos, by the ids collected above
-		$this->imageStorage->deleteMany(array_map('intval', $itemIds));
+		// The photos stay remembered for their names; only files nothing uses go
+		$this->imageCleanup->release($imageKeys);
 
 		// Delete shares
 		$qb = $this->db->getQueryBuilder();

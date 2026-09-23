@@ -14,9 +14,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   small thumbnail sits next to the checkbox; tap it to see the whole
   photo. The switch is off to begin with, and while it is off nothing
   changes: no thumbnails, no menu entries. It is saved on the server, so it
-  is the same in every browser you use. Photos belong to the list, so
-  everyone with access sees them, on public share links too, though a link
-  cannot add or remove them. Uploads are shrunk to 1280 px and saved as
+  is the same in every browser you use. A photo belongs to the item's
+  name rather than the one item, so a photo of cheese shows on every
+  cheese in the lists you can edit, and comes back when cheese is added
+  again, even after the list has been emptied. Removing it forgets it for
+  that name. Everyone with access to a list sees its photos, on public
+  share links too, though a link cannot add or remove them. Uploads are
+  shrunk to 1280 px and saved as
   JPEG, which also strips the location a phone writes into a photo. Adding
   or removing a photo needs a connection. Thanks to rostmodern for the
   request (#49)
@@ -31,10 +35,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   starting with Show item images, live in the Settings drawer at the
   bottom of the list sidebar, where Nextcloud apps keep them
 
+### Fixed
+- Deleting a Nextcloud account now clears up after it. Their own lists are
+  deleted as if they had deleted them, so anyone they were shared with is
+  told, and their shares, pins, tags and photos go too. Before this it all
+  stayed in the database
+- The layout now mirrors properly in right-to-left languages such as
+  Arabic and Hebrew. The shop area colour bar, the spacing around item
+  names and the offline notice all used fixed left and right sides
+
 ### Upgrade
 - Database migration: one column is added to the items table for the
-  photo key. Photos themselves are kept in the app's own data folder, not
-  in anyone's Files, so they take no space from a user's quota
+  photo key, and a new table holds the photo remembered for each item
+  name. Photos themselves are kept in the app's own data folder, not in
+  anyone's Files, so they take no space from a user's quota
 
 ## [1.8.0] - 2026-09-12
 

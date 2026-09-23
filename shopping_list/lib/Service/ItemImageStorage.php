@@ -16,9 +16,11 @@ use Psr\Log\LoggerInterface;
 /**
  * The item photos on disk. They live in the app's own appdata folder, not in
  * anyone's Files, so a photo one member of a shared list takes is readable by
- * the others, counts against no quota, and goes when the item goes. Two files
- * per item, both named by the item id: the photo and its thumbnail. Nothing
- * here checks permissions; ItemImageService does that.
+ * the others and counts against no quota. Two files per photo, both named by
+ * its image key: the photo and its thumbnail. One photo can sit on several
+ * items and outlive them all, so the files go only when ItemImageCleanup finds
+ * nothing using the key any more. Nothing here checks permissions;
+ * ItemImageService does that.
  */
 class ItemImageStorage {
 	private const FOLDER = 'images';
@@ -31,40 +33,43 @@ class ItemImageStorage {
 	) {
 	}
 
-	public static function fileName(int $itemId, bool $thumbnail): string {
-		return $itemId . ($thumbnail ? '.thumb.jpg' : '.jpg');
+	/** @throws \InvalidArgumentException for anything but a 16-hex image key */
+	public static function fileName(string $imageKey, bool $thumbnail): string {
+		if (preg_match('/^[0-9a-f]{16}$/', $imageKey) !== 1) {
+			throw new \InvalidArgumentException('Not an image key');
+		}
+		return $imageKey . ($thumbnail ? '.thumb.jpg' : '.jpg');
 	}
 
 	/** Write both files, creating the folder on first use and overwriting on replace. */
-	public function store(int $itemId, string $fullJpeg, string $thumbJpeg): void {
+	public function store(string $imageKey, string $fullJpeg, string $thumbJpeg): void {
 		$folder = $this->folder(true);
-		$this->write($folder, self::fileName($itemId, false), $fullJpeg);
-		$this->write($folder, self::fileName($itemId, true), $thumbJpeg);
+		$this->write($folder, self::fileName($imageKey, false), $fullJpeg);
+		$this->write($folder, self::fileName($imageKey, true), $thumbJpeg);
 	}
 
 	/** @throws NotFoundException when there is no such file */
-	public function get(int $itemId, bool $thumbnail): ISimpleFile {
+	public function get(string $imageKey, bool $thumbnail): ISimpleFile {
 		$folder = $this->folder(false);
 		if ($folder === null) {
 			throw new NotFoundException('No images stored yet');
 		}
-		return $folder->getFile(self::fileName($itemId, $thumbnail));
+		return $folder->getFile(self::fileName($imageKey, $thumbnail));
 	}
 
-	/** Remove both files. Missing files are fine: this runs on every item delete, photo or not. */
-	public function delete(int $itemId): void {
-		$this->deleteMany([$itemId]);
+	/** Remove both files of one photo. Missing files are fine. */
+	public function delete(string $imageKey): void {
+		$this->deleteMany([$imageKey]);
 	}
 
 	/**
-	 * Remove the files of several items by id. The rows are usually gone by
-	 * the time this runs (clearChecked and cascadeDelete hand over ids after
-	 * the fact), so nothing here may look an item up.
+	 * Remove the files of several photos by key. This runs after the rows
+	 * that used them are gone, so a failure is logged, never thrown.
 	 *
-	 * @param int[] $itemIds
+	 * @param string[] $imageKeys
 	 */
-	public function deleteMany(array $itemIds): void {
-		if ($itemIds === []) {
+	public function deleteMany(array $imageKeys): void {
+		if ($imageKeys === []) {
 			return;
 		}
 		try {
@@ -81,9 +86,9 @@ class ItemImageStorage {
 		if ($folder === null) {
 			return;
 		}
-		foreach ($itemIds as $itemId) {
+		foreach ($imageKeys as $imageKey) {
 			foreach ([false, true] as $thumbnail) {
-				$name = self::fileName((int)$itemId, $thumbnail);
+				$name = self::fileName($imageKey, $thumbnail);
 				if (!$folder->fileExists($name)) {
 					continue;
 				}

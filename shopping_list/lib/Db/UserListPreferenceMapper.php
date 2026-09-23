@@ -72,6 +72,13 @@ class UserListPreferenceMapper extends QBMapper {
 		return $this->update($pref);
 	}
 
+	public function deleteByUser(string $userId): void {
+		$qb = $this->db->getQueryBuilder();
+		$qb->delete($this->getTableName())
+			->where($qb->expr()->eq('user_id', $qb->createNamedParameter($userId)))
+			->executeStatement();
+	}
+
 	public function deleteByList(int $listId): void {
 		$qb = $this->db->getQueryBuilder();
 		$qb->delete($this->getTableName())

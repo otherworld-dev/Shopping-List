@@ -129,7 +129,7 @@ async function onDelete(id: number) {
 	color: var(--color-text-maxcontrast);
 	font-size: 0.85em;
 	cursor: pointer;
-	text-align: left;
+	text-align: start;
 }
 
 .sidebar-settings__btn:hover {

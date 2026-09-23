@@ -73,7 +73,7 @@
 					<button v-if="hasHeader(group)"
 						type="button"
 						class="list-view__area-header"
-						:style="group.areaColor ? { borderLeftColor: group.areaColor } : {}"
+						:style="group.areaColor ? { borderInlineStartColor: group.areaColor } : {}"
 						:aria-expanded="!isGroupCollapsed(group)"
 						:aria-controls="groupElementId(group)"
 						@click="toggleArea(group.areaId)">
@@ -215,7 +215,9 @@ function onCaptureClick(e: MouseEvent) {
 	// Don't hijack clicks on the checkbox or the actions (⋮) kebab — let those
 	// handle their own click so the menu can open instead of entering edit mode.
 	if (target.closest('.item-row__check') || target.closest('.item-row__actions') || target.closest('.item-row__thumb')) return
-	if ((target as HTMLInputElement).type === 'checkbox') return
+	// "Add image" opens the picker by clicking the row's hidden file input,
+	// which must not put the row into edit mode.
+	if ((target as HTMLInputElement).type === 'checkbox' || (target as HTMLInputElement).type === 'file') return
 
 	if (isDragging.value) return
 
@@ -510,9 +512,10 @@ async function onUncheckAll() {
 	min-width: 0;
 	min-height: 0;
 	margin: 0;
-	padding: 6px 16px 6px 10px;
+	padding-block: 6px;
+	padding-inline: 10px 16px;
 	border: none;
-	border-left: 3px solid var(--color-border-dark);
+	border-inline-start: 3px solid var(--color-border-dark);
 	border-radius: 0;
 	background-color: var(--color-background-dark);
 	color: inherit;
@@ -522,7 +525,7 @@ async function onUncheckAll() {
 }
 
 .list-view__card .list-view__area-group > button.list-view__area-header:is(:hover, :focus, :active) {
-	border-left-color: var(--color-border-dark);
+	border-inline-start-color: var(--color-border-dark);
 	color: inherit;
 }
 
@@ -606,17 +609,17 @@ async function onUncheckAll() {
 }
 
 .list-view__avatar {
-	margin-left: -6px;
+	margin-inline-start: -6px;
 	border: 2px solid var(--color-main-background);
 	border-radius: 50%;
 }
 
 .list-view__avatar:first-child {
-	margin-left: 0;
+	margin-inline-start: 0;
 }
 
 .list-view__avatar-overflow {
-	margin-left: 4px;
+	margin-inline-start: 4px;
 	font-size: 0.8em;
 	color: var(--color-text-maxcontrast);
 	font-weight: 500;
@@ -678,12 +681,12 @@ async function onUncheckAll() {
 }
 
 .list-view__toggle {
-	margin-left: 4px;
+	margin-inline-start: 4px;
 }
 
 @media (max-width: 1024px) {
 	.list-view__header {
-		padding-left: 44px;
+		padding-inline-start: 44px;
 	}
 }
 </style>

@@ -13,6 +13,7 @@ use OCA\Shopping_List\Service\NotFoundException;
 use OCA\Shopping_List\Service\PasswordRequiredException;
 use OCA\Shopping_List\Service\ShopAreaService;
 use OCA\Shopping_List\Db\ShopAreaMapper;
+use OCA\Shopping_List\Service\ItemImageService;
 use OCA\Shopping_List\Service\ItemService;
 use OCA\Shopping_List\Service\PublicShareAccess;
 use OCA\Shopping_List\Service\ShareService;
@@ -36,6 +37,7 @@ class PublicListController extends OCSController {
 		private ShopAreaService $areaService,
 		private PublicShareAccess $access,
 		private ItemService $itemService,
+		private ItemImageService $images,
 	) {
 		parent::__construct($appName, $request);
 	}
@@ -125,6 +127,7 @@ class PublicListController extends OCSController {
 			$item->setShopAreaId($shopAreaId !== null ? (int)$shopAreaId : null);
 			$item->setChecked(false);
 			$item->setSortOrder(0);
+			$item->setImageKey($this->images->rememberedKey($share->getListId(), $name));
 			$now = new DateTime();
 			$item->setCreatedAt($now);
 			$item->setUpdatedAt($now);
@@ -154,7 +157,14 @@ class PublicListController extends OCSController {
 
 			$params = $this->request->getParams();
 			if (isset($params['name'])) {
+				$renamed = ItemImageService::nameKey((string)$params['name']) !== ItemImageService::nameKey($item->getName());
 				$item->setName($params['name']);
+				if ($renamed) {
+					$remembered = $this->images->rememberedKey($item->getListId(), (string)$params['name']);
+					if ($remembered !== null) {
+						$item->setImageKey($remembered);
+					}
+				}
 			}
 			if (array_key_exists('quantity', $params)) {
 				$item->setQuantity($params['quantity']);

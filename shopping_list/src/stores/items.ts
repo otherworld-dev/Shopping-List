@@ -11,6 +11,7 @@ import { enqueue } from '../offline/mutationQueue'
 import { useNetworkStatus, isNetworkError } from '../offline/networkStatus'
 import { markServerFetched } from '../offline/piniaPlugin'
 import { shrinkImage } from '../utils/shrinkImage'
+import { clearImageKeys, spreadImageKey } from '../utils/imageSpread'
 
 // Ids of items whose photo is being uploaded. Deliberately outside the store's
 // state: the offline plugin snapshots state to IndexedDB as JSON, and a stale
@@ -425,7 +426,12 @@ export const useItemsStore = defineStore('items', () => {
 			const blob = await shrinkImage(file)
 			const filename = blob === file ? file.name : 'image.jpg'
 			const response = await api.items.uploadImage(listId, id, blob, filename)
-			replaceItem(listId, response.data.ocs.data)
+			const updated = response.data.ocs.data
+			replaceItem(listId, updated)
+			// The server gave the photo to every item with this name.
+			if (updated.imageKey) {
+				spreadImageKey(itemsByList.value[listId] ?? [], updated.name, updated.imageKey)
+			}
 		} catch (e) {
 			const status = (e as { response?: { status?: number } }).response?.status
 			if (status === 413) {
@@ -453,14 +459,18 @@ export const useItemsStore = defineStore('items', () => {
 			return
 		}
 
-		const previousKey = item.imageKey
-		item.imageKey = null // optimistic
+		// Optimistic: the server takes the photo off every item with this name.
+		const before = new Map((itemsByList.value[listId] ?? []).map(i => [i.id, i.imageKey]))
+		clearImageKeys(itemsByList.value[listId] ?? [], item.imageKey, item.name)
 		try {
 			const response = await api.items.deleteImage(listId, id)
 			replaceItem(listId, response.data.ocs.data)
 		} catch (e) {
-			const live = itemsByList.value[listId]?.find(i => i.id === id)
-			if (live) live.imageKey = previousKey
+			for (const live of itemsByList.value[listId] ?? []) {
+				if (before.has(live.id) && live.imageKey === null) {
+					live.imageKey = before.get(live.id) ?? null
+				}
+			}
 			showError(t('shopping_list', 'Failed to remove image'))
 			console.error(e)
 		}

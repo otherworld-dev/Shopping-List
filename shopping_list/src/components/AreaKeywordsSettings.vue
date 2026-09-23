@@ -426,7 +426,7 @@ async function onDeleteArea(area: ShopArea) {
 
 /* The list this page belongs to, beside the title */
 .area-settings__list {
-	margin-left: 8px;
+	margin-inline-start: 8px;
 	font-size: 0.7em;
 	font-weight: 400;
 	color: var(--color-text-maxcontrast);

@@ -526,10 +526,7 @@ function onDrop(e: DragEvent) {
 .item-row[data-item-id]::after {
 	content: '';
 	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
+	inset: 0;
 	cursor: pointer;
 }
 
@@ -612,14 +609,14 @@ function onDrop(e: DragEvent) {
 	color: var(--color-text-maxcontrast);
 	font-size: 0.85em;
 	white-space: nowrap;
-	padding-right: 8px;
+	padding-inline-end: 8px;
 }
 
 .item-row__name {
 	flex: 1 1 0%;
 	min-width: 0;
 	font-size: 0.95em;
-	padding-right: 8px;
+	padding-inline-end: 8px;
 	/* anywhere (not break-word) so the min-content width collapses and the flex
 	   item can shrink — a long no-space name wraps instead of overflowing. */
 	overflow-wrap: anywhere;
@@ -713,7 +710,7 @@ function onDrop(e: DragEvent) {
 .item-row__edit-area {
 	width: 90px;
 	font-size: 0.85em;
-	padding-right: 20px !important;
+	padding-inline-end: 20px !important;
 }
 
 .item-row__edit-area::placeholder {
@@ -723,7 +720,7 @@ function onDrop(e: DragEvent) {
 
 .item-row__area-clear {
 	position: absolute;
-	right: 4px;
+	inset-inline-end: 4px;
 	top: 50%;
 	transform: translateY(-50%);
 	background: none;

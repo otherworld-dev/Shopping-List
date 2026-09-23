@@ -28,7 +28,7 @@
 					<button v-if="hasHeader(group)"
 						type="button"
 						class="public-list__area-header"
-						:style="group.areaColor ? { borderLeftColor: group.areaColor } : {}"
+						:style="group.areaColor ? { borderInlineStartColor: group.areaColor } : {}"
 						:aria-expanded="!isGroupCollapsed(group)"
 						:aria-controls="groupElementId(group)"
 						@click="toggleArea(group.areaId)">
@@ -366,9 +366,10 @@ async function onToggleCheck(item: Item) {
 	min-width: 0;
 	min-height: 0;
 	margin: 0;
-	padding: 6px 16px 6px 10px;
+	padding-block: 6px;
+	padding-inline: 10px 16px;
 	border: none;
-	border-left: 3px solid var(--color-border-dark, rgba(255, 255, 255, 0.2));
+	border-inline-start: 3px solid var(--color-border-dark, rgba(255, 255, 255, 0.2));
 	border-radius: 0;
 	background-color: var(--color-background-dark, rgba(0, 0, 0, 0.2));
 	color: inherit;
@@ -378,7 +379,7 @@ async function onToggleCheck(item: Item) {
 }
 
 .public-list__card .public-list__area-group > button.public-list__area-header:is(:hover, :focus, :active) {
-	border-left-color: var(--color-border-dark, rgba(255, 255, 255, 0.2));
+	border-inline-start-color: var(--color-border-dark, rgba(255, 255, 255, 0.2));
 	color: inherit;
 }
 
@@ -519,14 +520,14 @@ async function onToggleCheck(item: Item) {
 	color: var(--color-text-maxcontrast);
 	font-size: 0.85em;
 	white-space: nowrap;
-	padding-right: 8px;
+	padding-inline-end: 8px;
 }
 
 .public-list__name {
 	flex: 1 1 0%;
 	min-width: 0;
 	font-size: 0.95em;
-	padding-right: 8px;
+	padding-inline-end: 8px;
 	overflow-wrap: anywhere;
 }
 
@@ -570,7 +571,7 @@ async function onToggleCheck(item: Item) {
 }
 
 .public-list__toggle {
-	margin-left: 4px;
+	margin-inline-start: 4px;
 }
 
 .public-list__bought-card {
