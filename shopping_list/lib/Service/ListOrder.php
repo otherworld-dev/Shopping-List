@@ -33,7 +33,7 @@ final class ListOrder {
 				return $section;
 			}
 			$byMode = match ($mode) {
-				self::ALPHA => strcasecmp((string)$a->getTitle(), (string)$b->getTitle()),
+				self::ALPHA => strcmp(mb_strtolower((string)$a->getTitle()), mb_strtolower((string)$b->getTitle())),
 				self::CUSTOM => self::byPosition($a, $b),
 				default => self::newestFirst($a, $b),
 			};

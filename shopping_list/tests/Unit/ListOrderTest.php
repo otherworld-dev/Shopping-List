@@ -55,6 +55,17 @@ class ListOrderTest extends TestCase {
 		self::assertSame([3, 2, 1], $this->ids(ListOrder::sort($lists, ListOrder::ALPHA)));
 	}
 
+	public function testAToZIgnoresCaseInAccentedTitlesToo(): void {
+		$lists = [
+			$this->list(1, 'Äpfel', '2026-09-26 12:00'),
+			$this->list(2, 'äpfel', '2026-09-01 12:00'),
+			$this->list(3, 'Öl', '2026-09-20 12:00'),
+			$this->list(4, 'öl', '2026-09-15 12:00'),
+		];
+		// Äpfel/äpfel are equal, tie-broken by ID (1, 2); Öl/öl are equal, tie-broken by ID (3, 4)
+		self::assertSame([1, 2, 3, 4], $this->ids(ListOrder::sort($lists, ListOrder::ALPHA)));
+	}
+
 	public function testCustomPutsUnplacedListsFirstNewestFirstThenByPosition(): void {
 		$lists = [
 			$this->list(1, 'Second', '2026-09-01 12:00', position: 1),
