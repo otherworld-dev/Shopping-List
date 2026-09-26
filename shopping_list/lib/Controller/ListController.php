@@ -28,6 +28,16 @@ class ListController extends OCSController {
 		return new DataResponse($this->service->findAll($this->userId));
 	}
 
+	/** This user's own order for one section of their lists. */
+	#[NoAdminRequired]
+	public function reorder(array $listIds): DataResponse {
+		try {
+			return new DataResponse(['listIds' => $this->service->reorder($listIds, $this->userId)]);
+		} catch (NotFoundException $e) {
+			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_NOT_FOUND);
+		}
+	}
+
 	#[NoAdminRequired]
 	public function show(int $id): DataResponse {
 		try {
