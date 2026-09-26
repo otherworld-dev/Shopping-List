@@ -111,6 +111,8 @@ screenshots/          App store screenshots
 
 Translations are managed on [Crowdin](https://crowdin.com/project/shopping-list-for-nextcloud) — no coding required. You can translate the UI, the grocery **keywords** that drive automatic shop-area sorting, and measurement **units**, all in the browser.
 
+The [Android app](https://github.com/otherworld-dev/Shopping-List-Android)'s text is translated in the same project. Crowdin works on a copy of it kept in [`android/`](android/), and the Android repo copies the translations back before each release.
+
 See **[TRANSLATING.md](TRANSLATING.md)** for a short, friendly walkthrough.
 
 ## License

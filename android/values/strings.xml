@@ -1,0 +1,163 @@
+<resources>
+    <string name="app_name">Shopping List for Nextcloud</string>
+
+    <!-- Common actions -->
+    <string name="action_cancel">Cancel</string>
+    <string name="action_save">Save</string>
+    <string name="action_create">Create</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_set">Set</string>
+    <string name="action_share">Share</string>
+    <string name="action_rename">Rename</string>
+
+    <!-- Errors and notices -->
+    <string name="error_offline">You\'re offline, check your connection and try again.</string>
+    <string name="error_no_permission">You don\'t have permission to do that.</string>
+    <string name="error_server">The server had a problem, try again in a moment.</string>
+    <string name="error_generic">Something went wrong.</string>
+    <string name="error_sync_failed">Some changes couldn\'t be saved to the server.</string>
+    <string name="error_item_not_synced">This item hasn\'t synced yet, try again in a moment.</string>
+    <string name="error_move_offline">You\'re offline, moving items needs a connection.</string>
+    <string name="error_move_failed">Couldn\'t move the item.</string>
+    <string name="notice_item_moved">Moved “%1$s” to %2$s</string>
+    <string name="notice_keywords_added">Keywords for your language added</string>
+
+    <!-- Content descriptions -->
+    <string name="cd_back">Back</string>
+    <string name="cd_more">More</string>
+    <string name="cd_refresh">Refresh</string>
+    <string name="cd_delete">Delete</string>
+    <string name="cd_remove">Remove</string>
+    <string name="cd_list_options">List options</string>
+
+    <!-- Login -->
+    <string name="header_shopping_list">Shopping List</string>
+    <string name="login_subtitle">Connect to your Nextcloud</string>
+    <string name="login_awaiting">Finish signing in in your browser, then return here.</string>
+    <string name="login_server_label">Server address</string>
+    <string name="login_server_placeholder">cloud.example.com</string>
+    <string name="login_button">Log in</string>
+    <string name="login_error_timeout">Timed out waiting for you to log in.</string>
+    <string name="login_error_unreachable">Couldn\'t reach the server. Check the address and your connection, then try again.</string>
+    <string name="login_error_cert_mismatch">The server\'s certificate doesn\'t match the address you entered.</string>
+    <string name="login_error_tls">Couldn\'t make a secure connection. Check the server\'s TLS configuration and try again.</string>
+    <string name="login_error_failed">Couldn\'t log in, check the address and try again.</string>
+
+    <!-- Certificate approval prompt -->
+    <string name="cert_dialog_title">Trust this server?</string>
+    <string name="cert_dialog_intro">This server’s security certificate isn’t trusted by your device. Only continue if you run this server or trust whoever does.</string>
+    <string name="cert_dialog_mismatch_intro">This server’s certificate doesn’t match the address you entered. Only continue if you’re sure this is your server.</string>
+    <string name="cert_dialog_both_intro">This server’s security certificate isn’t trusted by your device, and it doesn’t match the address you entered. Only continue if you’re sure this is your server.</string>
+    <string name="cert_field_server">Server</string>
+    <string name="cert_field_subject">Issued to</string>
+    <string name="cert_field_issuer">Issued by</string>
+    <string name="cert_field_validity">Valid</string>
+    <string name="cert_field_fingerprint">SHA-256 fingerprint</string>
+    <string name="cert_issuer_self_signed">Same as subject (self-signed)</string>
+    <string name="cert_validity_expired">%1$s — expired</string>
+    <string name="cert_dialog_browser_note">Your browser will show its own certificate warning during sign-in. Choose Advanced and continue to finish.</string>
+    <string name="cert_action_trust">Trust</string>
+    <string name="cert_paused_banner">Server certificate changed — syncing is paused. Tap to review.</string>
+
+    <!-- Lists -->
+    <string name="menu_manage_tags">Manage tags</string>
+    <string name="menu_log_out">Log out</string>
+    <string name="fab_new_list">New list</string>
+    <string name="lists_empty">No lists yet. Tap “New list” to create one.</string>
+    <string name="list_shared_with_you">Shared with you</string>
+    <string name="list_shared_readonly">Shared (read-only)</string>
+    <string name="menu_pin_list">Pin list</string>
+    <string name="menu_unpin_list">Unpin list</string>
+    <string name="menu_theme">Theme</string>
+    <string name="dialog_theme_title">Theme</string>
+    <string name="theme_system">Same as the phone</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="lists_section_pinned">Pinned</string>
+    <string name="lists_section_others">Others</string>
+    <string name="dialog_new_list_title">New list</string>
+    <string name="dialog_list_name_label">List name</string>
+    <string name="dialog_rename_list_title">Rename list</string>
+    <string name="dialog_delete_list_title">Delete list?</string>
+    <string name="dialog_delete_list_message">“%1$s” and all its items will be permanently deleted.</string>
+
+    <!-- Items -->
+    <string name="menu_refresh">Refresh</string>
+    <string name="menu_manage_areas">Manage areas</string>
+    <string name="menu_reorder_areas">Reorder areas</string>
+    <string name="menu_restore_checked">Restore checked</string>
+    <string name="menu_clear_checked">Clear checked</string>
+    <string name="menu_rows_compact">Compact rows</string>
+    <string name="menu_rows_comfortable">Comfortable rows</string>
+    <string name="menu_copy_as_text">Copy list as text</string>
+    <string name="list_copied">List copied to clipboard</string>
+    <string name="menu_sort_items">Sort items</string>
+    <string name="menu_sort_checked">Sort checked-off items</string>
+    <string name="sort_by_area">By area</string>
+    <string name="sort_by_area_a_to_z">By area, A to Z</string>
+    <string name="sort_a_to_z">A to Z</string>
+    <string name="sort_most_recent">Most recent first</string>
+    <string name="a11y_collapse_area">Fold this area away</string>
+    <string name="a11y_expand_area">Show this area\'s items</string>
+    <string name="reorder_areas_title">Reorder areas</string>
+    <string name="reorder_areas_hint">Drag to match the order of the store you\'re visiting.</string>
+    <string name="cd_drag_reorder">Drag to reorder</string>
+    <string name="a11y_move_up">Move up</string>
+    <string name="a11y_move_down">Move down</string>
+    <string name="items_empty_writable">Nothing here yet — add an item above.</string>
+    <string name="items_empty_readonly">No items yet.</string>
+    <string name="section_other">Other</string>
+    <string name="section_checked">Checked</string>
+    <string name="item_add_placeholder">Add an item to list…</string>
+    <string name="dialog_edit_item_title">Edit item</string>
+    <string name="field_name">Name</string>
+    <string name="field_quantity">Quantity</string>
+    <string name="item_no_area">No area</string>
+    <string name="item_area_label">Area: %1$s</string>
+    <string name="item_move_to_list">Move to list</string>
+
+    <!-- Shop areas -->
+    <string name="areas_title">Shop areas</string>
+    <string name="menu_copy_from_list">Copy from another list</string>
+    <string name="menu_load_keywords">Load keywords for my language</string>
+    <string name="fab_new_area">New area</string>
+    <string name="area_no_keywords">No keywords</string>
+    <plurals name="area_keywords_count">
+        <item quantity="one">%1$d keyword</item>
+        <item quantity="other">%1$d keywords</item>
+    </plurals>
+    <string name="dialog_new_area_title">New area</string>
+    <string name="dialog_edit_area_title">Edit area</string>
+    <string name="dialog_copy_areas_title">Copy areas from</string>
+    <string name="field_colour">Colour</string>
+    <string name="field_keywords">Keywords (comma-separated)</string>
+
+    <!-- Tags -->
+    <string name="tags_title">Tags</string>
+    <string name="fab_new_tag">New tag</string>
+    <string name="tags_empty">No tags yet. Tap “New tag” to create one.</string>
+    <string name="dialog_new_tag_title">New tag</string>
+    <string name="dialog_tag_name_label">Tag name</string>
+
+    <!-- Sharing -->
+    <string name="share_title">Share “%1$s”</string>
+    <string name="section_people_groups">People &amp; groups</string>
+    <string name="share_none_yet">Not shared with anyone yet.</string>
+    <string name="section_public_link">Public link</string>
+    <string name="share_search_placeholder">Search users or groups…</string>
+    <string name="share_search_none">No users or groups found</string>
+    <string name="share_search_failed">Couldn\'t search, check your connection</string>
+    <string name="share_search_group">%1$s (group)</string>
+    <string name="label_user">User</string>
+    <string name="label_group">Group</string>
+    <string name="label_can_edit">Can edit</string>
+    <string name="label_edit">Edit</string>
+    <string name="link_create">Create public link</string>
+    <string name="link_public">Public link</string>
+    <string name="link_copy">Copy link</string>
+    <string name="link_remove_password">Remove password</string>
+    <string name="link_set_password">Set password</string>
+    <string name="link_delete">Delete link</string>
+    <string name="dialog_set_link_password_title">Set link password</string>
+    <string name="field_password">Password</string>
+</resources>
