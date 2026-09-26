@@ -4,7 +4,12 @@
 			<ListSidebar @show-settings="showSettings = true" />
 			<template #footer>
 				<AndroidAppLink />
-				<ItemImagesSettings />
+				<!-- Your own settings, not a list's, so they live in the Settings drawer at the
+				     bottom of the navigation, where Nextcloud apps keep them. -->
+				<NcAppNavigationSettings>
+					<ListSortSettings />
+					<ItemImagesSettings />
+				</NcAppNavigationSettings>
 			</template>
 		</NcAppNavigation>
 		<NcAppContent>
@@ -28,6 +33,7 @@ import {
 	NcContent,
 	NcAppNavigation,
 	NcAppContent,
+	NcAppNavigationSettings,
 	NcEmptyContent,
 	NcIconSvgWrapper,
 } from '@nextcloud/vue'
@@ -35,6 +41,7 @@ import { t } from '@nextcloud/l10n'
 import ListSidebar from './components/ListSidebar.vue'
 import ListView from './components/ListView.vue'
 import AreaKeywordsSettings from './components/AreaKeywordsSettings.vue'
+import ListSortSettings from './components/ListSortSettings.vue'
 import ItemImagesSettings from './components/ItemImagesSettings.vue'
 import AndroidAppLink from './components/AndroidAppLink.vue'
 import OfflineIndicator from './components/OfflineIndicator.vue'

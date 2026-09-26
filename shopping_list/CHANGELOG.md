@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Lists can be sorted your own way. Choose Sort lists in Settings at the
+  bottom of the list sidebar: Recently updated (as before, and still the
+  default), A to Z, or Custom, where you drag lists into the order you
+  want. Dragging a list while on another sort switches to Custom and keeps
+  the order you were looking at. Pinned lists, your own lists and the ones
+  shared with you each keep their own order, and a list you pin or unpin
+  goes to the top of its new section. The order is yours alone and is the
+  same in every browser and in the Android app. Thanks to Shiva
+  (shining-cat) for the idea
+
+### Upgrade
+- Database migration: one column is added to the list preferences table
+  for your own position of each list
+
 ## [1.9.0] - 2026-09-23
 
 ### Added
