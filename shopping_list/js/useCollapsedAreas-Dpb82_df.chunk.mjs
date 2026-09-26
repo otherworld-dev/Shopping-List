@@ -44333,12 +44333,22 @@ const serverFetched = /* @__PURE__ */ new Set();
 function markServerFetched(storeId) {
   serverFetched.add(storeId);
 }
+const UNCACHED_KEYS = {
+  lists: ["listSort"]
+};
+function withoutUncachedKeys(storeId, state) {
+  const keys = UNCACHED_KEYS[storeId];
+  if (!keys || keys.length === 0) return state;
+  const copy = { ...state };
+  for (const key of keys) delete copy[key];
+  return copy;
+}
 const offlinePersistPlugin = ({ store: store2 }) => {
   if (!PERSISTED_STORES.has(store2.$id)) return;
   loadStoreState(store2.$id).then((cached) => {
     if (serverFetched.has(store2.$id)) return;
     if (cached) {
-      store2.$patch(cached);
+      store2.$patch(withoutUncachedKeys(store2.$id, cached));
     }
     if (store2.$id === "lists") {
       loadValue("currentListId").then((id) => {
@@ -44349,7 +44359,7 @@ const offlinePersistPlugin = ({ store: store2 }) => {
     }
   });
   store2.$subscribe((_mutation, state) => {
-    saveStoreState(store2.$id, JSON.parse(JSON.stringify(state)));
+    saveStoreState(store2.$id, withoutUncachedKeys(store2.$id, JSON.parse(JSON.stringify(state))));
     if (store2.$id === "lists" && state.currentListId != null) {
       saveValue("currentListId", state.currentListId);
     }
@@ -44605,4 +44615,4 @@ export {
   NO as y,
   isSymbol as z
 };
-//# sourceMappingURL=useCollapsedAreas-DcEGUa2B.chunk.mjs.map
+//# sourceMappingURL=useCollapsedAreas-Dpb82_df.chunk.mjs.map
