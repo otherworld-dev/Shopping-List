@@ -32,6 +32,9 @@ class ShoppingList extends Entity implements JsonSerializable {
 	/** @var bool|null Whether the current user pinned this list, null if they never pinned or unpinned it */
 	private ?bool $isPinned = null;
 
+	/** @var int|null The current user's custom position, null if they never placed this list */
+	private ?int $position = null;
+
 	public function __construct() {
 		$this->addType('id', 'integer');
 		$this->addType('createdAt', 'datetime');
@@ -62,6 +65,14 @@ class ShoppingList extends Entity implements JsonSerializable {
 		return $this->isPinned;
 	}
 
+	public function setPosition(?int $position): void {
+		$this->position = $position;
+	}
+
+	public function getPosition(): ?int {
+		return $this->position;
+	}
+
 	public function jsonSerialize(): array {
 		return [
 			'id' => $this->id,
@@ -70,6 +81,7 @@ class ShoppingList extends Entity implements JsonSerializable {
 			'permission' => $this->permission,
 			'isOwner' => $this->isOwner,
 			'isPinned' => $this->isPinned,
+			'position' => $this->position,
 			'createdAt' => $this->createdAt?->format(\DateTimeInterface::ATOM),
 			'updatedAt' => $this->updatedAt?->format(\DateTimeInterface::ATOM),
 		];
