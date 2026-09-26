@@ -49,27 +49,47 @@ class UserListPreferenceMapper extends QBMapper {
 	/**
 	 * Create or update the user's row for this list. A list moving in or out
 	 * of the pinned section loses its position, so it lands on top of its new
-	 * section in the Custom order.
+	 * section in the Custom order. A pin that doesn't actually change (e.g.
+	 * pinning an already-pinned list) leaves the position alone.
 	 */
 	public function setPinned(string $userId, int $listId, bool $isPinned): UserListPreference {
 		$pref = $this->findOrCreate($userId, $listId);
+		if ($pref->getIsPinned() !== $isPinned) {
+			$pref->setPosition(null);
+		}
 		$pref->setIsPinned($isPinned);
-		$pref->setPosition(null);
 		return $this->update($pref);
 	}
 
 	/**
-	 * Give the user's lists positions 0, 1, 2... in the order given. One
-	 * transaction, so a failure leaves the old order untouched.
+	 * Give the user's lists positions 0, 1, 2... in the order given. Every
+	 * row is found or created first, outside any transaction, since a unique
+	 * violation from a concurrent first insert is only recoverable there (on
+	 * Postgres, a failed statement aborts the surrounding transaction). The
+	 * rows are then updated inside one transaction, in ascending list id
+	 * order, so two concurrent calls always lock rows in the same order and
+	 * cannot deadlock each other; each still gets the position of its list id
+	 * in the caller's order. A failure inside the transaction leaves the old
+	 * order untouched.
 	 *
 	 * @param int[] $listIds
 	 */
 	public function setPositions(string $userId, array $listIds): void {
+		$order = [];
+		foreach (array_values($listIds) as $index => $listId) {
+			$order[(int)$listId] = $index;
+		}
+
+		$prefs = [];
+		foreach ($order as $listId => $index) {
+			$prefs[$listId] = $this->findOrCreate($userId, $listId);
+		}
+		ksort($prefs);
+
 		$this->db->beginTransaction();
 		try {
-			foreach (array_values($listIds) as $index => $listId) {
-				$pref = $this->findOrCreate($userId, (int)$listId);
-				$pref->setPosition($index);
+			foreach ($prefs as $listId => $pref) {
+				$pref->setPosition($order[$listId]);
 				$this->update($pref);
 			}
 			$this->db->commit();

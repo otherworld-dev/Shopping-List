@@ -30,12 +30,24 @@ class ListController extends OCSController {
 
 	/** This user's own order for one section of their lists. */
 	#[NoAdminRequired]
-	public function reorder(array $listIds): DataResponse {
+	public function reorder(mixed $listIds = null): DataResponse {
+		if (!is_array($listIds)) {
+			return new DataResponse(['message' => 'listIds must be an array of list ids'], Http::STATUS_BAD_REQUEST);
+		}
+		foreach ($listIds as $id) {
+			if (!self::isListId($id)) {
+				return new DataResponse(['message' => 'listIds must contain only list ids'], Http::STATUS_BAD_REQUEST);
+			}
+		}
 		try {
 			return new DataResponse(['listIds' => $this->service->reorder($listIds, $this->userId)]);
 		} catch (NotFoundException $e) {
 			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_NOT_FOUND);
 		}
+	}
+
+	private static function isListId(mixed $id): bool {
+		return is_int($id) || (is_string($id) && $id !== '' && ctype_digit($id));
 	}
 
 	#[NoAdminRequired]
