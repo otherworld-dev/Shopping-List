@@ -25,7 +25,7 @@ class Capabilities implements ICapability {
 		return [
 			Application::APP_ID => [
 				'version' => $this->appManager->getAppVersion(Application::APP_ID),
-				'features' => ['item-images'],
+				'features' => ['item-images', 'list-order'],
 				'itemImages' => [
 					'maxUploadBytes' => $serverLimit === null
 						? ImageProcessor::MAX_UPLOAD_BYTES
