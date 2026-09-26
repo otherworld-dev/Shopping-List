@@ -1,8 +1,8 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-Bh_g1lfW.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/useCollapsedAreas-Dpb82_df.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/useCollapsedAreas-CX_mg1lj.chunk.css')])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-Bzi0IO9m.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/useCollapsedAreas-DD_xiSB7.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/useCollapsedAreas-CX_mg1lj.chunk.css')])))=>i.map(i=>d[i]);
 const appName = "shopping_list";
 const appVersion = "1.9.0";
-import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, A as ActionGlobalMixin, a as NcIconSvgWrapper, r as resolveComponent, b as createBaseVNode, w as withDirectives, v as vModelRadio, n as normalizeClass, d as createVNode, m as mdiRadioboxMarked, e as mdiRadioboxBlank, u as useModel, f as createElementId, g as NcButton, h as withCtx, i as createTextVNode, j as renderSlot, k as defineComponent, l as createCommentVNode, p as unref, q as NOOP, s as extend$1, x as isString, y as NO, z as isSymbol, B as isBuiltInDirective, C as capitalize, D as camelize, E as EMPTY_OBJ, F as isObject, G as toHandlerKey, H as isArray, I as isOn, J as isReservedProp, K as isVoidTag, L as isHTMLTag, M as isSVGTag, O as isMathMLTag, P as parseStringStyle, Q as makeMap, R as generateCodeFrame, S as getAugmentedNamespace, T as runtimeDom_esmBundler, U as shared_esmBundler, V as getDefaultExportFromCjs, W as getGettextBuilder, X as getLoggerBuilder, Y as defineStore, Z as ref, $ as loadState, a0 as computed, a1 as api, a2 as markServerFetched, a3 as translate, a4 as getLanguage, a5 as loadValue, a6 as saveValue, a7 as readonly, a8 as Fragment, a9 as renderList, aa as createBlock, ab as NcAppNavigationCaption, ac as NcActionButton, ad as NcAppNavigationItem, ae as _export_sfc$1, af as watch, ag as onMounted, ah as onUnmounted, ai as NcLoadingIcon, aj as withKeys, ak as withModifiers, al as vModelText, am as normalizeStyle, an as Teleport, ao as NcActions, ap as ImageViewer, aq as Permission, ar as nextTick, as as itemImageUrl, at as NcPopover, au as mdiHelpCircleOutline, av as generateOcsUrl, aw as cancelableClient, ax as ShareType, ay as generateUrl, az as getCurrentUser, aA as browserStorage, aB as useCollapsedAreas, aC as NcAvatar, aD as isRef, aE as mdiChevronDown, aF as vShow, aG as shallowRef, aH as vModelSelect, aI as NcCheckboxRadioSwitch, aJ as Transition, aK as NcAppNavigation, aL as NcAppNavigationSettings, aM as NcAppContent, aN as NcContent, aO as createPinia, aP as offlinePersistPlugin, aQ as createApp } from "./useCollapsedAreas-Dpb82_df.chunk.mjs";
-const _sfc_main$f = {
+import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, A as ActionGlobalMixin, a as NcIconSvgWrapper, r as resolveComponent, b as createBaseVNode, w as withDirectives, v as vModelRadio, n as normalizeClass, d as createVNode, m as mdiRadioboxMarked, e as mdiRadioboxBlank, u as useModel, f as createElementId, g as NcButton, h as withCtx, i as createTextVNode, j as renderSlot, k as defineComponent, l as createCommentVNode, p as unref, q as useCssModule, s as provide, x as NC_FORM_BOX_CONTEXT_KEY, y as useSlots, z as createBlock, B as mergeModels, C as ref, D as computed, I as INSIDE_RADIO_GROUP_KEY, E as NOOP, F as extend$1, G as isString, H as NO, J as isSymbol, K as isBuiltInDirective, L as capitalize, M as camelize, O as EMPTY_OBJ, P as isObject, Q as toHandlerKey, R as isArray, S as isOn, T as isReservedProp, U as isVoidTag, V as isHTMLTag, W as isSVGTag, X as isMathMLTag, Y as parseStringStyle, Z as makeMap, $ as generateCodeFrame, a0 as getAugmentedNamespace, a1 as runtimeDom_esmBundler, a2 as shared_esmBundler, a3 as getDefaultExportFromCjs, a4 as getGettextBuilder, a5 as getLoggerBuilder, a6 as defineStore, a7 as loadState, a8 as api, a9 as markServerFetched, aa as translate, ab as getLanguage, ac as loadValue, ad as saveValue, ae as readonly, af as Fragment, ag as renderList, ah as NcAppNavigationCaption, ai as NcActionButton, aj as NcAppNavigationItem, ak as _export_sfc$1, al as watch, am as onMounted, an as onUnmounted, ao as NcLoadingIcon, ap as withKeys, aq as withModifiers, ar as vModelText, as as normalizeStyle, at as Teleport, au as NcActions, av as ImageViewer, aw as Permission, ax as nextTick, ay as itemImageUrl, az as NcPopover, aA as mdiHelpCircleOutline, aB as generateOcsUrl, aC as cancelableClient, aD as ShareType, aE as generateUrl, aF as getCurrentUser, aG as browserStorage, aH as useCollapsedAreas, aI as NcAvatar, aJ as isRef, aK as mdiChevronDown, aL as vShow, aM as shallowRef, aN as vModelSelect, aO as NcCheckboxRadioSwitch, aP as Transition, aQ as NcAppNavigation, aR as NcAppNavigationSettings, aS as NcAppContent, aT as NcContent, aU as createPinia, aV as offlinePersistPlugin, aW as createApp } from "./useCollapsedAreas-DD_xiSB7.chunk.mjs";
+const _sfc_main$i = {
   name: "NcActionCaption",
   inject: {
     isInSemanticMenu: {
@@ -27,7 +27,7 @@ function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
     role: $options.isInSemanticMenu && "presentation"
   }, toDisplayString($props.name), 9, _hoisted_1$e);
 }
-const NcActionCaption = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render$3], ["__scopeId", "data-v-1009e96c"]]);
+const NcActionCaption = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$3], ["__scopeId", "data-v-1009e96c"]]);
 const scriptRel = "modulepreload";
 const assetsURL = function(dep, importerUrl) {
   return new URL(dep, importerUrl).href;
@@ -86,7 +86,7 @@ const __vitePreload = function preload(baseModule, deps, importerUrl) {
     return baseModule().catch(handlePreloadError);
   });
 };
-const _sfc_main$e = {
+const _sfc_main$h = {
   name: "NcActionRadio",
   components: {
     NcIconSvgWrapper
@@ -156,7 +156,7 @@ const _sfc_main$e = {
   }
 };
 const _hoisted_1$d = ["role"];
-const _hoisted_2$a = ["role", "aria-checked"];
+const _hoisted_2$9 = ["role", "aria-checked"];
 const _hoisted_3$7 = { class: "action-radio__icon" };
 const _hoisted_4$7 = ["id", "value", "name", "disabled"];
 const _hoisted_5$7 = { class: "action-radio__text" };
@@ -190,11 +190,11 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
         }, null, 8, ["path"])
       ]),
       createBaseVNode("span", _hoisted_5$7, toDisplayString(_ctx.text), 1)
-    ], 8, _hoisted_2$a)
+    ], 8, _hoisted_2$9)
   ], 10, _hoisted_1$d);
 }
-const NcActionRadio = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$2], ["__scopeId", "data-v-6c208ddd"]]);
-const _sfc_main$d = {
+const NcActionRadio = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["render", _sfc_render$2], ["__scopeId", "data-v-6c208ddd"]]);
+const _sfc_main$g = {
   name: "NcActionSeparator"
 };
 const _hoisted_1$c = {
@@ -204,8 +204,8 @@ const _hoisted_1$c = {
 function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("li", _hoisted_1$c);
 }
-const NcActionSeparator = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$1], ["__scopeId", "data-v-3e2324b7"]]);
-const _sfc_main$c = {
+const NcActionSeparator = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$1], ["__scopeId", "data-v-3e2324b7"]]);
+const _sfc_main$f = {
   components: {
     NcButton
   },
@@ -268,9 +268,9 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     }, 8, ["id", "disabled", "variant"])
   ]);
 }
-const NcAppNavigationNew = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render], ["__scopeId", "data-v-0ba6c9df"]]);
+const NcAppNavigationNew = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render], ["__scopeId", "data-v-0ba6c9df"]]);
 const _hoisted_1$a = ["aria-labelledby"];
-const _hoisted_2$9 = {
+const _hoisted_2$8 = {
   key: 0,
   class: "empty-content__icon",
   "aria-hidden": "true"
@@ -284,7 +284,7 @@ const _hoisted_5$6 = {
   key: 3,
   class: "empty-content__action"
 };
-const _sfc_main$b = /* @__PURE__ */ defineComponent({
+const _sfc_main$e = /* @__PURE__ */ defineComponent({
   __name: "NcEmptyContent",
   props: {
     description: { default: "" },
@@ -298,7 +298,7 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
         class: "empty-content",
         role: "note"
       }, [
-        _ctx.$slots.icon ? (openBlock(), createElementBlock("div", _hoisted_2$9, [
+        _ctx.$slots.icon ? (openBlock(), createElementBlock("div", _hoisted_2$8, [
           renderSlot(_ctx.$slots, "icon", {}, void 0, true)
         ])) : createCommentVNode("", true),
         _ctx.name !== "" || _ctx.$slots.name ? (openBlock(), createElementBlock("div", {
@@ -322,7 +322,173 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const NcEmptyContent = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__scopeId", "data-v-b101d636"]]);
+const NcEmptyContent = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["__scopeId", "data-v-b101d636"]]);
+const _sfc_main$d = /* @__PURE__ */ defineComponent({
+  __name: "NcFormBox",
+  props: {
+    row: { type: Boolean }
+  },
+  setup(__props) {
+    const style = useCssModule();
+    provide(NC_FORM_BOX_CONTEXT_KEY, {
+      isInFormBox: true,
+      formBoxItemClass: style.ncFormBox__item
+    });
+    return (_ctx, _cache) => {
+      return openBlock(), createElementBlock("div", {
+        class: normalizeClass([_ctx.$style.ncFormBox, _ctx.row ? _ctx.$style.ncFormBox_row : _ctx.$style.ncFormBox_col])
+      }, [
+        renderSlot(_ctx.$slots, "default", {
+          itemClass: _ctx.$style.ncFormBox__item
+        })
+      ], 2);
+    };
+  }
+});
+const ncFormBox = "_ncFormBox_TawZT";
+const ncFormBox_row = "_ncFormBox_row_ZnhfS";
+const ncFormBox__item = "_ncFormBox__item_7zc34";
+const ncFormBox_col = "_ncFormBox_col_wHCZx";
+const style0$2 = {
+  "material-design-icon": "_material-design-icon_mubdv",
+  ncFormBox,
+  ncFormBox_row,
+  ncFormBox__item,
+  ncFormBox_col
+};
+const cssModules$2 = {
+  "$style": style0$2
+};
+const NcFormBox = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["__cssModules", cssModules$2]]);
+const _hoisted_1$9 = ["aria-describedby"];
+const _sfc_main$c = /* @__PURE__ */ defineComponent({
+  __name: "NcFormGroup",
+  props: {
+    label: { default: () => void 0 },
+    description: { default: () => void 0 },
+    hideLabel: { type: Boolean, default: false },
+    hideDescription: { type: Boolean, default: false },
+    noGap: { type: Boolean, default: false }
+  },
+  setup(__props) {
+    const slots = useSlots();
+    const id = `nc-form-group-${createElementId()}`;
+    const descriptionId = `${id}-description`;
+    const hasDescription = () => !!__props.description || !!slots.description;
+    const getDescriptionId = () => hasDescription() ? descriptionId : void 0;
+    const hasContentOnly = () => __props.hideLabel && (!hasDescription() || __props.hideDescription);
+    return (_ctx, _cache) => {
+      return openBlock(), createElementBlock("fieldset", {
+        class: normalizeClass([_ctx.$style.formGroup, { [_ctx.$style.formGroup_noGap]: _ctx.noGap }]),
+        "aria-describedby": getDescriptionId()
+      }, [
+        createBaseVNode("legend", {
+          class: normalizeClass([_ctx.$style.formGroup__label, { "hidden-visually": _ctx.hideLabel }])
+        }, [
+          renderSlot(_ctx.$slots, "label", {}, () => [
+            createTextVNode(toDisplayString(_ctx.label || "⚠️ Missing label"), 1)
+          ])
+        ], 2),
+        hasDescription() ? (openBlock(), createElementBlock("div", {
+          key: 0,
+          id: descriptionId,
+          class: normalizeClass([_ctx.$style.formGroup__description, { "hidden-visually": _ctx.hideDescription }])
+        }, [
+          renderSlot(_ctx.$slots, "description", {}, () => [
+            createTextVNode(toDisplayString(_ctx.description), 1)
+          ])
+        ], 2)) : createCommentVNode("", true),
+        createBaseVNode("div", {
+          class: normalizeClass([_ctx.$style.formGroup__content, { [_ctx.$style.formGroup__content_only]: hasContentOnly() }])
+        }, [
+          renderSlot(_ctx.$slots, "default")
+        ], 2)
+      ], 10, _hoisted_1$9);
+    };
+  }
+});
+const formGroup = "_formGroup_sNzER";
+const formGroup_noGap = "_formGroup_noGap_ChojB";
+const formGroup__label = "_formGroup__label_Z81k5";
+const formGroup__description = "_formGroup__description_xWRa-";
+const formGroup__content = "_formGroup__content_wHRjf";
+const formGroup__content_only = "_formGroup__content_only_VejcN";
+const style0$1 = {
+  "material-design-icon": "_material-design-icon_QhThW",
+  formGroup,
+  formGroup_noGap,
+  formGroup__label,
+  formGroup__description,
+  formGroup__content,
+  formGroup__content_only
+};
+const cssModules$1 = {
+  "$style": style0$1
+};
+const NcFormGroup = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["__cssModules", cssModules$1]]);
+const _sfc_main$b = /* @__PURE__ */ defineComponent({
+  __name: "NcRadioGroup",
+  props: /* @__PURE__ */ mergeModels({
+    label: {},
+    labelHidden: { type: Boolean },
+    hideLabel: { type: Boolean },
+    description: {}
+  }, {
+    "modelValue": { required: false, default: "" },
+    "modelModifiers": {}
+  }),
+  emits: ["update:modelValue"],
+  setup(__props) {
+    const modelValue = useModel(__props, "modelValue");
+    const buttonVariant = ref();
+    provide(INSIDE_RADIO_GROUP_KEY, computed(() => ({
+      register,
+      modelValue: modelValue.value,
+      onUpdate
+    })));
+    function register(isButton) {
+      if (buttonVariant.value !== void 0 && buttonVariant.value !== isButton) ;
+      buttonVariant.value = isButton;
+    }
+    function onUpdate(value) {
+      modelValue.value = value;
+    }
+    return (_ctx, _cache) => {
+      return openBlock(), createBlock(NcFormGroup, {
+        label: _ctx.label,
+        description: _ctx.description,
+        hideLabel: _ctx.labelHidden || _ctx.hideLabel
+      }, {
+        default: withCtx(() => [
+          buttonVariant.value ? (openBlock(), createBlock(NcFormBox, {
+            key: 0,
+            row: ""
+          }, {
+            default: withCtx(() => [
+              renderSlot(_ctx.$slots, "default")
+            ]),
+            _: 3
+          })) : (openBlock(), createElementBlock("span", {
+            key: 1,
+            class: normalizeClass(_ctx.$style.radioGroup_checkboxRadioContainer)
+          }, [
+            renderSlot(_ctx.$slots, "default")
+          ], 2))
+        ]),
+        _: 3
+      }, 8, ["label", "description", "hideLabel"]);
+    };
+  }
+});
+const radioGroup_checkboxRadioContainer = "_radioGroup_checkboxRadioContainer_XfI2u";
+const style0 = {
+  "material-design-icon": "_material-design-icon_Sx-eY",
+  radioGroup_checkboxRadioContainer
+};
+const cssModules = {
+  "$style": style0
+};
+const NcRadioGroup = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__cssModules", cssModules]]);
 var vuedraggable_umd$1 = { exports: {} };
 var vue = { exports: {} };
 var vue_cjs_prod = {};
@@ -13684,8 +13850,8 @@ function sortLists(lists, sort2, language) {
   };
 }
 const KEYS = ["pinned", "owned", "shared"];
-function freezeOrder(sections) {
-  return KEYS.map((key) => sections[key].map((l) => l.id)).filter((ids) => ids.length > 0);
+function freezeUnplaced(sections) {
+  return KEYS.map((key) => sections[key]).filter((lists) => lists.length > 0 && lists.every((l) => l.position == null)).map((lists) => lists.map((l) => l.id));
 }
 function planListReorder(sections, key, order, current) {
   if (current === "custom") {
@@ -13804,7 +13970,7 @@ const useListsStore = defineStore("lists", () => {
   async function setListSort(mode) {
     if (mode === listSort.value) return;
     const previous = listSort.value;
-    const saves = mode === "custom" ? freezeOrder(sections.value) : [];
+    const saves = mode === "custom" ? freezeUnplaced(sections.value) : [];
     saves.forEach(applyPositions);
     listSort.value = mode;
     try {
@@ -14976,11 +15142,11 @@ const useItemsStore = defineStore("items", () => {
     isImageUploading
   };
 });
-const _hoisted_1$9 = {
+const _hoisted_1$8 = {
   key: 0,
   class: "count-bubble"
 };
-const _hoisted_2$8 = {
+const _hoisted_2$7 = {
   key: 0,
   class: "sidebar-settings"
 };
@@ -15062,7 +15228,7 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
                   "onUpdate:name": (name) => onRename(list.id, name)
                 }, {
                   counter: withCtx(() => [
-                    getUncheckedCount(list.id) > 0 ? (openBlock(), createElementBlock("span", _hoisted_1$9, toDisplayString(getUncheckedCount(list.id)), 1)) : createCommentVNode("", true)
+                    getUncheckedCount(list.id) > 0 ? (openBlock(), createElementBlock("span", _hoisted_1$8, toDisplayString(getUncheckedCount(list.id)), 1)) : createCommentVNode("", true)
                   ]),
                   actions: withCtx(() => [
                     createVNode(unref(NcActionButton), {
@@ -15090,7 +15256,7 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
             }, 8, ["model-value", "group", "onUpdate:modelValue"])
           ], 64);
         }), 128)),
-        unref(listsStore).currentListId !== null ? (openBlock(), createElementBlock("div", _hoisted_2$8, [
+        unref(listsStore).currentListId !== null ? (openBlock(), createElementBlock("div", _hoisted_2$7, [
           createBaseVNode("button", {
             class: "sidebar-settings__btn",
             onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("showSettings"))
@@ -15267,8 +15433,8 @@ function pickImageFile(dt) {
   }
   return files.find(isImageFile) ?? null;
 }
-const _hoisted_1$8 = ["data-item-id"];
-const _hoisted_2$7 = { class: "item-row__check" };
+const _hoisted_1$7 = ["data-item-id"];
+const _hoisted_2$6 = { class: "item-row__check" };
 const _hoisted_3$5 = ["checked", "disabled"];
 const _hoisted_4$5 = {
   key: 0,
@@ -15564,7 +15730,7 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
         onDragleave: onDragLeave,
         onDrop
       }, [
-        createBaseVNode("label", _hoisted_2$7, [
+        createBaseVNode("label", _hoisted_2$6, [
           createBaseVNode("input", {
             type: "checkbox",
             checked: item.value.checked,
@@ -15774,7 +15940,7 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
           name: item.value.name,
           onClose: _cache[7] || (_cache[7] = ($event) => viewerOpen.value = false)
         }, null, 8, ["src", "name"])) : createCommentVNode("", true)
-      ], 42, _hoisted_1$8)) : createCommentVNode("", true);
+      ], 42, _hoisted_1$7)) : createCommentVNode("", true);
     };
   }
 });
@@ -15890,8 +16056,8 @@ const INPUT_EXAMPLES = [
   "2 cups flour",
   "1. Milk"
 ];
-const _hoisted_1$7 = { class: "item-editor" };
-const _hoisted_2$6 = { class: "item-editor__main" };
+const _hoisted_1$6 = { class: "item-editor" };
+const _hoisted_2$5 = { class: "item-editor__main" };
 const _hoisted_3$4 = ["placeholder", "onKeydown"];
 const _hoisted_4$4 = ["placeholder", "onKeydown"];
 const _hoisted_5$4 = {
@@ -16075,8 +16241,8 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
       nameRef.value?.focus();
     }
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$7, [
-        createBaseVNode("div", _hoisted_2$6, [
+      return openBlock(), createElementBlock("div", _hoisted_1$6, [
+        createBaseVNode("div", _hoisted_2$5, [
           _cache[6] || (_cache[6] = createBaseVNode("span", { class: "item-editor__plus" }, "+", -1)),
           withDirectives(createBaseVNode("input", {
             ref_key: "nameRef",
@@ -16208,8 +16374,8 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
   }
 });
 const ItemEditor = /* @__PURE__ */ _export_sfc$1(_sfc_main$8, [["__scopeId", "data-v-dbb53ce2"]]);
-const _hoisted_1$6 = { class: "share-modal" };
-const _hoisted_2$5 = { class: "share-modal__header" };
+const _hoisted_1$5 = { class: "share-modal" };
+const _hoisted_2$4 = { class: "share-modal__header" };
 const _hoisted_3$3 = { class: "share-modal__search" };
 const _hoisted_4$3 = ["placeholder"];
 const _hoisted_5$3 = {
@@ -16425,8 +16591,8 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
         class: "share-overlay",
         onClick: _cache[6] || (_cache[6] = withModifiers(($event) => _ctx.$emit("close"), ["self"]))
       }, [
-        createBaseVNode("div", _hoisted_1$6, [
-          createBaseVNode("div", _hoisted_2$5, [
+        createBaseVNode("div", _hoisted_1$5, [
+          createBaseVNode("div", _hoisted_2$4, [
             createBaseVNode("h3", null, toDisplayString(unref(shareTitle)), 1),
             createBaseVNode("button", {
               class: "share-modal__close",
@@ -16671,8 +16837,8 @@ function loadBoughtSort(storage) {
 function saveBoughtSort(storage, sort2) {
   saveChoice(storage, BOUGHT_SORT_KEY, BOUGHT_SORTS, sort2);
 }
-const _hoisted_1$5 = { class: "list-view" };
-const _hoisted_2$4 = { class: "list-view__header" };
+const _hoisted_1$4 = { class: "list-view" };
+const _hoisted_2$3 = { class: "list-view__header" };
 const _hoisted_3$2 = { class: "list-view__actions" };
 const _hoisted_4$2 = {
   key: 0,
@@ -16895,8 +17061,8 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
       }
     }
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$5, [
-        createBaseVNode("div", _hoisted_2$4, [
+      return openBlock(), createElementBlock("div", _hoisted_1$4, [
+        createBaseVNode("div", _hoisted_2$3, [
           createBaseVNode("h2", null, toDisplayString(unref(listsStore).currentList?.title), 1),
           createBaseVNode("div", _hoisted_3$2, [
             currentShares.value.length > 0 ? (openBlock(), createElementBlock("div", {
@@ -17092,8 +17258,8 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
   }
 });
 const ListView = /* @__PURE__ */ _export_sfc$1(_sfc_main$6, [["__scopeId", "data-v-f409d1bb"]]);
-const _hoisted_1$4 = { class: "area-settings" };
-const _hoisted_2$3 = { class: "area-settings__header" };
+const _hoisted_1$3 = { class: "area-settings" };
+const _hoisted_2$2 = { class: "area-settings__header" };
 const _hoisted_3$1 = {
   key: 0,
   class: "area-settings__list"
@@ -17320,8 +17486,8 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
       await shopAreasStore.remove(listId.value, area.id);
     }
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$4, [
-        createBaseVNode("div", _hoisted_2$3, [
+      return openBlock(), createElementBlock("div", _hoisted_1$3, [
+        createBaseVNode("div", _hoisted_2$2, [
           createBaseVNode("button", {
             class: "area-settings__back",
             onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("back"))
@@ -17511,8 +17677,6 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
   }
 });
 const AreaKeywordsSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$5, [["__scopeId", "data-v-08060dbd"]]);
-const _hoisted_1$3 = { class: "list-sort-settings" };
-const _hoisted_2$2 = { class: "list-sort-settings__title" };
 const _sfc_main$4 = /* @__PURE__ */ defineComponent({
   __name: "ListSortSettings",
   setup(__props) {
@@ -17524,28 +17688,33 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
       { value: "custom", label: translate("shopping_list", "Custom (drag to reorder)") }
     ];
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("section", _hoisted_1$3, [
-        createBaseVNode("h3", _hoisted_2$2, toDisplayString(unref(title)), 1),
-        (openBlock(), createElementBlock(Fragment, null, renderList(options, (option2) => {
-          return createVNode(unref(NcCheckboxRadioSwitch), {
-            key: option2.value,
-            type: "radio",
-            name: "shopping-list-list-sort",
-            value: option2.value,
-            "model-value": unref(listsStore).listSort,
-            "onUpdate:modelValue": _cache[0] || (_cache[0] = (value) => unref(listsStore).setListSort(value))
-          }, {
-            default: withCtx(() => [
-              createTextVNode(toDisplayString(option2.label), 1)
-            ]),
-            _: 2
-          }, 1032, ["value", "model-value"]);
-        }), 64))
-      ]);
+      return openBlock(), createBlock(unref(NcRadioGroup), {
+        class: "list-sort-settings",
+        label: unref(title),
+        "model-value": unref(listsStore).listSort,
+        "onUpdate:modelValue": _cache[0] || (_cache[0] = (value) => unref(listsStore).setListSort(value))
+      }, {
+        default: withCtx(() => [
+          (openBlock(), createElementBlock(Fragment, null, renderList(options, (option2) => {
+            return createVNode(unref(NcCheckboxRadioSwitch), {
+              key: option2.value,
+              type: "radio",
+              name: "shopping-list-list-sort",
+              value: option2.value
+            }, {
+              default: withCtx(() => [
+                createTextVNode(toDisplayString(option2.label), 1)
+              ]),
+              _: 2
+            }, 1032, ["value"]);
+          }), 64))
+        ]),
+        _: 1
+      }, 8, ["label", "model-value"]);
     };
   }
 });
-const ListSortSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$4, [["__scopeId", "data-v-5ed1c6fb"]]);
+const ListSortSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$4, [["__scopeId", "data-v-251b96fc"]]);
 const _hoisted_1$2 = { class: "image-settings" };
 const _hoisted_2$1 = { class: "image-settings__title" };
 const _sfc_main$3 = /* @__PURE__ */ defineComponent({
@@ -17836,7 +18005,7 @@ function usePush() {
   if (hasPushServer) {
     try {
       __vitePreload(async () => {
-        const { listen } = await import("./index-Bh_g1lfW.chunk.mjs").then((n) => n.i);
+        const { listen } = await import("./index-Bzi0IO9m.chunk.mjs").then((n) => n.i);
         return { listen };
       }, true ? __vite__mapDeps([0,1,2]) : void 0, import.meta.url).then(({ listen }) => {
         listen("shopping_list_item_update", () => {

@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest'
-import { freezeOrder, planListReorder } from './listReorder'
+import { freezeUnplaced, planListReorder } from './listReorder'
 import type { ListSections } from './listSort'
 import type { ShoppingList } from '../types'
 
-const l = (id: number) => ({ id } as ShoppingList)
+const l = (id: number, position: number | null = null) => ({ id, position } as ShoppingList)
 const sections: ListSections = { pinned: [l(1)], owned: [l(2), l(3)], shared: [] }
 
 describe('planListReorder', () => {
@@ -16,8 +16,20 @@ describe('planListReorder', () => {
 	})
 })
 
-describe('freezeOrder', () => {
-	it('saves each non-empty section as it shows', () => {
-		expect(freezeOrder(sections)).toEqual([[1], [2, 3]])
+// Replaces the old freezeOrder, which froze every section regardless of
+// whether it already had a saved order - that let choosing Custom in
+// Settings overwrite a saved custom order with whatever sort was on screen.
+describe('freezeUnplaced', () => {
+	it('saves a section with no positions yet in the order it shows', () => {
+		expect(freezeUnplaced(sections)).toEqual([[1], [2, 3]])
+	})
+
+	it('leaves out a section where a list already has a position', () => {
+		const withPositions: ListSections = { pinned: [l(1)], owned: [l(2, 0), l(3, null)], shared: [] }
+		expect(freezeUnplaced(withPositions)).toEqual([[1]])
+	})
+
+	it('leaves out empty sections', () => {
+		expect(freezeUnplaced({ pinned: [], owned: [l(2)], shared: [] })).toEqual([[2]])
 	})
 })

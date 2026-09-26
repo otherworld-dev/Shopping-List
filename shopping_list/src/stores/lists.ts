@@ -7,7 +7,7 @@ import { getLanguage, t } from '@nextcloud/l10n'
 import { loadState } from '@nextcloud/initial-state'
 import { readListSort, sortLists } from '../utils/listSort'
 import type { ListSort, SectionKey } from '../utils/listSort'
-import { freezeOrder, planListReorder } from '../utils/listReorder'
+import { freezeUnplaced, planListReorder } from '../utils/listReorder'
 import { markServerFetched } from '../offline/piniaPlugin'
 
 export const useListsStore = defineStore('lists', () => {
@@ -136,8 +136,10 @@ export const useListsStore = defineStore('lists', () => {
 	async function setListSort(mode: ListSort) {
 		if (mode === listSort.value) return
 		const previous = listSort.value
-		// Switching to Custom keeps the order on screen, so nothing jumps.
-		const saves = mode === 'custom' ? freezeOrder(sections.value) : []
+		// Switching to Custom keeps the order on screen for any section not
+		// already given one of its own, so nothing jumps and a saved order
+		// is never overwritten by whatever sort was showing beforehand.
+		const saves = mode === 'custom' ? freezeUnplaced(sections.value) : []
 		saves.forEach(applyPositions)
 		listSort.value = mode
 		try {

@@ -36,6 +36,11 @@ function newestFirst(a: ShoppingList, b: ShoppingList): number {
 }
 
 function byPosition(a: ShoppingList, b: ShoppingList): number {
+	// A list restored from an offline snapshot saved by 1.9.0, before this
+	// field existed, has no position at all (undefined, not null). Folding
+	// that into null here keeps it "unplaced" like a genuinely new list,
+	// rather than leaving the comparison below to subtract undefined and
+	// return NaN, which would leave the sort order unspecified.
 	const pa = a.position ?? null
 	const pb = b.position ?? null
 	if (pa === null && pb === null) return newestFirst(a, b)

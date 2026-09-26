@@ -1,22 +1,20 @@
 <template>
-	<section class="list-sort-settings">
-		<h3 class="list-sort-settings__title">
-			{{ title }}
-		</h3>
+	<NcRadioGroup class="list-sort-settings"
+		:label="title"
+		:model-value="listsStore.listSort"
+		@update:model-value="(value: string) => listsStore.setListSort(value as ListSort)">
 		<NcCheckboxRadioSwitch v-for="option in options"
 			:key="option.value"
 			type="radio"
 			name="shopping-list-list-sort"
-			:value="option.value"
-			:model-value="listsStore.listSort"
-			@update:model-value="(value: ListSort) => listsStore.setListSort(value)">
+			:value="option.value">
 			{{ option.label }}
 		</NcCheckboxRadioSwitch>
-	</section>
+	</NcRadioGroup>
 </template>
 
 <script setup lang="ts">
-import { NcCheckboxRadioSwitch } from '@nextcloud/vue'
+import { NcCheckboxRadioSwitch, NcRadioGroup } from '@nextcloud/vue'
 import { t } from '@nextcloud/l10n'
 import { useListsStore } from '../stores/lists'
 import type { ListSort } from '../utils/listSort'
@@ -34,11 +32,5 @@ const options: { value: ListSort, label: string }[] = [
 <style scoped>
 .list-sort-settings {
 	padding: 0 0 12px;
-}
-
-.list-sort-settings__title {
-	margin: 0 0 4px;
-	font-size: 1em;
-	font-weight: 600;
 }
 </style>
