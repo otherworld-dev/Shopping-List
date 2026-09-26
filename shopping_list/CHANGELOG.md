@@ -18,6 +18,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   same in every browser and in the Android app. Thanks to Shiva
   (shining-cat) for the idea
 
+### Changed
+- The app's capabilities now list `list-order` among its features, each
+  list from the lists API carries its `position`, `listSort` joins the
+  settings, and `POST /api/v1/lists/reorder` is a new endpoint, so the
+  Android app can offer list ordering too
+
 ### Upgrade
 - Database migration: one column is added to the list preferences table
   for your own position of each list
