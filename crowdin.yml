@@ -13,3 +13,9 @@ files:
   - source: /shopping_list/resources/parsing/en.json
     translation: /shopping_list/resources/parsing/%two_letters_code%.json
     type: json
+  # The Android app's text. Crowdin can only watch this repo, so the Android
+  # repo copies its strings.xml here and takes the translations back with
+  # scripts/sync-translations.sh (see its RELEASING.md). Not part of the
+  # Nextcloud app package, which is built from shopping_list/.
+  - source: /android/values/strings.xml
+    translation: /android/values-%android_code%/strings.xml
