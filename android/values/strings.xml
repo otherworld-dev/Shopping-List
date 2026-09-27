@@ -68,13 +68,20 @@
     <string name="list_shared_readonly">Shared (read-only)</string>
     <string name="menu_pin_list">Pin list</string>
     <string name="menu_unpin_list">Unpin list</string>
-    <string name="menu_theme">Theme</string>
-    <string name="dialog_theme_title">Theme</string>
     <string name="theme_system">Same as the phone</string>
     <string name="theme_light">Light</string>
     <string name="theme_dark">Dark</string>
     <string name="lists_section_pinned">Pinned</string>
     <string name="lists_section_others">Others</string>
+    <string name="lists_section_shared">Shared with me</string>
+    <string name="menu_settings">Settings</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_sort_lists">Sort lists</string>
+    <string name="sort_recently_updated">Recently updated</string>
+    <string name="sort_custom">Custom (drag to reorder)</string>
+    <string name="settings_theme">Theme</string>
     <string name="dialog_new_list_title">New list</string>
     <string name="dialog_list_name_label">List name</string>
     <string name="dialog_rename_list_title">Rename list</string>
