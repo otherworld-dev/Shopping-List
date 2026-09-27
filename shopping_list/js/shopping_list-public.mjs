@@ -18,7 +18,7 @@ const _hoisted_6$1 = {
 };
 const _hoisted_7$1 = ["aria-expanded", "aria-controls", "onClick"];
 const _hoisted_8$1 = { class: "public-list__area-count" };
-const _hoisted_9 = ["id"];
+const _hoisted_9$1 = ["id"];
 const _hoisted_10 = { class: "public-list__check" };
 const _hoisted_11 = ["checked", "disabled", "onChange"];
 const _hoisted_12 = ["aria-label", "onClick"];
@@ -254,7 +254,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
                       ])) : createCommentVNode("", true)
                     ], 2);
                   }), 128))
-                ], 8, _hoisted_9), [
+                ], 8, _hoisted_9$1), [
                   [vShow, !isGroupCollapsed(group)]
                 ])
               ]);
@@ -315,24 +315,34 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   }
 });
 const PublicListView = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-3871c038"]]);
+const ANDROID_PACKAGE = "dev.otherworld.shoppinglist";
+const APP_WEBSITE = "https://shoppinglist.otherworld.dev/";
+function isAndroid(userAgent) {
+  return /\bAndroid\b/i.test(userAgent);
+}
+function openInAppUrl(pageUrl) {
+  const url = new URL(pageUrl);
+  return `intent://${url.host}${url.pathname}#Intent;scheme=https;package=${ANDROID_PACKAGE};S.browser_fallback_url=${encodeURIComponent(APP_WEBSITE)};end`;
+}
 const _hoisted_1 = { class: "public-app" };
-const _hoisted_2 = {
-  key: 0,
-  class: "public-app__loading"
-};
+const _hoisted_2 = ["href"];
 const _hoisted_3 = {
   key: 1,
+  class: "public-app__loading"
+};
+const _hoisted_4 = {
+  key: 2,
   class: "public-app__password"
 };
-const _hoisted_4 = { class: "public-app__password-card" };
-const _hoisted_5 = ["placeholder"];
-const _hoisted_6 = ["disabled"];
-const _hoisted_7 = {
+const _hoisted_5 = { class: "public-app__password-card" };
+const _hoisted_6 = ["placeholder"];
+const _hoisted_7 = ["disabled"];
+const _hoisted_8 = {
   key: 0,
   class: "public-app__password-error"
 };
-const _hoisted_8 = {
-  key: 2,
+const _hoisted_9 = {
+  key: 3,
   class: "public-app__error"
 };
 const _sfc_main = /* @__PURE__ */ defineComponent({
@@ -354,6 +364,9 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     const passwordErrorText = translate("shopping_list", "Incorrect password");
     const notFoundTitle = translate("shopping_list", "Not found");
     const notFoundDesc = translate("shopping_list", "This shared list does not exist or has expired.");
+    const showOpenInApp = isAndroid(navigator.userAgent);
+    const openInAppHref = openInAppUrl(window.location.href);
+    const openInAppText = translate("shopping_list", "Open in the app");
     onMounted(async () => {
       try {
         const response = await publicApi.getList(token);
@@ -391,10 +404,15 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     }
     return (_ctx, _cache) => {
       return openBlock(), createElementBlock("div", _hoisted_1, [
-        loading.value ? (openBlock(), createElementBlock("div", _hoisted_2, [
+        unref(showOpenInApp) && !loading.value && !notFound.value ? (openBlock(), createElementBlock("a", {
+          key: 0,
+          href: unref(openInAppHref),
+          class: "public-app__open-in-app"
+        }, toDisplayString(unref(openInAppText)), 9, _hoisted_2)) : createCommentVNode("", true),
+        loading.value ? (openBlock(), createElementBlock("div", _hoisted_3, [
           createVNode(unref(NcLoadingIcon))
-        ])) : needsPassword.value ? (openBlock(), createElementBlock("div", _hoisted_3, [
-          createBaseVNode("div", _hoisted_4, [
+        ])) : needsPassword.value ? (openBlock(), createElementBlock("div", _hoisted_4, [
+          createBaseVNode("div", _hoisted_5, [
             createBaseVNode("h2", null, toDisplayString(unref(passwordTitle)), 1),
             createBaseVNode("p", null, toDisplayString(unref(passwordDesc)), 1),
             createBaseVNode("form", {
@@ -408,22 +426,22 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
                 placeholder: unref(passwordPlaceholder),
                 class: "public-app__password-input",
                 autofocus: ""
-              }, null, 8, _hoisted_5), [
+              }, null, 8, _hoisted_6), [
                 [vModelText, password.value]
               ]),
               createBaseVNode("button", {
                 type: "submit",
                 class: "public-app__password-btn",
                 disabled: !password.value
-              }, toDisplayString(unref(unlockText)), 9, _hoisted_6),
-              passwordError.value ? (openBlock(), createElementBlock("p", _hoisted_7, toDisplayString(unref(passwordErrorText)), 1)) : createCommentVNode("", true)
+              }, toDisplayString(unref(unlockText)), 9, _hoisted_7),
+              passwordError.value ? (openBlock(), createElementBlock("p", _hoisted_8, toDisplayString(unref(passwordErrorText)), 1)) : createCommentVNode("", true)
             ], 32)
           ])
-        ])) : notFound.value ? (openBlock(), createElementBlock("div", _hoisted_8, [
+        ])) : notFound.value ? (openBlock(), createElementBlock("div", _hoisted_9, [
           createBaseVNode("h2", null, toDisplayString(unref(notFoundTitle)), 1),
           createBaseVNode("p", null, toDisplayString(unref(notFoundDesc)), 1)
         ])) : (openBlock(), createBlock(PublicListView, {
-          key: 3,
+          key: 4,
           token: unref(token),
           title: listTitle.value,
           permission: listPermission.value
@@ -432,7 +450,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const PublicApp = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-5c4ee2ce"]]);
+const PublicApp = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-2cb5ca96"]]);
 const pinia = createPinia();
 pinia.use(offlinePersistPlugin);
 const app = createApp(PublicApp);

@@ -17714,7 +17714,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ListSortSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$4, [["__scopeId", "data-v-251b96fc"]]);
+const ListSortSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$4, [["__scopeId", "data-v-31964199"]]);
 const _hoisted_1$2 = { class: "image-settings" };
 const _hoisted_2$1 = { class: "image-settings__title" };
 const _sfc_main$3 = /* @__PURE__ */ defineComponent({

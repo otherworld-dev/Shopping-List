@@ -18,6 +18,7 @@ use OCA\Shopping_List\Service\ItemService;
 use OCA\Shopping_List\Service\PublicShareAccess;
 use OCA\Shopping_List\Service\ShareService;
 use DateTime;
+use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\Attribute\AnonRateLimit;
 use OCP\AppFramework\Http\Attribute\NoCSRFRequired;
@@ -51,6 +52,21 @@ class PublicListController extends OCSController {
 
 	private function assertWrite(ListShare $share): void {
 		$this->access->assertWrite($share);
+	}
+
+	/**
+	 * @throws NotFoundException when the item is gone or belongs to another list
+	 */
+	private function findItem(ListShare $share, int $id): Item {
+		try {
+			$item = $this->itemMapper->find($id);
+		} catch (DoesNotExistException) {
+			throw new NotFoundException('Item not found');
+		}
+		if ($item->getListId() !== $share->getListId()) {
+			throw new NotFoundException('Item not found');
+		}
+		return $item;
 	}
 
 	#[PublicPage]
@@ -150,10 +166,7 @@ class PublicListController extends OCSController {
 			$share = $this->authenticate($token);
 			$this->assertWrite($share);
 
-			$item = $this->itemMapper->find($id);
-			if ($item->getListId() !== $share->getListId()) {
-				throw new NotFoundException('Item not found');
-			}
+			$item = $this->findItem($share, $id);
 
 			$params = $this->request->getParams();
 			if (isset($params['name'])) {
@@ -195,10 +208,7 @@ class PublicListController extends OCSController {
 			$share = $this->authenticate($token);
 			$this->assertWrite($share);
 
-			$item = $this->itemMapper->find($id);
-			if ($item->getListId() !== $share->getListId()) {
-				throw new NotFoundException('Item not found');
-			}
+			$item = $this->findItem($share, $id);
 
 			$item->setChecked($checked);
 			$item->setUpdatedAt(new DateTime());
@@ -221,10 +231,7 @@ class PublicListController extends OCSController {
 			$share = $this->authenticate($token);
 			$this->assertWrite($share);
 
-			$item = $this->itemMapper->find($id);
-			if ($item->getListId() !== $share->getListId()) {
-				throw new NotFoundException('Item not found');
-			}
+			$item = $this->findItem($share, $id);
 
 			$this->itemService->deleteEntity($item, '');
 			return new DataResponse(null, Http::STATUS_NO_CONTENT);

@@ -80,6 +80,32 @@
     <string name="dialog_rename_list_title">Rename list</string>
     <string name="dialog_delete_list_title">Delete list?</string>
     <string name="dialog_delete_list_message">“%1$s” and all its items will be permanently deleted.</string>
+    <string name="lists_section_links">From share links</string>
+    <string name="menu_log_in">Log in to Nextcloud</string>
+    <string name="guest_link_dead_short">Link no longer works</string>
+    <string name="guest_password_needed_short">Needs the new password</string>
+
+    <!-- Share links -->
+    <string name="guest_view_only">View only: you can see this list but not change it.</string>
+    <string name="guest_link_dead">This link no longer works. Ask the person who shared it for a new one.</string>
+    <string name="guest_password_changed">The password for this list has changed.</string>
+    <string name="guest_enter_password">Enter password</string>
+    <string name="menu_leave_list">Leave list</string>
+    <string name="dialog_leave_list_title">Leave list?</string>
+    <string name="dialog_leave_list_message">%1$s will be removed from this phone. Open the link again to come back.</string>
+    <plurals name="guest_changes_dropped">
+        <item quantity="one">One change to this list couldn\'t be saved.</item>
+        <item quantity="other">%d changes to this list couldn\'t be saved.</item>
+    </plurals>
+    <string name="join_checking">Checking the link…</string>
+    <string name="join_can_edit">You can add, tick off and change items.</string>
+    <string name="join_view_only">You can see this list but not change it.</string>
+    <string name="join_has_password">This list has a password.</string>
+    <string name="join_password_label">Password</string>
+    <string name="join_password_wrong">That password isn\'t right.</string>
+    <string name="join_open">Open list</string>
+    <string name="join_link_invalid">This isn\'t a Shopping List share link.</string>
+    <string name="login_shared_hint">Someone shared a list with you? Tap the link they sent and choose Open in the app.</string>
 
     <!-- Settings -->
     <string name="settings_title">Settings</string>

@@ -17,6 +17,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   goes to the top of its new section. The order is yours alone and is the
   same in every browser and in the Android app. Thanks to Shiva
   (shining-cat) for the idea
+- An "Open in the app" button on a shared list's public page, on Android
+  phones. It opens the list in the Shopping List Android app, which can now
+  use a shared list without a Nextcloud account, or goes to the app's website
+  when it isn't installed.
 
 ### Changed
 - The app's capabilities now list `list-order` among its features, each
@@ -27,6 +31,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Upgrade
 - Database migration: one column is added to the list preferences table
   for your own position of each list
+
+### Fixed
+- Changing, ticking or deleting an item through a public link after the
+  owner had deleted it gave a server error rather than "Not found", so the
+  Android app couldn't tell the item was gone and kept retrying the change
 
 ## [1.9.0] - 2026-09-23
 
