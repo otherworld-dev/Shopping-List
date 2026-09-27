@@ -75,6 +75,11 @@
     <string name="lists_section_others">Others</string>
     <string name="lists_section_shared">Shared with me</string>
     <string name="menu_settings">Settings</string>
+    <string name="dialog_new_list_title">New list</string>
+    <string name="dialog_list_name_label">List name</string>
+    <string name="dialog_rename_list_title">Rename list</string>
+    <string name="dialog_delete_list_title">Delete list?</string>
+    <string name="dialog_delete_list_message">“%1$s” and all its items will be permanently deleted.</string>
 
     <!-- Settings -->
     <string name="settings_title">Settings</string>
@@ -82,11 +87,6 @@
     <string name="sort_recently_updated">Recently updated</string>
     <string name="sort_custom">Custom (drag to reorder)</string>
     <string name="settings_theme">Theme</string>
-    <string name="dialog_new_list_title">New list</string>
-    <string name="dialog_list_name_label">List name</string>
-    <string name="dialog_rename_list_title">Rename list</string>
-    <string name="dialog_delete_list_title">Delete list?</string>
-    <string name="dialog_delete_list_message">“%1$s” and all its items will be permanently deleted.</string>
 
     <!-- Items -->
     <string name="menu_refresh">Refresh</string>
