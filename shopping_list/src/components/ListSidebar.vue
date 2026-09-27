@@ -6,29 +6,41 @@
 		<template v-for="section in sections" :key="section.key">
 			<NcAppNavigationCaption v-if="section.caption"
 				:name="section.caption" />
-			<NcAppNavigationItem v-for="list in section.lists"
-				:key="list.id"
-				:name="list.title"
-				:active="list.id === listsStore.currentListId"
-				:editable="list.isOwner"
-				:edit-label="renameText"
-				force-menu
-				@click="listsStore.selectList(list.id)"
-				@update:name="(name: string) => onRename(list.id, name)">
-				<template #counter>
-					<span v-if="getUncheckedCount(list.id) > 0" class="count-bubble">
-						{{ getUncheckedCount(list.id) }}
-					</span>
+			<!-- Each section is its own drag group, so a list can't be dragged into
+			     another section; pinning and unpinning move it between them. -->
+			<draggable :model-value="section.lists"
+				item-key="id"
+				:group="section.key"
+				:animation="150"
+				:delay="150"
+				:delay-on-touch-only="true"
+				ghost-class="list-sidebar__ghost"
+				@update:model-value="(moved: ShoppingList[]) => listsStore.reorderSection(section.key, moved.map(l => l.id))">
+				<template #item="{ element: list }">
+					<NcAppNavigationItem :key="list.id"
+						:name="list.title"
+						:active="list.id === listsStore.currentListId"
+						:editable="list.isOwner"
+						:edit-label="renameText"
+						force-menu
+						@click="listsStore.selectList(list.id)"
+						@update:name="(name: string) => onRename(list.id, name)">
+						<template #counter>
+							<span v-if="getUncheckedCount(list.id) > 0" class="count-bubble">
+								{{ getUncheckedCount(list.id) }}
+							</span>
+						</template>
+						<template #actions>
+							<NcActionButton @click="listsStore.setPinned(list.id, !list.isPinned)">
+								{{ list.isPinned ? unpinText : pinText }}
+							</NcActionButton>
+							<NcActionButton v-if="list.isOwner" @click="onDelete(list.id)">
+								{{ deleteText }}
+							</NcActionButton>
+						</template>
+					</NcAppNavigationItem>
 				</template>
-				<template #actions>
-					<NcActionButton @click="listsStore.setPinned(list.id, !list.isPinned)">
-						{{ list.isPinned ? unpinText : pinText }}
-					</NcActionButton>
-					<NcActionButton v-if="list.isOwner" @click="onDelete(list.id)">
-						{{ deleteText }}
-					</NcActionButton>
-				</template>
-			</NcAppNavigationItem>
+			</draggable>
 		</template>
 
 		<div v-if="listsStore.currentListId !== null" class="sidebar-settings">
@@ -58,8 +70,11 @@ import {
 } from '@nextcloud/vue'
 import { t } from '@nextcloud/l10n'
 import { computed } from 'vue'
+import draggable from 'vuedraggable'
 import { useListsStore } from '../stores/lists'
 import { useItemsStore } from '../stores/items'
+import type { ShoppingList } from '../types'
+import type { SectionKey } from '../utils/listSort'
 
 defineEmits<{ showSettings: [] }>()
 
@@ -86,11 +101,12 @@ const unpinText = t('shopping_list', 'Unpin list')
 // the unpinned shared lists stay under Shared with me.
 const sections = computed(() => {
 	const hasPinned = listsStore.pinnedLists.length > 0
-	return [
+	const all: { key: SectionKey, caption: string, lists: ShoppingList[] }[] = [
 		{ key: 'pinned', caption: pinnedText, lists: listsStore.pinnedLists },
 		{ key: 'owned', caption: hasPinned ? othersText : '', lists: listsStore.unpinnedOwnedLists },
 		{ key: 'shared', caption: sharedText, lists: listsStore.unpinnedSharedLists },
-	].filter(section => section.lists.length > 0)
+	]
+	return all.filter(section => section.lists.length > 0)
 })
 
 function getUncheckedCount(listId: number): number {
@@ -150,5 +166,9 @@ async function onDelete(id: number) {
 	font-size: 0.75em;
 	font-weight: 700;
 	line-height: 1;
+}
+
+.list-sidebar__ghost {
+	opacity: 0.5;
 }
 </style>

@@ -1,6 +1,6 @@
 const appName = "shopping_list";
-const appVersion = "1.8.0";
-import { k as defineComponent, E as translate, aB as useCollapsedAreas, ag as onMounted, aR as publicApi, o as openBlock, c as createElementBlock, b as createBaseVNode, t as toDisplayString, w as withDirectives, al as vModelText, aj as withKeys, ak as withModifiers, p as unref, l as createCommentVNode, d as createVNode, ai as NcLoadingIcon, J as Fragment, K as renderList, am as normalizeStyle, n as normalizeClass, aE as mdiChevronDown, a as NcIconSvgWrapper, aF as vShow, i as createTextVNode, L as createBlock, ap as ImageViewer, z as ref, B as computed, aS as publicItemImageUrl, aq as Permission, Q as _export_sfc, ae as loadState, aO as createPinia, aP as offlinePersistPlugin, aQ as createApp } from "./useCollapsedAreas-45jfzOtX.chunk.mjs";
+const appVersion = "1.9.0";
+import { k as defineComponent, aa as translate, aH as useCollapsedAreas, am as onMounted, aX as publicApi, o as openBlock, c as createElementBlock, b as createBaseVNode, t as toDisplayString, w as withDirectives, ar as vModelText, ap as withKeys, aq as withModifiers, p as unref, l as createCommentVNode, d as createVNode, ao as NcLoadingIcon, af as Fragment, ag as renderList, as as normalizeStyle, n as normalizeClass, aK as mdiChevronDown, a as NcIconSvgWrapper, aL as vShow, i as createTextVNode, z as createBlock, av as ImageViewer, C as ref, D as computed, aY as publicItemImageUrl, aw as Permission, ak as _export_sfc, a7 as loadState, aU as createPinia, aV as offlinePersistPlugin, aW as createApp } from "./useCollapsedAreas-DD_xiSB7.chunk.mjs";
 const _hoisted_1$1 = { class: "public-list" };
 const _hoisted_2$1 = { class: "public-list__card" };
 const _hoisted_3$1 = {

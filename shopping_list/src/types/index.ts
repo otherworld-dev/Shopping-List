@@ -22,6 +22,8 @@ export interface ShoppingList {
 	isOwner: boolean
 	/** The current user's own pin; null until they first pin or unpin the list */
 	isPinned: boolean | null
+	/** The current user's own place for the list in the Custom order; null until they place it */
+	position: number | null
 	createdAt: string
 	updatedAt: string
 }

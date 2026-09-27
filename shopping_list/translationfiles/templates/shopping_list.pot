@@ -299,7 +299,7 @@ msgid "By area, A to Z"
 msgstr ""
 
 #. Sort option, used for both open and checked-off items: by name, ignoring the shop areas.
-#: src/components/ListView.vue
+#: src/components/ListView.vue src/components/ListSortSettings.vue
 msgid "A to Z"
 msgstr ""
 
@@ -694,7 +694,7 @@ msgstr ""
 msgid "Attach a photo to an item from its menu, or paste or drop one onto it. Photos are part of the list, so everyone with access can see them. This switch only changes what you see."
 msgstr ""
 
-#: src/components/ItemImagesSettings.vue
+#: src/components/ItemImagesSettings.vue src/stores/lists.ts
 msgid "Failed to save setting"
 msgstr ""
 
@@ -720,4 +720,20 @@ msgstr ""
 
 #: lib/Notification/Notifier.php
 msgid "Get it on Google Play"
+msgstr ""
+
+#: src/components/ListSortSettings.vue
+msgid "Sort lists"
+msgstr ""
+
+#: src/components/ListSortSettings.vue
+msgid "Recently updated"
+msgstr ""
+
+#: src/components/ListSortSettings.vue
+msgid "Custom (drag to reorder)"
+msgstr ""
+
+#: src/stores/lists.ts
+msgid "Failed to save the list order"
 msgstr ""

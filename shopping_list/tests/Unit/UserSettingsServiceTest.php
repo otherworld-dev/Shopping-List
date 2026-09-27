@@ -19,10 +19,13 @@ class UserSettingsServiceTest extends TestCase {
 	}
 
 	public function testImagesAreOffUntilTheUserTurnsThemOn(): void {
-		$this->config->method('getUserValue')->with('alice', 'shopping_list', 'show_images', '0')->willReturn('0');
+		$this->config->method('getUserValue')->willReturnMap([
+			['alice', 'shopping_list', 'show_images', '0', '0'],
+			['alice', 'shopping_list', 'list_sort', 'updated', 'updated'],
+		]);
 
 		self::assertFalse($this->settings->showImages('alice'));
-		self::assertSame(['showImages' => false], $this->settings->forUser('alice'));
+		self::assertSame(['showImages' => false, 'listSort' => 'updated'], $this->settings->forUser('alice'));
 	}
 
 	public function testOnlyTheStoredOneCountsAsOn(): void {
@@ -39,5 +42,30 @@ class UserSettingsServiceTest extends TestCase {
 
 		$this->settings->setShowImages('alice', true);
 		$this->settings->setShowImages('alice', false);
+	}
+
+	public function testListSortIsRecentlyUpdatedUntilChosen(): void {
+		$this->config->method('getUserValue')->with('alice', 'shopping_list', 'list_sort', 'updated')->willReturn('updated');
+
+		self::assertSame('updated', $this->settings->listSort('alice'));
+	}
+
+	public function testAStoredListSortThatIsNotAModeReadsAsRecentlyUpdated(): void {
+		$this->config->method('getUserValue')->willReturn('price');
+
+		self::assertSame('updated', $this->settings->listSort('alice'));
+	}
+
+	public function testSettingTheListSortStoresTheMode(): void {
+		$this->config->expects(self::once())->method('setUserValue')->with('alice', 'shopping_list', 'list_sort', 'custom');
+
+		$this->settings->setListSort('alice', 'custom');
+	}
+
+	public function testAnUnknownListSortIsRefused(): void {
+		$this->config->expects(self::never())->method('setUserValue');
+		$this->expectException(\InvalidArgumentException::class);
+
+		$this->settings->setListSort('alice', 'price');
 	}
 }

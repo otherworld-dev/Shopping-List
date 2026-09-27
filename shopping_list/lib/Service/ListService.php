@@ -25,6 +25,7 @@ class ListService {
 		private PushService $pushService,
 		private UserListPreferenceMapper $preferenceMapper,
 		private ItemImageCleanup $imageCleanup,
+		private UserSettingsService $settings,
 	) {
 	}
 
@@ -66,10 +67,10 @@ class ListService {
 		$lists = array_merge($ownedLists, $sharedLists);
 		$preferences = $this->preferenceMapper->findAllByUser($userId);
 		foreach ($lists as $list) {
-			$list->setIsPinned(($preferences[$list->getId()] ?? null)?->getIsPinned());
+			$this->applyPreference($list, $preferences[$list->getId()] ?? null);
 		}
 
-		return $lists;
+		return ListOrder::sort($lists, $this->settings->listSort($userId));
 	}
 
 	/**
@@ -84,7 +85,7 @@ class ListService {
 		} else {
 			$list->setPermission($this->getPermission($id, $userId));
 		}
-		$list->setIsPinned($this->getPinned($id, $userId));
+		$this->applyPreference($list, $this->findPreference($id, $userId));
 		return $list;
 	}
 
@@ -117,7 +118,7 @@ class ListService {
 		$list = $this->mapper->update($list);
 		$list->setIsOwner($list->getUserId() === $userId);
 		$list->setPermission($list->getIsOwner() ? 1 : $this->getPermission($id, $userId));
-		$list->setIsPinned($this->getPinned($id, $userId));
+		$this->applyPreference($list, $this->findPreference($id, $userId));
 		$this->pushService->notifyListUpdate($id, $userId);
 		return $list;
 	}
@@ -133,12 +134,34 @@ class ListService {
 		return $this->preferenceMapper->setPinned($userId, $id, $isPinned);
 	}
 
-	private function getPinned(int $listId, string $userId): ?bool {
+	/**
+	 * Save this user's own order for some of their lists (one section's
+	 * worth). Every list must be one they can see, or nothing is saved.
+	 *
+	 * @param array<int|string> $listIds in the order wanted
+	 * @return int[] the ids saved
+	 * @throws NotFoundException
+	 */
+	public function reorder(array $listIds, string $userId): array {
+		$ids = array_values(array_unique(array_map('intval', $listIds)));
+		foreach ($ids as $id) {
+			$this->assertAccess($id, $userId);
+		}
+		$this->preferenceMapper->setPositions($userId, $ids);
+		return $ids;
+	}
+
+	private function findPreference(int $listId, string $userId): ?UserListPreference {
 		try {
-			return $this->preferenceMapper->find($userId, $listId)->getIsPinned();
+			return $this->preferenceMapper->find($userId, $listId);
 		} catch (DoesNotExistException) {
 			return null;
 		}
+	}
+
+	private function applyPreference(ShoppingList $list, ?UserListPreference $pref): void {
+		$list->setIsPinned($pref?->getIsPinned());
+		$list->setPosition($pref?->getPosition());
 	}
 
 	/**

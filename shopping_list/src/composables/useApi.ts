@@ -1,5 +1,6 @@
 import axios from '@nextcloud/axios'
 import { generateOcsUrl } from '@nextcloud/router'
+import type { ListSort } from '../utils/listSort'
 
 function url(path: string): string {
 	return generateOcsUrl('apps/shopping_list/api/v1/' + path)
@@ -14,6 +15,7 @@ export const api = {
 		delete: (id: number) => axios.delete(url(`lists/${id}`)),
 		setPinned: (id: number, isPinned: boolean) =>
 			axios.patch(url(`lists/${id}/preferences`), { isPinned }),
+		reorder: (listIds: number[]) => axios.post(url('lists/reorder'), { listIds }),
 	},
 	items: {
 		getAll: (listId: number) => axios.get(url(`lists/${listId}/items`)),
@@ -74,7 +76,7 @@ export const api = {
 	},
 	settings: {
 		get: () => axios.get(url('settings')),
-		update: (data: { showImages?: boolean }) => axios.patch(url('settings'), data),
+		update: (data: { showImages?: boolean, listSort?: ListSort }) => axios.patch(url('settings'), data),
 	},
 }
 

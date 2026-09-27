@@ -18,6 +18,7 @@ class CapabilitiesTest extends TestCase {
 
 		self::assertSame('1.9.0', $caps['version']);
 		self::assertContains('item-images', $caps['features']);
+		self::assertContains('list-order', $caps['features']);
 		self::assertSame(1280, $caps['itemImages']['maxSide']);
 		self::assertSame(160, $caps['itemImages']['thumbSide']);
 		self::assertGreaterThan(0, $caps['itemImages']['maxUploadBytes']);

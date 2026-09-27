@@ -1,5 +1,5 @@
 const appName = "shopping_list";
-const appVersion = "1.8.0";
+const appVersion = "1.9.0";
 const global$1 = globalThis || void 0 || self;
 /**
 * @vue/shared v3.5.32
@@ -44199,7 +44199,8 @@ const api = {
     create: (title) => cancelableClient.post(url("lists"), { title }),
     update: (id, title) => cancelableClient.put(url(`lists/${id}`), { title }),
     delete: (id) => cancelableClient.delete(url(`lists/${id}`)),
-    setPinned: (id, isPinned) => cancelableClient.patch(url(`lists/${id}/preferences`), { isPinned })
+    setPinned: (id, isPinned) => cancelableClient.patch(url(`lists/${id}/preferences`), { isPinned }),
+    reorder: (listIds) => cancelableClient.post(url("lists/reorder"), { listIds })
   },
   items: {
     getAll: (listId) => cancelableClient.get(url(`lists/${listId}/items`)),
@@ -44332,12 +44333,22 @@ const serverFetched = /* @__PURE__ */ new Set();
 function markServerFetched(storeId) {
   serverFetched.add(storeId);
 }
+const UNCACHED_KEYS = {
+  lists: ["listSort"]
+};
+function withoutUncachedKeys(storeId, state) {
+  const keys = UNCACHED_KEYS[storeId];
+  if (!keys || keys.length === 0) return state;
+  const copy = { ...state };
+  for (const key of keys) delete copy[key];
+  return copy;
+}
 const offlinePersistPlugin = ({ store: store2 }) => {
   if (!PERSISTED_STORES.has(store2.$id)) return;
   loadStoreState(store2.$id).then((cached) => {
     if (serverFetched.has(store2.$id)) return;
     if (cached) {
-      store2.$patch(cached);
+      store2.$patch(withoutUncachedKeys(store2.$id, cached));
     }
     if (store2.$id === "lists") {
       loadValue("currentListId").then((id) => {
@@ -44348,7 +44359,7 @@ const offlinePersistPlugin = ({ store: store2 }) => {
     }
   });
   store2.$subscribe((_mutation, state) => {
-    saveStoreState(store2.$id, JSON.parse(JSON.stringify(state)));
+    saveStoreState(store2.$id, withoutUncachedKeys(store2.$id, JSON.parse(JSON.stringify(state))));
     if (store2.$id === "lists" && state.currentListId != null) {
       saveValue("currentListId", state.currentListId);
     }
@@ -44487,98 +44498,104 @@ function useCollapsedAreas(listId, storage = browserStorage()) {
   return { isCollapsed, toggle };
 }
 export {
-  isObject$2 as $,
+  generateCodeFrame as $,
   ActionGlobalMixin as A,
-  computed as B,
-  api as C,
-  markServerFetched as D,
-  translate as E,
-  getLanguage as F,
-  loadValue as G,
-  saveValue as H,
-  readonly as I,
-  Fragment as J,
-  renderList as K,
-  createBlock as L,
-  NcAppNavigationCaption as M,
+  mergeModels as B,
+  ref as C,
+  computed as D,
+  NOOP as E,
+  extend$1 as F,
+  isString$1 as G,
+  NO as H,
+  INSIDE_RADIO_GROUP_KEY as I,
+  isSymbol as J,
+  isBuiltInDirective as K,
+  capitalize as L,
+  camelize as M,
   NC_ACTIONS_IS_SEMANTIC_MENU as N,
-  NcActionButton as O,
-  NcAppNavigationItem as P,
-  _export_sfc as Q,
-  NOOP as R,
-  extend$1 as S,
-  isString$1 as T,
-  NO as U,
-  isSymbol as V,
-  isBuiltInDirective as W,
-  capitalize as X,
-  camelize as Y,
-  EMPTY_OBJ as Z,
+  EMPTY_OBJ as O,
+  isObject$2 as P,
+  toHandlerKey as Q,
+  isArray$1 as R,
+  isOn as S,
+  isReservedProp as T,
+  isVoidTag as U,
+  isHTMLTag as V,
+  isSVGTag as W,
+  isMathMLTag as X,
+  parseStringStyle as Y,
+  makeMap as Z,
   _export_sfc$1 as _,
   NcIconSvgWrapper as a,
-  toHandlerKey as a0,
-  isArray$1 as a1,
-  isOn as a2,
-  isReservedProp as a3,
-  isVoidTag as a4,
-  isHTMLTag as a5,
-  isSVGTag as a6,
-  isMathMLTag as a7,
-  parseStringStyle as a8,
-  makeMap as a9,
-  browserStorage as aA,
-  useCollapsedAreas as aB,
-  NcAvatar as aC,
-  isRef as aD,
-  mdiChevronDown as aE,
-  vShow as aF,
-  shallowRef as aG,
-  vModelSelect as aH,
-  NcCheckboxRadioSwitch as aI,
-  NcAppNavigationSettings as aJ,
-  Transition as aK,
-  NcAppNavigation as aL,
-  NcAppContent as aM,
-  NcContent as aN,
-  createPinia as aO,
-  offlinePersistPlugin as aP,
-  createApp as aQ,
-  publicApi as aR,
-  publicItemImageUrl as aS,
-  dist as aT,
-  requireMajor as aU,
-  requireValid as aV,
-  dist$1 as aW,
-  process$1 as aX,
-  commonjsGlobal as aY,
-  Buffer as aZ,
-  generateCodeFrame as aa,
-  getAugmentedNamespace as ab,
-  runtimeDom_esmBundler as ac,
-  shared_esmBundler as ad,
-  loadState as ae,
-  watch as af,
-  onMounted as ag,
-  onUnmounted as ah,
-  NcLoadingIcon as ai,
-  withKeys as aj,
-  withModifiers as ak,
-  vModelText as al,
-  normalizeStyle as am,
-  Teleport as an,
-  NcActions as ao,
-  ImageViewer as ap,
-  Permission as aq,
-  nextTick as ar,
-  itemImageUrl as as,
-  NcPopover as at,
-  mdiHelpCircleOutline as au,
-  generateOcsUrl as av,
-  cancelableClient as aw,
-  ShareType as ax,
-  generateUrl as ay,
-  getCurrentUser as az,
+  requireValid as a$,
+  getAugmentedNamespace as a0,
+  runtimeDom_esmBundler as a1,
+  shared_esmBundler as a2,
+  getDefaultExportFromCjs$1 as a3,
+  getGettextBuilder as a4,
+  getLoggerBuilder as a5,
+  defineStore as a6,
+  loadState as a7,
+  api as a8,
+  markServerFetched as a9,
+  mdiHelpCircleOutline as aA,
+  generateOcsUrl as aB,
+  cancelableClient as aC,
+  ShareType as aD,
+  generateUrl as aE,
+  getCurrentUser as aF,
+  browserStorage as aG,
+  useCollapsedAreas as aH,
+  NcAvatar as aI,
+  isRef as aJ,
+  mdiChevronDown as aK,
+  vShow as aL,
+  shallowRef as aM,
+  vModelSelect as aN,
+  NcCheckboxRadioSwitch as aO,
+  Transition as aP,
+  NcAppNavigation as aQ,
+  NcAppNavigationSettings as aR,
+  NcAppContent as aS,
+  NcContent as aT,
+  createPinia as aU,
+  offlinePersistPlugin as aV,
+  createApp as aW,
+  publicApi as aX,
+  publicItemImageUrl as aY,
+  dist as aZ,
+  requireMajor as a_,
+  translate as aa,
+  getLanguage as ab,
+  loadValue as ac,
+  saveValue as ad,
+  readonly as ae,
+  Fragment as af,
+  renderList as ag,
+  NcAppNavigationCaption as ah,
+  NcActionButton as ai,
+  NcAppNavigationItem as aj,
+  _export_sfc as ak,
+  watch as al,
+  onMounted as am,
+  onUnmounted as an,
+  NcLoadingIcon as ao,
+  withKeys as ap,
+  withModifiers as aq,
+  vModelText as ar,
+  normalizeStyle as as,
+  Teleport as at,
+  NcActions as au,
+  ImageViewer as av,
+  Permission as aw,
+  nextTick as ax,
+  itemImageUrl as ay,
+  NcPopover as az,
   createBaseVNode as b,
+  dist$1 as b0,
+  process$1 as b1,
+  commonjsGlobal as b2,
+  Buffer as b3,
   createElementBlock as c,
   createVNode as d,
   mdiRadioboxBlank as e,
@@ -44593,15 +44610,15 @@ export {
   normalizeClass as n,
   openBlock as o,
   unref as p,
-  getDefaultExportFromCjs$1 as q,
+  useCssModule as q,
   resolveComponent as r,
-  getGettextBuilder as s,
+  provide as s,
   toDisplayString as t,
   useModel as u,
   vModelRadio as v,
   withDirectives as w,
-  getLoggerBuilder as x,
-  defineStore as y,
-  ref as z
+  NC_FORM_BOX_CONTEXT_KEY as x,
+  useSlots as y,
+  createBlock as z
 };
-//# sourceMappingURL=useCollapsedAreas-45jfzOtX.chunk.mjs.map
+//# sourceMappingURL=useCollapsedAreas-DD_xiSB7.chunk.mjs.map
