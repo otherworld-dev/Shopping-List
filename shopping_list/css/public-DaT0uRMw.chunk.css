@@ -277,37 +277,37 @@
 	max-width: 100% !important;
 }
 
-.public-app[data-v-5c4ee2ce] {
+.public-app[data-v-2cb5ca96] {
 	max-width: 600px;
 	margin: 0 auto;
 	padding: 40px 20px 160px;
 	width: 100%;
 }
-.public-app__loading[data-v-5c4ee2ce] {
+.public-app__loading[data-v-2cb5ca96] {
 	display: flex;
 	justify-content: center;
 	padding: 60px;
 }
-.public-app__password[data-v-5c4ee2ce] {
+.public-app__password[data-v-2cb5ca96] {
 	display: flex;
 	justify-content: center;
 	padding-top: 80px;
 }
-.public-app__password-card[data-v-5c4ee2ce] {
+.public-app__password-card[data-v-2cb5ca96] {
 	text-align: center;
 	max-width: 360px;
 	width: 100%;
 }
-.public-app__password-card h2[data-v-5c4ee2ce] {
+.public-app__password-card h2[data-v-2cb5ca96] {
 	margin: 0 0 8px;
 	font-size: 1.3em;
 }
-.public-app__password-card p[data-v-5c4ee2ce] {
+.public-app__password-card p[data-v-2cb5ca96] {
 	color: var(--color-text-maxcontrast);
 	margin: 0 0 20px;
 	font-size: 0.9em;
 }
-.public-app__password-input[data-v-5c4ee2ce] {
+.public-app__password-input[data-v-2cb5ca96] {
 	width: 100%;
 	height: 42px;
 	padding: 0 14px;
@@ -320,10 +320,10 @@
 	box-sizing: border-box;
 	margin-bottom: 12px;
 }
-.public-app__password-input[data-v-5c4ee2ce]:focus {
+.public-app__password-input[data-v-2cb5ca96]:focus {
 	border-color: var(--color-primary-element);
 }
-.public-app__password-btn[data-v-5c4ee2ce] {
+.public-app__password-btn[data-v-2cb5ca96] {
 	width: 100%;
 	height: 42px;
 	background: var(--color-primary-element);
@@ -334,24 +334,35 @@
 	font-weight: 600;
 	cursor: pointer;
 }
-.public-app__password-btn[data-v-5c4ee2ce]:disabled {
+.public-app__password-btn[data-v-2cb5ca96]:disabled {
 	opacity: 0.5;
 	cursor: default;
 }
-.public-app__password-error[data-v-5c4ee2ce] {
+.public-app__password-error[data-v-2cb5ca96] {
 	color: var(--color-error);
 	font-size: 0.9em;
 	margin-top: 12px;
 }
-.public-app__error[data-v-5c4ee2ce] {
+.public-app__error[data-v-2cb5ca96] {
 	text-align: center;
 	padding-top: 80px;
 }
-.public-app__error h2[data-v-5c4ee2ce] {
+.public-app__error h2[data-v-2cb5ca96] {
 	margin: 0 0 8px;
 	font-size: 1.3em;
 }
-.public-app__error p[data-v-5c4ee2ce] {
+.public-app__error p[data-v-2cb5ca96] {
 	color: var(--color-text-maxcontrast);
 	font-size: 0.9em;
+}
+.public-app__open-in-app[data-v-2cb5ca96] {
+	display: block;
+	margin: 0 0 20px;
+	padding: 10px 14px;
+	border-radius: var(--border-radius-large);
+	background: var(--color-primary-element);
+	color: var(--color-primary-element-text);
+	font-weight: 600;
+	text-align: center;
+	text-decoration: none;
 }
