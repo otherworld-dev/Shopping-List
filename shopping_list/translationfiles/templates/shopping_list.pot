@@ -54,6 +54,10 @@ msgstr ""
 msgid "This shared list does not exist or has expired."
 msgstr ""
 
+#: src/PublicApp.vue
+msgid "Open in the app"
+msgstr ""
+
 #: src/components/AreaKeywordsSettings.vue
 msgid "Back to list"
 msgstr ""
