@@ -32,6 +32,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Database migration: one column is added to the list preferences table
   for your own position of each list
 
+### Fixed
+- Changing, ticking or deleting an item through a public link after the
+  owner had deleted it gave a server error rather than "Not found", so the
+  Android app couldn't tell the item was gone and kept retrying the change
+
 ## [1.9.0] - 2026-09-23
 
 ### Added
