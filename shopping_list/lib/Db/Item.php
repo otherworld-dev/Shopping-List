@@ -22,6 +22,12 @@ use OCP\AppFramework\Db\Entity;
  * @method void setChecked(bool $checked)
  * @method ?string getCheckedBy()
  * @method void setCheckedBy(?string $checkedBy)
+ * @method ?string getCheckedByName()
+ * @method void setCheckedByName(?string $checkedByName)
+ * @method ?string getAddedBy()
+ * @method void setAddedBy(?string $addedBy)
+ * @method ?string getAddedByName()
+ * @method void setAddedByName(?string $addedByName)
  * @method int getSortOrder()
  * @method void setSortOrder(int $sortOrder)
  * @method ?string getImageKey()
@@ -39,6 +45,12 @@ class Item extends Entity implements JsonSerializable {
 	protected $shopAreaId;
 	protected $checked;
 	protected $checkedBy;
+	/** Display or guest name of whoever ticked it, captured at the time */
+	protected $checkedByName;
+	/** User id of a signed-in adder; null for a guest or an item from before this was recorded */
+	protected $addedBy;
+	/** Display or guest name of whoever added it, captured at the time */
+	protected $addedByName;
 	protected $sortOrder;
 	/** Random 16-hex handle for the item's photo in appdata; rotates on replace, null when there is none */
 	protected $imageKey;
@@ -47,6 +59,9 @@ class Item extends Entity implements JsonSerializable {
 
 	/** @var array Transient tags loaded by service */
 	private array $tags = [];
+
+	/** Set for a public link that hides members' names; only changes the JSON */
+	private bool $accountNamesHidden = false;
 
 	public function __construct() {
 		$this->addType('id', 'integer');
@@ -66,7 +81,14 @@ class Item extends Entity implements JsonSerializable {
 		return $this->tags;
 	}
 
+	/** Leave account users' names and ids out of this item's JSON; guests' names stay. */
+	public function hideAccountNames(): void {
+		$this->accountNamesHidden = true;
+	}
+
 	public function jsonSerialize(): array {
+		$hideAdder = $this->accountNamesHidden && $this->addedBy !== null;
+		$hideChecker = $this->accountNamesHidden && $this->checkedBy !== null;
 		return [
 			'id' => $this->id,
 			'listId' => $this->listId,
@@ -75,7 +97,10 @@ class Item extends Entity implements JsonSerializable {
 			'unit' => $this->unit,
 			'shopAreaId' => $this->shopAreaId,
 			'checked' => $this->checked,
-			'checkedBy' => $this->checkedBy,
+			'checkedBy' => $hideChecker ? null : $this->checkedBy,
+			'checkedByName' => $hideChecker ? null : $this->checkedByName,
+			'addedBy' => $hideAdder ? null : $this->addedBy,
+			'addedByName' => $hideAdder ? null : $this->addedByName,
 			'sortOrder' => $this->sortOrder,
 			'imageKey' => $this->imageKey,
 			'tags' => $this->tags,

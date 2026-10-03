@@ -24,4 +24,15 @@ class ListShareTest extends TestCase {
 			self::assertArrayNotHasKey('code', $share->jsonSerialize());
 		}
 	}
+
+	public function testALinkShowsNamesUnlessTurnedOff(): void {
+		$share = new ListShare();
+		$share->setSharedWithType(3);
+		self::assertTrue($share->showsNames());
+		self::assertTrue($share->jsonSerialize()['showNames']);
+
+		$share->setShowNames(false);
+		self::assertFalse($share->showsNames());
+		self::assertFalse($share->jsonSerialize()['showNames']);
+	}
 }
