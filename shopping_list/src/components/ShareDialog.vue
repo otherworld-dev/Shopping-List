@@ -87,6 +87,18 @@
 						</button>
 					</div>
 
+					<div class="share-modal__link-qr">
+						<button class="share-modal__link-btn share-modal__link-btn--small"
+							:aria-expanded="showQr"
+							@click="showQr = !showQr">
+							{{ showQr ? hideQrText : showQrText }}
+						</button>
+						<img v-if="showQr"
+							:src="linkQrUrl"
+							:alt="qrAltText"
+							class="share-modal__link-qr-image">
+					</div>
+
 					<div class="share-modal__link-options">
 						<label class="share-modal__link-option">
 							{{ permissionLabel }}
@@ -147,6 +159,7 @@ import { t } from '@nextcloud/l10n'
 import axios from '@nextcloud/axios'
 import { generateOcsUrl, generateUrl } from '@nextcloud/router'
 import { useSharesStore } from '../stores/shares'
+import { qrCodeImageUrl } from '../utils/qrCode'
 import { ShareType, Permission } from '../types'
 import type { ListShare } from '../types'
 
@@ -189,12 +202,16 @@ const saveText = t('shopping_list', 'Set')
 const removeText = t('shopping_list', 'Remove')
 const expiryLabel = t('shopping_list', 'Expires')
 const deleteLinkText = t('shopping_list', 'Delete public link')
+const showQrText = t('shopping_list', 'Show QR code')
+const hideQrText = t('shopping_list', 'Hide QR code')
+const qrAltText = t('shopping_list', 'QR code of the public link')
 
 const searchQuery = ref('')
 const searching = ref(false)
 const shareeResults = ref<ShareeOption[]>([])
 const linkPassword = ref('')
 const copiedLink = ref(false)
+const showQr = ref(false)
 
 // Filter link shares out of the regular shares list
 const shares = computed(() =>
@@ -209,6 +226,9 @@ const linkUrl = computed(() => {
 	if (!linkShare.value?.token) return ''
 	return window.location.origin + generateUrl(`/apps/shopping_list/s/${linkShare.value.token}`)
 })
+
+// Only drawn while shown; a phone camera opening it lands on the public page
+const linkQrUrl = computed(() => (showQr.value && linkUrl.value ? qrCodeImageUrl(linkUrl.value) : ''))
 
 const todayStr = new Date().toISOString().split('T')[0]
 
@@ -587,6 +607,21 @@ async function onDeleteLink() {
 	font-size: 0.8em;
 	cursor: pointer;
 	white-space: nowrap;
+}
+
+.share-modal__link-qr {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 8px;
+	padding: 0 0 8px;
+}
+
+/* The code carries its own white quiet zone, so it scans in the dark theme too */
+.share-modal__link-qr-image {
+	width: 180px;
+	height: 180px;
+	border-radius: var(--border-radius);
 }
 
 .share-modal__link-options {

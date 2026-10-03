@@ -21,6 +21,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   phones. It opens the list in the Shopping List Android app, which can now
   use a shared list without a Nextcloud account, or goes to the app's website
   when it isn't installed.
+- A QR code of a list's public link in the Share dialog. Choose Show QR code
+  under the link and scan it with a phone camera to open the list there,
+  where the Open in the app button takes it into the Android app
 
 ### Changed
 - The app's capabilities now list `list-order` among its features, each

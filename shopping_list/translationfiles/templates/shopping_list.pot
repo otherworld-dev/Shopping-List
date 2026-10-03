@@ -396,6 +396,18 @@ msgstr ""
 msgid "Delete public link"
 msgstr ""
 
+#: src/components/ShareDialog.vue
+msgid "Show QR code"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Hide QR code"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "QR code of the public link"
+msgstr ""
+
 #: src/components/TagInput.vue
 msgid "Add tags..."
 msgstr ""
