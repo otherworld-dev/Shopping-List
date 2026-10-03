@@ -62,7 +62,18 @@ class ItemMapper extends QBMapper {
 		$qb = $this->db->getQueryBuilder();
 		$qb->update($this->getTableName())
 			->set('checked_by', $qb->createNamedParameter(null))
+			->set('checked_by_name', $qb->createNamedParameter(null))
 			->where($qb->expr()->eq('checked_by', $qb->createNamedParameter($userId)))
+			->executeStatement();
+	}
+
+	/** Forget who added items, for a user that no longer exists. */
+	public function clearAddedBy(string $userId): void {
+		$qb = $this->db->getQueryBuilder();
+		$qb->update($this->getTableName())
+			->set('added_by', $qb->createNamedParameter(null))
+			->set('added_by_name', $qb->createNamedParameter(null))
+			->where($qb->expr()->eq('added_by', $qb->createNamedParameter($userId)))
 			->executeStatement();
 	}
 
@@ -71,6 +82,7 @@ class ItemMapper extends QBMapper {
 		$qb->update($this->getTableName())
 			->set('checked', $qb->createNamedParameter(false, IQueryBuilder::PARAM_BOOL))
 			->set('checked_by', $qb->createNamedParameter(null))
+			->set('checked_by_name', $qb->createNamedParameter(null))
 			->where($qb->expr()->eq('list_id', $qb->createNamedParameter($listId, IQueryBuilder::PARAM_INT)))
 			->executeStatement();
 	}
