@@ -36,6 +36,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Changing, ticking or deleting an item through a public link after the
   owner had deleted it gave a server error rather than "Not found", so the
   Android app couldn't tell the item was gone and kept retrying the change
+- Wrong passwords on a public link are now throttled by Nextcloud's
+  brute-force protection, so each failed attempt slows down the next ones
+  from the same address. The limit of five tries a minute was the only
+  guard before, which still let a script keep guessing all day
 
 ## [1.9.0] - 2026-09-23
 
