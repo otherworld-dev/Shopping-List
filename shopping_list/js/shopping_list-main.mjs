@@ -17493,7 +17493,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ShareDialog = /* @__PURE__ */ _export_sfc$1(_sfc_main$7, [["__scopeId", "data-v-272b0f9a"]]);
+const ShareDialog = /* @__PURE__ */ _export_sfc$1(_sfc_main$7, [["__scopeId", "data-v-a20e5319"]]);
 function formatListAsText(items) {
   return items.filter((item) => !item.checked).map((item) => {
     const parts = [];

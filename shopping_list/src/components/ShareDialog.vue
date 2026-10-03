@@ -688,12 +688,20 @@ async function onDeleteLink() {
 	font-size: 0.85em;
 }
 
+/* Nextcloud pads, sizes and right-aligns dt and dd globally */
+.share-modal__invite-parts dt,
+.share-modal__invite-parts dd {
+	margin: 0;
+	padding: 0;
+	width: auto;
+	text-align: start;
+}
+
 .share-modal__invite-parts dt {
 	color: var(--color-text-maxcontrast);
 }
 
 .share-modal__invite-parts dd {
-	margin: 0;
 	min-width: 0;
 	overflow-wrap: anywhere;
 }
