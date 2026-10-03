@@ -17069,6 +17069,29 @@ function serverAddress(baseUrl) {
 function inviteString(baseUrl, code) {
   return `${serverAddress(baseUrl)}/${formatCode(code)}`;
 }
+async function copyToClipboard(text, clipboard = navigator.clipboard, doc = document) {
+  if (clipboard) {
+    try {
+      await clipboard.writeText(text);
+      return true;
+    } catch {
+    }
+  }
+  const area = doc.createElement("textarea");
+  area.value = text;
+  area.setAttribute("readonly", "");
+  area.style.position = "fixed";
+  area.style.opacity = "0";
+  doc.body.appendChild(area);
+  area.select();
+  try {
+    return doc.execCommand("copy");
+  } catch {
+    return false;
+  } finally {
+    area.remove();
+  }
+}
 const _hoisted_1$5 = { class: "share-modal" };
 const _hoisted_2$4 = { class: "share-modal__header" };
 const _hoisted_3$3 = { class: "share-modal__search" };
@@ -17271,8 +17294,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
       await sharesStore.createLinkShare(props.listId, Permission.READ);
     }
     async function onCopyLink() {
-      if (linkUrl.value) {
-        await navigator.clipboard.writeText(linkUrl.value);
+      if (linkUrl.value && await copyToClipboard(linkUrl.value)) {
         copiedLink.value = true;
         setTimeout(() => {
           copiedLink.value = false;
@@ -17280,8 +17302,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
       }
     }
     async function onCopyInvite() {
-      if (linkShare.value?.code) {
-        await navigator.clipboard.writeText(inviteString(baseUrl, linkShare.value.code));
+      if (linkShare.value?.code && await copyToClipboard(inviteString(baseUrl, linkShare.value.code))) {
         copiedInvite.value = true;
         setTimeout(() => {
           copiedInvite.value = false;
@@ -17493,7 +17514,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ShareDialog = /* @__PURE__ */ _export_sfc$1(_sfc_main$7, [["__scopeId", "data-v-a20e5319"]]);
+const ShareDialog = /* @__PURE__ */ _export_sfc$1(_sfc_main$7, [["__scopeId", "data-v-3afc12c7"]]);
 function formatListAsText(items) {
   return items.filter((item) => !item.checked).map((item) => {
     const parts = [];

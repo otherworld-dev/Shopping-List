@@ -60,6 +60,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   brute-force protection, so each failed attempt slows down the next ones
   from the same address. The limit of five tries a minute was the only
   guard before, which still let a script keep guessing all day
+- Copy link in the Share dialog did nothing on a server reached over plain
+  http, as browsers only offer the clipboard to https pages. It now falls
+  back to the older way of copying, and so does the new Copy invite
 
 ## [1.9.0] - 2026-09-23
 

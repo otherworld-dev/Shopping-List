@@ -184,6 +184,7 @@ import { generateOcsUrl, generateUrl, getRootUrl } from '@nextcloud/router'
 import { useSharesStore } from '../stores/shares'
 import { qrCodeImageUrl } from '../utils/qrCode'
 import { formatCode, inviteString, serverAddress } from '../utils/inviteCode'
+import { copyToClipboard } from '../utils/clipboard'
 import { ShareType, Permission } from '../types'
 import type { ListShare } from '../types'
 
@@ -340,16 +341,14 @@ async function onCreateLink() {
 }
 
 async function onCopyLink() {
-	if (linkUrl.value) {
-		await navigator.clipboard.writeText(linkUrl.value)
+	if (linkUrl.value && await copyToClipboard(linkUrl.value)) {
 		copiedLink.value = true
 		setTimeout(() => { copiedLink.value = false }, 2000)
 	}
 }
 
 async function onCopyInvite() {
-	if (linkShare.value?.code) {
-		await navigator.clipboard.writeText(inviteString(baseUrl, linkShare.value.code))
+	if (linkShare.value?.code && await copyToClipboard(inviteString(baseUrl, linkShare.value.code))) {
 		copiedInvite.value = true
 		setTimeout(() => { copiedInvite.value = false }, 2000)
 	}
