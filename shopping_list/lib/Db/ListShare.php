@@ -24,6 +24,8 @@ use OCP\AppFramework\Db\Entity;
  * @method void setPasswordHash(?string $hash)
  * @method ?string getExpiresAt()
  * @method void setExpiresAt(?string $expiresAt)
+ * @method ?string getCode()
+ * @method void setCode(?string $code)
  */
 class ListShare extends Entity implements JsonSerializable {
 	protected $listId;
@@ -34,6 +36,8 @@ class ListShare extends Entity implements JsonSerializable {
 	protected $token;
 	protected $passwordHash;
 	protected $expiresAt;
+	/** Short invite code for a link share (see InviteCode), null for user and group shares */
+	protected $code;
 
 	/** @var string Transient display name */
 	private string $sharedWithDisplayName = '';
@@ -65,6 +69,7 @@ class ListShare extends Entity implements JsonSerializable {
 			$data['token'] = $this->token;
 			$data['hasPassword'] = $this->passwordHash !== null;
 			$data['expiresAt'] = $this->expiresAt;
+			$data['code'] = $this->code;
 		}
 
 		return $data;

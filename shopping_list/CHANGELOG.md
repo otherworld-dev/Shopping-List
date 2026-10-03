@@ -24,16 +24,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - A QR code of a list's public link in the Share dialog. Choose Show QR code
   under the link and scan it with a phone camera to open the list there,
   where the Open in the app button takes it into the Android app
+- Invite codes for shared lists. A list's public link now has a short code
+  like K7QM-3XPD, shown in the Share dialog with the server's address, and
+  Copy invite gives both as one line (for example cloud.example.com/K7QM-3XPD).
+  Someone without a Nextcloud account can type or paste it into the Shopping
+  List Android app to join the list. The code opens nothing the link
+  wouldn't: a list with a password still asks for it, and the code stops
+  working when the link is deleted or expires
 
 ### Changed
 - The app's capabilities now list `list-order` among its features, each
   list from the lists API carries its `position`, `listSort` joins the
   settings, and `POST /api/v1/lists/reorder` is a new endpoint, so the
   Android app can offer list ordering too
+- Link shares from the shares API carry their invite `code`,
+  `GET /api/v1/public/code/{code}` turns a code into the link's token, and
+  the capabilities list `invite-codes` among the features. The feature list
+  is now shown to visitors who aren't signed in too, so the Android app can
+  check it before a guest joins, while the version and image limits still
+  need a login. Wrong codes are throttled by Nextcloud's brute-force protection and
+  limited to ten tries a minute
 
 ### Upgrade
 - Database migration: one column is added to the list preferences table
   for your own position of each list
+- Database migration: an invite code column is added to the shares table.
+  Links made before this get their code the first time the Share dialog is
+  opened
 
 ### Fixed
 - Changing, ticking or deleting an item through a public link after the
@@ -43,6 +60,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   brute-force protection, so each failed attempt slows down the next ones
   from the same address. The limit of five tries a minute was the only
   guard before, which still let a script keep guessing all day
+- Copy link in the Share dialog did nothing on a server reached over plain
+  http, as browsers only offer the clipboard to https pages. It now falls
+  back to the older way of copying, and so does the new Copy invite
 
 ## [1.9.0] - 2026-09-23
 

@@ -408,6 +408,26 @@ msgstr ""
 msgid "QR code of the public link"
 msgstr ""
 
+#: src/components/ShareDialog.vue
+msgid "Invite code"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Server"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Code"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Copy invite"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Type these into the Shopping List Android app to join without the link."
+msgstr ""
+
 #: src/components/TagInput.vue
 msgid "Add tags..."
 msgstr ""

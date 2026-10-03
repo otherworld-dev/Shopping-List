@@ -112,6 +112,28 @@ class PublicListController extends OCSController {
 		}
 	}
 
+	/**
+	 * Turn an invite code typed into the Android app into the link's token.
+	 * It gives nothing the link wouldn't: a protected list still asks for
+	 * its password through auth().
+	 */
+	#[PublicPage]
+	#[NoCSRFRequired]
+	#[AnonRateLimit(limit: 10, period: 60)]
+	#[BruteForceProtection(action: 'shopping_list_public_code')]
+	public function resolveCode(string $code): DataResponse {
+		try {
+			$share = $this->shareService->findShareByCode($code);
+			return new DataResponse(['token' => $share->getToken()]);
+		} catch (NotFoundException) {
+			// A wrong guess slows down this address's next ones; the input is
+			// cut short as it goes into the throttle log
+			$response = new DataResponse(['message' => 'Not found'], Http::STATUS_NOT_FOUND);
+			$response->throttle(['code' => mb_substr($code, 0, 16)]);
+			return $response;
+		}
+	}
+
 	#[PublicPage]
 	#[NoCSRFRequired]
 	#[AnonRateLimit(limit: 30, period: 60)]

@@ -1,7 +1,7 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-Bzi0IO9m.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/useCollapsedAreas-DD_xiSB7.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/useCollapsedAreas-CX_mg1lj.chunk.css')])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-BRF13Ezd.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/useCollapsedAreas-A859sETM.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/useCollapsedAreas-CX_mg1lj.chunk.css')])))=>i.map(i=>d[i]);
 const appName = "shopping_list";
 const appVersion = "1.9.0";
-import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, A as ActionGlobalMixin, a as NcIconSvgWrapper, r as resolveComponent, b as createBaseVNode, w as withDirectives, v as vModelRadio, n as normalizeClass, d as createVNode, m as mdiRadioboxMarked, e as mdiRadioboxBlank, u as useModel, f as createElementId, g as NcButton, h as withCtx, i as createTextVNode, j as renderSlot, k as defineComponent, l as createCommentVNode, p as unref, q as useCssModule, s as provide, x as NC_FORM_BOX_CONTEXT_KEY, y as useSlots, z as createBlock, B as mergeModels, C as ref, D as computed, I as INSIDE_RADIO_GROUP_KEY, E as NOOP, F as extend$1, G as isString, H as NO, J as isSymbol, K as isBuiltInDirective, L as capitalize, M as camelize, O as EMPTY_OBJ, P as isObject, Q as toHandlerKey, R as isArray, S as isOn, T as isReservedProp, U as isVoidTag, V as isHTMLTag, W as isSVGTag, X as isMathMLTag, Y as parseStringStyle, Z as makeMap, $ as generateCodeFrame, a0 as getAugmentedNamespace, a1 as runtimeDom_esmBundler, a2 as shared_esmBundler, a3 as getDefaultExportFromCjs, a4 as getGettextBuilder, a5 as getLoggerBuilder, a6 as defineStore, a7 as loadState, a8 as api, a9 as markServerFetched, aa as translate, ab as getLanguage, ac as loadValue, ad as saveValue, ae as readonly, af as Fragment, ag as renderList, ah as NcAppNavigationCaption, ai as NcActionButton, aj as NcAppNavigationItem, ak as _export_sfc$1, al as watch, am as onMounted, an as onUnmounted, ao as NcLoadingIcon, ap as withKeys, aq as withModifiers, ar as vModelText, as as normalizeStyle, at as Teleport, au as NcActions, av as ImageViewer, aw as Permission, ax as nextTick, ay as itemImageUrl, az as NcPopover, aA as mdiHelpCircleOutline, aB as generateOcsUrl, aC as cancelableClient, aD as ShareType, aE as generateUrl, aF as getCurrentUser, aG as browserStorage, aH as useCollapsedAreas, aI as NcAvatar, aJ as isRef, aK as mdiChevronDown, aL as vShow, aM as shallowRef, aN as vModelSelect, aO as NcCheckboxRadioSwitch, aP as Transition, aQ as NcAppNavigation, aR as NcAppNavigationSettings, aS as NcAppContent, aT as NcContent, aU as createPinia, aV as offlinePersistPlugin, aW as createApp } from "./useCollapsedAreas-DD_xiSB7.chunk.mjs";
+import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, A as ActionGlobalMixin, a as NcIconSvgWrapper, r as resolveComponent, b as createBaseVNode, w as withDirectives, v as vModelRadio, n as normalizeClass, d as createVNode, m as mdiRadioboxMarked, e as mdiRadioboxBlank, u as useModel, f as createElementId, g as NcButton, h as withCtx, i as createTextVNode, j as renderSlot, k as defineComponent, l as createCommentVNode, p as unref, q as useCssModule, s as provide, x as NC_FORM_BOX_CONTEXT_KEY, y as useSlots, z as createBlock, B as mergeModels, C as ref, D as computed, I as INSIDE_RADIO_GROUP_KEY, E as NOOP, F as extend$1, G as isString, H as NO, J as isSymbol, K as isBuiltInDirective, L as capitalize, M as camelize, O as EMPTY_OBJ, P as isObject, Q as toHandlerKey, R as isArray, S as isOn, T as isReservedProp, U as isVoidTag, V as isHTMLTag, W as isSVGTag, X as isMathMLTag, Y as parseStringStyle, Z as makeMap, $ as generateCodeFrame, a0 as getAugmentedNamespace, a1 as runtimeDom_esmBundler, a2 as shared_esmBundler, a3 as getDefaultExportFromCjs, a4 as getGettextBuilder, a5 as getLoggerBuilder, a6 as defineStore, a7 as loadState, a8 as api, a9 as markServerFetched, aa as translate, ab as getLanguage, ac as loadValue, ad as saveValue, ae as readonly, af as Fragment, ag as renderList, ah as NcAppNavigationCaption, ai as NcActionButton, aj as NcAppNavigationItem, ak as _export_sfc$1, al as watch, am as onMounted, an as onUnmounted, ao as NcLoadingIcon, ap as withKeys, aq as withModifiers, ar as vModelText, as as normalizeStyle, at as Teleport, au as NcActions, av as ImageViewer, aw as Permission, ax as nextTick, ay as itemImageUrl, az as NcPopover, aA as mdiHelpCircleOutline, aB as getRootUrl, aC as generateOcsUrl, aD as cancelableClient, aE as ShareType, aF as generateUrl, aG as getCurrentUser, aH as browserStorage, aI as useCollapsedAreas, aJ as NcAvatar, aK as isRef, aL as mdiChevronDown, aM as vShow, aN as shallowRef, aO as vModelSelect, aP as NcCheckboxRadioSwitch, aQ as Transition, aR as NcAppNavigation, aS as NcAppNavigationSettings, aT as NcAppContent, aU as NcContent, aV as createPinia, aW as offlinePersistPlugin, aX as createApp } from "./useCollapsedAreas-A859sETM.chunk.mjs";
 const _sfc_main$i = {
   name: "NcActionCaption",
   inject: {
@@ -17060,6 +17060,38 @@ function qrCodeImageUrl(text) {
   const svg = renderSVG(text, { ecc: "M", border: 4, pixelSize: 1 });
   return "data:image/svg+xml," + encodeURIComponent(svg);
 }
+function formatCode(code) {
+  return code.length === 8 ? `${code.slice(0, 4)}-${code.slice(4)}` : code;
+}
+function serverAddress(baseUrl) {
+  return baseUrl.replace(/\/+$/, "").replace(/^https:\/\//i, "");
+}
+function inviteString(baseUrl, code) {
+  return `${serverAddress(baseUrl)}/${formatCode(code)}`;
+}
+async function copyToClipboard(text, clipboard = navigator.clipboard, doc = document) {
+  if (clipboard) {
+    try {
+      await clipboard.writeText(text);
+      return true;
+    } catch {
+    }
+  }
+  const area = doc.createElement("textarea");
+  area.value = text;
+  area.setAttribute("readonly", "");
+  area.style.position = "fixed";
+  area.style.opacity = "0";
+  doc.body.appendChild(area);
+  area.select();
+  try {
+    return doc.execCommand("copy");
+  } catch {
+    return false;
+  } finally {
+    area.remove();
+  }
+}
 const _hoisted_1$5 = { class: "share-modal" };
 const _hoisted_2$4 = { class: "share-modal__header" };
 const _hoisted_3$3 = { class: "share-modal__search" };
@@ -17114,17 +17146,26 @@ const _hoisted_27$1 = ["value"];
 const _hoisted_28$1 = { class: "share-modal__link-qr" };
 const _hoisted_29$1 = ["aria-expanded"];
 const _hoisted_30$1 = ["src", "alt"];
-const _hoisted_31$1 = { class: "share-modal__link-options" };
-const _hoisted_32$1 = { class: "share-modal__link-option" };
-const _hoisted_33$1 = ["value"];
-const _hoisted_34$1 = { value: 0 };
-const _hoisted_35 = { value: 1 };
-const _hoisted_36 = { class: "share-modal__link-option" };
-const _hoisted_37 = { class: "share-modal__link-password-row" };
-const _hoisted_38 = ["placeholder"];
-const _hoisted_39 = { class: "share-modal__link-option" };
-const _hoisted_40 = ["value", "min"];
-const _hoisted_41 = {
+const _hoisted_31$1 = {
+  key: 0,
+  class: "share-modal__invite"
+};
+const _hoisted_32$1 = { class: "share-modal__invite-title" };
+const _hoisted_33$1 = { class: "share-modal__invite-parts" };
+const _hoisted_34$1 = { class: "share-modal__invite-value" };
+const _hoisted_35 = { class: "share-modal__invite-value share-modal__invite-code" };
+const _hoisted_36 = { class: "share-modal__invite-hint" };
+const _hoisted_37 = { class: "share-modal__link-options" };
+const _hoisted_38 = { class: "share-modal__link-option" };
+const _hoisted_39 = ["value"];
+const _hoisted_40 = { value: 0 };
+const _hoisted_41 = { value: 1 };
+const _hoisted_42 = { class: "share-modal__link-option" };
+const _hoisted_43 = { class: "share-modal__link-password-row" };
+const _hoisted_44 = ["placeholder"];
+const _hoisted_45 = { class: "share-modal__link-option" };
+const _hoisted_46 = ["value", "min"];
+const _hoisted_47 = {
   key: 4,
   class: "share-modal__empty"
 };
@@ -17165,12 +17206,18 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
     const showQrText = translate("shopping_list", "Show QR code");
     const hideQrText = translate("shopping_list", "Hide QR code");
     const qrAltText = translate("shopping_list", "QR code of the public link");
+    const inviteCodeText = translate("shopping_list", "Invite code");
+    const serverText = translate("shopping_list", "Server");
+    const codeText = translate("shopping_list", "Code");
+    const copyInviteText = translate("shopping_list", "Copy invite");
+    const inviteHintText = translate("shopping_list", "Type these into the Shopping List Android app to join without the link.");
     const searchQuery = ref("");
     const searching = ref(false);
     const shareeResults = ref([]);
     const linkPassword = ref("");
     const copiedLink = ref(false);
     const showQr = ref(false);
+    const copiedInvite = ref(false);
     const shares = computed(
       () => (sharesStore.sharesByList[props.listId] ?? []).filter((s) => s.sharedWithType !== ShareType.LINK)
     );
@@ -17182,6 +17229,9 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
       return window.location.origin + generateUrl(`/apps/shopping_list/s/${linkShare.value.token}`);
     });
     const linkQrUrl = computed(() => showQr.value && linkUrl.value ? qrCodeImageUrl(linkUrl.value) : "");
+    const baseUrl = window.location.origin + getRootUrl();
+    const inviteServer = computed(() => serverAddress(baseUrl));
+    const inviteCode = computed(() => linkShare.value?.code ? formatCode(linkShare.value.code) : "");
     const todayStr = (/* @__PURE__ */ new Date()).toISOString().split("T")[0];
     let searchTimeout = null;
     onMounted(async () => {
@@ -17244,11 +17294,18 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
       await sharesStore.createLinkShare(props.listId, Permission.READ);
     }
     async function onCopyLink() {
-      if (linkUrl.value) {
-        await navigator.clipboard.writeText(linkUrl.value);
+      if (linkUrl.value && await copyToClipboard(linkUrl.value)) {
         copiedLink.value = true;
         setTimeout(() => {
           copiedLink.value = false;
+        }, 2e3);
+      }
+    }
+    async function onCopyInvite() {
+      if (linkShare.value?.code && await copyToClipboard(inviteString(baseUrl, linkShare.value.code))) {
+        copiedInvite.value = true;
+        setTimeout(() => {
+          copiedInvite.value = false;
         }, 2e3);
       }
     }
@@ -17385,27 +17442,41 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
                   class: "share-modal__link-qr-image"
                 }, null, 8, _hoisted_30$1)) : createCommentVNode("", true)
               ]),
-              createBaseVNode("div", _hoisted_31$1, [
-                createBaseVNode("label", _hoisted_32$1, [
+              linkShare.value.code ? (openBlock(), createElementBlock("div", _hoisted_31$1, [
+                createBaseVNode("div", _hoisted_32$1, toDisplayString(unref(inviteCodeText)), 1),
+                createBaseVNode("dl", _hoisted_33$1, [
+                  createBaseVNode("dt", null, toDisplayString(unref(serverText)), 1),
+                  createBaseVNode("dd", _hoisted_34$1, toDisplayString(inviteServer.value), 1),
+                  createBaseVNode("dt", null, toDisplayString(unref(codeText)), 1),
+                  createBaseVNode("dd", _hoisted_35, toDisplayString(inviteCode.value), 1)
+                ]),
+                createBaseVNode("button", {
+                  class: "share-modal__link-btn share-modal__link-btn--small",
+                  onClick: onCopyInvite
+                }, toDisplayString(copiedInvite.value ? unref(copiedText) : unref(copyInviteText)), 1),
+                createBaseVNode("p", _hoisted_36, toDisplayString(unref(inviteHintText)), 1)
+              ])) : createCommentVNode("", true),
+              createBaseVNode("div", _hoisted_37, [
+                createBaseVNode("label", _hoisted_38, [
                   createTextVNode(toDisplayString(unref(permissionLabel)) + " ", 1),
                   createBaseVNode("select", {
                     value: linkShare.value.permission,
                     class: "share-modal__permission",
                     onChange: _cache[4] || (_cache[4] = ($event) => onLinkPermissionChange(Number($event.target.value)))
                   }, [
-                    createBaseVNode("option", _hoisted_34$1, toDisplayString(unref(canViewText)), 1),
-                    createBaseVNode("option", _hoisted_35, toDisplayString(unref(canEditText)), 1)
-                  ], 40, _hoisted_33$1)
+                    createBaseVNode("option", _hoisted_40, toDisplayString(unref(canViewText)), 1),
+                    createBaseVNode("option", _hoisted_41, toDisplayString(unref(canEditText)), 1)
+                  ], 40, _hoisted_39)
                 ]),
-                createBaseVNode("label", _hoisted_36, [
+                createBaseVNode("label", _hoisted_42, [
                   createTextVNode(toDisplayString(unref(passwordLabel)) + " ", 1),
-                  createBaseVNode("div", _hoisted_37, [
+                  createBaseVNode("div", _hoisted_43, [
                     withDirectives(createBaseVNode("input", {
                       "onUpdate:modelValue": _cache[5] || (_cache[5] = ($event) => linkPassword.value = $event),
                       type: "password",
                       placeholder: linkShare.value.hasPassword ? unref(passwordSetText) : unref(passwordPlaceholder),
                       class: "share-modal__link-input"
-                    }, null, 8, _hoisted_38), [
+                    }, null, 8, _hoisted_44), [
                       [vModelText, linkPassword.value]
                     ]),
                     linkPassword.value ? (openBlock(), createElementBlock("button", {
@@ -17420,7 +17491,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
                     }, toDisplayString(unref(removeText)), 1)) : createCommentVNode("", true)
                   ])
                 ]),
-                createBaseVNode("label", _hoisted_39, [
+                createBaseVNode("label", _hoisted_45, [
                   createTextVNode(toDisplayString(unref(expiryLabel)) + " ", 1),
                   createBaseVNode("input", {
                     type: "date",
@@ -17428,7 +17499,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
                     min: unref(todayStr),
                     class: "share-modal__link-input",
                     onChange: _cache[6] || (_cache[6] = ($event) => onExpiryChange($event.target.value))
-                  }, null, 40, _hoisted_40)
+                  }, null, 40, _hoisted_46)
                 ])
               ]),
               createBaseVNode("button", {
@@ -17437,13 +17508,13 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
               }, toDisplayString(unref(deleteLinkText)), 1)
             ]))
           ])) : createCommentVNode("", true),
-          shares.value.length === 0 && searchQuery.value.length === 0 && !linkShare.value ? (openBlock(), createElementBlock("div", _hoisted_41, toDisplayString(unref(emptyText)), 1)) : createCommentVNode("", true)
+          shares.value.length === 0 && searchQuery.value.length === 0 && !linkShare.value ? (openBlock(), createElementBlock("div", _hoisted_47, toDisplayString(unref(emptyText)), 1)) : createCommentVNode("", true)
         ])
       ]);
     };
   }
 });
-const ShareDialog = /* @__PURE__ */ _export_sfc$1(_sfc_main$7, [["__scopeId", "data-v-eb9cbc5a"]]);
+const ShareDialog = /* @__PURE__ */ _export_sfc$1(_sfc_main$7, [["__scopeId", "data-v-3afc12c7"]]);
 function formatListAsText(items) {
   return items.filter((item) => !item.checked).map((item) => {
     const parts = [];
@@ -18712,7 +18783,7 @@ function usePush() {
   if (hasPushServer) {
     try {
       __vitePreload(async () => {
-        const { listen } = await import("./index-Bzi0IO9m.chunk.mjs").then((n) => n.i);
+        const { listen } = await import("./index-BRF13Ezd.chunk.mjs").then((n) => n.i);
         return { listen };
       }, true ? __vite__mapDeps([0,1,2]) : void 0, import.meta.url).then(({ listen }) => {
         listen("shopping_list_item_update", () => {
