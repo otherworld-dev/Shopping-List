@@ -99,6 +99,29 @@
 							class="share-modal__link-qr-image">
 					</div>
 
+					<div v-if="linkShare.code" class="share-modal__invite">
+						<div class="share-modal__invite-title">
+							{{ inviteCodeText }}
+						</div>
+						<dl class="share-modal__invite-parts">
+							<dt>{{ serverText }}</dt>
+							<dd class="share-modal__invite-value">
+								{{ inviteServer }}
+							</dd>
+							<dt>{{ codeText }}</dt>
+							<dd class="share-modal__invite-value share-modal__invite-code">
+								{{ inviteCode }}
+							</dd>
+						</dl>
+						<button class="share-modal__link-btn share-modal__link-btn--small"
+							@click="onCopyInvite">
+							{{ copiedInvite ? copiedText : copyInviteText }}
+						</button>
+						<p class="share-modal__invite-hint">
+							{{ inviteHintText }}
+						</p>
+					</div>
+
 					<div class="share-modal__link-options">
 						<label class="share-modal__link-option">
 							{{ permissionLabel }}
@@ -157,9 +180,10 @@
 import { ref, computed, onMounted, nextTick } from 'vue'
 import { t } from '@nextcloud/l10n'
 import axios from '@nextcloud/axios'
-import { generateOcsUrl, generateUrl } from '@nextcloud/router'
+import { generateOcsUrl, generateUrl, getRootUrl } from '@nextcloud/router'
 import { useSharesStore } from '../stores/shares'
 import { qrCodeImageUrl } from '../utils/qrCode'
+import { formatCode, inviteString, serverAddress } from '../utils/inviteCode'
 import { ShareType, Permission } from '../types'
 import type { ListShare } from '../types'
 
@@ -205,6 +229,11 @@ const deleteLinkText = t('shopping_list', 'Delete public link')
 const showQrText = t('shopping_list', 'Show QR code')
 const hideQrText = t('shopping_list', 'Hide QR code')
 const qrAltText = t('shopping_list', 'QR code of the public link')
+const inviteCodeText = t('shopping_list', 'Invite code')
+const serverText = t('shopping_list', 'Server')
+const codeText = t('shopping_list', 'Code')
+const copyInviteText = t('shopping_list', 'Copy invite')
+const inviteHintText = t('shopping_list', 'Type these into the Shopping List Android app to join without the link.')
 
 const searchQuery = ref('')
 const searching = ref(false)
@@ -212,6 +241,7 @@ const shareeResults = ref<ShareeOption[]>([])
 const linkPassword = ref('')
 const copiedLink = ref(false)
 const showQr = ref(false)
+const copiedInvite = ref(false)
 
 // Filter link shares out of the regular shares list
 const shares = computed(() =>
@@ -229,6 +259,11 @@ const linkUrl = computed(() => {
 
 // Only drawn while shown; a phone camera opening it lands on the public page
 const linkQrUrl = computed(() => (showQr.value && linkUrl.value ? qrCodeImageUrl(linkUrl.value) : ''))
+
+// Origin plus any web root (/nextcloud), never index.php: what a guest types as the server
+const baseUrl = window.location.origin + getRootUrl()
+const inviteServer = computed(() => serverAddress(baseUrl))
+const inviteCode = computed(() => (linkShare.value?.code ? formatCode(linkShare.value.code) : ''))
 
 const todayStr = new Date().toISOString().split('T')[0]
 
@@ -309,6 +344,14 @@ async function onCopyLink() {
 		await navigator.clipboard.writeText(linkUrl.value)
 		copiedLink.value = true
 		setTimeout(() => { copiedLink.value = false }, 2000)
+	}
+}
+
+async function onCopyInvite() {
+	if (linkShare.value?.code) {
+		await navigator.clipboard.writeText(inviteString(baseUrl, linkShare.value.code))
+		copiedInvite.value = true
+		setTimeout(() => { copiedInvite.value = false }, 2000)
 	}
 }
 
@@ -622,6 +665,54 @@ async function onDeleteLink() {
 	width: 180px;
 	height: 180px;
 	border-radius: var(--border-radius);
+}
+
+.share-modal__invite {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 6px;
+	padding: 0 0 8px;
+}
+
+.share-modal__invite-title {
+	font-size: 0.85em;
+	color: var(--color-text-maxcontrast);
+}
+
+.share-modal__invite-parts {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 2px 12px;
+	margin: 0;
+	font-size: 0.85em;
+}
+
+.share-modal__invite-parts dt {
+	color: var(--color-text-maxcontrast);
+}
+
+.share-modal__invite-parts dd {
+	margin: 0;
+	min-width: 0;
+	overflow-wrap: anywhere;
+}
+
+/* Selectable as one piece, so either half can be copied on its own */
+.share-modal__invite-value {
+	user-select: all;
+}
+
+.share-modal__invite-code {
+	font-family: var(--font-face-monospace, monospace);
+	font-weight: 600;
+	letter-spacing: 1px;
+}
+
+.share-modal__invite-hint {
+	margin: 0;
+	font-size: 0.8em;
+	color: var(--color-text-maxcontrast);
 }
 
 .share-modal__link-options {

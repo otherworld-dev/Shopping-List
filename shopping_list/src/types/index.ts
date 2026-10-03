@@ -56,6 +56,7 @@ export interface ListShare {
 	token?: string
 	hasPassword?: boolean
 	expiresAt?: string | null
+	code?: string | null
 }
 
 export interface ShopArea {
