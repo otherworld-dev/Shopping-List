@@ -21,6 +21,7 @@ use DateTime;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\Attribute\AnonRateLimit;
+use OCP\AppFramework\Http\Attribute\BruteForceProtection;
 use OCP\AppFramework\Http\Attribute\NoCSRFRequired;
 use OCP\AppFramework\Http\Attribute\PublicPage;
 use OCP\AppFramework\Http\DataResponse;
@@ -90,6 +91,7 @@ class PublicListController extends OCSController {
 	#[PublicPage]
 	#[NoCSRFRequired]
 	#[AnonRateLimit(limit: 5, period: 60)]
+	#[BruteForceProtection(action: 'shopping_list_public_auth')]
 	public function auth(string $token): DataResponse {
 		try {
 			$share = $this->shareService->validatePublicAccess($token, $this->request->getParam('password'));
@@ -101,7 +103,10 @@ class PublicListController extends OCSController {
 		} catch (PasswordRequiredException) {
 			return new DataResponse(['passwordRequired' => true], Http::STATUS_FORBIDDEN);
 		} catch (NoPermissionException) {
-			return new DataResponse(['message' => 'Invalid password'], Http::STATUS_FORBIDDEN);
+			// A wrong password slows down this address's next tries
+			$response = new DataResponse(['message' => 'Invalid password'], Http::STATUS_FORBIDDEN);
+			$response->throttle(['token' => $token]);
+			return $response;
 		} catch (NotFoundException) {
 			return new DataResponse(['message' => 'Not found'], Http::STATUS_NOT_FOUND);
 		}
