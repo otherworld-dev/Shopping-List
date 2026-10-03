@@ -61,6 +61,18 @@ class ListShareMapper extends QBMapper {
 		}
 	}
 
+	public function findByCode(string $code): ?ListShare {
+		$qb = $this->db->getQueryBuilder();
+		$qb->select('*')
+			->from($this->getTableName())
+			->where($qb->expr()->eq('code', $qb->createNamedParameter($code)));
+		try {
+			return $this->findEntity($qb);
+		} catch (\OCP\AppFramework\Db\DoesNotExistException) {
+			return null;
+		}
+	}
+
 	public function findLinkShareByList(int $listId): ?ListShare {
 		$qb = $this->db->getQueryBuilder();
 		$qb->select('*')
