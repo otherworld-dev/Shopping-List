@@ -12,6 +12,9 @@ use OCP\IGroupManager;
 use OCP\IUserManager;
 
 class ShareService {
+	/** Tries at an unused invite code before giving up; even one clash is a one-in-billions event */
+	private const CODE_ATTEMPTS = 5;
+
 	public function __construct(
 		private ListShareMapper $shareMapper,
 		private ShoppingListMapper $listMapper,
@@ -37,8 +40,11 @@ class ShareService {
 			} elseif ($share->getSharedWithType() === 1) {
 				$group = $this->groupManager->get($share->getSharedWith());
 				$share->setSharedWithDisplayName($group?->getDisplayName() ?? $share->getSharedWith());
+			} elseif ($share->getSharedWithType() === 3 && $share->getCode() === null) {
+				// Links made before invite codes get theirs the first time the dialog opens
+				$share->setCode($this->newInviteCode());
+				$this->shareMapper->update($share);
 			}
-			// type 3 (link) — no display name enrichment needed
 		}
 
 		return $shares;
@@ -153,6 +159,9 @@ class ShareService {
 				$existing->setPasswordHash(password_hash($password, PASSWORD_BCRYPT));
 			}
 			$existing->setExpiresAt($expiresAt);
+			if ($existing->getCode() === null) {
+				$existing->setCode($this->newInviteCode());
+			}
 			return $this->shareMapper->update($existing);
 		}
 
@@ -163,6 +172,7 @@ class ShareService {
 		$share->setPermission($permission);
 		$share->setSharedBy($userId);
 		$share->setToken(bin2hex(random_bytes(32)));
+		$share->setCode($this->newInviteCode());
 		if ($password !== null) {
 			$share->setPasswordHash(password_hash($password, PASSWORD_BCRYPT));
 		}
@@ -223,6 +233,31 @@ class ShareService {
 		}
 
 		$this->shareMapper->delete($share);
+	}
+
+	private function newInviteCode(): string {
+		for ($i = 0; $i < self::CODE_ATTEMPTS; $i++) {
+			$code = InviteCode::generate();
+			if ($this->shareMapper->findByCode($code) === null) {
+				return $code;
+			}
+		}
+		throw new \RuntimeException('Could not find an unused invite code');
+	}
+
+	/**
+	 * The link share an invite code belongs to, with the same expiry rule as
+	 * its token. Malformed input is turned away before any query.
+	 *
+	 * @throws NotFoundException malformed, unknown or expired code
+	 */
+	public function findShareByCode(string $input): ListShare {
+		$code = InviteCode::normalise($input);
+		$share = $code === null ? null : $this->shareMapper->findByCode($code);
+		if ($share === null || $share->getToken() === null) {
+			throw new NotFoundException('Share not found');
+		}
+		return $this->findValidShare($share->getToken());
 	}
 
 	/**
