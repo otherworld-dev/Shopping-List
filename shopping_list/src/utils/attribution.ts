@@ -5,21 +5,28 @@ export interface Attributed {
 	checkedByName: string | null
 }
 
-function label(userId: string | null, name: string | null, me: string | null, showOwn: boolean, guestLabel: (name: string) => string): string | null {
+/** A name to show beside an item, and whether it's a guest's. */
+export interface Byline {
+	name: string
+	guest: boolean
+}
+
+function byline(userId: string | null, name: string | null, me: string | null, showOwn: boolean): Byline | null {
 	if (!name) return null
-	if (userId === null) return guestLabel(name)
+	if (userId === null) return { name, guest: true }
 	if (userId === me && !showOwn) return null
-	return name
+	return { name, guest: false }
 }
 
 /**
- * Who to name beside an item: account users plainly, guests marked as such
- * (so a guest can't pass as a member), and yourself only if you asked to.
- * `me` is null on the public page.
+ * Who to name beside an item: account users plainly, guests flagged (shown
+ * as a separate mark that a long name can't push out of view, so a guest
+ * can't pass as a member), and yourself only if you asked to. `me` is null
+ * on the public page.
  */
-export function attribution(item: Attributed, me: string | null, showOwn: boolean, guestLabel: (name: string) => string): { added: string | null, checked: string | null } {
+export function attribution(item: Attributed, me: string | null, showOwn: boolean): { added: Byline | null, checked: Byline | null } {
 	return {
-		added: label(item.addedBy, item.addedByName, me, showOwn, guestLabel),
-		checked: label(item.checkedBy, item.checkedByName, me, showOwn, guestLabel),
+		added: byline(item.addedBy, item.addedByName, me, showOwn),
+		checked: byline(item.checkedBy, item.checkedByName, me, showOwn),
 	}
 }

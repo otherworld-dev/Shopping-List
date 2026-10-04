@@ -1,7 +1,7 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-WVnLcuSv.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/useCollapsedAreas-C-gLTHOr.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/useCollapsedAreas-CX_mg1lj.chunk.css')])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-C7zMYzoo.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/useCollapsedAreas-BnuwZEU6.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/useCollapsedAreas-CX_mg1lj.chunk.css')])))=>i.map(i=>d[i]);
 const appName = "shopping_list";
 const appVersion = "1.9.0";
-import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, A as ActionGlobalMixin, a as NcIconSvgWrapper, r as resolveComponent, b as createBaseVNode, w as withDirectives, v as vModelRadio, n as normalizeClass, d as createVNode, m as mdiRadioboxMarked, e as mdiRadioboxBlank, u as useModel, f as createElementId, g as NcButton, h as withCtx, i as createTextVNode, j as renderSlot, k as defineComponent, l as createCommentVNode, p as unref, q as useCssModule, s as provide, x as NC_FORM_BOX_CONTEXT_KEY, y as useSlots, z as createBlock, B as mergeModels, C as ref, D as computed, I as INSIDE_RADIO_GROUP_KEY, E as NOOP, F as extend$1, G as isString, H as NO, J as isSymbol, K as isBuiltInDirective, L as capitalize, M as camelize, O as EMPTY_OBJ, P as isObject, Q as toHandlerKey, R as isArray, S as isOn, T as isReservedProp, U as isVoidTag, V as isHTMLTag, W as isSVGTag, X as isMathMLTag, Y as parseStringStyle, Z as makeMap, $ as generateCodeFrame, a0 as getAugmentedNamespace, a1 as runtimeDom_esmBundler, a2 as shared_esmBundler, a3 as getDefaultExportFromCjs, a4 as getGettextBuilder, a5 as getLoggerBuilder, a6 as defineStore, a7 as loadState, a8 as api, a9 as markServerFetched, aa as translate, ab as getLanguage, ac as loadValue, ad as saveValue, ae as readonly, af as Fragment, ag as renderList, ah as NcAppNavigationCaption, ai as NcActionButton, aj as NcAppNavigationItem, ak as _export_sfc$1, al as getCurrentUser, am as watch, an as onMounted, ao as onUnmounted, ap as NcLoadingIcon, aq as withKeys, ar as withModifiers, as as vModelText, at as normalizeStyle, au as Teleport, av as NcActions, aw as ImageViewer, ax as Permission, ay as attribution, az as nextTick, aA as itemImageUrl, aB as NcPopover, aC as mdiHelpCircleOutline, aD as getRootUrl, aE as generateOcsUrl, aF as cancelableClient, aG as ShareType, aH as generateUrl, aI as browserStorage, aJ as useCollapsedAreas, aK as NcAvatar, aL as isRef, aM as mdiChevronDown, aN as vShow, aO as shallowRef, aP as vModelSelect, aQ as NcCheckboxRadioSwitch, aR as Transition, aS as NcAppNavigation, aT as NcAppNavigationSettings, aU as NcAppContent, aV as NcContent, aW as createPinia, aX as offlinePersistPlugin, aY as createApp } from "./useCollapsedAreas-C-gLTHOr.chunk.mjs";
+import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, A as ActionGlobalMixin, a as NcIconSvgWrapper, r as resolveComponent, b as createBaseVNode, w as withDirectives, v as vModelRadio, n as normalizeClass, d as createVNode, m as mdiRadioboxMarked, e as mdiRadioboxBlank, u as useModel, f as createElementId, g as NcButton, h as withCtx, i as createTextVNode, j as renderSlot, k as defineComponent, l as createCommentVNode, p as unref, q as useCssModule, s as provide, x as NC_FORM_BOX_CONTEXT_KEY, y as useSlots, z as createBlock, B as mergeModels, C as ref, D as computed, I as INSIDE_RADIO_GROUP_KEY, E as NOOP, F as extend$1, G as isString, H as NO, J as isSymbol, K as isBuiltInDirective, L as capitalize, M as camelize, O as EMPTY_OBJ, P as isObject, Q as toHandlerKey, R as isArray, S as isOn, T as isReservedProp, U as isVoidTag, V as isHTMLTag, W as isSVGTag, X as isMathMLTag, Y as parseStringStyle, Z as makeMap, $ as generateCodeFrame, a0 as getAugmentedNamespace, a1 as runtimeDom_esmBundler, a2 as shared_esmBundler, a3 as getDefaultExportFromCjs, a4 as getGettextBuilder, a5 as getLoggerBuilder, a6 as defineStore, a7 as loadState, a8 as api, a9 as markServerFetched, aa as translate, ab as getLanguage, ac as loadValue, ad as saveValue, ae as readonly, af as Fragment, ag as renderList, ah as NcAppNavigationCaption, ai as NcActionButton, aj as NcAppNavigationItem, ak as _export_sfc$1, al as getCurrentUser, am as watch, an as onMounted, ao as onUnmounted, ap as NcLoadingIcon, aq as withKeys, ar as withModifiers, as as vModelText, at as normalizeStyle, au as Teleport, av as NcActions, aw as ImageViewer, ax as Permission, ay as attribution, az as nextTick, aA as itemImageUrl, aB as NcPopover, aC as mdiHelpCircleOutline, aD as getRootUrl, aE as generateOcsUrl, aF as cancelableClient, aG as ShareType, aH as generateUrl, aI as browserStorage, aJ as useCollapsedAreas, aK as NcAvatar, aL as isRef, aM as mdiChevronDown, aN as vShow, aO as shallowRef, aP as vModelSelect, aQ as NcCheckboxRadioSwitch, aR as Transition, aS as NcAppNavigation, aT as NcAppNavigationSettings, aU as NcAppContent, aV as NcContent, aW as createPinia, aX as offlinePersistPlugin, aY as createApp } from "./useCollapsedAreas-BnuwZEU6.chunk.mjs";
 const _sfc_main$j = {
   name: "NcActionCaption",
   inject: {
@@ -15482,12 +15482,14 @@ const _hoisted_12$4 = {
   key: 0,
   class: "item-row__quantity"
 };
-const _hoisted_13$4 = {
-  key: 1,
-  class: "item-row__by"
+const _hoisted_13$4 = ["title"];
+const _hoisted_14$4 = { class: "item-row__by-name" };
+const _hoisted_15$3 = {
+  key: 0,
+  class: "item-row__by-guest"
 };
-const _hoisted_14$4 = ["title"];
-const _hoisted_15$3 = { class: "item-row__area-name" };
+const _hoisted_16$3 = ["title"];
+const _hoisted_17$3 = { class: "item-row__area-name" };
 const _sfc_main$a = /* @__PURE__ */ defineComponent({
   __name: "ItemRow",
   props: {
@@ -15517,11 +15519,11 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
     });
     const { enabled: showOwnName } = useOwnNamePreference();
     const me = getCurrentUser()?.uid ?? null;
-    const guestLabel = (name) => translate("shopping_list", "{name} (guest)", { name });
+    const guestText = translate("shopping_list", "guest");
     const byline = computed(() => {
-      if (!item.value) return "";
-      const names = attribution(item.value, me, showOwnName.value, guestLabel);
-      return (item.value.checked ? names.checked : names.added) ?? "";
+      if (!item.value) return null;
+      const names = attribution(item.value, me, showOwnName.value);
+      return item.value.checked ? names.checked : names.added;
     });
     const areaOptions = computed(() => {
       const areas = shopAreasStore.areasByList[props.listId] ?? [];
@@ -15897,7 +15899,14 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
           createBaseVNode("span", {
             class: normalizeClass(["item-row__name", { "item-row__name--checked": item.value.checked }])
           }, toDisplayString(item.value.name), 3),
-          byline.value ? (openBlock(), createElementBlock("span", _hoisted_13$4, toDisplayString(byline.value), 1)) : createCommentVNode("", true)
+          byline.value ? (openBlock(), createElementBlock("span", {
+            key: 1,
+            class: "item-row__by",
+            title: byline.value.name
+          }, [
+            createBaseVNode("span", _hoisted_14$4, toDisplayString(byline.value.name), 1),
+            byline.value.guest ? (openBlock(), createElementBlock("span", _hoisted_15$3, toDisplayString(unref(guestText)), 1)) : createCommentVNode("", true)
+          ], 8, _hoisted_13$4)) : createCommentVNode("", true)
         ], 64)),
         areaName.value && !__props.editing ? (openBlock(), createElementBlock("span", {
           key: 3,
@@ -15909,8 +15918,8 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
             class: "item-row__area-dot",
             style: normalizeStyle({ backgroundColor: areaColor.value })
           }, null, 4)) : createCommentVNode("", true),
-          createBaseVNode("span", _hoisted_15$3, toDisplayString(areaName.value), 1)
-        ], 8, _hoisted_14$4)) : createCommentVNode("", true),
+          createBaseVNode("span", _hoisted_17$3, toDisplayString(areaName.value), 1)
+        ], 8, _hoisted_16$3)) : createCommentVNode("", true),
         __props.canEdit && !__props.editing ? (openBlock(), createBlock(unref(NcActions), {
           key: 4,
           class: "item-row__actions"
@@ -15985,7 +15994,7 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ItemRow = /* @__PURE__ */ _export_sfc$1(_sfc_main$a, [["__scopeId", "data-v-b1d23613"]]);
+const ItemRow = /* @__PURE__ */ _export_sfc$1(_sfc_main$a, [["__scopeId", "data-v-a91e6f0c"]]);
 function escapeRe(s) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
@@ -18878,7 +18887,7 @@ function usePush() {
   if (hasPushServer) {
     try {
       __vitePreload(async () => {
-        const { listen } = await import("./index-WVnLcuSv.chunk.mjs").then((n) => n.i);
+        const { listen } = await import("./index-C7zMYzoo.chunk.mjs").then((n) => n.i);
         return { listen };
       }, true ? __vite__mapDeps([0,1,2]) : void 0, import.meta.url).then(({ listen }) => {
         listen("shopping_list_item_update", () => {

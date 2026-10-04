@@ -83,8 +83,9 @@
 							<span class="public-list__name" :class="{ 'public-list__name--checked': item.checked }">
 								{{ item.name }}
 							</span>
-							<span v-if="byline(item)" class="public-list__by">
-								{{ byline(item) }}
+							<span v-if="byline(item)" class="public-list__by" :title="byline(item)!.name">
+								<span class="public-list__by-name">{{ byline(item)!.name }}</span>
+								<span v-if="byline(item)!.guest" class="public-list__by-guest">{{ guestText }}</span>
 							</span>
 							<span v-if="getAreaName(item.shopAreaId)" class="public-list__area">
 								<span v-if="getAreaColor(item.shopAreaId)"
@@ -129,8 +130,9 @@
 						{{ item.quantity }}{{ item.unit ? ' ' + item.unit : '' }}
 					</span>
 					<span class="public-list__name public-list__name--checked">{{ item.name }}</span>
-					<span v-if="byline(item)" class="public-list__by">
-						{{ byline(item) }}
+					<span v-if="byline(item)" class="public-list__by" :title="byline(item)!.name">
+						<span class="public-list__by-name">{{ byline(item)!.name }}</span>
+						<span v-if="byline(item)!.guest" class="public-list__by-guest">{{ guestText }}</span>
 					</span>
 				</div>
 			</div>
@@ -155,6 +157,7 @@ import { useCollapsedAreas } from '../composables/useCollapsedAreas'
 import ImageViewer from './ImageViewer.vue'
 import { publicItemImageUrl } from '../utils/imageUrls'
 import { attribution } from '../utils/attribution'
+import type { Byline } from '../utils/attribution'
 import { readGuestName, writeGuestName } from '../utils/guestName'
 
 const props = defineProps<{
@@ -281,12 +284,12 @@ onMounted(async () => {
 // The name this guest goes by, remembered in this browser; optional
 const guestName = ref(readGuestName())
 const yourNameText = t('shopping_list', 'Your name (optional)')
-const guestLabel = (name: string) => t('shopping_list', '{name} (guest)', { name })
+const guestText = t('shopping_list', 'guest')
 
 /** Who ticked it once it's ticked, otherwise who added it. Nobody is signed in here, so every name shows. */
-function byline(item: Item): string {
-	const names = attribution(item, null, true, guestLabel)
-	return (item.checked ? names.checked : names.added) ?? ''
+function byline(item: Item): Byline | null {
+	const names = attribution(item, null, true)
+	return item.checked ? names.checked : names.added
 }
 
 async function onAddItem() {
@@ -339,15 +342,31 @@ async function onToggleCheck(item: Item) {
 }
 
 .public-list__by {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
 	flex: 0 1 auto;
 	min-width: 0;
-	max-width: 30%;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+	max-width: 35%;
 	color: var(--color-text-maxcontrast, rgba(255, 255, 255, 0.7));
 	font-size: 0.8em;
 	padding-inline-end: 8px;
+}
+
+/* Only the name gets cut short; the guest mark always stays in view */
+.public-list__by-name {
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.public-list__by-guest {
+	flex: 0 0 auto;
+	padding: 0 5px;
+	border: 1px solid var(--color-border-dark, rgba(255, 255, 255, 0.3));
+	border-radius: var(--border-radius-pill, 10px);
+	line-height: 1.4;
 }
 
 .public-list__card {

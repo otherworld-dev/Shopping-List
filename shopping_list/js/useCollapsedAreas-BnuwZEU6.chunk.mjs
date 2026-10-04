@@ -42263,9 +42263,9 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     const modelValue = useModel(__props, "modelValue");
     const props = __props;
     const formattedAdditionalTimezones = computed(() => {
-      return props.additionalTimezones.map(({ timezoneId, label: label2 }) => ({
+      return props.additionalTimezones.map(({ timezoneId, label }) => ({
         timezoneId,
-        label: label2
+        label
       }));
     });
     const options = computed(() => {
@@ -42273,7 +42273,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       timezones.unshift(...formattedAdditionalTimezones.value);
       return timezones;
     });
-    function filterBy(option, label2, search) {
+    function filterBy(option, label, search) {
       const terms = search.trim().split(/\s+/);
       const values = Object.values(option);
       return terms.every((term) => {
@@ -44420,16 +44420,16 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
   }
 });
 const ImageViewer = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-ad4d9464"]]);
-function label(userId, name, me2, showOwn, guestLabel) {
+function byline(userId, name, me2, showOwn) {
   if (!name) return null;
-  if (userId === null) return guestLabel(name);
+  if (userId === null) return { name, guest: true };
   if (userId === me2 && !showOwn) return null;
-  return name;
+  return { name, guest: false };
 }
-function attribution(item, me2, showOwn, guestLabel) {
+function attribution(item, me2, showOwn) {
   return {
-    added: label(item.addedBy, item.addedByName, me2, showOwn, guestLabel),
-    checked: label(item.checkedBy, item.checkedByName, me2, showOwn, guestLabel)
+    added: byline(item.addedBy, item.addedByName, me2, showOwn),
+    checked: byline(item.checkedBy, item.checkedByName, me2, showOwn)
   };
 }
 function segment(size2) {
@@ -44635,4 +44635,4 @@ export {
   useSlots as y,
   createBlock as z
 };
-//# sourceMappingURL=useCollapsedAreas-C-gLTHOr.chunk.mjs.map
+//# sourceMappingURL=useCollapsedAreas-BnuwZEU6.chunk.mjs.map

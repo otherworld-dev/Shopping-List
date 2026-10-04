@@ -37,7 +37,7 @@
 	opacity: 0.5;
 }
 
-.item-row[data-v-b1d23613] {
+.item-row[data-v-a91e6f0c] {
 	display: flex !important;
 	flex-direction: row !important;
 	flex-wrap: nowrap !important;
@@ -53,26 +53,26 @@
 	gap: 0;
 	position: relative;
 }
-.item-row[data-v-b1d23613]:last-child {
+.item-row[data-v-a91e6f0c]:last-child {
 	border-bottom: none;
 }
-.item-row[data-v-b1d23613]:hover {
+.item-row[data-v-a91e6f0c]:hover {
 	background-color: var(--color-background-hover);
 }
 
 /* Invisible overlay to capture clicks — bypasses Nextcloud's click
    interception on non-interactive elements. The document-level capture
    listener in ListView detects which row was clicked. */
-.item-row[data-item-id][data-v-b1d23613]::after {
+.item-row[data-item-id][data-v-a91e6f0c]::after {
 	content: '';
 	position: absolute;
 	inset: 0;
 	cursor: pointer;
 }
-.item-row--editing[data-v-b1d23613]::after {
+.item-row--editing[data-v-a91e6f0c]::after {
 	display: none;
 }
-.item-row__check[data-v-b1d23613] {
+.item-row__check[data-v-a91e6f0c] {
 	flex: 0 0 auto;
 	display: flex;
 	align-items: center;
@@ -81,7 +81,7 @@
 	position: relative;
 	z-index: 1;
 }
-.item-row__check input[type="checkbox"][data-v-b1d23613] {
+.item-row__check input[type="checkbox"][data-v-a91e6f0c] {
 	width: 18px;
 	height: 18px;
 	cursor: pointer;
@@ -92,8 +92,8 @@
 /* Thumbnail. Nextcloud styles every button globally, so the row class in
    front keeps these rules ahead of its :hover, :focus and :active without
    !important. z-index lifts it above the row's click overlay. */
-.item-row > button.item-row__thumb[data-v-b1d23613],
-.item-row > .item-row__thumb--loading[data-v-b1d23613] {
+.item-row > button.item-row__thumb[data-v-a91e6f0c],
+.item-row > .item-row__thumb--loading[data-v-a91e6f0c] {
 	flex: 0 0 auto;
 	display: flex;
 	align-items: center;
@@ -110,38 +110,38 @@
 	position: relative;
 	z-index: 1;
 }
-.item-row > button.item-row__thumb[data-v-b1d23613] {
+.item-row > button.item-row__thumb[data-v-a91e6f0c] {
 	cursor: zoom-in;
 }
-.item-row > button.item-row__thumb[data-v-b1d23613]:is(:hover, :focus, :active) {
+.item-row > button.item-row__thumb[data-v-a91e6f0c]:is(:hover, :focus, :active) {
 	background-color: var(--color-background-dark);
 }
-.item-row > button.item-row__thumb[data-v-b1d23613]:focus-visible {
+.item-row > button.item-row__thumb[data-v-a91e6f0c]:focus-visible {
 	outline: 2px solid var(--color-main-text);
 	outline-offset: 1px;
 }
-.item-row__thumb img[data-v-b1d23613] {
+.item-row__thumb img[data-v-a91e6f0c] {
 	display: block;
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 }
-.item-row--drop-target[data-v-b1d23613] {
+.item-row--drop-target[data-v-a91e6f0c] {
 	outline: 2px dashed var(--color-primary-element);
 	outline-offset: -2px;
 	background-color: var(--color-primary-element-light);
 }
-.item-row__file-input[data-v-b1d23613] {
+.item-row__file-input[data-v-a91e6f0c] {
 	display: none;
 }
-.item-row__quantity[data-v-b1d23613] {
+.item-row__quantity[data-v-a91e6f0c] {
 	flex: 0 0 auto;
 	color: var(--color-text-maxcontrast);
 	font-size: 0.85em;
 	white-space: nowrap;
 	padding-inline-end: 8px;
 }
-.item-row__name[data-v-b1d23613] {
+.item-row__name[data-v-a91e6f0c] {
 	flex: 1 1 0%;
 	min-width: 0;
 	font-size: 0.95em;
@@ -150,22 +150,37 @@
 	   item can shrink — a long no-space name wraps instead of overflowing. */
 	overflow-wrap: anywhere;
 }
-.item-row__by[data-v-b1d23613] {
+.item-row__by[data-v-a91e6f0c] {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
 	flex: 0 1 auto;
 	min-width: 0;
-	max-width: 30%;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+	max-width: 35%;
 	color: var(--color-text-maxcontrast);
 	font-size: 0.8em;
 	padding-inline-end: 8px;
 }
-.item-row__name--checked[data-v-b1d23613] {
+
+/* Only the name gets cut short; the guest mark always stays in view */
+.item-row__by-name[data-v-a91e6f0c] {
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.item-row__by-guest[data-v-a91e6f0c] {
+	flex: 0 0 auto;
+	padding: 0 5px;
+	border: 1px solid var(--color-border-dark);
+	border-radius: var(--border-radius-pill, 10px);
+	line-height: 1.4;
+}
+.item-row__name--checked[data-v-a91e6f0c] {
 	text-decoration: line-through;
 	color: var(--color-text-maxcontrast);
 }
-.item-row__area[data-v-b1d23613] {
+.item-row__area[data-v-a91e6f0c] {
 	display: inline-flex;
 	align-items: center;
 	gap: 5px;
@@ -183,13 +198,13 @@
 	z-index: 1;
 	pointer-events: none;
 }
-.item-row__area-dot[data-v-b1d23613] {
+.item-row__area-dot[data-v-a91e6f0c] {
 	width: 6px;
 	height: 6px;
 	border-radius: 50%;
 	flex-shrink: 0;
 }
-.item-row__area-name[data-v-b1d23613] {
+.item-row__area-name[data-v-a91e6f0c] {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -197,14 +212,14 @@
 }
 
 /* Actions (⋮) kebab — sits above the row's click overlay so the menu opens */
-.item-row__actions[data-v-b1d23613] {
+.item-row__actions[data-v-a91e6f0c] {
 	flex: 0 0 auto;
 	position: relative;
 	z-index: 1;
 }
 
 /* Inline editing */
-.item-row__edit-input[data-v-b1d23613] {
+.item-row__edit-input[data-v-a91e6f0c] {
 	height: 30px;
 	border: 1px solid var(--color-primary-element);
 	border-radius: var(--border-radius);
@@ -216,39 +231,39 @@
 	position: relative;
 	z-index: 1;
 }
-.item-row__edit-name[data-v-b1d23613] {
+.item-row__edit-name[data-v-a91e6f0c] {
 	flex: 1 1 0%;
 	min-width: 0;
 }
-.item-row__edit-qty[data-v-b1d23613] {
+.item-row__edit-qty[data-v-a91e6f0c] {
 	flex: 0 0 70px;
 	width: 70px;
 	font-size: 0.85em;
 	text-align: center;
 }
-.item-row__edit-qty[data-v-b1d23613]::placeholder {
+.item-row__edit-qty[data-v-a91e6f0c]::placeholder {
 	color: var(--color-text-maxcontrast);
 	font-style: italic;
 }
 
 /* Area picker in edit mode */
-.item-row__area-wrapper[data-v-b1d23613] {
+.item-row__area-wrapper[data-v-a91e6f0c] {
 	flex: 0 0 auto;
 	position: relative;
 	display: flex;
 	align-items: center;
 	z-index: 10;
 }
-.item-row__edit-area[data-v-b1d23613] {
+.item-row__edit-area[data-v-a91e6f0c] {
 	width: 90px;
 	font-size: 0.85em;
 	padding-inline-end: 20px !important;
 }
-.item-row__edit-area[data-v-b1d23613]::placeholder {
+.item-row__edit-area[data-v-a91e6f0c]::placeholder {
 	color: var(--color-text-maxcontrast);
 	font-style: italic;
 }
-.item-row__area-clear[data-v-b1d23613] {
+.item-row__area-clear[data-v-a91e6f0c] {
 	position: absolute;
 	inset-inline-end: 4px;
 	top: 50%;
@@ -262,7 +277,7 @@
 	line-height: 1;
 	z-index: 2;
 }
-.item-row__area-clear[data-v-b1d23613]:hover {
+.item-row__area-clear[data-v-a91e6f0c]:hover {
 	color: var(--color-error);
 }
 

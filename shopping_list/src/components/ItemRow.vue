@@ -106,8 +106,9 @@
 			<span class="item-row__name" :class="{ 'item-row__name--checked': item.checked }">
 				{{ item.name }}
 			</span>
-			<span v-if="byline" class="item-row__by">
-				{{ byline }}
+			<span v-if="byline" class="item-row__by" :title="byline.name">
+				<span class="item-row__by-name">{{ byline.name }}</span>
+				<span v-if="byline.guest" class="item-row__by-guest">{{ guestText }}</span>
 			</span>
 		</template>
 
@@ -207,13 +208,13 @@ const item = computed(() => {
 
 const { enabled: showOwnName } = useOwnNamePreference()
 const me = getCurrentUser()?.uid ?? null
-const guestLabel = (name: string) => t('shopping_list', '{name} (guest)', { name })
+const guestText = t('shopping_list', 'guest')
 
 // Who ticked it once it's ticked, otherwise who added it
 const byline = computed(() => {
-	if (!item.value) return ''
-	const names = attribution(item.value, me, showOwnName.value, guestLabel)
-	return (item.value.checked ? names.checked : names.added) ?? ''
+	if (!item.value) return null
+	const names = attribution(item.value, me, showOwnName.value)
+	return item.value.checked ? names.checked : names.added
 })
 
 const areaOptions = computed(() => {
@@ -640,15 +641,31 @@ function onDrop(e: DragEvent) {
 }
 
 .item-row__by {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
 	flex: 0 1 auto;
 	min-width: 0;
-	max-width: 30%;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+	max-width: 35%;
 	color: var(--color-text-maxcontrast);
 	font-size: 0.8em;
 	padding-inline-end: 8px;
+}
+
+/* Only the name gets cut short; the guest mark always stays in view */
+.item-row__by-name {
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.item-row__by-guest {
+	flex: 0 0 auto;
+	padding: 0 5px;
+	border: 1px solid var(--color-border-dark);
+	border-radius: var(--border-radius-pill, 10px);
+	line-height: 1.4;
 }
 
 .item-row__name--checked {

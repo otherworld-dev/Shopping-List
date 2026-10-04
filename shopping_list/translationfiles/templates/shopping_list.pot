@@ -658,8 +658,9 @@ msgstr ""
 msgid "View image"
 msgstr ""
 
+#. Marks a name next to an item as someone without an account on a public link
 #: src/components/ItemRow.vue src/components/PublicListView.vue
-msgid "{name} (guest)"
+msgid "guest"
 msgstr ""
 
 #: src/components/ItemRow.vue
