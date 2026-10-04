@@ -58,7 +58,7 @@
 						<div v-for="item in group.items"
 							:key="item.id"
 							class="public-list__item"
-							:class="{ 'public-list__item--checked': item.checked }">
+							:class="{ 'public-list__item--checked': item.checked, 'public-list__item--with-by': byline(item) }">
 							<label class="public-list__check">
 								<input type="checkbox"
 									:checked="item.checked"
@@ -107,7 +107,8 @@
 			<div v-if="showChecked" class="public-list__bought-card">
 				<div v-for="item in checkedItems"
 					:key="item.id"
-					class="public-list__item public-list__item--checked">
+					class="public-list__item public-list__item--checked"
+					:class="{ 'public-list__item--with-by': byline(item) }">
 					<label class="public-list__check">
 						<input type="checkbox"
 							:checked="true"
@@ -314,6 +315,7 @@ async function onToggleCheck(item: Item) {
 		const saved = response.data.ocs.data as Item
 		item.checkedBy = saved.checkedBy
 		item.checkedByName = saved.checkedByName
+		item.checkedByGuest = saved.checkedByGuest
 	} catch {
 		item.checked = !newChecked // revert
 	}
@@ -367,6 +369,23 @@ async function onToggleCheck(item: Item) {
 	border: 1px solid var(--color-border-dark, rgba(255, 255, 255, 0.3));
 	border-radius: var(--border-radius-pill, 10px);
 	line-height: 1.4;
+}
+
+/* On a phone the person's name goes on its own line under the item, so the
+   item's own name keeps its room next to the quantity, area and menu */
+@media (max-width: 600px) {
+	.public-list__item.public-list__item--with-by {
+		flex-wrap: wrap;
+	}
+
+	.public-list__item--with-by .public-list__by {
+		order: 1;
+		flex: 0 0 100%;
+		max-width: none;
+		margin-top: -8px;
+		padding: 0 0 6px;
+		padding-inline-start: 32px;
+	}
 }
 
 .public-list__card {

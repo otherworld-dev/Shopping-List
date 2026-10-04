@@ -44420,16 +44420,16 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
   }
 });
 const ImageViewer = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-ad4d9464"]]);
-function byline(userId, name, me2, showOwn) {
+function byline(userId, name, guest, me2, showOwn) {
   if (!name) return null;
-  if (userId === null) return { name, guest: true };
-  if (userId === me2 && !showOwn) return null;
+  if (guest) return { name, guest: true };
+  if (me2 !== null && userId === me2 && !showOwn) return null;
   return { name, guest: false };
 }
 function attribution(item, me2, showOwn) {
   return {
-    added: byline(item.addedBy, item.addedByName, me2, showOwn),
-    checked: byline(item.checkedBy, item.checkedByName, me2, showOwn)
+    added: byline(item.addedBy, item.addedByName, item.addedByGuest, me2, showOwn),
+    checked: byline(item.checkedBy, item.checkedByName, item.checkedByGuest, me2, showOwn)
   };
 }
 function segment(size2) {
@@ -44635,4 +44635,4 @@ export {
   useSlots as y,
   createBlock as z
 };
-//# sourceMappingURL=useCollapsedAreas-BnuwZEU6.chunk.mjs.map
+//# sourceMappingURL=useCollapsedAreas-Bzauf5Mv.chunk.mjs.map

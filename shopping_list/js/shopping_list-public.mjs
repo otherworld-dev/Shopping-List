@@ -1,6 +1,6 @@
 const appName = "shopping_list";
 const appVersion = "1.9.0";
-import { aI as browserStorage, k as defineComponent, aa as translate, aJ as useCollapsedAreas, an as onMounted, aZ as publicApi, C as ref, o as openBlock, c as createElementBlock, b as createBaseVNode, t as toDisplayString, w as withDirectives, as as vModelText, p as unref, l as createCommentVNode, aq as withKeys, ar as withModifiers, d as createVNode, ap as NcLoadingIcon, af as Fragment, ag as renderList, at as normalizeStyle, n as normalizeClass, aM as mdiChevronDown, a as NcIconSvgWrapper, aN as vShow, i as createTextVNode, z as createBlock, aw as ImageViewer, D as computed, a_ as publicItemImageUrl, ay as attribution, ax as Permission, ak as _export_sfc, a7 as loadState, aW as createPinia, aX as offlinePersistPlugin, aY as createApp } from "./useCollapsedAreas-BnuwZEU6.chunk.mjs";
+import { aI as browserStorage, k as defineComponent, aa as translate, aJ as useCollapsedAreas, an as onMounted, aZ as publicApi, C as ref, o as openBlock, c as createElementBlock, b as createBaseVNode, t as toDisplayString, w as withDirectives, as as vModelText, p as unref, l as createCommentVNode, aq as withKeys, ar as withModifiers, d as createVNode, ap as NcLoadingIcon, af as Fragment, ag as renderList, at as normalizeStyle, n as normalizeClass, aM as mdiChevronDown, a as NcIconSvgWrapper, aN as vShow, i as createTextVNode, z as createBlock, aw as ImageViewer, D as computed, a_ as publicItemImageUrl, ay as attribution, ax as Permission, ak as _export_sfc, a7 as loadState, aW as createPinia, aX as offlinePersistPlugin, aY as createApp } from "./useCollapsedAreas-Bzauf5Mv.chunk.mjs";
 const KEY = "shopping_list_guest_name";
 function readGuestName(storage = browserStorage()) {
   try {
@@ -197,6 +197,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
         const saved = response.data.ocs.data;
         item.checkedBy = saved.checkedBy;
         item.checkedByName = saved.checkedByName;
+        item.checkedByGuest = saved.checkedByGuest;
       } catch {
         item.checked = !newChecked;
       }
@@ -268,7 +269,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
                   (openBlock(true), createElementBlock(Fragment, null, renderList(group.items, (item) => {
                     return openBlock(), createElementBlock("div", {
                       key: item.id,
-                      class: normalizeClass(["public-list__item", { "public-list__item--checked": item.checked }])
+                      class: normalizeClass(["public-list__item", { "public-list__item--checked": item.checked, "public-list__item--with-by": byline(item) }])
                     }, [
                       createBaseVNode("label", _hoisted_11, [
                         createBaseVNode("input", {
@@ -334,7 +335,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
             (openBlock(true), createElementBlock(Fragment, null, renderList(checkedItems.value, (item) => {
               return openBlock(), createElementBlock("div", {
                 key: item.id,
-                class: "public-list__item public-list__item--checked"
+                class: normalizeClass(["public-list__item public-list__item--checked", { "public-list__item--with-by": byline(item) }])
               }, [
                 createBaseVNode("label", _hoisted_23, [
                   createBaseVNode("input", {
@@ -370,7 +371,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
                   createBaseVNode("span", _hoisted_30, toDisplayString(byline(item).name), 1),
                   byline(item).guest ? (openBlock(), createElementBlock("span", _hoisted_31, toDisplayString(unref(guestText)), 1)) : createCommentVNode("", true)
                 ], 8, _hoisted_29)) : createCommentVNode("", true)
-              ]);
+              ], 2);
             }), 128))
           ])) : createCommentVNode("", true)
         ])) : createCommentVNode("", true),
@@ -384,7 +385,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const PublicListView = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-1c7edf60"]]);
+const PublicListView = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-8a752456"]]);
 const ANDROID_PACKAGE = "dev.otherworld.shoppinglist";
 const APP_WEBSITE = "https://shoppinglist.otherworld.dev/";
 function isAndroid(userAgent) {

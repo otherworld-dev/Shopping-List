@@ -5,6 +5,7 @@
 			'item-row--checked': item.checked,
 			'item-row--editing': editing,
 			'item-row--drop-target': dropActive,
+			'item-row--with-by': byline && !editing,
 		}"
 		:data-item-id="canEdit && !item.checked ? itemId : undefined"
 		@dragenter="onDragEnter"
@@ -666,6 +667,23 @@ function onDrop(e: DragEvent) {
 	border: 1px solid var(--color-border-dark);
 	border-radius: var(--border-radius-pill, 10px);
 	line-height: 1.4;
+}
+
+/* On a phone the person's name goes on its own line under the item, so the
+   item's own name keeps its room next to the quantity, area and menu */
+@media (max-width: 600px) {
+	.item-row.item-row--with-by {
+		flex-wrap: wrap !important;
+	}
+
+	.item-row--with-by .item-row__by {
+		order: 1;
+		flex: 0 0 100%;
+		max-width: none;
+		margin-top: -8px;
+		padding: 0 0 6px;
+		padding-inline-start: 32px;
+	}
 }
 
 .item-row__name--checked {
