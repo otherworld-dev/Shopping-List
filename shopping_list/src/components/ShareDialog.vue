@@ -134,6 +134,13 @@
 						</label>
 
 						<label class="share-modal__link-option">
+							{{ showNamesLabel }}
+							<input type="checkbox"
+								:checked="linkShare.showNames !== false"
+								@change="onShowNamesChange(($event.target as HTMLInputElement).checked)">
+						</label>
+
+						<label class="share-modal__link-option">
 							{{ passwordLabel }}
 							<div class="share-modal__link-password-row">
 								<input v-model="linkPassword"
@@ -228,6 +235,7 @@ const removeText = t('shopping_list', 'Remove')
 const expiryLabel = t('shopping_list', 'Expires')
 const deleteLinkText = t('shopping_list', 'Delete public link')
 const showQrText = t('shopping_list', 'Show QR code')
+const showNamesLabel = t('shopping_list', "Show members' names")
 const hideQrText = t('shopping_list', 'Hide QR code')
 const qrAltText = t('shopping_list', 'QR code of the public link')
 const inviteCodeText = t('shopping_list', 'Invite code')
@@ -357,6 +365,12 @@ async function onCopyInvite() {
 async function onLinkPermissionChange(permission: number) {
 	if (linkShare.value) {
 		await sharesStore.updateLinkShare(linkShare.value.id, props.listId, { permission })
+	}
+}
+
+async function onShowNamesChange(showNames: boolean) {
+	if (linkShare.value) {
+		await sharesStore.updateLinkShare(linkShare.value.id, props.listId, { showNames })
 	}
 }
 

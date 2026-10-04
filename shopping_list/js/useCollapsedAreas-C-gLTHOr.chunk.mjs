@@ -42263,9 +42263,9 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     const modelValue = useModel(__props, "modelValue");
     const props = __props;
     const formattedAdditionalTimezones = computed(() => {
-      return props.additionalTimezones.map(({ timezoneId, label }) => ({
+      return props.additionalTimezones.map(({ timezoneId, label: label2 }) => ({
         timezoneId,
-        label
+        label: label2
       }));
     });
     const options = computed(() => {
@@ -42273,7 +42273,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       timezones.unshift(...formattedAdditionalTimezones.value);
       return timezones;
     });
-    function filterBy(option, label, search) {
+    function filterBy(option, label2, search) {
       const terms = search.trim().split(/\s+/);
       const values = Object.values(option);
       return terms.every((term) => {
@@ -44252,7 +44252,7 @@ const publicApi = {
   getItems: (token2) => cancelableClient.get(url(`public/${token2}/items`)),
   createItem: (token2, data) => cancelableClient.post(url(`public/${token2}/items`), data),
   updateItem: (token2, id, data) => cancelableClient.put(url(`public/${token2}/items/${id}`), data),
-  checkItem: (token2, id, checked) => cancelableClient.put(url(`public/${token2}/items/${id}/check`), { checked }),
+  checkItem: (token2, id, checked, guestName) => cancelableClient.put(url(`public/${token2}/items/${id}/check`), { checked, guestName }),
   deleteItem: (token2, id) => cancelableClient.delete(url(`public/${token2}/items/${id}`)),
   reorder: (token2, sortedIds) => cancelableClient.post(url(`public/${token2}/items/reorder`), { sortedIds }),
   getAreas: (token2) => cancelableClient.get(url(`public/${token2}/areas`))
@@ -44420,6 +44420,18 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
   }
 });
 const ImageViewer = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-ad4d9464"]]);
+function label(userId, name, me2, showOwn, guestLabel) {
+  if (!name) return null;
+  if (userId === null) return guestLabel(name);
+  if (userId === me2 && !showOwn) return null;
+  return name;
+}
+function attribution(item, me2, showOwn, guestLabel) {
+  return {
+    added: label(item.addedBy, item.addedByName, me2, showOwn, guestLabel),
+    checked: label(item.checkedBy, item.checkedByName, me2, showOwn, guestLabel)
+  };
+}
 function segment(size2) {
   return size2 === "full" ? "image" : "thumbnail";
 }
@@ -44527,7 +44539,7 @@ export {
   makeMap as Z,
   _export_sfc$1 as _,
   NcIconSvgWrapper as a,
-  requireMajor as a$,
+  dist as a$,
   getAugmentedNamespace as a0,
   runtimeDom_esmBundler as a1,
   shared_esmBundler as a2,
@@ -44538,33 +44550,33 @@ export {
   loadState as a7,
   api as a8,
   markServerFetched as a9,
-  mdiHelpCircleOutline as aA,
-  getRootUrl as aB,
-  generateOcsUrl as aC,
-  cancelableClient as aD,
-  ShareType as aE,
-  generateUrl as aF,
-  getCurrentUser as aG,
-  browserStorage as aH,
-  useCollapsedAreas as aI,
-  NcAvatar as aJ,
-  isRef as aK,
-  mdiChevronDown as aL,
-  vShow as aM,
-  shallowRef as aN,
-  vModelSelect as aO,
-  NcCheckboxRadioSwitch as aP,
-  Transition as aQ,
-  NcAppNavigation as aR,
-  NcAppNavigationSettings as aS,
-  NcAppContent as aT,
-  NcContent as aU,
-  createPinia as aV,
-  offlinePersistPlugin as aW,
-  createApp as aX,
-  publicApi as aY,
-  publicItemImageUrl as aZ,
-  dist as a_,
+  itemImageUrl as aA,
+  NcPopover as aB,
+  mdiHelpCircleOutline as aC,
+  getRootUrl as aD,
+  generateOcsUrl as aE,
+  cancelableClient as aF,
+  ShareType as aG,
+  generateUrl as aH,
+  browserStorage as aI,
+  useCollapsedAreas as aJ,
+  NcAvatar as aK,
+  isRef as aL,
+  mdiChevronDown as aM,
+  vShow as aN,
+  shallowRef as aO,
+  vModelSelect as aP,
+  NcCheckboxRadioSwitch as aQ,
+  Transition as aR,
+  NcAppNavigation as aS,
+  NcAppNavigationSettings as aT,
+  NcAppContent as aU,
+  NcContent as aV,
+  createPinia as aW,
+  offlinePersistPlugin as aX,
+  createApp as aY,
+  publicApi as aZ,
+  publicItemImageUrl as a_,
   translate as aa,
   getLanguage as ab,
   loadValue as ac,
@@ -44576,27 +44588,28 @@ export {
   NcActionButton as ai,
   NcAppNavigationItem as aj,
   _export_sfc as ak,
-  watch as al,
-  onMounted as am,
-  onUnmounted as an,
-  NcLoadingIcon as ao,
-  withKeys as ap,
-  withModifiers as aq,
-  vModelText as ar,
-  normalizeStyle as as,
-  Teleport as at,
-  NcActions as au,
-  ImageViewer as av,
-  Permission as aw,
-  nextTick as ax,
-  itemImageUrl as ay,
-  NcPopover as az,
+  getCurrentUser as al,
+  watch as am,
+  onMounted as an,
+  onUnmounted as ao,
+  NcLoadingIcon as ap,
+  withKeys as aq,
+  withModifiers as ar,
+  vModelText as as,
+  normalizeStyle as at,
+  Teleport as au,
+  NcActions as av,
+  ImageViewer as aw,
+  Permission as ax,
+  attribution as ay,
+  nextTick as az,
   createBaseVNode as b,
-  requireValid as b0,
-  dist$1 as b1,
-  process$1 as b2,
-  commonjsGlobal as b3,
-  Buffer as b4,
+  requireMajor as b0,
+  requireValid as b1,
+  dist$1 as b2,
+  process$1 as b3,
+  commonjsGlobal as b4,
+  Buffer as b5,
   createElementBlock as c,
   createVNode as d,
   mdiRadioboxBlank as e,
@@ -44622,4 +44635,4 @@ export {
   useSlots as y,
   createBlock as z
 };
-//# sourceMappingURL=useCollapsedAreas-A859sETM.chunk.mjs.map
+//# sourceMappingURL=useCollapsedAreas-C-gLTHOr.chunk.mjs.map

@@ -37,6 +37,9 @@ export interface Item {
 	shopAreaId: number | null
 	checked: boolean
 	checkedBy: string | null
+	checkedByName: string | null
+	addedBy: string | null
+	addedByName: string | null
 	sortOrder: number
 	/** Server-managed handle for the item's photo, rotated on every replace; null when there is none */
 	imageKey: string | null
@@ -57,6 +60,7 @@ export interface ListShare {
 	hasPassword?: boolean
 	expiresAt?: string | null
 	code?: string | null
+	showNames?: boolean
 }
 
 export interface ShopArea {

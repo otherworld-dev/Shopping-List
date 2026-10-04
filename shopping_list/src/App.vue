@@ -9,6 +9,7 @@
 				<NcAppNavigationSettings>
 					<ListSortSettings />
 					<ItemImagesSettings />
+					<NameSettings />
 				</NcAppNavigationSettings>
 			</template>
 		</NcAppNavigation>
@@ -43,6 +44,7 @@ import ListView from './components/ListView.vue'
 import AreaKeywordsSettings from './components/AreaKeywordsSettings.vue'
 import ListSortSettings from './components/ListSortSettings.vue'
 import ItemImagesSettings from './components/ItemImagesSettings.vue'
+import NameSettings from './components/NameSettings.vue'
 import AndroidAppLink from './components/AndroidAppLink.vue'
 import OfflineIndicator from './components/OfflineIndicator.vue'
 import { useListsStore } from './stores/lists'

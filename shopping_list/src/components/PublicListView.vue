@@ -2,6 +2,16 @@
 	<div class="public-list">
 		<h2>{{ title }}</h2>
 
+		<input v-if="canEdit"
+			v-model="guestName"
+			type="text"
+			maxlength="40"
+			autocomplete="nickname"
+			:placeholder="yourNameText"
+			:aria-label="yourNameText"
+			class="public-list__guest-name"
+			@change="writeGuestName(guestName)">
+
 		<div class="public-list__card">
 			<div v-if="canEdit" class="public-list__editor">
 				<span class="public-list__editor-plus">+</span>
@@ -73,6 +83,9 @@
 							<span class="public-list__name" :class="{ 'public-list__name--checked': item.checked }">
 								{{ item.name }}
 							</span>
+							<span v-if="byline(item)" class="public-list__by">
+								{{ byline(item) }}
+							</span>
 							<span v-if="getAreaName(item.shopAreaId)" class="public-list__area">
 								<span v-if="getAreaColor(item.shopAreaId)"
 									class="public-list__area-dot"
@@ -116,6 +129,9 @@
 						{{ item.quantity }}{{ item.unit ? ' ' + item.unit : '' }}
 					</span>
 					<span class="public-list__name public-list__name--checked">{{ item.name }}</span>
+					<span v-if="byline(item)" class="public-list__by">
+						{{ byline(item) }}
+					</span>
 				</div>
 			</div>
 		</div>
@@ -138,6 +154,8 @@ import { Permission } from '../types'
 import { useCollapsedAreas } from '../composables/useCollapsedAreas'
 import ImageViewer from './ImageViewer.vue'
 import { publicItemImageUrl } from '../utils/imageUrls'
+import { attribution } from '../utils/attribution'
+import { readGuestName, writeGuestName } from '../utils/guestName'
 
 const props = defineProps<{
 	token: string
@@ -260,13 +278,24 @@ onMounted(async () => {
 	}
 })
 
+// The name this guest goes by, remembered in this browser; optional
+const guestName = ref(readGuestName())
+const yourNameText = t('shopping_list', 'Your name (optional)')
+const guestLabel = (name: string) => t('shopping_list', '{name} (guest)', { name })
+
+/** Who ticked it once it's ticked, otherwise who added it. Nobody is signed in here, so every name shows. */
+function byline(item: Item): string {
+	const names = attribution(item, null, true, guestLabel)
+	return (item.checked ? names.checked : names.added) ?? ''
+}
+
 async function onAddItem() {
 	const name = newItemName.value.trim()
 	if (!name) return
 
 	newItemName.value = ''
 	try {
-		const response = await publicApi.createItem(props.token, { name, quantity: '1' })
+		const response = await publicApi.createItem(props.token, { name, quantity: '1', guestName: guestName.value.trim() || undefined })
 		items.value.push(response.data.ocs.data)
 	} catch (e) {
 		console.error('Failed to add item', e)
@@ -278,7 +307,10 @@ async function onToggleCheck(item: Item) {
 	const newChecked = !item.checked
 	item.checked = newChecked // optimistic
 	try {
-		await publicApi.checkItem(props.token, item.id, newChecked)
+		const response = await publicApi.checkItem(props.token, item.id, newChecked, guestName.value.trim() || undefined)
+		const saved = response.data.ocs.data as Item
+		item.checkedBy = saved.checkedBy
+		item.checkedByName = saved.checkedByName
 	} catch {
 		item.checked = !newChecked // revert
 	}
@@ -291,6 +323,31 @@ async function onToggleCheck(item: Item) {
 	font-size: 1.5em;
 	font-weight: 700;
 	color: var(--color-main-text, #fff);
+}
+
+.public-list__guest-name {
+	width: 100%;
+	height: 32px;
+	margin: 0 0 8px;
+	padding: 0 10px;
+	border: 1px solid var(--color-border, rgba(255, 255, 255, 0.15));
+	border-radius: var(--border-radius-large, 10px);
+	background-color: var(--color-main-background, rgba(0, 0, 0, 0.35));
+	color: var(--color-main-text, #fff);
+	font-size: 0.9em;
+	box-sizing: border-box;
+}
+
+.public-list__by {
+	flex: 0 1 auto;
+	min-width: 0;
+	max-width: 30%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: var(--color-text-maxcontrast, rgba(255, 255, 255, 0.7));
+	font-size: 0.8em;
+	padding-inline-end: 8px;
 }
 
 .public-list__card {

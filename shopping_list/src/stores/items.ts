@@ -128,6 +128,9 @@ export const useItemsStore = defineStore('items', () => {
 				shopAreaId: (data.shopAreaId as number) ?? null,
 				checked: Boolean(data.checked),
 				checkedBy: null,
+				checkedByName: null,
+				addedBy: null,
+				addedByName: null,
 				sortOrder: existingItems.length,
 				imageKey: null,
 				tags: [],
@@ -219,8 +222,14 @@ export const useItemsStore = defineStore('items', () => {
 		// it here as well lets "Recently bought" put the item on top at once.
 		const previousState = item.checked
 		const previousUpdatedAt = item.updatedAt
+		const previousCheckedBy = item.checkedBy
+		const previousCheckedByName = item.checkedByName
 		item.checked = !item.checked
 		item.updatedAt = new Date().toISOString()
+		if (!item.checked) {
+			item.checkedBy = null
+			item.checkedByName = null
+		}
 
 		if (!isOnline.value) {
 			await enqueue({ type: 'item.check', listId, itemId: id, payload: { checked: item.checked } })
@@ -228,13 +237,19 @@ export const useItemsStore = defineStore('items', () => {
 		}
 
 		try {
-			await api.items.check(listId, id, item.checked)
+			const response = await api.items.check(listId, id, item.checked)
+			// Who ticked it comes from the server, with the name as it is now
+			const saved = response.data.ocs.data as Item
+			item.checkedBy = saved.checkedBy
+			item.checkedByName = saved.checkedByName
 		} catch (e) {
 			if (isNetworkError(e)) {
 				await enqueue({ type: 'item.check', listId, itemId: id, payload: { checked: item.checked } })
 			} else {
 				item.checked = previousState
 				item.updatedAt = previousUpdatedAt
+				item.checkedBy = previousCheckedBy
+				item.checkedByName = previousCheckedByName
 				showError(t('shopping_list', 'Failed to update item'))
 				console.error(e)
 			}

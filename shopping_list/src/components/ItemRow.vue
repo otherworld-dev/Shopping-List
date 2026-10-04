@@ -106,6 +106,9 @@
 			<span class="item-row__name" :class="{ 'item-row__name--checked': item.checked }">
 				{{ item.name }}
 			</span>
+			<span v-if="byline" class="item-row__by">
+				{{ byline }}
+			</span>
 		</template>
 
 		<span v-if="areaName && !editing" class="item-row__area" :title="areaName">
@@ -158,6 +161,9 @@ import { NcActions, NcActionButton, NcActionCaption, NcActionSeparator, NcLoadin
 import { showError } from '@nextcloud/dialogs'
 import ImageViewer from './ImageViewer.vue'
 import { useImagePreference } from '../composables/useImagePreference'
+import { useOwnNamePreference } from '../composables/useOwnNamePreference'
+import { attribution } from '../utils/attribution'
+import { getCurrentUser } from '@nextcloud/auth'
 import { useNetworkStatus } from '../offline/networkStatus'
 import { itemImageUrl } from '../utils/imageUrls'
 import { isFileDrag, isImageFile, pickImageFile } from '../utils/imageFiles'
@@ -197,6 +203,17 @@ const otherLists = computed(() =>
 const item = computed(() => {
 	const items = itemsStore.itemsByList[props.listId] ?? []
 	return items.find(i => i.id === props.itemId) ?? null
+})
+
+const { enabled: showOwnName } = useOwnNamePreference()
+const me = getCurrentUser()?.uid ?? null
+const guestLabel = (name: string) => t('shopping_list', '{name} (guest)', { name })
+
+// Who ticked it once it's ticked, otherwise who added it
+const byline = computed(() => {
+	if (!item.value) return ''
+	const names = attribution(item.value, me, showOwnName.value, guestLabel)
+	return (item.value.checked ? names.checked : names.added) ?? ''
 })
 
 const areaOptions = computed(() => {
@@ -620,6 +637,18 @@ function onDrop(e: DragEvent) {
 	/* anywhere (not break-word) so the min-content width collapses and the flex
 	   item can shrink — a long no-space name wraps instead of overflowing. */
 	overflow-wrap: anywhere;
+}
+
+.item-row__by {
+	flex: 0 1 auto;
+	min-width: 0;
+	max-width: 30%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: var(--color-text-maxcontrast);
+	font-size: 0.8em;
+	padding-inline-end: 8px;
 }
 
 .item-row__name--checked {

@@ -76,7 +76,7 @@ export const api = {
 	},
 	settings: {
 		get: () => axios.get(url('settings')),
-		update: (data: { showImages?: boolean, listSort?: ListSort }) => axios.patch(url('settings'), data),
+		update: (data: { showImages?: boolean, listSort?: ListSort, showOwnName?: boolean }) => axios.patch(url('settings'), data),
 	},
 }
 
@@ -89,8 +89,8 @@ export const publicApi = {
 		axios.post(url(`public/${token}/items`), data),
 	updateItem: (token: string, id: number, data: Record<string, unknown>) =>
 		axios.put(url(`public/${token}/items/${id}`), data),
-	checkItem: (token: string, id: number, checked: boolean) =>
-		axios.put(url(`public/${token}/items/${id}/check`), { checked }),
+	checkItem: (token: string, id: number, checked: boolean, guestName?: string) =>
+		axios.put(url(`public/${token}/items/${id}/check`), { checked, guestName }),
 	deleteItem: (token: string, id: number) =>
 		axios.delete(url(`public/${token}/items/${id}`)),
 	reorder: (token: string, sortedIds: number[]) =>
