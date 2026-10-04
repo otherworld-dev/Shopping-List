@@ -52,8 +52,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   check it before a guest joins, while the version and image limits still
   need a login. Wrong codes are throttled by Nextcloud's brute-force protection and
   limited to ten tries a minute
-- Items carry `addedBy`, `addedByName` and `checkedByName` (a guest has a
-  name and no user id), public add and tick take an optional `guestName`,
+- Items carry `addedBy`, `addedByName`, `addedByGuest`, `checkedByName`
+  and `checkedByGuest`, and public responses leave the user ids out, as a
+  login can be an email address. Public add and tick take an optional
+  `guestName`,
   link shares carry `showNames`, the settings carry `showOwnName`, and the
   capabilities list `guest-names` among the features
 

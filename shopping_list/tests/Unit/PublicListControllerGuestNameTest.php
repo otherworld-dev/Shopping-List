@@ -97,9 +97,20 @@ class PublicListControllerGuestNameTest extends TestCase {
 		$this->item(['addedBy' => 'ben', 'addedByName' => 'Ben']);
 		$this->params = ['name' => 'Oat milk', 'addedBy' => null, 'addedByName' => 'Mallory', 'checkedByName' => 'Mallory'];
 		$data = $this->controller()->updateItem('tok', 9)->getData()->jsonSerialize();
-		self::assertSame('ben', $data['addedBy']);
 		self::assertSame('Ben', $data['addedByName']);
+		self::assertFalse($data['addedByGuest']);
 		self::assertNull($data['checkedByName']);
+		self::assertSame('ben', $this->stored->getAddedBy());
+	}
+
+	public function testALinkNeverHandsOutMembersUserIds(): void {
+		$this->item(['addedBy' => 'ben@example.com', 'addedByName' => 'Ben', 'checked' => true, 'checkedBy' => 'ben@example.com', 'checkedByName' => 'Ben']);
+
+		$listed = $this->controller()->items('tok')->getData()[0]->jsonSerialize();
+		self::assertNull($listed['addedBy']);
+		self::assertNull($listed['checkedBy']);
+		self::assertSame('Ben', $listed['addedByName']);
+		self::assertFalse($listed['addedByGuest']);
 	}
 
 	public function testALinkWithoutNamesHidesMembersButNotGuests(): void {

@@ -60,8 +60,9 @@ class Item extends Entity implements JsonSerializable {
 	/** @var array Transient tags loaded by service */
 	private array $tags = [];
 
-	/** Set for a public link that hides members' names; only changes the JSON */
-	private bool $accountNamesHidden = false;
+	/** Set for a public response: user ids stay out, and members' names too when the link hides them. Only changes the JSON */
+	private bool $publicView = false;
+	private bool $memberNamesHidden = false;
 
 	public function __construct() {
 		$this->addType('id', 'integer');
@@ -81,14 +82,22 @@ class Item extends Entity implements JsonSerializable {
 		return $this->tags;
 	}
 
-	/** Leave account users' names and ids out of this item's JSON; guests' names stay. */
-	public function hideAccountNames(): void {
-		$this->accountNamesHidden = true;
+	/**
+	 * Shape this item's JSON for a public link: no user ids (a login can be an
+	 * email address), and no members' names either when the owner turned
+	 * them off for the link. Guests' names always stay.
+	 */
+	public function forPublic(bool $showMemberNames): void {
+		$this->publicView = true;
+		$this->memberNamesHidden = !$showMemberNames;
 	}
 
 	public function jsonSerialize(): array {
-		$hideAdder = $this->accountNamesHidden && $this->addedBy !== null;
-		$hideChecker = $this->accountNamesHidden && $this->checkedBy !== null;
+		// A guest has a name and no user id
+		$addedByGuest = $this->addedBy === null && $this->addedByName !== null;
+		$checkedByGuest = $this->checkedBy === null && $this->checkedByName !== null;
+		$hideAdder = $this->memberNamesHidden && $this->addedBy !== null;
+		$hideChecker = $this->memberNamesHidden && $this->checkedBy !== null;
 		return [
 			'id' => $this->id,
 			'listId' => $this->listId,
@@ -97,10 +106,12 @@ class Item extends Entity implements JsonSerializable {
 			'unit' => $this->unit,
 			'shopAreaId' => $this->shopAreaId,
 			'checked' => $this->checked,
-			'checkedBy' => $hideChecker ? null : $this->checkedBy,
+			'checkedBy' => $this->publicView ? null : $this->checkedBy,
 			'checkedByName' => $hideChecker ? null : $this->checkedByName,
-			'addedBy' => $hideAdder ? null : $this->addedBy,
+			'checkedByGuest' => $checkedByGuest,
+			'addedBy' => $this->publicView ? null : $this->addedBy,
 			'addedByName' => $hideAdder ? null : $this->addedByName,
+			'addedByGuest' => $addedByGuest,
 			'sortOrder' => $this->sortOrder,
 			'imageKey' => $this->imageKey,
 			'tags' => $this->tags,

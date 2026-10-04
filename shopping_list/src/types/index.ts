@@ -38,8 +38,10 @@ export interface Item {
 	checked: boolean
 	checkedBy: string | null
 	checkedByName: string | null
+	checkedByGuest: boolean
 	addedBy: string | null
 	addedByName: string | null
+	addedByGuest: boolean
 	sortOrder: number
 	/** Server-managed handle for the item's photo, rotated on every replace; null when there is none */
 	imageKey: string | null

@@ -72,18 +72,17 @@ class PublicListController extends OCSController {
 	}
 
 	/**
-	 * Hide members' names from this response when the owner turned them off
-	 * for the link; guests' names always show.
+	 * Shape items for the public: never members' user ids, and not their
+	 * names either when the owner turned them off for the link; guests'
+	 * names always show.
 	 *
 	 * @template T of Item|Item[]
 	 * @param T $items
 	 * @return T
 	 */
 	private function forLink(ListShare $share, Item|array $items): Item|array {
-		if (!$share->showsNames()) {
-			foreach (is_array($items) ? $items : [$items] as $item) {
-				$item->hideAccountNames();
-			}
+		foreach (is_array($items) ? $items : [$items] as $item) {
+			$item->forPublic($share->showsNames());
 		}
 		return $items;
 	}

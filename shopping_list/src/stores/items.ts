@@ -129,8 +129,10 @@ export const useItemsStore = defineStore('items', () => {
 				checked: Boolean(data.checked),
 				checkedBy: null,
 				checkedByName: null,
+				checkedByGuest: false,
 				addedBy: null,
 				addedByName: null,
+				addedByGuest: false,
 				sortOrder: existingItems.length,
 				imageKey: null,
 				tags: [],
@@ -229,6 +231,7 @@ export const useItemsStore = defineStore('items', () => {
 		if (!item.checked) {
 			item.checkedBy = null
 			item.checkedByName = null
+			item.checkedByGuest = false
 		}
 
 		if (!isOnline.value) {
@@ -242,6 +245,7 @@ export const useItemsStore = defineStore('items', () => {
 			const saved = response.data.ocs.data as Item
 			item.checkedBy = saved.checkedBy
 			item.checkedByName = saved.checkedByName
+			item.checkedByGuest = saved.checkedByGuest
 		} catch (e) {
 			if (isNetworkError(e)) {
 				await enqueue({ type: 'item.check', listId, itemId: id, payload: { checked: item.checked } })
