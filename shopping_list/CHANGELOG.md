@@ -31,6 +31,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   List Android app to join the list. The code opens nothing the link
   wouldn't: a list with a password still asks for it, and the code stops
   working when the link is deleted or expires
+- Each item now shows who added it, and once it's ticked, who ticked it.
+  People on a public link can type their name above the list, which shows
+  as "Anna (guest)" so a guest can't pass as one of the household. The
+  list owner can hide members' names from the public page with Show
+  members' names on the link in the Share dialog, and guests' names still
+  show. Your own name is left off what you see unless you turn on Show my
+  name on items under Names in Settings. Items added before this have no
+  name. Thanks to natrius for the idea
 
 ### Changed
 - The app's capabilities now list `list-order` among its features, each
@@ -44,6 +52,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   check it before a guest joins, while the version and image limits still
   need a login. Wrong codes are throttled by Nextcloud's brute-force protection and
   limited to ten tries a minute
+- Items carry `addedBy`, `addedByName` and `checkedByName` (a guest has a
+  name and no user id), public add and tick take an optional `guestName`,
+  link shares carry `showNames`, the settings carry `showOwnName`, and the
+  capabilities list `guest-names` among the features
 
 ### Upgrade
 - Database migration: one column is added to the list preferences table
@@ -51,6 +63,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Database migration: an invite code column is added to the shares table.
   Links made before this get their code the first time the Share dialog is
   opened
+- Database migration: three columns are added to the items table for who
+  added and ticked each item, and one to the shares table for the Show
+  members' names choice
 
 ### Fixed
 - Changing, ticking or deleting an item through a public link after the
@@ -63,6 +78,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Copy link in the Share dialog did nothing on a server reached over plain
   http, as browsers only offer the clipboard to https pages. It now falls
   back to the older way of copying, and so does the new Copy invite
+- Ticking an item through a public link left whoever ticked it last as the
+  one who ticked it
 
 ## [1.9.0] - 2026-09-23
 
