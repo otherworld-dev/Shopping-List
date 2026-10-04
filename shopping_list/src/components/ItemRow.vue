@@ -5,6 +5,7 @@
 			'item-row--checked': item.checked,
 			'item-row--editing': editing,
 			'item-row--drop-target': dropActive,
+			'item-row--with-by': byline && !editing,
 		}"
 		:data-item-id="canEdit && !item.checked ? itemId : undefined"
 		@dragenter="onDragEnter"
@@ -106,6 +107,10 @@
 			<span class="item-row__name" :class="{ 'item-row__name--checked': item.checked }">
 				{{ item.name }}
 			</span>
+			<span v-if="byline" class="item-row__by" :title="byline.name">
+				<span class="item-row__by-name">{{ byline.name }}</span>
+				<span v-if="byline.guest" class="item-row__by-guest">{{ guestText }}</span>
+			</span>
 		</template>
 
 		<span v-if="areaName && !editing" class="item-row__area" :title="areaName">
@@ -158,6 +163,9 @@ import { NcActions, NcActionButton, NcActionCaption, NcActionSeparator, NcLoadin
 import { showError } from '@nextcloud/dialogs'
 import ImageViewer from './ImageViewer.vue'
 import { useImagePreference } from '../composables/useImagePreference'
+import { useOwnNamePreference } from '../composables/useOwnNamePreference'
+import { attribution } from '../utils/attribution'
+import { getCurrentUser } from '@nextcloud/auth'
 import { useNetworkStatus } from '../offline/networkStatus'
 import { itemImageUrl } from '../utils/imageUrls'
 import { isFileDrag, isImageFile, pickImageFile } from '../utils/imageFiles'
@@ -197,6 +205,17 @@ const otherLists = computed(() =>
 const item = computed(() => {
 	const items = itemsStore.itemsByList[props.listId] ?? []
 	return items.find(i => i.id === props.itemId) ?? null
+})
+
+const { enabled: showOwnName } = useOwnNamePreference()
+const me = getCurrentUser()?.uid ?? null
+const guestText = t('shopping_list', 'guest')
+
+// Who ticked it once it's ticked, otherwise who added it
+const byline = computed(() => {
+	if (!item.value) return null
+	const names = attribution(item.value, me, showOwnName.value)
+	return item.value.checked ? names.checked : names.added
 })
 
 const areaOptions = computed(() => {
@@ -620,6 +639,51 @@ function onDrop(e: DragEvent) {
 	/* anywhere (not break-word) so the min-content width collapses and the flex
 	   item can shrink — a long no-space name wraps instead of overflowing. */
 	overflow-wrap: anywhere;
+}
+
+.item-row__by {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	flex: 0 1 auto;
+	min-width: 0;
+	max-width: 35%;
+	color: var(--color-text-maxcontrast);
+	font-size: 0.8em;
+	padding-inline-end: 8px;
+}
+
+/* Only the name gets cut short; the guest mark always stays in view */
+.item-row__by-name {
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.item-row__by-guest {
+	flex: 0 0 auto;
+	padding: 0 5px;
+	border: 1px solid var(--color-border-dark);
+	border-radius: var(--border-radius-pill, 10px);
+	line-height: 1.4;
+}
+
+/* On a phone the person's name goes on its own line under the item, so the
+   item's own name keeps its room next to the quantity, area and menu */
+@media (max-width: 600px) {
+	.item-row.item-row--with-by {
+		flex-wrap: wrap !important;
+	}
+
+	.item-row--with-by .item-row__by {
+		order: 1;
+		flex: 0 0 100%;
+		max-width: none;
+		margin-top: -8px;
+		padding: 0 0 6px;
+		padding-inline-start: 32px;
+	}
 }
 
 .item-row__name--checked {

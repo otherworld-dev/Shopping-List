@@ -14,6 +14,7 @@ use OCP\IConfig;
 class UserSettingsService {
 	public const SHOW_IMAGES = 'show_images';
 	public const LIST_SORT = 'list_sort';
+	public const SHOW_OWN_NAME = 'show_own_name';
 
 	public function __construct(
 		private IConfig $config,
@@ -42,11 +43,21 @@ class UserSettingsService {
 		$this->config->setUserValue($userId, Application::APP_ID, self::LIST_SORT, $mode);
 	}
 
+	/** Whether this user sees their own name on items they added or ticked. Off until they say so. */
+	public function showOwnName(string $userId): bool {
+		return $this->config->getUserValue($userId, Application::APP_ID, self::SHOW_OWN_NAME, '0') === '1';
+	}
+
+	public function setShowOwnName(string $userId, bool $on): void {
+		$this->config->setUserValue($userId, Application::APP_ID, self::SHOW_OWN_NAME, $on ? '1' : '0');
+	}
+
 	/** Every setting, in the shape the settings endpoint and the page's initial state share. */
 	public function forUser(string $userId): array {
 		return [
 			'showImages' => $this->showImages($userId),
 			'listSort' => $this->listSort($userId),
+			'showOwnName' => $this->showOwnName($userId),
 		];
 	}
 }

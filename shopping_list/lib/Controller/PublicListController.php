@@ -13,6 +13,7 @@ use OCA\Shopping_List\Service\NotFoundException;
 use OCA\Shopping_List\Service\PasswordRequiredException;
 use OCA\Shopping_List\Service\ShopAreaService;
 use OCA\Shopping_List\Db\ShopAreaMapper;
+use OCA\Shopping_List\Service\GuestName;
 use OCA\Shopping_List\Service\ItemImageService;
 use OCA\Shopping_List\Service\ItemService;
 use OCA\Shopping_List\Service\PublicShareAccess;
@@ -68,6 +69,22 @@ class PublicListController extends OCSController {
 			throw new NotFoundException('Item not found');
 		}
 		return $item;
+	}
+
+	/**
+	 * Shape items for the public: never members' user ids, and not their
+	 * names either when the owner turned them off for the link; guests'
+	 * names always show.
+	 *
+	 * @template T of Item|Item[]
+	 * @param T $items
+	 * @return T
+	 */
+	private function forLink(ListShare $share, Item|array $items): Item|array {
+		foreach (is_array($items) ? $items : [$items] as $item) {
+			$item->forPublic($share->showsNames());
+		}
+		return $items;
 	}
 
 	#[PublicPage]
@@ -140,7 +157,7 @@ class PublicListController extends OCSController {
 	public function items(string $token): DataResponse {
 		try {
 			$share = $this->authenticate($token);
-			return new DataResponse($this->itemMapper->findAllByList($share->getListId()));
+			return new DataResponse($this->forLink($share, $this->itemMapper->findAllByList($share->getListId())));
 		} catch (PasswordRequiredException) {
 			return new DataResponse(['passwordRequired' => true], Http::STATUS_FORBIDDEN);
 		} catch (NotFoundException) {
@@ -171,11 +188,13 @@ class PublicListController extends OCSController {
 			$item->setChecked(false);
 			$item->setSortOrder(0);
 			$item->setImageKey($this->images->rememberedKey($share->getListId(), $name));
+			$item->setAddedBy(null);
+			$item->setAddedByName(GuestName::clean($this->request->getParam('guestName')));
 			$now = new DateTime();
 			$item->setCreatedAt($now);
 			$item->setUpdatedAt($now);
 
-			return new DataResponse($this->itemMapper->insert($item), Http::STATUS_CREATED);
+			return new DataResponse($this->forLink($share, $this->itemMapper->insert($item)), Http::STATUS_CREATED);
 		} catch (PasswordRequiredException) {
 			return new DataResponse(['passwordRequired' => true], Http::STATUS_FORBIDDEN);
 		} catch (NoPermissionException $e) {
@@ -217,7 +236,7 @@ class PublicListController extends OCSController {
 			}
 			$item->setUpdatedAt(new DateTime());
 
-			return new DataResponse($this->itemMapper->update($item));
+			return new DataResponse($this->forLink($share, $this->itemMapper->update($item)));
 		} catch (PasswordRequiredException) {
 			return new DataResponse(['passwordRequired' => true], Http::STATUS_FORBIDDEN);
 		} catch (NoPermissionException $e) {
@@ -238,9 +257,11 @@ class PublicListController extends OCSController {
 			$item = $this->findItem($share, $id);
 
 			$item->setChecked($checked);
+			$item->setCheckedBy(null);
+			$item->setCheckedByName($checked ? GuestName::clean($this->request->getParam('guestName')) : null);
 			$item->setUpdatedAt(new DateTime());
 
-			return new DataResponse($this->itemMapper->update($item));
+			return new DataResponse($this->forLink($share, $this->itemMapper->update($item)));
 		} catch (PasswordRequiredException) {
 			return new DataResponse(['passwordRequired' => true], Http::STATUS_FORBIDDEN);
 		} catch (NoPermissionException $e) {

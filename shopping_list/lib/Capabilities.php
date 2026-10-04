@@ -18,7 +18,7 @@ use OCP\IUserSession;
  * public; the version and limits are only for signed-in users.
  */
 class Capabilities implements IPublicCapability {
-	private const FEATURES = ['item-images', 'list-order', 'invite-codes'];
+	private const FEATURES = ['item-images', 'list-order', 'invite-codes', 'guest-names'];
 
 	public function __construct(
 		private IAppManager $appManager,

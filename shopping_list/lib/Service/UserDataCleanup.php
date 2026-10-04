@@ -56,6 +56,7 @@ class UserDataCleanup {
 			$this->imageCleanup->release($keys);
 		});
 		$this->step('clear checked by', fn () => $this->items->clearCheckedBy($userId));
+		$this->step('clear added by', fn () => $this->items->clearAddedBy($userId));
 	}
 
 	private function step(string $what, callable $run): void {

@@ -189,6 +189,7 @@ class ShareService {
 		?string $expiresAt,
 		bool $removeExpiry,
 		string $userId,
+		?bool $showNames = null,
 	): ListShare {
 		try {
 			$share = $this->shareMapper->find($shareId);
@@ -214,6 +215,9 @@ class ShareService {
 			$share->setExpiresAt(null);
 		} elseif ($expiresAt !== null) {
 			$share->setExpiresAt($expiresAt);
+		}
+		if ($showNames !== null) {
+			$share->setShowNames($showNames);
 		}
 
 		return $this->shareMapper->update($share);

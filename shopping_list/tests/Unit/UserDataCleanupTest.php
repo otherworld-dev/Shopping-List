@@ -83,6 +83,7 @@ class UserDataCleanupTest extends TestCase {
 		$this->shares->expects(self::once())->method('deleteSharedWithUser')->with('bob');
 		$this->prefs->expects(self::once())->method('deleteByUser')->with('bob');
 		$this->items->expects(self::once())->method('clearCheckedBy')->with('bob');
+		$this->items->expects(self::once())->method('clearAddedBy')->with('bob');
 
 		$this->cleanup->deleteUser('bob');
 	}

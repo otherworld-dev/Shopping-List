@@ -2,6 +2,16 @@
 	<div class="public-list">
 		<h2>{{ title }}</h2>
 
+		<input v-if="canEdit"
+			v-model="guestName"
+			type="text"
+			maxlength="40"
+			autocomplete="nickname"
+			:placeholder="yourNameText"
+			:aria-label="yourNameText"
+			class="public-list__guest-name"
+			@change="writeGuestName(guestName)">
+
 		<div class="public-list__card">
 			<div v-if="canEdit" class="public-list__editor">
 				<span class="public-list__editor-plus">+</span>
@@ -48,7 +58,7 @@
 						<div v-for="item in group.items"
 							:key="item.id"
 							class="public-list__item"
-							:class="{ 'public-list__item--checked': item.checked }">
+							:class="{ 'public-list__item--checked': item.checked, 'public-list__item--with-by': byline(item) }">
 							<label class="public-list__check">
 								<input type="checkbox"
 									:checked="item.checked"
@@ -73,6 +83,10 @@
 							<span class="public-list__name" :class="{ 'public-list__name--checked': item.checked }">
 								{{ item.name }}
 							</span>
+							<span v-if="byline(item)" class="public-list__by" :title="byline(item)!.name">
+								<span class="public-list__by-name">{{ byline(item)!.name }}</span>
+								<span v-if="byline(item)!.guest" class="public-list__by-guest">{{ guestText }}</span>
+							</span>
 							<span v-if="getAreaName(item.shopAreaId)" class="public-list__area">
 								<span v-if="getAreaColor(item.shopAreaId)"
 									class="public-list__area-dot"
@@ -93,7 +107,8 @@
 			<div v-if="showChecked" class="public-list__bought-card">
 				<div v-for="item in checkedItems"
 					:key="item.id"
-					class="public-list__item public-list__item--checked">
+					class="public-list__item public-list__item--checked"
+					:class="{ 'public-list__item--with-by': byline(item) }">
 					<label class="public-list__check">
 						<input type="checkbox"
 							:checked="true"
@@ -116,6 +131,10 @@
 						{{ item.quantity }}{{ item.unit ? ' ' + item.unit : '' }}
 					</span>
 					<span class="public-list__name public-list__name--checked">{{ item.name }}</span>
+					<span v-if="byline(item)" class="public-list__by" :title="byline(item)!.name">
+						<span class="public-list__by-name">{{ byline(item)!.name }}</span>
+						<span v-if="byline(item)!.guest" class="public-list__by-guest">{{ guestText }}</span>
+					</span>
 				</div>
 			</div>
 		</div>
@@ -138,6 +157,9 @@ import { Permission } from '../types'
 import { useCollapsedAreas } from '../composables/useCollapsedAreas'
 import ImageViewer from './ImageViewer.vue'
 import { publicItemImageUrl } from '../utils/imageUrls'
+import { attribution } from '../utils/attribution'
+import type { Byline } from '../utils/attribution'
+import { readGuestName, writeGuestName } from '../utils/guestName'
 
 const props = defineProps<{
 	token: string
@@ -260,13 +282,24 @@ onMounted(async () => {
 	}
 })
 
+// The name this guest goes by, remembered in this browser; optional
+const guestName = ref(readGuestName())
+const yourNameText = t('shopping_list', 'Your name (optional)')
+const guestText = t('shopping_list', 'guest')
+
+/** Who ticked it once it's ticked, otherwise who added it. Nobody is signed in here, so every name shows. */
+function byline(item: Item): Byline | null {
+	const names = attribution(item, null, true)
+	return item.checked ? names.checked : names.added
+}
+
 async function onAddItem() {
 	const name = newItemName.value.trim()
 	if (!name) return
 
 	newItemName.value = ''
 	try {
-		const response = await publicApi.createItem(props.token, { name, quantity: '1' })
+		const response = await publicApi.createItem(props.token, { name, quantity: '1', guestName: guestName.value.trim() || undefined })
 		items.value.push(response.data.ocs.data)
 	} catch (e) {
 		console.error('Failed to add item', e)
@@ -278,7 +311,11 @@ async function onToggleCheck(item: Item) {
 	const newChecked = !item.checked
 	item.checked = newChecked // optimistic
 	try {
-		await publicApi.checkItem(props.token, item.id, newChecked)
+		const response = await publicApi.checkItem(props.token, item.id, newChecked, guestName.value.trim() || undefined)
+		const saved = response.data.ocs.data as Item
+		item.checkedBy = saved.checkedBy
+		item.checkedByName = saved.checkedByName
+		item.checkedByGuest = saved.checkedByGuest
 	} catch {
 		item.checked = !newChecked // revert
 	}
@@ -291,6 +328,64 @@ async function onToggleCheck(item: Item) {
 	font-size: 1.5em;
 	font-weight: 700;
 	color: var(--color-main-text, #fff);
+}
+
+.public-list__guest-name {
+	width: 100%;
+	height: 32px;
+	margin: 0 0 8px;
+	padding: 0 10px;
+	border: 1px solid var(--color-border, rgba(255, 255, 255, 0.15));
+	border-radius: var(--border-radius-large, 10px);
+	background-color: var(--color-main-background, rgba(0, 0, 0, 0.35));
+	color: var(--color-main-text, #fff);
+	font-size: 0.9em;
+	box-sizing: border-box;
+}
+
+.public-list__by {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	flex: 0 1 auto;
+	min-width: 0;
+	max-width: 35%;
+	color: var(--color-text-maxcontrast, rgba(255, 255, 255, 0.7));
+	font-size: 0.8em;
+	padding-inline-end: 8px;
+}
+
+/* Only the name gets cut short; the guest mark always stays in view */
+.public-list__by-name {
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.public-list__by-guest {
+	flex: 0 0 auto;
+	padding: 0 5px;
+	border: 1px solid var(--color-border-dark, rgba(255, 255, 255, 0.3));
+	border-radius: var(--border-radius-pill, 10px);
+	line-height: 1.4;
+}
+
+/* On a phone the person's name goes on its own line under the item, so the
+   item's own name keeps its room next to the quantity, area and menu */
+@media (max-width: 600px) {
+	.public-list__item.public-list__item--with-by {
+		flex-wrap: wrap;
+	}
+
+	.public-list__item--with-by .public-list__by {
+		order: 1;
+		flex: 0 0 100%;
+		max-width: none;
+		margin-top: -8px;
+		padding: 0 0 6px;
+		padding-inline-start: 32px;
+	}
 }
 
 .public-list__card {
