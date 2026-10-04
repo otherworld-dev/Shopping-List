@@ -142,4 +142,11 @@ class ShareServiceInviteCodeTest extends TestCase {
 			}
 		}
 	}
+
+	public function testALinkCanStopShowingNames(): void {
+		$this->mapper->method('find')->willReturn(self::link('K7QM3XPD'));
+		$share = $this->service->updateLinkShare(1, null, null, false, null, false, 'alice', false);
+		self::assertFalse($share->showsNames());
+		self::assertSame('K7QM3XPD', $share->getCode());
+	}
 }

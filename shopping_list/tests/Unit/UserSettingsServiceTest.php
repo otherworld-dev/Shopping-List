@@ -22,10 +22,11 @@ class UserSettingsServiceTest extends TestCase {
 		$this->config->method('getUserValue')->willReturnMap([
 			['alice', 'shopping_list', 'show_images', '0', '0'],
 			['alice', 'shopping_list', 'list_sort', 'updated', 'updated'],
+			['alice', 'shopping_list', 'show_own_name', '0', '0'],
 		]);
 
 		self::assertFalse($this->settings->showImages('alice'));
-		self::assertSame(['showImages' => false, 'listSort' => 'updated'], $this->settings->forUser('alice'));
+		self::assertSame(['showImages' => false, 'listSort' => 'updated', 'showOwnName' => false], $this->settings->forUser('alice'));
 	}
 
 	public function testOnlyTheStoredOneCountsAsOn(): void {
@@ -67,5 +68,23 @@ class UserSettingsServiceTest extends TestCase {
 		$this->expectException(\InvalidArgumentException::class);
 
 		$this->settings->setListSort('alice', 'price');
+	}
+
+	public function testYourOwnNameIsHiddenUntilYouAskForIt(): void {
+		$this->config->method('getUserValue')->willReturnMap([
+			['alice', 'shopping_list', 'show_own_name', '0', '0'],
+			['bob', 'shopping_list', 'show_own_name', '0', '1'],
+		]);
+
+		self::assertFalse($this->settings->showOwnName('alice'));
+		self::assertTrue($this->settings->showOwnName('bob'));
+	}
+
+	public function testShowingYourOwnNameWritesOneOrZero(): void {
+		$this->config->expects(self::exactly(2))->method('setUserValue')
+			->with('alice', 'shopping_list', 'show_own_name', self::callback(fn (string $v) => in_array($v, ['1', '0'], true)));
+
+		$this->settings->setShowOwnName('alice', true);
+		$this->settings->setShowOwnName('alice', false);
 	}
 }

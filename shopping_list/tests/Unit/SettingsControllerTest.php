@@ -36,4 +36,11 @@ class SettingsControllerTest extends TestCase {
 
 		self::assertSame(Http::STATUS_BAD_REQUEST, $this->controller->update(null, 'price')->getStatus());
 	}
+
+	public function testSavesShowingYourOwnName(): void {
+		$this->settings->expects(self::once())->method('setShowOwnName')->with('alice', true);
+		$this->settings->expects(self::never())->method('setListSort');
+
+		self::assertSame(Http::STATUS_OK, $this->controller->update(null, null, true)->getStatus());
+	}
 }
