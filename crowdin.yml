@@ -9,3 +9,4 @@ files:
     type: json
   - source: /android/values/strings.xml
     translation: /android/values-%android_code%/strings.xml
+    skip_untranslated_strings: true
