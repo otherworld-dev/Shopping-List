@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-10-05 20:09\n"
+"PO-Revision-Date: 2026-10-05 21:19\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -179,7 +179,7 @@ msgstr "1. Latte"
 
 #: src/components/ItemEditor.vue
 msgid "Area"
-msgstr ""
+msgstr "Area"
 
 #: src/components/ItemEditor.vue
 msgid "No match"
@@ -373,7 +373,7 @@ msgstr "Permessi"
 
 #: src/components/ShareDialog.vue
 msgid "Password"
-msgstr ""
+msgstr "Password"
 
 #: src/components/ShareDialog.vue
 msgid "Password set"
@@ -766,7 +766,7 @@ msgstr "Nascondi questo link"
 
 #: appinfo/info.xml lib/Notification/Notifier.php
 msgid "Shopping List"
-msgstr ""
+msgstr "Shopping List"
 
 #: lib/Notification/Notifier.php
 msgid "Shopping List is now on Android"
