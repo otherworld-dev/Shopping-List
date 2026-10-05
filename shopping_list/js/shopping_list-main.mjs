@@ -18085,6 +18085,8 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
                   animation: 150,
                   delay: 150,
                   "delay-on-touch-only": true,
+                  filter: ".item-row--editing",
+                  "prevent-on-filter": false,
                   class: "list-view__items",
                   "ghost-class": "list-view__item--ghost",
                   onStart: _cache[5] || (_cache[5] = ($event) => isDragging.value = true),
@@ -18149,7 +18151,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ListView = /* @__PURE__ */ _export_sfc$1(_sfc_main$7, [["__scopeId", "data-v-f409d1bb"]]);
+const ListView = /* @__PURE__ */ _export_sfc$1(_sfc_main$7, [["__scopeId", "data-v-62812b55"]]);
 const _hoisted_1$4 = { class: "area-settings" };
 const _hoisted_2$3 = { class: "area-settings__header" };
 const _hoisted_3$1 = {
