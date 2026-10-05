@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.10.0] - 2026-10-05
+
 ### Added
 - Lists can be sorted your own way. Choose Sort lists in Settings at the
   bottom of the list sidebar: Recently updated (as before, and still the
@@ -33,12 +35,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   working when the link is deleted or expires
 - Each item now shows who added it, and once it's ticked, who ticked it.
   People on a public link can type their name above the list, which shows
-  as "Anna (guest)" so a guest can't pass as one of the household. The
-  list owner can hide members' names from the public page with Show
-  members' names on the link in the Share dialog, and guests' names still
-  show. Your own name is left off what you see unless you turn on Show my
-  name on items under Names in Settings. Items added before this have no
-  name. Thanks to natrius for the idea
+  as "Anna (guest)" so a guest can't pass as one of the household. On a
+  phone the name goes on its own line under the item. The list owner can
+  hide members' names from the public page with Show members' names on
+  the link in the Share dialog, and guests' names still show. Your own
+  name is left off what you see unless you turn on Show my name on items
+  under Names in Settings. Items added before this have no name. Thanks
+  to natrius for the idea
 
 ### Changed
 - The app's capabilities now list `list-order` among its features, each
@@ -86,6 +89,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   whole row up to move it rather than highlighting the text. The row being
   edited now stays put, so the text can be selected as normal, and rows
   that aren't being edited can still be dragged into order
+- Merging a duplicate item with a quantity above one renamed it to its
+  plural, and as only a few words such as rice and cheese were known not
+  to take one, "Milk" became "Milks" and "Bread" became "Breads". Common
+  groceries such as milk, bread, butter, flour, coffee, pasta, fish and oil
+  are now left alone, and so are names ending in them, like "Oat milk" and
+  "Olive oil"
 
 ## [1.9.0] - 2026-09-23
 
