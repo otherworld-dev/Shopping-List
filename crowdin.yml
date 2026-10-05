@@ -4,18 +4,8 @@ files:
   - source: /shopping_list/resources/keywords/en.json
     translation: /shopping_list/resources/keywords/%two_letters_code%.json
     type: json
-  # Parsing packs: measurement units, no-number "leading" units, the connector
-  # word ("of"), and the decimal mark. All genuinely translatable free lists.
-  # Unit aliases (cup->cup abbreviation/plural canonicalisation) are NOT here —
-  # they're duplicate English words that can't be translated, so they live in
-  # code (src/utils/localePacks.ts). The app falls back to English parsing for
-  # any language without a pack.
   - source: /shopping_list/resources/parsing/en.json
     translation: /shopping_list/resources/parsing/%two_letters_code%.json
     type: json
-  # The Android app's text. Crowdin can only watch this repo, so the Android
-  # repo copies its strings.xml here and takes the translations back with
-  # scripts/sync-translations.sh (see its RELEASING.md). Not part of the
-  # Nextcloud app package, which is built from shopping_list/.
   - source: /android/values/strings.xml
     translation: /android/values-%android_code%/strings.xml
