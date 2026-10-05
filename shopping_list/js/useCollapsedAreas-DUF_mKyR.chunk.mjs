@@ -1,5 +1,5 @@
 const appName = "shopping_list";
-const appVersion = "1.9.0";
+const appVersion = "1.10.0";
 const global$1 = globalThis || void 0 || self;
 /**
 * @vue/shared v3.5.32
@@ -44635,4 +44635,4 @@ export {
   useSlots as y,
   createBlock as z
 };
-//# sourceMappingURL=useCollapsedAreas-Bzauf5Mv.chunk.mjs.map
+//# sourceMappingURL=useCollapsedAreas-DUF_mKyR.chunk.mjs.map
