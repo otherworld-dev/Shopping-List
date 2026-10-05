@@ -15,13 +15,18 @@ use PHPUnit\Framework\TestCase;
 
 class PublicShareAccessTest extends TestCase {
 	private ShareService&MockObject $shares;
-	private ISession&MockObject $session;
+	/** @var array<string, mixed> what the browser session holds */
+	private array $stored = [];
 	private PublicShareAccess $access;
 
 	protected function setUp(): void {
 		$this->shares = $this->createMock(ShareService::class);
-		$this->session = $this->createMock(ISession::class);
-		$this->access = new PublicShareAccess($this->shares, $this->session);
+		$session = $this->createMock(ISession::class);
+		$session->method('get')->willReturnCallback(fn (string $key) => $this->stored[$key] ?? null);
+		$session->method('set')->willReturnCallback(function (string $key, mixed $value): void {
+			$this->stored[$key] = $value;
+		});
+		$this->access = new PublicShareAccess($this->shares, $session);
 	}
 
 	private function share(?string $passwordHash, int $permission = 0): ListShare {
@@ -34,17 +39,20 @@ class PublicShareAccessTest extends TestCase {
 		return $share;
 	}
 
+	/** The link as it is on the server now. */
+	private function linkIs(ListShare $share): void {
+		$this->shares->method('findValidShare')->with('tok')->willReturn($share);
+	}
+
 	public function testResolveReturnsTheShareOfAnOpenLink(): void {
 		$share = $this->share(null);
-		$this->shares->method('findValidShare')->with('tok')->willReturn($share);
-		$this->session->expects(self::never())->method('get');
+		$this->linkIs($share);
 
 		self::assertSame($share, $this->access->resolve('tok'));
 	}
 
 	public function testResolveNeedsThePasswordInTheSessionForAProtectedLink(): void {
-		$this->shares->method('findValidShare')->willReturn($this->share('hash'));
-		$this->session->method('get')->with('shopping_list_public_tok')->willReturn(null);
+		$this->linkIs($this->share('hash'));
 
 		$this->expectException(PasswordRequiredException::class);
 		$this->access->resolve('tok');
@@ -52,10 +60,33 @@ class PublicShareAccessTest extends TestCase {
 
 	public function testResolveAcceptsAProtectedLinkOnceUnlocked(): void {
 		$share = $this->share('hash');
-		$this->shares->method('findValidShare')->willReturn($share);
-		$this->session->method('get')->with('shopping_list_public_tok')->willReturn(true);
+		$this->linkIs($share);
+		$this->access->grant($share);
 
 		self::assertSame($share, $this->access->resolve('tok'));
+	}
+
+	public function testChangingThePasswordLocksTheLinkAgain(): void {
+		$this->access->grant($this->share('old hash'));
+		$this->linkIs($this->share('new hash'));
+
+		$this->expectException(PasswordRequiredException::class);
+		$this->access->resolve('tok');
+	}
+
+	public function testAnUnlockFromBeforePasswordChangesCountedAsksAgain(): void {
+		// Sessions used to hold just true for an unlocked link
+		$this->stored[PublicShareAccess::sessionKey('tok')] = true;
+		$this->linkIs($this->share('hash'));
+
+		$this->expectException(PasswordRequiredException::class);
+		$this->access->resolve('tok');
+	}
+
+	public function testTheSessionNeverHoldsThePasswordHash(): void {
+		$this->access->grant($this->share('$2y$10$secrethash'));
+
+		self::assertNotContains('$2y$10$secrethash', $this->stored);
 	}
 
 	public function testAssertWriteRefusesReadOnlyLinks(): void {
@@ -63,11 +94,5 @@ class PublicShareAccessTest extends TestCase {
 
 		$this->expectException(NoPermissionException::class);
 		$this->access->assertWrite($this->share(null, 0));
-	}
-
-	public function testGrantMarksTheSession(): void {
-		$this->session->expects(self::once())->method('set')->with('shopping_list_public_tok', true);
-
-		$this->access->grant('tok');
 	}
 }

@@ -8,8 +8,11 @@ use OCA\Shopping_List\Db\ListShare;
 use OCA\Shopping_List\Db\ListShareMapper;
 use OCA\Shopping_List\Db\ShoppingListMapper;
 use OCP\AppFramework\Db\DoesNotExistException;
+use OCP\EventDispatcher\IEventDispatcher;
+use OCP\HintException;
 use OCP\IGroupManager;
 use OCP\IUserManager;
+use OCP\Security\Events\ValidatePasswordPolicyEvent;
 
 class ShareService {
 	/** Tries at an unused invite code before giving up; even one clash is a one-in-billions event */
@@ -22,6 +25,7 @@ class ShareService {
 		private IUserManager $userManager,
 		private IGroupManager $groupManager,
 		private PushService $pushService,
+		private IEventDispatcher $eventDispatcher,
 	) {
 	}
 
@@ -156,7 +160,7 @@ class ShareService {
 		if ($existing !== null) {
 			$existing->setPermission($permission);
 			if ($password !== null) {
-				$existing->setPasswordHash(password_hash($password, PASSWORD_BCRYPT));
+				$existing->setPasswordHash($this->hashLinkPassword($password));
 			}
 			$existing->setExpiresAt($expiresAt);
 			if ($existing->getCode() === null) {
@@ -174,7 +178,7 @@ class ShareService {
 		$share->setToken(bin2hex(random_bytes(32)));
 		$share->setCode($this->newInviteCode());
 		if ($password !== null) {
-			$share->setPasswordHash(password_hash($password, PASSWORD_BCRYPT));
+			$share->setPasswordHash($this->hashLinkPassword($password));
 		}
 		$share->setExpiresAt($expiresAt);
 
@@ -209,7 +213,7 @@ class ShareService {
 		if ($removePassword) {
 			$share->setPasswordHash(null);
 		} elseif ($password !== null) {
-			$share->setPasswordHash(password_hash($password, PASSWORD_BCRYPT));
+			$share->setPasswordHash($this->hashLinkPassword($password));
 		}
 		if ($removeExpiry) {
 			$share->setExpiresAt(null);
@@ -237,6 +241,25 @@ class ShareService {
 		}
 
 		$this->shareMapper->delete($share);
+	}
+
+	/**
+	 * A link password, hashed once it passes the server's password policy,
+	 * the same check Nextcloud's own share links go through. Without the
+	 * password_policy app nothing is checked beyond it not being empty.
+	 *
+	 * @throws \InvalidArgumentException with the policy's hint, ready to show
+	 */
+	private function hashLinkPassword(string $password): string {
+		if ($password === '') {
+			throw new \InvalidArgumentException('The password cannot be empty');
+		}
+		try {
+			$this->eventDispatcher->dispatchTyped(new ValidatePasswordPolicyEvent($password));
+		} catch (HintException $e) {
+			throw new \InvalidArgumentException($e->getHint(), 0, $e);
+		}
+		return password_hash($password, PASSWORD_BCRYPT);
 	}
 
 	private function newInviteCode(): string {

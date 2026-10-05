@@ -15338,6 +15338,11 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
   }
 });
 const ListSidebar = /* @__PURE__ */ _export_sfc$1(_sfc_main$b, [["__scopeId", "data-v-a59d840c"]]);
+function badRequestMessage(error) {
+  const response = error?.response;
+  const message = response?.data?.ocs?.data?.message;
+  return response?.status === 400 && typeof message === "string" && message !== "" ? message : null;
+}
 const useSharesStore = defineStore("shares", () => {
   const sharesByList = ref({});
   async function fetchByList(listId) {
@@ -15400,7 +15405,7 @@ const useSharesStore = defineStore("shares", () => {
       sharesByList.value[listId].push(newShare);
       return newShare;
     } catch (e) {
-      showError(translate("shopping_list", "Failed to create public link"));
+      showError(badRequestMessage(e) ?? translate("shopping_list", "Failed to create public link"));
       console.error(e);
     }
   }
@@ -15414,7 +15419,7 @@ const useSharesStore = defineStore("shares", () => {
         shares[index2] = updated;
       }
     } catch (e) {
-      showError(translate("shopping_list", "Failed to update public link"));
+      showError(badRequestMessage(e) ?? translate("shopping_list", "Failed to update public link"));
       console.error(e);
     }
   }
