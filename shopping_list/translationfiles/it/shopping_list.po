@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-09-26 17:45\n"
+"PO-Revision-Date: 2026-10-05 14:10\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -19,703 +19,703 @@ msgstr ""
 
 #: src/App.vue
 msgid "No list selected"
-msgstr ""
+msgstr "Nessuna lista selezionata"
 
 #: src/App.vue
 msgid "Select a list from the sidebar or create a new one"
-msgstr ""
+msgstr "Seleziona una lista dalla barra a lato oppure creane una nuova"
 
 #: src/PublicApp.vue
 msgid "Password required"
-msgstr ""
+msgstr "Password richiesta"
 
 #: src/PublicApp.vue
 msgid "This list is password protected."
-msgstr ""
+msgstr "Questa lista è protetta da password."
 
 #: src/PublicApp.vue
 msgid "Enter password"
-msgstr ""
+msgstr "Inserire la password"
 
 #: src/PublicApp.vue
 msgid "Unlock"
-msgstr ""
+msgstr "Sblocca"
 
 #: src/PublicApp.vue
 msgid "Incorrect password"
-msgstr ""
+msgstr "Password errata"
 
 #: src/PublicApp.vue
 msgid "Not found"
-msgstr ""
+msgstr "Non trovato"
 
 #: src/PublicApp.vue
 msgid "This shared list does not exist or has expired."
-msgstr ""
+msgstr "Questa lista condivisa non esiste oppure è scaduta."
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Back to list"
-msgstr ""
+msgstr "Ritorna alla lista"
 
 #: src/components/AreaKeywordsSettings.vue src/components/ListSidebar.vue
 msgid "List settings"
-msgstr ""
+msgstr "Impostazioni della lista"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Shop areas"
-msgstr ""
+msgstr "Aree di shopping"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Manage shop areas, keywords, and display order. Keywords auto-detect which area an item belongs to when added or pasted."
-msgstr ""
+msgstr "Gestisci aree di shopping, parole chiave e ordine di visualizzazione. Le parole chiave permettono di abbinare automaticamente un oggetto a un'area di shopping quando viene aggiunto o incollato."
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Search keywords..."
-msgstr ""
+msgstr "Cerca una parola chiave..."
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Add keyword..."
-msgstr ""
+msgstr "Aggiungi una parola chiave..."
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "No keywords"
-msgstr ""
+msgstr "Nessuna parola chiave"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Rename"
-msgstr ""
+msgstr "Rinomina"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Delete area"
-msgstr ""
+msgstr "Elimina area di shopping"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Move up"
-msgstr ""
+msgstr "Sposta in alto"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Move down"
-msgstr ""
+msgstr "Sposta in basso"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Change color"
-msgstr ""
+msgstr "Cambia colore"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "New area name..."
-msgstr ""
+msgstr "Nuovo nome per l'area..."
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Add area"
-msgstr ""
+msgstr "Aggiungi area"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Delete \"{name}\"? Items in this area will become uncategorized."
-msgstr ""
+msgstr "Cancellare \"{name}\"? Gli oggetti al suo interno non saranno più associati a nessuna categoria."
 
 #: src/components/PublicListView.vue
 msgid "Add an item to list..."
-msgstr ""
+msgstr "Aggiungi un oggetto alla lista..."
 
 #: src/components/ItemEditor.vue
 msgid "Add an item or paste a list..."
-msgstr ""
+msgstr "Aggiungi un oggetto o incolla una lista..."
 
 #. Accessible name and tooltip of the round question-mark button in the add box
 #: src/components/ItemEditor.vue
 msgid "Input format help"
-msgstr ""
+msgstr "Indicatore per il formato d'inserimento"
 
 #: src/components/ItemEditor.vue
 msgid "Type one item, or paste a whole list"
-msgstr ""
+msgstr "Scrivi un oggetto oppure incolla una lista"
 
 #: src/components/ItemEditor.vue
 msgid "Every pasted line becomes its own item. Amounts, units and list markers are read for you."
-msgstr ""
+msgstr "Ogni linea incollata sarà un oggetto a parte. Quantità, unità e indicatori saranno resi disponibili."
 
 #. Column heading in the input help: the example line as the user would type it
 #: src/components/ItemEditor.vue
 msgid "You type"
-msgstr ""
+msgstr "Scrivendo"
 
 #. Column heading in the input help: the item the app makes from that line
 #: src/components/ItemEditor.vue
 msgid "You get"
-msgstr ""
+msgstr "Ottieni"
 
 #. Example line in the input help. Translate the words, keep the "- " bullet.
 #: src/utils/inputExamples.ts
 msgid "- Apples"
-msgstr ""
+msgstr "- Mele"
 
 #. Example line in the input help. Translate the words, keep the "[ ] " checkbox and the number.
 #: src/utils/inputExamples.ts
 msgid "[ ] 3 Bananas"
-msgstr ""
+msgstr "[ ] 3 Banane"
 
 #. Example line in the input help. Translate the word, keep the "[x] " ticked checkbox.
 #: src/utils/inputExamples.ts
 msgid "[x] Eggs"
-msgstr ""
+msgstr "[x] Uova"
 
 #. Example line in the input help. Use a unit from your language's parsing pack so it is recognised.
 #: src/utils/inputExamples.ts
 msgid "2 cups flour"
-msgstr ""
+msgstr "2 tazze di farina"
 
 #. Example line in the input help. Translate the word, keep the "1. " numbering.
 #: src/utils/inputExamples.ts
 msgid "1. Milk"
-msgstr ""
+msgstr "1. Latte"
 
 #: src/components/ItemEditor.vue
 msgid "Area"
-msgstr ""
+msgstr "Area"
 
 #: src/components/ItemEditor.vue
 msgid "No match"
-msgstr ""
+msgstr "Nessun risultato"
 
 #: src/components/ItemRow.vue
 msgid "Qty"
-msgstr ""
+msgstr "Quantità"
 
 #: src/components/ItemRow.vue
 msgid "Delete"
-msgstr ""
+msgstr "Cancella"
 
 #: src/components/ListSidebar.vue
 msgid "New list"
-msgstr ""
+msgstr "Nuova lista"
 
 #: src/components/ListSidebar.vue
 msgid "Rename list"
-msgstr ""
+msgstr "Rinomina lista"
 
 #: src/components/ListSidebar.vue
 msgid "Delete list"
-msgstr ""
+msgstr "Cancella lista"
 
 #. Menu action on a list in the sidebar: keep it at the top, above the user's other lists.
 #: src/components/ListSidebar.vue
 msgid "Pin list"
-msgstr ""
+msgstr "Fissa lista"
 
 #. Menu action on a pinned list in the sidebar: put it back among the user's other lists.
 #: src/components/ListSidebar.vue
 msgid "Unpin list"
-msgstr ""
+msgstr "Sblocca lista"
 
 #. Sidebar heading above the lists the user has pinned.
 #: src/components/ListSidebar.vue
 msgid "Pinned"
-msgstr ""
+msgstr "Fissato"
 
 #. Sidebar heading above the user's own lists that are not pinned, shown below the Pinned heading.
 #: src/components/ListSidebar.vue
 msgid "Others"
-msgstr ""
+msgstr "Altri"
 
 #: src/components/ListSidebar.vue
 msgid "Shared with me"
-msgstr ""
+msgstr "Condivisi con me"
 
 #: src/components/ListSidebar.vue
 msgid "No shopping lists"
-msgstr ""
+msgstr "Nessuna lista della spesa"
 
 #: src/components/ListSidebar.vue
 msgid "Create your first shopping list to get started"
-msgstr ""
+msgstr "Per iniziare, crea una lista della spesa"
 
 #: src/components/ListSidebar.vue
 msgid "New shopping list"
-msgstr ""
+msgstr "Nuova lista della spesa"
 
 #: src/components/ListView.vue
 msgid "Share"
-msgstr ""
+msgstr "Condividi"
 
 #: src/components/ListView.vue
 msgid "List actions"
-msgstr ""
+msgstr "Azioni per la lista"
 
 #: src/components/ListView.vue
 msgid "Copy list as text"
-msgstr ""
+msgstr "Copia lista come testo"
 
 #: src/components/ListView.vue
 msgid "List copied to clipboard"
-msgstr ""
+msgstr "Lista copiata"
 
 #: src/components/ListView.vue
 msgid "Could not copy the list"
-msgstr ""
+msgstr "Impossibile copiare la lista"
 
 #: src/components/ListView.vue src/components/PublicListView.vue
 msgid "No items yet"
-msgstr ""
+msgstr "Nessun oggetto"
 
 #: src/components/ListView.vue
 msgid "Add your first item above"
-msgstr ""
+msgstr "Aggiungi il tuo primo oggetto sopra"
 
 #: src/components/ListView.vue src/components/PublicListView.vue
 msgid "Uncategorized"
-msgstr ""
+msgstr "Senza categoria"
 
 #: src/components/ListView.vue src/components/PublicListView.vue src/components/ItemEditor.vue
 msgid "Checked off"
-msgstr ""
+msgstr "Smarcati"
 
 #: src/components/ListView.vue
 msgid "Restore all"
-msgstr ""
+msgstr "Ripristina tutto"
 
 #: src/components/ListView.vue
 msgid "Delete all"
-msgstr ""
+msgstr "Elimina tutto"
 
 #. Heading in the list's menu, above the three ways to order the open items.
 #: src/components/ListView.vue
 msgid "Sort items"
-msgstr ""
+msgstr "Ordina oggetti"
 
 #. Heading in the list's menu, above the three ways to order the checked-off section.
 #: src/components/ListView.vue
 msgid "Sort checked-off items"
-msgstr ""
+msgstr "Ordina gli oggetti smarcati"
 
 #. Sort option, used for both open and checked-off items: grouped by shop area, in the area order of the list.
 #: src/components/ListView.vue
 msgid "By area"
-msgstr ""
+msgstr "Per area"
 
 #. Sort option for open items: grouped by shop area, and by name inside each area.
 #: src/components/ListView.vue
 msgid "By area, A to Z"
-msgstr ""
+msgstr "Per area, dalla A alla Z"
 
 #. Sort option, used for both open and checked-off items: by name, ignoring the shop areas.
 #: src/components/ListView.vue
 msgid "A to Z"
-msgstr ""
+msgstr "Dalla A alla Z"
 
 #. Sort option for checked-off items: the item checked off last comes first.
 #: src/components/ListView.vue
 msgid "Most recent first"
-msgstr ""
+msgstr "Dai più recenti"
 
 #: src/components/ShareDialog.vue
 msgid "Share list"
-msgstr ""
+msgstr "Condividi la lista"
 
 #: src/components/ShareDialog.vue
 msgid "Search users or groups..."
-msgstr ""
+msgstr "Cerca utenti o gruppi..."
 
 #: src/components/ShareDialog.vue
 msgid "No users found"
-msgstr ""
+msgstr "Nessun utente trovato"
 
 #: src/components/ShareDialog.vue
 msgid "Group"
-msgstr ""
+msgstr "Gruppo"
 
 #: src/components/ShareDialog.vue
 msgid "Shared with"
-msgstr ""
+msgstr "Condiviso con"
 
 #: src/components/ShareDialog.vue
 msgid "Can view"
-msgstr ""
+msgstr "Può visualizzare"
 
 #: src/components/ShareDialog.vue
 msgid "Can edit"
-msgstr ""
+msgstr "Può modificare"
 
 #: src/components/ShareDialog.vue
 msgid "Search above to share this list with other users."
-msgstr ""
+msgstr "Cerca sopra per condividere questa lista con altri utenti."
 
 #: src/components/ShareDialog.vue
 msgid "group"
-msgstr ""
+msgstr "gruppo"
 
 #: src/components/ShareDialog.vue
 msgid "Public link"
-msgstr ""
+msgstr "Link pubblico"
 
 #: src/components/ShareDialog.vue
 msgid "Create public link"
-msgstr ""
+msgstr "Crea link pubblico"
 
 #: src/components/ShareDialog.vue
 msgid "Copy link"
-msgstr ""
+msgstr "Copia link"
 
 #: src/components/ShareDialog.vue
 msgid "Copied!"
-msgstr ""
+msgstr "Copiato!"
 
 #: src/components/ShareDialog.vue
 msgid "Permission"
-msgstr ""
+msgstr "Permessi"
 
 #: src/components/ShareDialog.vue
 msgid "Password"
-msgstr ""
+msgstr "Password"
 
 #: src/components/ShareDialog.vue
 msgid "Password set"
-msgstr ""
+msgstr "Password impostata"
 
 #: src/components/ShareDialog.vue
 msgid "Optional"
-msgstr ""
+msgstr "Opzionale"
 
 #: src/components/ShareDialog.vue
 msgid "Set"
-msgstr ""
+msgstr "Imposta"
 
 #: src/components/ShareDialog.vue
 msgid "Remove"
-msgstr ""
+msgstr "Rimuovi"
 
 #: src/components/ShareDialog.vue
 msgid "Expires"
-msgstr ""
+msgstr "Scadenza"
 
 #: src/components/ShareDialog.vue
 msgid "Delete public link"
-msgstr ""
+msgstr "Elimina link pubblico"
 
 #: src/components/TagInput.vue
 msgid "Add tags..."
-msgstr ""
+msgstr "Aggiungi tag..."
 
 #: src/stores/items.ts
 msgid "Failed to load items"
-msgstr ""
+msgstr "Impossibile caricare gli oggetti"
 
 #: src/stores/items.ts
 msgid "\"{name}\" updated — quantity merged"
-msgstr ""
+msgstr "Aggiornato \"{name}\" — quantità unite"
 
 #: src/stores/items.ts
 msgid "Failed to add item"
-msgstr ""
+msgstr "Impossibile aggiungere l'oggetto"
 
 #: src/stores/items.ts
 msgid "Failed to update item"
-msgstr ""
+msgstr "Impossibile aggiornare l'oggetto"
 
 #: src/stores/items.ts
 msgid "Failed to delete item"
-msgstr ""
+msgstr "Impossibile eliminare l'oggetto"
 
 #: src/stores/items.ts
 msgid "Failed to reorder items"
-msgstr ""
+msgstr "Impossibile riordinare gli oggetti"
 
 #: src/stores/items.ts
 msgid "Failed to clear checked items"
-msgstr ""
+msgstr "Impossibile rimuovere gli oggetti smarcati"
 
 #: src/stores/items.ts
 msgid "Failed to uncheck items"
-msgstr ""
+msgstr "Impossibile ripristinare gli oggetti smarcati"
 
 #: src/stores/lists.ts
 msgid "Failed to load shopping lists"
-msgstr ""
+msgstr "Impossibile caricare le liste della spesa"
 
 #: src/stores/lists.ts
 msgid "Failed to create list"
-msgstr ""
+msgstr "Impossibile creare la lista"
 
 #: src/stores/lists.ts
 msgid "Failed to update list"
-msgstr ""
+msgstr "Impossibile aggiornare la lista"
 
 #: src/stores/lists.ts
 msgid "Failed to delete list"
-msgstr ""
+msgstr "Impossibile eliminare la lista"
 
 #: src/stores/lists.ts
 msgid "Failed to pin list"
-msgstr ""
+msgstr "Impossibile mettere in evidenza la lista"
 
 #: src/stores/lists.ts
 msgid "Failed to unpin list"
-msgstr ""
+msgstr "Impossibile rimuovere la lista dalle liste in evidenza"
 
 #: src/stores/shares.ts
 msgid "Failed to load shares"
-msgstr ""
+msgstr "Impossibile caricare le condivisioni"
 
 #: src/stores/shares.ts
 msgid "Failed to share list"
-msgstr ""
+msgstr "Impossibile condividere la lista"
 
 #: src/stores/shares.ts
 msgid "Failed to update share"
-msgstr ""
+msgstr "Impossibile aggiornare la condivisione"
 
 #: src/stores/shares.ts
 msgid "Failed to remove share"
-msgstr ""
+msgstr "Impossibile eliminare la condivisione"
 
 #: src/stores/shares.ts
 msgid "Failed to create public link"
-msgstr ""
+msgstr "Impossibile creare link pubblico"
 
 #: src/stores/shares.ts
 msgid "Failed to update public link"
-msgstr ""
+msgstr "Impossibile aggiornare link pubblico"
 
 #: src/stores/shares.ts
 msgid "Failed to remove public link"
-msgstr ""
+msgstr "Impossibile eliminare link pubblico"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to load shop areas"
-msgstr ""
+msgstr "Impossibile caricare aree di shopping"
 
 #: src/stores/shopAreas.ts
 msgid "Categories copied"
-msgstr ""
+msgstr "Categorie copiate"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to copy categories"
-msgstr ""
+msgstr "Impossibile copiare le categorie"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Copy categories from…"
-msgstr ""
+msgstr "Copia categorie da..."
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Copy"
-msgstr ""
+msgstr "Copia"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Load keywords for my language"
-msgstr ""
+msgstr "Carica le parole chiave per la mia lingua"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Adds your language's grocery keywords to the default areas, so items auto-sort correctly. Existing keywords are kept."
-msgstr ""
+msgstr "Verranno aggiunte parole chiave per le aree predefinite. In questa maniera gli oggetti saranno automaticamente catalogati correttamente. Verranno mantenute le parole chiave preesistenti."
 
 #: src/stores/shopAreas.ts
 msgid "Keywords for your language added"
-msgstr ""
+msgstr "Sono state aggiunte le parole chiave per la tua lingua"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to add keywords"
-msgstr ""
+msgstr "Impossibile aggiungere parole chiave"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to create shop area"
-msgstr ""
+msgstr "Impossibile creare aree di shopping"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to update shop area"
-msgstr ""
+msgstr "Impossibile aggiornare aree di shopping"
 
 #: src/stores/shopAreas.ts
 msgid "Failed to delete shop area"
-msgstr ""
+msgstr "Impossibile eliminare aree di shopping"
 
 #: src/stores/tags.ts
 msgid "Failed to load tags"
-msgstr ""
+msgstr "Impossibile caricare tag"
 
 #: src/stores/tags.ts
 msgid "Failed to create tag"
-msgstr ""
+msgstr "Impossibile creare tag"
 
 #: src/stores/tags.ts
 msgid "Failed to delete tag"
-msgstr ""
+msgstr "Impossibile eliminare tag"
 
 #: lib/Service/ShopAreaService.php
 msgid "Produce"
-msgstr ""
+msgstr "Prodotti"
 
 #: lib/Service/ShopAreaService.php
 msgid "Dairy"
-msgstr ""
+msgstr "Latticini"
 
 #: lib/Service/ShopAreaService.php
 msgid "Bakery"
-msgstr ""
+msgstr "Panetteria e pasticceria"
 
 #: lib/Service/ShopAreaService.php
 msgid "Meat & Seafood"
-msgstr ""
+msgstr "Carne e pesce"
 
 #: lib/Service/ShopAreaService.php
 msgid "Frozen"
-msgstr ""
+msgstr "Surgelati"
 
 #: lib/Service/ShopAreaService.php
 msgid "Beverages"
-msgstr ""
+msgstr "Bevande"
 
 #: lib/Service/ShopAreaService.php
 msgid "Snacks"
-msgstr ""
+msgstr "Snack"
 
 #: lib/Service/ShopAreaService.php
 msgid "Household"
-msgstr ""
+msgstr "Prodotti per la casa"
 
 #: lib/Service/ShopAreaService.php
 msgid "Personal Care"
-msgstr ""
+msgstr "Prodotti per la cura della persona"
 
 #: lib/Service/ShopAreaService.php
 msgid "General"
-msgstr ""
+msgstr "Generale"
 
 #: lib/Service/ShopAreaService.php
 msgid "Pets"
-msgstr ""
+msgstr "Prodotti per gli animali"
 
 #: lib/Service/ShopAreaService.php
 msgid "Other"
-msgstr ""
+msgstr "Altro"
 
 #: src/components/ItemRow.vue
 msgid "Delete \"{name}\"?"
-msgstr ""
+msgstr "Eliminare \"{name}\"?"
 
 #: src/components/ItemRow.vue
 msgid "Move to list"
-msgstr ""
+msgstr "Sposta in una lista"
 
 #: src/components/ItemRow.vue
 msgid "Add image"
-msgstr ""
+msgstr "Aggiungi immagine"
 
 #: src/components/ItemRow.vue
 msgid "Replace image"
-msgstr ""
+msgstr "Sostituisci immagine"
 
 #: src/components/ItemRow.vue
 msgid "Remove image"
-msgstr ""
+msgstr "Rimuovi immagine"
 
 #: src/components/ItemRow.vue src/components/PublicListView.vue
 msgid "View image"
-msgstr ""
+msgstr "Visualizza immagine"
 
 #: src/components/ItemRow.vue
 msgid "Uploading image…"
-msgstr ""
+msgstr "Caricamento dell'immagine..."
 
 #: src/components/ItemRow.vue
 msgid "Only image files can be attached"
-msgstr ""
+msgstr "Possono essere caricate solo immagini"
 
 #: src/components/ImageViewer.vue
 msgid "Could not load image"
-msgstr ""
+msgstr "Impossibile caricare l'immagine"
 
 #: src/stores/items.ts
 msgid "Failed to move item"
-msgstr ""
+msgstr "Impossibile spostare l'oggetto"
 
 #: src/stores/items.ts
 msgid "Moved \"{name}\" to {list}"
-msgstr ""
+msgstr "L'oggetto \"{name}\" è stato spostato nella lista {list}"
 
 #: src/stores/items.ts
 msgid "You're offline — moving items requires a connection"
-msgstr ""
+msgstr "Sei offline! Per spostare gli oggetti è necessario essere connessi a una rete"
 
 #: src/components/ItemRow.vue src/stores/items.ts
 msgid "You're offline — adding images requires a connection"
-msgstr ""
+msgstr "Sei offline! Per aggiungere un'immagine è necessario essere connessi a una rete"
 
 #: src/stores/items.ts
 msgid "You're offline — removing images requires a connection"
-msgstr ""
+msgstr "Sei offline! Per rimuovere un'immagine è necessario essere connessi a una rete"
 
 #: src/stores/items.ts
 msgid "Image is too large"
-msgstr ""
+msgstr "L'immagine è troppo grande"
 
 #: src/stores/items.ts
 msgid "This file is not a supported image"
-msgstr ""
+msgstr "Il file immagine è in un formato non supportato"
 
 #: src/stores/items.ts
 msgid "Failed to upload image"
-msgstr ""
+msgstr "Impossibile caricare l'immagine"
 
 #: src/stores/items.ts
 msgid "Failed to remove image"
-msgstr ""
+msgstr "Impossibile eliminare l'immagine"
 
 #: src/components/OfflineIndicator.vue
 msgid "Syncing changes…"
-msgstr ""
+msgstr "Sincronizzazione in corso..."
 
 #: src/components/OfflineIndicator.vue
 msgid "Offline — {count} pending"
-msgstr ""
+msgstr "Offline — {count} rimanenti"
 
 #: src/components/OfflineIndicator.vue
 msgid "You're offline"
-msgstr ""
+msgstr "Sei offline"
 
 #: src/components/OfflineIndicator.vue
 msgid "All changes synced"
-msgstr ""
+msgstr "Modifiche sincronizzate"
 
 #: src/components/OfflineIndicator.vue
 msgid "{count} changes pending"
-msgstr ""
+msgstr "{count} modifiche rimanenti"
 
 #: src/components/ItemImagesSettings.vue
 msgid "Item images"
-msgstr ""
+msgstr "Immagini dell'oggetto"
 
 #: src/components/ItemImagesSettings.vue
 msgid "Show item images"
-msgstr ""
+msgstr "Mostra immagini dell'oggetto"
 
 #: src/components/ItemImagesSettings.vue
 msgid "Attach a photo to an item from its menu, or paste or drop one onto it. Photos are part of the list, so everyone with access can see them. This switch only changes what you see."
-msgstr ""
+msgstr "Per allegare una foto a un oggetto, puoi usare il menu, incollarne una o trascinarne una sopra. Le foto faranno parte della lista, pertanto coloro che hanno accesso a essa le vedranno. Questo interruttore cambierà la visualizzazione solo per il tuo utente."
 
 #: src/components/ItemImagesSettings.vue
 msgid "Failed to save setting"
-msgstr ""
+msgstr "Impossibile salvare l'impostazione"
 
 #: src/components/AndroidAppLink.vue
 msgid "Get the Android app"
-msgstr ""
+msgstr "Scarica l'app per Android"
 
 #: src/components/AndroidAppLink.vue
 msgid "Hide this link"
-msgstr ""
+msgstr "Nascondi questo link"
 
 #: appinfo/info.xml lib/Notification/Notifier.php
 msgid "Shopping List"
-msgstr ""
+msgstr "Shopping List"
 
 #: lib/Notification/Notifier.php
 msgid "Shopping List is now on Android"
-msgstr ""
+msgstr "Shopping List è disponibile per Android"
 
 #: lib/Notification/Notifier.php
 msgid "Take your lists shopping — a companion Android app is now available on Google Play."
-msgstr ""
+msgstr "Porta con te le liste della spesa! L'app per Android è disponibile su Google Play."
 
 #: lib/Notification/Notifier.php
 msgid "Get it on Google Play"
-msgstr ""
+msgstr "Scarica da Google Play"
 
