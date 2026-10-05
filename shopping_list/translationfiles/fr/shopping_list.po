@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-09-26 17:45\n"
+"PO-Revision-Date: 2026-10-05 18:19\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -52,6 +52,10 @@ msgstr "Introuvable"
 #: src/PublicApp.vue
 msgid "This shared list does not exist or has expired."
 msgstr "Cette liste partagée n'existe pas ou a expiré."
+
+#: src/PublicApp.vue
+msgid "Open in the app"
+msgstr ""
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Back to list"
@@ -116,6 +120,10 @@ msgstr "Supprimer « {name} » ? Les éléments de cette allée ne seront 
 #: src/components/PublicListView.vue
 msgid "Add an item to list..."
 msgstr "Ajouter un élément à la liste..."
+
+#: src/components/PublicListView.vue
+msgid "Your name (optional)"
+msgstr ""
 
 #: src/components/ItemEditor.vue
 msgid "Add an item or paste a list..."
@@ -298,7 +306,7 @@ msgid "By area, A to Z"
 msgstr "Par allée, de A à Z"
 
 #. Sort option, used for both open and checked-off items: by name, ignoring the shop areas.
-#: src/components/ListView.vue
+#: src/components/ListView.vue src/components/ListSortSettings.vue
 msgid "A to Z"
 msgstr "De A à Z"
 
@@ -390,6 +398,42 @@ msgstr "Expire"
 #: src/components/ShareDialog.vue
 msgid "Delete public link"
 msgstr "Supprimer le lien public"
+
+#: src/components/ShareDialog.vue
+msgid "Show QR code"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Hide QR code"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "QR code of the public link"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Invite code"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Server"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Code"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Copy invite"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Type these into the Shopping List Android app to join without the link."
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Show members' names"
+msgstr ""
 
 #: src/components/TagInput.vue
 msgid "Add tags..."
@@ -611,6 +655,11 @@ msgstr "Retirer l'image"
 msgid "View image"
 msgstr "Voir l'image"
 
+#. Marks a name next to an item as someone without an account on a public link
+#: src/components/ItemRow.vue src/components/PublicListView.vue
+msgid "guest"
+msgstr ""
+
 #: src/components/ItemRow.vue
 msgid "Uploading image…"
 msgstr "Envoi de l'image…"
@@ -691,7 +740,19 @@ msgstr "Afficher les images des articles"
 msgid "Attach a photo to an item from its menu, or paste or drop one onto it. Photos are part of the list, so everyone with access can see them. This switch only changes what you see."
 msgstr "Joignez une photo à un article depuis son menu, ou collez-la ou déposez-la sur l'article. Les photos font partie de la liste, donc toutes les personnes qui y ont accès peuvent les voir. Cet interrupteur ne change que ce que vous voyez."
 
-#: src/components/ItemImagesSettings.vue
+#: src/components/NameSettings.vue
+msgid "Names"
+msgstr ""
+
+#: src/components/NameSettings.vue
+msgid "Show my name on items"
+msgstr ""
+
+#: src/components/NameSettings.vue
+msgid "Your name always shows to everyone else. This switch only changes what you see."
+msgstr ""
+
+#: src/components/ItemImagesSettings.vue src/stores/lists.ts
 msgid "Failed to save setting"
 msgstr "Impossible d'enregistrer le paramètre"
 
@@ -718,4 +779,20 @@ msgstr "Emportez vos listes de courses partout avec vous. Une application compag
 #: lib/Notification/Notifier.php
 msgid "Get it on Google Play"
 msgstr "Disponible sur Google Play"
+
+#: src/components/ListSortSettings.vue
+msgid "Sort lists"
+msgstr ""
+
+#: src/components/ListSortSettings.vue
+msgid "Recently updated"
+msgstr ""
+
+#: src/components/ListSortSettings.vue
+msgid "Custom (drag to reorder)"
+msgstr ""
+
+#: src/stores/lists.ts
+msgid "Failed to save the list order"
+msgstr ""
 
