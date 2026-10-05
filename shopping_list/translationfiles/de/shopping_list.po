@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-10-05 18:19\n"
+"PO-Revision-Date: 2026-10-05 20:09\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -14,8 +14,8 @@ msgstr ""
 "X-Crowdin-Project: shopping-list-for-nextcloud\n"
 "X-Crowdin-Project-ID: 896886\n"
 "X-Crowdin-Language: de\n"
-"X-Crowdin-File: /[otherworld-dev.Shopping-List] main/shopping_list/translationfiles/templates/shopping_list.pot\n"
-"X-Crowdin-File-ID: 11\n"
+"X-Crowdin-File: /dev/shopping_list/translationfiles/templates/shopping_list.pot\n"
+"X-Crowdin-File-ID: 46\n"
 
 #: src/App.vue
 msgid "No list selected"
@@ -381,7 +381,7 @@ msgstr "Passwort gesetzt"
 
 #: src/components/ShareDialog.vue
 msgid "Optional"
-msgstr "Optional"
+msgstr ""
 
 #: src/components/ShareDialog.vue
 msgid "Set"
@@ -609,7 +609,7 @@ msgstr "Getränke"
 
 #: lib/Service/ShopAreaService.php
 msgid "Snacks"
-msgstr "Snacks"
+msgstr ""
 
 #: lib/Service/ShopAreaService.php
 msgid "Household"
