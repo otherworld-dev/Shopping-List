@@ -12528,7 +12528,7 @@ const _hoisted_2$p = {
 };
 const _hoisted_3$n = ["d"];
 const _hoisted_4$i = ["innerHTML"];
-const _sfc_main$x = /* @__PURE__ */ defineComponent({
+const _sfc_main$y = /* @__PURE__ */ defineComponent({
   __name: "NcIconSvgWrapper",
   props: {
     directional: { type: Boolean },
@@ -12578,7 +12578,7 @@ const _sfc_main$x = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const NcIconSvgWrapper = /* @__PURE__ */ _export_sfc$1(_sfc_main$x, [["__scopeId", "data-v-aaedb1c3"]]);
+const NcIconSvgWrapper = /* @__PURE__ */ _export_sfc$1(_sfc_main$y, [["__scopeId", "data-v-aaedb1c3"]]);
 const NC_ACTIONS_IS_SEMANTIC_MENU = /* @__PURE__ */ Symbol.for("NcActions:isSemanticMenu");
 const NC_ACTIONS_CLOSE_MENU = /* @__PURE__ */ Symbol.for("NcActions:closeMenu");
 const ActionGlobalMixin = {
@@ -12676,7 +12676,7 @@ const ActionTextMixin = {
     }
   }
 };
-const _sfc_main$w = {
+const _sfc_main$x = {
   name: "NcActionButton",
   components: {
     NcIconSvgWrapper
@@ -12892,7 +12892,7 @@ function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
     ], 16, _hoisted_2$o)
   ], 10, _hoisted_1$t);
 }
-const NcActionButton = /* @__PURE__ */ _export_sfc$1(_sfc_main$w, [["render", _sfc_render$n], ["__scopeId", "data-v-6c2daf4e"]]);
+const NcActionButton = /* @__PURE__ */ _export_sfc$1(_sfc_main$x, [["render", _sfc_render$n], ["__scopeId", "data-v-6c2daf4e"]]);
 const generateOcsUrl = (url2, params, options) => {
   const allOptions = Object.assign({
     ocsVersion: 2
@@ -19089,7 +19089,7 @@ function useNcFormBox() {
 const _hoisted_1$s = { class: "button-vue__wrapper" };
 const _hoisted_2$n = { class: "button-vue__icon" };
 const _hoisted_3$l = { class: "button-vue__text" };
-const _sfc_main$v = /* @__PURE__ */ defineComponent({
+const _sfc_main$w = /* @__PURE__ */ defineComponent({
   __name: "NcButton",
   props: {
     alignment: { default: "center" },
@@ -19198,7 +19198,7 @@ const _sfc_main$v = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const NcButton = /* @__PURE__ */ _export_sfc$1(_sfc_main$v, [["__scopeId", "data-v-09093702"]]);
+const NcButton = /* @__PURE__ */ _export_sfc$1(_sfc_main$w, [["__scopeId", "data-v-09093702"]]);
 const _hoisted_1$r = { class: "input-field__main-wrapper" };
 const _hoisted_2$m = ["id", "aria-describedby", "disabled", "placeholder", "type", "value"];
 const _hoisted_3$k = ["for"];
@@ -19208,7 +19208,7 @@ const _hoisted_5$6 = {
   class: "input-field__icon input-field__icon--trailing"
 };
 const _hoisted_6$5 = ["id"];
-const _sfc_main$u = /* @__PURE__ */ defineComponent({
+const _sfc_main$v = /* @__PURE__ */ defineComponent({
   ...{
     inheritAttrs: false
   },
@@ -19357,7 +19357,7 @@ const _sfc_main$u = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const NcInputField = /* @__PURE__ */ _export_sfc$1(_sfc_main$u, [["__scopeId", "data-v-fccfce00"]]);
+const NcInputField = /* @__PURE__ */ _export_sfc$1(_sfc_main$v, [["__scopeId", "data-v-fccfce00"]]);
 var LogLevel = /* @__PURE__ */ ((LogLevel2) => {
   LogLevel2[LogLevel2["Debug"] = 0] = "Debug";
   LogLevel2[LogLevel2["Info"] = 1] = "Info";
@@ -19520,7 +19520,7 @@ register(t49);
     }
   }
 });
-const _sfc_main$t = {
+const _sfc_main$u = {
   name: "NcActionLink",
   mixins: [ActionTextMixin],
   inject: {
@@ -19622,8 +19622,8 @@ function _sfc_render$m(_ctx, _cache, $props, $setup, $data, $options) {
     ], 8, _hoisted_2$l)
   ], 8, _hoisted_1$q);
 }
-const NcActionLink = /* @__PURE__ */ _export_sfc$1(_sfc_main$t, [["render", _sfc_render$m], ["__scopeId", "data-v-32f01b7a"]]);
-const _sfc_main$s = {
+const NcActionLink = /* @__PURE__ */ _export_sfc$1(_sfc_main$u, [["render", _sfc_render$m], ["__scopeId", "data-v-32f01b7a"]]);
+const _sfc_main$t = {
   name: "NcActionRouter",
   mixins: [ActionTextMixin],
   inject: {
@@ -19695,7 +19695,7 @@ function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
     }, 8, ["aria-label", "role", "title", "to", "onClick"])
   ], 8, _hoisted_1$p);
 }
-const NcActionRouter = /* @__PURE__ */ _export_sfc$1(_sfc_main$s, [["render", _sfc_render$l], ["__scopeId", "data-v-87267750"]]);
+const NcActionRouter = /* @__PURE__ */ _export_sfc$1(_sfc_main$t, [["render", _sfc_render$l], ["__scopeId", "data-v-87267750"]]);
 function getTrapStack() {
   window._nc_focus_trap ??= [];
   return window._nc_focus_trap;
@@ -23647,7 +23647,7 @@ const style0$2 = {
 };
 const theme = "nc-popover-9";
 Ht$1.themes[theme] = structuredClone(Ht$1.themes.dropdown);
-const _sfc_main$r = {
+const _sfc_main$s = {
   name: "NcPopover",
   components: {
     Dropdown: kt,
@@ -24020,7 +24020,7 @@ function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
 const cssModules$2 = {
   "$style": style0$2
 };
-const NcPopover = /* @__PURE__ */ _export_sfc$1(_sfc_main$r, [["render", _sfc_render$k], ["__cssModules", cssModules$2]]);
+const NcPopover = /* @__PURE__ */ _export_sfc$1(_sfc_main$s, [["render", _sfc_render$k], ["__cssModules", cssModules$2]]);
 const _sfc_main$1$5 = {
   name: "DotsHorizontalIcon",
   emits: ["click"],
@@ -24083,7 +24083,7 @@ function isSlotPopulated(vnodes) {
   });
 }
 const focusableSelector = ".focusable";
-const _sfc_main$q = {
+const _sfc_main$r = {
   name: "NcActions",
   components: {
     NcButton,
@@ -24768,8 +24768,8 @@ const _sfc_main$q = {
     );
   }
 };
-const NcActions = /* @__PURE__ */ _export_sfc$1(_sfc_main$q, [["__scopeId", "data-v-5f7eed6b"]]);
-const _sfc_main$p = {
+const NcActions = /* @__PURE__ */ _export_sfc$1(_sfc_main$r, [["__scopeId", "data-v-5f7eed6b"]]);
+const _sfc_main$q = {
   name: "NcActionText",
   mixins: [ActionTextMixin],
   inject: {
@@ -24823,7 +24823,7 @@ function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ], 8, _hoisted_1$n);
 }
-const NcActionText = /* @__PURE__ */ _export_sfc$1(_sfc_main$p, [["render", _sfc_render$i], ["__scopeId", "data-v-fa684b48"]]);
+const NcActionText = /* @__PURE__ */ _export_sfc$1(_sfc_main$q, [["render", _sfc_render$i], ["__scopeId", "data-v-fa684b48"]]);
 function tryOnScopeDispose(fn2, failSilently) {
   if (getCurrentScope()) {
     onScopeDispose(fn2, failSilently);
@@ -24854,6 +24854,9 @@ function pxValue(px) {
 function toArray(value) {
   return Array.isArray(value) ? value : [value];
 }
+function getLifeCycleTarget(target) {
+  return getCurrentInstance();
+}
 // @__NO_SIDE_EFFECTS__
 function createSharedComposable(composable) {
   if (!isClient) return composable;
@@ -24877,6 +24880,11 @@ function createSharedComposable(composable) {
     tryOnScopeDispose(dispose);
     return state;
   });
+}
+function tryOnMounted(fn2, sync = true, target) {
+  if (getLifeCycleTarget()) onMounted(fn2, target);
+  else if (sync) fn2();
+  else nextTick(fn2);
 }
 function useIntervalFn(cb, interval = 1e3, options = {}) {
   const { immediate = true, immediateCallback = false } = options;
@@ -25215,6 +25223,89 @@ function useMediaQuery(query, options = {}) {
 // @__NO_SIDE_EFFECTS__
 function usePreferredDark(options) {
   return useMediaQuery("(prefers-color-scheme: dark)", options);
+}
+function useResizeObserver(target, callback, options = {}) {
+  const { window: window$1 = defaultWindow, ...observerOptions } = options;
+  let observer;
+  const isSupported = /* @__PURE__ */ useSupported(() => window$1 && "ResizeObserver" in window$1);
+  const cleanup = () => {
+    if (observer) {
+      observer.disconnect();
+      observer = void 0;
+    }
+  };
+  const stopWatch = watch(computed(() => {
+    const _targets = toValue(target);
+    return Array.isArray(_targets) ? _targets.map((el) => unrefElement(el)) : [unrefElement(_targets)];
+  }), (els) => {
+    cleanup();
+    if (isSupported.value && window$1) {
+      observer = new ResizeObserver(callback);
+      for (const _el of els) if (_el) observer.observe(_el, observerOptions);
+    }
+  }, {
+    immediate: true,
+    flush: "post"
+  });
+  const stop2 = () => {
+    cleanup();
+    stopWatch();
+  };
+  tryOnScopeDispose(stop2);
+  return {
+    isSupported,
+    stop: stop2
+  };
+}
+function useElementSize(target, initialSize = {
+  width: 0,
+  height: 0
+}, options = {}) {
+  const { window: window$1 = defaultWindow, box = "content-box" } = options;
+  const isSVG = computed(() => {
+    var _unrefElement;
+    return (_unrefElement = unrefElement(target)) === null || _unrefElement === void 0 || (_unrefElement = _unrefElement.namespaceURI) === null || _unrefElement === void 0 ? void 0 : _unrefElement.includes("svg");
+  });
+  const width = /* @__PURE__ */ shallowRef(initialSize.width);
+  const height = /* @__PURE__ */ shallowRef(initialSize.height);
+  const { stop: stop1 } = useResizeObserver(target, ([entry]) => {
+    const boxSize = box === "border-box" ? entry.borderBoxSize : box === "content-box" ? entry.contentBoxSize : entry.devicePixelContentBoxSize;
+    if (window$1 && isSVG.value) {
+      const $elem = unrefElement(target);
+      if ($elem) {
+        const rect = $elem.getBoundingClientRect();
+        width.value = rect.width;
+        height.value = rect.height;
+      }
+    } else if (boxSize) {
+      const formatBoxSize = toArray(boxSize);
+      width.value = formatBoxSize.reduce((acc, { inlineSize }) => acc + inlineSize, 0);
+      height.value = formatBoxSize.reduce((acc, { blockSize }) => acc + blockSize, 0);
+    } else {
+      width.value = entry.contentRect.width;
+      height.value = entry.contentRect.height;
+    }
+  }, options);
+  tryOnMounted(() => {
+    const ele = unrefElement(target);
+    if (ele) {
+      width.value = "offsetWidth" in ele ? ele.offsetWidth : initialSize.width;
+      height.value = "offsetHeight" in ele ? ele.offsetHeight : initialSize.height;
+    }
+  });
+  const stop2 = watch(() => unrefElement(target), (ele) => {
+    width.value = ele ? initialSize.width : 0;
+    height.value = ele ? initialSize.height : 0;
+  });
+  function stop3() {
+    stop1();
+    stop2();
+  }
+  return {
+    width,
+    height,
+    stop: stop3
+  };
 }
 const EVENT_FOCUS_IN = "focusin";
 const EVENT_FOCUS_OUT = "focusout";
@@ -25652,7 +25743,7 @@ const _sfc_main$1$4 = /* @__PURE__ */ defineComponent({
 const NcAppContentDetailsToggle = /* @__PURE__ */ _export_sfc$1(_sfc_main$1$4, [["__scopeId", "data-v-a28923a1"]]);
 const browserStorage$2 = getBuilder("nextcloud").persist().build();
 const instanceName = getCapabilities().theming?.name ?? "Nextcloud";
-const _sfc_main$o = {
+const _sfc_main$p = {
   name: "NcAppContent",
   components: {
     NcAppContentDetailsToggle,
@@ -25967,8 +26058,8 @@ function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
     !_ctx.$slots.list ? renderSlot(_ctx.$slots, "default", { key: 2 }, void 0, true) : createCommentVNode("", true)
   ], 2);
 }
-const NcAppContent = /* @__PURE__ */ _export_sfc$1(_sfc_main$o, [["render", _sfc_render$h], ["__scopeId", "data-v-ea1e6879"]]);
-const _sfc_main$n = {
+const NcAppContent = /* @__PURE__ */ _export_sfc$1(_sfc_main$p, [["render", _sfc_render$h], ["__scopeId", "data-v-ea1e6879"]]);
+const _sfc_main$o = {
   name: "NcAppNavigationList"
 };
 const _hoisted_1$l = { class: "app-navigation-list" };
@@ -25977,7 +26068,7 @@ function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default", {}, void 0, true)
   ]);
 }
-const NcAppNavigationList = /* @__PURE__ */ _export_sfc$1(_sfc_main$n, [["render", _sfc_render$g], ["__scopeId", "data-v-d72957ed"]]);
+const NcAppNavigationList = /* @__PURE__ */ _export_sfc$1(_sfc_main$o, [["render", _sfc_render$g], ["__scopeId", "data-v-d72957ed"]]);
 /*!
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -26021,7 +26112,7 @@ const _sfc_main$1$3 = /* @__PURE__ */ defineComponent({
 const NcAppNavigationToggle = /* @__PURE__ */ _export_sfc$1(_sfc_main$1$3, [["__scopeId", "data-v-5a15295d"]]);
 const _hoisted_1$k = ["aria-hidden", "aria-label", "aria-labelledby", "inert"];
 const _hoisted_2$g = { class: "app-navigation__search" };
-const _sfc_main$m = /* @__PURE__ */ defineComponent({
+const _sfc_main$n = /* @__PURE__ */ defineComponent({
   __name: "NcAppNavigation",
   props: {
     ariaLabel: {},
@@ -26138,8 +26229,8 @@ const _sfc_main$m = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const NcAppNavigation = /* @__PURE__ */ _export_sfc$1(_sfc_main$m, [["__scopeId", "data-v-d5ce90cd"]]);
-const _sfc_main$l = {
+const NcAppNavigation = /* @__PURE__ */ _export_sfc$1(_sfc_main$n, [["__scopeId", "data-v-d5ce90cd"]]);
+const _sfc_main$m = {
   name: "NcAppNavigationCaption",
   components: {
     NcActions
@@ -26230,8 +26321,8 @@ function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
     _: 3
   }, 8, ["class"]);
 }
-const NcAppNavigationCaption = /* @__PURE__ */ _export_sfc$1(_sfc_main$l, [["render", _sfc_render$f], ["__scopeId", "data-v-21e6b451"]]);
-const _sfc_main$k = {
+const NcAppNavigationCaption = /* @__PURE__ */ _export_sfc$1(_sfc_main$m, [["render", _sfc_render$f], ["__scopeId", "data-v-21e6b451"]]);
+const _sfc_main$l = {
   name: "ChevronDownIcon",
   emits: ["click"],
   props: {
@@ -26273,8 +26364,8 @@ function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
     ], 8, _hoisted_2$f))
   ], 16, _hoisted_1$i);
 }
-const ChevronDown = /* @__PURE__ */ _export_sfc$1(_sfc_main$k, [["render", _sfc_render$e]]);
-const _sfc_main$j = {
+const ChevronDown = /* @__PURE__ */ _export_sfc$1(_sfc_main$l, [["render", _sfc_render$e]]);
+const _sfc_main$k = {
   name: "ChevronUpIcon",
   emits: ["click"],
   props: {
@@ -26316,8 +26407,8 @@ function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
     ], 8, _hoisted_2$e))
   ], 16, _hoisted_1$h);
 }
-const ChevronUp = /* @__PURE__ */ _export_sfc$1(_sfc_main$j, [["render", _sfc_render$d]]);
-const _sfc_main$i = {
+const ChevronUp = /* @__PURE__ */ _export_sfc$1(_sfc_main$k, [["render", _sfc_render$d]]);
+const _sfc_main$j = {
   name: "ArrowRightIcon",
   emits: ["click"],
   props: {
@@ -26359,8 +26450,8 @@ function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
     ], 8, _hoisted_2$d))
   ], 16, _hoisted_1$g);
 }
-const IconArrowRight = /* @__PURE__ */ _export_sfc$1(_sfc_main$i, [["render", _sfc_render$c]]);
-const _sfc_main$h = {
+const IconArrowRight = /* @__PURE__ */ _export_sfc$1(_sfc_main$j, [["render", _sfc_render$c]]);
+const _sfc_main$i = {
   name: "CloseIcon",
   emits: ["click"],
   props: {
@@ -26402,9 +26493,9 @@ function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
     ], 8, _hoisted_2$c))
   ], 16, _hoisted_1$f);
 }
-const IconClose = /* @__PURE__ */ _export_sfc$1(_sfc_main$h, [["render", _sfc_render$b]]);
+const IconClose = /* @__PURE__ */ _export_sfc$1(_sfc_main$i, [["render", _sfc_render$b]]);
 register(t14);
-const _sfc_main$g = {
+const _sfc_main$h = {
   name: "NcInputConfirmCancel",
   components: {
     IconArrowRight,
@@ -26514,13 +26605,13 @@ function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
     ], 32)
   ]);
 }
-const NcInputConfirmCancel = /* @__PURE__ */ _export_sfc$1(_sfc_main$g, [["render", _sfc_render$a], ["__scopeId", "data-v-dd457d48"]]);
+const NcInputConfirmCancel = /* @__PURE__ */ _export_sfc$1(_sfc_main$h, [["render", _sfc_render$a], ["__scopeId", "data-v-dd457d48"]]);
 const _hoisted_1$d = ["aria-label"];
 const _hoisted_2$a = ["width", "height"];
 const _hoisted_3$a = ["fill"];
 const _hoisted_4$7 = ["fill"];
 const _hoisted_5$2 = { key: 0 };
-const _sfc_main$f = /* @__PURE__ */ defineComponent({
+const _sfc_main$g = /* @__PURE__ */ defineComponent({
   __name: "NcLoadingIcon",
   props: {
     appearance: { default: "auto" },
@@ -26564,8 +26655,8 @@ const _sfc_main$f = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const NcLoadingIcon = /* @__PURE__ */ _export_sfc$1(_sfc_main$f, [["__scopeId", "data-v-cf399190"]]);
-const _sfc_main$e = /* @__PURE__ */ defineComponent({
+const NcLoadingIcon = /* @__PURE__ */ _export_sfc$1(_sfc_main$g, [["__scopeId", "data-v-cf399190"]]);
+const _sfc_main$f = /* @__PURE__ */ defineComponent({
   name: "NcVNodes",
   props: {
     /**
@@ -26732,7 +26823,7 @@ function _sfc_render$1$2(_ctx, _cache, $props, $setup, $data, $options) {
 }
 const NcAppNavigationIconCollapsible = /* @__PURE__ */ _export_sfc$1(_sfc_main$1$2, [["render", _sfc_render$1$2], ["__scopeId", "data-v-e6236e50"]]);
 register(t23, t51);
-const _sfc_main$d = {
+const _sfc_main$e = {
   name: "NcAppNavigationItem",
   components: {
     NcActions,
@@ -26740,7 +26831,7 @@ const _sfc_main$d = {
     NcAppNavigationIconCollapsible,
     NcInputConfirmCancel,
     NcLoadingIcon,
-    NcVNodes: _sfc_main$e,
+    NcVNodes: _sfc_main$f,
     Pencil,
     Undo
   },
@@ -27205,7 +27296,7 @@ function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
     ])) : createCommentVNode("", true)
   ], 10, _hoisted_1$c);
 }
-const NcAppNavigationItem = /* @__PURE__ */ _export_sfc$1(_sfc_main$d, [["render", _sfc_render$9], ["__scopeId", "data-v-f925f8d0"]]);
+const NcAppNavigationItem = /* @__PURE__ */ _export_sfc$1(_sfc_main$e, [["render", _sfc_render$9], ["__scopeId", "data-v-f925f8d0"]]);
 register(t16, t44);
 /* @__PURE__ */ defineComponent({
   __name: "NcAppNavigationSearch",
@@ -27300,7 +27391,7 @@ register(t16, t44);
 });
 register(t47);
 const _hoisted_1$b = ["id"];
-const _sfc_main$c = /* @__PURE__ */ defineComponent({
+const _sfc_main$d = /* @__PURE__ */ defineComponent({
   __name: "NcAppNavigationSettings",
   props: {
     excludeClickOutsideSelectors: { default: () => [] },
@@ -27381,8 +27472,67 @@ const style0$1 = {
 const cssModules$1 = {
   "$style": style0$1
 };
-const NcAppNavigationSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$c, [["__cssModules", cssModules$1]]);
+const NcAppNavigationSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$d, [["__cssModules", cssModules$1]]);
 register(t33);
+const _sfc_main$c = /* @__PURE__ */ defineComponent({
+  __name: "NcDialogButton",
+  props: {
+    callback: { type: Function, default: () => {
+    } },
+    disabled: { type: Boolean, default: false },
+    icon: { default: void 0 },
+    label: {},
+    type: { default: "button" },
+    variant: { default: "tertiary" }
+  },
+  emits: ["click"],
+  setup(__props, { emit: __emit }) {
+    const props = __props;
+    const emit2 = __emit;
+    const isLoading = /* @__PURE__ */ ref(false);
+    async function handleClick(e) {
+      if (isLoading.value) {
+        return;
+      }
+      isLoading.value = true;
+      try {
+        const fallback = props.type === "reset" ? false : void 0;
+        const result = await props.callback?.() ?? fallback;
+        if (result !== false) {
+          emit2("click", e, result);
+        }
+      } finally {
+        isLoading.value = false;
+      }
+    }
+    return (_ctx, _cache) => {
+      return openBlock(), createBlock(unref(NcButton), {
+        "aria-label": _ctx.label,
+        disabled: _ctx.disabled,
+        type: _ctx.type,
+        variant: _ctx.variant,
+        onClick: handleClick
+      }, {
+        icon: withCtx(() => [
+          renderSlot(_ctx.$slots, "icon", {}, () => [
+            isLoading.value ? (openBlock(), createBlock(unref(NcLoadingIcon), {
+              key: 0,
+              name: unref(t)("Loading …")
+              /* TRANSLATORS: The button is in a loading state*/
+            }, null, 8, ["name"])) : _ctx.icon !== void 0 ? (openBlock(), createBlock(unref(NcIconSvgWrapper), {
+              key: 1,
+              svg: _ctx.icon
+            }, null, 8, ["svg"])) : createCommentVNode("", true)
+          ])
+        ]),
+        default: withCtx(() => [
+          createTextVNode(toDisplayString(_ctx.label) + " ", 1)
+        ]),
+        _: 3
+      }, 8, ["aria-label", "disabled", "type", "variant"]);
+    };
+  }
+});
 register(t2);
 ({
   long: t("a few seconds ago"),
@@ -44510,106 +44660,113 @@ function useCollapsedAreas(listId, storage = browserStorage()) {
   return { isCollapsed, toggle };
 }
 export {
-  generateCodeFrame as $,
+  isArray$1 as $,
   ActionGlobalMixin as A,
-  mergeModels as B,
-  ref as C,
-  computed as D,
-  NOOP as E,
-  extend$1 as F,
-  isString$1 as G,
-  NO as H,
-  INSIDE_RADIO_GROUP_KEY as I,
-  isSymbol as J,
-  isBuiltInDirective as K,
-  capitalize as L,
-  camelize as M,
+  toHandlers as B,
+  createCommentVNode as C,
+  renderList as D,
+  _sfc_main$c as E,
+  Fragment as F,
+  NcModal as G,
+  mergeModels as H,
+  computed as I,
+  ref as J,
+  useCssModule as K,
+  provide as L,
+  NC_FORM_BOX_CONTEXT_KEY as M,
   NC_ACTIONS_IS_SEMANTIC_MENU as N,
-  EMPTY_OBJ as O,
-  isObject$2 as P,
-  toHandlerKey as Q,
-  isArray$1 as R,
-  isOn as S,
-  isReservedProp as T,
-  isVoidTag as U,
-  isHTMLTag as V,
-  isSVGTag as W,
-  isMathMLTag as X,
-  parseStringStyle as Y,
-  makeMap as Z,
+  INSIDE_RADIO_GROUP_KEY as O,
+  NOOP as P,
+  extend$1 as Q,
+  isString$1 as R,
+  NO as S,
+  isSymbol as T,
+  isBuiltInDirective as U,
+  capitalize as V,
+  camelize as W,
+  EMPTY_OBJ as X,
+  isObject$2 as Y,
+  toHandlerKey as Z,
   _export_sfc$1 as _,
   NcIconSvgWrapper as a,
-  dist as a$,
-  getAugmentedNamespace as a0,
-  runtimeDom_esmBundler as a1,
-  shared_esmBundler as a2,
-  getDefaultExportFromCjs$1 as a3,
-  getGettextBuilder as a4,
-  getLoggerBuilder as a5,
-  defineStore as a6,
-  loadState as a7,
-  api as a8,
-  markServerFetched as a9,
-  itemImageUrl as aA,
-  NcPopover as aB,
-  mdiHelpCircleOutline as aC,
-  getRootUrl as aD,
-  generateOcsUrl as aE,
-  cancelableClient as aF,
-  ShareType as aG,
-  generateUrl as aH,
-  browserStorage as aI,
-  useCollapsedAreas as aJ,
-  NcAvatar as aK,
-  isRef as aL,
-  mdiChevronDown as aM,
-  vShow as aN,
-  shallowRef as aO,
-  vModelSelect as aP,
-  NcCheckboxRadioSwitch as aQ,
-  Transition as aR,
-  NcAppNavigation as aS,
-  NcAppNavigationSettings as aT,
-  NcAppContent as aU,
-  NcContent as aV,
-  createPinia as aW,
-  offlinePersistPlugin as aX,
-  createApp as aY,
-  publicApi as aZ,
-  publicItemImageUrl as a_,
-  translate as aa,
-  getLanguage as ab,
-  loadValue as ac,
-  saveValue as ad,
-  readonly as ae,
-  Fragment as af,
-  renderList as ag,
-  NcAppNavigationCaption as ah,
-  NcActionButton as ai,
-  NcAppNavigationItem as aj,
-  _export_sfc as ak,
-  getCurrentUser as al,
-  watch as am,
-  onMounted as an,
-  onUnmounted as ao,
-  NcLoadingIcon as ap,
-  withKeys as aq,
-  withModifiers as ar,
-  vModelText as as,
-  normalizeStyle as at,
-  Teleport as au,
-  NcActions as av,
-  ImageViewer as aw,
-  Permission as ax,
-  attribution as ay,
-  nextTick as az,
+  NcAppContent as a$,
+  isOn as a0,
+  isReservedProp as a1,
+  isVoidTag as a2,
+  isHTMLTag as a3,
+  isSVGTag as a4,
+  isMathMLTag as a5,
+  parseStringStyle as a6,
+  makeMap as a7,
+  generateCodeFrame as a8,
+  getAugmentedNamespace as a9,
+  normalizeStyle as aA,
+  Teleport as aB,
+  NcActions as aC,
+  ImageViewer as aD,
+  Permission as aE,
+  attribution as aF,
+  nextTick as aG,
+  itemImageUrl as aH,
+  NcPopover as aI,
+  mdiHelpCircleOutline as aJ,
+  getRootUrl as aK,
+  generateOcsUrl as aL,
+  cancelableClient as aM,
+  ShareType as aN,
+  generateUrl as aO,
+  browserStorage as aP,
+  useCollapsedAreas as aQ,
+  NcAvatar as aR,
+  isRef as aS,
+  mdiChevronDown as aT,
+  vShow as aU,
+  shallowRef as aV,
+  vModelSelect as aW,
+  NcCheckboxRadioSwitch as aX,
+  Transition as aY,
+  NcAppNavigation as aZ,
+  NcAppNavigationSettings as a_,
+  runtimeDom_esmBundler as aa,
+  shared_esmBundler as ab,
+  getDefaultExportFromCjs$1 as ac,
+  getGettextBuilder as ad,
+  getLoggerBuilder as ae,
+  defineStore as af,
+  loadState as ag,
+  api as ah,
+  markServerFetched as ai,
+  translate as aj,
+  getLanguage as ak,
+  loadValue as al,
+  saveValue as am,
+  readonly as an,
+  NcAppNavigationCaption as ao,
+  NcActionButton as ap,
+  NcAppNavigationItem as aq,
+  _export_sfc as ar,
+  getCurrentUser as as,
+  watch as at,
+  onMounted as au,
+  onUnmounted as av,
+  NcLoadingIcon as aw,
+  withKeys as ax,
+  withModifiers as ay,
+  vModelText as az,
   createBaseVNode as b,
-  requireMajor as b0,
-  requireValid as b1,
-  dist$1 as b2,
-  process$1 as b3,
-  commonjsGlobal as b4,
-  Buffer as b5,
+  NcContent as b0,
+  createPinia as b1,
+  offlinePersistPlugin as b2,
+  createApp as b3,
+  publicApi as b4,
+  publicItemImageUrl as b5,
+  dist as b6,
+  requireMajor as b7,
+  requireValid as b8,
+  dist$1 as b9,
+  process$1 as ba,
+  commonjsGlobal as bb,
+  Buffer as bc,
   createElementBlock as c,
   createVNode as d,
   mdiRadioboxBlank as e,
@@ -44619,20 +44776,20 @@ export {
   createTextVNode as i,
   renderSlot as j,
   defineComponent as k,
-  createCommentVNode as l,
+  useSlots as l,
   mdiRadioboxMarked as m,
   normalizeClass as n,
   openBlock as o,
-  unref as p,
-  useCssModule as q,
+  useTemplateRef as p,
+  useElementSize as q,
   resolveComponent as r,
-  provide as s,
+  createBlock as s,
   toDisplayString as t,
   useModel as u,
   vModelRadio as v,
   withDirectives as w,
-  NC_FORM_BOX_CONTEXT_KEY as x,
-  useSlots as y,
-  createBlock as z
+  unref as x,
+  resolveDynamicComponent as y,
+  mergeProps as z
 };
-//# sourceMappingURL=useCollapsedAreas-Bzauf5Mv.chunk.mjs.map
+//# sourceMappingURL=useCollapsedAreas-CsftNwRr.chunk.mjs.map

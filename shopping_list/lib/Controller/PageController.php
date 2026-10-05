@@ -6,6 +6,7 @@ namespace OCA\Shopping_List\Controller;
 
 use OCA\Shopping_List\AppInfo\Application;
 use OCA\Shopping_List\Service\UserSettingsService;
+use OCP\App\IAppManager;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\Attribute\NoAdminRequired;
 use OCP\AppFramework\Http\Attribute\NoCSRFRequired;
@@ -20,6 +21,7 @@ class PageController extends Controller {
 		IRequest $request,
 		private IInitialState $initialState,
 		private UserSettingsService $settings,
+		private IAppManager $appManager,
 		private ?string $userId,
 	) {
 		parent::__construct($appName, $request);
@@ -32,8 +34,11 @@ class PageController extends Controller {
 		// whether to show photos before its first request comes back.
 		$this->initialState->provideInitialState(
 			'settings',
-			$this->userId === null ? ['showImages' => false, 'listSort' => 'updated', 'showOwnName' => false] : $this->settings->forUser($this->userId),
+			$this->userId === null ? ['showImages' => false, 'listSort' => 'updated', 'showOwnName' => false, 'whatsNewSeen' => ''] : $this->settings->forUser($this->userId),
 		);
+		// With whatsNewSeen above, tells the app whether this user has had
+		// the release notes for the installed version (src/whatsNew.json).
+		$this->initialState->provideInitialState('version', $this->appManager->getAppVersion(Application::APP_ID));
 		Util::addScript(Application::APP_ID, 'shopping_list-main');
 		Util::addStyle(Application::APP_ID, 'shopping_list-main');
 		return new TemplateResponse(Application::APP_ID, 'index');

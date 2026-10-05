@@ -1490,3 +1490,36 @@ to { transform: rotate(360deg);
 	opacity: 0;
 	transform: translateY(10px);
 }
+
+.whats-new-button[data-v-429e987e] {
+	margin-top: 8px;
+}
+
+.whats-new__entry + .whats-new__entry[data-v-7942de61] {
+	margin-top: 16px;
+}
+.whats-new__heading[data-v-7942de61] {
+	margin: 0 0 8px;
+	font-size: 1.1em;
+	font-weight: 600;
+}
+.whats-new__version[data-v-7942de61] {
+	margin-inline-start: 6px;
+	color: var(--color-text-maxcontrast);
+	font-weight: normal;
+	font-size: 0.9em;
+}
+
+/* Nextcloud's own styles take the bullets off every list. */
+.whats-new__items[data-v-7942de61] {
+	margin: 0 0 8px;
+	padding-inline-start: 20px;
+	list-style: disc;
+}
+.whats-new__items li + li[data-v-7942de61] {
+	margin-top: 4px;
+}
+.whats-new__link[data-v-7942de61] {
+	color: var(--color-primary-element);
+	text-decoration: underline;
+}

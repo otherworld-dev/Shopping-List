@@ -10,6 +10,7 @@
 					<ListSortSettings />
 					<ItemImagesSettings />
 					<NameSettings />
+					<WhatsNewButton />
 				</NcAppNavigationSettings>
 			</template>
 		</NcAppNavigation>
@@ -26,6 +27,7 @@
 		</NcAppContent>
 	</NcContent>
 	<OfflineIndicator />
+	<WhatsNewDialog />
 </template>
 
 <script setup lang="ts">
@@ -47,8 +49,11 @@ import ItemImagesSettings from './components/ItemImagesSettings.vue'
 import NameSettings from './components/NameSettings.vue'
 import AndroidAppLink from './components/AndroidAppLink.vue'
 import OfflineIndicator from './components/OfflineIndicator.vue'
+import WhatsNewButton from './components/WhatsNewButton.vue'
+import WhatsNewDialog from './components/WhatsNewDialog.vue'
 import { useListsStore } from './stores/lists'
 import { usePush } from './composables/usePush'
+import { useWhatsNew } from './composables/useWhatsNew'
 
 const listsStore = useListsStore()
 const showSettings = ref(false)
@@ -62,6 +67,7 @@ onMounted(async () => {
 	if (listsStore.lists.length > 0 && !listsStore.currentListId) {
 		listsStore.selectList(listsStore.lists[0].id)
 	}
+	useWhatsNew().showIfUpdated(listsStore.lists.length === 0)
 	usePush()
 })
 </script>

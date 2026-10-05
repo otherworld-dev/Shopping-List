@@ -1,0 +1,13 @@
+[
+	{
+		"version": "1.10.0",
+		"title": "Your own list order, invite codes and names on items",
+		"items": [
+			"Lists can be sorted A to Z or dragged into your own order. Choose Sort lists in Settings at the bottom of the list sidebar, and the order follows you to every browser and the Android app.",
+			"A shared list's public link now has a short invite code and a QR code in the Share dialog, so someone without a Nextcloud account can join the list in the Android app.",
+			"Each item shows who added it and who ticked it. People on a public link can type their name, which shows as \"Anna (guest)\".",
+			"This window, which shows what has changed after an update. What's new in Settings opens it again."
+		],
+		"link": "https://github.com/otherworld-dev/Shopping-List/blob/main/shopping_list/CHANGELOG.md"
+	}
+]

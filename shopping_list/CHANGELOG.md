@@ -39,6 +39,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   show. Your own name is left off what you see unless you turn on Show my
   name on items under Names in Settings. Items added before this have no
   name. Thanks to natrius for the idea
+- A What's new window that shows once after an update, with the main
+  changes since the version you last used. What's new at the bottom of
+  Settings opens it again. Someone who has only just started isn't shown
+  it, and the notes are in English only
 
 ### Changed
 - The app's capabilities now list `list-order` among its features, each
@@ -58,6 +62,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `guestName`,
   link shares carry `showNames`, the settings carry `showOwnName`, and the
   capabilities list `guest-names` among the features
+- The settings carry `whatsNewSeen`, the version whose release notes were
+  last shown, so the What's new window shows once per person rather than
+  once per browser
 
 ### Upgrade
 - Database migration: one column is added to the list preferences table
