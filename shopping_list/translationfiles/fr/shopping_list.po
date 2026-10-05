@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-10-05 20:09\n"
+"PO-Revision-Date: 2026-10-05 21:19\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -369,7 +369,7 @@ msgstr "Copié !"
 
 #: src/components/ShareDialog.vue
 msgid "Permission"
-msgstr ""
+msgstr "Permission"
 
 #: src/components/ShareDialog.vue
 msgid "Password"
