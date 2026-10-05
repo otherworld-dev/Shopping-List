@@ -87,6 +87,9 @@
 						<span class="list-view__area-count">{{ group.items.length }}</span>
 					</button>
 
+					<!-- The row being edited can't be picked up, so pressing and dragging
+						in its inputs selects text. prevent-on-filter off keeps the press's
+						default, which is what places the caret. -->
 					<draggable v-show="!isGroupCollapsed(group)"
 						:id="groupElementId(group)"
 						v-model="localGroups[groupIndex].items"
@@ -96,6 +99,8 @@
 						:animation="150"
 						:delay="150"
 						:delay-on-touch-only="true"
+						filter=".item-row--editing"
+						:prevent-on-filter="false"
 						class="list-view__items"
 						ghost-class="list-view__item--ghost"
 						@start="isDragging = true"

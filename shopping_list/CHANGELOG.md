@@ -82,6 +82,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   back to the older way of copying, and so does the new Copy invite
 - Ticking an item through a public link left whoever ticked it last as the
   one who ticked it
+- Pressing and dragging across an item's name while editing it picked the
+  whole row up to move it rather than highlighting the text. The row being
+  edited now stays put, so the text can be selected as normal, and rows
+  that aren't being edited can still be dragged into order
 
 ## [1.9.0] - 2026-09-23
 

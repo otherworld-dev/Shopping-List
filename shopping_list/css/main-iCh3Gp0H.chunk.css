@@ -843,40 +843,40 @@
 	gap: 4px;
 }
 
-.list-view[data-v-f409d1bb] {
+.list-view[data-v-62812b55] {
 	padding: 20px;
 	max-width: 800px;
 	margin: 0 auto;
 }
-.list-view__header[data-v-f409d1bb] {
+.list-view__header[data-v-62812b55] {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	margin-bottom: 16px;
 }
-.list-view__header h2[data-v-f409d1bb] {
+.list-view__header h2[data-v-62812b55] {
 	margin: 0;
 	font-size: 1.5em;
 	font-weight: 700;
 }
-.list-view__actions[data-v-f409d1bb] {
+.list-view__actions[data-v-62812b55] {
 	display: flex;
 	gap: 4px;
 }
-.list-view__card[data-v-f409d1bb] {
+.list-view__card[data-v-62812b55] {
 	border: 1px solid var(--color-border);
 	border-radius: var(--border-radius-large);
 	background-color: var(--color-main-background);
 }
-.list-view__loading[data-v-f409d1bb] {
+.list-view__loading[data-v-62812b55] {
 	display: flex;
 	justify-content: center;
 	padding: 40px;
 }
-.list-view__empty[data-v-f409d1bb] {
+.list-view__empty[data-v-62812b55] {
 	padding: 24px 12px;
 }
-.list-view__area-group[data-v-f409d1bb] {
+.list-view__area-group[data-v-62812b55] {
 	border-top: 1px solid var(--color-border);
 }
 
@@ -885,7 +885,7 @@
    rules are specific enough to beat a single class: they would paint the
    left border near-black and flash the background white on press. The card
    and group classes in front keep these rules ahead without !important. */
-.list-view__card .list-view__area-group > button.list-view__area-header[data-v-f409d1bb] {
+.list-view__card .list-view__area-group > button.list-view__area-header[data-v-62812b55] {
 	display: flex;
 	align-items: center;
 	gap: 6px;
@@ -904,14 +904,14 @@
 	text-align: start;
 	cursor: pointer;
 }
-.list-view__card .list-view__area-group > button.list-view__area-header[data-v-f409d1bb]:is(:hover, :focus, :active) {
+.list-view__card .list-view__area-group > button.list-view__area-header[data-v-62812b55]:is(:hover, :focus, :active) {
 	border-inline-start-color: var(--color-border-dark);
 	color: inherit;
 }
-.list-view__card .list-view__area-group > button.list-view__area-header[data-v-f409d1bb]:is(:hover, :active) {
+.list-view__card .list-view__area-group > button.list-view__area-header[data-v-62812b55]:is(:hover, :active) {
 	background-color: var(--color-background-darker);
 }
-.list-view__card .list-view__area-group > button.list-view__area-header[data-v-f409d1bb]:focus-visible {
+.list-view__card .list-view__area-group > button.list-view__area-header[data-v-62812b55]:focus-visible {
 	outline: 2px solid var(--color-main-text);
 	outline-offset: -2px;
 }
@@ -919,7 +919,7 @@
 /* The icon wrapper is a 34px box by default, sized for a clickable icon on
    its own. Here it sits inside the header button, so it shrinks to the
    glyph. The header class in front outranks the wrapper's own rule. */
-.list-view__area-header .list-view__area-chevron[data-v-f409d1bb] {
+.list-view__area-header .list-view__area-chevron[data-v-62812b55] {
 	display: flex;
 	flex: 0 0 auto;
 	align-items: center;
@@ -931,18 +931,18 @@
 	color: var(--color-text-maxcontrast);
 	transition: transform 0.15s ease;
 }
-.list-view__area-chevron--collapsed[data-v-f409d1bb] {
+.list-view__area-chevron--collapsed[data-v-62812b55] {
 	transform: rotate(-90deg);
 }
-.list-view__area-chevron--collapsed[data-v-f409d1bb]:dir(rtl) {
+.list-view__area-chevron--collapsed[data-v-62812b55]:dir(rtl) {
 	transform: rotate(90deg);
 }
 @media (prefers-reduced-motion: reduce) {
-.list-view__area-header .list-view__area-chevron[data-v-f409d1bb] {
+.list-view__area-header .list-view__area-chevron[data-v-62812b55] {
 		transition: none;
 }
 }
-.list-view__area-name[data-v-f409d1bb] {
+.list-view__area-name[data-v-62812b55] {
 	min-width: 0;
 	overflow-wrap: anywhere;
 	font-size: 0.8em;
@@ -951,40 +951,40 @@
 	letter-spacing: 0.5px;
 	color: var(--color-text-maxcontrast);
 }
-.list-view__area-name--muted[data-v-f409d1bb] {
+.list-view__area-name--muted[data-v-62812b55] {
 	font-weight: 500;
 }
-.list-view__area-count[data-v-f409d1bb] {
+.list-view__area-count[data-v-62812b55] {
 	flex: 0 0 auto;
 	color: var(--color-text-maxcontrast);
 	font-size: 0.75em;
 	opacity: 0.7;
 }
-.list-view__items[data-v-f409d1bb] {
+.list-view__items[data-v-62812b55] {
 	display: flex;
 	flex-direction: column;
 	min-width: 0;
 	min-height: 8px;
 }
-.list-view__item--ghost[data-v-f409d1bb] {
+.list-view__item--ghost[data-v-62812b55] {
 	opacity: 0.4;
 	background-color: var(--color-primary-element-light);
 	border-radius: var(--border-radius);
 }
-.list-view__avatars[data-v-f409d1bb] {
+.list-view__avatars[data-v-62812b55] {
 	display: flex;
 	align-items: center;
 	cursor: pointer;
 }
-.list-view__avatar[data-v-f409d1bb] {
+.list-view__avatar[data-v-62812b55] {
 	margin-inline-start: -6px;
 	border: 2px solid var(--color-main-background);
 	border-radius: 50%;
 }
-.list-view__avatar[data-v-f409d1bb]:first-child {
+.list-view__avatar[data-v-62812b55]:first-child {
 	margin-inline-start: 0;
 }
-.list-view__avatar-overflow[data-v-f409d1bb] {
+.list-view__avatar-overflow[data-v-62812b55] {
 	margin-inline-start: 4px;
 	font-size: 0.8em;
 	color: var(--color-text-maxcontrast);
@@ -992,16 +992,16 @@
 }
 
 /* Bought section */
-.list-view__bought[data-v-f409d1bb] {
+.list-view__bought[data-v-62812b55] {
 	margin-top: 20px;
 }
-.list-view__bought-header[data-v-f409d1bb] {
+.list-view__bought-header[data-v-62812b55] {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	padding: 4px 0 8px;
 }
-.list-view__bought-header h3[data-v-f409d1bb] {
+.list-view__bought-header h3[data-v-62812b55] {
 	margin: 0;
 	font-size: 0.9em;
 	color: var(--color-text-maxcontrast);
@@ -1009,11 +1009,11 @@
 	cursor: pointer;
 	user-select: none;
 }
-.list-view__bought-actions[data-v-f409d1bb] {
+.list-view__bought-actions[data-v-62812b55] {
 	display: flex;
 	gap: 6px;
 }
-.list-view__action-btn[data-v-f409d1bb] {
+.list-view__action-btn[data-v-62812b55] {
 	background: none;
 	border: 1px solid var(--color-border-dark);
 	border-radius: var(--border-radius);
@@ -1022,27 +1022,27 @@
 	font-size: 0.8em;
 	cursor: pointer;
 }
-.list-view__action-btn[data-v-f409d1bb]:hover {
+.list-view__action-btn[data-v-62812b55]:hover {
 	background-color: var(--color-background-hover);
 	color: var(--color-main-text);
 }
-.list-view__action-btn--danger[data-v-f409d1bb]:hover {
+.list-view__action-btn--danger[data-v-62812b55]:hover {
 	background-color: var(--color-error);
 	color: #fff;
 	border-color: var(--color-error);
 }
-.list-view__bought-card[data-v-f409d1bb] {
+.list-view__bought-card[data-v-62812b55] {
 	border: 1px solid var(--color-border);
 	border-radius: var(--border-radius-large);
 	background-color: var(--color-main-background);
 	overflow: hidden;
 	opacity: 0.65;
 }
-.list-view__toggle[data-v-f409d1bb] {
+.list-view__toggle[data-v-62812b55] {
 	margin-inline-start: 4px;
 }
 @media (max-width: 1024px) {
-.list-view__header[data-v-f409d1bb] {
+.list-view__header[data-v-62812b55] {
 		padding-inline-start: 44px;
 }
 }
