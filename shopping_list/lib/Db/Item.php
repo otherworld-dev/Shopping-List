@@ -22,6 +22,12 @@ use OCP\AppFramework\Db\Entity;
  * @method void setChecked(bool $checked)
  * @method ?string getCheckedBy()
  * @method void setCheckedBy(?string $checkedBy)
+ * @method ?string getCheckedByName()
+ * @method void setCheckedByName(?string $checkedByName)
+ * @method ?string getAddedBy()
+ * @method void setAddedBy(?string $addedBy)
+ * @method ?string getAddedByName()
+ * @method void setAddedByName(?string $addedByName)
  * @method int getSortOrder()
  * @method void setSortOrder(int $sortOrder)
  * @method ?string getImageKey()
@@ -39,6 +45,12 @@ class Item extends Entity implements JsonSerializable {
 	protected $shopAreaId;
 	protected $checked;
 	protected $checkedBy;
+	/** Display or guest name of whoever ticked it, captured at the time */
+	protected $checkedByName;
+	/** User id of a signed-in adder; null for a guest or an item from before this was recorded */
+	protected $addedBy;
+	/** Display or guest name of whoever added it, captured at the time */
+	protected $addedByName;
 	protected $sortOrder;
 	/** Random 16-hex handle for the item's photo in appdata; rotates on replace, null when there is none */
 	protected $imageKey;
@@ -47,6 +59,10 @@ class Item extends Entity implements JsonSerializable {
 
 	/** @var array Transient tags loaded by service */
 	private array $tags = [];
+
+	/** Set for a public response: user ids stay out, and members' names too when the link hides them. Only changes the JSON */
+	private bool $publicView = false;
+	private bool $memberNamesHidden = false;
 
 	public function __construct() {
 		$this->addType('id', 'integer');
@@ -66,7 +82,22 @@ class Item extends Entity implements JsonSerializable {
 		return $this->tags;
 	}
 
+	/**
+	 * Shape this item's JSON for a public link: no user ids (a login can be an
+	 * email address), and no members' names either when the owner turned
+	 * them off for the link. Guests' names always stay.
+	 */
+	public function forPublic(bool $showMemberNames): void {
+		$this->publicView = true;
+		$this->memberNamesHidden = !$showMemberNames;
+	}
+
 	public function jsonSerialize(): array {
+		// A guest has a name and no user id
+		$addedByGuest = $this->addedBy === null && $this->addedByName !== null;
+		$checkedByGuest = $this->checkedBy === null && $this->checkedByName !== null;
+		$hideAdder = $this->memberNamesHidden && $this->addedBy !== null;
+		$hideChecker = $this->memberNamesHidden && $this->checkedBy !== null;
 		return [
 			'id' => $this->id,
 			'listId' => $this->listId,
@@ -75,7 +106,12 @@ class Item extends Entity implements JsonSerializable {
 			'unit' => $this->unit,
 			'shopAreaId' => $this->shopAreaId,
 			'checked' => $this->checked,
-			'checkedBy' => $this->checkedBy,
+			'checkedBy' => $this->publicView ? null : $this->checkedBy,
+			'checkedByName' => $hideChecker ? null : $this->checkedByName,
+			'checkedByGuest' => $checkedByGuest,
+			'addedBy' => $this->publicView ? null : $this->addedBy,
+			'addedByName' => $hideAdder ? null : $this->addedByName,
+			'addedByGuest' => $addedByGuest,
 			'sortOrder' => $this->sortOrder,
 			'imageKey' => $this->imageKey,
 			'tags' => $this->tags,

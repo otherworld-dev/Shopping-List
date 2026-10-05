@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace OCA\Shopping_List\Controller;
 
 use OCA\Shopping_List\Service\UserSettingsService;
+use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\Attribute\NoAdminRequired;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\OCSController;
@@ -27,9 +28,19 @@ class SettingsController extends OCSController {
 
 	/** PATCH: only the keys sent change. Answers with every setting. */
 	#[NoAdminRequired]
-	public function update(?bool $showImages = null): DataResponse {
+	public function update(?bool $showImages = null, ?string $listSort = null, ?bool $showOwnName = null): DataResponse {
+		if ($listSort !== null) {
+			try {
+				$this->settings->setListSort($this->userId, $listSort);
+			} catch (\InvalidArgumentException $e) {
+				return new DataResponse(['message' => $e->getMessage()], Http::STATUS_BAD_REQUEST);
+			}
+		}
 		if ($showImages !== null) {
 			$this->settings->setShowImages($this->userId, $showImages);
+		}
+		if ($showOwnName !== null) {
+			$this->settings->setShowOwnName($this->userId, $showOwnName);
 		}
 		return new DataResponse($this->settings->forUser($this->userId));
 	}

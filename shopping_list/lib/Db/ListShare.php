@@ -24,6 +24,10 @@ use OCP\AppFramework\Db\Entity;
  * @method void setPasswordHash(?string $hash)
  * @method ?string getExpiresAt()
  * @method void setExpiresAt(?string $expiresAt)
+ * @method ?string getCode()
+ * @method void setCode(?string $code)
+ * @method ?bool getShowNames()
+ * @method void setShowNames(?bool $showNames)
  */
 class ListShare extends Entity implements JsonSerializable {
 	protected $listId;
@@ -34,6 +38,10 @@ class ListShare extends Entity implements JsonSerializable {
 	protected $token;
 	protected $passwordHash;
 	protected $expiresAt;
+	/** Short invite code for a link share (see InviteCode), null for user and group shares */
+	protected $code;
+	/** Link shares: whether members' names show on the public page; null (never set) means yes */
+	protected $showNames;
 
 	/** @var string Transient display name */
 	private string $sharedWithDisplayName = '';
@@ -43,6 +51,11 @@ class ListShare extends Entity implements JsonSerializable {
 		$this->addType('listId', 'integer');
 		$this->addType('sharedWithType', 'integer');
 		$this->addType('permission', 'integer');
+		$this->addType('showNames', 'boolean');
+	}
+
+	public function showsNames(): bool {
+		return $this->showNames !== false;
 	}
 
 	public function setSharedWithDisplayName(string $name): void {
@@ -65,6 +78,8 @@ class ListShare extends Entity implements JsonSerializable {
 			$data['token'] = $this->token;
 			$data['hasPassword'] = $this->passwordHash !== null;
 			$data['expiresAt'] = $this->expiresAt;
+			$data['code'] = $this->code;
+			$data['showNames'] = $this->showsNames();
 		}
 
 		return $data;

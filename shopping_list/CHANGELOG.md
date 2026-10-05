@@ -7,6 +7,95 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.10.0] - 2026-10-05
+
+### Added
+- Lists can be sorted your own way. Choose Sort lists in Settings at the
+  bottom of the list sidebar: Recently updated (as before, and still the
+  default), A to Z, or Custom, where you drag lists into the order you
+  want. Dragging a list while on another sort switches to Custom and keeps
+  the order you were looking at. Pinned lists, your own lists and the ones
+  shared with you each keep their own order, and a list you pin or unpin
+  goes to the top of its new section. The order is yours alone and is the
+  same in every browser and in the Android app. Thanks to Shiva
+  (shining-cat) for the idea
+- An "Open in the app" button on a shared list's public page, on Android
+  phones. It opens the list in the Shopping List Android app, which can now
+  use a shared list without a Nextcloud account, or goes to the app's website
+  when it isn't installed.
+- A QR code of a list's public link in the Share dialog. Choose Show QR code
+  under the link and scan it with a phone camera to open the list there,
+  where the Open in the app button takes it into the Android app
+- Invite codes for shared lists. A list's public link now has a short code
+  like K7QM-3XPD, shown in the Share dialog with the server's address, and
+  Copy invite gives both as one line (for example cloud.example.com/K7QM-3XPD).
+  Someone without a Nextcloud account can type or paste it into the Shopping
+  List Android app to join the list. The code opens nothing the link
+  wouldn't: a list with a password still asks for it, and the code stops
+  working when the link is deleted or expires
+- Each item now shows who added it, and once it's ticked, who ticked it.
+  People on a public link can type their name above the list, which shows
+  as "Anna (guest)" so a guest can't pass as one of the household. On a
+  phone the name goes on its own line under the item. The list owner can
+  hide members' names from the public page with Show members' names on
+  the link in the Share dialog, and guests' names still show. Your own
+  name is left off what you see unless you turn on Show my name on items
+  under Names in Settings. Items added before this have no name. Thanks
+  to natrius for the idea
+
+### Changed
+- The app's capabilities now list `list-order` among its features, each
+  list from the lists API carries its `position`, `listSort` joins the
+  settings, and `POST /api/v1/lists/reorder` is a new endpoint, so the
+  Android app can offer list ordering too
+- Link shares from the shares API carry their invite `code`,
+  `GET /api/v1/public/code/{code}` turns a code into the link's token, and
+  the capabilities list `invite-codes` among the features. The feature list
+  is now shown to visitors who aren't signed in too, so the Android app can
+  check it before a guest joins, while the version and image limits still
+  need a login. Wrong codes are throttled by Nextcloud's brute-force protection and
+  limited to ten tries a minute
+- Items carry `addedBy`, `addedByName`, `addedByGuest`, `checkedByName`
+  and `checkedByGuest`, and public responses leave the user ids out, as a
+  login can be an email address. Public add and tick take an optional
+  `guestName`,
+  link shares carry `showNames`, the settings carry `showOwnName`, and the
+  capabilities list `guest-names` among the features
+
+### Upgrade
+- Database migration: one column is added to the list preferences table
+  for your own position of each list
+- Database migration: an invite code column is added to the shares table.
+  Links made before this get their code the first time the Share dialog is
+  opened
+- Database migration: three columns are added to the items table for who
+  added and ticked each item, and one to the shares table for the Show
+  members' names choice
+
+### Fixed
+- Changing, ticking or deleting an item through a public link after the
+  owner had deleted it gave a server error rather than "Not found", so the
+  Android app couldn't tell the item was gone and kept retrying the change
+- Wrong passwords on a public link are now throttled by Nextcloud's
+  brute-force protection, so each failed attempt slows down the next ones
+  from the same address. The limit of five tries a minute was the only
+  guard before, which still let a script keep guessing all day
+- Copy link in the Share dialog did nothing on a server reached over plain
+  http, as browsers only offer the clipboard to https pages. It now falls
+  back to the older way of copying, and so does the new Copy invite
+- Ticking an item through a public link left whoever ticked it last as the
+  one who ticked it
+- Pressing and dragging across an item's name while editing it picked the
+  whole row up to move it rather than highlighting the text. The row being
+  edited now stays put, so the text can be selected as normal, and rows
+  that aren't being edited can still be dragged into order
+- Merging a duplicate item with a quantity above one renamed it to its
+  plural, and as only a few words such as rice and cheese were known not
+  to take one, "Milk" became "Milks" and "Bread" became "Breads". Common
+  groceries such as milk, bread, butter, flour, coffee, pasta, fish and oil
+  are now left alone, and so are names ending in them, like "Oat milk" and
+  "Olive oil"
+
 ## [1.9.0] - 2026-09-23
 
 ### Added

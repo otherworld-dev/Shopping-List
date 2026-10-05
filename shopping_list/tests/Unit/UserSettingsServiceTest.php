@@ -19,10 +19,14 @@ class UserSettingsServiceTest extends TestCase {
 	}
 
 	public function testImagesAreOffUntilTheUserTurnsThemOn(): void {
-		$this->config->method('getUserValue')->with('alice', 'shopping_list', 'show_images', '0')->willReturn('0');
+		$this->config->method('getUserValue')->willReturnMap([
+			['alice', 'shopping_list', 'show_images', '0', '0'],
+			['alice', 'shopping_list', 'list_sort', 'updated', 'updated'],
+			['alice', 'shopping_list', 'show_own_name', '0', '0'],
+		]);
 
 		self::assertFalse($this->settings->showImages('alice'));
-		self::assertSame(['showImages' => false], $this->settings->forUser('alice'));
+		self::assertSame(['showImages' => false, 'listSort' => 'updated', 'showOwnName' => false], $this->settings->forUser('alice'));
 	}
 
 	public function testOnlyTheStoredOneCountsAsOn(): void {
@@ -39,5 +43,48 @@ class UserSettingsServiceTest extends TestCase {
 
 		$this->settings->setShowImages('alice', true);
 		$this->settings->setShowImages('alice', false);
+	}
+
+	public function testListSortIsRecentlyUpdatedUntilChosen(): void {
+		$this->config->method('getUserValue')->with('alice', 'shopping_list', 'list_sort', 'updated')->willReturn('updated');
+
+		self::assertSame('updated', $this->settings->listSort('alice'));
+	}
+
+	public function testAStoredListSortThatIsNotAModeReadsAsRecentlyUpdated(): void {
+		$this->config->method('getUserValue')->willReturn('price');
+
+		self::assertSame('updated', $this->settings->listSort('alice'));
+	}
+
+	public function testSettingTheListSortStoresTheMode(): void {
+		$this->config->expects(self::once())->method('setUserValue')->with('alice', 'shopping_list', 'list_sort', 'custom');
+
+		$this->settings->setListSort('alice', 'custom');
+	}
+
+	public function testAnUnknownListSortIsRefused(): void {
+		$this->config->expects(self::never())->method('setUserValue');
+		$this->expectException(\InvalidArgumentException::class);
+
+		$this->settings->setListSort('alice', 'price');
+	}
+
+	public function testYourOwnNameIsHiddenUntilYouAskForIt(): void {
+		$this->config->method('getUserValue')->willReturnMap([
+			['alice', 'shopping_list', 'show_own_name', '0', '0'],
+			['bob', 'shopping_list', 'show_own_name', '0', '1'],
+		]);
+
+		self::assertFalse($this->settings->showOwnName('alice'));
+		self::assertTrue($this->settings->showOwnName('bob'));
+	}
+
+	public function testShowingYourOwnNameWritesOneOrZero(): void {
+		$this->config->expects(self::exactly(2))->method('setUserValue')
+			->with('alice', 'shopping_list', 'show_own_name', self::callback(fn (string $v) => in_array($v, ['1', '0'], true)));
+
+		$this->settings->setShowOwnName('alice', true);
+		$this->settings->setShowOwnName('alice', false);
 	}
 }

@@ -9,6 +9,7 @@ use OCA\Shopping_List\Db\Item;
 use OCA\Shopping_List\Db\ItemMapper;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\IDBConnection;
+use OCP\IUserManager;
 
 class ItemService {
 	public function __construct(
@@ -19,7 +20,13 @@ class ItemService {
 		private IDBConnection $db,
 		private ItemImageCleanup $imageCleanup,
 		private ItemImageService $images,
+		private IUserManager $userManager,
 	) {
+	}
+
+	/** The name to show for a user's change, as it is now; the uid when they have none. */
+	private function nameOf(string $userId): string {
+		return mb_substr($this->userManager->getDisplayName($userId) ?? $userId, 0, 64);
 	}
 
 	/**
@@ -52,6 +59,9 @@ class ItemService {
 		// checked-off section straight away instead of among the open items.
 		$item->setChecked($checked);
 		$item->setCheckedBy($checked ? $userId : null);
+		$item->setCheckedByName($checked ? $this->nameOf($userId) : null);
+		$item->setAddedBy($userId);
+		$item->setAddedByName($this->nameOf($userId));
 		$item->setSortOrder(0);
 		// A name that had a photo before gets it back, in any list.
 		$item->setImageKey($this->images->rememberedKey($listId, $name));
@@ -152,6 +162,7 @@ class ItemService {
 		}
 		$item->setChecked(false);
 		$item->setCheckedBy(null);
+		$item->setCheckedByName(null);
 		$item->setSortOrder(0);
 		$item->setUpdatedAt(new DateTime());
 
@@ -174,6 +185,7 @@ class ItemService {
 
 		$item->setChecked($checked);
 		$item->setCheckedBy($checked ? $userId : null);
+		$item->setCheckedByName($checked ? $this->nameOf($userId) : null);
 		$item->setUpdatedAt(new DateTime());
 
 		$item = $this->mapper->update($item);

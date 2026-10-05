@@ -32,7 +32,7 @@ class PageController extends Controller {
 		// whether to show photos before its first request comes back.
 		$this->initialState->provideInitialState(
 			'settings',
-			$this->userId === null ? ['showImages' => false] : $this->settings->forUser($this->userId),
+			$this->userId === null ? ['showImages' => false, 'listSort' => 'updated', 'showOwnName' => false] : $this->settings->forUser($this->userId),
 		);
 		Util::addScript(Application::APP_ID, 'shopping_list-main');
 		Util::addStyle(Application::APP_ID, 'shopping_list-main');

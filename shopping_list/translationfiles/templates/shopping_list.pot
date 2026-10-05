@@ -54,6 +54,10 @@ msgstr ""
 msgid "This shared list does not exist or has expired."
 msgstr ""
 
+#: src/PublicApp.vue
+msgid "Open in the app"
+msgstr ""
+
 #: src/components/AreaKeywordsSettings.vue
 msgid "Back to list"
 msgstr ""
@@ -116,6 +120,10 @@ msgstr ""
 
 #: src/components/PublicListView.vue
 msgid "Add an item to list..."
+msgstr ""
+
+#: src/components/PublicListView.vue
+msgid "Your name (optional)"
 msgstr ""
 
 #: src/components/ItemEditor.vue
@@ -299,7 +307,7 @@ msgid "By area, A to Z"
 msgstr ""
 
 #. Sort option, used for both open and checked-off items: by name, ignoring the shop areas.
-#: src/components/ListView.vue
+#: src/components/ListView.vue src/components/ListSortSettings.vue
 msgid "A to Z"
 msgstr ""
 
@@ -390,6 +398,42 @@ msgstr ""
 
 #: src/components/ShareDialog.vue
 msgid "Delete public link"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Show QR code"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Hide QR code"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "QR code of the public link"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Invite code"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Server"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Code"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Copy invite"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Type these into the Shopping List Android app to join without the link."
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Show members' names"
 msgstr ""
 
 #: src/components/TagInput.vue
@@ -614,6 +658,11 @@ msgstr ""
 msgid "View image"
 msgstr ""
 
+#. Marks a name next to an item as someone without an account on a public link
+#: src/components/ItemRow.vue src/components/PublicListView.vue
+msgid "guest"
+msgstr ""
+
 #: src/components/ItemRow.vue
 msgid "Uploading image…"
 msgstr ""
@@ -694,7 +743,19 @@ msgstr ""
 msgid "Attach a photo to an item from its menu, or paste or drop one onto it. Photos are part of the list, so everyone with access can see them. This switch only changes what you see."
 msgstr ""
 
-#: src/components/ItemImagesSettings.vue
+#: src/components/NameSettings.vue
+msgid "Names"
+msgstr ""
+
+#: src/components/NameSettings.vue
+msgid "Show my name on items"
+msgstr ""
+
+#: src/components/NameSettings.vue
+msgid "Your name always shows to everyone else. This switch only changes what you see."
+msgstr ""
+
+#: src/components/ItemImagesSettings.vue src/stores/lists.ts
 msgid "Failed to save setting"
 msgstr ""
 
@@ -720,4 +781,20 @@ msgstr ""
 
 #: lib/Notification/Notifier.php
 msgid "Get it on Google Play"
+msgstr ""
+
+#: src/components/ListSortSettings.vue
+msgid "Sort lists"
+msgstr ""
+
+#: src/components/ListSortSettings.vue
+msgid "Recently updated"
+msgstr ""
+
+#: src/components/ListSortSettings.vue
+msgid "Custom (drag to reorder)"
+msgstr ""
+
+#: src/stores/lists.ts
+msgid "Failed to save the list order"
 msgstr ""

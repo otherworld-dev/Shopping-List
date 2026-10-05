@@ -22,6 +22,8 @@ export interface ShoppingList {
 	isOwner: boolean
 	/** The current user's own pin; null until they first pin or unpin the list */
 	isPinned: boolean | null
+	/** The current user's own place for the list in the Custom order; null until they place it */
+	position: number | null
 	createdAt: string
 	updatedAt: string
 }
@@ -35,6 +37,11 @@ export interface Item {
 	shopAreaId: number | null
 	checked: boolean
 	checkedBy: string | null
+	checkedByName: string | null
+	checkedByGuest: boolean
+	addedBy: string | null
+	addedByName: string | null
+	addedByGuest: boolean
 	sortOrder: number
 	/** Server-managed handle for the item's photo, rotated on every replace; null when there is none */
 	imageKey: string | null
@@ -54,6 +61,8 @@ export interface ListShare {
 	token?: string
 	hasPassword?: boolean
 	expiresAt?: string | null
+	code?: string | null
+	showNames?: boolean
 }
 
 export interface ShopArea {
