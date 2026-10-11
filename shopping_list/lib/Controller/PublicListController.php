@@ -13,6 +13,7 @@ use OCA\Shopping_List\Service\NotFoundException;
 use OCA\Shopping_List\Service\PasswordRequiredException;
 use OCA\Shopping_List\Service\ShopAreaService;
 use OCA\Shopping_List\Db\ShopAreaMapper;
+use OCA\Shopping_List\Service\AmountMemory;
 use OCA\Shopping_List\Service\GuestName;
 use OCA\Shopping_List\Service\ItemImageService;
 use OCA\Shopping_List\Service\ItemService;
@@ -41,6 +42,7 @@ class PublicListController extends OCSController {
 		private PublicShareAccess $access,
 		private ItemService $itemService,
 		private ItemImageService $images,
+		private AmountMemory $amounts,
 	) {
 		parent::__construct($appName, $request);
 	}
@@ -209,10 +211,13 @@ class PublicListController extends OCSController {
 			}
 
 			$shopAreaId = $this->areaFor($share, $this->request->getParam('shopAreaId'));
+			$quantity = $this->request->getParam('quantity');
+			$quantity = $quantity === null ? null : (string)$quantity;
 			$item = new Item();
 			$item->setListId($share->getListId());
 			$item->setName($name);
-			$item->setQuantity($this->request->getParam('quantity') ?? '1');
+			// A name added on its own gets the amount it had last time in this list.
+			$item->setQuantity($quantity ?? $this->amounts->recall($share->getListId(), $name) ?? '1');
 			$item->setUnit($this->request->getParam('unit'));
 			$item->setShopAreaId($shopAreaId);
 			$item->setChecked(false);
@@ -224,7 +229,12 @@ class PublicListController extends OCSController {
 			$item->setCreatedAt($now);
 			$item->setUpdatedAt($now);
 
-			return new DataResponse($this->forLink($share, $this->itemMapper->insert($item)), Http::STATUS_CREATED);
+			$item = $this->itemMapper->insert($item);
+			if ($quantity !== null && $this->request->getParam('quantityExplicit')) {
+				$this->amounts->remember($share->getListId(), $name, $quantity);
+			}
+
+			return new DataResponse($this->forLink($share, $item), Http::STATUS_CREATED);
 		} catch (\InvalidArgumentException $e) {
 			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_BAD_REQUEST);
 		} catch (PasswordRequiredException) {
@@ -271,8 +281,15 @@ class PublicListController extends OCSController {
 				$item->setShopAreaId($this->areaFor($share, $params['shopAreaId']));
 			}
 			$item->setUpdatedAt(new DateTime());
+			$item = $this->itemMapper->update($item);
 
-			return new DataResponse($this->forLink($share, $this->itemMapper->update($item)));
+			// Remember an amount the guest typed, not one a duplicate merge added up
+			if (!empty($params['quantityExplicit']) && array_key_exists('quantity', $params)) {
+				$quantity = $params['quantity'];
+				$this->amounts->remember($item->getListId(), $item->getName(), $quantity === null ? null : (string)$quantity);
+			}
+
+			return new DataResponse($this->forLink($share, $item));
 		} catch (\InvalidArgumentException $e) {
 			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_BAD_REQUEST);
 		} catch (PasswordRequiredException) {

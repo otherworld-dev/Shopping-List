@@ -244,6 +244,12 @@ function detectArea(ingredientName: string): number | null {
 	return bestArea
 }
 
+// A typed amount is sent as typed and remembered for the name. A name on its
+// own goes without one, so the server can give it the amount it had last time.
+function amountFields(quantity: string | null) {
+	return quantity ? { quantity, quantityExplicit: true } : { quantity: null }
+}
+
 async function onPaste(e: ClipboardEvent) {
 	const text = e.clipboardData?.getData('text') ?? ''
 	if (!text.includes('\n')) return // Single line — let default paste handle it
@@ -268,7 +274,7 @@ async function onPaste(e: ClipboardEvent) {
 		const areaId = selectedAreaId.value ?? detectArea(parsed.name)
 		await itemsStore.create(props.listId, {
 			name: parsed.name,
-			quantity: parsed.quantity || '1',
+			...amountFields(parsed.quantity),
 			shopAreaId: areaId,
 			areaExplicit: explicitArea,
 			checked: parsed.checked,
@@ -293,7 +299,7 @@ async function onSubmit() {
 	const areaId = selectedAreaId.value ?? detectArea(parsed.name)
 	await itemsStore.create(props.listId, {
 		name: parsed.name,
-		quantity: parsed.quantity || '1',
+		...amountFields(parsed.quantity),
 		shopAreaId: areaId,
 		areaExplicit: explicitArea,
 		checked: parsed.checked,

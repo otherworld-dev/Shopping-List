@@ -1,5 +1,5 @@
 const appName = "shopping_list";
-const appVersion = "1.9.0";
+const appVersion = "1.10.0";
 const global$1 = globalThis || void 0 || self;
 /**
 * @vue/shared v3.5.32
@@ -12528,7 +12528,7 @@ const _hoisted_2$p = {
 };
 const _hoisted_3$n = ["d"];
 const _hoisted_4$i = ["innerHTML"];
-const _sfc_main$x = /* @__PURE__ */ defineComponent({
+const _sfc_main$y = /* @__PURE__ */ defineComponent({
   __name: "NcIconSvgWrapper",
   props: {
     directional: { type: Boolean },
@@ -12578,7 +12578,7 @@ const _sfc_main$x = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const NcIconSvgWrapper = /* @__PURE__ */ _export_sfc$1(_sfc_main$x, [["__scopeId", "data-v-aaedb1c3"]]);
+const NcIconSvgWrapper = /* @__PURE__ */ _export_sfc$1(_sfc_main$y, [["__scopeId", "data-v-aaedb1c3"]]);
 const NC_ACTIONS_IS_SEMANTIC_MENU = /* @__PURE__ */ Symbol.for("NcActions:isSemanticMenu");
 const NC_ACTIONS_CLOSE_MENU = /* @__PURE__ */ Symbol.for("NcActions:closeMenu");
 const ActionGlobalMixin = {
@@ -12676,7 +12676,7 @@ const ActionTextMixin = {
     }
   }
 };
-const _sfc_main$w = {
+const _sfc_main$x = {
   name: "NcActionButton",
   components: {
     NcIconSvgWrapper
@@ -12892,7 +12892,7 @@ function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
     ], 16, _hoisted_2$o)
   ], 10, _hoisted_1$t);
 }
-const NcActionButton = /* @__PURE__ */ _export_sfc$1(_sfc_main$w, [["render", _sfc_render$n], ["__scopeId", "data-v-6c2daf4e"]]);
+const NcActionButton = /* @__PURE__ */ _export_sfc$1(_sfc_main$x, [["render", _sfc_render$n], ["__scopeId", "data-v-6c2daf4e"]]);
 const generateOcsUrl = (url2, params, options) => {
   const allOptions = Object.assign({
     ocsVersion: 2
@@ -16565,8 +16565,8 @@ ieee754.write = function(buffer2, value, offset2, isLE, mLen, nBytes) {
     }
     return str;
   }
-  function utf8ToBytes(string, units) {
-    units = units || Infinity;
+  function utf8ToBytes(string, units2) {
+    units2 = units2 || Infinity;
     let codePoint;
     const length = string.length;
     let leadSurrogate = null;
@@ -16576,43 +16576,43 @@ ieee754.write = function(buffer2, value, offset2, isLE, mLen, nBytes) {
       if (codePoint > 55295 && codePoint < 57344) {
         if (!leadSurrogate) {
           if (codePoint > 56319) {
-            if ((units -= 3) > -1) bytes.push(239, 191, 189);
+            if ((units2 -= 3) > -1) bytes.push(239, 191, 189);
             continue;
           } else if (i2 + 1 === length) {
-            if ((units -= 3) > -1) bytes.push(239, 191, 189);
+            if ((units2 -= 3) > -1) bytes.push(239, 191, 189);
             continue;
           }
           leadSurrogate = codePoint;
           continue;
         }
         if (codePoint < 56320) {
-          if ((units -= 3) > -1) bytes.push(239, 191, 189);
+          if ((units2 -= 3) > -1) bytes.push(239, 191, 189);
           leadSurrogate = codePoint;
           continue;
         }
         codePoint = (leadSurrogate - 55296 << 10 | codePoint - 56320) + 65536;
       } else if (leadSurrogate) {
-        if ((units -= 3) > -1) bytes.push(239, 191, 189);
+        if ((units2 -= 3) > -1) bytes.push(239, 191, 189);
       }
       leadSurrogate = null;
       if (codePoint < 128) {
-        if ((units -= 1) < 0) break;
+        if ((units2 -= 1) < 0) break;
         bytes.push(codePoint);
       } else if (codePoint < 2048) {
-        if ((units -= 2) < 0) break;
+        if ((units2 -= 2) < 0) break;
         bytes.push(
           codePoint >> 6 | 192,
           codePoint & 63 | 128
         );
       } else if (codePoint < 65536) {
-        if ((units -= 3) < 0) break;
+        if ((units2 -= 3) < 0) break;
         bytes.push(
           codePoint >> 12 | 224,
           codePoint >> 6 & 63 | 128,
           codePoint & 63 | 128
         );
       } else if (codePoint < 1114112) {
-        if ((units -= 4) < 0) break;
+        if ((units2 -= 4) < 0) break;
         bytes.push(
           codePoint >> 18 | 240,
           codePoint >> 12 & 63 | 128,
@@ -16632,11 +16632,11 @@ ieee754.write = function(buffer2, value, offset2, isLE, mLen, nBytes) {
     }
     return byteArray;
   }
-  function utf16leToBytes(str, units) {
+  function utf16leToBytes(str, units2) {
     let c2, hi, lo2;
     const byteArray = [];
     for (let i2 = 0; i2 < str.length; ++i2) {
-      if ((units -= 2) < 0) break;
+      if ((units2 -= 2) < 0) break;
       c2 = str.charCodeAt(i2);
       hi = c2 >> 8;
       lo2 = c2 % 256;
@@ -19089,7 +19089,7 @@ function useNcFormBox() {
 const _hoisted_1$s = { class: "button-vue__wrapper" };
 const _hoisted_2$n = { class: "button-vue__icon" };
 const _hoisted_3$l = { class: "button-vue__text" };
-const _sfc_main$v = /* @__PURE__ */ defineComponent({
+const _sfc_main$w = /* @__PURE__ */ defineComponent({
   __name: "NcButton",
   props: {
     alignment: { default: "center" },
@@ -19198,7 +19198,7 @@ const _sfc_main$v = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const NcButton = /* @__PURE__ */ _export_sfc$1(_sfc_main$v, [["__scopeId", "data-v-09093702"]]);
+const NcButton = /* @__PURE__ */ _export_sfc$1(_sfc_main$w, [["__scopeId", "data-v-09093702"]]);
 const _hoisted_1$r = { class: "input-field__main-wrapper" };
 const _hoisted_2$m = ["id", "aria-describedby", "disabled", "placeholder", "type", "value"];
 const _hoisted_3$k = ["for"];
@@ -19208,7 +19208,7 @@ const _hoisted_5$6 = {
   class: "input-field__icon input-field__icon--trailing"
 };
 const _hoisted_6$5 = ["id"];
-const _sfc_main$u = /* @__PURE__ */ defineComponent({
+const _sfc_main$v = /* @__PURE__ */ defineComponent({
   ...{
     inheritAttrs: false
   },
@@ -19357,7 +19357,7 @@ const _sfc_main$u = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const NcInputField = /* @__PURE__ */ _export_sfc$1(_sfc_main$u, [["__scopeId", "data-v-fccfce00"]]);
+const NcInputField = /* @__PURE__ */ _export_sfc$1(_sfc_main$v, [["__scopeId", "data-v-fccfce00"]]);
 var LogLevel = /* @__PURE__ */ ((LogLevel2) => {
   LogLevel2[LogLevel2["Debug"] = 0] = "Debug";
   LogLevel2[LogLevel2["Info"] = 1] = "Info";
@@ -19520,7 +19520,7 @@ register(t49);
     }
   }
 });
-const _sfc_main$t = {
+const _sfc_main$u = {
   name: "NcActionLink",
   mixins: [ActionTextMixin],
   inject: {
@@ -19622,8 +19622,8 @@ function _sfc_render$m(_ctx, _cache, $props, $setup, $data, $options) {
     ], 8, _hoisted_2$l)
   ], 8, _hoisted_1$q);
 }
-const NcActionLink = /* @__PURE__ */ _export_sfc$1(_sfc_main$t, [["render", _sfc_render$m], ["__scopeId", "data-v-32f01b7a"]]);
-const _sfc_main$s = {
+const NcActionLink = /* @__PURE__ */ _export_sfc$1(_sfc_main$u, [["render", _sfc_render$m], ["__scopeId", "data-v-32f01b7a"]]);
+const _sfc_main$t = {
   name: "NcActionRouter",
   mixins: [ActionTextMixin],
   inject: {
@@ -19695,7 +19695,7 @@ function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
     }, 8, ["aria-label", "role", "title", "to", "onClick"])
   ], 8, _hoisted_1$p);
 }
-const NcActionRouter = /* @__PURE__ */ _export_sfc$1(_sfc_main$s, [["render", _sfc_render$l], ["__scopeId", "data-v-87267750"]]);
+const NcActionRouter = /* @__PURE__ */ _export_sfc$1(_sfc_main$t, [["render", _sfc_render$l], ["__scopeId", "data-v-87267750"]]);
 function getTrapStack() {
   window._nc_focus_trap ??= [];
   return window._nc_focus_trap;
@@ -23647,7 +23647,7 @@ const style0$2 = {
 };
 const theme = "nc-popover-9";
 Ht$1.themes[theme] = structuredClone(Ht$1.themes.dropdown);
-const _sfc_main$r = {
+const _sfc_main$s = {
   name: "NcPopover",
   components: {
     Dropdown: kt,
@@ -24020,7 +24020,7 @@ function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
 const cssModules$2 = {
   "$style": style0$2
 };
-const NcPopover = /* @__PURE__ */ _export_sfc$1(_sfc_main$r, [["render", _sfc_render$k], ["__cssModules", cssModules$2]]);
+const NcPopover = /* @__PURE__ */ _export_sfc$1(_sfc_main$s, [["render", _sfc_render$k], ["__cssModules", cssModules$2]]);
 const _sfc_main$1$5 = {
   name: "DotsHorizontalIcon",
   emits: ["click"],
@@ -24083,7 +24083,7 @@ function isSlotPopulated(vnodes) {
   });
 }
 const focusableSelector = ".focusable";
-const _sfc_main$q = {
+const _sfc_main$r = {
   name: "NcActions",
   components: {
     NcButton,
@@ -24768,8 +24768,8 @@ const _sfc_main$q = {
     );
   }
 };
-const NcActions = /* @__PURE__ */ _export_sfc$1(_sfc_main$q, [["__scopeId", "data-v-5f7eed6b"]]);
-const _sfc_main$p = {
+const NcActions = /* @__PURE__ */ _export_sfc$1(_sfc_main$r, [["__scopeId", "data-v-5f7eed6b"]]);
+const _sfc_main$q = {
   name: "NcActionText",
   mixins: [ActionTextMixin],
   inject: {
@@ -24823,7 +24823,7 @@ function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ], 8, _hoisted_1$n);
 }
-const NcActionText = /* @__PURE__ */ _export_sfc$1(_sfc_main$p, [["render", _sfc_render$i], ["__scopeId", "data-v-fa684b48"]]);
+const NcActionText = /* @__PURE__ */ _export_sfc$1(_sfc_main$q, [["render", _sfc_render$i], ["__scopeId", "data-v-fa684b48"]]);
 function tryOnScopeDispose(fn2, failSilently) {
   if (getCurrentScope()) {
     onScopeDispose(fn2, failSilently);
@@ -24854,6 +24854,9 @@ function pxValue(px) {
 function toArray(value) {
   return Array.isArray(value) ? value : [value];
 }
+function getLifeCycleTarget(target) {
+  return getCurrentInstance();
+}
 // @__NO_SIDE_EFFECTS__
 function createSharedComposable(composable) {
   if (!isClient) return composable;
@@ -24877,6 +24880,11 @@ function createSharedComposable(composable) {
     tryOnScopeDispose(dispose);
     return state;
   });
+}
+function tryOnMounted(fn2, sync = true, target) {
+  if (getLifeCycleTarget()) onMounted(fn2, target);
+  else if (sync) fn2();
+  else nextTick(fn2);
 }
 function useIntervalFn(cb, interval = 1e3, options = {}) {
   const { immediate = true, immediateCallback = false } = options;
@@ -25215,6 +25223,89 @@ function useMediaQuery(query, options = {}) {
 // @__NO_SIDE_EFFECTS__
 function usePreferredDark(options) {
   return useMediaQuery("(prefers-color-scheme: dark)", options);
+}
+function useResizeObserver(target, callback, options = {}) {
+  const { window: window$1 = defaultWindow, ...observerOptions } = options;
+  let observer;
+  const isSupported = /* @__PURE__ */ useSupported(() => window$1 && "ResizeObserver" in window$1);
+  const cleanup = () => {
+    if (observer) {
+      observer.disconnect();
+      observer = void 0;
+    }
+  };
+  const stopWatch = watch(computed(() => {
+    const _targets = toValue(target);
+    return Array.isArray(_targets) ? _targets.map((el) => unrefElement(el)) : [unrefElement(_targets)];
+  }), (els) => {
+    cleanup();
+    if (isSupported.value && window$1) {
+      observer = new ResizeObserver(callback);
+      for (const _el of els) if (_el) observer.observe(_el, observerOptions);
+    }
+  }, {
+    immediate: true,
+    flush: "post"
+  });
+  const stop2 = () => {
+    cleanup();
+    stopWatch();
+  };
+  tryOnScopeDispose(stop2);
+  return {
+    isSupported,
+    stop: stop2
+  };
+}
+function useElementSize(target, initialSize = {
+  width: 0,
+  height: 0
+}, options = {}) {
+  const { window: window$1 = defaultWindow, box = "content-box" } = options;
+  const isSVG = computed(() => {
+    var _unrefElement;
+    return (_unrefElement = unrefElement(target)) === null || _unrefElement === void 0 || (_unrefElement = _unrefElement.namespaceURI) === null || _unrefElement === void 0 ? void 0 : _unrefElement.includes("svg");
+  });
+  const width = /* @__PURE__ */ shallowRef(initialSize.width);
+  const height = /* @__PURE__ */ shallowRef(initialSize.height);
+  const { stop: stop1 } = useResizeObserver(target, ([entry]) => {
+    const boxSize = box === "border-box" ? entry.borderBoxSize : box === "content-box" ? entry.contentBoxSize : entry.devicePixelContentBoxSize;
+    if (window$1 && isSVG.value) {
+      const $elem = unrefElement(target);
+      if ($elem) {
+        const rect = $elem.getBoundingClientRect();
+        width.value = rect.width;
+        height.value = rect.height;
+      }
+    } else if (boxSize) {
+      const formatBoxSize = toArray(boxSize);
+      width.value = formatBoxSize.reduce((acc, { inlineSize }) => acc + inlineSize, 0);
+      height.value = formatBoxSize.reduce((acc, { blockSize }) => acc + blockSize, 0);
+    } else {
+      width.value = entry.contentRect.width;
+      height.value = entry.contentRect.height;
+    }
+  }, options);
+  tryOnMounted(() => {
+    const ele = unrefElement(target);
+    if (ele) {
+      width.value = "offsetWidth" in ele ? ele.offsetWidth : initialSize.width;
+      height.value = "offsetHeight" in ele ? ele.offsetHeight : initialSize.height;
+    }
+  });
+  const stop2 = watch(() => unrefElement(target), (ele) => {
+    width.value = ele ? initialSize.width : 0;
+    height.value = ele ? initialSize.height : 0;
+  });
+  function stop3() {
+    stop1();
+    stop2();
+  }
+  return {
+    width,
+    height,
+    stop: stop3
+  };
 }
 const EVENT_FOCUS_IN = "focusin";
 const EVENT_FOCUS_OUT = "focusout";
@@ -25652,7 +25743,7 @@ const _sfc_main$1$4 = /* @__PURE__ */ defineComponent({
 const NcAppContentDetailsToggle = /* @__PURE__ */ _export_sfc$1(_sfc_main$1$4, [["__scopeId", "data-v-a28923a1"]]);
 const browserStorage$2 = getBuilder("nextcloud").persist().build();
 const instanceName = getCapabilities().theming?.name ?? "Nextcloud";
-const _sfc_main$o = {
+const _sfc_main$p = {
   name: "NcAppContent",
   components: {
     NcAppContentDetailsToggle,
@@ -25967,8 +26058,8 @@ function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
     !_ctx.$slots.list ? renderSlot(_ctx.$slots, "default", { key: 2 }, void 0, true) : createCommentVNode("", true)
   ], 2);
 }
-const NcAppContent = /* @__PURE__ */ _export_sfc$1(_sfc_main$o, [["render", _sfc_render$h], ["__scopeId", "data-v-ea1e6879"]]);
-const _sfc_main$n = {
+const NcAppContent = /* @__PURE__ */ _export_sfc$1(_sfc_main$p, [["render", _sfc_render$h], ["__scopeId", "data-v-ea1e6879"]]);
+const _sfc_main$o = {
   name: "NcAppNavigationList"
 };
 const _hoisted_1$l = { class: "app-navigation-list" };
@@ -25977,7 +26068,7 @@ function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default", {}, void 0, true)
   ]);
 }
-const NcAppNavigationList = /* @__PURE__ */ _export_sfc$1(_sfc_main$n, [["render", _sfc_render$g], ["__scopeId", "data-v-d72957ed"]]);
+const NcAppNavigationList = /* @__PURE__ */ _export_sfc$1(_sfc_main$o, [["render", _sfc_render$g], ["__scopeId", "data-v-d72957ed"]]);
 /*!
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -26021,7 +26112,7 @@ const _sfc_main$1$3 = /* @__PURE__ */ defineComponent({
 const NcAppNavigationToggle = /* @__PURE__ */ _export_sfc$1(_sfc_main$1$3, [["__scopeId", "data-v-5a15295d"]]);
 const _hoisted_1$k = ["aria-hidden", "aria-label", "aria-labelledby", "inert"];
 const _hoisted_2$g = { class: "app-navigation__search" };
-const _sfc_main$m = /* @__PURE__ */ defineComponent({
+const _sfc_main$n = /* @__PURE__ */ defineComponent({
   __name: "NcAppNavigation",
   props: {
     ariaLabel: {},
@@ -26138,8 +26229,8 @@ const _sfc_main$m = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const NcAppNavigation = /* @__PURE__ */ _export_sfc$1(_sfc_main$m, [["__scopeId", "data-v-d5ce90cd"]]);
-const _sfc_main$l = {
+const NcAppNavigation = /* @__PURE__ */ _export_sfc$1(_sfc_main$n, [["__scopeId", "data-v-d5ce90cd"]]);
+const _sfc_main$m = {
   name: "NcAppNavigationCaption",
   components: {
     NcActions
@@ -26230,8 +26321,8 @@ function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
     _: 3
   }, 8, ["class"]);
 }
-const NcAppNavigationCaption = /* @__PURE__ */ _export_sfc$1(_sfc_main$l, [["render", _sfc_render$f], ["__scopeId", "data-v-21e6b451"]]);
-const _sfc_main$k = {
+const NcAppNavigationCaption = /* @__PURE__ */ _export_sfc$1(_sfc_main$m, [["render", _sfc_render$f], ["__scopeId", "data-v-21e6b451"]]);
+const _sfc_main$l = {
   name: "ChevronDownIcon",
   emits: ["click"],
   props: {
@@ -26273,8 +26364,8 @@ function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
     ], 8, _hoisted_2$f))
   ], 16, _hoisted_1$i);
 }
-const ChevronDown = /* @__PURE__ */ _export_sfc$1(_sfc_main$k, [["render", _sfc_render$e]]);
-const _sfc_main$j = {
+const ChevronDown = /* @__PURE__ */ _export_sfc$1(_sfc_main$l, [["render", _sfc_render$e]]);
+const _sfc_main$k = {
   name: "ChevronUpIcon",
   emits: ["click"],
   props: {
@@ -26316,8 +26407,8 @@ function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
     ], 8, _hoisted_2$e))
   ], 16, _hoisted_1$h);
 }
-const ChevronUp = /* @__PURE__ */ _export_sfc$1(_sfc_main$j, [["render", _sfc_render$d]]);
-const _sfc_main$i = {
+const ChevronUp = /* @__PURE__ */ _export_sfc$1(_sfc_main$k, [["render", _sfc_render$d]]);
+const _sfc_main$j = {
   name: "ArrowRightIcon",
   emits: ["click"],
   props: {
@@ -26359,8 +26450,8 @@ function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
     ], 8, _hoisted_2$d))
   ], 16, _hoisted_1$g);
 }
-const IconArrowRight = /* @__PURE__ */ _export_sfc$1(_sfc_main$i, [["render", _sfc_render$c]]);
-const _sfc_main$h = {
+const IconArrowRight = /* @__PURE__ */ _export_sfc$1(_sfc_main$j, [["render", _sfc_render$c]]);
+const _sfc_main$i = {
   name: "CloseIcon",
   emits: ["click"],
   props: {
@@ -26402,9 +26493,9 @@ function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
     ], 8, _hoisted_2$c))
   ], 16, _hoisted_1$f);
 }
-const IconClose = /* @__PURE__ */ _export_sfc$1(_sfc_main$h, [["render", _sfc_render$b]]);
+const IconClose = /* @__PURE__ */ _export_sfc$1(_sfc_main$i, [["render", _sfc_render$b]]);
 register(t14);
-const _sfc_main$g = {
+const _sfc_main$h = {
   name: "NcInputConfirmCancel",
   components: {
     IconArrowRight,
@@ -26514,13 +26605,13 @@ function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
     ], 32)
   ]);
 }
-const NcInputConfirmCancel = /* @__PURE__ */ _export_sfc$1(_sfc_main$g, [["render", _sfc_render$a], ["__scopeId", "data-v-dd457d48"]]);
+const NcInputConfirmCancel = /* @__PURE__ */ _export_sfc$1(_sfc_main$h, [["render", _sfc_render$a], ["__scopeId", "data-v-dd457d48"]]);
 const _hoisted_1$d = ["aria-label"];
 const _hoisted_2$a = ["width", "height"];
 const _hoisted_3$a = ["fill"];
 const _hoisted_4$7 = ["fill"];
 const _hoisted_5$2 = { key: 0 };
-const _sfc_main$f = /* @__PURE__ */ defineComponent({
+const _sfc_main$g = /* @__PURE__ */ defineComponent({
   __name: "NcLoadingIcon",
   props: {
     appearance: { default: "auto" },
@@ -26564,8 +26655,8 @@ const _sfc_main$f = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const NcLoadingIcon = /* @__PURE__ */ _export_sfc$1(_sfc_main$f, [["__scopeId", "data-v-cf399190"]]);
-const _sfc_main$e = /* @__PURE__ */ defineComponent({
+const NcLoadingIcon = /* @__PURE__ */ _export_sfc$1(_sfc_main$g, [["__scopeId", "data-v-cf399190"]]);
+const _sfc_main$f = /* @__PURE__ */ defineComponent({
   name: "NcVNodes",
   props: {
     /**
@@ -26732,7 +26823,7 @@ function _sfc_render$1$2(_ctx, _cache, $props, $setup, $data, $options) {
 }
 const NcAppNavigationIconCollapsible = /* @__PURE__ */ _export_sfc$1(_sfc_main$1$2, [["render", _sfc_render$1$2], ["__scopeId", "data-v-e6236e50"]]);
 register(t23, t51);
-const _sfc_main$d = {
+const _sfc_main$e = {
   name: "NcAppNavigationItem",
   components: {
     NcActions,
@@ -26740,7 +26831,7 @@ const _sfc_main$d = {
     NcAppNavigationIconCollapsible,
     NcInputConfirmCancel,
     NcLoadingIcon,
-    NcVNodes: _sfc_main$e,
+    NcVNodes: _sfc_main$f,
     Pencil,
     Undo
   },
@@ -27205,7 +27296,7 @@ function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
     ])) : createCommentVNode("", true)
   ], 10, _hoisted_1$c);
 }
-const NcAppNavigationItem = /* @__PURE__ */ _export_sfc$1(_sfc_main$d, [["render", _sfc_render$9], ["__scopeId", "data-v-f925f8d0"]]);
+const NcAppNavigationItem = /* @__PURE__ */ _export_sfc$1(_sfc_main$e, [["render", _sfc_render$9], ["__scopeId", "data-v-f925f8d0"]]);
 register(t16, t44);
 /* @__PURE__ */ defineComponent({
   __name: "NcAppNavigationSearch",
@@ -27300,7 +27391,7 @@ register(t16, t44);
 });
 register(t47);
 const _hoisted_1$b = ["id"];
-const _sfc_main$c = /* @__PURE__ */ defineComponent({
+const _sfc_main$d = /* @__PURE__ */ defineComponent({
   __name: "NcAppNavigationSettings",
   props: {
     excludeClickOutsideSelectors: { default: () => [] },
@@ -27381,8 +27472,67 @@ const style0$1 = {
 const cssModules$1 = {
   "$style": style0$1
 };
-const NcAppNavigationSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$c, [["__cssModules", cssModules$1]]);
+const NcAppNavigationSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$d, [["__cssModules", cssModules$1]]);
 register(t33);
+const _sfc_main$c = /* @__PURE__ */ defineComponent({
+  __name: "NcDialogButton",
+  props: {
+    callback: { type: Function, default: () => {
+    } },
+    disabled: { type: Boolean, default: false },
+    icon: { default: void 0 },
+    label: {},
+    type: { default: "button" },
+    variant: { default: "tertiary" }
+  },
+  emits: ["click"],
+  setup(__props, { emit: __emit }) {
+    const props = __props;
+    const emit2 = __emit;
+    const isLoading = /* @__PURE__ */ ref(false);
+    async function handleClick(e) {
+      if (isLoading.value) {
+        return;
+      }
+      isLoading.value = true;
+      try {
+        const fallback = props.type === "reset" ? false : void 0;
+        const result = await props.callback?.() ?? fallback;
+        if (result !== false) {
+          emit2("click", e, result);
+        }
+      } finally {
+        isLoading.value = false;
+      }
+    }
+    return (_ctx, _cache) => {
+      return openBlock(), createBlock(unref(NcButton), {
+        "aria-label": _ctx.label,
+        disabled: _ctx.disabled,
+        type: _ctx.type,
+        variant: _ctx.variant,
+        onClick: handleClick
+      }, {
+        icon: withCtx(() => [
+          renderSlot(_ctx.$slots, "icon", {}, () => [
+            isLoading.value ? (openBlock(), createBlock(unref(NcLoadingIcon), {
+              key: 0,
+              name: unref(t)("Loading …")
+              /* TRANSLATORS: The button is in a loading state*/
+            }, null, 8, ["name"])) : _ctx.icon !== void 0 ? (openBlock(), createBlock(unref(NcIconSvgWrapper), {
+              key: 1,
+              svg: _ctx.icon
+            }, null, 8, ["svg"])) : createCommentVNode("", true)
+          ])
+        ]),
+        default: withCtx(() => [
+          createTextVNode(toDisplayString(_ctx.label) + " ", 1)
+        ]),
+        _: 3
+      }, 8, ["aria-label", "disabled", "type", "variant"]);
+    };
+  }
+});
 register(t2);
 ({
   long: t("a few seconds ago"),
@@ -44189,6 +44339,9 @@ register(t50);
     }, 200)
   }
 });
+var mdiChevronDown = "M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z";
+var mdiHelpCircleOutline = "M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z";
+var mdiPlus = "M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z";
 function url(path2) {
   return generateOcsUrl("apps/shopping_list/api/v1/" + path2);
 }
@@ -44244,6 +44397,10 @@ const api = {
   settings: {
     get: () => cancelableClient.get(url("settings")),
     update: (data) => cancelableClient.patch(url("settings"), data)
+  },
+  backup: {
+    download: () => cancelableClient.get(generateUrl("/apps/shopping_list/backup/download"), { responseType: "blob" }),
+    restore: (payload) => cancelableClient.post(generateUrl("/apps/shopping_list/backup/restore"), payload)
   }
 };
 const publicApi = {
@@ -44365,8 +44522,436 @@ const offlinePersistPlugin = ({ store: store2 }) => {
     }
   });
 };
-var mdiChevronDown = "M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z";
-var mdiHelpCircleOutline = "M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z";
+const units$w = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg"];
+const leadingUnits$w = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$w = ["of"];
+const decimalSeparators$w = ["."];
+const __vite_glob_0_0 = {
+  units: units$w,
+  leadingUnits: leadingUnits$w,
+  prepositions: prepositions$w,
+  decimalSeparators: decimalSeparators$w
+};
+const units$v = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg"];
+const leadingUnits$v = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$v = ["of"];
+const decimalSeparators$v = ["."];
+const __vite_glob_0_1 = {
+  units: units$v,
+  leadingUnits: leadingUnits$v,
+  prepositions: prepositions$v,
+  decimalSeparators: decimalSeparators$v
+};
+const units$u = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg"];
+const leadingUnits$u = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$u = ["of"];
+const decimalSeparators$u = ["."];
+const __vite_glob_0_2 = {
+  units: units$u,
+  leadingUnits: leadingUnits$u,
+  prepositions: prepositions$u,
+  decimalSeparators: decimalSeparators$u
+};
+const units$t = ["kávová lžička", "kávových lžiček", "lžiček", "polévková lžíce", "polévkových lžic", "lžic", "šálek", "šálky", "unce", "uncí", "oz", "libra", "liber", "lb", "lbs", "gram", "gramů", "g", "kilogram", "kilogramů", "kg", "mililitr", "mililitrů", "ml", "litr", "litrů", "l", "špetka", "špetek", "svazek", "svazků", "clove", "cloves", "plechovka", "plechovek", "láhev", "lahví", "kus", "kusů", "plátek", "plátků", "hlávka", "hlávek", "stalk", "stalks", "sprig", "sprigs", "balíček", "balení", "balík", "packets", "pytlík", "pytlíků", "fl oz", "pc", "pcs", "pkg", "dag", "dkg"];
+const leadingUnits$t = ["špetka", "špetek", "trs", "trsů", "zest", "dash", "handful"];
+const prepositions$t = ["of"];
+const decimalSeparators$t = [","];
+const __vite_glob_0_3 = {
+  units: units$t,
+  leadingUnits: leadingUnits$t,
+  prepositions: prepositions$t,
+  decimalSeparators: decimalSeparators$t
+};
+const units$s = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg"];
+const leadingUnits$s = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$s = ["of"];
+const decimalSeparators$s = ["."];
+const __vite_glob_0_4 = {
+  units: units$s,
+  leadingUnits: leadingUnits$s,
+  prepositions: prepositions$s,
+  decimalSeparators: decimalSeparators$s
+};
+const units$r = ["teelöffel", "teelöffel", "tl", "esslöffel", "esslöffel", "el", "tasse", "tassen", "unze", "unzen", "oz", "pfund", "pfund", "pfd", "pfd", "gramm", "gramm", "g", "kilogramm", "kilogramm", "kg", "milliliter", "milliliter", "ml", "liter", "liter", "l", "prise", "prisen", "bund", "bünde", "zehe", "zehen", "dose", "dosen", "flasche", "flaschen", "stück", "stücke", "scheibe", "scheiben", "kopf", "köpfe", "stange", "stangen", "zweig", "zweige", "packung", "packungen", "päckchen", "päckchen", "beutel", "tüten", "fl oz", "stk", "stk.", "pkg", "dag", "dkg"];
+const leadingUnits$r = ["prise", "prisen", "bund", "bünde", "abrieb", "schuss", "handvoll"];
+const prepositions$r = ["von"];
+const decimalSeparators$r = [","];
+const __vite_glob_0_5 = {
+  units: units$r,
+  leadingUnits: leadingUnits$r,
+  prepositions: prepositions$r,
+  decimalSeparators: decimalSeparators$r
+};
+const units$q = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg"];
+const leadingUnits$q = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$q = ["of"];
+const decimalSeparators$q = ["."];
+const __vite_glob_0_6 = {
+  units: units$q,
+  leadingUnits: leadingUnits$q,
+  prepositions: prepositions$q,
+  decimalSeparators: decimalSeparators$q
+};
+const units$p = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg", "jar", "jars", "tub", "tubs", "pot", "pots", "leaf", "leaves"];
+const leadingUnits$p = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$p = ["of"];
+const decimalSeparators$p = ["."];
+const __vite_glob_0_7 = {
+  units: units$p,
+  leadingUnits: leadingUnits$p,
+  prepositions: prepositions$p,
+  decimalSeparators: decimalSeparators$p
+};
+const units$o = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg"];
+const leadingUnits$o = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$o = ["of"];
+const decimalSeparators$o = ["."];
+const __vite_glob_0_8 = {
+  units: units$o,
+  leadingUnits: leadingUnits$o,
+  prepositions: prepositions$o,
+  decimalSeparators: decimalSeparators$o
+};
+const units$n = ["teelusikka", "teelusikallista", "tl", "ruokalusikallinen", "ruokalusikallista", "rkl", "kupillinen", "kupillista", "unssi", "unssia", "unssi", "pauna", "paunaa", "pauna", "paunaa", "gramma", "grammaa", "g", "kilogramma", "kilogrammaa", "kg", "millilitra", "millilitraa", "ml", "litra", "litraa", "l", "ripaus", "hyppysellistä", "nippu", "nippua", "kynsi", "kynttä", "tölkki", "tölkkiä", "pullo", "pulloa", "kappale", "kappaletta", "viipale", "viipaletta", "pää", "päitä", "varsi", "vartta", "oksa", "oksaa", "pakkaus", "pakkausta", "paketti", "pakkausta", "pussi", "pussia", "fl oz", "pc", "pcs", "pkg", "dag", "dkg"];
+const leadingUnits$n = ["ripaus", "hyppysellistä", "nippu", "nippua", "kuori", "viiva", "kourallinen"];
+const prepositions$n = ["of"];
+const decimalSeparators$n = ["."];
+const __vite_glob_0_9 = {
+  units: units$n,
+  leadingUnits: leadingUnits$n,
+  prepositions: prepositions$n,
+  decimalSeparators: decimalSeparators$n
+};
+const units$m = ["cuillère à café", "cuillères à café", "c.à.c.", "cuillère à soupe", "cuillères à soupe", "c.à.s.", "tasse", "tasses", "once", "onces", "oz", "livre", "livres", "lb", "lbs", "gramme", "grammes", "g", "kilogramme", "kilogrammes", "kg", "millilitre", "millilitres", "ml", "litre", "litres", "l", "pincée", "pincées", "botte", "bottes", "gousse", "gousses", "boîte", "boîtes", "bouteille", "bouteilles", "unité", "unités", "tranche", "tranches", "pièce", "pièces", "tige", "tiges", "brin", "brins", "paquet", "paquets", "sachet", "sachets", "sac", "sacs", "onces liq.", "pc", "pcs", "pkg", "dag", "dkg"];
+const leadingUnits$m = ["pincée", "pincées", "botte", "bottes", "zeste", "petite quantité", "poignée"];
+const prepositions$m = ["de"];
+const decimalSeparators$m = [","];
+const __vite_glob_0_10 = {
+  units: units$m,
+  leadingUnits: leadingUnits$m,
+  prepositions: prepositions$m,
+  decimalSeparators: decimalSeparators$m
+};
+const units$l = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg"];
+const leadingUnits$l = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$l = ["of"];
+const decimalSeparators$l = ["."];
+const __vite_glob_0_11 = {
+  units: units$l,
+  leadingUnits: leadingUnits$l,
+  prepositions: prepositions$l,
+  decimalSeparators: decimalSeparators$l
+};
+const units$k = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg"];
+const leadingUnits$k = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$k = ["of"];
+const decimalSeparators$k = ["."];
+const __vite_glob_0_12 = {
+  units: units$k,
+  leadingUnits: leadingUnits$k,
+  prepositions: prepositions$k,
+  decimalSeparators: decimalSeparators$k
+};
+const units$j = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg"];
+const leadingUnits$j = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$j = ["of"];
+const decimalSeparators$j = ["."];
+const __vite_glob_0_13 = {
+  units: units$j,
+  leadingUnits: leadingUnits$j,
+  prepositions: prepositions$j,
+  decimalSeparators: decimalSeparators$j
+};
+const units$i = ["cucchiaino", "cucchiaini", "tsp", "cucchiaio", "cucchiai", "tbsp", "tazza", "tazze", "oncia", "once", "oz", "libbra", "libbre", "lb", "lbs", "grammo", "grammi", "g", "chilogrammo", "chilogrammi", "kg", "millimetro", "millimetri", "ml", "litro", "litri", "l", "pizzico", "pizzichi", "mazzo", "mazzi", "spicchio", "spicchi", "lattina", "lattine", "bottiglia", "bottiglie", "pezzo", "pezzi", "fetta", "fette", "testa", "teste", "gambo", "gambi", "ramo", "rami", "confezione", "confezioni", "bustina", "bustine", "busta", "buste", "fl oz", "pc", "pcs", "pkg", "dag", "dkg"];
+const leadingUnits$i = ["pizzico", "pizzichi", "mazzo", "mazzi", "scorza", "goccio", "pugno"];
+const prepositions$i = ["di"];
+const decimalSeparators$i = [","];
+const __vite_glob_0_14 = {
+  units: units$i,
+  leadingUnits: leadingUnits$i,
+  prepositions: prepositions$i,
+  decimalSeparators: decimalSeparators$i
+};
+const units$h = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg"];
+const leadingUnits$h = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$h = ["of"];
+const decimalSeparators$h = ["."];
+const __vite_glob_0_15 = {
+  units: units$h,
+  leadingUnits: leadingUnits$h,
+  prepositions: prepositions$h,
+  decimalSeparators: decimalSeparators$h
+};
+const units$g = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg"];
+const leadingUnits$g = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$g = ["of"];
+const decimalSeparators$g = ["."];
+const __vite_glob_0_16 = {
+  units: units$g,
+  leadingUnits: leadingUnits$g,
+  prepositions: prepositions$g,
+  decimalSeparators: decimalSeparators$g
+};
+const units$f = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg"];
+const leadingUnits$f = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$f = ["of"];
+const decimalSeparators$f = ["."];
+const __vite_glob_0_17 = {
+  units: units$f,
+  leadingUnits: leadingUnits$f,
+  prepositions: prepositions$f,
+  decimalSeparators: decimalSeparators$f
+};
+const units$e = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg"];
+const leadingUnits$e = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$e = ["of"];
+const decimalSeparators$e = ["."];
+const __vite_glob_0_18 = {
+  units: units$e,
+  leadingUnits: leadingUnits$e,
+  prepositions: prepositions$e,
+  decimalSeparators: decimalSeparators$e
+};
+const units$d = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg"];
+const leadingUnits$d = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$d = ["of"];
+const decimalSeparators$d = ["."];
+const __vite_glob_0_19 = {
+  units: units$d,
+  leadingUnits: leadingUnits$d,
+  prepositions: prepositions$d,
+  decimalSeparators: decimalSeparators$d
+};
+const units$c = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg"];
+const leadingUnits$c = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$c = ["of"];
+const decimalSeparators$c = ["."];
+const __vite_glob_0_20 = {
+  units: units$c,
+  leadingUnits: leadingUnits$c,
+  prepositions: prepositions$c,
+  decimalSeparators: decimalSeparators$c
+};
+const units$b = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg"];
+const leadingUnits$b = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$b = ["of"];
+const decimalSeparators$b = ["."];
+const __vite_glob_0_21 = {
+  units: units$b,
+  leadingUnits: leadingUnits$b,
+  prepositions: prepositions$b,
+  decimalSeparators: decimalSeparators$b
+};
+const units$a = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg"];
+const leadingUnits$a = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$a = ["of"];
+const decimalSeparators$a = ["."];
+const __vite_glob_0_22 = {
+  units: units$a,
+  leadingUnits: leadingUnits$a,
+  prepositions: prepositions$a,
+  decimalSeparators: decimalSeparators$a
+};
+const units$9 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg"];
+const leadingUnits$9 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$9 = ["of"];
+const decimalSeparators$9 = ["."];
+const __vite_glob_0_23 = {
+  units: units$9,
+  leadingUnits: leadingUnits$9,
+  prepositions: prepositions$9,
+  decimalSeparators: decimalSeparators$9
+};
+const units$8 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg"];
+const leadingUnits$8 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$8 = ["of"];
+const decimalSeparators$8 = ["."];
+const __vite_glob_0_24 = {
+  units: units$8,
+  leadingUnits: leadingUnits$8,
+  prepositions: prepositions$8,
+  decimalSeparators: decimalSeparators$8
+};
+const units$7 = ["teaspoon", "čajové lyžičky", "čajová lyžička", "tablespoon", "polievkové lyžice", "tbsp", "cup", "šálky", "ounce", "ounces", "oz", "pound", "libry", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilogramy", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "štipky", "bunch", "bunches", "clove", "strúčiky", "can", "cans", "bottle", "fľaše", "piece", "kúsky", "slice", "plátky", "head", "hlávky", "stalk", "stonky", "sprig", "vetvičky", "pack", "packs", "paket", "packets", "vrecko", "vrecká", "fl oz", "pc", "pcs", "pkg", "dag", "dkg"];
+const leadingUnits$7 = ["štipka", "štipky", "zväzok", "zväzky", "kôra", "trocha", "hrsť"];
+const prepositions$7 = ["of"];
+const decimalSeparators$7 = ["."];
+const __vite_glob_0_25 = {
+  units: units$7,
+  leadingUnits: leadingUnits$7,
+  prepositions: prepositions$7,
+  decimalSeparators: decimalSeparators$7
+};
+const units$6 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg"];
+const leadingUnits$6 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$6 = ["of"];
+const decimalSeparators$6 = ["."];
+const __vite_glob_0_26 = {
+  units: units$6,
+  leadingUnits: leadingUnits$6,
+  prepositions: prepositions$6,
+  decimalSeparators: decimalSeparators$6
+};
+const units$5 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg"];
+const leadingUnits$5 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$5 = ["of"];
+const decimalSeparators$5 = ["."];
+const __vite_glob_0_27 = {
+  units: units$5,
+  leadingUnits: leadingUnits$5,
+  prepositions: prepositions$5,
+  decimalSeparators: decimalSeparators$5
+};
+const units$4 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg"];
+const leadingUnits$4 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$4 = ["of"];
+const decimalSeparators$4 = ["."];
+const __vite_glob_0_28 = {
+  units: units$4,
+  leadingUnits: leadingUnits$4,
+  prepositions: prepositions$4,
+  decimalSeparators: decimalSeparators$4
+};
+const units$3 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg"];
+const leadingUnits$3 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$3 = ["of"];
+const decimalSeparators$3 = ["."];
+const __vite_glob_0_29 = {
+  units: units$3,
+  leadingUnits: leadingUnits$3,
+  prepositions: prepositions$3,
+  decimalSeparators: decimalSeparators$3
+};
+const units$2 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg"];
+const leadingUnits$2 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$2 = ["of"];
+const decimalSeparators$2 = ["."];
+const __vite_glob_0_30 = {
+  units: units$2,
+  leadingUnits: leadingUnits$2,
+  prepositions: prepositions$2,
+  decimalSeparators: decimalSeparators$2
+};
+const units$1 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg"];
+const leadingUnits$1 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions$1 = ["of"];
+const decimalSeparators$1 = ["."];
+const __vite_glob_0_31 = {
+  units: units$1,
+  leadingUnits: leadingUnits$1,
+  prepositions: prepositions$1,
+  decimalSeparators: decimalSeparators$1
+};
+const units = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg"];
+const leadingUnits = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
+const prepositions = ["of"];
+const decimalSeparators = ["."];
+const __vite_glob_0_32 = {
+  units,
+  leadingUnits,
+  prepositions,
+  decimalSeparators
+};
+const EN_UNIT_ALIASES = {
+  cups: "cup",
+  teaspoons: "teaspoon",
+  tsp: "teaspoon",
+  tablespoons: "tablespoon",
+  tbsp: "tablespoon",
+  ounces: "ounce",
+  oz: "ounce",
+  pounds: "pound",
+  lbs: "pound",
+  lb: "pound",
+  grams: "gram",
+  g: "gram",
+  kilograms: "kilogram",
+  kg: "kilogram",
+  milliliters: "milliliter",
+  ml: "milliliter",
+  liters: "liter",
+  l: "liter",
+  cans: "can",
+  bottles: "bottle",
+  slices: "slice",
+  pieces: "piece",
+  pcs: "piece",
+  pc: "piece",
+  dkg: "dag",
+  cloves: "clove",
+  stalks: "stalk",
+  sprigs: "sprig",
+  bags: "bag",
+  packs: "pack",
+  packets: "pack",
+  pkg: "pack",
+  pinches: "pinch",
+  bunches: "bunch",
+  heads: "head"
+};
+const parsingModules = /* @__PURE__ */ Object.assign({
+  "../../resources/parsing/af.json": __vite_glob_0_0,
+  "../../resources/parsing/ar.json": __vite_glob_0_1,
+  "../../resources/parsing/ca.json": __vite_glob_0_2,
+  "../../resources/parsing/cs.json": __vite_glob_0_3,
+  "../../resources/parsing/da.json": __vite_glob_0_4,
+  "../../resources/parsing/de.json": __vite_glob_0_5,
+  "../../resources/parsing/el.json": __vite_glob_0_6,
+  "../../resources/parsing/en.json": __vite_glob_0_7,
+  "../../resources/parsing/es.json": __vite_glob_0_8,
+  "../../resources/parsing/fi.json": __vite_glob_0_9,
+  "../../resources/parsing/fr.json": __vite_glob_0_10,
+  "../../resources/parsing/he.json": __vite_glob_0_11,
+  "../../resources/parsing/hr.json": __vite_glob_0_12,
+  "../../resources/parsing/hu.json": __vite_glob_0_13,
+  "../../resources/parsing/it.json": __vite_glob_0_14,
+  "../../resources/parsing/ja.json": __vite_glob_0_15,
+  "../../resources/parsing/ko.json": __vite_glob_0_16,
+  "../../resources/parsing/nl.json": __vite_glob_0_17,
+  "../../resources/parsing/no.json": __vite_glob_0_18,
+  "../../resources/parsing/pl.json": __vite_glob_0_19,
+  "../../resources/parsing/pt.json": __vite_glob_0_20,
+  "../../resources/parsing/pt_BR.json": __vite_glob_0_21,
+  "../../resources/parsing/pt_PT.json": __vite_glob_0_22,
+  "../../resources/parsing/ro.json": __vite_glob_0_23,
+  "../../resources/parsing/ru.json": __vite_glob_0_24,
+  "../../resources/parsing/sk.json": __vite_glob_0_25,
+  "../../resources/parsing/sr.json": __vite_glob_0_26,
+  "../../resources/parsing/sv.json": __vite_glob_0_27,
+  "../../resources/parsing/tr.json": __vite_glob_0_28,
+  "../../resources/parsing/uk.json": __vite_glob_0_29,
+  "../../resources/parsing/vi.json": __vite_glob_0_30,
+  "../../resources/parsing/zh.json": __vite_glob_0_31,
+  "../../resources/parsing/zh_CN.json": __vite_glob_0_32
+});
+const parsingPacks = {};
+for (const path2 in parsingModules) {
+  const lang = path2.match(/\/([^/]+)\.json$/)?.[1]?.toLowerCase();
+  if (!lang) continue;
+  const unitAliases = lang === "en" ? EN_UNIT_ALIASES : {};
+  parsingPacks[lang] = { ...parsingModules[path2], unitAliases };
+}
+function langCandidates() {
+  const raw = (getLanguage() || "en").toLowerCase().replace(/-/g, "_");
+  const base = raw.split("_")[0];
+  const out = [raw];
+  if (base !== raw) out.push(base);
+  out.push("en");
+  return out;
+}
+function currentLang() {
+  return (getLanguage() || "en").toLowerCase().split(/[-_]/)[0];
+}
+function getParsingPack() {
+  for (const cand of langCandidates()) {
+    if (parsingPacks[cand]) return parsingPacks[cand];
+  }
+  return parsingPacks.en;
+}
+const MORPHOLOGY_LANGS = /* @__PURE__ */ new Set(["en"]);
+function hasMorphology() {
+  return MORPHOLOGY_LANGS.has(currentLang());
+}
 var Permission = /* @__PURE__ */ ((Permission2) => {
   Permission2[Permission2["READ"] = 0] = "READ";
   Permission2[Permission2["WRITE"] = 1] = "WRITE";
@@ -44451,6 +45036,110 @@ function publicItemImageUrl(token2, item, size2) {
   const path2 = publicItemImagePath(token2, item, size2);
   return path2 === null ? null : generateUrl(path2);
 }
+function escapeRe(s2) {
+  return s2.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+function createIngredientParser(pack) {
+  const prepositionRe = pack.prepositions.length ? new RegExp("^(?:" + pack.prepositions.map(escapeRe).join("|") + ")\\s+", "i") : null;
+  const commaDecimal = pack.decimalSeparators.includes(",");
+  const decClass = commaDecimal ? "[.,]" : "\\.";
+  const qtyPattern = new RegExp(
+    "^([\\d]+(?:\\s+[\\d]+/[\\d]+|/[\\d]+|" + decClass + "\\d+)?(?:\\s*-\\s*[\\d]+(?:/[\\d]+|" + decClass + "\\d+)?)?)\\s*"
+  );
+  function matchUnit(text2) {
+    const lower = text2.toLowerCase();
+    let best = "";
+    for (const unit of pack.units) {
+      if (lower.startsWith(unit + " ") || lower.startsWith(unit + ",") || lower === unit) {
+        if (unit.length > best.length) best = unit;
+      }
+    }
+    return best;
+  }
+  function cleanName(raw) {
+    let name = raw;
+    let prev = "";
+    while (prev !== name) {
+      prev = name;
+      name = name.replace(/\s*\([^)]*\)/g, "");
+    }
+    name = name.replace(/[()]/g, "").replace(/,\s*,/g, ",").replace(/,\s*$/, "").replace(/^\s*,\s*/, "").replace(/\s+/g, " ").trim();
+    if (name.length > 0) {
+      const second = name.charAt(1);
+      const secondIsUpper = second !== "" && second !== second.toLowerCase();
+      if (!secondIsUpper) {
+        name = name.charAt(0).toUpperCase() + name.slice(1);
+      }
+    }
+    return name;
+  }
+  function stripConnector(rest) {
+    rest = rest.replace(/^,\s*/, "");
+    if (prepositionRe) rest = rest.replace(prepositionRe, "");
+    return rest.trim();
+  }
+  function readListMarkup(line) {
+    let out = line.trim();
+    let checked = false;
+    let prev = "";
+    while (prev !== out) {
+      prev = out;
+      const box = out.match(/^\[\s*([xX]?)\s*\]\s*/);
+      if (box) {
+        if (box[1]) checked = true;
+        out = out.slice(box[0].length);
+      }
+      out = out.replace(/^\[\s*(\d+(?:[.,]\d+)?)\s*\]\s*/, "$1 ");
+      out = out.replace(/^[-*•]\s+/, "");
+      out = out.replace(/^\d+[.)]\s+/, "");
+    }
+    return { rest: out.trim(), checked };
+  }
+  function stripListMarkup(line) {
+    return readListMarkup(line).rest;
+  }
+  function parseIngredient(line) {
+    const { rest, checked } = readListMarkup(line);
+    return { ...parseLine(rest), checked };
+  }
+  function parseLine(trimmed) {
+    if (!trimmed) return { name: "", quantity: null };
+    const trimmedLower = trimmed.toLowerCase();
+    for (const unit of pack.leadingUnits) {
+      if (trimmedLower.startsWith(unit + " ") || trimmedLower.startsWith(unit + ",")) {
+        const rest2 = stripConnector(trimmed.slice(unit.length).trim());
+        return { name: cleanName(rest2 || trimmed), quantity: "1 " + unit };
+      }
+    }
+    const match2 = trimmed.match(qtyPattern);
+    if (!match2) {
+      return { name: cleanName(trimmed), quantity: null };
+    }
+    const qtyStr = commaDecimal ? match2[1].trim().replace(/,/g, ".") : match2[1].trim();
+    let rest = trimmed.slice(match2[0].length).trim();
+    const mult = rest.match(/^[x×]\s+/i);
+    if (mult) {
+      rest = rest.slice(mult[0].length).trim();
+      return { name: cleanName(rest || trimmed), quantity: qtyStr };
+    }
+    const attached = trimmed.length > match2[1].length && !/[\s,]/.test(trimmed.charAt(match2[1].length));
+    if (attached && !matchUnit(rest)) {
+      return { name: cleanName(trimmed), quantity: null };
+    }
+    const matchedUnit = matchUnit(rest);
+    let finalQty = qtyStr;
+    if (matchedUnit) {
+      finalQty = qtyStr + " " + matchedUnit;
+      rest = stripConnector(rest.slice(matchedUnit.length).trim());
+    }
+    rest = rest.replace(/^,\s*/, "").trim();
+    return {
+      name: cleanName(rest || trimmed),
+      quantity: finalQty
+    };
+  }
+  return { parseIngredient, stripListMarkup };
+}
 function browserStorage() {
   try {
     return window.localStorage;
@@ -44510,129 +45199,142 @@ function useCollapsedAreas(listId, storage = browserStorage()) {
   return { isCollapsed, toggle };
 }
 export {
-  generateCodeFrame as $,
+  toHandlerKey as $,
   ActionGlobalMixin as A,
-  mergeModels as B,
-  ref as C,
-  computed as D,
-  NOOP as E,
-  extend$1 as F,
-  isString$1 as G,
-  NO as H,
-  INSIDE_RADIO_GROUP_KEY as I,
-  isSymbol as J,
-  isBuiltInDirective as K,
-  capitalize as L,
-  camelize as M,
+  mergeProps as B,
+  toHandlers as C,
+  renderList as D,
+  _sfc_main$c as E,
+  Fragment as F,
+  NcModal as G,
+  mergeModels as H,
+  computed as I,
+  ref as J,
+  createTextVNode as K,
+  useCssModule as L,
+  provide as M,
   NC_ACTIONS_IS_SEMANTIC_MENU as N,
-  EMPTY_OBJ as O,
-  isObject$2 as P,
-  toHandlerKey as Q,
-  isArray$1 as R,
-  isOn as S,
-  isReservedProp as T,
-  isVoidTag as U,
-  isHTMLTag as V,
-  isSVGTag as W,
-  isMathMLTag as X,
-  parseStringStyle as Y,
-  makeMap as Z,
+  NC_FORM_BOX_CONTEXT_KEY as O,
+  INSIDE_RADIO_GROUP_KEY as P,
+  NOOP as Q,
+  extend$1 as R,
+  isString$1 as S,
+  NO as T,
+  isSymbol as U,
+  isBuiltInDirective as V,
+  capitalize as W,
+  camelize as X,
+  EMPTY_OBJ as Y,
+  isObject$2 as Z,
   _export_sfc$1 as _,
   NcIconSvgWrapper as a,
-  dist as a$,
-  getAugmentedNamespace as a0,
-  runtimeDom_esmBundler as a1,
-  shared_esmBundler as a2,
-  getDefaultExportFromCjs$1 as a3,
-  getGettextBuilder as a4,
-  getLoggerBuilder as a5,
-  defineStore as a6,
-  loadState as a7,
-  api as a8,
-  markServerFetched as a9,
-  itemImageUrl as aA,
-  NcPopover as aB,
-  mdiHelpCircleOutline as aC,
-  getRootUrl as aD,
-  generateOcsUrl as aE,
-  cancelableClient as aF,
-  ShareType as aG,
-  generateUrl as aH,
-  browserStorage as aI,
-  useCollapsedAreas as aJ,
-  NcAvatar as aK,
-  isRef as aL,
-  mdiChevronDown as aM,
-  vShow as aN,
-  shallowRef as aO,
-  vModelSelect as aP,
-  NcCheckboxRadioSwitch as aQ,
-  Transition as aR,
-  NcAppNavigation as aS,
-  NcAppNavigationSettings as aT,
-  NcAppContent as aU,
-  NcContent as aV,
-  createPinia as aW,
-  offlinePersistPlugin as aX,
-  createApp as aY,
-  publicApi as aZ,
-  publicItemImageUrl as a_,
-  translate as aa,
-  getLanguage as ab,
-  loadValue as ac,
-  saveValue as ad,
-  readonly as ae,
-  Fragment as af,
-  renderList as ag,
-  NcAppNavigationCaption as ah,
-  NcActionButton as ai,
-  NcAppNavigationItem as aj,
-  _export_sfc as ak,
-  getCurrentUser as al,
-  watch as am,
-  onMounted as an,
-  onUnmounted as ao,
-  NcLoadingIcon as ap,
-  withKeys as aq,
-  withModifiers as ar,
-  vModelText as as,
-  normalizeStyle as at,
-  Teleport as au,
-  NcActions as av,
-  ImageViewer as aw,
-  Permission as ax,
-  attribution as ay,
-  nextTick as az,
+  getRootUrl as a$,
+  isArray$1 as a0,
+  isOn as a1,
+  isReservedProp as a2,
+  isVoidTag as a3,
+  isHTMLTag as a4,
+  isSVGTag as a5,
+  isMathMLTag as a6,
+  parseStringStyle as a7,
+  makeMap as a8,
+  generateCodeFrame as a9,
+  withKeys as aA,
+  withModifiers as aB,
+  vModelText as aC,
+  normalizeStyle as aD,
+  Teleport as aE,
+  NcActions as aF,
+  ImageViewer as aG,
+  Permission as aH,
+  attribution as aI,
+  nextTick as aJ,
+  itemImageUrl as aK,
+  createIngredientParser as aL,
+  NcPopover as aM,
+  NcButton as aN,
+  mdiHelpCircleOutline as aO,
+  browserStorage as aP,
+  useCollapsedAreas as aQ,
+  ShareType as aR,
+  NcAvatar as aS,
+  isRef as aT,
+  mdiChevronDown as aU,
+  vShow as aV,
+  shallowRef as aW,
+  vModelSelect as aX,
+  NcCheckboxRadioSwitch as aY,
+  translatePlural as aZ,
+  Transition as a_,
+  getAugmentedNamespace as aa,
+  runtimeDom_esmBundler as ab,
+  shared_esmBundler as ac,
+  getDefaultExportFromCjs$1 as ad,
+  getGettextBuilder as ae,
+  getLoggerBuilder as af,
+  defineStore as ag,
+  loadState as ah,
+  api as ai,
+  markServerFetched as aj,
+  translate as ak,
+  getLanguage as al,
+  hasMorphology as am,
+  getParsingPack as an,
+  loadValue as ao,
+  saveValue as ap,
+  readonly as aq,
+  watch as ar,
+  mdiPlus as as,
+  NcAppNavigationCaption as at,
+  NcActionButton as au,
+  NcAppNavigationItem as av,
+  _export_sfc as aw,
+  getCurrentUser as ax,
+  onMounted as ay,
+  onUnmounted as az,
   createBaseVNode as b,
-  requireMajor as b0,
-  requireValid as b1,
-  dist$1 as b2,
-  process$1 as b3,
-  commonjsGlobal as b4,
-  Buffer as b5,
+  generateOcsUrl as b0,
+  cancelableClient as b1,
+  generateUrl as b2,
+  NcAppNavigation as b3,
+  NcAppNavigationSettings as b4,
+  NcAppContent as b5,
+  NcContent as b6,
+  createPinia as b7,
+  offlinePersistPlugin as b8,
+  createApp as b9,
+  publicApi as ba,
+  publicItemImageUrl as bb,
+  dist as bc,
+  requireMajor as bd,
+  requireValid as be,
+  dist$1 as bf,
+  process$1 as bg,
+  commonjsGlobal as bh,
+  Buffer as bi,
   createElementBlock as c,
   createVNode as d,
   mdiRadioboxBlank as e,
   createElementId as f,
-  NcButton as g,
-  withCtx as h,
-  createTextVNode as i,
+  NcLoadingIcon as g,
+  NcInputConfirmCancel as h,
+  createBlock as i,
   renderSlot as j,
-  defineComponent as k,
-  createCommentVNode as l,
+  createCommentVNode as k,
+  defineComponent as l,
   mdiRadioboxMarked as m,
   normalizeClass as n,
   openBlock as o,
-  unref as p,
-  useCssModule as q,
+  useSlots as p,
+  useTemplateRef as q,
   resolveComponent as r,
-  provide as s,
+  useElementSize as s,
   toDisplayString as t,
   useModel as u,
   vModelRadio as v,
   withDirectives as w,
-  NC_FORM_BOX_CONTEXT_KEY as x,
-  useSlots as y,
-  createBlock as z
+  withCtx as x,
+  unref as y,
+  resolveDynamicComponent as z
 };
-//# sourceMappingURL=useCollapsedAreas-Bzauf5Mv.chunk.mjs.map
+//# sourceMappingURL=useCollapsedAreas-BjiuTaN8.chunk.mjs.map

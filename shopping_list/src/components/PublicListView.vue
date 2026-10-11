@@ -160,6 +160,8 @@ import { publicItemImageUrl } from '../utils/imageUrls'
 import { attribution } from '../utils/attribution'
 import type { Byline } from '../utils/attribution'
 import { readGuestName, writeGuestName } from '../utils/guestName'
+import { createIngredientParser } from '../utils/parseIngredient'
+import { getParsingPack } from '../utils/localePacks'
 
 const props = defineProps<{
 	token: string
@@ -293,13 +295,20 @@ function byline(item: Item): Byline | null {
 	return item.checked ? names.checked : names.added
 }
 
+// Guests type "500 g Rice" the same way members do. A name on its own goes
+// without an amount, so the server can give it the one it had last time.
+const { parseIngredient } = createIngredientParser(getParsingPack())
+
 async function onAddItem() {
-	const name = newItemName.value.trim()
+	const line = newItemName.value.trim()
+	if (!line) return
+	const { name, quantity } = parseIngredient(line)
 	if (!name) return
 
 	newItemName.value = ''
 	try {
-		const response = await publicApi.createItem(props.token, { name, quantity: '1', guestName: guestName.value.trim() || undefined })
+		const amount = quantity ? { quantity, quantityExplicit: true } : {}
+		const response = await publicApi.createItem(props.token, { name, ...amount, guestName: guestName.value.trim() || undefined })
 		items.value.push(response.data.ocs.data)
 	} catch (e) {
 		console.error('Failed to add item', e)

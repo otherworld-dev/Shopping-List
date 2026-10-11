@@ -6,6 +6,7 @@ namespace OCA\Shopping_List\Tests\Unit;
 
 use OCA\Shopping_List\Db\Item;
 use OCA\Shopping_List\Db\ItemMapper;
+use OCA\Shopping_List\Service\AmountMemory;
 use OCA\Shopping_List\Service\ItemImageCleanup;
 use OCA\Shopping_List\Service\ItemImageService;
 use OCA\Shopping_List\Service\ItemService;
@@ -40,6 +41,7 @@ class ItemServiceAttributionTest extends TestCase {
 			$this->createMock(ItemImageCleanup::class),
 			$this->createMock(ItemImageService::class),
 			$this->users,
+			$this->createMock(AmountMemory::class),
 		);
 	}
 

@@ -1,8 +1,8 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-h49X0kzU.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/useCollapsedAreas-Bzauf5Mv.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/useCollapsedAreas-CX_mg1lj.chunk.css')])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-DHIaYDno.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/useCollapsedAreas-BjiuTaN8.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/useCollapsedAreas-Bde3_OpS.chunk.css')])))=>i.map(i=>d[i]);
 const appName = "shopping_list";
-const appVersion = "1.9.0";
-import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, A as ActionGlobalMixin, a as NcIconSvgWrapper, r as resolveComponent, b as createBaseVNode, w as withDirectives, v as vModelRadio, n as normalizeClass, d as createVNode, m as mdiRadioboxMarked, e as mdiRadioboxBlank, u as useModel, f as createElementId, g as NcButton, h as withCtx, i as createTextVNode, j as renderSlot, k as defineComponent, l as createCommentVNode, p as unref, q as useCssModule, s as provide, x as NC_FORM_BOX_CONTEXT_KEY, y as useSlots, z as createBlock, B as mergeModels, C as ref, D as computed, I as INSIDE_RADIO_GROUP_KEY, E as NOOP, F as extend$1, G as isString, H as NO, J as isSymbol, K as isBuiltInDirective, L as capitalize, M as camelize, O as EMPTY_OBJ, P as isObject, Q as toHandlerKey, R as isArray, S as isOn, T as isReservedProp, U as isVoidTag, V as isHTMLTag, W as isSVGTag, X as isMathMLTag, Y as parseStringStyle, Z as makeMap, $ as generateCodeFrame, a0 as getAugmentedNamespace, a1 as runtimeDom_esmBundler, a2 as shared_esmBundler, a3 as getDefaultExportFromCjs, a4 as getGettextBuilder, a5 as getLoggerBuilder, a6 as defineStore, a7 as loadState, a8 as api, a9 as markServerFetched, aa as translate, ab as getLanguage, ac as loadValue, ad as saveValue, ae as readonly, af as Fragment, ag as renderList, ah as NcAppNavigationCaption, ai as NcActionButton, aj as NcAppNavigationItem, ak as _export_sfc$1, al as getCurrentUser, am as watch, an as onMounted, ao as onUnmounted, ap as NcLoadingIcon, aq as withKeys, ar as withModifiers, as as vModelText, at as normalizeStyle, au as Teleport, av as NcActions, aw as ImageViewer, ax as Permission, ay as attribution, az as nextTick, aA as itemImageUrl, aB as NcPopover, aC as mdiHelpCircleOutline, aD as getRootUrl, aE as generateOcsUrl, aF as cancelableClient, aG as ShareType, aH as generateUrl, aI as browserStorage, aJ as useCollapsedAreas, aK as NcAvatar, aL as isRef, aM as mdiChevronDown, aN as vShow, aO as shallowRef, aP as vModelSelect, aQ as NcCheckboxRadioSwitch, aR as Transition, aS as NcAppNavigation, aT as NcAppNavigationSettings, aU as NcAppContent, aV as NcContent, aW as createPinia, aX as offlinePersistPlugin, aY as createApp } from "./useCollapsedAreas-Bzauf5Mv.chunk.mjs";
-const _sfc_main$j = {
+const appVersion = "1.10.0";
+import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, A as ActionGlobalMixin, a as NcIconSvgWrapper, r as resolveComponent, b as createBaseVNode, w as withDirectives, v as vModelRadio, n as normalizeClass, d as createVNode, m as mdiRadioboxMarked, e as mdiRadioboxBlank, u as useModel, f as createElementId, g as NcLoadingIcon, h as NcInputConfirmCancel, i as createBlock, j as renderSlot, k as createCommentVNode, l as defineComponent, p as useSlots, q as useTemplateRef, s as useElementSize, x as withCtx, y as unref, z as resolveDynamicComponent, B as mergeProps, C as toHandlers, F as Fragment, D as renderList, E as _sfc_main$o, G as NcModal, H as mergeModels, I as computed, J as ref, K as createTextVNode, L as useCssModule, M as provide, O as NC_FORM_BOX_CONTEXT_KEY, P as INSIDE_RADIO_GROUP_KEY, Q as NOOP, R as extend$1, S as isString, T as NO, U as isSymbol, V as isBuiltInDirective, W as capitalize, X as camelize, Y as EMPTY_OBJ, Z as isObject, $ as toHandlerKey, a0 as isArray, a1 as isOn, a2 as isReservedProp, a3 as isVoidTag, a4 as isHTMLTag, a5 as isSVGTag, a6 as isMathMLTag, a7 as parseStringStyle, a8 as makeMap, a9 as generateCodeFrame, aa as getAugmentedNamespace, ab as runtimeDom_esmBundler, ac as shared_esmBundler, ad as getDefaultExportFromCjs, ae as getGettextBuilder, af as getLoggerBuilder, ag as defineStore, ah as loadState, ai as api, aj as markServerFetched, ak as translate, al as getLanguage, am as hasMorphology, an as getParsingPack, ao as loadValue, ap as saveValue, aq as readonly, ar as watch, as as mdiPlus, at as NcAppNavigationCaption, au as NcActionButton, av as NcAppNavigationItem, aw as _export_sfc$1, ax as getCurrentUser, ay as onMounted, az as onUnmounted, aA as withKeys, aB as withModifiers, aC as vModelText, aD as normalizeStyle, aE as Teleport, aF as NcActions, aG as ImageViewer, aH as Permission, aI as attribution, aJ as nextTick, aK as itemImageUrl, aL as createIngredientParser, aM as NcPopover, aN as NcButton, aO as mdiHelpCircleOutline, aP as browserStorage, aQ as useCollapsedAreas, aR as ShareType, aS as NcAvatar, aT as isRef, aU as mdiChevronDown, aV as vShow, aW as shallowRef, aX as vModelSelect, aY as NcCheckboxRadioSwitch, aZ as translatePlural, a_ as Transition, a$ as getRootUrl, b0 as generateOcsUrl, b1 as cancelableClient, b2 as generateUrl, b3 as NcAppNavigation, b4 as NcAppNavigationSettings, b5 as NcAppContent, b6 as NcContent, b7 as createPinia, b8 as offlinePersistPlugin, b9 as createApp } from "./useCollapsedAreas-BjiuTaN8.chunk.mjs";
+const _sfc_main$n = {
   name: "NcActionCaption",
   inject: {
     isInSemanticMenu: {
@@ -20,14 +20,14 @@ const _sfc_main$j = {
     }
   }
 };
-const _hoisted_1$f = ["role"];
+const _hoisted_1$i = ["role"];
 function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("li", {
     class: "app-navigation-caption",
     role: $options.isInSemanticMenu && "presentation"
-  }, toDisplayString($props.name), 9, _hoisted_1$f);
+  }, toDisplayString($props.name), 9, _hoisted_1$i);
 }
-const NcActionCaption = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["render", _sfc_render$3], ["__scopeId", "data-v-1009e96c"]]);
+const NcActionCaption = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["render", _sfc_render$3], ["__scopeId", "data-v-1009e96c"]]);
 const scriptRel = "modulepreload";
 const assetsURL = function(dep, importerUrl) {
   return new URL(dep, importerUrl).href;
@@ -86,7 +86,7 @@ const __vitePreload = function preload(baseModule, deps, importerUrl) {
     return baseModule().catch(handlePreloadError);
   });
 };
-const _sfc_main$i = {
+const _sfc_main$m = {
   name: "NcActionRadio",
   components: {
     NcIconSvgWrapper
@@ -155,10 +155,10 @@ const _sfc_main$i = {
     }
   }
 };
-const _hoisted_1$e = ["role"];
-const _hoisted_2$a = ["role", "aria-checked"];
-const _hoisted_3$7 = { class: "action-radio__icon" };
-const _hoisted_4$7 = ["id", "value", "name", "disabled"];
+const _hoisted_1$h = ["role"];
+const _hoisted_2$e = ["role", "aria-checked"];
+const _hoisted_3$a = { class: "action-radio__icon" };
+const _hoisted_4$a = ["id", "value", "name", "disabled"];
 const _hoisted_5$7 = { class: "action-radio__text" };
 function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_NcIconSvgWrapper = resolveComponent("NcIconSvgWrapper");
@@ -171,7 +171,7 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
       role: $options.isInSemanticMenu && "menuitemradio",
       "aria-checked": $options.isInSemanticMenu && $options.checked.toString()
     }, [
-      createBaseVNode("span", _hoisted_3$7, [
+      createBaseVNode("span", _hoisted_3$a, [
         withDirectives(createBaseVNode("input", {
           id: $props.id,
           "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => $setup.model = $event),
@@ -181,7 +181,7 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
           name: $props.name,
           disabled: $props.disabled,
           onChange: _cache[1] || (_cache[1] = ($event) => _ctx.$emit("change", $event))
-        }, null, 42, _hoisted_4$7), [
+        }, null, 42, _hoisted_4$a), [
           [vModelRadio, $setup.model]
         ]),
         createVNode(_component_NcIconSvgWrapper, {
@@ -190,93 +190,296 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
         }, null, 8, ["path"])
       ]),
       createBaseVNode("span", _hoisted_5$7, toDisplayString(_ctx.text), 1)
-    ], 8, _hoisted_2$a)
-  ], 10, _hoisted_1$e);
+    ], 8, _hoisted_2$e)
+  ], 10, _hoisted_1$h);
 }
-const NcActionRadio = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$2], ["__scopeId", "data-v-6c208ddd"]]);
-const _sfc_main$h = {
+const NcActionRadio = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["render", _sfc_render$2], ["__scopeId", "data-v-6c208ddd"]]);
+const _sfc_main$l = {
   name: "NcActionSeparator"
 };
-const _hoisted_1$d = {
+const _hoisted_1$g = {
   class: "action action-separator action--disabled",
   role: "separator"
 };
 function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("li", _hoisted_1$d);
+  return openBlock(), createElementBlock("li", _hoisted_1$g);
 }
-const NcActionSeparator = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["render", _sfc_render$1], ["__scopeId", "data-v-3e2324b7"]]);
-const _sfc_main$g = {
+const NcActionSeparator = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["render", _sfc_render$1], ["__scopeId", "data-v-3e2324b7"]]);
+const _sfc_main$k = {
+  name: "NcAppNavigationNewItem",
   components: {
-    NcButton
+    NcInputConfirmCancel,
+    NcLoadingIcon
   },
   props: {
     /**
-     * Id of the button
+     * The name of the element.
      */
-    buttonId: {
-      type: String,
-      required: false,
-      default: ""
-    },
-    /**
-     * Disabled state of the button
-     */
-    disabled: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-    /**
-     * Main text of the button
-     */
-    text: {
+    name: {
       type: String,
       required: true
     },
     /**
-     * The color variant to use.
-     *
-     * @default 'primary'
+     * Refers to the icon on the left, this prop accepts a class
+     * like 'icon-category-enabled'.
      */
-    variant: {
+    icon: {
       type: String,
-      default: "primary",
-      validator(value) {
-        return ["primary", "secondary", "tertiary"].indexOf(value) !== -1;
-      }
+      default: ""
+    },
+    /**
+     * Displays a loading animated icon on the left of the element
+     * instead of the icon.
+     */
+    loading: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Only for 'editable' items, sets label for the edit action button.
+     */
+    editLabel: {
+      type: String,
+      default: ""
+    },
+    /**
+     * Sets the placeholder text for the editing form.
+     */
+    editPlaceholder: {
+      type: String,
+      default: ""
     }
   },
-  emits: ["click"]
+  emits: ["newItem"],
+  data() {
+    return {
+      newItemValue: "",
+      newItemActive: false
+    };
+  },
+  methods: {
+    handleNewItem() {
+      if (!this.loading) {
+        this.newItemActive = true;
+        this.$nextTick(() => {
+          this.$refs.newItemInput.focusInput();
+        });
+      }
+    },
+    cancelNewItem() {
+      this.newItemActive = false;
+    },
+    handleNewItemDone() {
+      this.$emit("newItem", this.newItemValue);
+      this.newItemValue = "";
+      this.newItemActive = false;
+    }
+  }
 };
-const _hoisted_1$c = { class: "app-navigation-new" };
+const _hoisted_1$f = ["title"];
+const _hoisted_2$d = {
+  key: 1,
+  class: "newItemContainer"
+};
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
-  const _component_NcButton = resolveComponent("NcButton");
-  return openBlock(), createElementBlock("div", _hoisted_1$c, [
-    createVNode(_component_NcButton, {
-      id: $props.buttonId,
-      disabled: $props.disabled,
-      variant: $props.variant,
-      onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("click"))
-    }, {
-      icon: withCtx(() => [
-        renderSlot(_ctx.$slots, "icon", {}, void 0, true)
-      ]),
-      default: withCtx(() => [
-        createTextVNode(" " + toDisplayString($props.text), 1)
-      ]),
-      _: 3
-    }, 8, ["id", "disabled", "variant"])
-  ]);
+  const _component_NcLoadingIcon = resolveComponent("NcLoadingIcon");
+  const _component_NcInputConfirmCancel = resolveComponent("NcInputConfirmCancel");
+  return openBlock(), createElementBlock("li", {
+    class: normalizeClass(["app-navigation-entry", {
+      "app-navigation-entry--newItemActive": $data.newItemActive
+    }])
+  }, [
+    createBaseVNode("button", {
+      class: "app-navigation-entry-button",
+      onClick: _cache[1] || (_cache[1] = (...args) => $options.handleNewItem && $options.handleNewItem(...args))
+    }, [
+      createBaseVNode("span", {
+        class: normalizeClass(["app-navigation-entry-icon", { [$props.icon]: !$props.loading }])
+      }, [
+        $props.loading ? (openBlock(), createBlock(_component_NcLoadingIcon, { key: 0 })) : renderSlot(_ctx.$slots, "icon", { key: 1 }, void 0, true)
+      ], 2),
+      !$data.newItemActive ? (openBlock(), createElementBlock("span", {
+        key: 0,
+        class: "app-navigation-new-item__name",
+        title: $props.name
+      }, toDisplayString($props.name), 9, _hoisted_1$f)) : createCommentVNode("", true),
+      $data.newItemActive ? (openBlock(), createElementBlock("span", _hoisted_2$d, [
+        createVNode(_component_NcInputConfirmCancel, {
+          ref: "newItemInput",
+          modelValue: $data.newItemValue,
+          "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => $data.newItemValue = $event),
+          placeholder: $props.editPlaceholder !== "" ? $props.editPlaceholder : $props.name,
+          onCancel: $options.cancelNewItem,
+          onConfirm: $options.handleNewItemDone
+        }, null, 8, ["modelValue", "placeholder", "onCancel", "onConfirm"])
+      ])) : createCommentVNode("", true)
+    ])
+  ], 2);
 }
-const NcAppNavigationNew = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render], ["__scopeId", "data-v-0ba6c9df"]]);
-const _hoisted_1$b = ["aria-labelledby"];
-const _hoisted_2$9 = {
+const NcAppNavigationNewItem = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["render", _sfc_render], ["__scopeId", "data-v-ee07f8f8"]]);
+const _hoisted_1$e = ["id", "textContent"];
+const _hoisted_2$c = ["aria-label", "aria-labelledby"];
+const _hoisted_3$9 = { class: "dialog__text" };
+const _hoisted_4$9 = { class: "dialog__actions" };
+const _sfc_main$j = /* @__PURE__ */ defineComponent({
+  __name: "NcDialog",
+  props: /* @__PURE__ */ mergeModels({
+    name: {},
+    message: { default: "" },
+    additionalTrapElements: { default: () => [] },
+    container: { default: "body" },
+    size: { default: "small" },
+    buttons: { default: () => [] },
+    isForm: { type: Boolean },
+    noClose: { type: Boolean },
+    closeOnClickOutside: { type: Boolean },
+    outTransition: { type: Boolean },
+    navigationAriaLabel: { default: "" },
+    navigationAriaLabelledby: { default: "" },
+    contentClasses: { default: "" },
+    dialogClasses: { default: "" },
+    navigationClasses: { default: "" }
+  }, {
+    "open": { type: Boolean, ...{ default: true } },
+    "openModifiers": {}
+  }),
+  emits: /* @__PURE__ */ mergeModels(["closing", "reset", "submit"], ["update:open"]),
+  setup(__props, { emit: __emit }) {
+    const open = useModel(__props, "open");
+    const props = __props;
+    const emit = __emit;
+    const slots = useSlots();
+    const wrapperElement = useTemplateRef("wrapper");
+    const { width: dialogWidth } = useElementSize(wrapperElement, { width: 900, height: 0 });
+    const isNavigationCollapsed = computed(() => dialogWidth.value < 876);
+    const hasNavigation = computed(() => slots?.navigation !== void 0);
+    const navigationId = createElementId();
+    const navigationAriaLabelAttr = computed(() => props.navigationAriaLabel || void 0);
+    const navigationAriaLabelledbyAttr = computed(() => {
+      if (props.navigationAriaLabel) {
+        return void 0;
+      }
+      return props.navigationAriaLabelledby || navigationId;
+    });
+    const dialogRootElement = useTemplateRef("dialogElement");
+    const dialogTagName = computed(() => props.isForm && !hasNavigation.value ? "form" : "div");
+    const dialogListeners = computed(() => {
+      if (dialogTagName.value !== "form") {
+        return {};
+      }
+      return {
+        /**
+         * @param event - Form submit event
+         */
+        submit(event) {
+          event.preventDefault();
+          emit("submit", event);
+        },
+        /**
+         * @param event - Form submit event
+         */
+        reset(event) {
+          event.preventDefault();
+          emit("reset", event);
+        }
+      };
+    });
+    const showModal = ref(true);
+    function handleButtonClose(button, result) {
+      if (button.type === "submit" && dialogTagName.value === "form" && "reportValidity" in dialogRootElement.value && !dialogRootElement.value.reportValidity()) {
+        return;
+      }
+      handleClosing(result);
+      window.setTimeout(() => handleClosed(), 300);
+    }
+    function handleClosing(result) {
+      showModal.value = false;
+      emit("closing", result);
+    }
+    function handleClosed() {
+      showModal.value = true;
+      open.value = false;
+    }
+    const modalProps = computed(() => ({
+      noClose: props.noClose,
+      container: props.container === void 0 ? "body" : props.container,
+      // we do not pass the name as we already have the name as the headline
+      // name: props.name,
+      // But we need to set the correct label id so the dialog is labelled
+      labelId: navigationId,
+      size: props.size,
+      show: open.value && showModal.value,
+      outTransition: props.outTransition,
+      closeOnClickOutside: props.closeOnClickOutside,
+      additionalTrapElements: props.additionalTrapElements
+    }));
+    return (_ctx, _cache) => {
+      return open.value ? (openBlock(), createBlock(unref(NcModal), mergeProps({
+        key: 0,
+        class: "dialog__modal",
+        disableSwipe: ""
+      }, modalProps.value, {
+        onClose: handleClosed,
+        "onUpdate:show": _cache[0] || (_cache[0] = ($event) => handleClosing())
+      }), {
+        default: withCtx(() => [
+          createBaseVNode("h2", {
+            id: unref(navigationId),
+            class: "dialog__name",
+            textContent: toDisplayString(_ctx.name)
+          }, null, 8, _hoisted_1$e),
+          (openBlock(), createBlock(resolveDynamicComponent(dialogTagName.value), mergeProps({
+            ref: "dialogElement",
+            class: ["dialog", _ctx.dialogClasses]
+          }, toHandlers(dialogListeners.value)), {
+            default: withCtx(() => [
+              createBaseVNode("div", {
+                ref: "wrapper",
+                class: normalizeClass(["dialog__wrapper", [{ "dialog__wrapper--collapsed": isNavigationCollapsed.value }]])
+              }, [
+                hasNavigation.value ? (openBlock(), createElementBlock("nav", {
+                  key: 0,
+                  class: normalizeClass(["dialog__navigation", _ctx.navigationClasses]),
+                  "aria-label": navigationAriaLabelAttr.value,
+                  "aria-labelledby": navigationAriaLabelledbyAttr.value
+                }, [
+                  renderSlot(_ctx.$slots, "navigation", { isCollapsed: isNavigationCollapsed.value }, void 0, true)
+                ], 10, _hoisted_2$c)) : createCommentVNode("", true),
+                createBaseVNode("div", {
+                  class: normalizeClass(["dialog__content", _ctx.contentClasses])
+                }, [
+                  renderSlot(_ctx.$slots, "default", {}, () => [
+                    createBaseVNode("p", _hoisted_3$9, toDisplayString(_ctx.message), 1)
+                  ], true)
+                ], 2)
+              ], 2),
+              createBaseVNode("div", _hoisted_4$9, [
+                renderSlot(_ctx.$slots, "actions", {}, () => [
+                  (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.buttons, (button, idx) => {
+                    return openBlock(), createBlock(unref(_sfc_main$o), mergeProps({ key: idx }, { ref_for: true }, button, {
+                      onClick: (_, result) => handleButtonClose(button, result)
+                    }), null, 16, ["onClick"]);
+                  }), 128))
+                ], true)
+              ])
+            ]),
+            _: 3
+          }, 16, ["class"]))
+        ]),
+        _: 3
+      }, 16)) : createCommentVNode("", true);
+    };
+  }
+});
+const NcDialog = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__scopeId", "data-v-24e91b99"]]);
+const _hoisted_1$d = ["aria-labelledby"];
+const _hoisted_2$b = {
   key: 0,
   class: "empty-content__icon",
   "aria-hidden": "true"
 };
-const _hoisted_3$6 = ["id"];
-const _hoisted_4$6 = {
+const _hoisted_3$8 = ["id"];
+const _hoisted_4$8 = {
   key: 2,
   class: "empty-content__description"
 };
@@ -284,7 +487,7 @@ const _hoisted_5$6 = {
   key: 3,
   class: "empty-content__action"
 };
-const _sfc_main$f = /* @__PURE__ */ defineComponent({
+const _sfc_main$i = /* @__PURE__ */ defineComponent({
   __name: "NcEmptyContent",
   props: {
     description: { default: "" },
@@ -298,7 +501,7 @@ const _sfc_main$f = /* @__PURE__ */ defineComponent({
         class: "empty-content",
         role: "note"
       }, [
-        _ctx.$slots.icon ? (openBlock(), createElementBlock("div", _hoisted_2$9, [
+        _ctx.$slots.icon ? (openBlock(), createElementBlock("div", _hoisted_2$b, [
           renderSlot(_ctx.$slots, "icon", {}, void 0, true)
         ])) : createCommentVNode("", true),
         _ctx.name !== "" || _ctx.$slots.name ? (openBlock(), createElementBlock("div", {
@@ -309,8 +512,8 @@ const _sfc_main$f = /* @__PURE__ */ defineComponent({
           renderSlot(_ctx.$slots, "name", {}, () => [
             createTextVNode(toDisplayString(_ctx.name), 1)
           ], true)
-        ], 8, _hoisted_3$6)) : createCommentVNode("", true),
-        _ctx.description !== "" || _ctx.$slots.description ? (openBlock(), createElementBlock("p", _hoisted_4$6, [
+        ], 8, _hoisted_3$8)) : createCommentVNode("", true),
+        _ctx.description !== "" || _ctx.$slots.description ? (openBlock(), createElementBlock("p", _hoisted_4$8, [
           renderSlot(_ctx.$slots, "description", {}, () => [
             createTextVNode(toDisplayString(_ctx.description), 1)
           ], true)
@@ -318,12 +521,12 @@ const _sfc_main$f = /* @__PURE__ */ defineComponent({
         _ctx.$slots.action ? (openBlock(), createElementBlock("div", _hoisted_5$6, [
           renderSlot(_ctx.$slots, "action", {}, void 0, true)
         ])) : createCommentVNode("", true)
-      ], 8, _hoisted_1$b);
+      ], 8, _hoisted_1$d);
     };
   }
 });
-const NcEmptyContent = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["__scopeId", "data-v-b101d636"]]);
-const _sfc_main$e = /* @__PURE__ */ defineComponent({
+const NcEmptyContent = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["__scopeId", "data-v-b101d636"]]);
+const _sfc_main$h = /* @__PURE__ */ defineComponent({
   __name: "NcFormBox",
   props: {
     row: { type: Boolean }
@@ -359,9 +562,9 @@ const style0$2 = {
 const cssModules$2 = {
   "$style": style0$2
 };
-const NcFormBox = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["__cssModules", cssModules$2]]);
-const _hoisted_1$a = ["aria-describedby"];
-const _sfc_main$d = /* @__PURE__ */ defineComponent({
+const NcFormBox = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__cssModules", cssModules$2]]);
+const _hoisted_1$c = ["aria-describedby"];
+const _sfc_main$g = /* @__PURE__ */ defineComponent({
   __name: "NcFormGroup",
   props: {
     label: { default: () => void 0 },
@@ -403,7 +606,7 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
         }, [
           renderSlot(_ctx.$slots, "default")
         ], 2)
-      ], 10, _hoisted_1$a);
+      ], 10, _hoisted_1$c);
     };
   }
 });
@@ -425,8 +628,8 @@ const style0$1 = {
 const cssModules$1 = {
   "$style": style0$1
 };
-const NcFormGroup = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["__cssModules", cssModules$1]]);
-const _sfc_main$c = /* @__PURE__ */ defineComponent({
+const NcFormGroup = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["__cssModules", cssModules$1]]);
+const _sfc_main$f = /* @__PURE__ */ defineComponent({
   __name: "NcRadioGroup",
   props: /* @__PURE__ */ mergeModels({
     label: {},
@@ -488,7 +691,7 @@ const style0 = {
 const cssModules = {
   "$style": style0
 };
-const NcRadioGroup = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["__cssModules", cssModules]]);
+const NcRadioGroup = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["__cssModules", cssModules]]);
 var vuedraggable_umd$1 = { exports: {} };
 var vue = { exports: {} };
 var vue_cjs_prod = {};
@@ -14090,432 +14293,6 @@ const useShopAreasStore = defineStore("shopAreas", () => {
 function fold(s) {
   return s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
 }
-const units$w = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
-const leadingUnits$w = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
-const prepositions$w = ["of"];
-const decimalSeparators$w = ["."];
-const __vite_glob_0_0 = {
-  units: units$w,
-  leadingUnits: leadingUnits$w,
-  prepositions: prepositions$w,
-  decimalSeparators: decimalSeparators$w
-};
-const units$v = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
-const leadingUnits$v = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
-const prepositions$v = ["of"];
-const decimalSeparators$v = ["."];
-const __vite_glob_0_1 = {
-  units: units$v,
-  leadingUnits: leadingUnits$v,
-  prepositions: prepositions$v,
-  decimalSeparators: decimalSeparators$v
-};
-const units$u = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
-const leadingUnits$u = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
-const prepositions$u = ["of"];
-const decimalSeparators$u = ["."];
-const __vite_glob_0_2 = {
-  units: units$u,
-  leadingUnits: leadingUnits$u,
-  prepositions: prepositions$u,
-  decimalSeparators: decimalSeparators$u
-};
-const units$t = ["kávová lžička", "kávových lžiček", "lžiček", "polévková lžíce", "polévkových lžic", "lžic", "šálek", "šálky", "unce", "uncí", "oz", "libra", "liber", "lb", "lbs", "gram", "gramů", "g", "kilogram", "kilogramů", "kg", "mililitr", "mililitrů", "ml", "litr", "litrů", "l", "špetka", "špetek", "svazek", "svazků", "clove", "cloves", "plechovka", "plechovek", "láhev", "lahví", "kus", "kusů", "plátek", "plátků", "hlávka", "hlávek", "stalk", "stalks", "sprig", "sprigs", "balíček", "balení", "balík", "packets", "pytlík", "pytlíků", "fl oz"];
-const leadingUnits$t = ["špetka", "špetek", "trs", "trsů", "zest", "dash", "handful"];
-const prepositions$t = ["of"];
-const decimalSeparators$t = [","];
-const __vite_glob_0_3 = {
-  units: units$t,
-  leadingUnits: leadingUnits$t,
-  prepositions: prepositions$t,
-  decimalSeparators: decimalSeparators$t
-};
-const units$s = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
-const leadingUnits$s = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
-const prepositions$s = ["of"];
-const decimalSeparators$s = ["."];
-const __vite_glob_0_4 = {
-  units: units$s,
-  leadingUnits: leadingUnits$s,
-  prepositions: prepositions$s,
-  decimalSeparators: decimalSeparators$s
-};
-const units$r = ["teelöffel", "teelöffel", "tl", "esslöffel", "esslöffel", "el", "tasse", "tassen", "unze", "unzen", "oz", "pfund", "pfund", "pfd", "pfd", "gramm", "gramm", "g", "kilogramm", "kilogramm", "kg", "milliliter", "milliliter", "ml", "liter", "liter", "l", "prise", "prisen", "bund", "bünde", "zehe", "zehen", "dose", "dosen", "flasche", "flaschen", "stück", "stücke", "scheibe", "scheiben", "kopf", "köpfe", "stange", "stangen", "zweig", "zweige", "packung", "packungen", "päckchen", "päckchen", "beutel", "tüten", "fl oz"];
-const leadingUnits$r = ["prise", "prisen", "bund", "bünde", "abrieb", "schuss", "handvoll"];
-const prepositions$r = ["von"];
-const decimalSeparators$r = [","];
-const __vite_glob_0_5 = {
-  units: units$r,
-  leadingUnits: leadingUnits$r,
-  prepositions: prepositions$r,
-  decimalSeparators: decimalSeparators$r
-};
-const units$q = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
-const leadingUnits$q = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
-const prepositions$q = ["of"];
-const decimalSeparators$q = ["."];
-const __vite_glob_0_6 = {
-  units: units$q,
-  leadingUnits: leadingUnits$q,
-  prepositions: prepositions$q,
-  decimalSeparators: decimalSeparators$q
-};
-const units$p = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
-const leadingUnits$p = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
-const prepositions$p = ["of"];
-const decimalSeparators$p = ["."];
-const __vite_glob_0_7 = {
-  units: units$p,
-  leadingUnits: leadingUnits$p,
-  prepositions: prepositions$p,
-  decimalSeparators: decimalSeparators$p
-};
-const units$o = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
-const leadingUnits$o = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
-const prepositions$o = ["of"];
-const decimalSeparators$o = ["."];
-const __vite_glob_0_8 = {
-  units: units$o,
-  leadingUnits: leadingUnits$o,
-  prepositions: prepositions$o,
-  decimalSeparators: decimalSeparators$o
-};
-const units$n = ["teelusikka", "teelusikallista", "tl", "ruokalusikallinen", "ruokalusikallista", "rkl", "kupillinen", "kupillista", "unssi", "unssia", "unssi", "pauna", "paunaa", "pauna", "paunaa", "gramma", "grammaa", "g", "kilogramma", "kilogrammaa", "kg", "millilitra", "millilitraa", "ml", "litra", "litraa", "l", "ripaus", "hyppysellistä", "nippu", "nippua", "kynsi", "kynttä", "tölkki", "tölkkiä", "pullo", "pulloa", "kappale", "kappaletta", "viipale", "viipaletta", "pää", "päitä", "varsi", "vartta", "oksa", "oksaa", "pakkaus", "pakkausta", "paketti", "pakkausta", "pussi", "pussia", "fl oz"];
-const leadingUnits$n = ["ripaus", "hyppysellistä", "nippu", "nippua", "kuori", "viiva", "kourallinen"];
-const prepositions$n = ["of"];
-const decimalSeparators$n = ["."];
-const __vite_glob_0_9 = {
-  units: units$n,
-  leadingUnits: leadingUnits$n,
-  prepositions: prepositions$n,
-  decimalSeparators: decimalSeparators$n
-};
-const units$m = ["cuillère à café", "cuillères à café", "c.à.c.", "cuillère à soupe", "cuillères à soupe", "c.à.s.", "tasse", "tasses", "once", "onces", "oz", "livre", "livres", "lb", "lbs", "gramme", "grammes", "g", "kilogramme", "kilogrammes", "kg", "millilitre", "millilitres", "ml", "litre", "litres", "l", "pincée", "pincées", "botte", "bottes", "gousse", "gousses", "boîte", "boîtes", "bouteille", "bouteilles", "unité", "unités", "tranche", "tranches", "pièce", "pièces", "tige", "tiges", "brin", "brins", "paquet", "paquets", "sachet", "sachets", "sac", "sacs", "onces liq."];
-const leadingUnits$m = ["pincée", "pincées", "botte", "bottes", "zeste", "petite quantité", "poignée"];
-const prepositions$m = ["de"];
-const decimalSeparators$m = [","];
-const __vite_glob_0_10 = {
-  units: units$m,
-  leadingUnits: leadingUnits$m,
-  prepositions: prepositions$m,
-  decimalSeparators: decimalSeparators$m
-};
-const units$l = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
-const leadingUnits$l = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
-const prepositions$l = ["of"];
-const decimalSeparators$l = ["."];
-const __vite_glob_0_11 = {
-  units: units$l,
-  leadingUnits: leadingUnits$l,
-  prepositions: prepositions$l,
-  decimalSeparators: decimalSeparators$l
-};
-const units$k = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
-const leadingUnits$k = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
-const prepositions$k = ["of"];
-const decimalSeparators$k = ["."];
-const __vite_glob_0_12 = {
-  units: units$k,
-  leadingUnits: leadingUnits$k,
-  prepositions: prepositions$k,
-  decimalSeparators: decimalSeparators$k
-};
-const units$j = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
-const leadingUnits$j = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
-const prepositions$j = ["of"];
-const decimalSeparators$j = ["."];
-const __vite_glob_0_13 = {
-  units: units$j,
-  leadingUnits: leadingUnits$j,
-  prepositions: prepositions$j,
-  decimalSeparators: decimalSeparators$j
-};
-const units$i = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
-const leadingUnits$i = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
-const prepositions$i = ["of"];
-const decimalSeparators$i = ["."];
-const __vite_glob_0_14 = {
-  units: units$i,
-  leadingUnits: leadingUnits$i,
-  prepositions: prepositions$i,
-  decimalSeparators: decimalSeparators$i
-};
-const units$h = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
-const leadingUnits$h = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
-const prepositions$h = ["of"];
-const decimalSeparators$h = ["."];
-const __vite_glob_0_15 = {
-  units: units$h,
-  leadingUnits: leadingUnits$h,
-  prepositions: prepositions$h,
-  decimalSeparators: decimalSeparators$h
-};
-const units$g = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
-const leadingUnits$g = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
-const prepositions$g = ["of"];
-const decimalSeparators$g = ["."];
-const __vite_glob_0_16 = {
-  units: units$g,
-  leadingUnits: leadingUnits$g,
-  prepositions: prepositions$g,
-  decimalSeparators: decimalSeparators$g
-};
-const units$f = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
-const leadingUnits$f = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
-const prepositions$f = ["of"];
-const decimalSeparators$f = ["."];
-const __vite_glob_0_17 = {
-  units: units$f,
-  leadingUnits: leadingUnits$f,
-  prepositions: prepositions$f,
-  decimalSeparators: decimalSeparators$f
-};
-const units$e = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
-const leadingUnits$e = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
-const prepositions$e = ["of"];
-const decimalSeparators$e = ["."];
-const __vite_glob_0_18 = {
-  units: units$e,
-  leadingUnits: leadingUnits$e,
-  prepositions: prepositions$e,
-  decimalSeparators: decimalSeparators$e
-};
-const units$d = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
-const leadingUnits$d = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
-const prepositions$d = ["of"];
-const decimalSeparators$d = ["."];
-const __vite_glob_0_19 = {
-  units: units$d,
-  leadingUnits: leadingUnits$d,
-  prepositions: prepositions$d,
-  decimalSeparators: decimalSeparators$d
-};
-const units$c = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
-const leadingUnits$c = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
-const prepositions$c = ["of"];
-const decimalSeparators$c = ["."];
-const __vite_glob_0_20 = {
-  units: units$c,
-  leadingUnits: leadingUnits$c,
-  prepositions: prepositions$c,
-  decimalSeparators: decimalSeparators$c
-};
-const units$b = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
-const leadingUnits$b = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
-const prepositions$b = ["of"];
-const decimalSeparators$b = ["."];
-const __vite_glob_0_21 = {
-  units: units$b,
-  leadingUnits: leadingUnits$b,
-  prepositions: prepositions$b,
-  decimalSeparators: decimalSeparators$b
-};
-const units$a = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
-const leadingUnits$a = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
-const prepositions$a = ["of"];
-const decimalSeparators$a = ["."];
-const __vite_glob_0_22 = {
-  units: units$a,
-  leadingUnits: leadingUnits$a,
-  prepositions: prepositions$a,
-  decimalSeparators: decimalSeparators$a
-};
-const units$9 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
-const leadingUnits$9 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
-const prepositions$9 = ["of"];
-const decimalSeparators$9 = ["."];
-const __vite_glob_0_23 = {
-  units: units$9,
-  leadingUnits: leadingUnits$9,
-  prepositions: prepositions$9,
-  decimalSeparators: decimalSeparators$9
-};
-const units$8 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
-const leadingUnits$8 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
-const prepositions$8 = ["of"];
-const decimalSeparators$8 = ["."];
-const __vite_glob_0_24 = {
-  units: units$8,
-  leadingUnits: leadingUnits$8,
-  prepositions: prepositions$8,
-  decimalSeparators: decimalSeparators$8
-};
-const units$7 = ["teaspoon", "čajové lyžičky", "čajová lyžička", "tablespoon", "polievkové lyžice", "tbsp", "cup", "šálky", "ounce", "ounces", "oz", "pound", "libry", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilogramy", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "štipky", "bunch", "bunches", "clove", "strúčiky", "can", "cans", "bottle", "fľaše", "piece", "kúsky", "slice", "plátky", "head", "hlávky", "stalk", "stonky", "sprig", "vetvičky", "pack", "packs", "paket", "packets", "vrecko", "vrecká", "fl oz"];
-const leadingUnits$7 = ["štipka", "štipky", "zväzok", "zväzky", "kôra", "trocha", "hrsť"];
-const prepositions$7 = ["of"];
-const decimalSeparators$7 = ["."];
-const __vite_glob_0_25 = {
-  units: units$7,
-  leadingUnits: leadingUnits$7,
-  prepositions: prepositions$7,
-  decimalSeparators: decimalSeparators$7
-};
-const units$6 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
-const leadingUnits$6 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
-const prepositions$6 = ["of"];
-const decimalSeparators$6 = ["."];
-const __vite_glob_0_26 = {
-  units: units$6,
-  leadingUnits: leadingUnits$6,
-  prepositions: prepositions$6,
-  decimalSeparators: decimalSeparators$6
-};
-const units$5 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
-const leadingUnits$5 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
-const prepositions$5 = ["of"];
-const decimalSeparators$5 = ["."];
-const __vite_glob_0_27 = {
-  units: units$5,
-  leadingUnits: leadingUnits$5,
-  prepositions: prepositions$5,
-  decimalSeparators: decimalSeparators$5
-};
-const units$4 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
-const leadingUnits$4 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
-const prepositions$4 = ["of"];
-const decimalSeparators$4 = ["."];
-const __vite_glob_0_28 = {
-  units: units$4,
-  leadingUnits: leadingUnits$4,
-  prepositions: prepositions$4,
-  decimalSeparators: decimalSeparators$4
-};
-const units$3 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
-const leadingUnits$3 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
-const prepositions$3 = ["of"];
-const decimalSeparators$3 = ["."];
-const __vite_glob_0_29 = {
-  units: units$3,
-  leadingUnits: leadingUnits$3,
-  prepositions: prepositions$3,
-  decimalSeparators: decimalSeparators$3
-};
-const units$2 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
-const leadingUnits$2 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
-const prepositions$2 = ["of"];
-const decimalSeparators$2 = ["."];
-const __vite_glob_0_30 = {
-  units: units$2,
-  leadingUnits: leadingUnits$2,
-  prepositions: prepositions$2,
-  decimalSeparators: decimalSeparators$2
-};
-const units$1 = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
-const leadingUnits$1 = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
-const prepositions$1 = ["of"];
-const decimalSeparators$1 = ["."];
-const __vite_glob_0_31 = {
-  units: units$1,
-  leadingUnits: leadingUnits$1,
-  prepositions: prepositions$1,
-  decimalSeparators: decimalSeparators$1
-};
-const units = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz"];
-const leadingUnits = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
-const prepositions = ["of"];
-const decimalSeparators = ["."];
-const __vite_glob_0_32 = {
-  units,
-  leadingUnits,
-  prepositions,
-  decimalSeparators
-};
-const EN_UNIT_ALIASES = {
-  cups: "cup",
-  teaspoons: "teaspoon",
-  tsp: "teaspoon",
-  tablespoons: "tablespoon",
-  tbsp: "tablespoon",
-  ounces: "ounce",
-  oz: "ounce",
-  pounds: "pound",
-  lbs: "pound",
-  lb: "pound",
-  grams: "gram",
-  g: "gram",
-  kilograms: "kilogram",
-  kg: "kilogram",
-  milliliters: "milliliter",
-  ml: "milliliter",
-  liters: "liter",
-  l: "liter",
-  cans: "can",
-  bottles: "bottle",
-  slices: "slice",
-  pieces: "piece",
-  cloves: "clove",
-  stalks: "stalk",
-  sprigs: "sprig",
-  bags: "bag",
-  packs: "pack",
-  packets: "pack",
-  pinches: "pinch",
-  bunches: "bunch",
-  heads: "head"
-};
-const parsingModules = /* @__PURE__ */ Object.assign({
-  "../../resources/parsing/af.json": __vite_glob_0_0,
-  "../../resources/parsing/ar.json": __vite_glob_0_1,
-  "../../resources/parsing/ca.json": __vite_glob_0_2,
-  "../../resources/parsing/cs.json": __vite_glob_0_3,
-  "../../resources/parsing/da.json": __vite_glob_0_4,
-  "../../resources/parsing/de.json": __vite_glob_0_5,
-  "../../resources/parsing/el.json": __vite_glob_0_6,
-  "../../resources/parsing/en.json": __vite_glob_0_7,
-  "../../resources/parsing/es.json": __vite_glob_0_8,
-  "../../resources/parsing/fi.json": __vite_glob_0_9,
-  "../../resources/parsing/fr.json": __vite_glob_0_10,
-  "../../resources/parsing/he.json": __vite_glob_0_11,
-  "../../resources/parsing/hr.json": __vite_glob_0_12,
-  "../../resources/parsing/hu.json": __vite_glob_0_13,
-  "../../resources/parsing/it.json": __vite_glob_0_14,
-  "../../resources/parsing/ja.json": __vite_glob_0_15,
-  "../../resources/parsing/ko.json": __vite_glob_0_16,
-  "../../resources/parsing/nl.json": __vite_glob_0_17,
-  "../../resources/parsing/no.json": __vite_glob_0_18,
-  "../../resources/parsing/pl.json": __vite_glob_0_19,
-  "../../resources/parsing/pt.json": __vite_glob_0_20,
-  "../../resources/parsing/pt_BR.json": __vite_glob_0_21,
-  "../../resources/parsing/pt_PT.json": __vite_glob_0_22,
-  "../../resources/parsing/ro.json": __vite_glob_0_23,
-  "../../resources/parsing/ru.json": __vite_glob_0_24,
-  "../../resources/parsing/sk.json": __vite_glob_0_25,
-  "../../resources/parsing/sr.json": __vite_glob_0_26,
-  "../../resources/parsing/sv.json": __vite_glob_0_27,
-  "../../resources/parsing/tr.json": __vite_glob_0_28,
-  "../../resources/parsing/uk.json": __vite_glob_0_29,
-  "../../resources/parsing/vi.json": __vite_glob_0_30,
-  "../../resources/parsing/zh.json": __vite_glob_0_31,
-  "../../resources/parsing/zh_CN.json": __vite_glob_0_32
-});
-const parsingPacks = {};
-for (const path in parsingModules) {
-  const lang = path.match(/\/([^/]+)\.json$/)?.[1]?.toLowerCase();
-  if (!lang) continue;
-  const unitAliases = lang === "en" ? EN_UNIT_ALIASES : {};
-  parsingPacks[lang] = { ...parsingModules[path], unitAliases };
-}
-function langCandidates() {
-  const raw = (getLanguage() || "en").toLowerCase().replace(/-/g, "_");
-  const base = raw.split("_")[0];
-  const out = [raw];
-  if (base !== raw) out.push(base);
-  out.push("en");
-  return out;
-}
-function currentLang() {
-  return (getLanguage() || "en").toLowerCase().split(/[-_]/)[0];
-}
-function getParsingPack() {
-  for (const cand of langCandidates()) {
-    if (parsingPacks[cand]) return parsingPacks[cand];
-  }
-  return parsingPacks.en;
-}
-const MORPHOLOGY_LANGS = /* @__PURE__ */ new Set(["en"]);
-function hasMorphology() {
-  return MORPHOLOGY_LANGS.has(currentLang());
-}
 function canonicalUnit(unit) {
   const lower = unit.toLowerCase();
   return getParsingPack().unitAliases[lower] ?? lower;
@@ -14835,7 +14612,7 @@ const useItemsStore = defineStore("items", () => {
       const existingItems = itemsByList.value[listId] ?? [];
       const match = data.checked ? void 0 : findMatchingItem(existingItems, data.name);
       if (match) {
-        const merged = mergeQuantities(match.quantity, data.quantity);
+        const merged = mergeQuantities(match.quantity, data.quantity ?? "1");
         const updateData = { quantity: merged };
         const oldQty = parseFloat(match.quantity ?? "");
         const newQty = parseFloat(merged);
@@ -14871,7 +14648,9 @@ const useItemsStore = defineStore("items", () => {
         id: tempId,
         listId,
         name: data.name,
-        quantity: data.quantity ?? "1",
+        // Without a typed amount the server picks the remembered one, so show
+        // none until it answers rather than a "1" that then changes.
+        quantity: data.quantity ?? null,
         unit: data.unit ?? null,
         shopAreaId: data.shopAreaId ?? null,
         checked: Boolean(data.checked),
@@ -15203,24 +14982,27 @@ const useItemsStore = defineStore("items", () => {
     isImageUploading
   };
 });
-const _hoisted_1$9 = {
+const _hoisted_1$b = {
   key: 0,
   class: "count-bubble"
 };
-const _hoisted_2$8 = {
+const _hoisted_2$a = {
   key: 0,
   class: "sidebar-settings"
 };
 const listIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,4H7V8H3V4M9,5V7H21V5H9M3,10H7V14H3V10M9,11V13H21V11H9M3,16H7V20H3V16M9,17V19H21V17H9" fill="currentColor"/></svg>';
-const _sfc_main$b = /* @__PURE__ */ defineComponent({
+const _sfc_main$e = /* @__PURE__ */ defineComponent({
   __name: "ListSidebar",
-  emits: ["showSettings"],
+  emits: ["showSettings", "share"],
   setup(__props) {
     const listsStore = useListsStore();
     const itemsStore = useItemsStore();
     const newListText = translate("shopping_list", "New list");
+    const listNamePlaceholder = translate("shopping_list", "List name");
+    const newListFallback = translate("shopping_list", "New shopping list");
     const renameText = translate("shopping_list", "Rename list");
     const deleteText = translate("shopping_list", "Delete list");
+    const shareText = translate("shopping_list", "Share list");
     const sharedText = translate("shopping_list", "Shared with me");
     const emptyName = translate("shopping_list", "No shopping lists");
     const emptyDesc = translate("shopping_list", "Create your first shopping list to get started");
@@ -15242,8 +15024,14 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
       const items = itemsStore.itemsByList[listId] ?? [];
       return items.filter((i) => !i.checked).length;
     }
-    async function onNewList() {
-      await listsStore.create(translate("shopping_list", "New shopping list"));
+    const newItemRef = ref(null);
+    watch(() => newItemRef.value?.newItemActive, (active, wasActive) => {
+      if (active && !wasActive && newItemRef.value) {
+        newItemRef.value.newItemValue = "";
+      }
+    });
+    async function onNewList(name) {
+      await listsStore.create(name.trim() || newListFallback);
     }
     async function onRename(id, name) {
       if (name.trim()) {
@@ -15255,10 +15043,18 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
     }
     return (_ctx, _cache) => {
       return openBlock(), createElementBlock("div", null, [
-        createVNode(unref(NcAppNavigationNew), {
-          text: unref(newListText),
-          onClick: onNewList
-        }, null, 8, ["text"]),
+        createVNode(unref(NcAppNavigationNewItem), {
+          ref_key: "newItemRef",
+          ref: newItemRef,
+          name: unref(newListText),
+          "edit-placeholder": unref(listNamePlaceholder),
+          onNewItem: onNewList
+        }, {
+          icon: withCtx(() => [
+            createVNode(unref(NcIconSvgWrapper), { path: unref(mdiPlus) }, null, 8, ["path"])
+          ]),
+          _: 1
+        }, 8, ["name", "edit-placeholder"]),
         (openBlock(true), createElementBlock(Fragment, null, renderList(sections.value, (section) => {
           return openBlock(), createElementBlock(Fragment, {
             key: section.key
@@ -15289,9 +15085,19 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
                   "onUpdate:name": (name) => onRename(list.id, name)
                 }, {
                   counter: withCtx(() => [
-                    getUncheckedCount(list.id) > 0 ? (openBlock(), createElementBlock("span", _hoisted_1$9, toDisplayString(getUncheckedCount(list.id)), 1)) : createCommentVNode("", true)
+                    getUncheckedCount(list.id) > 0 ? (openBlock(), createElementBlock("span", _hoisted_1$b, toDisplayString(getUncheckedCount(list.id)), 1)) : createCommentVNode("", true)
                   ]),
                   actions: withCtx(() => [
+                    list.isOwner ? (openBlock(), createBlock(unref(NcActionButton), {
+                      key: 0,
+                      "close-after-click": "",
+                      onClick: ($event) => _ctx.$emit("share", list.id)
+                    }, {
+                      default: withCtx(() => [
+                        createTextVNode(toDisplayString(unref(shareText)), 1)
+                      ]),
+                      _: 1
+                    }, 8, ["onClick"])) : createCommentVNode("", true),
                     createVNode(unref(NcActionButton), {
                       onClick: ($event) => unref(listsStore).setPinned(list.id, !list.isPinned)
                     }, {
@@ -15301,7 +15107,7 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
                       _: 2
                     }, 1032, ["onClick"]),
                     list.isOwner ? (openBlock(), createBlock(unref(NcActionButton), {
-                      key: 0,
+                      key: 1,
                       onClick: ($event) => onDelete(list.id)
                     }, {
                       default: withCtx(() => [
@@ -15317,7 +15123,7 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
             }, 8, ["model-value", "group", "onUpdate:modelValue"])
           ], 64);
         }), 128)),
-        unref(listsStore).currentListId !== null ? (openBlock(), createElementBlock("div", _hoisted_2$8, [
+        unref(listsStore).currentListId !== null ? (openBlock(), createElementBlock("div", _hoisted_2$a, [
           createBaseVNode("button", {
             class: "sidebar-settings__btn",
             onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("showSettings"))
@@ -15337,7 +15143,7 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ListSidebar = /* @__PURE__ */ _export_sfc$1(_sfc_main$b, [["__scopeId", "data-v-a59d840c"]]);
+const ListSidebar = /* @__PURE__ */ _export_sfc$1(_sfc_main$e, [["__scopeId", "data-v-87dbfe46"]]);
 function badRequestMessage(error) {
   const response = error?.response;
   const message = response?.data?.ocs?.data?.message;
@@ -15513,10 +15319,10 @@ function pickImageFile(dt) {
   }
   return files.find(isImageFile) ?? null;
 }
-const _hoisted_1$8 = ["data-item-id"];
-const _hoisted_2$7 = { class: "item-row__check" };
-const _hoisted_3$5 = ["checked", "disabled"];
-const _hoisted_4$5 = {
+const _hoisted_1$a = ["data-item-id"];
+const _hoisted_2$9 = { class: "item-row__check" };
+const _hoisted_3$7 = ["checked", "disabled"];
+const _hoisted_4$7 = {
   key: 0,
   class: "item-row__thumb item-row__thumb--loading"
 };
@@ -15542,7 +15348,7 @@ const _hoisted_15$3 = {
 };
 const _hoisted_16$3 = ["title"];
 const _hoisted_17$3 = { class: "item-row__area-name" };
-const _sfc_main$a = /* @__PURE__ */ defineComponent({
+const _sfc_main$d = /* @__PURE__ */ defineComponent({
   __name: "ItemRow",
   props: {
     itemId: {},
@@ -15706,7 +15512,8 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
           name: trimmedName,
           quantity: trimmedQty,
           shopAreaId: editAreaId.value,
-          ...areaChanged ? { areaExplicit: true } : {}
+          ...areaChanged ? { areaExplicit: true } : {},
+          ...qtyChanged ? { quantityExplicit: true } : {}
         });
         saving = false;
       }
@@ -15825,16 +15632,16 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
         onDragleave: onDragLeave,
         onDrop
       }, [
-        createBaseVNode("label", _hoisted_2$7, [
+        createBaseVNode("label", _hoisted_2$9, [
           createBaseVNode("input", {
             type: "checkbox",
             checked: item.value.checked,
             disabled: !__props.canEdit,
             onChange: onToggleCheck
-          }, null, 40, _hoisted_3$5)
+          }, null, 40, _hoisted_3$7)
         ]),
         unref(imagesEnabled) && !__props.editing ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
-          uploading.value ? (openBlock(), createElementBlock("span", _hoisted_4$5, [
+          uploading.value ? (openBlock(), createElementBlock("span", _hoisted_4$7, [
             createVNode(unref(NcLoadingIcon), {
               size: 20,
               name: unref(uploadingText)
@@ -16043,115 +15850,11 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
           name: item.value.name,
           onClose: _cache[7] || (_cache[7] = ($event) => viewerOpen.value = false)
         }, null, 8, ["src", "name"])) : createCommentVNode("", true)
-      ], 42, _hoisted_1$8)) : createCommentVNode("", true);
+      ], 42, _hoisted_1$a)) : createCommentVNode("", true);
     };
   }
 });
-const ItemRow = /* @__PURE__ */ _export_sfc$1(_sfc_main$a, [["__scopeId", "data-v-b99f16be"]]);
-function escapeRe(s) {
-  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-function createIngredientParser(pack) {
-  const prepositionRe = pack.prepositions.length ? new RegExp("^(?:" + pack.prepositions.map(escapeRe).join("|") + ")\\s+", "i") : null;
-  const commaDecimal = pack.decimalSeparators.includes(",");
-  const decClass = commaDecimal ? "[.,]" : "\\.";
-  const qtyPattern = new RegExp(
-    "^([\\d]+(?:\\s+[\\d]+/[\\d]+|/[\\d]+|" + decClass + "\\d+)?(?:\\s*-\\s*[\\d]+(?:/[\\d]+|" + decClass + "\\d+)?)?)\\s*"
-  );
-  function matchUnit(text) {
-    const lower = text.toLowerCase();
-    let best = "";
-    for (const unit of pack.units) {
-      if (lower.startsWith(unit + " ") || lower.startsWith(unit + ",") || lower === unit) {
-        if (unit.length > best.length) best = unit;
-      }
-    }
-    return best;
-  }
-  function cleanName(raw) {
-    let name = raw;
-    let prev = "";
-    while (prev !== name) {
-      prev = name;
-      name = name.replace(/\s*\([^)]*\)/g, "");
-    }
-    name = name.replace(/[()]/g, "").replace(/,\s*,/g, ",").replace(/,\s*$/, "").replace(/^\s*,\s*/, "").replace(/\s+/g, " ").trim();
-    if (name.length > 0) {
-      const second = name.charAt(1);
-      const secondIsUpper = second !== "" && second !== second.toLowerCase();
-      if (!secondIsUpper) {
-        name = name.charAt(0).toUpperCase() + name.slice(1);
-      }
-    }
-    return name;
-  }
-  function stripConnector(rest) {
-    rest = rest.replace(/^,\s*/, "");
-    if (prepositionRe) rest = rest.replace(prepositionRe, "");
-    return rest.trim();
-  }
-  function readListMarkup(line) {
-    let out = line.trim();
-    let checked = false;
-    let prev = "";
-    while (prev !== out) {
-      prev = out;
-      const box = out.match(/^\[\s*([xX]?)\s*\]\s*/);
-      if (box) {
-        if (box[1]) checked = true;
-        out = out.slice(box[0].length);
-      }
-      out = out.replace(/^\[\s*(\d+(?:[.,]\d+)?)\s*\]\s*/, "$1 ");
-      out = out.replace(/^[-*•]\s+/, "");
-      out = out.replace(/^\d+[.)]\s+/, "");
-    }
-    return { rest: out.trim(), checked };
-  }
-  function stripListMarkup(line) {
-    return readListMarkup(line).rest;
-  }
-  function parseIngredient(line) {
-    const { rest, checked } = readListMarkup(line);
-    return { ...parseLine(rest), checked };
-  }
-  function parseLine(trimmed) {
-    if (!trimmed) return { name: "", quantity: null };
-    const trimmedLower = trimmed.toLowerCase();
-    for (const unit of pack.leadingUnits) {
-      if (trimmedLower.startsWith(unit + " ") || trimmedLower.startsWith(unit + ",")) {
-        const rest2 = stripConnector(trimmed.slice(unit.length).trim());
-        return { name: cleanName(rest2 || trimmed), quantity: "1 " + unit };
-      }
-    }
-    const match = trimmed.match(qtyPattern);
-    if (!match) {
-      return { name: cleanName(trimmed), quantity: null };
-    }
-    const qtyStr = commaDecimal ? match[1].trim().replace(/,/g, ".") : match[1].trim();
-    let rest = trimmed.slice(match[0].length).trim();
-    const mult = rest.match(/^[x×]\s+/i);
-    if (mult) {
-      rest = rest.slice(mult[0].length).trim();
-      return { name: cleanName(rest || trimmed), quantity: qtyStr };
-    }
-    const attached = trimmed.length > match[1].length && !/[\s,]/.test(trimmed.charAt(match[1].length));
-    if (attached && !matchUnit(rest)) {
-      return { name: cleanName(trimmed), quantity: null };
-    }
-    const matchedUnit = matchUnit(rest);
-    let finalQty = qtyStr;
-    if (matchedUnit) {
-      finalQty = qtyStr + " " + matchedUnit;
-      rest = stripConnector(rest.slice(matchedUnit.length).trim());
-    }
-    rest = rest.replace(/^,\s*/, "").trim();
-    return {
-      name: cleanName(rest || trimmed),
-      quantity: finalQty
-    };
-  }
-  return { parseIngredient, stripListMarkup };
-}
+const ItemRow = /* @__PURE__ */ _export_sfc$1(_sfc_main$d, [["__scopeId", "data-v-a20d32c6"]]);
 const INPUT_EXAMPLES = [
   "- Apples",
   "[ ] 3 Bananas",
@@ -16159,10 +15862,10 @@ const INPUT_EXAMPLES = [
   "2 cups flour",
   "1. Milk"
 ];
-const _hoisted_1$7 = { class: "item-editor" };
-const _hoisted_2$6 = { class: "item-editor__main" };
-const _hoisted_3$4 = ["placeholder", "onKeydown"];
-const _hoisted_4$4 = ["placeholder", "onKeydown"];
+const _hoisted_1$9 = { class: "item-editor" };
+const _hoisted_2$8 = { class: "item-editor__main" };
+const _hoisted_3$6 = ["placeholder", "onKeydown"];
+const _hoisted_4$6 = ["placeholder", "onKeydown"];
 const _hoisted_5$4 = {
   key: 1,
   class: "item-editor__dropdown"
@@ -16188,7 +15891,7 @@ const _hoisted_17$2 = {
   key: 1,
   class: "input-help__checked"
 };
-const _sfc_main$9 = /* @__PURE__ */ defineComponent({
+const _sfc_main$c = /* @__PURE__ */ defineComponent({
   __name: "ItemEditor",
   props: {
     listId: {}
@@ -16297,6 +16000,9 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
       }
       return bestArea;
     }
+    function amountFields(quantity) {
+      return quantity ? { quantity, quantityExplicit: true } : { quantity: null };
+    }
     async function onPaste(e) {
       const text = e.clipboardData?.getData("text") ?? "";
       if (!text.includes("\n")) return;
@@ -16314,7 +16020,7 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
         const areaId = selectedAreaId.value ?? detectArea(parsed.name);
         await itemsStore.create(props.listId, {
           name: parsed.name,
-          quantity: parsed.quantity || "1",
+          ...amountFields(parsed.quantity),
           shopAreaId: areaId,
           areaExplicit: explicitArea,
           checked: parsed.checked
@@ -16334,7 +16040,7 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
       const areaId = selectedAreaId.value ?? detectArea(parsed.name);
       await itemsStore.create(props.listId, {
         name: parsed.name,
-        quantity: parsed.quantity || "1",
+        ...amountFields(parsed.quantity),
         shopAreaId: areaId,
         areaExplicit: explicitArea,
         checked: parsed.checked
@@ -16344,8 +16050,8 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
       nameRef.value?.focus();
     }
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$7, [
-        createBaseVNode("div", _hoisted_2$6, [
+      return openBlock(), createElementBlock("div", _hoisted_1$9, [
+        createBaseVNode("div", _hoisted_2$8, [
           _cache[6] || (_cache[6] = createBaseVNode("span", { class: "item-editor__plus" }, "+", -1)),
           withDirectives(createBaseVNode("input", {
             ref_key: "nameRef",
@@ -16360,7 +16066,7 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
               withKeys(withModifiers(focusArea, ["prevent"]), ["tab"])
             ],
             onPaste
-          }, null, 40, _hoisted_3$4), [
+          }, null, 40, _hoisted_3$6), [
             [vModelText, name.value]
           ]),
           createBaseVNode("div", {
@@ -16384,7 +16090,7 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
                 _cache[2] || (_cache[2] = withKeys(withModifiers(($event) => moveHighlight(1), ["prevent"]), ["down"])),
                 _cache[3] || (_cache[3] = withKeys(withModifiers(($event) => moveHighlight(-1), ["prevent"]), ["up"]))
               ]
-            }, null, 40, _hoisted_4$4), [
+            }, null, 40, _hoisted_4$6), [
               [vModelText, areaSearch.value]
             ]),
             selectedAreaId.value !== null ? (openBlock(), createElementBlock("button", {
@@ -16476,7 +16182,1390 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ItemEditor = /* @__PURE__ */ _export_sfc$1(_sfc_main$9, [["__scopeId", "data-v-dbb53ce2"]]);
+const ItemEditor = /* @__PURE__ */ _export_sfc$1(_sfc_main$c, [["__scopeId", "data-v-63a57c72"]]);
+function formatListAsText(items) {
+  return items.filter((item) => !item.checked).map((item) => {
+    const parts = [];
+    if (item.quantity && (item.quantity !== "1" || item.unit)) {
+      parts.push(item.quantity);
+    }
+    if (item.unit) parts.push(item.unit);
+    parts.push(item.name);
+    return parts.join(" ");
+  }).join("\n");
+}
+const OPEN_SORTS = ["area", "areaAlpha", "alpha"];
+const BOUGHT_SORTS = ["area", "alpha", "recent"];
+const OPEN_SORT_KEY = "shopping_list.openSort";
+const BOUGHT_SORT_KEY = "shopping_list.boughtSort";
+function byName(language) {
+  const collator = new Intl.Collator(language, { sensitivity: "base", numeric: true });
+  return (a, b) => collator.compare(a.name, b.name);
+}
+function time(item) {
+  const ms = Date.parse(item.updatedAt);
+  return Number.isNaN(ms) ? -Infinity : ms;
+}
+function groupOpenItems(items, areas, sort2, language) {
+  if (items.length === 0) return [];
+  if (sort2 === "alpha") {
+    return [{ areaId: null, areaName: null, areaColor: null, items: [...items].sort(byName(language)) }];
+  }
+  const grouped = /* @__PURE__ */ new Map();
+  for (const item of items) {
+    const list = grouped.get(item.shopAreaId);
+    if (list) {
+      list.push(item);
+    } else {
+      grouped.set(item.shopAreaId, [item]);
+    }
+  }
+  const result = [];
+  for (const area of areas) {
+    const areaItems = grouped.get(area.id);
+    if (areaItems) {
+      result.push({ areaId: area.id, areaName: area.name, areaColor: area.color, items: areaItems });
+      grouped.delete(area.id);
+    }
+  }
+  const uncategorized = [...grouped.values()].flat();
+  if (uncategorized.length > 0) {
+    result.push({ areaId: null, areaName: null, areaColor: null, items: uncategorized });
+  }
+  if (sort2 === "areaAlpha") {
+    const compare = byName(language);
+    for (const group of result) group.items.sort(compare);
+  }
+  return result;
+}
+function sortBought(items, sort2, areas, language) {
+  const sorted = [...items];
+  if (sort2 === "area") {
+    const position = new Map(areas.map((area, index2) => [area.id, index2]));
+    const rank = (item) => (item.shopAreaId === null ? void 0 : position.get(item.shopAreaId)) ?? areas.length;
+    sorted.sort((a, b) => rank(a) - rank(b));
+  } else if (sort2 === "alpha") {
+    sorted.sort(byName(language));
+  } else {
+    sorted.sort((a, b) => time(b) - time(a));
+  }
+  return sorted;
+}
+function loadChoice(storage, key, choices) {
+  if (!storage) return choices[0];
+  try {
+    const raw = storage.getItem(key);
+    return choices.find((choice) => choice === raw) ?? choices[0];
+  } catch {
+    return choices[0];
+  }
+}
+function saveChoice(storage, key, choices, value) {
+  if (!storage) return;
+  try {
+    if (value === choices[0]) {
+      storage.removeItem(key);
+    } else {
+      storage.setItem(key, value);
+    }
+  } catch {
+  }
+}
+function loadOpenSort(storage) {
+  return loadChoice(storage, OPEN_SORT_KEY, OPEN_SORTS);
+}
+function saveOpenSort(storage, sort2) {
+  saveChoice(storage, OPEN_SORT_KEY, OPEN_SORTS, sort2);
+}
+function loadBoughtSort(storage) {
+  return loadChoice(storage, BOUGHT_SORT_KEY, BOUGHT_SORTS);
+}
+function saveBoughtSort(storage, sort2) {
+  saveChoice(storage, BOUGHT_SORT_KEY, BOUGHT_SORTS, sort2);
+}
+const _hoisted_1$8 = { class: "list-view" };
+const _hoisted_2$7 = { class: "list-view__header" };
+const _hoisted_3$5 = { class: "list-view__actions" };
+const _hoisted_4$5 = {
+  key: 0,
+  class: "list-view__avatar-overflow"
+};
+const _hoisted_5$3 = { class: "list-view__card" };
+const _hoisted_6$2 = {
+  key: 1,
+  class: "list-view__loading"
+};
+const _hoisted_7$2 = {
+  key: 0,
+  class: "list-view__empty"
+};
+const _hoisted_8$2 = ["aria-expanded", "aria-controls", "onClick"];
+const _hoisted_9$2 = { class: "list-view__area-count" };
+const _hoisted_10$2 = {
+  key: 0,
+  class: "list-view__bought"
+};
+const _hoisted_11$2 = { class: "list-view__bought-header" };
+const _hoisted_12$2 = { class: "list-view__toggle" };
+const _hoisted_13$2 = {
+  key: 0,
+  class: "list-view__bought-actions"
+};
+const _hoisted_14$2 = {
+  key: 0,
+  class: "list-view__bought-card"
+};
+const MAX_VISIBLE_AVATARS = 3;
+const cartIcon$1 = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.25,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.59 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z" fill="currentColor"/></svg>';
+const _sfc_main$b = /* @__PURE__ */ defineComponent({
+  __name: "ListView",
+  emits: ["share"],
+  setup(__props, { emit: __emit }) {
+    const listsStore = useListsStore();
+    const itemsStore = useItemsStore();
+    const shopAreasStore = useShopAreasStore();
+    const sharesStore = useSharesStore();
+    const currentShares = computed(() => {
+      const listId = listsStore.currentListId;
+      return listId !== null ? sharesStore.sharesByList[listId] ?? [] : [];
+    });
+    const visibleShares = computed(() => currentShares.value.slice(0, MAX_VISIBLE_AVATARS));
+    const overflowCount = computed(() => Math.max(0, currentShares.value.length - MAX_VISIBLE_AVATARS));
+    const emit = __emit;
+    const showChecked = ref(true);
+    const editingItemId = ref(null);
+    function onShare() {
+      const listId = listsStore.currentListId;
+      if (listId !== null) emit("share", listId);
+    }
+    function onCaptureClick(e) {
+      const target = e.target;
+      if (target.closest(".item-row__check") || target.closest(".item-row__actions") || target.closest(".item-row__thumb")) return;
+      if (target.type === "checkbox" || target.type === "file") return;
+      if (isDragging.value) return;
+      const row = target.closest(".item-row:not(.item-row--checked)");
+      if (row) {
+        const idStr = row.getAttribute("data-item-id");
+        if (idStr) {
+          editingItemId.value = parseInt(idStr, 10);
+          return;
+        }
+      }
+      if (editingItemId.value !== null && !target.closest(".item-row--editing")) {
+        editingItemId.value = null;
+      }
+    }
+    onMounted(() => document.addEventListener("click", onCaptureClick, true));
+    onUnmounted(() => document.removeEventListener("click", onCaptureClick, true));
+    const { enabled: imagesEnabled } = useImagePreference();
+    function onDocumentDragOver(e) {
+      if (!isFileDrag(e.dataTransfer)) return;
+      e.preventDefault();
+      const accepting = e.target?.closest?.(".item-row--drop-target");
+      if (!accepting && e.dataTransfer) e.dataTransfer.dropEffect = "none";
+    }
+    function onDocumentDrop(e) {
+      if (isFileDrag(e.dataTransfer)) e.preventDefault();
+    }
+    function removeDropGuard() {
+      document.removeEventListener("dragover", onDocumentDragOver);
+      document.removeEventListener("drop", onDocumentDrop);
+    }
+    watch(imagesEnabled, (on2) => {
+      removeDropGuard();
+      if (on2) {
+        document.addEventListener("dragover", onDocumentDragOver);
+        document.addEventListener("drop", onDocumentDrop);
+      }
+    }, { immediate: true });
+    onUnmounted(removeDropGuard);
+    const shareText = translate("shopping_list", "Share");
+    const listActionsText = translate("shopping_list", "List actions");
+    const copyAsTextText = translate("shopping_list", "Copy list as text");
+    const copiedText = translate("shopping_list", "List copied to clipboard");
+    const copyFailedText = translate("shopping_list", "Could not copy the list");
+    const emptyName = translate("shopping_list", "No items yet");
+    const emptyDesc = translate("shopping_list", "Add your first item above");
+    const uncategorizedText = translate("shopping_list", "Uncategorized");
+    const boughtText = translate("shopping_list", "Checked off");
+    const uncheckAllText = translate("shopping_list", "Restore all");
+    const clearCheckedText = translate("shopping_list", "Delete all");
+    const sortItemsText = translate("shopping_list", "Sort items");
+    const sortCheckedText = translate("shopping_list", "Sort checked-off items");
+    const byAreaText = translate("shopping_list", "By area");
+    const aToZText = translate("shopping_list", "A to Z");
+    const openSortOptions = [
+      { value: "area", label: byAreaText },
+      { value: "areaAlpha", label: translate("shopping_list", "By area, A to Z") },
+      { value: "alpha", label: aToZText }
+    ];
+    const boughtSortOptions = [
+      { value: "area", label: byAreaText },
+      { value: "alpha", label: aToZText },
+      { value: "recent", label: translate("shopping_list", "Most recent first") }
+    ];
+    const storage = browserStorage();
+    function storedChoice(initial, save2) {
+      const current = shallowRef(initial);
+      return computed({
+        get: () => current.value,
+        set: (value) => {
+          current.value = value;
+          save2(value);
+        }
+      });
+    }
+    const openSort = storedChoice(loadOpenSort(storage), (sort2) => saveOpenSort(storage, sort2));
+    const boughtSort = storedChoice(loadBoughtSort(storage), (sort2) => saveBoughtSort(storage, sort2));
+    async function onCopyAsText() {
+      const text = formatListAsText(itemsStore.uncheckedItems);
+      if (!text) return;
+      try {
+        await navigator.clipboard.writeText(text);
+        showSuccess(copiedText);
+        return;
+      } catch {
+      }
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      const copied = document.execCommand("copy");
+      document.body.removeChild(ta);
+      if (copied) {
+        showSuccess(copiedText);
+      } else {
+        showError(copyFailedText);
+      }
+    }
+    const canEdit = computed(
+      () => listsStore.currentList !== null && listsStore.currentList.permission >= Permission.WRITE
+    );
+    const isDragging = ref(false);
+    const { isCollapsed, toggle: toggleArea } = useCollapsedAreas(() => listsStore.currentListId);
+    function hasHeader(group) {
+      return !!group.areaName || localGroups.value.length > 1;
+    }
+    function isGroupCollapsed(group) {
+      return hasHeader(group) && isCollapsed(group.areaId);
+    }
+    function groupElementId(group) {
+      return `list-view-area-${group.areaId ?? "none"}`;
+    }
+    const language = getLanguage();
+    const currentAreas = computed(
+      () => listsStore.currentListId ? shopAreasStore.areasByList[listsStore.currentListId] ?? [] : []
+    );
+    const areaGroups = computed(
+      () => groupOpenItems(itemsStore.uncheckedItems, currentAreas.value, openSort.value, language)
+    );
+    const canDrag = computed(() => canEdit.value && openSort.value === "area");
+    const localGroups = ref([]);
+    watch(areaGroups, (groups) => {
+      if (!isDragging.value) {
+        localGroups.value = groups.map((g) => ({ ...g, items: [...g.items] }));
+      }
+    }, { immediate: true });
+    async function onDragEnd() {
+      isDragging.value = false;
+      const listId = listsStore.currentList?.id;
+      if (!listId) return;
+      const allSortedIds = [];
+      const areaUpdates = [];
+      for (const group of localGroups.value) {
+        for (const item of group.items) {
+          allSortedIds.push(item.id);
+          if (item.shopAreaId !== group.areaId) {
+            areaUpdates.push(itemsStore.update(listId, item.id, { shopAreaId: group.areaId, areaExplicit: true }));
+          }
+        }
+      }
+      await Promise.all([
+        ...areaUpdates,
+        itemsStore.reorder(listId, allSortedIds)
+      ]);
+    }
+    const checkedItemIds = computed(
+      () => sortBought(itemsStore.checkedItems, boughtSort.value, currentAreas.value, language).map((i) => i.id)
+    );
+    watch(() => listsStore.currentListId, async (newId) => {
+      if (newId !== null) {
+        await Promise.all([
+          itemsStore.fetchByList(newId),
+          shopAreasStore.fetchByList(newId),
+          sharesStore.fetchByList(newId)
+        ]);
+      }
+    }, { immediate: true });
+    async function onClearChecked() {
+      if (listsStore.currentListId) {
+        await itemsStore.clearChecked(listsStore.currentListId);
+      }
+    }
+    async function onUncheckAll() {
+      if (listsStore.currentListId) {
+        await itemsStore.uncheckAll(listsStore.currentListId);
+      }
+    }
+    return (_ctx, _cache) => {
+      return openBlock(), createElementBlock("div", _hoisted_1$8, [
+        createBaseVNode("div", _hoisted_2$7, [
+          createBaseVNode("h2", null, toDisplayString(unref(listsStore).currentList?.title), 1),
+          createBaseVNode("div", _hoisted_3$5, [
+            currentShares.value.length > 0 ? (openBlock(), createElementBlock("div", {
+              key: 0,
+              class: "list-view__avatars",
+              onClick: onShare
+            }, [
+              (openBlock(true), createElementBlock(Fragment, null, renderList(visibleShares.value, (share) => {
+                return openBlock(), createBlock(unref(NcAvatar), {
+                  key: share.id,
+                  user: share.sharedWithType === unref(ShareType).USER ? share.sharedWith : void 0,
+                  "display-name": share.sharedWithDisplayName || share.sharedWith,
+                  "is-no-user": share.sharedWithType === unref(ShareType).GROUP,
+                  size: 28,
+                  "show-user-status": false,
+                  class: "list-view__avatar"
+                }, null, 8, ["user", "display-name", "is-no-user"]);
+              }), 128)),
+              overflowCount.value > 0 ? (openBlock(), createElementBlock("span", _hoisted_4$5, " +" + toDisplayString(overflowCount.value), 1)) : createCommentVNode("", true)
+            ])) : createCommentVNode("", true),
+            createVNode(unref(NcActions), { "aria-label": unref(listActionsText) }, {
+              default: withCtx(() => [
+                unref(listsStore).currentList?.isOwner ? (openBlock(), createBlock(unref(NcActionButton), {
+                  key: 0,
+                  "close-after-click": "",
+                  onClick: onShare
+                }, {
+                  default: withCtx(() => [
+                    createTextVNode(toDisplayString(unref(shareText)), 1)
+                  ]),
+                  _: 1
+                })) : createCommentVNode("", true),
+                createVNode(unref(NcActionButton), {
+                  disabled: unref(itemsStore).uncheckedItems.length === 0,
+                  onClick: onCopyAsText
+                }, {
+                  default: withCtx(() => [
+                    createTextVNode(toDisplayString(unref(copyAsTextText)), 1)
+                  ]),
+                  _: 1
+                }, 8, ["disabled"]),
+                createVNode(unref(NcActionSeparator)),
+                createVNode(unref(NcActionCaption), { name: unref(sortItemsText) }, null, 8, ["name"]),
+                (openBlock(), createElementBlock(Fragment, null, renderList(openSortOptions, (option2) => {
+                  return createVNode(unref(NcActionRadio), {
+                    key: option2.value,
+                    modelValue: unref(openSort),
+                    "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => isRef(openSort) ? openSort.value = $event : null),
+                    name: "shopping-list-open-sort",
+                    value: option2.value
+                  }, {
+                    default: withCtx(() => [
+                      createTextVNode(toDisplayString(option2.label), 1)
+                    ]),
+                    _: 2
+                  }, 1032, ["modelValue", "value"]);
+                }), 64)),
+                createVNode(unref(NcActionSeparator)),
+                createVNode(unref(NcActionCaption), { name: unref(sortCheckedText) }, null, 8, ["name"]),
+                (openBlock(), createElementBlock(Fragment, null, renderList(boughtSortOptions, (option2) => {
+                  return createVNode(unref(NcActionRadio), {
+                    key: option2.value,
+                    modelValue: unref(boughtSort),
+                    "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => isRef(boughtSort) ? boughtSort.value = $event : null),
+                    name: "shopping-list-bought-sort",
+                    value: option2.value
+                  }, {
+                    default: withCtx(() => [
+                      createTextVNode(toDisplayString(option2.label), 1)
+                    ]),
+                    _: 2
+                  }, 1032, ["modelValue", "value"]);
+                }), 64))
+              ]),
+              _: 1
+            }, 8, ["aria-label"])
+          ])
+        ]),
+        createBaseVNode("div", _hoisted_5$3, [
+          canEdit.value ? (openBlock(), createBlock(ItemEditor, {
+            key: 0,
+            "list-id": unref(listsStore).currentList.id
+          }, null, 8, ["list-id"])) : createCommentVNode("", true),
+          unref(itemsStore).loading ? (openBlock(), createElementBlock("div", _hoisted_6$2, [
+            createVNode(unref(NcLoadingIcon))
+          ])) : (openBlock(), createElementBlock(Fragment, { key: 2 }, [
+            unref(itemsStore).uncheckedItems.length === 0 && unref(itemsStore).checkedItems.length === 0 ? (openBlock(), createElementBlock("div", _hoisted_7$2, [
+              createVNode(unref(NcEmptyContent), {
+                name: unref(emptyName),
+                description: unref(emptyDesc)
+              }, {
+                icon: withCtx(() => [
+                  createVNode(unref(NcIconSvgWrapper), { svg: cartIcon$1 })
+                ]),
+                _: 1
+              }, 8, ["name", "description"])
+            ])) : createCommentVNode("", true),
+            (openBlock(true), createElementBlock(Fragment, null, renderList(localGroups.value, (group, groupIndex) => {
+              return openBlock(), createElementBlock("div", {
+                key: group.areaId ?? "none",
+                class: "list-view__area-group"
+              }, [
+                hasHeader(group) ? (openBlock(), createElementBlock("button", {
+                  key: 0,
+                  type: "button",
+                  class: "list-view__area-header",
+                  style: normalizeStyle(group.areaColor ? { borderInlineStartColor: group.areaColor } : {}),
+                  "aria-expanded": !isGroupCollapsed(group),
+                  "aria-controls": groupElementId(group),
+                  onClick: ($event) => unref(toggleArea)(group.areaId)
+                }, [
+                  createVNode(unref(NcIconSvgWrapper), {
+                    path: unref(mdiChevronDown),
+                    size: 18,
+                    class: normalizeClass(["list-view__area-chevron", { "list-view__area-chevron--collapsed": isGroupCollapsed(group) }])
+                  }, null, 8, ["path", "class"]),
+                  createBaseVNode("span", {
+                    class: normalizeClass(["list-view__area-name", { "list-view__area-name--muted": !group.areaName }])
+                  }, toDisplayString(group.areaName || unref(uncategorizedText)), 3),
+                  createBaseVNode("span", _hoisted_9$2, toDisplayString(group.items.length), 1)
+                ], 12, _hoisted_8$2)) : createCommentVNode("", true),
+                withDirectives(createVNode(unref(draggable), {
+                  id: groupElementId(group),
+                  modelValue: localGroups.value[groupIndex].items,
+                  "onUpdate:modelValue": ($event) => localGroups.value[groupIndex].items = $event,
+                  "item-key": "id",
+                  group: { name: "items" },
+                  disabled: !canDrag.value,
+                  animation: 150,
+                  delay: 150,
+                  "delay-on-touch-only": true,
+                  filter: ".item-row--editing",
+                  "prevent-on-filter": false,
+                  class: "list-view__items",
+                  "ghost-class": "list-view__item--ghost",
+                  onStart: _cache[3] || (_cache[3] = ($event) => isDragging.value = true),
+                  onEnd: onDragEnd
+                }, {
+                  item: withCtx(({ element }) => [
+                    createVNode(ItemRow, {
+                      "item-id": element.id,
+                      "list-id": unref(listsStore).currentList.id,
+                      "can-edit": canEdit.value,
+                      editing: editingItemId.value === element.id,
+                      onCloseEdit: _cache[2] || (_cache[2] = ($event) => editingItemId.value = null)
+                    }, null, 8, ["item-id", "list-id", "can-edit", "editing"])
+                  ]),
+                  _: 1
+                }, 8, ["id", "modelValue", "onUpdate:modelValue", "disabled"]), [
+                  [vShow, !isGroupCollapsed(group)]
+                ])
+              ]);
+            }), 128))
+          ], 64))
+        ]),
+        !unref(itemsStore).loading && unref(itemsStore).checkedItems.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_10$2, [
+          createBaseVNode("div", _hoisted_11$2, [
+            createBaseVNode("h3", {
+              onClick: _cache[4] || (_cache[4] = ($event) => showChecked.value = !showChecked.value)
+            }, [
+              createTextVNode(toDisplayString(unref(boughtText)) + " (" + toDisplayString(unref(itemsStore).checkedItems.length) + ") ", 1),
+              createBaseVNode("span", _hoisted_12$2, toDisplayString(showChecked.value ? "▾" : "▸"), 1)
+            ]),
+            canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_13$2, [
+              createBaseVNode("button", {
+                class: "list-view__action-btn",
+                onClick: onUncheckAll
+              }, toDisplayString(unref(uncheckAllText)), 1),
+              createBaseVNode("button", {
+                class: "list-view__action-btn list-view__action-btn--danger",
+                onClick: onClearChecked
+              }, toDisplayString(unref(clearCheckedText)), 1)
+            ])) : createCommentVNode("", true)
+          ]),
+          showChecked.value ? (openBlock(), createElementBlock("div", _hoisted_14$2, [
+            (openBlock(true), createElementBlock(Fragment, null, renderList(checkedItemIds.value, (itemId) => {
+              return openBlock(), createBlock(ItemRow, {
+                key: itemId,
+                "item-id": itemId,
+                "list-id": unref(listsStore).currentList.id,
+                "can-edit": canEdit.value,
+                editing: false
+              }, null, 8, ["item-id", "list-id", "can-edit"]);
+            }), 128))
+          ])) : createCommentVNode("", true)
+        ])) : createCommentVNode("", true)
+      ]);
+    };
+  }
+});
+const ListView = /* @__PURE__ */ _export_sfc$1(_sfc_main$b, [["__scopeId", "data-v-3e065458"]]);
+const _hoisted_1$7 = { class: "area-settings" };
+const _hoisted_2$6 = { class: "area-settings__header" };
+const _hoisted_3$4 = {
+  key: 0,
+  class: "area-settings__list"
+};
+const _hoisted_4$4 = { class: "area-settings__group-heading" };
+const _hoisted_5$2 = { class: "area-settings__desc" };
+const _hoisted_6$1 = {
+  key: 0,
+  class: "area-settings__create"
+};
+const _hoisted_7$1 = ["placeholder", "onKeydown"];
+const _hoisted_8$1 = ["title"];
+const _hoisted_9$1 = ["disabled"];
+const _hoisted_10$1 = {
+  key: 1,
+  class: "area-settings__copy"
+};
+const _hoisted_11$1 = { value: null };
+const _hoisted_12$1 = ["value"];
+const _hoisted_13$1 = ["disabled"];
+const _hoisted_14$1 = {
+  key: 2,
+  class: "area-settings__loadlang"
+};
+const _hoisted_15$1 = ["disabled", "title"];
+const _hoisted_16$1 = { class: "area-settings__search" };
+const _hoisted_17$1 = ["placeholder"];
+const _hoisted_18$1 = ["onClick"];
+const _hoisted_19$1 = { class: "area-settings__section-toggle" };
+const _hoisted_20$1 = ["value", "title", "onInput"];
+const _hoisted_21$1 = ["onKeydown", "onBlur"];
+const _hoisted_22$1 = ["onDblclick"];
+const _hoisted_23$1 = ["title", "onClick"];
+const _hoisted_24$1 = { class: "area-settings__section-count" };
+const _hoisted_25$1 = ["disabled", "title", "onClick"];
+const _hoisted_26$1 = ["disabled", "title", "onClick"];
+const _hoisted_27$1 = ["title", "onClick"];
+const _hoisted_28$1 = {
+  key: 0,
+  class: "area-settings__section-body"
+};
+const _hoisted_29$1 = {
+  key: 0,
+  class: "area-settings__add"
+};
+const _hoisted_30$1 = ["onUpdate:modelValue", "placeholder", "onKeydown"];
+const _hoisted_31$1 = ["disabled", "onClick"];
+const _hoisted_32$1 = { class: "area-settings__keywords" };
+const _hoisted_33$1 = ["onClick"];
+const _hoisted_34$1 = {
+  key: 0,
+  class: "area-settings__empty"
+};
+const _sfc_main$a = /* @__PURE__ */ defineComponent({
+  __name: "AreaKeywordsSettings",
+  emits: ["back"],
+  setup(__props) {
+    const shopAreasStore = useShopAreasStore();
+    const listsStore = useListsStore();
+    const backText = translate("shopping_list", "Back to list");
+    const title = translate("shopping_list", "List settings");
+    const areasTitle = translate("shopping_list", "Shop areas");
+    const description = translate("shopping_list", "Manage shop areas, keywords, and display order. Keywords auto-detect which area an item belongs to when added or pasted.");
+    const searchPlaceholder = translate("shopping_list", "Search keywords...");
+    const addPlaceholder = translate("shopping_list", "Add keyword...");
+    const noKeywordsText = translate("shopping_list", "No keywords");
+    const renameText = translate("shopping_list", "Rename");
+    const deleteText = translate("shopping_list", "Delete area");
+    const moveUpText = translate("shopping_list", "Move up");
+    const moveDownText = translate("shopping_list", "Move down");
+    const colorTitle = translate("shopping_list", "Change color");
+    const newAreaPlaceholder = translate("shopping_list", "New area name...");
+    const addAreaText = translate("shopping_list", "Add area");
+    const copyFromPlaceholder = translate("shopping_list", "Copy categories from…");
+    const copyText = translate("shopping_list", "Copy");
+    const loadLangText = translate("shopping_list", "Load keywords for my language");
+    const loadLangHint = translate("shopping_list", "Adds your language's grocery keywords to the default areas, so items auto-sort correctly. Existing keywords are kept.");
+    const search = ref("");
+    const newKeyword = ref({});
+    const openSections = ref({});
+    const renamingAreaId = ref(null);
+    const renameValue = ref("");
+    const renameInputRef = ref(null);
+    const newAreaName = ref("");
+    const newAreaColor = ref("#9E9E9E");
+    const copySourceId = ref(null);
+    const copying = ref(false);
+    const loadingLang = ref(false);
+    const saveTimeout = {};
+    const colorTimeout = {};
+    const listId = computed(() => listsStore.currentListId);
+    const canEdit = computed(
+      () => listsStore.currentList !== null && listsStore.currentList.permission >= Permission.WRITE
+    );
+    const areas = computed(
+      () => listId.value !== null ? shopAreasStore.areasByList[listId.value] ?? [] : []
+    );
+    const otherLists = computed(
+      () => listsStore.lists.filter((l) => l.id !== listId.value).slice().sort((a, b) => a.title.localeCompare(b.title))
+    );
+    async function onCopyFrom() {
+      if (copySourceId.value === null || listId.value === null || copying.value) return;
+      copying.value = true;
+      try {
+        await shopAreasStore.copyFrom(listId.value, copySourceId.value);
+        copySourceId.value = null;
+      } finally {
+        copying.value = false;
+      }
+    }
+    async function onLoadLanguageKeywords() {
+      if (listId.value === null || loadingLang.value) return;
+      loadingLang.value = true;
+      try {
+        await shopAreasStore.loadLanguageKeywords(listId.value);
+      } finally {
+        loadingLang.value = false;
+      }
+    }
+    onMounted(() => {
+      if (listId.value !== null) {
+        shopAreasStore.fetchByList(listId.value);
+      }
+    });
+    function filteredKeywords(area) {
+      const words = area.keywords ?? [];
+      const q = search.value.toLowerCase().trim();
+      if (!q) return [...words].sort();
+      return words.filter((w) => w.includes(q)).sort();
+    }
+    function toggleSection(areaId) {
+      openSections.value[areaId] = !openSections.value[areaId];
+    }
+    function onAddKeyword(area) {
+      const word = newKeyword.value[area.id]?.trim().toLowerCase();
+      if (!word || listId.value === null) return;
+      if (area.keywords.includes(word)) {
+        newKeyword.value[area.id] = "";
+        return;
+      }
+      const updated = [...area.keywords, word];
+      area.keywords = updated;
+      newKeyword.value[area.id] = "";
+      debounceSaveKeywords(area.id, updated);
+    }
+    function onRemoveKeyword(area, word) {
+      if (listId.value === null) return;
+      const updated = area.keywords.filter((w) => w !== word);
+      area.keywords = updated;
+      debounceSaveKeywords(area.id, updated);
+    }
+    function debounceSaveKeywords(areaId, keywords) {
+      if (saveTimeout[areaId]) clearTimeout(saveTimeout[areaId]);
+      const lid = listId.value;
+      saveTimeout[areaId] = setTimeout(() => {
+        if (lid !== null) {
+          shopAreasStore.update(lid, areaId, { keywords });
+        }
+      }, 1e3);
+    }
+    async function startRename(area) {
+      renamingAreaId.value = area.id;
+      renameValue.value = area.name;
+      await nextTick();
+      if (renameInputRef.value && renameInputRef.value.length > 0) {
+        renameInputRef.value[0].focus();
+        renameInputRef.value[0].select();
+      }
+    }
+    async function saveRename(areaId) {
+      const trimmed = renameValue.value.trim();
+      if (!trimmed || renamingAreaId.value !== areaId || listId.value === null) {
+        cancelRename();
+        return;
+      }
+      const area = areas.value.find((a) => a.id === areaId);
+      if (area && trimmed !== area.name) {
+        await shopAreasStore.update(listId.value, areaId, { name: trimmed });
+      }
+      renamingAreaId.value = null;
+    }
+    function cancelRename() {
+      renamingAreaId.value = null;
+    }
+    function onColorChange(areaId, color) {
+      if (listId.value === null) return;
+      const area = areas.value.find((a) => a.id === areaId);
+      if (area) area.color = color;
+      if (colorTimeout[areaId]) clearTimeout(colorTimeout[areaId]);
+      const lid = listId.value;
+      colorTimeout[areaId] = setTimeout(() => {
+        shopAreasStore.update(lid, areaId, { color });
+      }, 500);
+    }
+    async function moveArea(index2, direction) {
+      if (listId.value === null) return;
+      const targetIndex = index2 + direction;
+      if (targetIndex < 0 || targetIndex >= areas.value.length) return;
+      const current = areas.value[index2];
+      const target = areas.value[targetIndex];
+      const currentOrder = current.sortOrder;
+      const targetOrder = target.sortOrder;
+      const newCurrentOrder = currentOrder === targetOrder ? targetIndex : targetOrder;
+      const newTargetOrder = currentOrder === targetOrder ? index2 : currentOrder;
+      const lid = listId.value;
+      await Promise.all([
+        shopAreasStore.update(lid, current.id, { sortOrder: newCurrentOrder }),
+        shopAreasStore.update(lid, target.id, { sortOrder: newTargetOrder })
+      ]);
+      await shopAreasStore.fetchByList(lid);
+    }
+    async function onCreateArea() {
+      const name = newAreaName.value.trim();
+      if (!name || listId.value === null) return;
+      await shopAreasStore.create(listId.value, name, newAreaColor.value);
+      newAreaName.value = "";
+      newAreaColor.value = "#9E9E9E";
+    }
+    async function onDeleteArea(area) {
+      if (listId.value === null) return;
+      if (!confirm(translate("shopping_list", 'Delete "{name}"? Items in this area will become uncategorized.', { name: area.name }))) {
+        return;
+      }
+      await shopAreasStore.remove(listId.value, area.id);
+    }
+    return (_ctx, _cache) => {
+      return openBlock(), createElementBlock("div", _hoisted_1$7, [
+        createBaseVNode("div", _hoisted_2$6, [
+          createBaseVNode("button", {
+            class: "area-settings__back",
+            onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("back"))
+          }, " ← " + toDisplayString(unref(backText)), 1),
+          createBaseVNode("h2", null, [
+            createTextVNode(toDisplayString(unref(title)) + " ", 1),
+            unref(listsStore).currentList ? (openBlock(), createElementBlock("span", _hoisted_3$4, toDisplayString(unref(listsStore).currentList.title), 1)) : createCommentVNode("", true)
+          ]),
+          createBaseVNode("h3", _hoisted_4$4, toDisplayString(unref(areasTitle)), 1),
+          createBaseVNode("p", _hoisted_5$2, toDisplayString(unref(description)), 1)
+        ]),
+        canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_6$1, [
+          withDirectives(createBaseVNode("input", {
+            "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => newAreaName.value = $event),
+            type: "text",
+            placeholder: unref(newAreaPlaceholder),
+            class: "area-settings__create-input",
+            onKeydown: withKeys(withModifiers(onCreateArea, ["prevent"]), ["enter"])
+          }, null, 40, _hoisted_7$1), [
+            [vModelText, newAreaName.value]
+          ]),
+          withDirectives(createBaseVNode("input", {
+            "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => newAreaColor.value = $event),
+            type: "color",
+            class: "area-settings__create-color",
+            title: unref(colorTitle)
+          }, null, 8, _hoisted_8$1), [
+            [vModelText, newAreaColor.value]
+          ]),
+          createBaseVNode("button", {
+            class: "area-settings__create-btn",
+            disabled: !newAreaName.value.trim(),
+            onClick: onCreateArea
+          }, toDisplayString(unref(addAreaText)), 9, _hoisted_9$1)
+        ])) : createCommentVNode("", true),
+        canEdit.value && otherLists.value.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_10$1, [
+          withDirectives(createBaseVNode("select", {
+            "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => copySourceId.value = $event),
+            class: "area-settings__copy-select"
+          }, [
+            createBaseVNode("option", _hoisted_11$1, toDisplayString(unref(copyFromPlaceholder)), 1),
+            (openBlock(true), createElementBlock(Fragment, null, renderList(otherLists.value, (l) => {
+              return openBlock(), createElementBlock("option", {
+                key: l.id,
+                value: l.id
+              }, toDisplayString(l.title), 9, _hoisted_12$1);
+            }), 128))
+          ], 512), [
+            [vModelSelect, copySourceId.value]
+          ]),
+          createBaseVNode("button", {
+            class: "area-settings__copy-btn",
+            disabled: copySourceId.value === null || copying.value,
+            onClick: onCopyFrom
+          }, toDisplayString(unref(copyText)), 9, _hoisted_13$1)
+        ])) : createCommentVNode("", true),
+        canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_14$1, [
+          createBaseVNode("button", {
+            class: "area-settings__loadlang-btn",
+            disabled: loadingLang.value,
+            title: unref(loadLangHint),
+            onClick: onLoadLanguageKeywords
+          }, toDisplayString(unref(loadLangText)), 9, _hoisted_15$1)
+        ])) : createCommentVNode("", true),
+        createBaseVNode("div", _hoisted_16$1, [
+          withDirectives(createBaseVNode("input", {
+            "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => search.value = $event),
+            type: "text",
+            placeholder: unref(searchPlaceholder),
+            class: "area-settings__search-input"
+          }, null, 8, _hoisted_17$1), [
+            [vModelText, search.value]
+          ])
+        ]),
+        (openBlock(true), createElementBlock(Fragment, null, renderList(areas.value, (area, index2) => {
+          return openBlock(), createElementBlock("div", {
+            key: area.id,
+            class: "area-settings__section"
+          }, [
+            createBaseVNode("div", {
+              class: "area-settings__section-header",
+              onClick: ($event) => toggleSection(area.id)
+            }, [
+              createBaseVNode("span", _hoisted_19$1, toDisplayString(openSections.value[area.id] ? "▾" : "▸"), 1),
+              canEdit.value ? (openBlock(), createElementBlock("input", {
+                key: 0,
+                type: "color",
+                value: area.color || "#9E9E9E",
+                class: "area-settings__color-input",
+                title: unref(colorTitle),
+                onClick: _cache[5] || (_cache[5] = withModifiers(() => {
+                }, ["stop"])),
+                onInput: ($event) => onColorChange(area.id, $event.target.value)
+              }, null, 40, _hoisted_20$1)) : (openBlock(), createElementBlock("span", {
+                key: 1,
+                class: "area-settings__color-swatch",
+                style: normalizeStyle({ backgroundColor: area.color || "#9E9E9E" })
+              }, null, 4)),
+              canEdit.value && renamingAreaId.value === area.id ? withDirectives((openBlock(), createElementBlock("input", {
+                key: 2,
+                ref_for: true,
+                ref_key: "renameInputRef",
+                ref: renameInputRef,
+                "onUpdate:modelValue": _cache[6] || (_cache[6] = ($event) => renameValue.value = $event),
+                type: "text",
+                class: "area-settings__rename-input",
+                onClick: _cache[7] || (_cache[7] = withModifiers(() => {
+                }, ["stop"])),
+                onKeydown: [
+                  withKeys(withModifiers(($event) => saveRename(area.id), ["prevent"]), ["enter"]),
+                  withKeys(withModifiers(cancelRename, ["prevent"]), ["escape"])
+                ],
+                onBlur: ($event) => saveRename(area.id)
+              }, null, 40, _hoisted_21$1)), [
+                [vModelText, renameValue.value]
+              ]) : (openBlock(), createElementBlock(Fragment, { key: 3 }, [
+                createBaseVNode("span", {
+                  class: "area-settings__section-name",
+                  onDblclick: withModifiers(($event) => canEdit.value && startRename(area), ["stop"])
+                }, toDisplayString(area.name), 41, _hoisted_22$1),
+                canEdit.value ? (openBlock(), createElementBlock("button", {
+                  key: 0,
+                  class: "area-settings__action-btn area-settings__action-btn--rename",
+                  title: unref(renameText),
+                  onClick: withModifiers(($event) => startRename(area), ["stop"])
+                }, " ✎ ", 8, _hoisted_23$1)) : createCommentVNode("", true)
+              ], 64)),
+              createBaseVNode("span", _hoisted_24$1, toDisplayString(filteredKeywords(area).length), 1),
+              canEdit.value ? (openBlock(), createElementBlock(Fragment, { key: 4 }, [
+                createBaseVNode("button", {
+                  class: "area-settings__action-btn",
+                  disabled: index2 === 0,
+                  title: unref(moveUpText),
+                  onClick: withModifiers(($event) => moveArea(index2, -1), ["stop"])
+                }, " ▲ ", 8, _hoisted_25$1),
+                createBaseVNode("button", {
+                  class: "area-settings__action-btn",
+                  disabled: index2 === areas.value.length - 1,
+                  title: unref(moveDownText),
+                  onClick: withModifiers(($event) => moveArea(index2, 1), ["stop"])
+                }, " ▼ ", 8, _hoisted_26$1),
+                createBaseVNode("button", {
+                  class: "area-settings__action-btn area-settings__action-btn--delete",
+                  title: unref(deleteText),
+                  onClick: withModifiers(($event) => onDeleteArea(area), ["stop"])
+                }, " ✕ ", 8, _hoisted_27$1)
+              ], 64)) : createCommentVNode("", true)
+            ], 8, _hoisted_18$1),
+            openSections.value[area.id] ? (openBlock(), createElementBlock("div", _hoisted_28$1, [
+              canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_29$1, [
+                withDirectives(createBaseVNode("input", {
+                  "onUpdate:modelValue": ($event) => newKeyword.value[area.id] = $event,
+                  type: "text",
+                  placeholder: unref(addPlaceholder),
+                  class: "area-settings__add-input",
+                  onKeydown: withKeys(withModifiers(($event) => onAddKeyword(area), ["prevent"]), ["enter"])
+                }, null, 40, _hoisted_30$1), [
+                  [vModelText, newKeyword.value[area.id]]
+                ]),
+                createBaseVNode("button", {
+                  class: "area-settings__add-btn",
+                  disabled: !newKeyword.value[area.id]?.trim(),
+                  onClick: ($event) => onAddKeyword(area)
+                }, " + ", 8, _hoisted_31$1)
+              ])) : createCommentVNode("", true),
+              createBaseVNode("div", _hoisted_32$1, [
+                (openBlock(true), createElementBlock(Fragment, null, renderList(filteredKeywords(area), (word) => {
+                  return openBlock(), createElementBlock("span", {
+                    key: word,
+                    class: "area-settings__keyword"
+                  }, [
+                    createTextVNode(toDisplayString(word) + " ", 1),
+                    canEdit.value ? (openBlock(), createElementBlock("button", {
+                      key: 0,
+                      class: "area-settings__keyword-remove",
+                      onClick: ($event) => onRemoveKeyword(area, word)
+                    }, "✕", 8, _hoisted_33$1)) : createCommentVNode("", true)
+                  ]);
+                }), 128)),
+                filteredKeywords(area).length === 0 ? (openBlock(), createElementBlock("span", _hoisted_34$1, toDisplayString(unref(noKeywordsText)), 1)) : createCommentVNode("", true)
+              ])
+            ])) : createCommentVNode("", true)
+          ]);
+        }), 128))
+      ]);
+    };
+  }
+});
+const AreaKeywordsSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$a, [["__scopeId", "data-v-08060dbd"]]);
+const _sfc_main$9 = /* @__PURE__ */ defineComponent({
+  __name: "ListSortSettings",
+  setup(__props) {
+    const listsStore = useListsStore();
+    const title = translate("shopping_list", "Sort lists");
+    const options = [
+      { value: "updated", label: translate("shopping_list", "Recently updated") },
+      { value: "alpha", label: translate("shopping_list", "A to Z") },
+      { value: "custom", label: translate("shopping_list", "Custom (drag to reorder)") }
+    ];
+    return (_ctx, _cache) => {
+      return openBlock(), createBlock(unref(NcRadioGroup), {
+        class: "list-sort-settings",
+        label: unref(title),
+        "model-value": unref(listsStore).listSort,
+        "onUpdate:modelValue": _cache[0] || (_cache[0] = (value) => unref(listsStore).setListSort(value))
+      }, {
+        default: withCtx(() => [
+          (openBlock(), createElementBlock(Fragment, null, renderList(options, (option2) => {
+            return createVNode(unref(NcCheckboxRadioSwitch), {
+              key: option2.value,
+              type: "radio",
+              name: "shopping-list-list-sort",
+              value: option2.value
+            }, {
+              default: withCtx(() => [
+                createTextVNode(toDisplayString(option2.label), 1)
+              ]),
+              _: 2
+            }, 1032, ["value"]);
+          }), 64))
+        ]),
+        _: 1
+      }, 8, ["label", "model-value"]);
+    };
+  }
+});
+const ListSortSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$9, [["__scopeId", "data-v-31964199"]]);
+const _hoisted_1$6 = { class: "image-settings" };
+const _hoisted_2$5 = { class: "image-settings__title" };
+const _sfc_main$8 = /* @__PURE__ */ defineComponent({
+  __name: "ItemImagesSettings",
+  setup(__props) {
+    const { enabled, saving, setEnabled } = useImagePreference();
+    const title = translate("shopping_list", "Item images");
+    const switchLabel = translate("shopping_list", "Show item images");
+    const hint = translate("shopping_list", "Attach a photo to an item from its menu, or paste or drop one onto it. Photos are part of the list, so everyone with access can see them. This switch only changes what you see.");
+    const saveFailedText = translate("shopping_list", "Failed to save setting");
+    async function onToggle(value) {
+      try {
+        await setEnabled(value);
+      } catch (e) {
+        showError(saveFailedText);
+        console.error(e);
+      }
+    }
+    return (_ctx, _cache) => {
+      return openBlock(), createElementBlock("section", _hoisted_1$6, [
+        createBaseVNode("h3", _hoisted_2$5, toDisplayString(unref(title)), 1),
+        createVNode(unref(NcCheckboxRadioSwitch), {
+          type: "switch",
+          "model-value": unref(enabled),
+          loading: unref(saving),
+          description: unref(hint),
+          "onUpdate:modelValue": onToggle
+        }, {
+          default: withCtx(() => [
+            createTextVNode(toDisplayString(unref(switchLabel)), 1)
+          ]),
+          _: 1
+        }, 8, ["model-value", "loading", "description"])
+      ]);
+    };
+  }
+});
+const ItemImagesSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$8, [["__scopeId", "data-v-f369b16f"]]);
+const _hoisted_1$5 = { class: "name-settings" };
+const _hoisted_2$4 = { class: "name-settings__title" };
+const _sfc_main$7 = /* @__PURE__ */ defineComponent({
+  __name: "NameSettings",
+  setup(__props) {
+    const { enabled, saving, setEnabled } = useOwnNamePreference();
+    const title = translate("shopping_list", "Names");
+    const switchLabel = translate("shopping_list", "Show my name on items");
+    const hint = translate("shopping_list", "Your name always shows to everyone else. This switch only changes what you see.");
+    const saveFailedText = translate("shopping_list", "Failed to save setting");
+    async function onToggle(value) {
+      try {
+        await setEnabled(value);
+      } catch (e) {
+        showError(saveFailedText);
+        console.error(e);
+      }
+    }
+    return (_ctx, _cache) => {
+      return openBlock(), createElementBlock("section", _hoisted_1$5, [
+        createBaseVNode("h3", _hoisted_2$4, toDisplayString(unref(title)), 1),
+        createVNode(unref(NcCheckboxRadioSwitch), {
+          type: "switch",
+          "model-value": unref(enabled),
+          loading: unref(saving),
+          description: unref(hint),
+          "onUpdate:modelValue": onToggle
+        }, {
+          default: withCtx(() => [
+            createTextVNode(toDisplayString(unref(switchLabel)), 1)
+          ]),
+          _: 1
+        }, 8, ["model-value", "loading", "description"])
+      ]);
+    };
+  }
+});
+const NameSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$7, [["__scopeId", "data-v-172906c9"]]);
+const _hoisted_1$4 = { class: "backup" };
+const _hoisted_2$3 = { class: "backup__title" };
+const _hoisted_3$3 = { class: "backup__hint" };
+const _hoisted_4$3 = ["aria-label"];
+const _sfc_main$6 = /* @__PURE__ */ defineComponent({
+  __name: "BackupSettings",
+  setup(__props) {
+    const listsStore = useListsStore();
+    const fileInput = ref(null);
+    const restoring = ref(false);
+    const backupText = translate("shopping_list", "Backup");
+    const hintText = translate("shopping_list", "A backup holds your own lists, their items, areas and tags. Shares are not included, and restoring adds lists rather than replacing the ones you have.");
+    const downloadText = translate("shopping_list", "Download backup");
+    const restoreText = translate("shopping_list", "Restore from backup");
+    const restoringText = translate("shopping_list", "Restoring...");
+    const downloadFailedText = translate("shopping_list", "Could not download the backup");
+    async function onDownload() {
+      try {
+        const response = await api.backup.download();
+        const filename = `shopping-list-backup-${(/* @__PURE__ */ new Date()).toISOString().slice(0, 10)}.json`;
+        const objectUrl = URL.createObjectURL(response.data);
+        const link = document.createElement("a");
+        link.href = objectUrl;
+        link.download = filename;
+        link.click();
+        URL.revokeObjectURL(objectUrl);
+      } catch (e) {
+        showError(downloadFailedText);
+        console.error(e);
+      }
+    }
+    async function onFileChosen(event) {
+      const input = event.target;
+      const file = input.files?.[0];
+      if (!file) return;
+      restoring.value = true;
+      let restored = false;
+      try {
+        const payload = JSON.parse(await file.text());
+        const response = await api.backup.restore(payload);
+        const added = response.data.lists ?? 0;
+        showSuccess(translatePlural("shopping_list", "Restored %n list", "Restored %n lists", added));
+        restored = true;
+      } catch (e) {
+        showError(translate("shopping_list", "That file could not be restored"));
+        console.error(e);
+      } finally {
+        restoring.value = false;
+        input.value = "";
+      }
+      if (restored) {
+        await listsStore.fetchAll();
+      }
+    }
+    return (_ctx, _cache) => {
+      return openBlock(), createElementBlock("section", _hoisted_1$4, [
+        createBaseVNode("h3", _hoisted_2$3, toDisplayString(unref(backupText)), 1),
+        createBaseVNode("p", _hoisted_3$3, toDisplayString(unref(hintText)), 1),
+        createVNode(unref(NcButton), {
+          wide: "",
+          onClick: onDownload
+        }, {
+          default: withCtx(() => [
+            createTextVNode(toDisplayString(unref(downloadText)), 1)
+          ]),
+          _: 1
+        }),
+        createVNode(unref(NcButton), {
+          wide: "",
+          disabled: restoring.value,
+          onClick: _cache[0] || (_cache[0] = ($event) => fileInput.value?.click())
+        }, {
+          default: withCtx(() => [
+            createTextVNode(toDisplayString(restoring.value ? unref(restoringText) : unref(restoreText)), 1)
+          ]),
+          _: 1
+        }, 8, ["disabled"]),
+        createBaseVNode("input", {
+          ref_key: "fileInput",
+          ref: fileInput,
+          type: "file",
+          accept: "application/json,.json",
+          class: "backup__file",
+          "aria-label": unref(restoreText),
+          onChange: onFileChosen
+        }, null, 40, _hoisted_4$3)
+      ]);
+    };
+  }
+});
+const BackupSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$6, [["__scopeId", "data-v-78e2f22c"]]);
+const ANDROID_APP_URL = "https://play.google.com/store/apps/details?id=dev.otherworld.shoppinglist";
+const HIDDEN_KEY = "shopping_list.androidAppLink.hidden";
+function loadHidden(storage) {
+  if (!storage) return false;
+  try {
+    return storage.getItem(HIDDEN_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+function saveHidden(storage) {
+  if (!storage) return;
+  try {
+    storage.setItem(HIDDEN_KEY, "1");
+  } catch {
+  }
+}
+const _hoisted_1$3 = {
+  key: 0,
+  class: "android-app-link"
+};
+const phoneIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17,19H7V5H17M17,1H7C5.89,1 5,1.89 5,3V21A2,2 0 0,0 7,23H17A2,2 0 0,0 19,21V3C19,1.89 18.1,1 17,1Z" fill="currentColor"/></svg>';
+const _sfc_main$5 = /* @__PURE__ */ defineComponent({
+  __name: "AndroidAppLink",
+  setup(__props) {
+    const storage = browserStorage();
+    const hidden = ref(loadHidden(storage));
+    const linkText = translate("shopping_list", "Get the Android app");
+    const hideText = translate("shopping_list", "Hide this link");
+    function onHide() {
+      hidden.value = true;
+      saveHidden(storage);
+    }
+    return (_ctx, _cache) => {
+      return !hidden.value ? (openBlock(), createElementBlock("ul", _hoisted_1$3, [
+        createVNode(unref(NcAppNavigationItem), {
+          name: unref(linkText),
+          href: unref(ANDROID_APP_URL),
+          "force-menu": ""
+        }, {
+          icon: withCtx(() => [
+            createVNode(unref(NcIconSvgWrapper), {
+              svg: phoneIcon,
+              size: 20
+            })
+          ]),
+          actions: withCtx(() => [
+            createVNode(unref(NcActionButton), { onClick: onHide }, {
+              default: withCtx(() => [
+                createTextVNode(toDisplayString(unref(hideText)), 1)
+              ]),
+              _: 1
+            })
+          ]),
+          _: 1
+        }, 8, ["name", "href"])
+      ])) : createCommentVNode("", true);
+    };
+  }
+});
+const AndroidAppLink = /* @__PURE__ */ _export_sfc$1(_sfc_main$5, [["__scopeId", "data-v-9ecb6a23"]]);
+const syncing = ref(false);
+const pendingCount = ref(0);
+let draining = false;
+async function replayMutation(m) {
+  switch (m.type) {
+    case "item.check":
+      return api.items.check(m.listId, m.itemId, m.payload.checked);
+    case "item.create":
+      return api.items.create(m.listId, m.payload);
+    case "item.update":
+      return api.items.update(m.listId, m.itemId, m.payload);
+    case "item.delete":
+      return api.items.delete(m.listId, m.itemId);
+    case "item.reorder":
+      return api.items.reorder(m.listId, m.payload.sortedIds);
+    case "item.clearChecked":
+      return api.items.clearChecked(m.listId);
+    case "item.uncheckAll":
+      return api.items.uncheckAll(m.listId);
+    default:
+      throw new Error(`Unknown mutation type: ${m.type}`);
+  }
+}
+function getHttpStatus(error) {
+  if (!error || typeof error !== "object") return null;
+  const resp = error.response;
+  return resp?.status ?? null;
+}
+async function drain() {
+  if (draining) return;
+  draining = true;
+  syncing.value = true;
+  try {
+    const queue2 = await peekAll();
+    pendingCount.value = queue2.length;
+    if (queue2.length === 0) return;
+    const itemsStore = useItemsStore();
+    while (true) {
+      const current = await peekAll();
+      if (current.length === 0) break;
+      const mutation = current[0];
+      try {
+        const result = await replayMutation(mutation);
+        if (mutation.type === "item.create" && mutation.tempId) {
+          const realItem = result.data.ocs.data;
+          itemsStore.replaceTempId(mutation.listId, Number(mutation.tempId), realItem);
+        }
+        await removeMutation(mutation.id);
+        pendingCount.value = (await peekAll()).length;
+      } catch (error) {
+        if (isNetworkError(error)) {
+          break;
+        }
+        const status = getHttpStatus(error);
+        if (status === 404) {
+          await removeMutation(mutation.id);
+          pendingCount.value = (await peekAll()).length;
+          continue;
+        }
+        if (mutation.retries >= 2) {
+          console.error("[ShoppingList] Discarding mutation after 3 failures:", mutation, error);
+          await removeMutation(mutation.id);
+          pendingCount.value = (await peekAll()).length;
+          continue;
+        }
+        await removeMutation(mutation.id);
+        await enqueue({
+          type: mutation.type,
+          listId: mutation.listId,
+          itemId: mutation.itemId,
+          payload: mutation.payload,
+          tempId: mutation.tempId
+        });
+        const updated = await peekAll();
+        if (updated.length > 0) {
+          const last = updated[updated.length - 1];
+          last.retries = mutation.retries + 1;
+        }
+        pendingCount.value = updated.length;
+      }
+    }
+    const remaining = await peekAll();
+    if (remaining.length === 0) {
+      const listsStore = useListsStore();
+      await listsStore.fetchAll();
+      if (listsStore.currentListId) {
+        await itemsStore.fetchByList(listsStore.currentListId);
+      }
+    }
+  } finally {
+    draining = false;
+    syncing.value = false;
+    pendingCount.value = (await peekAll()).length;
+  }
+}
+function useSyncEngine() {
+  const { onOnline } = useNetworkStatus();
+  onOnline(() => {
+    drain();
+  });
+  return {
+    syncing: readonly(syncing),
+    pendingCount: readonly(pendingCount),
+    drain
+  };
+}
+const _hoisted_1$2 = {
+  key: 0,
+  class: "offline-indicator__icon spinning"
+};
+const _hoisted_2$2 = {
+  key: 1,
+  class: "offline-indicator__icon"
+};
+const _hoisted_3$2 = {
+  key: 2,
+  class: "offline-indicator__icon"
+};
+const _hoisted_4$2 = { class: "offline-indicator__text" };
+const _hoisted_5$1 = {
+  key: 3,
+  class: "offline-indicator__badge"
+};
+const _sfc_main$4 = /* @__PURE__ */ defineComponent({
+  __name: "OfflineIndicator",
+  setup(__props) {
+    const { isOnline: isOnline2 } = useNetworkStatus();
+    const { syncing: syncing2, pendingCount: pendingCount2 } = useSyncEngine();
+    const justSynced = ref(false);
+    let syncedTimer = null;
+    watch(syncing2, (isSyncing, wasSyncing) => {
+      if (wasSyncing && !isSyncing && pendingCount2.value === 0) {
+        justSynced.value = true;
+        if (syncedTimer) clearTimeout(syncedTimer);
+        syncedTimer = setTimeout(() => {
+          justSynced.value = false;
+        }, 3e3);
+      }
+    });
+    const visible = computed(() => {
+      return !isOnline2.value || syncing2.value || justSynced.value || pendingCount2.value > 0;
+    });
+    const statusClass = computed(() => {
+      if (syncing2.value) return "offline-indicator--syncing";
+      if (!isOnline2.value) return "offline-indicator--offline";
+      if (justSynced.value) return "offline-indicator--synced";
+      if (pendingCount2.value > 0) return "offline-indicator--pending";
+      return "";
+    });
+    const statusText = computed(() => {
+      if (syncing2.value) return translate("shopping_list", "Syncing changes…");
+      if (!isOnline2.value && pendingCount2.value > 0) {
+        return translate("shopping_list", "Offline — {count} pending", { count: pendingCount2.value });
+      }
+      if (!isOnline2.value) return translate("shopping_list", "You're offline");
+      if (justSynced.value) return translate("shopping_list", "All changes synced");
+      if (pendingCount2.value > 0) return translate("shopping_list", "{count} changes pending", { count: pendingCount2.value });
+      return "";
+    });
+    return (_ctx, _cache) => {
+      return openBlock(), createBlock(Transition, { name: "offline-fade" }, {
+        default: withCtx(() => [
+          visible.value ? (openBlock(), createElementBlock("div", {
+            key: 0,
+            class: normalizeClass(["offline-indicator", statusClass.value])
+          }, [
+            unref(syncing2) ? (openBlock(), createElementBlock("span", _hoisted_1$2, "↻")) : !unref(isOnline2) ? (openBlock(), createElementBlock("span", _hoisted_2$2, "⚠")) : (openBlock(), createElementBlock("span", _hoisted_3$2, "✓")),
+            createBaseVNode("span", _hoisted_4$2, toDisplayString(statusText.value), 1),
+            unref(pendingCount2) > 0 && !unref(syncing2) ? (openBlock(), createElementBlock("span", _hoisted_5$1, toDisplayString(unref(pendingCount2)), 1)) : createCommentVNode("", true)
+          ], 2)) : createCommentVNode("", true)
+        ]),
+        _: 1
+      });
+    };
+  }
+});
+const OfflineIndicator = /* @__PURE__ */ _export_sfc$1(_sfc_main$4, [["__scopeId", "data-v-214ff348"]]);
 var QrCodeDataType = /* @__PURE__ */ ((QrCodeDataType2) => {
   QrCodeDataType2[QrCodeDataType2["Border"] = -1] = "Border";
   QrCodeDataType2[QrCodeDataType2["Data"] = 0] = "Data";
@@ -17195,67 +18284,67 @@ async function copyToClipboard(text, clipboard = navigator.clipboard, doc = docu
     area.remove();
   }
 }
-const _hoisted_1$6 = { class: "share-modal" };
-const _hoisted_2$5 = { class: "share-modal__header" };
-const _hoisted_3$3 = { class: "share-modal__search" };
-const _hoisted_4$3 = ["placeholder"];
-const _hoisted_5$3 = {
+const _hoisted_1$1 = { class: "share-modal" };
+const _hoisted_2$1 = { class: "share-modal__header" };
+const _hoisted_3$1 = { class: "share-modal__search" };
+const _hoisted_4$1 = ["placeholder"];
+const _hoisted_5 = {
   key: 0,
   class: "share-modal__results"
 };
-const _hoisted_6$2 = ["onClick"];
-const _hoisted_7$2 = { class: "share-modal__icon" };
-const _hoisted_8$2 = { class: "share-modal__result-info" };
-const _hoisted_9$2 = { class: "share-modal__result-name" };
-const _hoisted_10$2 = {
+const _hoisted_6 = ["onClick"];
+const _hoisted_7 = { class: "share-modal__icon" };
+const _hoisted_8 = { class: "share-modal__result-info" };
+const _hoisted_9 = { class: "share-modal__result-name" };
+const _hoisted_10 = {
   key: 0,
   class: "share-modal__result-type"
 };
-const _hoisted_11$2 = {
+const _hoisted_11 = {
   key: 1,
   class: "share-modal__no-results"
 };
-const _hoisted_12$2 = {
+const _hoisted_12 = {
   key: 2,
   class: "share-modal__shares"
 };
-const _hoisted_13$2 = { class: "share-modal__section-title" };
-const _hoisted_14$2 = { class: "share-modal__icon" };
-const _hoisted_15$1 = { class: "share-modal__share-info" };
-const _hoisted_16$1 = { class: "share-modal__share-name" };
-const _hoisted_17$1 = {
+const _hoisted_13 = { class: "share-modal__section-title" };
+const _hoisted_14 = { class: "share-modal__icon" };
+const _hoisted_15 = { class: "share-modal__share-info" };
+const _hoisted_16 = { class: "share-modal__share-name" };
+const _hoisted_17 = {
   key: 0,
   class: "share-modal__share-type"
 };
-const _hoisted_18$1 = ["value", "onChange"];
-const _hoisted_19$1 = { value: 0 };
-const _hoisted_20$1 = { value: 1 };
-const _hoisted_21$1 = ["onClick"];
-const _hoisted_22$1 = {
+const _hoisted_18 = ["value", "onChange"];
+const _hoisted_19 = { value: 0 };
+const _hoisted_20 = { value: 1 };
+const _hoisted_21 = ["onClick"];
+const _hoisted_22 = {
   key: 3,
   class: "share-modal__link-section"
 };
-const _hoisted_23$1 = { class: "share-modal__section-title" };
-const _hoisted_24$1 = {
+const _hoisted_23 = { class: "share-modal__section-title" };
+const _hoisted_24 = {
   key: 0,
   class: "share-modal__link-create"
 };
-const _hoisted_25$1 = {
+const _hoisted_25 = {
   key: 1,
   class: "share-modal__link-details"
 };
-const _hoisted_26$1 = { class: "share-modal__link-url-row" };
-const _hoisted_27$1 = ["value"];
-const _hoisted_28$1 = { class: "share-modal__link-qr" };
-const _hoisted_29$1 = ["aria-expanded"];
-const _hoisted_30$1 = ["src", "alt"];
-const _hoisted_31$1 = {
+const _hoisted_26 = { class: "share-modal__link-url-row" };
+const _hoisted_27 = ["value"];
+const _hoisted_28 = { class: "share-modal__link-qr" };
+const _hoisted_29 = ["aria-expanded"];
+const _hoisted_30 = ["src", "alt"];
+const _hoisted_31 = {
   key: 0,
   class: "share-modal__invite"
 };
-const _hoisted_32$1 = { class: "share-modal__invite-title" };
-const _hoisted_33$1 = { class: "share-modal__invite-parts" };
-const _hoisted_34$1 = { class: "share-modal__invite-value" };
+const _hoisted_32 = { class: "share-modal__invite-title" };
+const _hoisted_33 = { class: "share-modal__invite-parts" };
+const _hoisted_34 = { class: "share-modal__invite-value" };
 const _hoisted_35 = { class: "share-modal__invite-value share-modal__invite-code" };
 const _hoisted_36 = { class: "share-modal__invite-hint" };
 const _hoisted_37 = { class: "share-modal__link-options" };
@@ -17274,7 +18363,7 @@ const _hoisted_49 = {
   key: 4,
   class: "share-modal__empty"
 };
-const _sfc_main$8 = /* @__PURE__ */ defineComponent({
+const _sfc_main$3 = /* @__PURE__ */ defineComponent({
   __name: "ShareDialog",
   props: {
     listId: {},
@@ -17453,15 +18542,15 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
         class: "share-overlay",
         onClick: _cache[8] || (_cache[8] = withModifiers(($event) => _ctx.$emit("close"), ["self"]))
       }, [
-        createBaseVNode("div", _hoisted_1$6, [
-          createBaseVNode("div", _hoisted_2$5, [
+        createBaseVNode("div", _hoisted_1$1, [
+          createBaseVNode("div", _hoisted_2$1, [
             createBaseVNode("h3", null, toDisplayString(unref(shareTitle)), 1),
             createBaseVNode("button", {
               class: "share-modal__close",
               onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("close"))
             }, " ✕ ")
           ]),
-          createBaseVNode("div", _hoisted_3$3, [
+          createBaseVNode("div", _hoisted_3$1, [
             withDirectives(createBaseVNode("input", {
               ref_key: "searchRef",
               ref: searchRef,
@@ -17470,36 +18559,36 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
               placeholder: unref(searchPlaceholder),
               class: "share-modal__search-input",
               onInput: onSearchInput
-            }, null, 40, _hoisted_4$3), [
+            }, null, 40, _hoisted_4$1), [
               [vModelText, searchQuery.value]
             ])
           ]),
-          shareeResults.value.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_5$3, [
+          shareeResults.value.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_5, [
             (openBlock(true), createElementBlock(Fragment, null, renderList(shareeResults.value, (sharee) => {
               return openBlock(), createElementBlock("div", {
                 key: sharee.value + sharee.type,
                 class: "share-modal__result",
                 onClick: ($event) => onSelectSharee(sharee)
               }, [
-                createBaseVNode("span", _hoisted_7$2, toDisplayString(sharee.type === 1 ? "👥" : "👤"), 1),
-                createBaseVNode("div", _hoisted_8$2, [
-                  createBaseVNode("span", _hoisted_9$2, toDisplayString(sharee.label), 1),
-                  sharee.type === 1 ? (openBlock(), createElementBlock("span", _hoisted_10$2, toDisplayString(unref(groupText)), 1)) : createCommentVNode("", true)
+                createBaseVNode("span", _hoisted_7, toDisplayString(sharee.type === 1 ? "👥" : "👤"), 1),
+                createBaseVNode("div", _hoisted_8, [
+                  createBaseVNode("span", _hoisted_9, toDisplayString(sharee.label), 1),
+                  sharee.type === 1 ? (openBlock(), createElementBlock("span", _hoisted_10, toDisplayString(unref(groupText)), 1)) : createCommentVNode("", true)
                 ])
-              ], 8, _hoisted_6$2);
+              ], 8, _hoisted_6);
             }), 128))
-          ])) : searchQuery.value.length > 0 && !searching.value ? (openBlock(), createElementBlock("div", _hoisted_11$2, toDisplayString(unref(noResultsText)), 1)) : createCommentVNode("", true),
-          shares.value.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_12$2, [
-            createBaseVNode("div", _hoisted_13$2, toDisplayString(unref(sharedWithText)), 1),
+          ])) : searchQuery.value.length > 0 && !searching.value ? (openBlock(), createElementBlock("div", _hoisted_11, toDisplayString(unref(noResultsText)), 1)) : createCommentVNode("", true),
+          shares.value.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_12, [
+            createBaseVNode("div", _hoisted_13, toDisplayString(unref(sharedWithText)), 1),
             (openBlock(true), createElementBlock(Fragment, null, renderList(shares.value, (share) => {
               return openBlock(), createElementBlock("div", {
                 key: share.id,
                 class: "share-modal__share"
               }, [
-                createBaseVNode("span", _hoisted_14$2, toDisplayString(share.sharedWithType === 1 ? "👥" : "👤"), 1),
-                createBaseVNode("div", _hoisted_15$1, [
-                  createBaseVNode("span", _hoisted_16$1, toDisplayString(share.sharedWithDisplayName), 1),
-                  share.sharedWithType === 1 ? (openBlock(), createElementBlock("span", _hoisted_17$1, toDisplayString(unref(groupText)), 1)) : createCommentVNode("", true)
+                createBaseVNode("span", _hoisted_14, toDisplayString(share.sharedWithType === 1 ? "👥" : "👤"), 1),
+                createBaseVNode("div", _hoisted_15, [
+                  createBaseVNode("span", _hoisted_16, toDisplayString(share.sharedWithDisplayName), 1),
+                  share.sharedWithType === 1 ? (openBlock(), createElementBlock("span", _hoisted_17, toDisplayString(unref(groupText)), 1)) : createCommentVNode("", true)
                 ]),
                 __props.isOwner ? (openBlock(), createElementBlock("select", {
                   key: 0,
@@ -17507,26 +18596,26 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
                   value: share.permission,
                   onChange: ($event) => onPermissionChange(share.id, Number($event.target.value))
                 }, [
-                  createBaseVNode("option", _hoisted_19$1, toDisplayString(unref(canViewText)), 1),
-                  createBaseVNode("option", _hoisted_20$1, toDisplayString(unref(canEditText)), 1)
-                ], 40, _hoisted_18$1)) : createCommentVNode("", true),
+                  createBaseVNode("option", _hoisted_19, toDisplayString(unref(canViewText)), 1),
+                  createBaseVNode("option", _hoisted_20, toDisplayString(unref(canEditText)), 1)
+                ], 40, _hoisted_18)) : createCommentVNode("", true),
                 __props.isOwner || share.sharedWith === __props.currentUserId ? (openBlock(), createElementBlock("button", {
                   key: 1,
                   class: "share-modal__remove",
                   onClick: ($event) => onRemoveShare(share.id)
-                }, " ✕ ", 8, _hoisted_21$1)) : createCommentVNode("", true)
+                }, " ✕ ", 8, _hoisted_21)) : createCommentVNode("", true)
               ]);
             }), 128))
           ])) : createCommentVNode("", true),
-          __props.isOwner ? (openBlock(), createElementBlock("div", _hoisted_22$1, [
-            createBaseVNode("div", _hoisted_23$1, toDisplayString(unref(publicLinkText)), 1),
-            !linkShare.value ? (openBlock(), createElementBlock("div", _hoisted_24$1, [
+          __props.isOwner ? (openBlock(), createElementBlock("div", _hoisted_22, [
+            createBaseVNode("div", _hoisted_23, toDisplayString(unref(publicLinkText)), 1),
+            !linkShare.value ? (openBlock(), createElementBlock("div", _hoisted_24, [
               createBaseVNode("button", {
                 class: "share-modal__link-btn",
                 onClick: onCreateLink
               }, toDisplayString(unref(createLinkText)), 1)
-            ])) : (openBlock(), createElementBlock("div", _hoisted_25$1, [
-              createBaseVNode("div", _hoisted_26$1, [
+            ])) : (openBlock(), createElementBlock("div", _hoisted_25, [
+              createBaseVNode("div", _hoisted_26, [
                 createBaseVNode("input", {
                   ref_key: "linkUrlRef",
                   ref: linkUrlRef,
@@ -17534,30 +18623,30 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
                   readonly: "",
                   class: "share-modal__link-url",
                   onFocus: _cache[2] || (_cache[2] = ($event) => $event.target.select())
-                }, null, 40, _hoisted_27$1),
+                }, null, 40, _hoisted_27),
                 createBaseVNode("button", {
                   class: "share-modal__link-copy",
                   onClick: onCopyLink
                 }, toDisplayString(copiedLink.value ? unref(copiedText) : unref(copyText)), 1)
               ]),
-              createBaseVNode("div", _hoisted_28$1, [
+              createBaseVNode("div", _hoisted_28, [
                 createBaseVNode("button", {
                   class: "share-modal__link-btn share-modal__link-btn--small",
                   "aria-expanded": showQr.value,
                   onClick: _cache[3] || (_cache[3] = ($event) => showQr.value = !showQr.value)
-                }, toDisplayString(showQr.value ? unref(hideQrText) : unref(showQrText)), 9, _hoisted_29$1),
+                }, toDisplayString(showQr.value ? unref(hideQrText) : unref(showQrText)), 9, _hoisted_29),
                 showQr.value ? (openBlock(), createElementBlock("img", {
                   key: 0,
                   src: linkQrUrl.value,
                   alt: unref(qrAltText),
                   class: "share-modal__link-qr-image"
-                }, null, 8, _hoisted_30$1)) : createCommentVNode("", true)
+                }, null, 8, _hoisted_30)) : createCommentVNode("", true)
               ]),
-              linkShare.value.code ? (openBlock(), createElementBlock("div", _hoisted_31$1, [
-                createBaseVNode("div", _hoisted_32$1, toDisplayString(unref(inviteCodeText)), 1),
-                createBaseVNode("dl", _hoisted_33$1, [
+              linkShare.value.code ? (openBlock(), createElementBlock("div", _hoisted_31, [
+                createBaseVNode("div", _hoisted_32, toDisplayString(unref(inviteCodeText)), 1),
+                createBaseVNode("dl", _hoisted_33, [
                   createBaseVNode("dt", null, toDisplayString(unref(serverText)), 1),
-                  createBaseVNode("dd", _hoisted_34$1, toDisplayString(inviteServer.value), 1),
+                  createBaseVNode("dd", _hoisted_34, toDisplayString(inviteServer.value), 1),
                   createBaseVNode("dt", null, toDisplayString(unref(codeText)), 1),
                   createBaseVNode("dd", _hoisted_35, toDisplayString(inviteCode.value), 1)
                 ]),
@@ -17633,1299 +18722,162 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ShareDialog = /* @__PURE__ */ _export_sfc$1(_sfc_main$8, [["__scopeId", "data-v-68c481e8"]]);
-function formatListAsText(items) {
-  return items.filter((item) => !item.checked).map((item) => {
-    const parts = [];
-    if (item.quantity && (item.quantity !== "1" || item.unit)) {
-      parts.push(item.quantity);
-    }
-    if (item.unit) parts.push(item.unit);
-    parts.push(item.name);
-    return parts.join(" ");
-  }).join("\n");
+const ShareDialog = /* @__PURE__ */ _export_sfc$1(_sfc_main$3, [["__scopeId", "data-v-68c481e8"]]);
+const notes = [
+  {
+    version: "1.11.0",
+    title: "Items remember their amount",
+    items: [
+      'Add "500 g Rice" once and next time "Rice" on its own comes back as 500 g Rice. The amount belongs to the list, so everyone sharing it gets the same one.',
+      "More units are understood when typed with an amount: pc, pcs, pkg, dag and dkg, and Stk in German.",
+      'Guests on a public link can type amounts too, so "2 l Milk" is 2 l of Milk.',
+      "This window, which shows what has changed after an update. What's new in Settings opens it again."
+    ],
+    link: "https://github.com/otherworld-dev/Shopping-List/blob/main/shopping_list/CHANGELOG.md"
+  },
+  {
+    version: "1.10.0",
+    title: "Your own list order, invite codes and names on items",
+    items: [
+      "Lists can be sorted A to Z or dragged into your own order. Choose Sort lists in Settings at the bottom of the list sidebar, and the order follows you to every browser and the Android app.",
+      "A shared list's public link now has a short invite code and a QR code in the Share dialog, so someone without a Nextcloud account can join the list in the Android app.",
+      'Each item shows who added it and who ticked it. People on a public link can type their name, which shows as "Anna (guest)".'
+    ],
+    link: "https://github.com/otherworld-dev/Shopping-List/blob/main/shopping_list/CHANGELOG.md"
+  }
+];
+const MAX_ENTRIES = 3;
+function compareVersions(a, b) {
+  const pa = a.split(".").map((n) => parseInt(n, 10) || 0);
+  const pb = b.split(".").map((n) => parseInt(n, 10) || 0);
+  for (let i = 0; i < Math.max(pa.length, pb.length); i++) {
+    const diff = (pa[i] ?? 0) - (pb[i] ?? 0);
+    if (diff !== 0) return diff;
+  }
+  return 0;
 }
-const OPEN_SORTS = ["area", "areaAlpha", "alpha"];
-const BOUGHT_SORTS = ["area", "alpha", "recent"];
-const OPEN_SORT_KEY = "shopping_list.openSort";
-const BOUGHT_SORT_KEY = "shopping_list.boughtSort";
-function byName(language) {
-  const collator = new Intl.Collator(language, { sensitivity: "base", numeric: true });
-  return (a, b) => collator.compare(a.name, b.name);
+function upTo(entries, version2) {
+  return entries.filter((e) => compareVersions(e.version, version2) <= 0).sort((a, b) => compareVersions(b.version, a.version));
 }
-function time(item) {
-  const ms = Date.parse(item.updatedAt);
-  return Number.isNaN(ms) ? -Infinity : ms;
+function entriesToShow(entries, { currentVersion, lastSeen, isNewUser }) {
+  if (!currentVersion) return [];
+  if (!lastSeen && isNewUser) return [];
+  return upTo(entries, currentVersion).filter((e) => !lastSeen || compareVersions(e.version, lastSeen) > 0).slice(0, MAX_ENTRIES);
 }
-function groupOpenItems(items, areas, sort2, language) {
-  if (items.length === 0) return [];
-  if (sort2 === "alpha") {
-    return [{ areaId: null, areaName: null, areaColor: null, items: [...items].sort(byName(language)) }];
-  }
-  const grouped = /* @__PURE__ */ new Map();
-  for (const item of items) {
-    const list = grouped.get(item.shopAreaId);
-    if (list) {
-      list.push(item);
-    } else {
-      grouped.set(item.shopAreaId, [item]);
-    }
-  }
-  const result = [];
-  for (const area of areas) {
-    const areaItems = grouped.get(area.id);
-    if (areaItems) {
-      result.push({ areaId: area.id, areaName: area.name, areaColor: area.color, items: areaItems });
-      grouped.delete(area.id);
-    }
-  }
-  const uncategorized = [...grouped.values()].flat();
-  if (uncategorized.length > 0) {
-    result.push({ areaId: null, areaName: null, areaColor: null, items: uncategorized });
-  }
-  if (sort2 === "areaAlpha") {
-    const compare = byName(language);
-    for (const group of result) group.items.sort(compare);
-  }
-  return result;
+function latestEntries(entries, currentVersion) {
+  return upTo(entries, currentVersion).slice(0, MAX_ENTRIES);
 }
-function sortBought(items, sort2, areas, language) {
-  const sorted = [...items];
-  if (sort2 === "area") {
-    const position = new Map(areas.map((area, index2) => [area.id, index2]));
-    const rank = (item) => (item.shopAreaId === null ? void 0 : position.get(item.shopAreaId)) ?? areas.length;
-    sorted.sort((a, b) => rank(a) - rank(b));
-  } else if (sort2 === "alpha") {
-    sorted.sort(byName(language));
-  } else {
-    sorted.sort((a, b) => time(b) - time(a));
-  }
-  return sorted;
+function safeLink(link) {
+  return typeof link === "string" && link.startsWith("https://") ? link : null;
 }
-function loadChoice(storage, key, choices) {
-  if (!storage) return choices[0];
+const allNotes = notes;
+const shown = ref([]);
+function installedVersion() {
+  return loadState("shopping_list", "version", "");
+}
+async function showIfUpdated(isNewUser) {
+  const currentVersion = installedVersion();
+  const lastSeen = loadState("shopping_list", "settings", {}).whatsNewSeen ?? "";
+  if (!currentVersion || lastSeen === currentVersion) return;
+  const entries = entriesToShow(allNotes, { currentVersion, lastSeen, isNewUser });
+  if (entries.length > 0) shown.value = entries;
   try {
-    const raw = storage.getItem(key);
-    return choices.find((choice) => choice === raw) ?? choices[0];
-  } catch {
-    return choices[0];
+    await api.settings.update({ whatsNewSeen: currentVersion });
+  } catch (e) {
+    console.error("Failed to save the seen release notes", e);
   }
 }
-function saveChoice(storage, key, choices, value) {
-  if (!storage) return;
-  try {
-    if (value === choices[0]) {
-      storage.removeItem(key);
-    } else {
-      storage.setItem(key, value);
-    }
-  } catch {
-  }
-}
-function loadOpenSort(storage) {
-  return loadChoice(storage, OPEN_SORT_KEY, OPEN_SORTS);
-}
-function saveOpenSort(storage, sort2) {
-  saveChoice(storage, OPEN_SORT_KEY, OPEN_SORTS, sort2);
-}
-function loadBoughtSort(storage) {
-  return loadChoice(storage, BOUGHT_SORT_KEY, BOUGHT_SORTS);
-}
-function saveBoughtSort(storage, sort2) {
-  saveChoice(storage, BOUGHT_SORT_KEY, BOUGHT_SORTS, sort2);
-}
-const _hoisted_1$5 = { class: "list-view" };
-const _hoisted_2$4 = { class: "list-view__header" };
-const _hoisted_3$2 = { class: "list-view__actions" };
-const _hoisted_4$2 = {
-  key: 0,
-  class: "list-view__avatar-overflow"
-};
-const _hoisted_5$2 = { class: "list-view__card" };
-const _hoisted_6$1 = {
-  key: 1,
-  class: "list-view__loading"
-};
-const _hoisted_7$1 = {
-  key: 0,
-  class: "list-view__empty"
-};
-const _hoisted_8$1 = ["aria-expanded", "aria-controls", "onClick"];
-const _hoisted_9$1 = { class: "list-view__area-count" };
-const _hoisted_10$1 = {
-  key: 0,
-  class: "list-view__bought"
-};
-const _hoisted_11$1 = { class: "list-view__bought-header" };
-const _hoisted_12$1 = { class: "list-view__toggle" };
-const _hoisted_13$1 = {
-  key: 0,
-  class: "list-view__bought-actions"
-};
-const _hoisted_14$1 = {
-  key: 0,
-  class: "list-view__bought-card"
-};
-const MAX_VISIBLE_AVATARS = 3;
-const cartIcon$1 = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.25,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.59 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z" fill="currentColor"/></svg>';
-const _sfc_main$7 = /* @__PURE__ */ defineComponent({
-  __name: "ListView",
-  setup(__props) {
-    const listsStore = useListsStore();
-    const itemsStore = useItemsStore();
-    const shopAreasStore = useShopAreasStore();
-    const sharesStore = useSharesStore();
-    const currentShares = computed(() => {
-      const listId = listsStore.currentListId;
-      return listId !== null ? sharesStore.sharesByList[listId] ?? [] : [];
-    });
-    const visibleShares = computed(() => currentShares.value.slice(0, MAX_VISIBLE_AVATARS));
-    const overflowCount = computed(() => Math.max(0, currentShares.value.length - MAX_VISIBLE_AVATARS));
-    const showChecked = ref(true);
-    const showShareDialog = ref(false);
-    const currentUserId = getCurrentUser()?.uid ?? "";
-    const editingItemId = ref(null);
-    function onCaptureClick(e) {
-      const target = e.target;
-      if (target.closest(".item-row__check") || target.closest(".item-row__actions") || target.closest(".item-row__thumb")) return;
-      if (target.type === "checkbox" || target.type === "file") return;
-      if (isDragging.value) return;
-      const row = target.closest(".item-row:not(.item-row--checked)");
-      if (row) {
-        const idStr = row.getAttribute("data-item-id");
-        if (idStr) {
-          editingItemId.value = parseInt(idStr, 10);
-          return;
-        }
-      }
-      if (editingItemId.value !== null && !target.closest(".item-row--editing")) {
-        editingItemId.value = null;
-      }
-    }
-    onMounted(() => document.addEventListener("click", onCaptureClick, true));
-    onUnmounted(() => document.removeEventListener("click", onCaptureClick, true));
-    const { enabled: imagesEnabled } = useImagePreference();
-    function onDocumentDragOver(e) {
-      if (!isFileDrag(e.dataTransfer)) return;
-      e.preventDefault();
-      const accepting = e.target?.closest?.(".item-row--drop-target");
-      if (!accepting && e.dataTransfer) e.dataTransfer.dropEffect = "none";
-    }
-    function onDocumentDrop(e) {
-      if (isFileDrag(e.dataTransfer)) e.preventDefault();
-    }
-    function removeDropGuard() {
-      document.removeEventListener("dragover", onDocumentDragOver);
-      document.removeEventListener("drop", onDocumentDrop);
-    }
-    watch(imagesEnabled, (on2) => {
-      removeDropGuard();
-      if (on2) {
-        document.addEventListener("dragover", onDocumentDragOver);
-        document.addEventListener("drop", onDocumentDrop);
-      }
-    }, { immediate: true });
-    onUnmounted(removeDropGuard);
-    const shareText = translate("shopping_list", "Share");
-    const listActionsText = translate("shopping_list", "List actions");
-    const copyAsTextText = translate("shopping_list", "Copy list as text");
-    const copiedText = translate("shopping_list", "List copied to clipboard");
-    const copyFailedText = translate("shopping_list", "Could not copy the list");
-    const emptyName = translate("shopping_list", "No items yet");
-    const emptyDesc = translate("shopping_list", "Add your first item above");
-    const uncategorizedText = translate("shopping_list", "Uncategorized");
-    const boughtText = translate("shopping_list", "Checked off");
-    const uncheckAllText = translate("shopping_list", "Restore all");
-    const clearCheckedText = translate("shopping_list", "Delete all");
-    const sortItemsText = translate("shopping_list", "Sort items");
-    const sortCheckedText = translate("shopping_list", "Sort checked-off items");
-    const byAreaText = translate("shopping_list", "By area");
-    const aToZText = translate("shopping_list", "A to Z");
-    const openSortOptions = [
-      { value: "area", label: byAreaText },
-      { value: "areaAlpha", label: translate("shopping_list", "By area, A to Z") },
-      { value: "alpha", label: aToZText }
-    ];
-    const boughtSortOptions = [
-      { value: "area", label: byAreaText },
-      { value: "alpha", label: aToZText },
-      { value: "recent", label: translate("shopping_list", "Most recent first") }
-    ];
-    const storage = browserStorage();
-    function storedChoice(initial, save2) {
-      const current = shallowRef(initial);
-      return computed({
-        get: () => current.value,
-        set: (value) => {
-          current.value = value;
-          save2(value);
-        }
-      });
-    }
-    const openSort = storedChoice(loadOpenSort(storage), (sort2) => saveOpenSort(storage, sort2));
-    const boughtSort = storedChoice(loadBoughtSort(storage), (sort2) => saveBoughtSort(storage, sort2));
-    async function onCopyAsText() {
-      const text = formatListAsText(itemsStore.uncheckedItems);
-      if (!text) return;
-      try {
-        await navigator.clipboard.writeText(text);
-        showSuccess(copiedText);
-        return;
-      } catch {
-      }
-      const ta = document.createElement("textarea");
-      ta.value = text;
-      ta.setAttribute("readonly", "");
-      ta.style.position = "fixed";
-      ta.style.opacity = "0";
-      document.body.appendChild(ta);
-      ta.select();
-      const copied = document.execCommand("copy");
-      document.body.removeChild(ta);
-      if (copied) {
-        showSuccess(copiedText);
-      } else {
-        showError(copyFailedText);
-      }
-    }
-    const canEdit = computed(
-      () => listsStore.currentList !== null && listsStore.currentList.permission >= Permission.WRITE
-    );
-    const isDragging = ref(false);
-    const { isCollapsed, toggle: toggleArea } = useCollapsedAreas(() => listsStore.currentListId);
-    function hasHeader(group) {
-      return !!group.areaName || localGroups.value.length > 1;
-    }
-    function isGroupCollapsed(group) {
-      return hasHeader(group) && isCollapsed(group.areaId);
-    }
-    function groupElementId(group) {
-      return `list-view-area-${group.areaId ?? "none"}`;
-    }
-    const language = getLanguage();
-    const currentAreas = computed(
-      () => listsStore.currentListId ? shopAreasStore.areasByList[listsStore.currentListId] ?? [] : []
-    );
-    const areaGroups = computed(
-      () => groupOpenItems(itemsStore.uncheckedItems, currentAreas.value, openSort.value, language)
-    );
-    const canDrag = computed(() => canEdit.value && openSort.value === "area");
-    const localGroups = ref([]);
-    watch(areaGroups, (groups) => {
-      if (!isDragging.value) {
-        localGroups.value = groups.map((g) => ({ ...g, items: [...g.items] }));
-      }
-    }, { immediate: true });
-    async function onDragEnd() {
-      isDragging.value = false;
-      const listId = listsStore.currentList?.id;
-      if (!listId) return;
-      const allSortedIds = [];
-      const areaUpdates = [];
-      for (const group of localGroups.value) {
-        for (const item of group.items) {
-          allSortedIds.push(item.id);
-          if (item.shopAreaId !== group.areaId) {
-            areaUpdates.push(itemsStore.update(listId, item.id, { shopAreaId: group.areaId, areaExplicit: true }));
-          }
-        }
-      }
-      await Promise.all([
-        ...areaUpdates,
-        itemsStore.reorder(listId, allSortedIds)
-      ]);
-    }
-    const checkedItemIds = computed(
-      () => sortBought(itemsStore.checkedItems, boughtSort.value, currentAreas.value, language).map((i) => i.id)
-    );
-    watch(() => listsStore.currentListId, async (newId) => {
-      if (newId !== null) {
-        await Promise.all([
-          itemsStore.fetchByList(newId),
-          shopAreasStore.fetchByList(newId),
-          sharesStore.fetchByList(newId)
-        ]);
-      }
-    }, { immediate: true });
-    async function onClearChecked() {
-      if (listsStore.currentListId) {
-        await itemsStore.clearChecked(listsStore.currentListId);
-      }
-    }
-    async function onUncheckAll() {
-      if (listsStore.currentListId) {
-        await itemsStore.uncheckAll(listsStore.currentListId);
-      }
-    }
-    return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$5, [
-        createBaseVNode("div", _hoisted_2$4, [
-          createBaseVNode("h2", null, toDisplayString(unref(listsStore).currentList?.title), 1),
-          createBaseVNode("div", _hoisted_3$2, [
-            currentShares.value.length > 0 ? (openBlock(), createElementBlock("div", {
-              key: 0,
-              class: "list-view__avatars",
-              onClick: _cache[0] || (_cache[0] = ($event) => showShareDialog.value = true)
-            }, [
-              (openBlock(true), createElementBlock(Fragment, null, renderList(visibleShares.value, (share) => {
-                return openBlock(), createBlock(unref(NcAvatar), {
-                  key: share.id,
-                  user: share.sharedWithType === unref(ShareType).USER ? share.sharedWith : void 0,
-                  "display-name": share.sharedWithDisplayName || share.sharedWith,
-                  "is-no-user": share.sharedWithType === unref(ShareType).GROUP,
-                  size: 28,
-                  "show-user-status": false,
-                  class: "list-view__avatar"
-                }, null, 8, ["user", "display-name", "is-no-user"]);
-              }), 128)),
-              overflowCount.value > 0 ? (openBlock(), createElementBlock("span", _hoisted_4$2, " +" + toDisplayString(overflowCount.value), 1)) : createCommentVNode("", true)
-            ])) : createCommentVNode("", true),
-            createVNode(unref(NcActions), { "aria-label": unref(listActionsText) }, {
-              default: withCtx(() => [
-                unref(listsStore).currentList?.isOwner ? (openBlock(), createBlock(unref(NcActionButton), {
-                  key: 0,
-                  onClick: _cache[1] || (_cache[1] = ($event) => showShareDialog.value = true)
-                }, {
-                  default: withCtx(() => [
-                    createTextVNode(toDisplayString(unref(shareText)), 1)
-                  ]),
-                  _: 1
-                })) : createCommentVNode("", true),
-                createVNode(unref(NcActionButton), {
-                  disabled: unref(itemsStore).uncheckedItems.length === 0,
-                  onClick: onCopyAsText
-                }, {
-                  default: withCtx(() => [
-                    createTextVNode(toDisplayString(unref(copyAsTextText)), 1)
-                  ]),
-                  _: 1
-                }, 8, ["disabled"]),
-                createVNode(unref(NcActionSeparator)),
-                createVNode(unref(NcActionCaption), { name: unref(sortItemsText) }, null, 8, ["name"]),
-                (openBlock(), createElementBlock(Fragment, null, renderList(openSortOptions, (option2) => {
-                  return createVNode(unref(NcActionRadio), {
-                    key: option2.value,
-                    modelValue: unref(openSort),
-                    "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => isRef(openSort) ? openSort.value = $event : null),
-                    name: "shopping-list-open-sort",
-                    value: option2.value
-                  }, {
-                    default: withCtx(() => [
-                      createTextVNode(toDisplayString(option2.label), 1)
-                    ]),
-                    _: 2
-                  }, 1032, ["modelValue", "value"]);
-                }), 64)),
-                createVNode(unref(NcActionSeparator)),
-                createVNode(unref(NcActionCaption), { name: unref(sortCheckedText) }, null, 8, ["name"]),
-                (openBlock(), createElementBlock(Fragment, null, renderList(boughtSortOptions, (option2) => {
-                  return createVNode(unref(NcActionRadio), {
-                    key: option2.value,
-                    modelValue: unref(boughtSort),
-                    "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => isRef(boughtSort) ? boughtSort.value = $event : null),
-                    name: "shopping-list-bought-sort",
-                    value: option2.value
-                  }, {
-                    default: withCtx(() => [
-                      createTextVNode(toDisplayString(option2.label), 1)
-                    ]),
-                    _: 2
-                  }, 1032, ["modelValue", "value"]);
-                }), 64))
-              ]),
-              _: 1
-            }, 8, ["aria-label"])
-          ])
-        ]),
-        createBaseVNode("div", _hoisted_5$2, [
-          canEdit.value ? (openBlock(), createBlock(ItemEditor, {
-            key: 0,
-            "list-id": unref(listsStore).currentList.id
-          }, null, 8, ["list-id"])) : createCommentVNode("", true),
-          unref(itemsStore).loading ? (openBlock(), createElementBlock("div", _hoisted_6$1, [
-            createVNode(unref(NcLoadingIcon))
-          ])) : (openBlock(), createElementBlock(Fragment, { key: 2 }, [
-            unref(itemsStore).uncheckedItems.length === 0 && unref(itemsStore).checkedItems.length === 0 ? (openBlock(), createElementBlock("div", _hoisted_7$1, [
-              createVNode(unref(NcEmptyContent), {
-                name: unref(emptyName),
-                description: unref(emptyDesc)
-              }, {
-                icon: withCtx(() => [
-                  createVNode(unref(NcIconSvgWrapper), { svg: cartIcon$1 })
-                ]),
-                _: 1
-              }, 8, ["name", "description"])
-            ])) : createCommentVNode("", true),
-            (openBlock(true), createElementBlock(Fragment, null, renderList(localGroups.value, (group, groupIndex) => {
-              return openBlock(), createElementBlock("div", {
-                key: group.areaId ?? "none",
-                class: "list-view__area-group"
-              }, [
-                hasHeader(group) ? (openBlock(), createElementBlock("button", {
-                  key: 0,
-                  type: "button",
-                  class: "list-view__area-header",
-                  style: normalizeStyle(group.areaColor ? { borderInlineStartColor: group.areaColor } : {}),
-                  "aria-expanded": !isGroupCollapsed(group),
-                  "aria-controls": groupElementId(group),
-                  onClick: ($event) => unref(toggleArea)(group.areaId)
-                }, [
-                  createVNode(unref(NcIconSvgWrapper), {
-                    path: unref(mdiChevronDown),
-                    size: 18,
-                    class: normalizeClass(["list-view__area-chevron", { "list-view__area-chevron--collapsed": isGroupCollapsed(group) }])
-                  }, null, 8, ["path", "class"]),
-                  createBaseVNode("span", {
-                    class: normalizeClass(["list-view__area-name", { "list-view__area-name--muted": !group.areaName }])
-                  }, toDisplayString(group.areaName || unref(uncategorizedText)), 3),
-                  createBaseVNode("span", _hoisted_9$1, toDisplayString(group.items.length), 1)
-                ], 12, _hoisted_8$1)) : createCommentVNode("", true),
-                withDirectives(createVNode(unref(draggable), {
-                  id: groupElementId(group),
-                  modelValue: localGroups.value[groupIndex].items,
-                  "onUpdate:modelValue": ($event) => localGroups.value[groupIndex].items = $event,
-                  "item-key": "id",
-                  group: { name: "items" },
-                  disabled: !canDrag.value,
-                  animation: 150,
-                  delay: 150,
-                  "delay-on-touch-only": true,
-                  class: "list-view__items",
-                  "ghost-class": "list-view__item--ghost",
-                  onStart: _cache[5] || (_cache[5] = ($event) => isDragging.value = true),
-                  onEnd: onDragEnd
-                }, {
-                  item: withCtx(({ element }) => [
-                    createVNode(ItemRow, {
-                      "item-id": element.id,
-                      "list-id": unref(listsStore).currentList.id,
-                      "can-edit": canEdit.value,
-                      editing: editingItemId.value === element.id,
-                      onCloseEdit: _cache[4] || (_cache[4] = ($event) => editingItemId.value = null)
-                    }, null, 8, ["item-id", "list-id", "can-edit", "editing"])
-                  ]),
-                  _: 1
-                }, 8, ["id", "modelValue", "onUpdate:modelValue", "disabled"]), [
-                  [vShow, !isGroupCollapsed(group)]
-                ])
-              ]);
-            }), 128))
-          ], 64))
-        ]),
-        !unref(itemsStore).loading && unref(itemsStore).checkedItems.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_10$1, [
-          createBaseVNode("div", _hoisted_11$1, [
-            createBaseVNode("h3", {
-              onClick: _cache[6] || (_cache[6] = ($event) => showChecked.value = !showChecked.value)
-            }, [
-              createTextVNode(toDisplayString(unref(boughtText)) + " (" + toDisplayString(unref(itemsStore).checkedItems.length) + ") ", 1),
-              createBaseVNode("span", _hoisted_12$1, toDisplayString(showChecked.value ? "▾" : "▸"), 1)
-            ]),
-            canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_13$1, [
-              createBaseVNode("button", {
-                class: "list-view__action-btn",
-                onClick: onUncheckAll
-              }, toDisplayString(unref(uncheckAllText)), 1),
-              createBaseVNode("button", {
-                class: "list-view__action-btn list-view__action-btn--danger",
-                onClick: onClearChecked
-              }, toDisplayString(unref(clearCheckedText)), 1)
-            ])) : createCommentVNode("", true)
-          ]),
-          showChecked.value ? (openBlock(), createElementBlock("div", _hoisted_14$1, [
-            (openBlock(true), createElementBlock(Fragment, null, renderList(checkedItemIds.value, (itemId) => {
-              return openBlock(), createBlock(ItemRow, {
-                key: itemId,
-                "item-id": itemId,
-                "list-id": unref(listsStore).currentList.id,
-                "can-edit": canEdit.value,
-                editing: false
-              }, null, 8, ["item-id", "list-id", "can-edit"]);
-            }), 128))
-          ])) : createCommentVNode("", true)
-        ])) : createCommentVNode("", true),
-        showShareDialog.value && unref(listsStore).currentList ? (openBlock(), createBlock(ShareDialog, {
-          key: 1,
-          "list-id": unref(listsStore).currentList.id,
-          "is-owner": unref(listsStore).currentList.isOwner,
-          "current-user-id": unref(currentUserId),
-          onClose: _cache[7] || (_cache[7] = ($event) => showShareDialog.value = false)
-        }, null, 8, ["list-id", "is-owner", "current-user-id"])) : createCommentVNode("", true)
-      ]);
-    };
-  }
-});
-const ListView = /* @__PURE__ */ _export_sfc$1(_sfc_main$7, [["__scopeId", "data-v-f409d1bb"]]);
-const _hoisted_1$4 = { class: "area-settings" };
-const _hoisted_2$3 = { class: "area-settings__header" };
-const _hoisted_3$1 = {
-  key: 0,
-  class: "area-settings__list"
-};
-const _hoisted_4$1 = { class: "area-settings__group-heading" };
-const _hoisted_5$1 = { class: "area-settings__desc" };
-const _hoisted_6 = {
-  key: 0,
-  class: "area-settings__create"
-};
-const _hoisted_7 = ["placeholder", "onKeydown"];
-const _hoisted_8 = ["title"];
-const _hoisted_9 = ["disabled"];
-const _hoisted_10 = {
-  key: 1,
-  class: "area-settings__copy"
-};
-const _hoisted_11 = { value: null };
-const _hoisted_12 = ["value"];
-const _hoisted_13 = ["disabled"];
-const _hoisted_14 = {
-  key: 2,
-  class: "area-settings__loadlang"
-};
-const _hoisted_15 = ["disabled", "title"];
-const _hoisted_16 = { class: "area-settings__search" };
-const _hoisted_17 = ["placeholder"];
-const _hoisted_18 = ["onClick"];
-const _hoisted_19 = { class: "area-settings__section-toggle" };
-const _hoisted_20 = ["value", "title", "onInput"];
-const _hoisted_21 = ["onKeydown", "onBlur"];
-const _hoisted_22 = ["onDblclick"];
-const _hoisted_23 = ["title", "onClick"];
-const _hoisted_24 = { class: "area-settings__section-count" };
-const _hoisted_25 = ["disabled", "title", "onClick"];
-const _hoisted_26 = ["disabled", "title", "onClick"];
-const _hoisted_27 = ["title", "onClick"];
-const _hoisted_28 = {
-  key: 0,
-  class: "area-settings__section-body"
-};
-const _hoisted_29 = {
-  key: 0,
-  class: "area-settings__add"
-};
-const _hoisted_30 = ["onUpdate:modelValue", "placeholder", "onKeydown"];
-const _hoisted_31 = ["disabled", "onClick"];
-const _hoisted_32 = { class: "area-settings__keywords" };
-const _hoisted_33 = ["onClick"];
-const _hoisted_34 = {
-  key: 0,
-  class: "area-settings__empty"
-};
-const _sfc_main$6 = /* @__PURE__ */ defineComponent({
-  __name: "AreaKeywordsSettings",
-  emits: ["back"],
-  setup(__props) {
-    const shopAreasStore = useShopAreasStore();
-    const listsStore = useListsStore();
-    const backText = translate("shopping_list", "Back to list");
-    const title = translate("shopping_list", "List settings");
-    const areasTitle = translate("shopping_list", "Shop areas");
-    const description = translate("shopping_list", "Manage shop areas, keywords, and display order. Keywords auto-detect which area an item belongs to when added or pasted.");
-    const searchPlaceholder = translate("shopping_list", "Search keywords...");
-    const addPlaceholder = translate("shopping_list", "Add keyword...");
-    const noKeywordsText = translate("shopping_list", "No keywords");
-    const renameText = translate("shopping_list", "Rename");
-    const deleteText = translate("shopping_list", "Delete area");
-    const moveUpText = translate("shopping_list", "Move up");
-    const moveDownText = translate("shopping_list", "Move down");
-    const colorTitle = translate("shopping_list", "Change color");
-    const newAreaPlaceholder = translate("shopping_list", "New area name...");
-    const addAreaText = translate("shopping_list", "Add area");
-    const copyFromPlaceholder = translate("shopping_list", "Copy categories from…");
-    const copyText = translate("shopping_list", "Copy");
-    const loadLangText = translate("shopping_list", "Load keywords for my language");
-    const loadLangHint = translate("shopping_list", "Adds your language's grocery keywords to the default areas, so items auto-sort correctly. Existing keywords are kept.");
-    const search = ref("");
-    const newKeyword = ref({});
-    const openSections = ref({});
-    const renamingAreaId = ref(null);
-    const renameValue = ref("");
-    const renameInputRef = ref(null);
-    const newAreaName = ref("");
-    const newAreaColor = ref("#9E9E9E");
-    const copySourceId = ref(null);
-    const copying = ref(false);
-    const loadingLang = ref(false);
-    const saveTimeout = {};
-    const colorTimeout = {};
-    const listId = computed(() => listsStore.currentListId);
-    const canEdit = computed(
-      () => listsStore.currentList !== null && listsStore.currentList.permission >= Permission.WRITE
-    );
-    const areas = computed(
-      () => listId.value !== null ? shopAreasStore.areasByList[listId.value] ?? [] : []
-    );
-    const otherLists = computed(
-      () => listsStore.lists.filter((l) => l.id !== listId.value).slice().sort((a, b) => a.title.localeCompare(b.title))
-    );
-    async function onCopyFrom() {
-      if (copySourceId.value === null || listId.value === null || copying.value) return;
-      copying.value = true;
-      try {
-        await shopAreasStore.copyFrom(listId.value, copySourceId.value);
-        copySourceId.value = null;
-      } finally {
-        copying.value = false;
-      }
-    }
-    async function onLoadLanguageKeywords() {
-      if (listId.value === null || loadingLang.value) return;
-      loadingLang.value = true;
-      try {
-        await shopAreasStore.loadLanguageKeywords(listId.value);
-      } finally {
-        loadingLang.value = false;
-      }
-    }
-    onMounted(() => {
-      if (listId.value !== null) {
-        shopAreasStore.fetchByList(listId.value);
-      }
-    });
-    function filteredKeywords(area) {
-      const words = area.keywords ?? [];
-      const q = search.value.toLowerCase().trim();
-      if (!q) return [...words].sort();
-      return words.filter((w) => w.includes(q)).sort();
-    }
-    function toggleSection(areaId) {
-      openSections.value[areaId] = !openSections.value[areaId];
-    }
-    function onAddKeyword(area) {
-      const word = newKeyword.value[area.id]?.trim().toLowerCase();
-      if (!word || listId.value === null) return;
-      if (area.keywords.includes(word)) {
-        newKeyword.value[area.id] = "";
-        return;
-      }
-      const updated = [...area.keywords, word];
-      area.keywords = updated;
-      newKeyword.value[area.id] = "";
-      debounceSaveKeywords(area.id, updated);
-    }
-    function onRemoveKeyword(area, word) {
-      if (listId.value === null) return;
-      const updated = area.keywords.filter((w) => w !== word);
-      area.keywords = updated;
-      debounceSaveKeywords(area.id, updated);
-    }
-    function debounceSaveKeywords(areaId, keywords) {
-      if (saveTimeout[areaId]) clearTimeout(saveTimeout[areaId]);
-      const lid = listId.value;
-      saveTimeout[areaId] = setTimeout(() => {
-        if (lid !== null) {
-          shopAreasStore.update(lid, areaId, { keywords });
-        }
-      }, 1e3);
-    }
-    async function startRename(area) {
-      renamingAreaId.value = area.id;
-      renameValue.value = area.name;
-      await nextTick();
-      if (renameInputRef.value && renameInputRef.value.length > 0) {
-        renameInputRef.value[0].focus();
-        renameInputRef.value[0].select();
-      }
-    }
-    async function saveRename(areaId) {
-      const trimmed = renameValue.value.trim();
-      if (!trimmed || renamingAreaId.value !== areaId || listId.value === null) {
-        cancelRename();
-        return;
-      }
-      const area = areas.value.find((a) => a.id === areaId);
-      if (area && trimmed !== area.name) {
-        await shopAreasStore.update(listId.value, areaId, { name: trimmed });
-      }
-      renamingAreaId.value = null;
-    }
-    function cancelRename() {
-      renamingAreaId.value = null;
-    }
-    function onColorChange(areaId, color) {
-      if (listId.value === null) return;
-      const area = areas.value.find((a) => a.id === areaId);
-      if (area) area.color = color;
-      if (colorTimeout[areaId]) clearTimeout(colorTimeout[areaId]);
-      const lid = listId.value;
-      colorTimeout[areaId] = setTimeout(() => {
-        shopAreasStore.update(lid, areaId, { color });
-      }, 500);
-    }
-    async function moveArea(index2, direction) {
-      if (listId.value === null) return;
-      const targetIndex = index2 + direction;
-      if (targetIndex < 0 || targetIndex >= areas.value.length) return;
-      const current = areas.value[index2];
-      const target = areas.value[targetIndex];
-      const currentOrder = current.sortOrder;
-      const targetOrder = target.sortOrder;
-      const newCurrentOrder = currentOrder === targetOrder ? targetIndex : targetOrder;
-      const newTargetOrder = currentOrder === targetOrder ? index2 : currentOrder;
-      const lid = listId.value;
-      await Promise.all([
-        shopAreasStore.update(lid, current.id, { sortOrder: newCurrentOrder }),
-        shopAreasStore.update(lid, target.id, { sortOrder: newTargetOrder })
-      ]);
-      await shopAreasStore.fetchByList(lid);
-    }
-    async function onCreateArea() {
-      const name = newAreaName.value.trim();
-      if (!name || listId.value === null) return;
-      await shopAreasStore.create(listId.value, name, newAreaColor.value);
-      newAreaName.value = "";
-      newAreaColor.value = "#9E9E9E";
-    }
-    async function onDeleteArea(area) {
-      if (listId.value === null) return;
-      if (!confirm(translate("shopping_list", 'Delete "{name}"? Items in this area will become uncategorized.', { name: area.name }))) {
-        return;
-      }
-      await shopAreasStore.remove(listId.value, area.id);
-    }
-    return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$4, [
-        createBaseVNode("div", _hoisted_2$3, [
-          createBaseVNode("button", {
-            class: "area-settings__back",
-            onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("back"))
-          }, " ← " + toDisplayString(unref(backText)), 1),
-          createBaseVNode("h2", null, [
-            createTextVNode(toDisplayString(unref(title)) + " ", 1),
-            unref(listsStore).currentList ? (openBlock(), createElementBlock("span", _hoisted_3$1, toDisplayString(unref(listsStore).currentList.title), 1)) : createCommentVNode("", true)
-          ]),
-          createBaseVNode("h3", _hoisted_4$1, toDisplayString(unref(areasTitle)), 1),
-          createBaseVNode("p", _hoisted_5$1, toDisplayString(unref(description)), 1)
-        ]),
-        canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_6, [
-          withDirectives(createBaseVNode("input", {
-            "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => newAreaName.value = $event),
-            type: "text",
-            placeholder: unref(newAreaPlaceholder),
-            class: "area-settings__create-input",
-            onKeydown: withKeys(withModifiers(onCreateArea, ["prevent"]), ["enter"])
-          }, null, 40, _hoisted_7), [
-            [vModelText, newAreaName.value]
-          ]),
-          withDirectives(createBaseVNode("input", {
-            "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => newAreaColor.value = $event),
-            type: "color",
-            class: "area-settings__create-color",
-            title: unref(colorTitle)
-          }, null, 8, _hoisted_8), [
-            [vModelText, newAreaColor.value]
-          ]),
-          createBaseVNode("button", {
-            class: "area-settings__create-btn",
-            disabled: !newAreaName.value.trim(),
-            onClick: onCreateArea
-          }, toDisplayString(unref(addAreaText)), 9, _hoisted_9)
-        ])) : createCommentVNode("", true),
-        canEdit.value && otherLists.value.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_10, [
-          withDirectives(createBaseVNode("select", {
-            "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => copySourceId.value = $event),
-            class: "area-settings__copy-select"
-          }, [
-            createBaseVNode("option", _hoisted_11, toDisplayString(unref(copyFromPlaceholder)), 1),
-            (openBlock(true), createElementBlock(Fragment, null, renderList(otherLists.value, (l) => {
-              return openBlock(), createElementBlock("option", {
-                key: l.id,
-                value: l.id
-              }, toDisplayString(l.title), 9, _hoisted_12);
-            }), 128))
-          ], 512), [
-            [vModelSelect, copySourceId.value]
-          ]),
-          createBaseVNode("button", {
-            class: "area-settings__copy-btn",
-            disabled: copySourceId.value === null || copying.value,
-            onClick: onCopyFrom
-          }, toDisplayString(unref(copyText)), 9, _hoisted_13)
-        ])) : createCommentVNode("", true),
-        canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_14, [
-          createBaseVNode("button", {
-            class: "area-settings__loadlang-btn",
-            disabled: loadingLang.value,
-            title: unref(loadLangHint),
-            onClick: onLoadLanguageKeywords
-          }, toDisplayString(unref(loadLangText)), 9, _hoisted_15)
-        ])) : createCommentVNode("", true),
-        createBaseVNode("div", _hoisted_16, [
-          withDirectives(createBaseVNode("input", {
-            "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => search.value = $event),
-            type: "text",
-            placeholder: unref(searchPlaceholder),
-            class: "area-settings__search-input"
-          }, null, 8, _hoisted_17), [
-            [vModelText, search.value]
-          ])
-        ]),
-        (openBlock(true), createElementBlock(Fragment, null, renderList(areas.value, (area, index2) => {
-          return openBlock(), createElementBlock("div", {
-            key: area.id,
-            class: "area-settings__section"
-          }, [
-            createBaseVNode("div", {
-              class: "area-settings__section-header",
-              onClick: ($event) => toggleSection(area.id)
-            }, [
-              createBaseVNode("span", _hoisted_19, toDisplayString(openSections.value[area.id] ? "▾" : "▸"), 1),
-              canEdit.value ? (openBlock(), createElementBlock("input", {
-                key: 0,
-                type: "color",
-                value: area.color || "#9E9E9E",
-                class: "area-settings__color-input",
-                title: unref(colorTitle),
-                onClick: _cache[5] || (_cache[5] = withModifiers(() => {
-                }, ["stop"])),
-                onInput: ($event) => onColorChange(area.id, $event.target.value)
-              }, null, 40, _hoisted_20)) : (openBlock(), createElementBlock("span", {
-                key: 1,
-                class: "area-settings__color-swatch",
-                style: normalizeStyle({ backgroundColor: area.color || "#9E9E9E" })
-              }, null, 4)),
-              canEdit.value && renamingAreaId.value === area.id ? withDirectives((openBlock(), createElementBlock("input", {
-                key: 2,
-                ref_for: true,
-                ref_key: "renameInputRef",
-                ref: renameInputRef,
-                "onUpdate:modelValue": _cache[6] || (_cache[6] = ($event) => renameValue.value = $event),
-                type: "text",
-                class: "area-settings__rename-input",
-                onClick: _cache[7] || (_cache[7] = withModifiers(() => {
-                }, ["stop"])),
-                onKeydown: [
-                  withKeys(withModifiers(($event) => saveRename(area.id), ["prevent"]), ["enter"]),
-                  withKeys(withModifiers(cancelRename, ["prevent"]), ["escape"])
-                ],
-                onBlur: ($event) => saveRename(area.id)
-              }, null, 40, _hoisted_21)), [
-                [vModelText, renameValue.value]
-              ]) : (openBlock(), createElementBlock(Fragment, { key: 3 }, [
-                createBaseVNode("span", {
-                  class: "area-settings__section-name",
-                  onDblclick: withModifiers(($event) => canEdit.value && startRename(area), ["stop"])
-                }, toDisplayString(area.name), 41, _hoisted_22),
-                canEdit.value ? (openBlock(), createElementBlock("button", {
-                  key: 0,
-                  class: "area-settings__action-btn area-settings__action-btn--rename",
-                  title: unref(renameText),
-                  onClick: withModifiers(($event) => startRename(area), ["stop"])
-                }, " ✎ ", 8, _hoisted_23)) : createCommentVNode("", true)
-              ], 64)),
-              createBaseVNode("span", _hoisted_24, toDisplayString(filteredKeywords(area).length), 1),
-              canEdit.value ? (openBlock(), createElementBlock(Fragment, { key: 4 }, [
-                createBaseVNode("button", {
-                  class: "area-settings__action-btn",
-                  disabled: index2 === 0,
-                  title: unref(moveUpText),
-                  onClick: withModifiers(($event) => moveArea(index2, -1), ["stop"])
-                }, " ▲ ", 8, _hoisted_25),
-                createBaseVNode("button", {
-                  class: "area-settings__action-btn",
-                  disabled: index2 === areas.value.length - 1,
-                  title: unref(moveDownText),
-                  onClick: withModifiers(($event) => moveArea(index2, 1), ["stop"])
-                }, " ▼ ", 8, _hoisted_26),
-                createBaseVNode("button", {
-                  class: "area-settings__action-btn area-settings__action-btn--delete",
-                  title: unref(deleteText),
-                  onClick: withModifiers(($event) => onDeleteArea(area), ["stop"])
-                }, " ✕ ", 8, _hoisted_27)
-              ], 64)) : createCommentVNode("", true)
-            ], 8, _hoisted_18),
-            openSections.value[area.id] ? (openBlock(), createElementBlock("div", _hoisted_28, [
-              canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_29, [
-                withDirectives(createBaseVNode("input", {
-                  "onUpdate:modelValue": ($event) => newKeyword.value[area.id] = $event,
-                  type: "text",
-                  placeholder: unref(addPlaceholder),
-                  class: "area-settings__add-input",
-                  onKeydown: withKeys(withModifiers(($event) => onAddKeyword(area), ["prevent"]), ["enter"])
-                }, null, 40, _hoisted_30), [
-                  [vModelText, newKeyword.value[area.id]]
-                ]),
-                createBaseVNode("button", {
-                  class: "area-settings__add-btn",
-                  disabled: !newKeyword.value[area.id]?.trim(),
-                  onClick: ($event) => onAddKeyword(area)
-                }, " + ", 8, _hoisted_31)
-              ])) : createCommentVNode("", true),
-              createBaseVNode("div", _hoisted_32, [
-                (openBlock(true), createElementBlock(Fragment, null, renderList(filteredKeywords(area), (word) => {
-                  return openBlock(), createElementBlock("span", {
-                    key: word,
-                    class: "area-settings__keyword"
-                  }, [
-                    createTextVNode(toDisplayString(word) + " ", 1),
-                    canEdit.value ? (openBlock(), createElementBlock("button", {
-                      key: 0,
-                      class: "area-settings__keyword-remove",
-                      onClick: ($event) => onRemoveKeyword(area, word)
-                    }, "✕", 8, _hoisted_33)) : createCommentVNode("", true)
-                  ]);
-                }), 128)),
-                filteredKeywords(area).length === 0 ? (openBlock(), createElementBlock("span", _hoisted_34, toDisplayString(unref(noKeywordsText)), 1)) : createCommentVNode("", true)
-              ])
-            ])) : createCommentVNode("", true)
-          ]);
-        }), 128))
-      ]);
-    };
-  }
-});
-const AreaKeywordsSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$6, [["__scopeId", "data-v-08060dbd"]]);
-const _sfc_main$5 = /* @__PURE__ */ defineComponent({
-  __name: "ListSortSettings",
-  setup(__props) {
-    const listsStore = useListsStore();
-    const title = translate("shopping_list", "Sort lists");
-    const options = [
-      { value: "updated", label: translate("shopping_list", "Recently updated") },
-      { value: "alpha", label: translate("shopping_list", "A to Z") },
-      { value: "custom", label: translate("shopping_list", "Custom (drag to reorder)") }
-    ];
-    return (_ctx, _cache) => {
-      return openBlock(), createBlock(unref(NcRadioGroup), {
-        class: "list-sort-settings",
-        label: unref(title),
-        "model-value": unref(listsStore).listSort,
-        "onUpdate:modelValue": _cache[0] || (_cache[0] = (value) => unref(listsStore).setListSort(value))
-      }, {
-        default: withCtx(() => [
-          (openBlock(), createElementBlock(Fragment, null, renderList(options, (option2) => {
-            return createVNode(unref(NcCheckboxRadioSwitch), {
-              key: option2.value,
-              type: "radio",
-              name: "shopping-list-list-sort",
-              value: option2.value
-            }, {
-              default: withCtx(() => [
-                createTextVNode(toDisplayString(option2.label), 1)
-              ]),
-              _: 2
-            }, 1032, ["value"]);
-          }), 64))
-        ]),
-        _: 1
-      }, 8, ["label", "model-value"]);
-    };
-  }
-});
-const ListSortSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$5, [["__scopeId", "data-v-31964199"]]);
-const _hoisted_1$3 = { class: "image-settings" };
-const _hoisted_2$2 = { class: "image-settings__title" };
-const _sfc_main$4 = /* @__PURE__ */ defineComponent({
-  __name: "ItemImagesSettings",
-  setup(__props) {
-    const { enabled, saving, setEnabled } = useImagePreference();
-    const title = translate("shopping_list", "Item images");
-    const switchLabel = translate("shopping_list", "Show item images");
-    const hint = translate("shopping_list", "Attach a photo to an item from its menu, or paste or drop one onto it. Photos are part of the list, so everyone with access can see them. This switch only changes what you see.");
-    const saveFailedText = translate("shopping_list", "Failed to save setting");
-    async function onToggle(value) {
-      try {
-        await setEnabled(value);
-      } catch (e) {
-        showError(saveFailedText);
-        console.error(e);
-      }
-    }
-    return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("section", _hoisted_1$3, [
-        createBaseVNode("h3", _hoisted_2$2, toDisplayString(unref(title)), 1),
-        createVNode(unref(NcCheckboxRadioSwitch), {
-          type: "switch",
-          "model-value": unref(enabled),
-          loading: unref(saving),
-          description: unref(hint),
-          "onUpdate:modelValue": onToggle
-        }, {
-          default: withCtx(() => [
-            createTextVNode(toDisplayString(unref(switchLabel)), 1)
-          ]),
-          _: 1
-        }, 8, ["model-value", "loading", "description"])
-      ]);
-    };
-  }
-});
-const ItemImagesSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$4, [["__scopeId", "data-v-f369b16f"]]);
-const _hoisted_1$2 = { class: "name-settings" };
-const _hoisted_2$1 = { class: "name-settings__title" };
-const _sfc_main$3 = /* @__PURE__ */ defineComponent({
-  __name: "NameSettings",
-  setup(__props) {
-    const { enabled, saving, setEnabled } = useOwnNamePreference();
-    const title = translate("shopping_list", "Names");
-    const switchLabel = translate("shopping_list", "Show my name on items");
-    const hint = translate("shopping_list", "Your name always shows to everyone else. This switch only changes what you see.");
-    const saveFailedText = translate("shopping_list", "Failed to save setting");
-    async function onToggle(value) {
-      try {
-        await setEnabled(value);
-      } catch (e) {
-        showError(saveFailedText);
-        console.error(e);
-      }
-    }
-    return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("section", _hoisted_1$2, [
-        createBaseVNode("h3", _hoisted_2$1, toDisplayString(unref(title)), 1),
-        createVNode(unref(NcCheckboxRadioSwitch), {
-          type: "switch",
-          "model-value": unref(enabled),
-          loading: unref(saving),
-          description: unref(hint),
-          "onUpdate:modelValue": onToggle
-        }, {
-          default: withCtx(() => [
-            createTextVNode(toDisplayString(unref(switchLabel)), 1)
-          ]),
-          _: 1
-        }, 8, ["model-value", "loading", "description"])
-      ]);
-    };
-  }
-});
-const NameSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$3, [["__scopeId", "data-v-172906c9"]]);
-const ANDROID_APP_URL = "https://play.google.com/store/apps/details?id=dev.otherworld.shoppinglist";
-const HIDDEN_KEY = "shopping_list.androidAppLink.hidden";
-function loadHidden(storage) {
-  if (!storage) return false;
-  try {
-    return storage.getItem(HIDDEN_KEY) === "1";
-  } catch {
-    return false;
-  }
-}
-function saveHidden(storage) {
-  if (!storage) return;
-  try {
-    storage.setItem(HIDDEN_KEY, "1");
-  } catch {
-  }
-}
-const _hoisted_1$1 = {
-  key: 0,
-  class: "android-app-link"
-};
-const phoneIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17,19H7V5H17M17,1H7C5.89,1 5,1.89 5,3V21A2,2 0 0,0 7,23H17A2,2 0 0,0 19,21V3C19,1.89 18.1,1 17,1Z" fill="currentColor"/></svg>';
-const _sfc_main$2 = /* @__PURE__ */ defineComponent({
-  __name: "AndroidAppLink",
-  setup(__props) {
-    const storage = browserStorage();
-    const hidden = ref(loadHidden(storage));
-    const linkText = translate("shopping_list", "Get the Android app");
-    const hideText = translate("shopping_list", "Hide this link");
-    function onHide() {
-      hidden.value = true;
-      saveHidden(storage);
-    }
-    return (_ctx, _cache) => {
-      return !hidden.value ? (openBlock(), createElementBlock("ul", _hoisted_1$1, [
-        createVNode(unref(NcAppNavigationItem), {
-          name: unref(linkText),
-          href: unref(ANDROID_APP_URL),
-          "force-menu": ""
-        }, {
-          icon: withCtx(() => [
-            createVNode(unref(NcIconSvgWrapper), {
-              svg: phoneIcon,
-              size: 20
-            })
-          ]),
-          actions: withCtx(() => [
-            createVNode(unref(NcActionButton), { onClick: onHide }, {
-              default: withCtx(() => [
-                createTextVNode(toDisplayString(unref(hideText)), 1)
-              ]),
-              _: 1
-            })
-          ]),
-          _: 1
-        }, 8, ["name", "href"])
-      ])) : createCommentVNode("", true);
-    };
-  }
-});
-const AndroidAppLink = /* @__PURE__ */ _export_sfc$1(_sfc_main$2, [["__scopeId", "data-v-9ecb6a23"]]);
-const syncing = ref(false);
-const pendingCount = ref(0);
-let draining = false;
-async function replayMutation(m) {
-  switch (m.type) {
-    case "item.check":
-      return api.items.check(m.listId, m.itemId, m.payload.checked);
-    case "item.create":
-      return api.items.create(m.listId, m.payload);
-    case "item.update":
-      return api.items.update(m.listId, m.itemId, m.payload);
-    case "item.delete":
-      return api.items.delete(m.listId, m.itemId);
-    case "item.reorder":
-      return api.items.reorder(m.listId, m.payload.sortedIds);
-    case "item.clearChecked":
-      return api.items.clearChecked(m.listId);
-    case "item.uncheckAll":
-      return api.items.uncheckAll(m.listId);
-    default:
-      throw new Error(`Unknown mutation type: ${m.type}`);
-  }
-}
-function getHttpStatus(error) {
-  if (!error || typeof error !== "object") return null;
-  const resp = error.response;
-  return resp?.status ?? null;
-}
-async function drain() {
-  if (draining) return;
-  draining = true;
-  syncing.value = true;
-  try {
-    const queue2 = await peekAll();
-    pendingCount.value = queue2.length;
-    if (queue2.length === 0) return;
-    const itemsStore = useItemsStore();
-    while (true) {
-      const current = await peekAll();
-      if (current.length === 0) break;
-      const mutation = current[0];
-      try {
-        const result = await replayMutation(mutation);
-        if (mutation.type === "item.create" && mutation.tempId) {
-          const realItem = result.data.ocs.data;
-          itemsStore.replaceTempId(mutation.listId, Number(mutation.tempId), realItem);
-        }
-        await removeMutation(mutation.id);
-        pendingCount.value = (await peekAll()).length;
-      } catch (error) {
-        if (isNetworkError(error)) {
-          break;
-        }
-        const status = getHttpStatus(error);
-        if (status === 404) {
-          await removeMutation(mutation.id);
-          pendingCount.value = (await peekAll()).length;
-          continue;
-        }
-        if (mutation.retries >= 2) {
-          console.error("[ShoppingList] Discarding mutation after 3 failures:", mutation, error);
-          await removeMutation(mutation.id);
-          pendingCount.value = (await peekAll()).length;
-          continue;
-        }
-        await removeMutation(mutation.id);
-        await enqueue({
-          type: mutation.type,
-          listId: mutation.listId,
-          itemId: mutation.itemId,
-          payload: mutation.payload,
-          tempId: mutation.tempId
-        });
-        const updated = await peekAll();
-        if (updated.length > 0) {
-          const last = updated[updated.length - 1];
-          last.retries = mutation.retries + 1;
-        }
-        pendingCount.value = updated.length;
-      }
-    }
-    const remaining = await peekAll();
-    if (remaining.length === 0) {
-      const listsStore = useListsStore();
-      await listsStore.fetchAll();
-      if (listsStore.currentListId) {
-        await itemsStore.fetchByList(listsStore.currentListId);
-      }
-    }
-  } finally {
-    draining = false;
-    syncing.value = false;
-    pendingCount.value = (await peekAll()).length;
-  }
-}
-function useSyncEngine() {
-  const { onOnline } = useNetworkStatus();
-  onOnline(() => {
-    drain();
-  });
+function useWhatsNew() {
   return {
-    syncing: readonly(syncing),
-    pendingCount: readonly(pendingCount),
-    drain
+    shown,
+    hasNotes: latestEntries(allNotes, installedVersion()).length > 0,
+    showIfUpdated,
+    showLatest() {
+      shown.value = latestEntries(allNotes, installedVersion());
+    },
+    close() {
+      shown.value = [];
+    }
   };
 }
-const _hoisted_1 = {
-  key: 0,
-  class: "offline-indicator__icon spinning"
-};
-const _hoisted_2 = {
-  key: 1,
-  class: "offline-indicator__icon"
-};
-const _hoisted_3 = {
-  key: 2,
-  class: "offline-indicator__icon"
-};
-const _hoisted_4 = { class: "offline-indicator__text" };
-const _hoisted_5 = {
-  key: 3,
-  class: "offline-indicator__badge"
-};
-const _sfc_main$1 = /* @__PURE__ */ defineComponent({
-  __name: "OfflineIndicator",
+const _sfc_main$2 = /* @__PURE__ */ defineComponent({
+  __name: "WhatsNewButton",
   setup(__props) {
-    const { isOnline: isOnline2 } = useNetworkStatus();
-    const { syncing: syncing2, pendingCount: pendingCount2 } = useSyncEngine();
-    const justSynced = ref(false);
-    let syncedTimer = null;
-    watch(syncing2, (isSyncing, wasSyncing) => {
-      if (wasSyncing && !isSyncing && pendingCount2.value === 0) {
-        justSynced.value = true;
-        if (syncedTimer) clearTimeout(syncedTimer);
-        syncedTimer = setTimeout(() => {
-          justSynced.value = false;
-        }, 3e3);
-      }
-    });
-    const visible = computed(() => {
-      return !isOnline2.value || syncing2.value || justSynced.value || pendingCount2.value > 0;
-    });
-    const statusClass = computed(() => {
-      if (syncing2.value) return "offline-indicator--syncing";
-      if (!isOnline2.value) return "offline-indicator--offline";
-      if (justSynced.value) return "offline-indicator--synced";
-      if (pendingCount2.value > 0) return "offline-indicator--pending";
-      return "";
-    });
-    const statusText = computed(() => {
-      if (syncing2.value) return translate("shopping_list", "Syncing changes…");
-      if (!isOnline2.value && pendingCount2.value > 0) {
-        return translate("shopping_list", "Offline — {count} pending", { count: pendingCount2.value });
-      }
-      if (!isOnline2.value) return translate("shopping_list", "You're offline");
-      if (justSynced.value) return translate("shopping_list", "All changes synced");
-      if (pendingCount2.value > 0) return translate("shopping_list", "{count} changes pending", { count: pendingCount2.value });
-      return "";
-    });
+    const { hasNotes, showLatest } = useWhatsNew();
+    const label = translate("shopping_list", "What's new");
     return (_ctx, _cache) => {
-      return openBlock(), createBlock(Transition, { name: "offline-fade" }, {
+      return unref(hasNotes) ? (openBlock(), createBlock(unref(NcButton), {
+        key: 0,
+        class: "whats-new-button",
+        variant: "secondary",
+        wide: "",
+        onClick: unref(showLatest)
+      }, {
         default: withCtx(() => [
-          visible.value ? (openBlock(), createElementBlock("div", {
-            key: 0,
-            class: normalizeClass(["offline-indicator", statusClass.value])
-          }, [
-            unref(syncing2) ? (openBlock(), createElementBlock("span", _hoisted_1, "↻")) : !unref(isOnline2) ? (openBlock(), createElementBlock("span", _hoisted_2, "⚠")) : (openBlock(), createElementBlock("span", _hoisted_3, "✓")),
-            createBaseVNode("span", _hoisted_4, toDisplayString(statusText.value), 1),
-            unref(pendingCount2) > 0 && !unref(syncing2) ? (openBlock(), createElementBlock("span", _hoisted_5, toDisplayString(unref(pendingCount2)), 1)) : createCommentVNode("", true)
-          ], 2)) : createCommentVNode("", true)
+          createTextVNode(toDisplayString(unref(label)), 1)
         ]),
         _: 1
-      });
+      }, 8, ["onClick"])) : createCommentVNode("", true);
     };
   }
 });
-const OfflineIndicator = /* @__PURE__ */ _export_sfc$1(_sfc_main$1, [["__scopeId", "data-v-214ff348"]]);
+const WhatsNewButton = /* @__PURE__ */ _export_sfc$1(_sfc_main$2, [["__scopeId", "data-v-429e987e"]]);
+const _hoisted_1 = { class: "whats-new__heading" };
+const _hoisted_2 = { class: "whats-new__version" };
+const _hoisted_3 = { class: "whats-new__items" };
+const _hoisted_4 = ["href"];
+const _sfc_main$1 = /* @__PURE__ */ defineComponent({
+  __name: "WhatsNewDialog",
+  setup(__props) {
+    const { shown: shown2, close } = useWhatsNew();
+    const title = translate("shopping_list", "What's new in Shopping List");
+    const readMoreText = translate("shopping_list", "Read more");
+    const buttons = [{
+      label: translate("shopping_list", "Got it"),
+      variant: "primary"
+    }];
+    function onUpdateOpen(open) {
+      if (!open) close();
+    }
+    return (_ctx, _cache) => {
+      return openBlock(), createBlock(unref(NcDialog), {
+        open: unref(shown2).length > 0,
+        name: unref(title),
+        buttons,
+        size: "normal",
+        "onUpdate:open": onUpdateOpen
+      }, {
+        default: withCtx(() => [
+          (openBlock(true), createElementBlock(Fragment, null, renderList(unref(shown2), (entry) => {
+            return openBlock(), createElementBlock("section", {
+              key: entry.version,
+              class: "whats-new__entry"
+            }, [
+              createBaseVNode("h3", _hoisted_1, [
+                createTextVNode(toDisplayString(entry.title) + " ", 1),
+                createBaseVNode("span", _hoisted_2, toDisplayString(entry.version), 1)
+              ]),
+              createBaseVNode("ul", _hoisted_3, [
+                (openBlock(true), createElementBlock(Fragment, null, renderList(entry.items, (item, i) => {
+                  return openBlock(), createElementBlock("li", { key: i }, toDisplayString(item), 1);
+                }), 128))
+              ]),
+              unref(safeLink)(entry.link) ? (openBlock(), createElementBlock("a", {
+                key: 0,
+                class: "whats-new__link",
+                href: unref(safeLink)(entry.link) ?? void 0,
+                target: "_blank",
+                rel: "noopener noreferrer"
+              }, toDisplayString(unref(readMoreText)), 9, _hoisted_4)) : createCommentVNode("", true)
+            ]);
+          }), 128))
+        ]),
+        _: 1
+      }, 8, ["open", "name"]);
+    };
+  }
+});
+const WhatsNewDialog = /* @__PURE__ */ _export_sfc$1(_sfc_main$1, [["__scopeId", "data-v-7942de61"]]);
 let initialized = false;
 function usePush() {
   if (initialized) return;
@@ -18940,7 +18892,7 @@ function usePush() {
   if (hasPushServer) {
     try {
       __vitePreload(async () => {
-        const { listen } = await import("./index-h49X0kzU.chunk.mjs").then((n) => n.i);
+        const { listen } = await import("./index-DHIaYDno.chunk.mjs").then((n) => n.i);
         return { listen };
       }, true ? __vite__mapDeps([0,1,2]) : void 0, import.meta.url).then(({ listen }) => {
         listen("shopping_list_item_update", () => {
@@ -18985,6 +18937,11 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
   setup(__props) {
     const listsStore = useListsStore();
     const showSettings = ref(false);
+    const shareListId = ref(null);
+    const currentUserId = getCurrentUser()?.uid ?? "";
+    const shareList = computed(
+      () => listsStore.lists.find((l) => l.id === shareListId.value) ?? null
+    );
     const noListName = translate("shopping_list", "No list selected");
     const noListDesc = translate("shopping_list", "Select a list from the sidebar or create a new one");
     onMounted(async () => {
@@ -18992,6 +18949,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
       if (listsStore.lists.length > 0 && !listsStore.currentListId) {
         listsStore.selectList(listsStore.lists[0].id);
       }
+      useWhatsNew().showIfUpdated(listsStore.lists.length === 0);
       usePush();
     });
     return (_ctx, _cache) => {
@@ -19005,14 +18963,17 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
                   default: withCtx(() => [
                     createVNode(ListSortSettings),
                     createVNode(ItemImagesSettings),
-                    createVNode(NameSettings)
+                    createVNode(NameSettings),
+                    createVNode(BackupSettings),
+                    createVNode(WhatsNewButton)
                   ]),
                   _: 1
                 })
               ]),
               default: withCtx(() => [
                 createVNode(ListSidebar, {
-                  onShowSettings: _cache[0] || (_cache[0] = ($event) => showSettings.value = true)
+                  onShowSettings: _cache[0] || (_cache[0] = ($event) => showSettings.value = true),
+                  onShare: _cache[1] || (_cache[1] = ($event) => shareListId.value = $event)
                 })
               ]),
               _: 1
@@ -19021,8 +18982,11 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
               default: withCtx(() => [
                 showSettings.value && unref(listsStore).currentList ? (openBlock(), createBlock(AreaKeywordsSettings, {
                   key: unref(listsStore).currentListId,
-                  onBack: _cache[1] || (_cache[1] = ($event) => showSettings.value = false)
-                })) : unref(listsStore).currentList ? (openBlock(), createBlock(ListView, { key: 1 })) : (openBlock(), createBlock(unref(NcEmptyContent), {
+                  onBack: _cache[2] || (_cache[2] = ($event) => showSettings.value = false)
+                })) : unref(listsStore).currentList ? (openBlock(), createBlock(ListView, {
+                  key: 1,
+                  onShare: _cache[3] || (_cache[3] = ($event) => shareListId.value = $event)
+                })) : (openBlock(), createBlock(unref(NcEmptyContent), {
                   key: 2,
                   name: unref(noListName),
                   description: unref(noListDesc)
@@ -19038,7 +19002,15 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
           ]),
           _: 1
         }),
-        createVNode(OfflineIndicator)
+        shareList.value ? (openBlock(), createBlock(ShareDialog, {
+          key: 0,
+          "list-id": shareList.value.id,
+          "is-owner": shareList.value.isOwner,
+          "current-user-id": unref(currentUserId),
+          onClose: _cache[4] || (_cache[4] = ($event) => shareListId.value = null)
+        }, null, 8, ["list-id", "is-owner", "current-user-id"])) : createCommentVNode("", true),
+        createVNode(OfflineIndicator),
+        createVNode(WhatsNewDialog)
       ], 64);
     };
   }

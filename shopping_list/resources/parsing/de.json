@@ -53,7 +53,12 @@
 		"päckchen",
 		"beutel",
 		"tüten",
-		"fl oz"
+		"fl oz",
+		"stk",
+		"stk.",
+		"pkg",
+		"dag",
+		"dkg"
 	],
 	"leadingUnits": [
 		"prise",
