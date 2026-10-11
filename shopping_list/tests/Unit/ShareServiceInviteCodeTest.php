@@ -11,6 +11,7 @@ use OCA\Shopping_List\Service\ListService;
 use OCA\Shopping_List\Service\NotFoundException;
 use OCA\Shopping_List\Service\PushService;
 use OCA\Shopping_List\Service\ShareService;
+use OCP\EventDispatcher\IEventDispatcher;
 use OCP\IGroupManager;
 use OCP\IUserManager;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -31,6 +32,7 @@ class ShareServiceInviteCodeTest extends TestCase {
 			$this->createMock(IUserManager::class),
 			$this->createMock(IGroupManager::class),
 			$this->createMock(PushService::class),
+			$this->createMock(IEventDispatcher::class),
 		);
 	}
 

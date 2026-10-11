@@ -73,6 +73,36 @@ class PublicListController extends OCSController {
 		return $item;
 	}
 
+	/** A name sent through the link, held to the rules for adding an item. Null when it can't be one. */
+	private static function validName(mixed $name): ?string {
+		if (!is_string($name)) {
+			return null;
+		}
+		$name = trim($name);
+		return $name === '' || mb_strlen($name) > 255 ? null : $name;
+	}
+
+	/**
+	 * A shop area id sent through the link, which has to be one of the
+	 * list's own areas.
+	 *
+	 * @throws \InvalidArgumentException
+	 */
+	private function areaFor(ListShare $share, mixed $id): ?int {
+		if ($id === null) {
+			return null;
+		}
+		try {
+			$area = is_numeric($id) ? $this->areaService->find((int)$id) : null;
+		} catch (NotFoundException) {
+			$area = null;
+		}
+		if ($area === null || $area->getListId() !== $share->getListId()) {
+			throw new \InvalidArgumentException('Invalid shop area');
+		}
+		return $area->getId();
+	}
+
 	/**
 	 * Shape items for the public: never members' user ids, and not their
 	 * names either when the owner turned them off for the link; guests'
@@ -114,7 +144,7 @@ class PublicListController extends OCSController {
 	public function auth(string $token): DataResponse {
 		try {
 			$share = $this->shareService->validatePublicAccess($token, $this->request->getParam('password'));
-			$this->access->grant($token);
+			$this->access->grant($share);
 			return new DataResponse([
 				'title' => $this->listMapper->find($share->getListId())->getTitle(),
 				'permission' => $share->getPermission(),
@@ -175,12 +205,12 @@ class PublicListController extends OCSController {
 			$share = $this->authenticate($token);
 			$this->assertWrite($share);
 
-			$name = trim((string)$this->request->getParam('name', ''));
-			if ($name === '' || mb_strlen($name) > 255) {
+			$name = self::validName($this->request->getParam('name', ''));
+			if ($name === null) {
 				return new DataResponse(['message' => 'Invalid name'], Http::STATUS_BAD_REQUEST);
 			}
 
-			$shopAreaId = $this->request->getParam('shopAreaId');
+			$shopAreaId = $this->areaFor($share, $this->request->getParam('shopAreaId'));
 			$quantity = $this->request->getParam('quantity');
 			$quantity = $quantity === null ? null : (string)$quantity;
 			$item = new Item();
@@ -189,7 +219,7 @@ class PublicListController extends OCSController {
 			// A name added on its own gets the amount it had last time in this list.
 			$item->setQuantity($quantity ?? $this->amounts->recall($share->getListId(), $name) ?? '1');
 			$item->setUnit($this->request->getParam('unit'));
-			$item->setShopAreaId($shopAreaId !== null ? (int)$shopAreaId : null);
+			$item->setShopAreaId($shopAreaId);
 			$item->setChecked(false);
 			$item->setSortOrder(0);
 			$item->setImageKey($this->images->rememberedKey($share->getListId(), $name));
@@ -205,6 +235,8 @@ class PublicListController extends OCSController {
 			}
 
 			return new DataResponse($this->forLink($share, $item), Http::STATUS_CREATED);
+		} catch (\InvalidArgumentException $e) {
+			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_BAD_REQUEST);
 		} catch (PasswordRequiredException) {
 			return new DataResponse(['passwordRequired' => true], Http::STATUS_FORBIDDEN);
 		} catch (NoPermissionException $e) {
@@ -226,10 +258,14 @@ class PublicListController extends OCSController {
 
 			$params = $this->request->getParams();
 			if (isset($params['name'])) {
-				$renamed = ItemImageService::nameKey((string)$params['name']) !== ItemImageService::nameKey($item->getName());
-				$item->setName($params['name']);
+				$name = self::validName($params['name']);
+				if ($name === null) {
+					return new DataResponse(['message' => 'Invalid name'], Http::STATUS_BAD_REQUEST);
+				}
+				$renamed = ItemImageService::nameKey($name) !== ItemImageService::nameKey($item->getName());
+				$item->setName($name);
 				if ($renamed) {
-					$remembered = $this->images->rememberedKey($item->getListId(), (string)$params['name']);
+					$remembered = $this->images->rememberedKey($item->getListId(), $name);
 					if ($remembered !== null) {
 						$item->setImageKey($remembered);
 					}
@@ -242,7 +278,7 @@ class PublicListController extends OCSController {
 				$item->setUnit($params['unit']);
 			}
 			if (array_key_exists('shopAreaId', $params)) {
-				$item->setShopAreaId($params['shopAreaId']);
+				$item->setShopAreaId($this->areaFor($share, $params['shopAreaId']));
 			}
 			$item->setUpdatedAt(new DateTime());
 			$item = $this->itemMapper->update($item);
@@ -254,6 +290,8 @@ class PublicListController extends OCSController {
 			}
 
 			return new DataResponse($this->forLink($share, $item));
+		} catch (\InvalidArgumentException $e) {
+			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_BAD_REQUEST);
 		} catch (PasswordRequiredException) {
 			return new DataResponse(['passwordRequired' => true], Http::STATUS_FORBIDDEN);
 		} catch (NoPermissionException $e) {

@@ -48,10 +48,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The settings carry `whatsNewSeen`, the version whose release notes were
   last shown, so the What's new window shows once per person rather than
   once per browser
+- Setting a link's password answers 400 with the password policy's own
+  message when the policy refuses it, and adding or changing an item
+  through a public link answers 400 for a shop area that isn't the list's
+  own
 
 ### Fixed
 - Items added on the public link page now read the amount the same way as
   in the app, so "2 l Milk" is 2 l of Milk rather than 1 of "2 l Milk"
+- A list link's password now has to pass the server's password policy, the
+  same as Nextcloud's own share links, so where the admin has the Password
+  policy app set up a link can no longer be protected by something like
+  1234. The Share dialog shows the policy's reason when it refuses one, and
+  an empty password is refused as well
+- Changing or removing a link's password now locks the list again for
+  anyone who had it open with the old one, where before they kept access
+  until their browser session ended. Anyone with a protected link open is
+  asked for the password once more after this update
+- Renaming an item through a public link is held to the same rules as
+  adding one, so a name over 255 characters or with nothing in it is
+  refused rather than giving a server error. An item added or moved
+  through a link can also only go in one of that list's own shop areas
 
 ## [1.10.0] - 2026-10-05
 
