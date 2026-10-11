@@ -5,7 +5,7 @@
 			<div class="list-view__actions">
 				<div v-if="currentShares.length > 0"
 					class="list-view__avatars"
-					@click="showShareDialog = true">
+					@click="onShare">
 					<NcAvatar v-for="share in visibleShares"
 						:key="share.id"
 						:user="share.sharedWithType === ShareType.USER ? share.sharedWith : undefined"
@@ -20,7 +20,8 @@
 				</div>
 				<NcActions :aria-label="listActionsText">
 					<NcActionButton v-if="listsStore.currentList?.isOwner"
-						@click="showShareDialog = true">
+						close-after-click
+						@click="onShare">
 						{{ shareText }}
 					</NcActionButton>
 					<NcActionButton :disabled="itemsStore.uncheckedItems.length === 0"
@@ -73,7 +74,7 @@
 					<button v-if="hasHeader(group)"
 						type="button"
 						class="list-view__area-header"
-						:style="group.areaColor ? { borderLeftColor: group.areaColor } : {}"
+						:style="group.areaColor ? { borderInlineStartColor: group.areaColor } : {}"
 						:aria-expanded="!isGroupCollapsed(group)"
 						:aria-controls="groupElementId(group)"
 						@click="toggleArea(group.areaId)">
@@ -87,6 +88,9 @@
 						<span class="list-view__area-count">{{ group.items.length }}</span>
 					</button>
 
+					<!-- The row being edited can't be picked up, so pressing and dragging
+						in its inputs selects text. prevent-on-filter off keeps the press's
+						default, which is what places the caret. -->
 					<draggable v-show="!isGroupCollapsed(group)"
 						:id="groupElementId(group)"
 						v-model="localGroups[groupIndex].items"
@@ -96,6 +100,8 @@
 						:animation="150"
 						:delay="150"
 						:delay-on-touch-only="true"
+						filter=".item-row--editing"
+						:prevent-on-filter="false"
 						class="list-view__items"
 						ghost-class="list-view__item--ghost"
 						@start="isDragging = true"
@@ -136,12 +142,6 @@
 					:editing="false" />
 			</div>
 		</div>
-
-		<ShareDialog v-if="showShareDialog && listsStore.currentList"
-			:list-id="listsStore.currentList.id"
-			:is-owner="listsStore.currentList.isOwner"
-			:current-user-id="currentUserId"
-			@close="showShareDialog = false" />
 	</div>
 </template>
 
@@ -160,7 +160,6 @@ import {
 } from '@nextcloud/vue'
 import { showError, showSuccess } from '@nextcloud/dialogs'
 import { getLanguage, t } from '@nextcloud/l10n'
-import { getCurrentUser } from '@nextcloud/auth'
 import { mdiChevronDown } from '@mdi/js'
 import { useListsStore } from '../stores/lists'
 import { useItemsStore } from '../stores/items'
@@ -170,7 +169,6 @@ import { useSharesStore } from '../stores/shares'
 import draggable from 'vuedraggable'
 import ItemRow from './ItemRow.vue'
 import ItemEditor from './ItemEditor.vue'
-import ShareDialog from './ShareDialog.vue'
 import { formatListAsText } from '../utils/listText'
 import { browserStorage } from '../utils/browserStorage'
 import {
@@ -183,6 +181,8 @@ import {
 } from '../utils/itemSort'
 import type { AreaGroup, BoughtSort, OpenSort } from '../utils/itemSort'
 import { useCollapsedAreas } from '../composables/useCollapsedAreas'
+import { useImagePreference } from '../composables/useImagePreference'
+import { isFileDrag } from '../utils/imageFiles'
 
 const listsStore = useListsStore()
 const itemsStore = useItemsStore()
@@ -199,10 +199,16 @@ const currentShares = computed(() => {
 const visibleShares = computed(() => currentShares.value.slice(0, MAX_VISIBLE_AVATARS))
 const overflowCount = computed(() => Math.max(0, currentShares.value.length - MAX_VISIBLE_AVATARS))
 
+const emit = defineEmits<{ share: [listId: number] }>()
+
 const showChecked = ref(true)
-const showShareDialog = ref(false)
-const currentUserId = getCurrentUser()?.uid ?? ''
 const editingItemId = ref<number | null>(null)
+
+// The dialog itself lives in App.vue so the sidebar can open it too.
+function onShare() {
+	const listId = listsStore.currentListId
+	if (listId !== null) emit('share', listId)
+}
 
 // Capture-phase click listener to bypass Nextcloud's click interception
 // on non-interactive elements. Editable rows use a ::after overlay that
@@ -212,8 +218,10 @@ function onCaptureClick(e: MouseEvent) {
 
 	// Don't hijack clicks on the checkbox or the actions (⋮) kebab — let those
 	// handle their own click so the menu can open instead of entering edit mode.
-	if (target.closest('.item-row__check') || target.closest('.item-row__actions')) return
-	if ((target as HTMLInputElement).type === 'checkbox') return
+	if (target.closest('.item-row__check') || target.closest('.item-row__actions') || target.closest('.item-row__thumb')) return
+	// "Add image" opens the picker by clicking the row's hidden file input,
+	// which must not put the row into edit mode.
+	if ((target as HTMLInputElement).type === 'checkbox' || (target as HTMLInputElement).type === 'file') return
 
 	if (isDragging.value) return
 
@@ -233,6 +241,39 @@ function onCaptureClick(e: MouseEvent) {
 
 onMounted(() => document.addEventListener('click', onCaptureClick, true))
 onUnmounted(() => document.removeEventListener('click', onCaptureClick, true))
+
+const { enabled: imagesEnabled } = useImagePreference()
+
+// A file dropped anywhere but on a row that takes it would make the browser
+// open the file and leave the app. Cancel the default for every file drag;
+// a row that accepts one marks itself with item-row--drop-target on
+// dragenter and sets the copy effect itself, everywhere else the cursor
+// says no. Sortable's row drags never carry files, so they pass through.
+function onDocumentDragOver(e: DragEvent) {
+	if (!isFileDrag(e.dataTransfer)) return
+	e.preventDefault()
+	const accepting = (e.target as Element | null)?.closest?.('.item-row--drop-target')
+	if (!accepting && e.dataTransfer) e.dataTransfer.dropEffect = 'none'
+}
+
+function onDocumentDrop(e: DragEvent) {
+	if (isFileDrag(e.dataTransfer)) e.preventDefault()
+}
+
+function removeDropGuard() {
+	document.removeEventListener('dragover', onDocumentDragOver)
+	document.removeEventListener('drop', onDocumentDrop)
+}
+
+watch(imagesEnabled, (on) => {
+	removeDropGuard()
+	if (on) {
+		document.addEventListener('dragover', onDocumentDragOver)
+		document.addEventListener('drop', onDocumentDrop)
+	}
+}, { immediate: true })
+
+onUnmounted(removeDropGuard)
 
 // Pre-compute translations once
 const shareText = t('shopping_list', 'Share')
@@ -475,9 +516,10 @@ async function onUncheckAll() {
 	min-width: 0;
 	min-height: 0;
 	margin: 0;
-	padding: 6px 16px 6px 10px;
+	padding-block: 6px;
+	padding-inline: 10px 16px;
 	border: none;
-	border-left: 3px solid var(--color-border-dark);
+	border-inline-start: 3px solid var(--color-border-dark);
 	border-radius: 0;
 	background-color: var(--color-background-dark);
 	color: inherit;
@@ -487,7 +529,7 @@ async function onUncheckAll() {
 }
 
 .list-view__card .list-view__area-group > button.list-view__area-header:is(:hover, :focus, :active) {
-	border-left-color: var(--color-border-dark);
+	border-inline-start-color: var(--color-border-dark);
 	color: inherit;
 }
 
@@ -571,17 +613,17 @@ async function onUncheckAll() {
 }
 
 .list-view__avatar {
-	margin-left: -6px;
+	margin-inline-start: -6px;
 	border: 2px solid var(--color-main-background);
 	border-radius: 50%;
 }
 
 .list-view__avatar:first-child {
-	margin-left: 0;
+	margin-inline-start: 0;
 }
 
 .list-view__avatar-overflow {
-	margin-left: 4px;
+	margin-inline-start: 4px;
 	font-size: 0.8em;
 	color: var(--color-text-maxcontrast);
 	font-weight: 500;
@@ -643,12 +685,12 @@ async function onUncheckAll() {
 }
 
 .list-view__toggle {
-	margin-left: 4px;
+	margin-inline-start: 4px;
 }
 
 @media (max-width: 1024px) {
 	.list-view__header {
-		padding-left: 44px;
+		padding-inline-start: 44px;
 	}
 }
 </style>

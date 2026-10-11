@@ -5,6 +5,201 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- Lists can be named as you create them. "New list" in the sidebar opens a
+  name field instead of making a list called "New shopping list" straight
+  away. Type a name and press Enter, or confirm an empty field if you want
+  the old default name. Cancelling creates nothing, where before every
+  click left a list behind. Thanks to rostmodern for the idea (#48)
+- "Share list" is in a list's menu in the sidebar as well, next to Rename,
+  Pin and Delete, so you no longer have to open a list before you can share
+  it. It shows on the lists you own, and it shares the list whose menu you
+  used rather than the one you are looking at (#48)
+- Your lists can be backed up and restored. Open Settings at the bottom of
+  the sidebar and choose "Download backup" under Backup to get a JSON file
+  holding your own lists, with their items, areas, tags and pins. "Restore
+  from backup" reads that file back. A restore always adds lists rather than
+  replacing the ones you have, so nothing you already had can be lost, and
+  restoring the same file twice gives you two copies. Shares are not
+  included, so a restored list starts private and you share it again
+  yourself. The same data is carried by Nextcloud's user migration if your
+  administrator has the User Migration app installed. Thanks to rostmodern
+  for the idea (#47)
+- Italian, translated on Crowdin. 171 of the 190 strings are done, the
+  newest ones show in English for now
+- Items remember their amount. Type "500 g Rice" once and next time "Rice"
+  on its own comes back as 500 g Rice, even after the first one was cleared
+  away. The amount belongs to the list, so everyone sharing it gets the same
+  one, guests on the public link included. Changing an item's amount updates
+  what is remembered, and clearing it goes back to the plain default of 1.
+  Typing an item that is already on the list still adds to it as before,
+  without changing the remembered amount (#15)
+- More units are recognised when typed with an amount: pc, pcs, pkg, dag
+  and dkg, and in German Stk and Stk. as well. Before, "25 dag Schinken"
+  came out as 25 of an item called "Dag Schinken" (#15)
+- A What's new window that shows once after an update, with the main
+  changes since the version you last used. What's new at the bottom of
+  Settings opens it again. Someone who has only just started isn't shown
+  it, and the notes are in English only
+
+### Changed
+- The settings carry `whatsNewSeen`, the version whose release notes were
+  last shown, so the What's new window shows once per person rather than
+  once per browser
+
+### Fixed
+- Items added on the public link page now read the amount the same way as
+  in the app, so "2 l Milk" is 2 l of Milk rather than 1 of "2 l Milk"
+
+## [1.10.0] - 2026-10-05
+
+### Added
+- Lists can be sorted your own way. Choose Sort lists in Settings at the
+  bottom of the list sidebar: Recently updated (as before, and still the
+  default), A to Z, or Custom, where you drag lists into the order you
+  want. Dragging a list while on another sort switches to Custom and keeps
+  the order you were looking at. Pinned lists, your own lists and the ones
+  shared with you each keep their own order, and a list you pin or unpin
+  goes to the top of its new section. The order is yours alone and is the
+  same in every browser and in the Android app. Thanks to Shiva
+  (shining-cat) for the idea
+- An "Open in the app" button on a shared list's public page, on Android
+  phones. It opens the list in the Shopping List Android app, which can now
+  use a shared list without a Nextcloud account, or goes to the app's website
+  when it isn't installed.
+- A QR code of a list's public link in the Share dialog. Choose Show QR code
+  under the link and scan it with a phone camera to open the list there,
+  where the Open in the app button takes it into the Android app
+- Invite codes for shared lists. A list's public link now has a short code
+  like K7QM-3XPD, shown in the Share dialog with the server's address, and
+  Copy invite gives both as one line (for example cloud.example.com/K7QM-3XPD).
+  Someone without a Nextcloud account can type or paste it into the Shopping
+  List Android app to join the list. The code opens nothing the link
+  wouldn't: a list with a password still asks for it, and the code stops
+  working when the link is deleted or expires
+- Each item now shows who added it, and once it's ticked, who ticked it.
+  People on a public link can type their name above the list, which shows
+  as "Anna (guest)" so a guest can't pass as one of the household. On a
+  phone the name goes on its own line under the item. The list owner can
+  hide members' names from the public page with Show members' names on
+  the link in the Share dialog, and guests' names still show. Your own
+  name is left off what you see unless you turn on Show my name on items
+  under Names in Settings. Items added before this have no name. Thanks
+  to natrius for the idea
+
+### Changed
+- The app's capabilities now list `list-order` among its features, each
+  list from the lists API carries its `position`, `listSort` joins the
+  settings, and `POST /api/v1/lists/reorder` is a new endpoint, so the
+  Android app can offer list ordering too
+- Link shares from the shares API carry their invite `code`,
+  `GET /api/v1/public/code/{code}` turns a code into the link's token, and
+  the capabilities list `invite-codes` among the features. The feature list
+  is now shown to visitors who aren't signed in too, so the Android app can
+  check it before a guest joins, while the version and image limits still
+  need a login. Wrong codes are throttled by Nextcloud's brute-force protection and
+  limited to ten tries a minute
+- Items carry `addedBy`, `addedByName`, `addedByGuest`, `checkedByName`
+  and `checkedByGuest`, and public responses leave the user ids out, as a
+  login can be an email address. Public add and tick take an optional
+  `guestName`,
+  link shares carry `showNames`, the settings carry `showOwnName`, and the
+  capabilities list `guest-names` among the features
+
+### Upgrade
+- Database migration: one column is added to the list preferences table
+  for your own position of each list
+- Database migration: an invite code column is added to the shares table.
+  Links made before this get their code the first time the Share dialog is
+  opened
+- Database migration: three columns are added to the items table for who
+  added and ticked each item, and one to the shares table for the Show
+  members' names choice
+
+### Fixed
+- Changing, ticking or deleting an item through a public link after the
+  owner had deleted it gave a server error rather than "Not found", so the
+  Android app couldn't tell the item was gone and kept retrying the change
+- Wrong passwords on a public link are now throttled by Nextcloud's
+  brute-force protection, so each failed attempt slows down the next ones
+  from the same address. The limit of five tries a minute was the only
+  guard before, which still let a script keep guessing all day
+- Copy link in the Share dialog did nothing on a server reached over plain
+  http, as browsers only offer the clipboard to https pages. It now falls
+  back to the older way of copying, and so does the new Copy invite
+- Ticking an item through a public link left whoever ticked it last as the
+  one who ticked it
+- Pressing and dragging across an item's name while editing it picked the
+  whole row up to move it rather than highlighting the text. The row being
+  edited now stays put, so the text can be selected as normal, and rows
+  that aren't being edited can still be dragged into order
+- Merging a duplicate item with a quantity above one renamed it to its
+  plural, and as only a few words such as rice and cheese were known not
+  to take one, "Milk" became "Milks" and "Bread" became "Breads". Common
+  groceries such as milk, bread, butter, flour, coffee, pasta, fish and oil
+  are now left alone, and so are names ending in them, like "Oat milk" and
+  "Olive oil"
+
+## [1.9.0] - 2026-09-23
+
+### Added
+- Items can carry a photo. Turn on "Show item images" in Settings at
+  the bottom of the list sidebar, then choose "Add image" from an item's
+  menu to take or pick one, or paste or drop an image onto the item. A
+  small thumbnail sits next to the checkbox; tap it to see the whole
+  photo. The switch is off to begin with, and while it is off nothing
+  changes: no thumbnails, no menu entries. It is saved on the server, so it
+  is the same in every browser you use. A photo belongs to the item's
+  name rather than the one item, so a photo of cheese shows on every
+  cheese in the lists you can edit, and comes back when cheese is added
+  again, even after the list has been emptied. Removing it forgets it for
+  that name. Everyone with access to a list sees its photos, on public
+  share links too, though a link cannot add or remove them. Uploads are
+  shrunk to 1280 px and saved as
+  JPEG, which also strips the location a phone writes into a photo. Adding
+  or removing a photo needs a connection. Thanks to rostmodern for the
+  request (#49)
+- A "Get the Android app" link above Settings at the bottom of the list
+  sidebar, which opens the companion app's Google Play listing in a new
+  tab. If you don't need it, choose "Hide this link" from its menu and it
+  stays hidden in that browser
+- Czech, translated on Crowdin. 149 of the 170 strings are done, the
+  newest ones show in English for now
+
+### Changed
+- Deleting an item from a public share link now removes its tags and
+  tells the others on the list straight away, as deleting in the app
+  already did
+- The gear entry under the lists is now called List settings and opens a
+  page of that name, headed by the list it belongs to, with the shop areas
+  as its first section. Settings that are yours rather than a list's,
+  starting with Show item images, live in the Settings drawer at the
+  bottom of the list sidebar, where Nextcloud apps keep them
+- German, Finnish, French, Dutch and Slovak are fully translated again
+  (170/170 strings each), including photos, the settings split and the
+  Android link. The new strings were filled in on Crowdin, where the
+  translators can still review them
+- The app's capabilities now carry its version, a feature list starting
+  with item-images, and the photo size limits, so the Android app can
+  tell what a server supports without trying
+
+### Fixed
+- Deleting a Nextcloud account now clears up after it. Their own lists are
+  deleted as if they had deleted them, so anyone they were shared with is
+  told, and their shares, pins, tags and photos go too. Before this it all
+  stayed in the database
+- The layout now mirrors properly in right-to-left languages such as
+  Arabic and Hebrew. The shop area colour bar, the spacing around item
+  names and the offline notice all used fixed left and right sides
+
+### Upgrade
+- Database migration: one column is added to the items table for the
+  photo key, and a new table holds the photo remembered for each item
+  name. Photos themselves are kept in the app's own data folder, not in
+  anyone's Files, so they take no space from a user's quota
+
 ## [1.8.0] - 2026-09-12
 
 ### Added

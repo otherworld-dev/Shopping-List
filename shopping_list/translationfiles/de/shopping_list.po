@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-09-11 16:10\n"
+"PO-Revision-Date: 2026-10-05 18:19\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Crowdin-Project: shopping-list-for-nextcloud\n"
 "X-Crowdin-Project-ID: 896886\n"
 "X-Crowdin-Language: de\n"
-"X-Crowdin-File: /main/shopping_list/translationfiles/templates/shopping_list.pot\n"
+"X-Crowdin-File: /[otherworld-dev.Shopping-List] main/shopping_list/translationfiles/templates/shopping_list.pot\n"
 "X-Crowdin-File-ID: 11\n"
 
 #: src/App.vue
@@ -53,13 +53,21 @@ msgstr "Nicht gefunden"
 msgid "This shared list does not exist or has expired."
 msgstr "Diese Liste existiert nicht oder ist abgelaufen."
 
+#: src/PublicApp.vue
+msgid "Open in the app"
+msgstr ""
+
 #: src/components/AreaKeywordsSettings.vue
 msgid "Back to list"
 msgstr "Zurück zur Liste"
 
 #: src/components/AreaKeywordsSettings.vue src/components/ListSidebar.vue
-msgid "Manage Areas"
-msgstr "Kategorien verwalten"
+msgid "List settings"
+msgstr "Listeneinstellungen"
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Shop areas"
+msgstr "Shopkategorien"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Manage shop areas, keywords, and display order. Keywords auto-detect which area an item belongs to when added or pasted."
@@ -112,6 +120,10 @@ msgstr "\"{name}\" löschen? Elemente in dieser Kategorie werden unkategorisiert
 #: src/components/PublicListView.vue
 msgid "Add an item to list..."
 msgstr "Artikel zur Liste hinzufügen..."
+
+#: src/components/PublicListView.vue
+msgid "Your name (optional)"
+msgstr ""
 
 #: src/components/ItemEditor.vue
 msgid "Add an item or paste a list..."
@@ -294,7 +306,7 @@ msgid "By area, A to Z"
 msgstr "Nach Kategorie, A bis Z"
 
 #. Sort option, used for both open and checked-off items: by name, ignoring the shop areas.
-#: src/components/ListView.vue
+#: src/components/ListView.vue src/components/ListSortSettings.vue
 msgid "A to Z"
 msgstr "A bis Z"
 
@@ -386,6 +398,42 @@ msgstr "Gültig bis"
 #: src/components/ShareDialog.vue
 msgid "Delete public link"
 msgstr "Öffentlichen Link löschen"
+
+#: src/components/ShareDialog.vue
+msgid "Show QR code"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Hide QR code"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "QR code of the public link"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Invite code"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Server"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Code"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Copy invite"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Type these into the Shopping List Android app to join without the link."
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Show members' names"
+msgstr ""
 
 #: src/components/TagInput.vue
 msgid "Add tags..."
@@ -591,6 +639,39 @@ msgstr "\"{name}\" löschen?"
 msgid "Move to list"
 msgstr "In Liste verschieben"
 
+#: src/components/ItemRow.vue
+msgid "Add image"
+msgstr "Bild hinzufügen"
+
+#: src/components/ItemRow.vue
+msgid "Replace image"
+msgstr "Bild ersetzen"
+
+#: src/components/ItemRow.vue
+msgid "Remove image"
+msgstr "Bild entfernen"
+
+#: src/components/ItemRow.vue src/components/PublicListView.vue
+msgid "View image"
+msgstr "Bild ansehen"
+
+#. Marks a name next to an item as someone without an account on a public link
+#: src/components/ItemRow.vue src/components/PublicListView.vue
+msgid "guest"
+msgstr ""
+
+#: src/components/ItemRow.vue
+msgid "Uploading image…"
+msgstr "Bild wird hochgeladen…"
+
+#: src/components/ItemRow.vue
+msgid "Only image files can be attached"
+msgstr "Nur Bilddateien können angehängt werden"
+
+#: src/components/ImageViewer.vue
+msgid "Could not load image"
+msgstr "Bild konnte nicht geladen werden"
+
 #: src/stores/items.ts
 msgid "Failed to move item"
 msgstr "Artikel konnte nicht verschoben werden"
@@ -602,6 +683,30 @@ msgstr "\"{name}\" nach {list} verschoben"
 #: src/stores/items.ts
 msgid "You're offline — moving items requires a connection"
 msgstr "Du bist offline — zum Verschieben von Artikeln ist eine Verbindung nötig"
+
+#: src/components/ItemRow.vue src/stores/items.ts
+msgid "You're offline — adding images requires a connection"
+msgstr "Du bist offline — zum Hinzufügen von Bildern ist eine Verbindung nötig"
+
+#: src/stores/items.ts
+msgid "You're offline — removing images requires a connection"
+msgstr "Du bist offline — zum Entfernen von Bildern ist eine Verbindung nötig"
+
+#: src/stores/items.ts
+msgid "Image is too large"
+msgstr "Das Bild ist zu groß"
+
+#: src/stores/items.ts
+msgid "This file is not a supported image"
+msgstr "Diese Datei ist kein unterstütztes Bild"
+
+#: src/stores/items.ts
+msgid "Failed to upload image"
+msgstr "Hochladen des Bildes fehlgeschlagen"
+
+#: src/stores/items.ts
+msgid "Failed to remove image"
+msgstr "Entfernen des Bildes fehlgeschlagen"
 
 #: src/components/OfflineIndicator.vue
 msgid "Syncing changes…"
@@ -623,6 +728,42 @@ msgstr "Alle Änderungen synchronisiert"
 msgid "{count} changes pending"
 msgstr "{count} ausstehende Änderungen"
 
+#: src/components/ItemImagesSettings.vue
+msgid "Item images"
+msgstr "Artikelbilder"
+
+#: src/components/ItemImagesSettings.vue
+msgid "Show item images"
+msgstr "Artikelbilder anzeigen"
+
+#: src/components/ItemImagesSettings.vue
+msgid "Attach a photo to an item from its menu, or paste or drop one onto it. Photos are part of the list, so everyone with access can see them. This switch only changes what you see."
+msgstr "Hänge über das Menü eines Artikels ein Foto an, oder füge es ein bzw. ziehe es auf den Artikel. Fotos gehören zur Liste, daher können alle mit Zugriff sie sehen. Dieser Schalter ändert nur, was du siehst."
+
+#: src/components/NameSettings.vue
+msgid "Names"
+msgstr ""
+
+#: src/components/NameSettings.vue
+msgid "Show my name on items"
+msgstr ""
+
+#: src/components/NameSettings.vue
+msgid "Your name always shows to everyone else. This switch only changes what you see."
+msgstr ""
+
+#: src/components/ItemImagesSettings.vue src/stores/lists.ts
+msgid "Failed to save setting"
+msgstr "Einstellung konnte nicht gespeichert werden"
+
+#: src/components/AndroidAppLink.vue
+msgid "Get the Android app"
+msgstr "Android-App holen"
+
+#: src/components/AndroidAppLink.vue
+msgid "Hide this link"
+msgstr "Diesen Link ausblenden"
+
 #: appinfo/info.xml lib/Notification/Notifier.php
 msgid "Shopping List"
 msgstr "Einkaufsliste"
@@ -638,4 +779,20 @@ msgstr "Nimm deine Listen mit zum Einkaufen: Eine begleitende Android-App ist je
 #: lib/Notification/Notifier.php
 msgid "Get it on Google Play"
 msgstr "Jetzt bei Google Play"
+
+#: src/components/ListSortSettings.vue
+msgid "Sort lists"
+msgstr ""
+
+#: src/components/ListSortSettings.vue
+msgid "Recently updated"
+msgstr ""
+
+#: src/components/ListSortSettings.vue
+msgid "Custom (drag to reorder)"
+msgstr ""
+
+#: src/stores/lists.ts
+msgid "Failed to save the list order"
+msgstr ""
 

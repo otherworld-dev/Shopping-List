@@ -1,5 +1,6 @@
 import axios from '@nextcloud/axios'
-import { generateOcsUrl } from '@nextcloud/router'
+import { generateOcsUrl, generateUrl } from '@nextcloud/router'
+import type { ListSort } from '../utils/listSort'
 
 function url(path: string): string {
 	return generateOcsUrl('apps/shopping_list/api/v1/' + path)
@@ -14,6 +15,7 @@ export const api = {
 		delete: (id: number) => axios.delete(url(`lists/${id}`)),
 		setPinned: (id: number, isPinned: boolean) =>
 			axios.patch(url(`lists/${id}/preferences`), { isPinned }),
+		reorder: (listIds: number[]) => axios.post(url('lists/reorder'), { listIds }),
 	},
 	items: {
 		getAll: (listId: number) => axios.get(url(`lists/${listId}/items`)),
@@ -33,6 +35,14 @@ export const api = {
 			axios.delete(url(`lists/${listId}/items/checked`)),
 		uncheckAll: (listId: number) =>
 			axios.post(url(`lists/${listId}/items/uncheck-all`)),
+		uploadImage: (listId: number, id: number, image: Blob, filename: string) => {
+			const form = new FormData()
+			form.append('image', image, filename)
+			// No Content-Type here: axios writes multipart/form-data with the boundary itself.
+			return axios.post(url(`lists/${listId}/items/${id}/image`), form)
+		},
+		deleteImage: (listId: number, id: number) =>
+			axios.delete(url(`lists/${listId}/items/${id}/image`)),
 	},
 	shares: {
 		getAll: (listId: number) => axios.get(url(`lists/${listId}/shares`)),
@@ -64,6 +74,15 @@ export const api = {
 		create: (name: string) => axios.post(url('tags'), { name }),
 		delete: (id: number) => axios.delete(url(`tags/${id}`)),
 	},
+	settings: {
+		get: () => axios.get(url('settings')),
+		update: (data: { showImages?: boolean, listSort?: ListSort, showOwnName?: boolean, whatsNewSeen?: string }) => axios.patch(url('settings'), data),
+	},
+	backup: {
+		download: () => axios.get(generateUrl('/apps/shopping_list/backup/download'), { responseType: 'blob' }),
+		restore: (payload: unknown) =>
+			axios.post(generateUrl('/apps/shopping_list/backup/restore'), payload),
+	},
 }
 
 export const publicApi = {
@@ -75,8 +94,8 @@ export const publicApi = {
 		axios.post(url(`public/${token}/items`), data),
 	updateItem: (token: string, id: number, data: Record<string, unknown>) =>
 		axios.put(url(`public/${token}/items/${id}`), data),
-	checkItem: (token: string, id: number, checked: boolean) =>
-		axios.put(url(`public/${token}/items/${id}/check`), { checked }),
+	checkItem: (token: string, id: number, checked: boolean, guestName?: string) =>
+		axios.put(url(`public/${token}/items/${id}/check`), { checked, guestName }),
 	deleteItem: (token: string, id: number) =>
 		axios.delete(url(`public/${token}/items/${id}`)),
 	reorder: (token: string, sortedIds: number[]) =>

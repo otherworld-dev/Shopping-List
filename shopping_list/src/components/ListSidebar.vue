@@ -1,34 +1,57 @@
 <template>
 	<div>
-		<NcAppNavigationNew :text="newListText"
-			@click="onNewList" />
+		<NcAppNavigationNewItem ref="newItemRef"
+			:name="newListText"
+			:edit-placeholder="listNamePlaceholder"
+			@new-item="onNewList">
+			<template #icon>
+				<NcIconSvgWrapper :path="mdiPlus" />
+			</template>
+		</NcAppNavigationNewItem>
 
 		<template v-for="section in sections" :key="section.key">
 			<NcAppNavigationCaption v-if="section.caption"
 				:name="section.caption" />
-			<NcAppNavigationItem v-for="list in section.lists"
-				:key="list.id"
-				:name="list.title"
-				:active="list.id === listsStore.currentListId"
-				:editable="list.isOwner"
-				:edit-label="renameText"
-				force-menu
-				@click="listsStore.selectList(list.id)"
-				@update:name="(name: string) => onRename(list.id, name)">
-				<template #counter>
-					<span v-if="getUncheckedCount(list.id) > 0" class="count-bubble">
-						{{ getUncheckedCount(list.id) }}
-					</span>
+			<!-- Each section is its own drag group, so a list can't be dragged into
+			     another section; pinning and unpinning move it between them. -->
+			<draggable :model-value="section.lists"
+				item-key="id"
+				:group="section.key"
+				:animation="150"
+				:delay="150"
+				:delay-on-touch-only="true"
+				ghost-class="list-sidebar__ghost"
+				@update:model-value="(moved: ShoppingList[]) => listsStore.reorderSection(section.key, moved.map(l => l.id))">
+				<template #item="{ element: list }">
+					<NcAppNavigationItem :key="list.id"
+						:name="list.title"
+						:active="list.id === listsStore.currentListId"
+						:editable="list.isOwner"
+						:edit-label="renameText"
+						force-menu
+						@click="listsStore.selectList(list.id)"
+						@update:name="(name: string) => onRename(list.id, name)">
+						<template #counter>
+							<span v-if="getUncheckedCount(list.id) > 0" class="count-bubble">
+								{{ getUncheckedCount(list.id) }}
+							</span>
+						</template>
+						<template #actions>
+							<NcActionButton v-if="list.isOwner"
+								close-after-click
+								@click="$emit('share', list.id)">
+								{{ shareText }}
+							</NcActionButton>
+							<NcActionButton @click="listsStore.setPinned(list.id, !list.isPinned)">
+								{{ list.isPinned ? unpinText : pinText }}
+							</NcActionButton>
+							<NcActionButton v-if="list.isOwner" @click="onDelete(list.id)">
+								{{ deleteText }}
+							</NcActionButton>
+						</template>
+					</NcAppNavigationItem>
 				</template>
-				<template #actions>
-					<NcActionButton @click="listsStore.setPinned(list.id, !list.isPinned)">
-						{{ list.isPinned ? unpinText : pinText }}
-					</NcActionButton>
-					<NcActionButton v-if="list.isOwner" @click="onDelete(list.id)">
-						{{ deleteText }}
-					</NcActionButton>
-				</template>
-			</NcAppNavigationItem>
+			</draggable>
 		</template>
 
 		<div v-if="listsStore.currentListId !== null" class="sidebar-settings">
@@ -49,7 +72,7 @@
 
 <script setup lang="ts">
 import {
-	NcAppNavigationNew,
+	NcAppNavigationNewItem,
 	NcAppNavigationItem,
 	NcAppNavigationCaption,
 	NcActionButton,
@@ -57,11 +80,15 @@ import {
 	NcIconSvgWrapper,
 } from '@nextcloud/vue'
 import { t } from '@nextcloud/l10n'
-import { computed } from 'vue'
+import { mdiPlus } from '@mdi/js'
+import { computed, ref, watch } from 'vue'
+import draggable from 'vuedraggable'
 import { useListsStore } from '../stores/lists'
 import { useItemsStore } from '../stores/items'
+import type { ShoppingList } from '../types'
+import type { SectionKey } from '../utils/listSort'
 
-defineEmits<{ showSettings: [] }>()
+defineEmits<{ showSettings: [], share: [listId: number] }>()
 
 const listsStore = useListsStore()
 const itemsStore = useItemsStore()
@@ -70,12 +97,15 @@ const listIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><p
 
 // Pre-compute translations so they don't re-run DOMPurify on every render
 const newListText = t('shopping_list', 'New list')
+const listNamePlaceholder = t('shopping_list', 'List name')
+const newListFallback = t('shopping_list', 'New shopping list')
 const renameText = t('shopping_list', 'Rename list')
 const deleteText = t('shopping_list', 'Delete list')
+const shareText = t('shopping_list', 'Share list')
 const sharedText = t('shopping_list', 'Shared with me')
 const emptyName = t('shopping_list', 'No shopping lists')
 const emptyDesc = t('shopping_list', 'Create your first shopping list to get started')
-const settingsText = t('shopping_list', 'Manage Areas')
+const settingsText = t('shopping_list', 'List settings')
 const pinnedText = t('shopping_list', 'Pinned')
 const othersText = t('shopping_list', 'Others')
 const pinText = t('shopping_list', 'Pin list')
@@ -86,11 +116,12 @@ const unpinText = t('shopping_list', 'Unpin list')
 // the unpinned shared lists stay under Shared with me.
 const sections = computed(() => {
 	const hasPinned = listsStore.pinnedLists.length > 0
-	return [
+	const all: { key: SectionKey, caption: string, lists: ShoppingList[] }[] = [
 		{ key: 'pinned', caption: pinnedText, lists: listsStore.pinnedLists },
 		{ key: 'owned', caption: hasPinned ? othersText : '', lists: listsStore.unpinnedOwnedLists },
 		{ key: 'shared', caption: sharedText, lists: listsStore.unpinnedSharedLists },
-	].filter(section => section.lists.length > 0)
+	]
+	return all.filter(section => section.lists.length > 0)
 })
 
 function getUncheckedCount(listId: number): number {
@@ -98,8 +129,22 @@ function getUncheckedCount(listId: number): number {
 	return items.filter(i => !i.checked).length
 }
 
-async function onNewList() {
-	await listsStore.create(t('shopping_list', 'New shopping list'))
+// NcAppNavigationNewItem (@nextcloud/vue 9.6.0) clears its input when you
+// confirm but not when you cancel, so a name you typed and abandoned comes
+// back the next time the field opens and the next Enter commits it. Blank it
+// on the way in instead. Harmless if a later release fixes this upstream.
+const newItemRef = ref<{ newItemValue: string, newItemActive: boolean } | null>(null)
+
+watch(() => newItemRef.value?.newItemActive, (active, wasActive) => {
+	if (active && !wasActive && newItemRef.value) {
+		newItemRef.value.newItemValue = ''
+	}
+})
+
+// An empty name falls back to the old default, so confirming a blank field
+// behaves exactly like the previous one-click button did.
+async function onNewList(name: string) {
+	await listsStore.create(name.trim() || newListFallback)
 }
 
 async function onRename(id: number, name: string) {
@@ -129,7 +174,7 @@ async function onDelete(id: number) {
 	color: var(--color-text-maxcontrast);
 	font-size: 0.85em;
 	cursor: pointer;
-	text-align: left;
+	text-align: start;
 }
 
 .sidebar-settings__btn:hover {
@@ -150,5 +195,9 @@ async function onDelete(id: number) {
 	font-size: 0.75em;
 	font-weight: 700;
 	line-height: 1;
+}
+
+.list-sidebar__ghost {
+	opacity: 0.5;
 }
 </style>

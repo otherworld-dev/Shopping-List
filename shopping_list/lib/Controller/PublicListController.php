@@ -13,16 +13,22 @@ use OCA\Shopping_List\Service\NotFoundException;
 use OCA\Shopping_List\Service\PasswordRequiredException;
 use OCA\Shopping_List\Service\ShopAreaService;
 use OCA\Shopping_List\Db\ShopAreaMapper;
+use OCA\Shopping_List\Service\AmountMemory;
+use OCA\Shopping_List\Service\GuestName;
+use OCA\Shopping_List\Service\ItemImageService;
+use OCA\Shopping_List\Service\ItemService;
+use OCA\Shopping_List\Service\PublicShareAccess;
 use OCA\Shopping_List\Service\ShareService;
 use DateTime;
+use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\Attribute\AnonRateLimit;
+use OCP\AppFramework\Http\Attribute\BruteForceProtection;
 use OCP\AppFramework\Http\Attribute\NoCSRFRequired;
 use OCP\AppFramework\Http\Attribute\PublicPage;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\OCSController;
 use OCP\IRequest;
-use OCP\ISession;
 
 class PublicListController extends OCSController {
 	public function __construct(
@@ -33,7 +39,10 @@ class PublicListController extends OCSController {
 		private ItemMapper $itemMapper,
 		private ShopAreaMapper $areaMapper,
 		private ShopAreaService $areaService,
-		private ISession $session,
+		private PublicShareAccess $access,
+		private ItemService $itemService,
+		private ItemImageService $images,
+		private AmountMemory $amounts,
 	) {
 		parent::__construct($appName, $request);
 	}
@@ -42,24 +51,42 @@ class PublicListController extends OCSController {
 	 * Validate token and check session-based password auth.
 	 */
 	private function authenticate(string $token): ListShare {
-		// Validate token exists and hasn't expired (no password check)
-		$share = $this->shareService->findValidShare($token);
-
-		// For password-protected shares, require session auth
-		if ($share->getPasswordHash() !== null) {
-			$sessionKey = 'shopping_list_public_' . $token;
-			if (!$this->session->get($sessionKey)) {
-				throw new PasswordRequiredException('Password required');
-			}
-		}
-
-		return $share;
+		return $this->access->resolve($token);
 	}
 
 	private function assertWrite(ListShare $share): void {
-		if ($share->getPermission() < 1) {
-			throw new NoPermissionException('Read-only access');
+		$this->access->assertWrite($share);
+	}
+
+	/**
+	 * @throws NotFoundException when the item is gone or belongs to another list
+	 */
+	private function findItem(ListShare $share, int $id): Item {
+		try {
+			$item = $this->itemMapper->find($id);
+		} catch (DoesNotExistException) {
+			throw new NotFoundException('Item not found');
 		}
+		if ($item->getListId() !== $share->getListId()) {
+			throw new NotFoundException('Item not found');
+		}
+		return $item;
+	}
+
+	/**
+	 * Shape items for the public: never members' user ids, and not their
+	 * names either when the owner turned them off for the link; guests'
+	 * names always show.
+	 *
+	 * @template T of Item|Item[]
+	 * @param T $items
+	 * @return T
+	 */
+	private function forLink(ListShare $share, Item|array $items): Item|array {
+		foreach (is_array($items) ? $items : [$items] as $item) {
+			$item->forPublic($share->showsNames());
+		}
+		return $items;
 	}
 
 	#[PublicPage]
@@ -83,12 +110,11 @@ class PublicListController extends OCSController {
 	#[PublicPage]
 	#[NoCSRFRequired]
 	#[AnonRateLimit(limit: 5, period: 60)]
+	#[BruteForceProtection(action: 'shopping_list_public_auth')]
 	public function auth(string $token): DataResponse {
 		try {
 			$share = $this->shareService->validatePublicAccess($token, $this->request->getParam('password'));
-			// Store auth in session
-			$sessionKey = 'shopping_list_public_' . $token;
-			$this->session->set($sessionKey, true);
+			$this->access->grant($token);
 			return new DataResponse([
 				'title' => $this->listMapper->find($share->getListId())->getTitle(),
 				'permission' => $share->getPermission(),
@@ -96,9 +122,34 @@ class PublicListController extends OCSController {
 		} catch (PasswordRequiredException) {
 			return new DataResponse(['passwordRequired' => true], Http::STATUS_FORBIDDEN);
 		} catch (NoPermissionException) {
-			return new DataResponse(['message' => 'Invalid password'], Http::STATUS_FORBIDDEN);
+			// A wrong password slows down this address's next tries
+			$response = new DataResponse(['message' => 'Invalid password'], Http::STATUS_FORBIDDEN);
+			$response->throttle(['token' => $token]);
+			return $response;
 		} catch (NotFoundException) {
 			return new DataResponse(['message' => 'Not found'], Http::STATUS_NOT_FOUND);
+		}
+	}
+
+	/**
+	 * Turn an invite code typed into the Android app into the link's token.
+	 * It gives nothing the link wouldn't: a protected list still asks for
+	 * its password through auth().
+	 */
+	#[PublicPage]
+	#[NoCSRFRequired]
+	#[AnonRateLimit(limit: 10, period: 60)]
+	#[BruteForceProtection(action: 'shopping_list_public_code')]
+	public function resolveCode(string $code): DataResponse {
+		try {
+			$share = $this->shareService->findShareByCode($code);
+			return new DataResponse(['token' => $share->getToken()]);
+		} catch (NotFoundException) {
+			// A wrong guess slows down this address's next ones; the input is
+			// cut short as it goes into the throttle log
+			$response = new DataResponse(['message' => 'Not found'], Http::STATUS_NOT_FOUND);
+			$response->throttle(['code' => mb_substr($code, 0, 16)]);
+			return $response;
 		}
 	}
 
@@ -108,7 +159,7 @@ class PublicListController extends OCSController {
 	public function items(string $token): DataResponse {
 		try {
 			$share = $this->authenticate($token);
-			return new DataResponse($this->itemMapper->findAllByList($share->getListId()));
+			return new DataResponse($this->forLink($share, $this->itemMapper->findAllByList($share->getListId())));
 		} catch (PasswordRequiredException) {
 			return new DataResponse(['passwordRequired' => true], Http::STATUS_FORBIDDEN);
 		} catch (NotFoundException) {
@@ -130,19 +181,30 @@ class PublicListController extends OCSController {
 			}
 
 			$shopAreaId = $this->request->getParam('shopAreaId');
+			$quantity = $this->request->getParam('quantity');
+			$quantity = $quantity === null ? null : (string)$quantity;
 			$item = new Item();
 			$item->setListId($share->getListId());
 			$item->setName($name);
-			$item->setQuantity($this->request->getParam('quantity') ?? '1');
+			// A name added on its own gets the amount it had last time in this list.
+			$item->setQuantity($quantity ?? $this->amounts->recall($share->getListId(), $name) ?? '1');
 			$item->setUnit($this->request->getParam('unit'));
 			$item->setShopAreaId($shopAreaId !== null ? (int)$shopAreaId : null);
 			$item->setChecked(false);
 			$item->setSortOrder(0);
+			$item->setImageKey($this->images->rememberedKey($share->getListId(), $name));
+			$item->setAddedBy(null);
+			$item->setAddedByName(GuestName::clean($this->request->getParam('guestName')));
 			$now = new DateTime();
 			$item->setCreatedAt($now);
 			$item->setUpdatedAt($now);
 
-			return new DataResponse($this->itemMapper->insert($item), Http::STATUS_CREATED);
+			$item = $this->itemMapper->insert($item);
+			if ($quantity !== null && $this->request->getParam('quantityExplicit')) {
+				$this->amounts->remember($share->getListId(), $name, $quantity);
+			}
+
+			return new DataResponse($this->forLink($share, $item), Http::STATUS_CREATED);
 		} catch (PasswordRequiredException) {
 			return new DataResponse(['passwordRequired' => true], Http::STATUS_FORBIDDEN);
 		} catch (NoPermissionException $e) {
@@ -160,14 +222,18 @@ class PublicListController extends OCSController {
 			$share = $this->authenticate($token);
 			$this->assertWrite($share);
 
-			$item = $this->itemMapper->find($id);
-			if ($item->getListId() !== $share->getListId()) {
-				throw new NotFoundException('Item not found');
-			}
+			$item = $this->findItem($share, $id);
 
 			$params = $this->request->getParams();
 			if (isset($params['name'])) {
+				$renamed = ItemImageService::nameKey((string)$params['name']) !== ItemImageService::nameKey($item->getName());
 				$item->setName($params['name']);
+				if ($renamed) {
+					$remembered = $this->images->rememberedKey($item->getListId(), (string)$params['name']);
+					if ($remembered !== null) {
+						$item->setImageKey($remembered);
+					}
+				}
 			}
 			if (array_key_exists('quantity', $params)) {
 				$item->setQuantity($params['quantity']);
@@ -179,8 +245,15 @@ class PublicListController extends OCSController {
 				$item->setShopAreaId($params['shopAreaId']);
 			}
 			$item->setUpdatedAt(new DateTime());
+			$item = $this->itemMapper->update($item);
 
-			return new DataResponse($this->itemMapper->update($item));
+			// Remember an amount the guest typed, not one a duplicate merge added up
+			if (!empty($params['quantityExplicit']) && array_key_exists('quantity', $params)) {
+				$quantity = $params['quantity'];
+				$this->amounts->remember($item->getListId(), $item->getName(), $quantity === null ? null : (string)$quantity);
+			}
+
+			return new DataResponse($this->forLink($share, $item));
 		} catch (PasswordRequiredException) {
 			return new DataResponse(['passwordRequired' => true], Http::STATUS_FORBIDDEN);
 		} catch (NoPermissionException $e) {
@@ -198,15 +271,14 @@ class PublicListController extends OCSController {
 			$share = $this->authenticate($token);
 			$this->assertWrite($share);
 
-			$item = $this->itemMapper->find($id);
-			if ($item->getListId() !== $share->getListId()) {
-				throw new NotFoundException('Item not found');
-			}
+			$item = $this->findItem($share, $id);
 
 			$item->setChecked($checked);
+			$item->setCheckedBy(null);
+			$item->setCheckedByName($checked ? GuestName::clean($this->request->getParam('guestName')) : null);
 			$item->setUpdatedAt(new DateTime());
 
-			return new DataResponse($this->itemMapper->update($item));
+			return new DataResponse($this->forLink($share, $this->itemMapper->update($item)));
 		} catch (PasswordRequiredException) {
 			return new DataResponse(['passwordRequired' => true], Http::STATUS_FORBIDDEN);
 		} catch (NoPermissionException $e) {
@@ -224,12 +296,9 @@ class PublicListController extends OCSController {
 			$share = $this->authenticate($token);
 			$this->assertWrite($share);
 
-			$item = $this->itemMapper->find($id);
-			if ($item->getListId() !== $share->getListId()) {
-				throw new NotFoundException('Item not found');
-			}
+			$item = $this->findItem($share, $id);
 
-			$this->itemMapper->delete($item);
+			$this->itemService->deleteEntity($item, '');
 			return new DataResponse(null, Http::STATUS_NO_CONTENT);
 		} catch (PasswordRequiredException) {
 			return new DataResponse(['passwordRequired' => true], Http::STATUS_FORBIDDEN);

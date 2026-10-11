@@ -53,7 +53,12 @@
 		"pakkausta",
 		"pussi",
 		"pussia",
-		"fl oz"
+		"fl oz",
+		"pc",
+		"pcs",
+		"pkg",
+		"dag",
+		"dkg"
 	],
 	"leadingUnits": [
 		"ripaus",
