@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-09-11 16:10\n"
+"PO-Revision-Date: 2026-10-05 18:19\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Language: fi_FI\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Crowdin-Project: shopping-list-for-nextcloud\n"
 "X-Crowdin-Project-ID: 896886\n"
 "X-Crowdin-Language: fi\n"
-"X-Crowdin-File: /main/shopping_list/translationfiles/templates/shopping_list.pot\n"
+"X-Crowdin-File: /[otherworld-dev.Shopping-List] main/shopping_list/translationfiles/templates/shopping_list.pot\n"
 "X-Crowdin-File-ID: 11\n"
 
 #: src/App.vue
@@ -53,13 +53,21 @@ msgstr "Ei löytynyt"
 msgid "This shared list does not exist or has expired."
 msgstr "Tätä jaettua listaa ei ole olemassa tai se on vanhentunut."
 
+#: src/PublicApp.vue
+msgid "Open in the app"
+msgstr ""
+
 #: src/components/AreaKeywordsSettings.vue
 msgid "Back to list"
 msgstr "Takaisin listaan"
 
 #: src/components/AreaKeywordsSettings.vue src/components/ListSidebar.vue
-msgid "Manage Areas"
-msgstr "Hallitse osastoja"
+msgid "List settings"
+msgstr "Listan asetukset"
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Shop areas"
+msgstr "Kaupan osastot"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Manage shop areas, keywords, and display order. Keywords auto-detect which area an item belongs to when added or pasted."
@@ -112,6 +120,10 @@ msgstr "Poistetaanko \"{name}\"? Tämän osaston tuotteet muuttuvat luokittelema
 #: src/components/PublicListView.vue
 msgid "Add an item to list..."
 msgstr "Lisää tuote listalle..."
+
+#: src/components/PublicListView.vue
+msgid "Your name (optional)"
+msgstr ""
 
 #: src/components/ItemEditor.vue
 msgid "Add an item or paste a list..."
@@ -294,7 +306,7 @@ msgid "By area, A to Z"
 msgstr "Osastoittain, A–Ö"
 
 #. Sort option, used for both open and checked-off items: by name, ignoring the shop areas.
-#: src/components/ListView.vue
+#: src/components/ListView.vue src/components/ListSortSettings.vue
 msgid "A to Z"
 msgstr "A–Ö"
 
@@ -386,6 +398,42 @@ msgstr "Vanhenee"
 #: src/components/ShareDialog.vue
 msgid "Delete public link"
 msgstr "Poista julkinen linkki"
+
+#: src/components/ShareDialog.vue
+msgid "Show QR code"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Hide QR code"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "QR code of the public link"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Invite code"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Server"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Code"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Copy invite"
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Type these into the Shopping List Android app to join without the link."
+msgstr ""
+
+#: src/components/ShareDialog.vue
+msgid "Show members' names"
+msgstr ""
 
 #: src/components/TagInput.vue
 msgid "Add tags..."
@@ -591,6 +639,39 @@ msgstr "Poistetaanko \"{name}\"?"
 msgid "Move to list"
 msgstr "Siirrä listalle"
 
+#: src/components/ItemRow.vue
+msgid "Add image"
+msgstr "Lisää kuva"
+
+#: src/components/ItemRow.vue
+msgid "Replace image"
+msgstr "Korvaa kuva"
+
+#: src/components/ItemRow.vue
+msgid "Remove image"
+msgstr "Poista kuva"
+
+#: src/components/ItemRow.vue src/components/PublicListView.vue
+msgid "View image"
+msgstr "Näytä kuva"
+
+#. Marks a name next to an item as someone without an account on a public link
+#: src/components/ItemRow.vue src/components/PublicListView.vue
+msgid "guest"
+msgstr ""
+
+#: src/components/ItemRow.vue
+msgid "Uploading image…"
+msgstr "Ladataan kuvaa…"
+
+#: src/components/ItemRow.vue
+msgid "Only image files can be attached"
+msgstr "Vain kuvatiedostoja voi liittää"
+
+#: src/components/ImageViewer.vue
+msgid "Could not load image"
+msgstr "Kuvan lataaminen epäonnistui"
+
 #: src/stores/items.ts
 msgid "Failed to move item"
 msgstr "Kohteiden siirto epäonnistui"
@@ -602,6 +683,30 @@ msgstr "Siirettiin \"{name}\" kohteeseen {list}"
 #: src/stores/items.ts
 msgid "You're offline — moving items requires a connection"
 msgstr "Olet yhteydettömässä tilassa — esineiden siirtäminen vaatii yhteyden"
+
+#: src/components/ItemRow.vue src/stores/items.ts
+msgid "You're offline — adding images requires a connection"
+msgstr "Olet yhteydettömässä tilassa — kuvien lisääminen vaatii yhteyden"
+
+#: src/stores/items.ts
+msgid "You're offline — removing images requires a connection"
+msgstr "Olet yhteydettömässä tilassa — kuvien poistaminen vaatii yhteyden"
+
+#: src/stores/items.ts
+msgid "Image is too large"
+msgstr "Kuva on liian suuri"
+
+#: src/stores/items.ts
+msgid "This file is not a supported image"
+msgstr "Tämä tiedosto ei ole tuettu kuva"
+
+#: src/stores/items.ts
+msgid "Failed to upload image"
+msgstr "Kuvan lähettäminen epäonnistui"
+
+#: src/stores/items.ts
+msgid "Failed to remove image"
+msgstr "Kuvan poistaminen epäonnistui"
 
 #: src/components/OfflineIndicator.vue
 msgid "Syncing changes…"
@@ -623,6 +728,42 @@ msgstr "Kaikki muutokset synkronoitu"
 msgid "{count} changes pending"
 msgstr "{count} muutosta odottamassa"
 
+#: src/components/ItemImagesSettings.vue
+msgid "Item images"
+msgstr "Tuotekuvat"
+
+#: src/components/ItemImagesSettings.vue
+msgid "Show item images"
+msgstr "Näytä tuotekuvat"
+
+#: src/components/ItemImagesSettings.vue
+msgid "Attach a photo to an item from its menu, or paste or drop one onto it. Photos are part of the list, so everyone with access can see them. This switch only changes what you see."
+msgstr "Liitä tuotteeseen valokuva sen valikosta tai liitä tai pudota kuva tuotteen päälle. Valokuvat ovat osa listaa, joten kaikki, joilla on pääsy listaan, näkevät ne. Tämä kytkin muuttaa vain sitä, mitä sinä näet."
+
+#: src/components/NameSettings.vue
+msgid "Names"
+msgstr ""
+
+#: src/components/NameSettings.vue
+msgid "Show my name on items"
+msgstr ""
+
+#: src/components/NameSettings.vue
+msgid "Your name always shows to everyone else. This switch only changes what you see."
+msgstr ""
+
+#: src/components/ItemImagesSettings.vue src/stores/lists.ts
+msgid "Failed to save setting"
+msgstr "Asetuksen tallentaminen epäonnistui"
+
+#: src/components/AndroidAppLink.vue
+msgid "Get the Android app"
+msgstr "Hanki Android-sovellus"
+
+#: src/components/AndroidAppLink.vue
+msgid "Hide this link"
+msgstr "Piilota tämä linkki"
+
 #: appinfo/info.xml lib/Notification/Notifier.php
 msgid "Shopping List"
 msgstr "Ostoslista"
@@ -638,4 +779,20 @@ msgstr "Ota listasi mukaan kauppaan: Android-sovellus on nyt saatavilla Google P
 #: lib/Notification/Notifier.php
 msgid "Get it on Google Play"
 msgstr "Saatavana Google Playssa"
+
+#: src/components/ListSortSettings.vue
+msgid "Sort lists"
+msgstr ""
+
+#: src/components/ListSortSettings.vue
+msgid "Recently updated"
+msgstr ""
+
+#: src/components/ListSortSettings.vue
+msgid "Custom (drag to reorder)"
+msgstr ""
+
+#: src/stores/lists.ts
+msgid "Failed to save the list order"
+msgstr ""
 

@@ -95,9 +95,10 @@ class ShareController extends OCSController {
 		$removePassword = !empty($params['removePassword']);
 		$expiresAt = $params['expiresAt'] ?? null;
 		$removeExpiry = !empty($params['removeExpiry']);
+		$showNames = array_key_exists('showNames', $params) ? (bool)$params['showNames'] : null;
 
 		try {
-			$share = $this->service->updateLinkShare($id, $permission, $password, $removePassword, $expiresAt, $removeExpiry, $this->userId);
+			$share = $this->service->updateLinkShare($id, $permission, $password, $removePassword, $expiresAt, $removeExpiry, $this->userId, $showNames);
 			return new DataResponse($share);
 		} catch (NotFoundException $e) {
 			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_NOT_FOUND);

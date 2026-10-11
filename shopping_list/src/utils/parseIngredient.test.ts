@@ -139,6 +139,18 @@ describe('parseIngredient quantity and unit, English', () => {
 	it('ignores an empty line', () => {
 		expect(en.parseIngredient('   ')).toEqual({ name: '', quantity: null, checked: false })
 	})
+
+	it('reads the short forms of piece and pack (issue #15)', () => {
+		expect(en.parseIngredient('3 pcs eggs')).toEqual({ name: 'Eggs', quantity: '3 pcs', checked: false })
+		expect(en.parseIngredient('1 pc avocado')).toEqual({ name: 'Avocado', quantity: '1 pc', checked: false })
+		expect(en.parseIngredient('2 pkg noodles')).toEqual({ name: 'Noodles', quantity: '2 pkg', checked: false })
+	})
+
+	it('reads decagrams (issue #15)', () => {
+		expect(en.parseIngredient('25 dag ham')).toEqual({ name: 'Ham', quantity: '25 dag', checked: false })
+		expect(en.parseIngredient('10 dkg cheese')).toEqual({ name: 'Cheese', quantity: '10 dkg', checked: false })
+		expect(en.parseIngredient('25dag ham')).toEqual({ name: 'Ham', quantity: '25 dag', checked: false })
+	})
 })
 
 describe('parseIngredient quantity and unit, German', () => {
@@ -156,6 +168,17 @@ describe('parseIngredient quantity and unit, German', () => {
 		// described in issue #35 was deferred: any rule that rescues "7 Up"
 		// breaks this case.
 		expect(de.parseIngredient('2 Eier')).toEqual({ name: 'Eier', quantity: '2', checked: false })
+	})
+
+	it('reads the short forms of Stück and Packung (issue #15)', () => {
+		expect(de.parseIngredient('3 Stk Eier')).toEqual({ name: 'Eier', quantity: '3 stk', checked: false })
+		expect(de.parseIngredient('3 Stk. Eier')).toEqual({ name: 'Eier', quantity: '3 stk.', checked: false })
+		expect(de.parseIngredient('2 Pkg Nudeln')).toEqual({ name: 'Nudeln', quantity: '2 pkg', checked: false })
+	})
+
+	it('reads decagrams, as written in Austria (issue #15)', () => {
+		expect(de.parseIngredient('25 dag Schinken')).toEqual({ name: 'Schinken', quantity: '25 dag', checked: false })
+		expect(de.parseIngredient('10 dkg Käse')).toEqual({ name: 'Käse', quantity: '10 dkg', checked: false })
 	})
 })
 

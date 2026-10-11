@@ -24,6 +24,8 @@ class ListService {
 		private IDBConnection $db,
 		private PushService $pushService,
 		private UserListPreferenceMapper $preferenceMapper,
+		private ItemImageCleanup $imageCleanup,
+		private UserSettingsService $settings,
 	) {
 	}
 
@@ -65,10 +67,10 @@ class ListService {
 		$lists = array_merge($ownedLists, $sharedLists);
 		$preferences = $this->preferenceMapper->findAllByUser($userId);
 		foreach ($lists as $list) {
-			$list->setIsPinned(($preferences[$list->getId()] ?? null)?->getIsPinned());
+			$this->applyPreference($list, $preferences[$list->getId()] ?? null);
 		}
 
-		return $lists;
+		return ListOrder::sort($lists, $this->settings->listSort($userId));
 	}
 
 	/**
@@ -83,7 +85,7 @@ class ListService {
 		} else {
 			$list->setPermission($this->getPermission($id, $userId));
 		}
-		$list->setIsPinned($this->getPinned($id, $userId));
+		$this->applyPreference($list, $this->findPreference($id, $userId));
 		return $list;
 	}
 
@@ -116,7 +118,7 @@ class ListService {
 		$list = $this->mapper->update($list);
 		$list->setIsOwner($list->getUserId() === $userId);
 		$list->setPermission($list->getIsOwner() ? 1 : $this->getPermission($id, $userId));
-		$list->setIsPinned($this->getPinned($id, $userId));
+		$this->applyPreference($list, $this->findPreference($id, $userId));
 		$this->pushService->notifyListUpdate($id, $userId);
 		return $list;
 	}
@@ -132,12 +134,34 @@ class ListService {
 		return $this->preferenceMapper->setPinned($userId, $id, $isPinned);
 	}
 
-	private function getPinned(int $listId, string $userId): ?bool {
+	/**
+	 * Save this user's own order for some of their lists (one section's
+	 * worth). Every list must be one they can see, or nothing is saved.
+	 *
+	 * @param array<int|string> $listIds in the order wanted
+	 * @return int[] the ids saved
+	 * @throws NotFoundException
+	 */
+	public function reorder(array $listIds, string $userId): array {
+		$ids = array_values(array_unique(array_map('intval', $listIds)));
+		foreach ($ids as $id) {
+			$this->assertAccess($id, $userId);
+		}
+		$this->preferenceMapper->setPositions($userId, $ids);
+		return $ids;
+	}
+
+	private function findPreference(int $listId, string $userId): ?UserListPreference {
 		try {
-			return $this->preferenceMapper->find($userId, $listId)->getIsPinned();
+			return $this->preferenceMapper->find($userId, $listId);
 		} catch (DoesNotExistException) {
 			return null;
 		}
+	}
+
+	private function applyPreference(ShoppingList $list, ?UserListPreference $pref): void {
+		$list->setIsPinned($pref?->getIsPinned());
+		$list->setPosition($pref?->getPosition());
 	}
 
 	/**
@@ -221,12 +245,14 @@ class ListService {
 	private function cascadeDelete(int $listId): void {
 		// Collect item IDs first, then delete their tags
 		$qb = $this->db->getQueryBuilder();
-		$qb->select('id')
+		$qb->select('id', 'image_key')
 			->from('shopping_list_items')
 			->where($qb->expr()->eq('list_id', $qb->createNamedParameter($listId)));
 		$result = $qb->executeQuery();
-		$itemIds = array_column($result->fetchAll(), 'id');
+		$rows = $result->fetchAll();
 		$result->closeCursor();
+		$itemIds = array_column($rows, 'id');
+		$imageKeys = array_values(array_filter(array_column($rows, 'image_key')));
 
 		if (!empty($itemIds)) {
 			$qb = $this->db->getQueryBuilder();
@@ -238,6 +264,15 @@ class ListService {
 		// Delete items
 		$qb = $this->db->getQueryBuilder();
 		$qb->delete('shopping_list_items')
+			->where($qb->expr()->eq('list_id', $qb->createNamedParameter($listId)))
+			->executeStatement();
+
+		// The photos stay remembered for their names; only files nothing uses go
+		$this->imageCleanup->release($imageKeys);
+
+		// Forget the amounts remembered for the list's item names
+		$qb = $this->db->getQueryBuilder();
+		$qb->delete('shopping_list_amounts')
 			->where($qb->expr()->eq('list_id', $qb->createNamedParameter($listId)))
 			->executeStatement();
 

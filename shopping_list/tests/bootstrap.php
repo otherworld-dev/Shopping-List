@@ -18,6 +18,25 @@ namespace {
 			require_once $path;
 		}
 	});
+
+	// OCP\AppFramework\Http\Response::getHeaders() asks the server container
+	// for the request id, and nothing else. No server runs under PHPUnit, so
+	// this stand-in answers any get() with an object that has a getId(), which
+	// lets the controller tests read the headers a response would send.
+	if (!class_exists('OC')) {
+		class OC {
+			public static $server;
+		}
+		OC::$server = new class {
+			public function get(string $class): object {
+				return new class {
+					public function getId(): string {
+						return 'phpunit';
+					}
+				};
+			}
+		};
+	}
 }
 
 namespace Doctrine\DBAL {
@@ -50,6 +69,24 @@ namespace Doctrine\DBAL {
 		enum ArrayParameterType {
 			case INTEGER;
 			case STRING;
+		}
+	}
+}
+
+namespace Doctrine\DBAL\Query\Expression {
+	// Same situation as ParameterType above: OCP\DB\QueryBuilder\IExpressionBuilder
+	// defines its EQ/NEQ/LT/LTE/GT/GTE constants in terms of Doctrine's own
+	// ExpressionBuilder::EQ etc., so reflecting on IExpressionBuilder, which
+	// PHPUnit's mock generator does the moment it is mocked, forces this class
+	// to load. A minimal stand-in with the real operator strings is enough.
+	if (!class_exists(ExpressionBuilder::class)) {
+		class ExpressionBuilder {
+			public const EQ = '=';
+			public const NEQ = '<>';
+			public const LT = '<';
+			public const LTE = '<=';
+			public const GT = '>';
+			public const GTE = '>=';
 		}
 	}
 }

@@ -44,11 +44,45 @@ class ItemMapper extends QBMapper {
 		return $this->findEntities($qb);
 	}
 
+	/** Whether any item, in any list, still shows the photo with this key. */
+	public function hasImageKey(string $imageKey): bool {
+		$qb = $this->db->getQueryBuilder();
+		$qb->select('id')
+			->from($this->getTableName())
+			->where($qb->expr()->eq('image_key', $qb->createNamedParameter($imageKey)))
+			->setMaxResults(1);
+		$result = $qb->executeQuery();
+		$found = $result->fetch() !== false;
+		$result->closeCursor();
+		return $found;
+	}
+
+	/** Forget who ticked items off, for a user that no longer exists. */
+	public function clearCheckedBy(string $userId): void {
+		$qb = $this->db->getQueryBuilder();
+		$qb->update($this->getTableName())
+			->set('checked_by', $qb->createNamedParameter(null))
+			->set('checked_by_name', $qb->createNamedParameter(null))
+			->where($qb->expr()->eq('checked_by', $qb->createNamedParameter($userId)))
+			->executeStatement();
+	}
+
+	/** Forget who added items, for a user that no longer exists. */
+	public function clearAddedBy(string $userId): void {
+		$qb = $this->db->getQueryBuilder();
+		$qb->update($this->getTableName())
+			->set('added_by', $qb->createNamedParameter(null))
+			->set('added_by_name', $qb->createNamedParameter(null))
+			->where($qb->expr()->eq('added_by', $qb->createNamedParameter($userId)))
+			->executeStatement();
+	}
+
 	public function uncheckAll(int $listId): void {
 		$qb = $this->db->getQueryBuilder();
 		$qb->update($this->getTableName())
 			->set('checked', $qb->createNamedParameter(false, IQueryBuilder::PARAM_BOOL))
 			->set('checked_by', $qb->createNamedParameter(null))
+			->set('checked_by_name', $qb->createNamedParameter(null))
 			->where($qb->expr()->eq('list_id', $qb->createNamedParameter($listId, IQueryBuilder::PARAM_INT)))
 			->executeStatement();
 	}

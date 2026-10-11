@@ -7,11 +7,19 @@ function canonicalUnit(unit: string): string {
 	return getParsingPack().unitAliases[lower] ?? lower
 }
 
-// English uncountable / already-singular nouns. Only consulted when English
-// morphology is active (see hasMorphology); irrelevant for other languages.
+// English uncountable / already-singular nouns, so merging "Milk" up to 2 never
+// renames it "Milks". Only consulted when English morphology is active (see
+// hasMorphology); irrelevant for other languages. Anything added here that ends
+// in "s" also changes duplicate matching, through singularize.
 const SINGULAR_EXCEPTIONS = new Set([
 	'asparagus', 'hummus', 'couscous', 'cheese', 'rice', 'juice',
 	'lettuce', 'sauce', 'produce', 'grease', 'mousse',
+	'milk', 'bread', 'butter', 'flour', 'sugar', 'salt', 'water', 'cream',
+	'honey', 'coffee', 'tea', 'cocoa', 'pasta', 'spaghetti', 'meat', 'beef',
+	'pork', 'lamb', 'mince', 'bacon', 'ham', 'fish', 'salmon', 'tuna', 'oil',
+	'vinegar', 'ketchup', 'mayonnaise', 'mustard', 'garlic', 'ginger',
+	'spinach', 'broccoli', 'celery', 'sweetcorn', 'tofu', 'gravy', 'custard',
+	'granola', 'muesli', 'foil', 'bleach', 'toothpaste',
 ])
 
 function singularize(word: string): string {

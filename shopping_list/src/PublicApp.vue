@@ -1,5 +1,11 @@
 <template>
 	<div class="public-app">
+		<a v-if="showOpenInApp && !loading && !notFound"
+			:href="openInAppHref"
+			class="public-app__open-in-app">
+			{{ openInAppText }}
+		</a>
+
 		<div v-if="loading" class="public-app__loading">
 			<NcLoadingIcon />
 		</div>
@@ -45,6 +51,7 @@ import { t } from '@nextcloud/l10n'
 import { publicApi } from './composables/useApi'
 import { Permission } from './types'
 import PublicListView from './components/PublicListView.vue'
+import { isAndroid, openInAppUrl } from './utils/openInApp'
 
 const token = loadState('shopping_list', 'public_token') as string
 
@@ -64,6 +71,10 @@ const unlockText = t('shopping_list', 'Unlock')
 const passwordErrorText = t('shopping_list', 'Incorrect password')
 const notFoundTitle = t('shopping_list', 'Not found')
 const notFoundDesc = t('shopping_list', 'This shared list does not exist or has expired.')
+
+const showOpenInApp = isAndroid(navigator.userAgent)
+const openInAppHref = openInAppUrl(window.location.href)
+const openInAppText = t('shopping_list', 'Open in the app')
 
 onMounted(async () => {
 	try {
@@ -212,5 +223,17 @@ async function onSubmitPassword() {
 .public-app__error p {
 	color: var(--color-text-maxcontrast);
 	font-size: 0.9em;
+}
+
+.public-app__open-in-app {
+	display: block;
+	margin: 0 0 20px;
+	padding: 10px 14px;
+	border-radius: var(--border-radius-large);
+	background: var(--color-primary-element);
+	color: var(--color-primary-element-text);
+	font-weight: 600;
+	text-align: center;
+	text-decoration: none;
 }
 </style>

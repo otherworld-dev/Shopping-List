@@ -1,5 +1,8 @@
 <template>
-	<NcAppNavigationSettings :name="backupText">
+	<section class="backup">
+		<h3 class="backup__title">
+			{{ backupText }}
+		</h3>
 		<p class="backup__hint">
 			{{ hintText }}
 		</p>
@@ -18,12 +21,12 @@
 			class="backup__file"
 			:aria-label="restoreText"
 			@change="onFileChosen">
-	</NcAppNavigationSettings>
+	</section>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { NcAppNavigationSettings, NcButton } from '@nextcloud/vue'
+import { NcButton } from '@nextcloud/vue'
 import { showError, showSuccess } from '@nextcloud/dialogs'
 import { t, n } from '@nextcloud/l10n'
 import { api } from '../composables/useApi'
@@ -88,8 +91,21 @@ async function onFileChosen(event: Event) {
 </script>
 
 <style scoped>
+.backup {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	padding: 0 0 4px;
+}
+
+.backup__title {
+	margin: 0;
+	font-size: 1em;
+	font-weight: 600;
+}
+
 .backup__hint {
-	margin-bottom: 8px;
+	margin: 0 0 4px;
 	color: var(--color-text-maxcontrast);
 	font-size: 0.85em;
 }

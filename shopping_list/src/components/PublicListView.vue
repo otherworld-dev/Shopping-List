@@ -2,6 +2,16 @@
 	<div class="public-list">
 		<h2>{{ title }}</h2>
 
+		<input v-if="canEdit"
+			v-model="guestName"
+			type="text"
+			maxlength="40"
+			autocomplete="nickname"
+			:placeholder="yourNameText"
+			:aria-label="yourNameText"
+			class="public-list__guest-name"
+			@change="writeGuestName(guestName)">
+
 		<div class="public-list__card">
 			<div v-if="canEdit" class="public-list__editor">
 				<span class="public-list__editor-plus">+</span>
@@ -28,7 +38,7 @@
 					<button v-if="hasHeader(group)"
 						type="button"
 						class="public-list__area-header"
-						:style="group.areaColor ? { borderLeftColor: group.areaColor } : {}"
+						:style="group.areaColor ? { borderInlineStartColor: group.areaColor } : {}"
 						:aria-expanded="!isGroupCollapsed(group)"
 						:aria-controls="groupElementId(group)"
 						@click="toggleArea(group.areaId)">
@@ -48,18 +58,34 @@
 						<div v-for="item in group.items"
 							:key="item.id"
 							class="public-list__item"
-							:class="{ 'public-list__item--checked': item.checked }">
+							:class="{ 'public-list__item--checked': item.checked, 'public-list__item--with-by': byline(item) }">
 							<label class="public-list__check">
 								<input type="checkbox"
 									:checked="item.checked"
 									:disabled="!canEdit"
 									@change="onToggleCheck(item)">
 							</label>
+							<button v-if="thumbUrl(item)"
+								type="button"
+								class="public-list__thumb"
+								:aria-label="viewImageLabel"
+								@click="viewerItem = item">
+								<img :src="thumbUrl(item)!"
+									alt=""
+									draggable="false"
+									loading="lazy"
+									decoding="async"
+									@error="brokenThumbs.add(item.id)">
+							</button>
 							<span v-if="item.quantity" class="public-list__quantity">
 								{{ item.quantity }}{{ item.unit ? ' ' + item.unit : '' }}
 							</span>
 							<span class="public-list__name" :class="{ 'public-list__name--checked': item.checked }">
 								{{ item.name }}
+							</span>
+							<span v-if="byline(item)" class="public-list__by" :title="byline(item)!.name">
+								<span class="public-list__by-name">{{ byline(item)!.name }}</span>
+								<span v-if="byline(item)!.guest" class="public-list__by-guest">{{ guestText }}</span>
 							</span>
 							<span v-if="getAreaName(item.shopAreaId)" class="public-list__area">
 								<span v-if="getAreaColor(item.shopAreaId)"
@@ -81,20 +107,42 @@
 			<div v-if="showChecked" class="public-list__bought-card">
 				<div v-for="item in checkedItems"
 					:key="item.id"
-					class="public-list__item public-list__item--checked">
+					class="public-list__item public-list__item--checked"
+					:class="{ 'public-list__item--with-by': byline(item) }">
 					<label class="public-list__check">
 						<input type="checkbox"
 							:checked="true"
 							:disabled="!canEdit"
 							@change="onToggleCheck(item)">
 					</label>
+					<button v-if="thumbUrl(item)"
+						type="button"
+						class="public-list__thumb"
+						:aria-label="viewImageLabel"
+						@click="viewerItem = item">
+						<img :src="thumbUrl(item)!"
+							alt=""
+							draggable="false"
+							loading="lazy"
+							decoding="async"
+							@error="brokenThumbs.add(item.id)">
+					</button>
 					<span v-if="item.quantity" class="public-list__quantity">
 						{{ item.quantity }}{{ item.unit ? ' ' + item.unit : '' }}
 					</span>
 					<span class="public-list__name public-list__name--checked">{{ item.name }}</span>
+					<span v-if="byline(item)" class="public-list__by" :title="byline(item)!.name">
+						<span class="public-list__by-name">{{ byline(item)!.name }}</span>
+						<span v-if="byline(item)!.guest" class="public-list__by-guest">{{ guestText }}</span>
+					</span>
 				</div>
 			</div>
 		</div>
+
+		<ImageViewer v-if="viewerItem && viewerUrl"
+			:src="viewerUrl"
+			:name="viewerItem.name"
+			@close="viewerItem = null" />
 	</div>
 </template>
 
@@ -107,6 +155,13 @@ import { publicApi } from '../composables/useApi'
 import type { Item, ShopArea } from '../types'
 import { Permission } from '../types'
 import { useCollapsedAreas } from '../composables/useCollapsedAreas'
+import ImageViewer from './ImageViewer.vue'
+import { publicItemImageUrl } from '../utils/imageUrls'
+import { attribution } from '../utils/attribution'
+import type { Byline } from '../utils/attribution'
+import { readGuestName, writeGuestName } from '../utils/guestName'
+import { createIngredientParser } from '../utils/parseIngredient'
+import { getParsingPack } from '../utils/localePacks'
 
 const props = defineProps<{
 	token: string
@@ -123,11 +178,23 @@ const emptyText = t('shopping_list', 'No items yet')
 const uncategorizedText = t('shopping_list', 'Uncategorized')
 const boughtText = t('shopping_list', 'Checked off')
 const addItemText = t('shopping_list', 'Add an item to list...')
+const viewImageLabel = t('shopping_list', 'View image')
 
 const editorRef = ref<HTMLInputElement | null>(null)
 const newItemName = ref('')
 
 const canEdit = computed(() => props.permission >= Permission.WRITE)
+
+// Photos show whenever an item has one. There is no switch here: nobody is
+// signed in to remember one for, and a link cannot add or remove photos.
+const brokenThumbs = ref(new Set<number>())
+const viewerItem = ref<Item | null>(null)
+const viewerUrl = computed(() => (viewerItem.value ? publicItemImageUrl(props.token, viewerItem.value, 'full') : null))
+
+function thumbUrl(item: Item): string | null {
+	if (brokenThumbs.value.has(item.id)) return null
+	return publicItemImageUrl(props.token, item, 'thumbnail')
+}
 
 const uncheckedItems = computed(() => items.value.filter(i => !i.checked))
 const checkedItems = computed(() => items.value.filter(i => i.checked))
@@ -217,13 +284,31 @@ onMounted(async () => {
 	}
 })
 
+// The name this guest goes by, remembered in this browser; optional
+const guestName = ref(readGuestName())
+const yourNameText = t('shopping_list', 'Your name (optional)')
+const guestText = t('shopping_list', 'guest')
+
+/** Who ticked it once it's ticked, otherwise who added it. Nobody is signed in here, so every name shows. */
+function byline(item: Item): Byline | null {
+	const names = attribution(item, null, true)
+	return item.checked ? names.checked : names.added
+}
+
+// Guests type "500 g Rice" the same way members do. A name on its own goes
+// without an amount, so the server can give it the one it had last time.
+const { parseIngredient } = createIngredientParser(getParsingPack())
+
 async function onAddItem() {
-	const name = newItemName.value.trim()
+	const line = newItemName.value.trim()
+	if (!line) return
+	const { name, quantity } = parseIngredient(line)
 	if (!name) return
 
 	newItemName.value = ''
 	try {
-		const response = await publicApi.createItem(props.token, { name, quantity: '1' })
+		const amount = quantity ? { quantity, quantityExplicit: true } : {}
+		const response = await publicApi.createItem(props.token, { name, ...amount, guestName: guestName.value.trim() || undefined })
 		items.value.push(response.data.ocs.data)
 	} catch (e) {
 		console.error('Failed to add item', e)
@@ -235,7 +320,11 @@ async function onToggleCheck(item: Item) {
 	const newChecked = !item.checked
 	item.checked = newChecked // optimistic
 	try {
-		await publicApi.checkItem(props.token, item.id, newChecked)
+		const response = await publicApi.checkItem(props.token, item.id, newChecked, guestName.value.trim() || undefined)
+		const saved = response.data.ocs.data as Item
+		item.checkedBy = saved.checkedBy
+		item.checkedByName = saved.checkedByName
+		item.checkedByGuest = saved.checkedByGuest
 	} catch {
 		item.checked = !newChecked // revert
 	}
@@ -248,6 +337,64 @@ async function onToggleCheck(item: Item) {
 	font-size: 1.5em;
 	font-weight: 700;
 	color: var(--color-main-text, #fff);
+}
+
+.public-list__guest-name {
+	width: 100%;
+	height: 32px;
+	margin: 0 0 8px;
+	padding: 0 10px;
+	border: 1px solid var(--color-border, rgba(255, 255, 255, 0.15));
+	border-radius: var(--border-radius-large, 10px);
+	background-color: var(--color-main-background, rgba(0, 0, 0, 0.35));
+	color: var(--color-main-text, #fff);
+	font-size: 0.9em;
+	box-sizing: border-box;
+}
+
+.public-list__by {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	flex: 0 1 auto;
+	min-width: 0;
+	max-width: 35%;
+	color: var(--color-text-maxcontrast, rgba(255, 255, 255, 0.7));
+	font-size: 0.8em;
+	padding-inline-end: 8px;
+}
+
+/* Only the name gets cut short; the guest mark always stays in view */
+.public-list__by-name {
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.public-list__by-guest {
+	flex: 0 0 auto;
+	padding: 0 5px;
+	border: 1px solid var(--color-border-dark, rgba(255, 255, 255, 0.3));
+	border-radius: var(--border-radius-pill, 10px);
+	line-height: 1.4;
+}
+
+/* On a phone the person's name goes on its own line under the item, so the
+   item's own name keeps its room next to the quantity, area and menu */
+@media (max-width: 600px) {
+	.public-list__item.public-list__item--with-by {
+		flex-wrap: wrap;
+	}
+
+	.public-list__item--with-by .public-list__by {
+		order: 1;
+		flex: 0 0 100%;
+		max-width: none;
+		margin-top: -8px;
+		padding: 0 0 6px;
+		padding-inline-start: 32px;
+	}
 }
 
 .public-list__card {
@@ -323,9 +470,10 @@ async function onToggleCheck(item: Item) {
 	min-width: 0;
 	min-height: 0;
 	margin: 0;
-	padding: 6px 16px 6px 10px;
+	padding-block: 6px;
+	padding-inline: 10px 16px;
 	border: none;
-	border-left: 3px solid var(--color-border-dark, rgba(255, 255, 255, 0.2));
+	border-inline-start: 3px solid var(--color-border-dark, rgba(255, 255, 255, 0.2));
 	border-radius: 0;
 	background-color: var(--color-background-dark, rgba(0, 0, 0, 0.2));
 	color: inherit;
@@ -335,7 +483,7 @@ async function onToggleCheck(item: Item) {
 }
 
 .public-list__card .public-list__area-group > button.public-list__area-header:is(:hover, :focus, :active) {
-	border-left-color: var(--color-border-dark, rgba(255, 255, 255, 0.2));
+	border-inline-start-color: var(--color-border-dark, rgba(255, 255, 255, 0.2));
 	color: inherit;
 }
 
@@ -436,19 +584,54 @@ async function onToggleCheck(item: Item) {
 	margin: 0;
 }
 
+/* Thumbnail. The card and item classes in front keep these rules ahead of
+   Nextcloud's global button styling without !important. */
+.public-list .public-list__item > button.public-list__thumb {
+	flex: 0 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	min-height: 0;
+	margin: 0 8px 0 0;
+	padding: 0;
+	border: none;
+	border-radius: var(--border-radius, 3px);
+	background-color: var(--color-background-dark, rgba(0, 0, 0, 0.2));
+	overflow: hidden;
+	cursor: zoom-in;
+}
+
+.public-list .public-list__item > button.public-list__thumb:is(:hover, :focus, :active) {
+	background-color: var(--color-background-dark, rgba(0, 0, 0, 0.2));
+}
+
+.public-list .public-list__item > button.public-list__thumb:focus-visible {
+	outline: 2px solid var(--color-main-text, #fff);
+	outline-offset: 1px;
+}
+
+.public-list__thumb img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
 .public-list__quantity {
 	flex: 0 0 auto;
 	color: var(--color-text-maxcontrast);
 	font-size: 0.85em;
 	white-space: nowrap;
-	padding-right: 8px;
+	padding-inline-end: 8px;
 }
 
 .public-list__name {
 	flex: 1 1 0%;
 	min-width: 0;
 	font-size: 0.95em;
-	padding-right: 8px;
+	padding-inline-end: 8px;
 	overflow-wrap: anywhere;
 }
 
@@ -492,7 +675,7 @@ async function onToggleCheck(item: Item) {
 }
 
 .public-list__toggle {
-	margin-left: 4px;
+	margin-inline-start: 4px;
 }
 
 .public-list__bought-card {
