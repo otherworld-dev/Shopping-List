@@ -44397,6 +44397,10 @@ const api = {
   settings: {
     get: () => cancelableClient.get(url("settings")),
     update: (data) => cancelableClient.patch(url("settings"), data)
+  },
+  backup: {
+    download: () => cancelableClient.get(generateUrl("/apps/shopping_list/backup/download"), { responseType: "blob" }),
+    restore: (payload) => cancelableClient.post(generateUrl("/apps/shopping_list/backup/restore"), payload)
   }
 };
 const publicApi = {
@@ -45224,7 +45228,7 @@ export {
   isObject$2 as Z,
   _export_sfc$1 as _,
   NcIconSvgWrapper as a,
-  generateOcsUrl as a$,
+  getRootUrl as a$,
   isArray$1 as a0,
   isOn as a1,
   isReservedProp as a2,
@@ -45260,8 +45264,8 @@ export {
   shallowRef as aW,
   vModelSelect as aX,
   NcCheckboxRadioSwitch as aY,
-  Transition as aZ,
-  getRootUrl as a_,
+  translatePlural as aZ,
+  Transition as a_,
   getAugmentedNamespace as aa,
   runtimeDom_esmBundler as ab,
   shared_esmBundler as ac,
@@ -45289,24 +45293,25 @@ export {
   onMounted as ay,
   onUnmounted as az,
   createBaseVNode as b,
-  cancelableClient as b0,
-  generateUrl as b1,
-  NcAppNavigation as b2,
-  NcAppNavigationSettings as b3,
-  NcAppContent as b4,
-  NcContent as b5,
-  createPinia as b6,
-  offlinePersistPlugin as b7,
-  createApp as b8,
-  publicApi as b9,
-  publicItemImageUrl as ba,
-  dist as bb,
-  requireMajor as bc,
-  requireValid as bd,
-  dist$1 as be,
-  process$1 as bf,
-  commonjsGlobal as bg,
-  Buffer as bh,
+  generateOcsUrl as b0,
+  cancelableClient as b1,
+  generateUrl as b2,
+  NcAppNavigation as b3,
+  NcAppNavigationSettings as b4,
+  NcAppContent as b5,
+  NcContent as b6,
+  createPinia as b7,
+  offlinePersistPlugin as b8,
+  createApp as b9,
+  publicApi as ba,
+  publicItemImageUrl as bb,
+  dist as bc,
+  requireMajor as bd,
+  requireValid as be,
+  dist$1 as bf,
+  process$1 as bg,
+  commonjsGlobal as bh,
+  Buffer as bi,
   createElementBlock as c,
   createVNode as d,
   mdiRadioboxBlank as e,
@@ -45332,4 +45337,4 @@ export {
   unref as y,
   resolveDynamicComponent as z
 };
-//# sourceMappingURL=useCollapsedAreas-GSHCJ96f.chunk.mjs.map
+//# sourceMappingURL=useCollapsedAreas-CD6EvQ5t.chunk.mjs.map

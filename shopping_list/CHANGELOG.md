@@ -17,6 +17,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   Pin and Delete, so you no longer have to open a list before you can share
   it. It shows on the lists you own, and it shares the list whose menu you
   used rather than the one you are looking at (#48)
+- Your lists can be backed up and restored. Open Settings at the bottom of
+  the sidebar and choose "Download backup" under Backup to get a JSON file
+  holding your own lists, with their items, areas, tags and pins. "Restore
+  from backup" reads that file back. A restore always adds lists rather than
+  replacing the ones you have, so nothing you already had can be lost, and
+  restoring the same file twice gives you two copies. Shares are not
+  included, so a restored list starts private and you share it again
+  yourself. The same data is carried by Nextcloud's user migration if your
+  administrator has the User Migration app installed. Thanks to rostmodern
+  for the idea (#47)
 - Italian, translated on Crowdin. 171 of the 190 strings are done, the
   newest ones show in English for now
 - Items remember their amount. Type "500 g Rice" once and next time "Rice"

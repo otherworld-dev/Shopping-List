@@ -10,6 +10,7 @@
 					<ListSortSettings />
 					<ItemImagesSettings />
 					<NameSettings />
+					<BackupSettings />
 					<WhatsNewButton />
 				</NcAppNavigationSettings>
 			</template>
@@ -53,6 +54,7 @@ import AreaKeywordsSettings from './components/AreaKeywordsSettings.vue'
 import ListSortSettings from './components/ListSortSettings.vue'
 import ItemImagesSettings from './components/ItemImagesSettings.vue'
 import NameSettings from './components/NameSettings.vue'
+import BackupSettings from './components/BackupSettings.vue'
 import AndroidAppLink from './components/AndroidAppLink.vue'
 import OfflineIndicator from './components/OfflineIndicator.vue'
 import ShareDialog from './components/ShareDialog.vue'

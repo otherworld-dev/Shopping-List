@@ -1106,6 +1106,26 @@
 	font-weight: 600;
 }
 
+.backup[data-v-78e2f22c] {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	padding: 0 0 4px;
+}
+.backup__title[data-v-78e2f22c] {
+	margin: 0;
+	font-size: 1em;
+	font-weight: 600;
+}
+.backup__hint[data-v-78e2f22c] {
+	margin: 0 0 4px;
+	color: var(--color-text-maxcontrast);
+	font-size: 0.85em;
+}
+.backup__file[data-v-78e2f22c] {
+	display: none;
+}
+
 .android-app-link[data-v-9ecb6a23] {
 	margin: 0;
 	padding: 0;
