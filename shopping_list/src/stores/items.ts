@@ -6,7 +6,7 @@ import { useListsStore } from './lists'
 import { useShopAreasStore } from './shopAreas'
 import { showError, showSuccess } from '@nextcloud/dialogs'
 import { t } from '@nextcloud/l10n'
-import { findMatchingItem, mergeQuantities, pluralizeName } from '../utils/itemMerge'
+import { findCheckedMatch, findMatchingItem, mergeQuantities, pluralizeName } from '../utils/itemMerge'
 import { enqueue } from '../offline/mutationQueue'
 import { useNetworkStatus, isNetworkError } from '../offline/networkStatus'
 import { markServerFetched } from '../offline/piniaPlugin'
@@ -116,6 +116,18 @@ export const useItemsStore = defineStore('items', () => {
 					}
 				}
 				showSuccess(t('shopping_list', '"{name}" updated — quantity merged', { name: (updateData.name ?? match.name) as string }))
+				return
+			}
+
+			// Ticked off already: bring that one back rather than add another
+			// beside it. A typed amount replaces its old one; a bare name keeps it.
+			const ticked = data.checked ? undefined : findCheckedMatch(existingItems, data.name as string)
+			if (ticked) {
+				if (data.quantity) {
+					await update(listId, ticked.id, { quantity: data.quantity, quantityExplicit: true })
+				}
+				await toggleCheck(listId, ticked.id)
+				showSuccess(t('shopping_list', '"{name}" moved back to the list', { name: ticked.name }))
 				return
 			}
 

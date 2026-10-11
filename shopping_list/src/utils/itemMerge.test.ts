@@ -1,9 +1,10 @@
 import { describe, expect, it, vi } from 'vitest'
+import type { Item } from '../types'
 
 // Plurals are English-only, gated on the viewer's language.
 vi.mock('@nextcloud/l10n', () => ({ getLanguage: () => 'en' }))
 
-const { mergeQuantities, normalizeName, pluralizeName } = await import('./itemMerge')
+const { findCheckedMatch, mergeQuantities, normalizeName, pluralizeName } = await import('./itemMerge')
 
 describe('pluralizeName', () => {
 	it('pluralizes countable items', () => {
@@ -45,5 +46,27 @@ describe('mergeQuantities', () => {
 
 	it('treats a bare name as one more, as before', () => {
 		expect(mergeQuantities('500 g', '1')).toBe('500 g + 1')
+	})
+})
+
+describe('findCheckedMatch', () => {
+	const item = (id: number, name: string, checked: boolean) => ({ id, name, checked }) as Item
+
+	it('finds a ticked item of the same name', () => {
+		const items = [item(1, 'Bread', false), item(2, 'Milk', true)]
+		expect(findCheckedMatch(items, 'milk')?.id).toBe(2)
+	})
+
+	it('matches a plural to its singular', () => {
+		expect(findCheckedMatch([item(1, 'Apple', true)], 'Apples')?.id).toBe(1)
+	})
+
+	it('leaves unticked items alone', () => {
+		expect(findCheckedMatch([item(1, 'Milk', false)], 'Milk')).toBeUndefined()
+	})
+
+	it('takes the first of several ticked copies', () => {
+		const items = [item(1, 'Milk', true), item(2, 'Milk', true)]
+		expect(findCheckedMatch(items, 'Milk')?.id).toBe(1)
 	})
 })

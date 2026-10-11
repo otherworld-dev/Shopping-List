@@ -45,6 +45,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   it, and the notes are in English only
 
 ### Changed
+- Adding something that is already ticked off brings that item back to the
+  list instead of adding a second one beside it, so the ticked items don't
+  fill up with copies of the same thing. It keeps its shop area and photo,
+  and the amount it had unless you type a new one
 - The settings carry `whatsNewSeen`, the version whose release notes were
   last shown, so the What's new window shows once per person rather than
   once per browser

@@ -14400,6 +14400,10 @@ function findMatchingItem(items, name) {
   const normalized = normalizeName(name);
   return items.find((item) => !item.checked && normalizeName(item.name) === normalized);
 }
+function findCheckedMatch(items, name) {
+  const normalized = normalizeName(name);
+  return items.find((item) => item.checked && normalizeName(item.name) === normalized);
+}
 function evalNumber(s) {
   const mixed = s.match(/^(\d+)\s+(\d+)\/(\d+)$/);
   if (mixed) return parseInt(mixed[1]) + parseInt(mixed[2]) / parseInt(mixed[3]);
@@ -14641,6 +14645,15 @@ const useItemsStore = defineStore("items", () => {
           }
         }
         showSuccess(translate("shopping_list", '"{name}" updated — quantity merged', { name: updateData.name ?? match.name }));
+        return;
+      }
+      const ticked = data.checked ? void 0 : findCheckedMatch(existingItems, data.name);
+      if (ticked) {
+        if (data.quantity) {
+          await update(listId, ticked.id, { quantity: data.quantity, quantityExplicit: true });
+        }
+        await toggleCheck(listId, ticked.id);
+        showSuccess(translate("shopping_list", '"{name}" moved back to the list', { name: ticked.name }));
         return;
       }
       const tempId = -Date.now();
