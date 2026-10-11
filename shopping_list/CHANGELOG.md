@@ -20,6 +20,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - More units are recognised when typed with an amount: pc, pcs, pkg, dag
   and dkg, and in German Stk and Stk. as well. Before, "25 dag Schinken"
   came out as 25 of an item called "Dag Schinken" (#15)
+- A What's new window that shows once after an update, with the main
+  changes since the version you last used. What's new at the bottom of
+  Settings opens it again. Someone who has only just started isn't shown
+  it, and the notes are in English only
+
+### Changed
+- The settings carry `whatsNewSeen`, the version whose release notes were
+  last shown, so the What's new window shows once per person rather than
+  once per browser
 
 ### Fixed
 - Items added on the public link page now read the amount the same way as

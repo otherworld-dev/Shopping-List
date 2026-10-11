@@ -798,3 +798,19 @@ msgstr ""
 #: src/stores/lists.ts
 msgid "Failed to save the list order"
 msgstr ""
+
+#: src/components/WhatsNewDialog.vue
+msgid "What's new in Shopping List"
+msgstr ""
+
+#: src/components/WhatsNewDialog.vue
+msgid "Read more"
+msgstr ""
+
+#: src/components/WhatsNewDialog.vue
+msgid "Got it"
+msgstr ""
+
+#: src/components/WhatsNewButton.vue
+msgid "What's new"
+msgstr ""

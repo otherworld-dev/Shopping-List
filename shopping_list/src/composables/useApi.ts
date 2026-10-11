@@ -76,7 +76,7 @@ export const api = {
 	},
 	settings: {
 		get: () => axios.get(url('settings')),
-		update: (data: { showImages?: boolean, listSort?: ListSort, showOwnName?: boolean }) => axios.patch(url('settings'), data),
+		update: (data: { showImages?: boolean, listSort?: ListSort, showOwnName?: boolean, whatsNewSeen?: string }) => axios.patch(url('settings'), data),
 	},
 }
 
