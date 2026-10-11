@@ -44727,6 +44727,7 @@ const EN_UNIT_ALIASES = {
   bags: "bag",
   packs: "pack",
   packets: "pack",
+  pkg: "pack",
   pinches: "pinch",
   bunches: "bunch",
   heads: "head"
@@ -45171,4 +45172,4 @@ export {
   useSlots as y,
   createBlock as z
 };
-//# sourceMappingURL=useCollapsedAreas-Br5ZQXL4.chunk.mjs.map
+//# sourceMappingURL=useCollapsedAreas-DAzQxeek.chunk.mjs.map

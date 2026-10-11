@@ -40,6 +40,7 @@ describe('mergeQuantities', () => {
 	it('adds up the short forms of a unit with the long ones', () => {
 		expect(mergeQuantities('3 pcs', '2 pieces')).toBe('5 pcs')
 		expect(mergeQuantities('25 dag', '10 dkg')).toBe('35 dag')
+		expect(mergeQuantities('2 pkg', '1 pack')).toBe('3 pkg')
 	})
 
 	it('treats a bare name as one more, as before', () => {
