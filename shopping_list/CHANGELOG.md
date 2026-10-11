@@ -8,6 +8,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Lists can be named as you create them. "New list" in the sidebar opens a
+  name field instead of making a list called "New shopping list" straight
+  away. Type a name and press Enter, or confirm an empty field if you want
+  the old default name. Cancelling creates nothing, where before every
+  click left a list behind. Thanks to rostmodern for the idea (#48)
+- "Share list" is in a list's menu in the sidebar as well, next to Rename,
+  Pin and Delete, so you no longer have to open a list before you can share
+  it. It shows on the lists you own, and it shares the list whose menu you
+  used rather than the one you are looking at (#48)
 - Italian, translated on Crowdin. 171 of the 190 strings are done, the
   newest ones show in English for now
 - Items remember their amount. Type "500 g Rice" once and next time "Rice"

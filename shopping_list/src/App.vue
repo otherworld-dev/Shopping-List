@@ -1,7 +1,7 @@
 <template>
 	<NcContent app-name="shopping_list">
 		<NcAppNavigation>
-			<ListSidebar @show-settings="showSettings = true" />
+			<ListSidebar @show-settings="showSettings = true" @share="shareListId = $event" />
 			<template #footer>
 				<AndroidAppLink />
 				<!-- Your own settings, not a list's, so they live in the Settings drawer at the
@@ -16,7 +16,7 @@
 		</NcAppNavigation>
 		<NcAppContent>
 			<AreaKeywordsSettings v-if="showSettings && listsStore.currentList" :key="listsStore.currentListId" @back="showSettings = false" />
-			<ListView v-else-if="listsStore.currentList" />
+			<ListView v-else-if="listsStore.currentList" @share="shareListId = $event" />
 			<NcEmptyContent v-else
 				:name="noListName"
 				:description="noListDesc">
@@ -26,12 +26,17 @@
 			</NcEmptyContent>
 		</NcAppContent>
 	</NcContent>
+	<ShareDialog v-if="shareList"
+		:list-id="shareList.id"
+		:is-owner="shareList.isOwner"
+		:current-user-id="currentUserId"
+		@close="shareListId = null" />
 	<OfflineIndicator />
 	<WhatsNewDialog />
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import {
 	NcContent,
 	NcAppNavigation,
@@ -41,6 +46,7 @@ import {
 	NcIconSvgWrapper,
 } from '@nextcloud/vue'
 import { t } from '@nextcloud/l10n'
+import { getCurrentUser } from '@nextcloud/auth'
 import ListSidebar from './components/ListSidebar.vue'
 import ListView from './components/ListView.vue'
 import AreaKeywordsSettings from './components/AreaKeywordsSettings.vue'
@@ -49,6 +55,7 @@ import ItemImagesSettings from './components/ItemImagesSettings.vue'
 import NameSettings from './components/NameSettings.vue'
 import AndroidAppLink from './components/AndroidAppLink.vue'
 import OfflineIndicator from './components/OfflineIndicator.vue'
+import ShareDialog from './components/ShareDialog.vue'
 import WhatsNewButton from './components/WhatsNewButton.vue'
 import WhatsNewDialog from './components/WhatsNewDialog.vue'
 import { useListsStore } from './stores/lists'
@@ -57,6 +64,14 @@ import { useWhatsNew } from './composables/useWhatsNew'
 
 const listsStore = useListsStore()
 const showSettings = ref(false)
+
+// The share dialog lives here rather than in ListView so the sidebar menu can
+// open it for any list, including while the Manage Areas screen is showing.
+const shareListId = ref<number | null>(null)
+const currentUserId = getCurrentUser()?.uid ?? ''
+const shareList = computed(() =>
+	listsStore.lists.find(l => l.id === shareListId.value) ?? null,
+)
 
 const noListName = t('shopping_list', 'No list selected')
 const noListDesc = t('shopping_list', 'Select a list from the sidebar or create a new one')

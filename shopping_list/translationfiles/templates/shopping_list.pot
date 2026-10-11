@@ -199,6 +199,10 @@ msgid "New list"
 msgstr ""
 
 #: src/components/ListSidebar.vue
+msgid "List name"
+msgstr ""
+
+#: src/components/ListSidebar.vue
 msgid "Rename list"
 msgstr ""
 
@@ -316,7 +320,7 @@ msgstr ""
 msgid "Most recent first"
 msgstr ""
 
-#: src/components/ShareDialog.vue
+#: src/components/ListSidebar.vue src/components/ShareDialog.vue
 msgid "Share list"
 msgstr ""
 
