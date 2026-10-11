@@ -79,7 +79,9 @@ export const useItemsStore = defineStore('items', () => {
 			const match = data.checked ? undefined : findMatchingItem(existingItems, data.name as string)
 
 			if (match) {
-				const merged = mergeQuantities(match.quantity, data.quantity as string | null)
+				// A bare name counts as one more. The merged total is not sent as a
+				// typed amount, so it never becomes the name's remembered amount.
+				const merged = mergeQuantities(match.quantity, (data.quantity as string | null) ?? '1')
 				const updateData: Record<string, unknown> = { quantity: merged }
 
 				const oldQty = parseFloat(match.quantity ?? '')
@@ -123,7 +125,9 @@ export const useItemsStore = defineStore('items', () => {
 				id: tempId,
 				listId,
 				name: data.name as string,
-				quantity: (data.quantity as string) ?? '1',
+				// Without a typed amount the server picks the remembered one, so show
+				// none until it answers rather than a "1" that then changes.
+				quantity: (data.quantity as string | null) ?? null,
 				unit: (data.unit as string) ?? null,
 				shopAreaId: (data.shopAreaId as number) ?? null,
 				checked: Boolean(data.checked),

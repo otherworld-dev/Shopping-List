@@ -37,7 +37,7 @@
 	opacity: 0.5;
 }
 
-.item-row[data-v-b99f16be] {
+.item-row[data-v-a20d32c6] {
 	display: flex !important;
 	flex-direction: row !important;
 	flex-wrap: nowrap !important;
@@ -53,26 +53,26 @@
 	gap: 0;
 	position: relative;
 }
-.item-row[data-v-b99f16be]:last-child {
+.item-row[data-v-a20d32c6]:last-child {
 	border-bottom: none;
 }
-.item-row[data-v-b99f16be]:hover {
+.item-row[data-v-a20d32c6]:hover {
 	background-color: var(--color-background-hover);
 }
 
 /* Invisible overlay to capture clicks — bypasses Nextcloud's click
    interception on non-interactive elements. The document-level capture
    listener in ListView detects which row was clicked. */
-.item-row[data-item-id][data-v-b99f16be]::after {
+.item-row[data-item-id][data-v-a20d32c6]::after {
 	content: '';
 	position: absolute;
 	inset: 0;
 	cursor: pointer;
 }
-.item-row--editing[data-v-b99f16be]::after {
+.item-row--editing[data-v-a20d32c6]::after {
 	display: none;
 }
-.item-row__check[data-v-b99f16be] {
+.item-row__check[data-v-a20d32c6] {
 	flex: 0 0 auto;
 	display: flex;
 	align-items: center;
@@ -81,7 +81,7 @@
 	position: relative;
 	z-index: 1;
 }
-.item-row__check input[type="checkbox"][data-v-b99f16be] {
+.item-row__check input[type="checkbox"][data-v-a20d32c6] {
 	width: 18px;
 	height: 18px;
 	cursor: pointer;
@@ -92,8 +92,8 @@
 /* Thumbnail. Nextcloud styles every button globally, so the row class in
    front keeps these rules ahead of its :hover, :focus and :active without
    !important. z-index lifts it above the row's click overlay. */
-.item-row > button.item-row__thumb[data-v-b99f16be],
-.item-row > .item-row__thumb--loading[data-v-b99f16be] {
+.item-row > button.item-row__thumb[data-v-a20d32c6],
+.item-row > .item-row__thumb--loading[data-v-a20d32c6] {
 	flex: 0 0 auto;
 	display: flex;
 	align-items: center;
@@ -110,38 +110,38 @@
 	position: relative;
 	z-index: 1;
 }
-.item-row > button.item-row__thumb[data-v-b99f16be] {
+.item-row > button.item-row__thumb[data-v-a20d32c6] {
 	cursor: zoom-in;
 }
-.item-row > button.item-row__thumb[data-v-b99f16be]:is(:hover, :focus, :active) {
+.item-row > button.item-row__thumb[data-v-a20d32c6]:is(:hover, :focus, :active) {
 	background-color: var(--color-background-dark);
 }
-.item-row > button.item-row__thumb[data-v-b99f16be]:focus-visible {
+.item-row > button.item-row__thumb[data-v-a20d32c6]:focus-visible {
 	outline: 2px solid var(--color-main-text);
 	outline-offset: 1px;
 }
-.item-row__thumb img[data-v-b99f16be] {
+.item-row__thumb img[data-v-a20d32c6] {
 	display: block;
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 }
-.item-row--drop-target[data-v-b99f16be] {
+.item-row--drop-target[data-v-a20d32c6] {
 	outline: 2px dashed var(--color-primary-element);
 	outline-offset: -2px;
 	background-color: var(--color-primary-element-light);
 }
-.item-row__file-input[data-v-b99f16be] {
+.item-row__file-input[data-v-a20d32c6] {
 	display: none;
 }
-.item-row__quantity[data-v-b99f16be] {
+.item-row__quantity[data-v-a20d32c6] {
 	flex: 0 0 auto;
 	color: var(--color-text-maxcontrast);
 	font-size: 0.85em;
 	white-space: nowrap;
 	padding-inline-end: 8px;
 }
-.item-row__name[data-v-b99f16be] {
+.item-row__name[data-v-a20d32c6] {
 	flex: 1 1 0%;
 	min-width: 0;
 	font-size: 0.95em;
@@ -150,7 +150,7 @@
 	   item can shrink — a long no-space name wraps instead of overflowing. */
 	overflow-wrap: anywhere;
 }
-.item-row__by[data-v-b99f16be] {
+.item-row__by[data-v-a20d32c6] {
 	display: inline-flex;
 	align-items: center;
 	gap: 4px;
@@ -163,13 +163,13 @@
 }
 
 /* Only the name gets cut short; the guest mark always stays in view */
-.item-row__by-name[data-v-b99f16be] {
+.item-row__by-name[data-v-a20d32c6] {
 	min-width: 0;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
-.item-row__by-guest[data-v-b99f16be] {
+.item-row__by-guest[data-v-a20d32c6] {
 	flex: 0 0 auto;
 	padding: 0 5px;
 	border: 1px solid var(--color-border-dark);
@@ -180,10 +180,10 @@
 /* On a phone the person's name goes on its own line under the item, so the
    item's own name keeps its room next to the quantity, area and menu */
 @media (max-width: 600px) {
-.item-row.item-row--with-by[data-v-b99f16be] {
+.item-row.item-row--with-by[data-v-a20d32c6] {
 		flex-wrap: wrap !important;
 }
-.item-row--with-by .item-row__by[data-v-b99f16be] {
+.item-row--with-by .item-row__by[data-v-a20d32c6] {
 		order: 1;
 		flex: 0 0 100%;
 		max-width: none;
@@ -192,11 +192,11 @@
 		padding-inline-start: 32px;
 }
 }
-.item-row__name--checked[data-v-b99f16be] {
+.item-row__name--checked[data-v-a20d32c6] {
 	text-decoration: line-through;
 	color: var(--color-text-maxcontrast);
 }
-.item-row__area[data-v-b99f16be] {
+.item-row__area[data-v-a20d32c6] {
 	display: inline-flex;
 	align-items: center;
 	gap: 5px;
@@ -214,13 +214,13 @@
 	z-index: 1;
 	pointer-events: none;
 }
-.item-row__area-dot[data-v-b99f16be] {
+.item-row__area-dot[data-v-a20d32c6] {
 	width: 6px;
 	height: 6px;
 	border-radius: 50%;
 	flex-shrink: 0;
 }
-.item-row__area-name[data-v-b99f16be] {
+.item-row__area-name[data-v-a20d32c6] {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -228,14 +228,14 @@
 }
 
 /* Actions (⋮) kebab — sits above the row's click overlay so the menu opens */
-.item-row__actions[data-v-b99f16be] {
+.item-row__actions[data-v-a20d32c6] {
 	flex: 0 0 auto;
 	position: relative;
 	z-index: 1;
 }
 
 /* Inline editing */
-.item-row__edit-input[data-v-b99f16be] {
+.item-row__edit-input[data-v-a20d32c6] {
 	height: 30px;
 	border: 1px solid var(--color-primary-element);
 	border-radius: var(--border-radius);
@@ -247,39 +247,39 @@
 	position: relative;
 	z-index: 1;
 }
-.item-row__edit-name[data-v-b99f16be] {
+.item-row__edit-name[data-v-a20d32c6] {
 	flex: 1 1 0%;
 	min-width: 0;
 }
-.item-row__edit-qty[data-v-b99f16be] {
+.item-row__edit-qty[data-v-a20d32c6] {
 	flex: 0 0 70px;
 	width: 70px;
 	font-size: 0.85em;
 	text-align: center;
 }
-.item-row__edit-qty[data-v-b99f16be]::placeholder {
+.item-row__edit-qty[data-v-a20d32c6]::placeholder {
 	color: var(--color-text-maxcontrast);
 	font-style: italic;
 }
 
 /* Area picker in edit mode */
-.item-row__area-wrapper[data-v-b99f16be] {
+.item-row__area-wrapper[data-v-a20d32c6] {
 	flex: 0 0 auto;
 	position: relative;
 	display: flex;
 	align-items: center;
 	z-index: 10;
 }
-.item-row__edit-area[data-v-b99f16be] {
+.item-row__edit-area[data-v-a20d32c6] {
 	width: 90px;
 	font-size: 0.85em;
 	padding-inline-end: 20px !important;
 }
-.item-row__edit-area[data-v-b99f16be]::placeholder {
+.item-row__edit-area[data-v-a20d32c6]::placeholder {
 	color: var(--color-text-maxcontrast);
 	font-style: italic;
 }
-.item-row__area-clear[data-v-b99f16be] {
+.item-row__area-clear[data-v-a20d32c6] {
 	position: absolute;
 	inset-inline-end: 4px;
 	top: 50%;
@@ -293,7 +293,7 @@
 	line-height: 1;
 	z-index: 2;
 }
-.item-row__area-clear[data-v-b99f16be]:hover {
+.item-row__area-clear[data-v-a20d32c6]:hover {
 	color: var(--color-error);
 }
 
@@ -332,12 +332,12 @@
 	text-align: center;
 }
 
-.item-editor[data-v-dbb53ce2] {
+.item-editor[data-v-63a57c72] {
 	background-color: var(--color-background-dark);
 	border-bottom: 1px solid var(--color-border);
 	padding: 10px 16px;
 }
-.item-editor__main[data-v-dbb53ce2] {
+.item-editor__main[data-v-63a57c72] {
 	display: flex !important;
 	flex-direction: row !important;
 	flex-wrap: nowrap !important;
@@ -350,10 +350,10 @@
 	padding: 0 4px 0 0;
 	transition: border-color 0.15s ease;
 }
-.item-editor__main[data-v-dbb53ce2]:focus-within {
+.item-editor__main[data-v-63a57c72]:focus-within {
 	border-color: var(--color-primary-element);
 }
-.item-editor__plus[data-v-dbb53ce2] {
+.item-editor__plus[data-v-63a57c72] {
 	flex: 0 0 auto;
 	font-size: 1.2em;
 	color: var(--color-primary-element);
@@ -361,7 +361,7 @@
 	user-select: none;
 	font-weight: 700;
 }
-.item-editor__input[data-v-dbb53ce2] {
+.item-editor__input[data-v-63a57c72] {
 	flex: 1 1 0% !important;
 	min-width: 0;
 	height: 100%;
@@ -372,20 +372,20 @@
 	outline: none;
 	padding: 0;
 }
-.item-editor__input[data-v-dbb53ce2]::placeholder {
+.item-editor__input[data-v-63a57c72]::placeholder {
 	color: var(--color-text-maxcontrast);
 	font-style: italic;
 }
 
 /* Filterable area dropdown */
-.item-editor__area-wrapper[data-v-dbb53ce2] {
+.item-editor__area-wrapper[data-v-63a57c72] {
 	flex: 0 0 auto !important;
 	position: relative;
 	display: flex;
 	align-items: center;
 	border-inline-start: 1px solid var(--color-border);
 }
-.item-editor__area-input[data-v-dbb53ce2] {
+.item-editor__area-input[data-v-63a57c72] {
 	width: 90px;
 	height: 28px;
 	padding: 0 22px 0 8px;
@@ -398,11 +398,11 @@
 	cursor: text;
 	box-sizing: border-box;
 }
-.item-editor__area-input[data-v-dbb53ce2]::placeholder {
+.item-editor__area-input[data-v-63a57c72]::placeholder {
 	color: var(--color-text-maxcontrast);
 	font-style: italic;
 }
-.item-editor__area-clear[data-v-dbb53ce2] {
+.item-editor__area-clear[data-v-63a57c72] {
 	position: absolute;
 	inset-inline-end: 4px;
 	top: 50%;
@@ -415,10 +415,10 @@
 	padding: 2px 4px;
 	line-height: 1;
 }
-.item-editor__area-clear[data-v-dbb53ce2]:hover {
+.item-editor__area-clear[data-v-63a57c72]:hover {
 	color: var(--color-error);
 }
-.item-editor__dropdown[data-v-dbb53ce2] {
+.item-editor__dropdown[data-v-63a57c72] {
 	position: absolute;
 	top: 100%;
 	inset-inline: 0;
@@ -432,7 +432,7 @@
 	z-index: 100;
 	margin-top: 2px;
 }
-.item-editor__dropdown-item[data-v-dbb53ce2] {
+.item-editor__dropdown-item[data-v-63a57c72] {
 	display: flex;
 	align-items: center;
 	gap: 8px;
@@ -440,17 +440,17 @@
 	font-size: 0.85em;
 	cursor: pointer;
 }
-.item-editor__dropdown-item[data-v-dbb53ce2]:hover,
-.item-editor__dropdown-item--highlighted[data-v-dbb53ce2] {
+.item-editor__dropdown-item[data-v-63a57c72]:hover,
+.item-editor__dropdown-item--highlighted[data-v-63a57c72] {
 	background-color: var(--color-background-hover);
 }
-.item-editor__dropdown-dot[data-v-dbb53ce2] {
+.item-editor__dropdown-dot[data-v-63a57c72] {
 	width: 8px;
 	height: 8px;
 	border-radius: 50%;
 	flex-shrink: 0;
 }
-.item-editor__dropdown-empty[data-v-dbb53ce2] {
+.item-editor__dropdown-empty[data-v-63a57c72] {
 	padding: 8px 10px;
 	font-size: 0.85em;
 	color: var(--color-text-maxcontrast);
@@ -458,45 +458,45 @@
 }
 
 /* Input format help */
-.item-editor__help[data-v-dbb53ce2] {
+.item-editor__help[data-v-63a57c72] {
 	flex: 0 0 auto;
 	display: flex;
 	align-items: center;
 }
-.input-help[data-v-dbb53ce2] {
+.input-help[data-v-63a57c72] {
 	max-width: min(380px, calc(100vw - 32px));
 	padding: 12px 14px;
 	border-radius: var(--border-radius-large);
 }
-.input-help[data-v-dbb53ce2]:focus-visible {
+.input-help[data-v-63a57c72]:focus-visible {
 	outline: 2px solid var(--color-primary-element);
 	outline-offset: -2px;
 }
-.input-help__title[data-v-dbb53ce2] {
+.input-help__title[data-v-63a57c72] {
 	font-weight: 600;
 	margin: 0 0 4px;
 }
-.input-help__intro[data-v-dbb53ce2] {
+.input-help__intro[data-v-63a57c72] {
 	color: var(--color-text-maxcontrast);
 	font-size: 0.9em;
 	margin: 0 0 10px;
 }
-.input-help__examples[data-v-dbb53ce2] {
+.input-help__examples[data-v-63a57c72] {
 	border-collapse: collapse;
 	width: 100%;
 }
-.input-help__examples th[data-v-dbb53ce2] {
+.input-help__examples th[data-v-63a57c72] {
 	text-align: start;
 	font-weight: 600;
 	font-size: 0.8em;
 	color: var(--color-text-maxcontrast);
 	padding: 0 12px 4px 0;
 }
-.input-help__examples td[data-v-dbb53ce2] {
+.input-help__examples td[data-v-63a57c72] {
 	padding: 3px 12px 3px 0;
 	vertical-align: middle;
 }
-.input-help__line[data-v-dbb53ce2] {
+.input-help__line[data-v-63a57c72] {
 	font-family: monospace;
 	font-size: 0.85em;
 	background: var(--color-background-dark);
@@ -504,10 +504,10 @@
 	padding: 2px 6px;
 	white-space: nowrap;
 }
-.input-help__result[data-v-dbb53ce2] {
+.input-help__result[data-v-63a57c72] {
 	font-size: 0.9em;
 }
-.input-help__quantity[data-v-dbb53ce2] {
+.input-help__quantity[data-v-63a57c72] {
 	color: var(--color-text-maxcontrast);
 	font-size: 0.85em;
 	white-space: nowrap;
@@ -515,11 +515,11 @@
 }
 
 /* A ticked example is drawn the way a checked-off item is in the list. */
-.input-help__result--checked .input-help__name[data-v-dbb53ce2] {
+.input-help__result--checked .input-help__name[data-v-63a57c72] {
 	text-decoration: line-through;
 	color: var(--color-text-maxcontrast);
 }
-.input-help__checked[data-v-dbb53ce2] {
+.input-help__checked[data-v-63a57c72] {
 	color: var(--color-text-maxcontrast);
 	font-size: 0.8em;
 	white-space: nowrap;

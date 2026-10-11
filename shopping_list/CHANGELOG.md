@@ -10,6 +10,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Italian, translated on Crowdin. 171 of the 190 strings are done, the
   newest ones show in English for now
+- Items remember their amount. Type "500 g Rice" once and next time "Rice"
+  on its own comes back as 500 g Rice, even after the first one was cleared
+  away. The amount belongs to the list, so everyone sharing it gets the same
+  one, guests on the public link included. Changing an item's amount updates
+  what is remembered, and clearing it goes back to the plain default of 1.
+  Typing an item that is already on the list still adds to it as before,
+  without changing the remembered amount (#15)
+- More units are recognised when typed with an amount: pc, pcs, pkg, dag
+  and dkg, and in German Stk and Stk. as well. Before, "25 dag Schinken"
+  came out as 25 of an item called "Dag Schinken" (#15)
+
+### Fixed
+- Items added on the public link page now read the amount the same way as
+  in the app, so "2 l Milk" is 2 l of Milk rather than 1 of "2 l Milk"
 
 ## [1.10.0] - 2026-10-05
 

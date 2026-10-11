@@ -10,6 +10,7 @@ use OCA\Shopping_List\Db\ItemMapper;
 use OCA\Shopping_List\Db\ListShare;
 use OCA\Shopping_List\Db\ShoppingListMapper;
 use OCA\Shopping_List\Db\ShopAreaMapper;
+use OCA\Shopping_List\Service\AmountMemory;
 use OCA\Shopping_List\Service\ItemImageService;
 use OCA\Shopping_List\Service\ItemService;
 use OCA\Shopping_List\Service\PublicShareAccess;
@@ -50,6 +51,7 @@ class PublicListControllerGuestNameTest extends TestCase {
 			$access,
 			$this->createMock(ItemService::class),
 			$this->createMock(ItemImageService::class),
+			$this->createMock(AmountMemory::class),
 		);
 	}
 
