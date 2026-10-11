@@ -8,6 +8,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Italian, translated on Crowdin. 171 of the 190 strings are done, the
+  newest ones show in English for now
+- Items remember their amount. Type "500 g Rice" once and next time "Rice"
+  on its own comes back as 500 g Rice, even after the first one was cleared
+  away. The amount belongs to the list, so everyone sharing it gets the same
+  one, guests on the public link included. Changing an item's amount updates
+  what is remembered, and clearing it goes back to the plain default of 1.
+  Typing an item that is already on the list still adds to it as before,
+  without changing the remembered amount (#15)
+- More units are recognised when typed with an amount: pc, pcs, pkg, dag
+  and dkg, and in German Stk and Stk. as well. Before, "25 dag Schinken"
+  came out as 25 of an item called "Dag Schinken" (#15)
+- A What's new window that shows once after an update, with the main
+  changes since the version you last used. What's new at the bottom of
+  Settings opens it again. Someone who has only just started isn't shown
+  it, and the notes are in English only
+
+### Changed
+- The settings carry `whatsNewSeen`, the version whose release notes were
+  last shown, so the What's new window shows once per person rather than
+  once per browser
+
+### Fixed
+- Items added on the public link page now read the amount the same way as
+  in the app, so "2 l Milk" is 2 l of Milk rather than 1 of "2 l Milk"
+
+## [1.10.0] - 2026-10-05
+
+### Added
 - Lists can be sorted your own way. Choose Sort lists in Settings at the
   bottom of the list sidebar: Recently updated (as before, and still the
   default), A to Z, or Custom, where you drag lists into the order you
@@ -33,16 +62,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   working when the link is deleted or expires
 - Each item now shows who added it, and once it's ticked, who ticked it.
   People on a public link can type their name above the list, which shows
-  as "Anna (guest)" so a guest can't pass as one of the household. The
-  list owner can hide members' names from the public page with Show
-  members' names on the link in the Share dialog, and guests' names still
-  show. Your own name is left off what you see unless you turn on Show my
-  name on items under Names in Settings. Items added before this have no
-  name. Thanks to natrius for the idea
-- A What's new window that shows once after an update, with the main
-  changes since the version you last used. What's new at the bottom of
-  Settings opens it again. Someone who has only just started isn't shown
-  it, and the notes are in English only
+  as "Anna (guest)" so a guest can't pass as one of the household. On a
+  phone the name goes on its own line under the item. The list owner can
+  hide members' names from the public page with Show members' names on
+  the link in the Share dialog, and guests' names still show. Your own
+  name is left off what you see unless you turn on Show my name on items
+  under Names in Settings. Items added before this have no name. Thanks
+  to natrius for the idea
 
 ### Changed
 - The app's capabilities now list `list-order` among its features, each
@@ -62,9 +88,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `guestName`,
   link shares carry `showNames`, the settings carry `showOwnName`, and the
   capabilities list `guest-names` among the features
-- The settings carry `whatsNewSeen`, the version whose release notes were
-  last shown, so the What's new window shows once per person rather than
-  once per browser
 
 ### Upgrade
 - Database migration: one column is added to the list preferences table
@@ -89,6 +112,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   back to the older way of copying, and so does the new Copy invite
 - Ticking an item through a public link left whoever ticked it last as the
   one who ticked it
+- Pressing and dragging across an item's name while editing it picked the
+  whole row up to move it rather than highlighting the text. The row being
+  edited now stays put, so the text can be selected as normal, and rows
+  that aren't being edited can still be dragged into order
+- Merging a duplicate item with a quantity above one renamed it to its
+  plural, and as only a few words such as rice and cheese were known not
+  to take one, "Milk" became "Milks" and "Bread" became "Breads". Common
+  groceries such as milk, bread, butter, flour, coffee, pasta, fish and oil
+  are now left alone, and so are names ending in them, like "Oat milk" and
+  "Olive oil"
 
 ## [1.9.0] - 2026-09-23
 

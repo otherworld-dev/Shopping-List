@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from 'vitest'
 // Plurals are English-only, gated on the viewer's language.
 vi.mock('@nextcloud/l10n', () => ({ getLanguage: () => 'en' }))
 
-const { normalizeName, pluralizeName } = await import('./itemMerge')
+const { mergeQuantities, normalizeName, pluralizeName } = await import('./itemMerge')
 
 describe('pluralizeName', () => {
 	it('pluralizes countable items', () => {
@@ -33,5 +33,16 @@ describe('pluralizeName', () => {
 describe('normalizeName', () => {
 	it('still matches a typed plural of an uncountable noun', () => {
 		expect(normalizeName('Milks')).toBe(normalizeName('Milk'))
+	})
+})
+
+describe('mergeQuantities', () => {
+	it('adds up the short forms of a unit with the long ones', () => {
+		expect(mergeQuantities('3 pcs', '2 pieces')).toBe('5 pcs')
+		expect(mergeQuantities('25 dag', '10 dkg')).toBe('35 dag')
+	})
+
+	it('treats a bare name as one more, as before', () => {
+		expect(mergeQuantities('500 g', '1')).toBe('500 g + 1')
 	})
 })
