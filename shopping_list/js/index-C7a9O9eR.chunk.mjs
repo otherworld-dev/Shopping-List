@@ -1,6 +1,6 @@
 const appName = "shopping_list";
 const appVersion = "1.10.0";
-import { a9 as getAugmentedNamespace, b9 as dist$6, ba as requireMajor, bb as requireValid, bc as dist$7, bd as process$1, be as commonjsGlobal, bf as Buffer, ac as getDefaultExportFromCjs } from "./useCollapsedAreas-CCcN8AdU.chunk.mjs";
+import { a9 as getAugmentedNamespace, b9 as dist$6, ba as requireMajor, bb as requireValid, bc as dist$7, bd as process$1, be as commonjsGlobal, bf as Buffer, ac as getDefaultExportFromCjs } from "./useCollapsedAreas-CT-ekcmh.chunk.mjs";
 function _mergeNamespaces(n, m) {
   for (var i = 0; i < m.length; i++) {
     const e = m[i];
@@ -3284,4 +3284,4 @@ const index$1 = /* @__PURE__ */ _mergeNamespaces({
 export {
   index$1 as i
 };
-//# sourceMappingURL=index-BtijHOgP.chunk.mjs.map
+//# sourceMappingURL=index-C7a9O9eR.chunk.mjs.map

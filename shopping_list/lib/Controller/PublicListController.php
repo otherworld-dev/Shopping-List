@@ -245,8 +245,15 @@ class PublicListController extends OCSController {
 				$item->setShopAreaId($params['shopAreaId']);
 			}
 			$item->setUpdatedAt(new DateTime());
+			$item = $this->itemMapper->update($item);
 
-			return new DataResponse($this->forLink($share, $this->itemMapper->update($item)));
+			// Remember an amount the guest typed, not one a duplicate merge added up
+			if (!empty($params['quantityExplicit']) && array_key_exists('quantity', $params)) {
+				$quantity = $params['quantity'];
+				$this->amounts->remember($item->getListId(), $item->getName(), $quantity === null ? null : (string)$quantity);
+			}
+
+			return new DataResponse($this->forLink($share, $item));
 		} catch (PasswordRequiredException) {
 			return new DataResponse(['passwordRequired' => true], Http::STATUS_FORBIDDEN);
 		} catch (NoPermissionException $e) {

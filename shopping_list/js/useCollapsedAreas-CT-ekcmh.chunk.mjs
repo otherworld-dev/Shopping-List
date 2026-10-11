@@ -44877,6 +44877,7 @@ const EN_UNIT_ALIASES = {
   bags: "bag",
   packs: "pack",
   packets: "pack",
+  pkg: "pack",
   pinches: "pinch",
   bunches: "bunch",
   heads: "head"
@@ -45328,4 +45329,4 @@ export {
   resolveDynamicComponent as y,
   mergeProps as z
 };
-//# sourceMappingURL=useCollapsedAreas-CCcN8AdU.chunk.mjs.map
+//# sourceMappingURL=useCollapsedAreas-CT-ekcmh.chunk.mjs.map
