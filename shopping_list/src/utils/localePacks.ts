@@ -53,6 +53,7 @@ const EN_UNIT_ALIASES: Record<string, string> = {
 	bags: 'bag',
 	packs: 'pack',
 	packets: 'pack',
+	pkg: 'pack',
 	pinches: 'pinch',
 	bunches: 'bunch',
 	heads: 'head',

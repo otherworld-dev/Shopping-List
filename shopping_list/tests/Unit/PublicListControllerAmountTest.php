@@ -31,6 +31,12 @@ class PublicListControllerAmountTest extends TestCase {
 		$this->amounts = $this->createMock(AmountMemory::class);
 		$items = $this->createMock(ItemMapper::class);
 		$items->method('insert')->willReturnArgument(0);
+		$items->method('update')->willReturnArgument(0);
+		$item = new Item();
+		$item->setId(42);
+		$item->setListId(5);
+		$item->setName('Rice');
+		$items->method('find')->willReturn($item);
 		$access = $this->createMock(PublicShareAccess::class);
 		$share = new ListShare();
 		$share->setListId(5);
@@ -82,5 +88,19 @@ class PublicListControllerAmountTest extends TestCase {
 		$this->amounts->expects(self::never())->method('remember');
 
 		self::assertSame('1', $this->controller->createItem('token')->getData()->getQuantity());
+	}
+
+	public function testAGuestEditingTheAmountRemembersIt(): void {
+		$this->request->method('getParams')->willReturn(['quantity' => '1 kg', 'quantityExplicit' => true]);
+		$this->amounts->expects(self::once())->method('remember')->with(5, 'Rice', '1 kg');
+
+		self::assertSame('1 kg', $this->controller->updateItem('token', 42)->getData()->getQuantity());
+	}
+
+	public function testAGuestEditWithoutTheFlagIsNotRemembered(): void {
+		$this->request->method('getParams')->willReturn(['quantity' => '1000 g']);
+		$this->amounts->expects(self::never())->method('remember');
+
+		$this->controller->updateItem('token', 42);
 	}
 }
