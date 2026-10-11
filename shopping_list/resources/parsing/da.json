@@ -53,7 +53,12 @@
 		"packets",
 		"bag",
 		"bags",
-		"fl oz"
+		"fl oz",
+		"pc",
+		"pcs",
+		"pkg",
+		"dag",
+		"dkg"
 	],
 	"leadingUnits": [
 		"pinch",

@@ -10,6 +10,7 @@ use OCA\Shopping_List\Db\ListShare;
 use OCA\Shopping_List\Db\ShoppingList;
 use OCA\Shopping_List\Db\ShoppingListMapper;
 use OCA\Shopping_List\Db\ShopAreaMapper;
+use OCA\Shopping_List\Service\AmountMemory;
 use OCA\Shopping_List\Service\ItemImageService;
 use OCA\Shopping_List\Service\ItemService;
 use OCA\Shopping_List\Service\NoPermissionException;
@@ -41,6 +42,7 @@ class PublicListControllerAuthTest extends TestCase {
 			$this->createMock(PublicShareAccess::class),
 			$this->createMock(ItemService::class),
 			$this->createMock(ItemImageService::class),
+			$this->createMock(AmountMemory::class),
 		);
 	}
 

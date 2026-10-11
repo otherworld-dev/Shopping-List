@@ -270,6 +270,12 @@ class ListService {
 		// The photos stay remembered for their names; only files nothing uses go
 		$this->imageCleanup->release($imageKeys);
 
+		// Forget the amounts remembered for the list's item names
+		$qb = $this->db->getQueryBuilder();
+		$qb->delete('shopping_list_amounts')
+			->where($qb->expr()->eq('list_id', $qb->createNamedParameter($listId)))
+			->executeStatement();
+
 		// Delete shares
 		$qb = $this->db->getQueryBuilder();
 		$qb->delete('shopping_list_shares')

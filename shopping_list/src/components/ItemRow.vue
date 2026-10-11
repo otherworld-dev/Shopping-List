@@ -376,6 +376,7 @@ async function saveEdit() {
 			quantity: trimmedQty,
 			shopAreaId: editAreaId.value,
 			...(areaChanged ? { areaExplicit: true } : {}),
+			...(qtyChanged ? { quantityExplicit: true } : {}),
 		})
 		saving = false
 	}
