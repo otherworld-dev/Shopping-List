@@ -18556,13 +18556,23 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
 const OfflineIndicator = /* @__PURE__ */ _export_sfc$1(_sfc_main$3, [["__scopeId", "data-v-214ff348"]]);
 const notes = [
   {
+    version: "1.11.0",
+    title: "Items remember their amount",
+    items: [
+      'Add "500 g Rice" once and next time "Rice" on its own comes back as 500 g Rice. The amount belongs to the list, so everyone sharing it gets the same one.',
+      "More units are understood when typed with an amount: pc, pcs, pkg, dag and dkg, and Stk in German.",
+      'Guests on a public link can type amounts too, so "2 l Milk" is 2 l of Milk.',
+      "This window, which shows what has changed after an update. What's new in Settings opens it again."
+    ],
+    link: "https://github.com/otherworld-dev/Shopping-List/blob/main/shopping_list/CHANGELOG.md"
+  },
+  {
     version: "1.10.0",
     title: "Your own list order, invite codes and names on items",
     items: [
       "Lists can be sorted A to Z or dragged into your own order. Choose Sort lists in Settings at the bottom of the list sidebar, and the order follows you to every browser and the Android app.",
       "A shared list's public link now has a short invite code and a QR code in the Share dialog, so someone without a Nextcloud account can join the list in the Android app.",
-      'Each item shows who added it and who ticked it. People on a public link can type their name, which shows as "Anna (guest)".',
-      "This window, which shows what has changed after an update. What's new in Settings opens it again."
+      'Each item shows who added it and who ticked it. People on a public link can type their name, which shows as "Anna (guest)".'
     ],
     link: "https://github.com/otherworld-dev/Shopping-List/blob/main/shopping_list/CHANGELOG.md"
   }
