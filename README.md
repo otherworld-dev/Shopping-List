@@ -20,6 +20,7 @@ Shopping List is developed by Otherworld Dev. These are the **official** links �
 - **Multiple lists** — organize by store, meal plan, or occasion; pin the ones you use most to the top of the sidebar
 - **Shop area grouping** — items grouped by aisle/department (Produce, Dairy, Bakery, etc.) with color-coded headers; click a header to collapse that area, and each list remembers which areas you folded away. Or sort A to Z, within each area or as one list
 - **Inline editing** — click any item to edit name or quantity in place
+- **Item photos** — optionally attach a photo to an item and see a thumbnail in the list; off by default, switch it on in the app's settings
 - **Ingredient parsing** — paste a recipe ingredient list and items are parsed automatically (e.g. "2 cups flour" splits into quantity and name)
 - **Area auto-detection** — new items are automatically assigned to a shop area based on configurable keyword mappings
 - **Duplicate merging** — adding an item that already exists merges the quantities instead of creating duplicates
@@ -109,6 +110,8 @@ screenshots/          App store screenshots
 ## Translations
 
 Translations are managed on [Crowdin](https://crowdin.com/project/shopping-list-for-nextcloud) — no coding required. You can translate the UI, the grocery **keywords** that drive automatic shop-area sorting, and measurement **units**, all in the browser.
+
+The [Android app](https://github.com/otherworld-dev/Shopping-List-Android)'s text is translated in the same project. Crowdin works on a copy of it kept in [`android/`](android/), and the Android repo copies the translations back before each release.
 
 See **[TRANSLATING.md](TRANSLATING.md)** for a short, friendly walkthrough.
 

@@ -244,6 +244,12 @@ function detectArea(ingredientName: string): number | null {
 	return bestArea
 }
 
+// A typed amount is sent as typed and remembered for the name. A name on its
+// own goes without one, so the server can give it the amount it had last time.
+function amountFields(quantity: string | null) {
+	return quantity ? { quantity, quantityExplicit: true } : { quantity: null }
+}
+
 async function onPaste(e: ClipboardEvent) {
 	const text = e.clipboardData?.getData('text') ?? ''
 	if (!text.includes('\n')) return // Single line — let default paste handle it
@@ -268,7 +274,7 @@ async function onPaste(e: ClipboardEvent) {
 		const areaId = selectedAreaId.value ?? detectArea(parsed.name)
 		await itemsStore.create(props.listId, {
 			name: parsed.name,
-			quantity: parsed.quantity || '1',
+			...amountFields(parsed.quantity),
 			shopAreaId: areaId,
 			areaExplicit: explicitArea,
 			checked: parsed.checked,
@@ -293,7 +299,7 @@ async function onSubmit() {
 	const areaId = selectedAreaId.value ?? detectArea(parsed.name)
 	await itemsStore.create(props.listId, {
 		name: parsed.name,
-		quantity: parsed.quantity || '1',
+		...amountFields(parsed.quantity),
 		shopAreaId: areaId,
 		areaExplicit: explicitArea,
 		checked: parsed.checked,
@@ -362,7 +368,7 @@ async function onSubmit() {
 	position: relative;
 	display: flex;
 	align-items: center;
-	border-left: 1px solid var(--color-border);
+	border-inline-start: 1px solid var(--color-border);
 }
 
 .item-editor__area-input {
@@ -386,7 +392,7 @@ async function onSubmit() {
 
 .item-editor__area-clear {
 	position: absolute;
-	right: 4px;
+	inset-inline-end: 4px;
 	top: 50%;
 	transform: translateY(-50%);
 	background: none;
@@ -405,8 +411,7 @@ async function onSubmit() {
 .item-editor__dropdown {
 	position: absolute;
 	top: 100%;
-	left: 0;
-	right: 0;
+	inset-inline: 0;
 	min-width: 160px;
 	max-height: 220px;
 	overflow-y: auto;
@@ -510,7 +515,7 @@ async function onSubmit() {
 	color: var(--color-text-maxcontrast);
 	font-size: 0.85em;
 	white-space: nowrap;
-	padding-right: 8px;
+	padding-inline-end: 8px;
 }
 
 /* A ticked example is drawn the way a checked-off item is in the list. */
@@ -523,6 +528,6 @@ async function onSubmit() {
 	color: var(--color-text-maxcontrast);
 	font-size: 0.8em;
 	white-space: nowrap;
-	padding-left: 6px;
+	padding-inline-start: 6px;
 }
 </style>

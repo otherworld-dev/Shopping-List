@@ -6,15 +6,31 @@ return [
 	'routes' => [
 		['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
 		['name' => 'public_page#index', 'url' => '/s/{token}', 'verb' => 'GET'],
+
+		// Item photos. Binary, so outside the OCS envelope. {key} is the item's
+		// current imageKey; it changes on every replace, so these cache for good.
+		['name' => 'image#show', 'url' => '/lists/{listId}/items/{id}/image/{key}', 'verb' => 'GET',
+			'requirements' => ['listId' => '\d+', 'id' => '\d+', 'key' => '[a-f0-9]{16}']],
+		['name' => 'image#thumbnail', 'url' => '/lists/{listId}/items/{id}/thumbnail/{key}', 'verb' => 'GET',
+			'requirements' => ['listId' => '\d+', 'id' => '\d+', 'key' => '[a-f0-9]{16}']],
+		['name' => 'public_image#show', 'url' => '/s/{token}/items/{id}/image/{key}', 'verb' => 'GET',
+			'requirements' => ['id' => '\d+', 'key' => '[a-f0-9]{16}']],
+		['name' => 'public_image#thumbnail', 'url' => '/s/{token}/items/{id}/thumbnail/{key}', 'verb' => 'GET',
+			'requirements' => ['id' => '\d+', 'key' => '[a-f0-9]{16}']],
 	],
 	'ocs' => [
 		// Lists
 		['name' => 'list#index', 'url' => '/api/v1/lists', 'verb' => 'GET'],
+		['name' => 'list#reorder', 'url' => '/api/v1/lists/reorder', 'verb' => 'POST'],
 		['name' => 'list#show', 'url' => '/api/v1/lists/{id}', 'verb' => 'GET'],
 		['name' => 'list#create', 'url' => '/api/v1/lists', 'verb' => 'POST'],
 		['name' => 'list#update', 'url' => '/api/v1/lists/{id}', 'verb' => 'PUT'],
 		['name' => 'list#destroy', 'url' => '/api/v1/lists/{id}', 'verb' => 'DELETE'],
 		['name' => 'preferences#update', 'url' => '/api/v1/lists/{id}/preferences', 'verb' => 'PATCH'],
+
+		// The user's own settings (not per list)
+		['name' => 'settings#index', 'url' => '/api/v1/settings', 'verb' => 'GET'],
+		['name' => 'settings#update', 'url' => '/api/v1/settings', 'verb' => 'PATCH'],
 
 		// Items — static routes before parameterized ones
 		['name' => 'item#index', 'url' => '/api/v1/lists/{listId}/items', 'verb' => 'GET'],
@@ -26,6 +42,10 @@ return [
 		['name' => 'item#check', 'url' => '/api/v1/lists/{listId}/items/{id}/check', 'verb' => 'PUT'],
 		['name' => 'item#move', 'url' => '/api/v1/lists/{listId}/items/{id}/move', 'verb' => 'POST'],
 		['name' => 'item#destroy', 'url' => '/api/v1/lists/{listId}/items/{id}', 'verb' => 'DELETE'],
+
+		// Item photos (upload and removal; the bytes are served by the plain routes above)
+		['name' => 'item_image#upload', 'url' => '/api/v1/lists/{listId}/items/{id}/image', 'verb' => 'POST'],
+		['name' => 'item_image#remove', 'url' => '/api/v1/lists/{listId}/items/{id}/image', 'verb' => 'DELETE'],
 
 		// Shares
 		['name' => 'share#index', 'url' => '/api/v1/lists/{listId}/shares', 'verb' => 'GET'],
@@ -39,6 +59,7 @@ return [
 		['name' => 'share#destroyLink', 'url' => '/api/v1/shares/{id}/link', 'verb' => 'DELETE'],
 
 		// Public API (unauthenticated, token-based)
+		['name' => 'public_list#resolveCode', 'url' => '/api/v1/public/code/{code}', 'verb' => 'GET'],
 		['name' => 'public_list#show', 'url' => '/api/v1/public/{token}', 'verb' => 'GET'],
 		['name' => 'public_list#auth', 'url' => '/api/v1/public/{token}/auth', 'verb' => 'POST'],
 		['name' => 'public_list#items', 'url' => '/api/v1/public/{token}/items', 'verb' => 'GET'],

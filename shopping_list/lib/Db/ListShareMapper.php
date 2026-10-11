@@ -61,6 +61,18 @@ class ListShareMapper extends QBMapper {
 		}
 	}
 
+	public function findByCode(string $code): ?ListShare {
+		$qb = $this->db->getQueryBuilder();
+		$qb->select('*')
+			->from($this->getTableName())
+			->where($qb->expr()->eq('code', $qb->createNamedParameter($code)));
+		try {
+			return $this->findEntity($qb);
+		} catch (\OCP\AppFramework\Db\DoesNotExistException) {
+			return null;
+		}
+	}
+
 	public function findLinkShareByList(int $listId): ?ListShare {
 		$qb = $this->db->getQueryBuilder();
 		$qb->select('*')
@@ -72,5 +84,14 @@ class ListShareMapper extends QBMapper {
 		} catch (\OCP\AppFramework\Db\DoesNotExistException) {
 			return null;
 		}
+	}
+
+	/** Remove every share made to this user directly (group and link shares are kept). */
+	public function deleteSharedWithUser(string $userId): void {
+		$qb = $this->db->getQueryBuilder();
+		$qb->delete($this->getTableName())
+			->where($qb->expr()->eq('shared_with', $qb->createNamedParameter($userId)))
+			->andWhere($qb->expr()->eq('shared_with_type', $qb->createNamedParameter(0, IQueryBuilder::PARAM_INT)))
+			->executeStatement();
 	}
 }

@@ -15,7 +15,7 @@ request a language (or open a [GitHub issue](https://github.com/otherworld-dev/S
 
 ## What you'll be translating
 
-There are three things in Crowdin. You don't have to do all of them — anything
+There are four things in Crowdin. You don't have to do all of them — anything
 you skip simply stays in English.
 
 > **What it looks like:** UI strings are simple one-line translations. Keywords
@@ -72,6 +72,17 @@ just a few short lists:
 
 Anything you leave untranslated just falls back to English, and an unrecognised
 unit simply stays as part of the item name — nothing breaks.
+
+### 4. The Android app
+The [Android app](https://play.google.com/store/apps/details?id=dev.otherworld.shoppinglist)
+has its own text, in the same Crowdin project so you can do both in one place.
+It's ordinary one-line translation like the UI strings. A few entries show a
+number of keywords, where Crowdin gives you a box for each plural form your
+language has. Leave anything like `%1$s` or `%1$d` exactly as it is, that's
+where the app puts a name or a number.
+
+The Android app reads its keywords from the server, so the keyword lists above
+work there too.
 
 ---
 

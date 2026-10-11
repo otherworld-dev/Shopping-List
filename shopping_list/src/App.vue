@@ -2,6 +2,17 @@
 	<NcContent app-name="shopping_list">
 		<NcAppNavigation>
 			<ListSidebar @show-settings="showSettings = true" @share="shareListId = $event" />
+			<template #footer>
+				<AndroidAppLink />
+				<!-- Your own settings, not a list's, so they live in the Settings drawer at the
+				     bottom of the navigation, where Nextcloud apps keep them. -->
+				<NcAppNavigationSettings>
+					<ListSortSettings />
+					<ItemImagesSettings />
+					<NameSettings />
+					<WhatsNewButton />
+				</NcAppNavigationSettings>
+			</template>
 		</NcAppNavigation>
 		<NcAppContent>
 			<AreaKeywordsSettings v-if="showSettings && listsStore.currentList" :key="listsStore.currentListId" @back="showSettings = false" />
@@ -21,6 +32,7 @@
 		:current-user-id="currentUserId"
 		@close="shareListId = null" />
 	<OfflineIndicator />
+	<WhatsNewDialog />
 </template>
 
 <script setup lang="ts">
@@ -29,6 +41,7 @@ import {
 	NcContent,
 	NcAppNavigation,
 	NcAppContent,
+	NcAppNavigationSettings,
 	NcEmptyContent,
 	NcIconSvgWrapper,
 } from '@nextcloud/vue'
@@ -37,10 +50,17 @@ import { getCurrentUser } from '@nextcloud/auth'
 import ListSidebar from './components/ListSidebar.vue'
 import ListView from './components/ListView.vue'
 import AreaKeywordsSettings from './components/AreaKeywordsSettings.vue'
+import ListSortSettings from './components/ListSortSettings.vue'
+import ItemImagesSettings from './components/ItemImagesSettings.vue'
+import NameSettings from './components/NameSettings.vue'
+import AndroidAppLink from './components/AndroidAppLink.vue'
 import OfflineIndicator from './components/OfflineIndicator.vue'
 import ShareDialog from './components/ShareDialog.vue'
+import WhatsNewButton from './components/WhatsNewButton.vue'
+import WhatsNewDialog from './components/WhatsNewDialog.vue'
 import { useListsStore } from './stores/lists'
 import { usePush } from './composables/usePush'
+import { useWhatsNew } from './composables/useWhatsNew'
 
 const listsStore = useListsStore()
 const showSettings = ref(false)
@@ -62,6 +82,7 @@ onMounted(async () => {
 	if (listsStore.lists.length > 0 && !listsStore.currentListId) {
 		listsStore.selectList(listsStore.lists[0].id)
 	}
+	useWhatsNew().showIfUpdated(listsStore.lists.length === 0)
 	usePush()
 })
 </script>
