@@ -44592,7 +44592,7 @@ const __vite_glob_0_6 = {
   prepositions: prepositions$q,
   decimalSeparators: decimalSeparators$q
 };
-const units$p = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg"];
+const units$p = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg", "jar", "jars", "tub", "tubs", "pot", "pots", "leaf", "leaves"];
 const leadingUnits$p = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
 const prepositions$p = ["of"];
 const decimalSeparators$p = ["."];
@@ -45337,4 +45337,4 @@ export {
   unref as y,
   resolveDynamicComponent as z
 };
-//# sourceMappingURL=useCollapsedAreas-CD6EvQ5t.chunk.mjs.map
+//# sourceMappingURL=useCollapsedAreas-BjiuTaN8.chunk.mjs.map
