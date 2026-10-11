@@ -53,7 +53,12 @@
 		"bustine",
 		"busta",
 		"buste",
-		"fl oz"
+		"fl oz",
+		"pc",
+		"pcs",
+		"pkg",
+		"dag",
+		"dkg"
 	],
 	"leadingUnits": [
 		"pizzico",
