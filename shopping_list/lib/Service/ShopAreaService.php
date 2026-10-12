@@ -6,6 +6,7 @@ namespace OCA\Shopping_List\Service;
 
 use OCA\Shopping_List\Db\ShopArea;
 use OCA\Shopping_List\Db\ShopAreaMapper;
+use OCA\Shopping_List\Db\ShoppingListMapper;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\IDBConnection;
 use OCP\IL10N;
@@ -15,6 +16,7 @@ class ShopAreaService {
 		private ShopAreaMapper $mapper,
 		private IDBConnection $db,
 		private IL10N $l,
+		private ShoppingListMapper $lists,
 	) {
 	}
 
@@ -183,10 +185,24 @@ class ShopAreaService {
 	}
 
 	/**
+	 * The list's default area: where a new item goes when the client sent no
+	 * area for it, which is what a client does when no keyword matched. Null
+	 * for a list with none, and for one that is gone.
+	 */
+	public function defaultAreaFor(int $listId): ?int {
+		try {
+			return $this->lists->find($listId)->getDefaultAreaId();
+		} catch (DoesNotExistException) {
+			return null;
+		}
+	}
+
+	/**
 	 * Pick a shop area in the target list for an item being moved there:
 	 * first an area with the same name as the source area, otherwise keyword
-	 * detection on the item name (longest match wins), otherwise null
-	 * (uncategorized). Mirrors the frontend detectArea() folding.
+	 * detection on the item name (longest match wins), otherwise the target
+	 * list's default area, which is null (uncategorized) when it has none.
+	 * Mirrors the frontend detectArea() folding.
 	 */
 	public function findAreaForMove(int $targetListId, ?string $sourceAreaName, string $itemName): ?int {
 		$areas = $this->mapper->findByList($targetListId);
@@ -213,7 +229,7 @@ class ShopAreaService {
 				}
 			}
 		}
-		return $bestId;
+		return $bestId ?? $this->defaultAreaFor($targetListId);
 	}
 
 	/**
@@ -432,6 +448,17 @@ class ShopAreaService {
 			->where($qb->expr()->eq('shop_area_id', $qb->createNamedParameter($id, \OCP\DB\QueryBuilder\IQueryBuilder::PARAM_INT)))
 			->andWhere($qb->expr()->eq('list_id', $qb->createNamedParameter($listId, \OCP\DB\QueryBuilder\IQueryBuilder::PARAM_INT)))
 			->executeStatement();
+
+		// The list can't go on sending new items to an area that is gone.
+		try {
+			$list = $this->lists->find($listId);
+			if ($list->getDefaultAreaId() === $id) {
+				$list->setDefaultAreaId(null);
+				$this->lists->update($list);
+			}
+		} catch (DoesNotExistException) {
+			// no list, so no default to clear
+		}
 
 		$this->mapper->delete($area);
 	}
