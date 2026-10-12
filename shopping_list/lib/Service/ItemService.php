@@ -57,7 +57,9 @@ class ItemService {
 		// A name added on its own gets the amount it had last time in this list.
 		$item->setQuantity($quantity ?? $this->amounts->recall($listId, $name) ?? '1');
 		$item->setUnit($unit);
-		$item->setShopAreaId($shopAreaId);
+		// A client sends no area when no keyword matched, and the list's default
+		// area is for exactly those items.
+		$item->setShopAreaId($shopAreaId ?? $this->shopAreaService->defaultAreaFor($listId));
 		// A pasted "[x] Milk" line arrives as already bought, so it lands in the
 		// checked-off section straight away instead of among the open items.
 		$item->setChecked($checked);
