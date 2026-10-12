@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.11.0] - 2026-10-12
 
 ### Added
 - Lists can be named as you create them. "New list" in the sidebar opens a
@@ -27,7 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   yourself. The same data is carried by Nextcloud's user migration if your
   administrator has the User Migration app installed. Thanks to rostmodern
   for the idea (#47)
-- Italian, translated on Crowdin. 171 of the 190 strings are done, the
+- Italian, translated on Crowdin. 171 of the 204 strings are done, the
   newest ones show in English for now
 - Items remember their amount. Type "500 g Rice" once and next time "Rice"
   on its own comes back as 500 g Rice, even after the first one was cleared
@@ -37,8 +37,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   Typing an item that is already on the list still adds to it as before,
   without changing the remembered amount (#15)
 - More units are recognised when typed with an amount: pc, pcs, pkg, dag
-  and dkg, and in German Stk and Stk. as well. Before, "25 dag Schinken"
-  came out as 25 of an item called "Dag Schinken" (#15)
+  and dkg, jar, tub, pot and leaf, and in German Stk and Stk. as well.
+  Before, "25 dag Schinken" came out as 25 of an item called
+  "Dag Schinken" (#15)
 - A What's new window that shows once after an update, with the main
   changes since the version you last used. What's new at the bottom of
   Settings opens it again. Someone who has only just started isn't shown
@@ -56,6 +57,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   message when the policy refuses it, and adding or changing an item
   through a public link answers 400 for a shop area that isn't the list's
   own
+- Adding or changing an item takes `quantityExplicit`, which says the
+  amount was typed and should be remembered, and an item added with no
+  quantity gets the one its list remembers
+
+### Upgrade
+- Database migration: one table is added for the amounts each list
+  remembers
 
 ### Fixed
 - Items added on the public link page now read the amount the same way as

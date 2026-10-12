@@ -1,11 +1,13 @@
 [
 	{
 		"version": "1.11.0",
-		"title": "Items remember their amount",
+		"title": "Backups, named lists and remembered amounts",
 		"items": [
+			"\"New list\" asks for a name before it makes the list, and Share list is in each list's menu in the sidebar.",
+			"Back up your lists to a file and restore them, under Backup in Settings.",
 			"Add \"500 g Rice\" once and next time \"Rice\" on its own comes back as 500 g Rice. The amount belongs to the list, so everyone sharing it gets the same one.",
-			"More units are understood when typed with an amount: pc, pcs, pkg, dag and dkg, and Stk in German.",
-			"Guests on a public link can type amounts too, so \"2 l Milk\" is 2 l of Milk.",
+			"Adding something that is already ticked off brings it back to the list rather than adding a second one.",
+			"More units are understood when typed with an amount: pc, pcs, pkg, dag, dkg, jar, tub, pot and leaf, and Stk in German.",
 			"This window, which shows what has changed after an update. What's new in Settings opens it again."
 		],
 		"link": "https://github.com/otherworld-dev/Shopping-List/blob/main/shopping_list/CHANGELOG.md"
