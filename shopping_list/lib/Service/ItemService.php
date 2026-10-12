@@ -143,7 +143,8 @@ class ItemService {
 	/**
 	 * Move an item to another list. Requires write access to both lists.
 	 * The shop area is re-resolved in the target list (same-name area, else
-	 * keyword detection, else uncategorized) and the item is reset to unchecked.
+	 * keyword detection, else that list's default area, which is uncategorized
+	 * when it has none) and the item is reset to unchecked.
 	 */
 	public function move(int $id, int $targetListId, string $userId): Item {
 		try {

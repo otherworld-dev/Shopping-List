@@ -109,16 +109,21 @@ export const useListsStore = defineStore('lists', () => {
 		}
 	}
 
-	/** The area this list's new items go to when no keyword places them; null for none. */
+	/**
+	 * The area this list's new items go to when no keyword places them; null
+	 * for none. Shown at once, so the choice doesn't flick back while it is
+	 * being saved, and put back as it was if the server refuses it.
+	 */
 	async function setDefaultArea(id: number, shopAreaId: number | null) {
+		const list = lists.value.find(l => l.id === id)
+		const previous = list?.defaultShopAreaId ?? null
+		if (list) list.defaultShopAreaId = shopAreaId
 		try {
 			const response = await api.lists.setDefaultArea(id, shopAreaId)
 			const updated: ShoppingList = response.data.ocs.data
-			const list = lists.value.find(l => l.id === id)
-			if (list) {
-				list.defaultShopAreaId = updated.defaultShopAreaId ?? null
-			}
+			if (list) list.defaultShopAreaId = updated.defaultShopAreaId ?? null
 		} catch (e) {
+			if (list) list.defaultShopAreaId = previous
 			showError(t('shopping_list', 'Failed to save setting'))
 			console.error(e)
 		}

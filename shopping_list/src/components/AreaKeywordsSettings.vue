@@ -252,16 +252,16 @@ const defaultAreaId = computed(() => {
 	return id !== null && areas.value.some(a => a.id === id) ? id : null
 })
 
+// The store shows the choice at once and puts the old one back if the save
+// fails, and the select follows the store, so there is nothing to reset here.
 async function onDefaultAreaChange(event: Event) {
-	const select = event.target as HTMLSelectElement
+	const { value } = event.target as HTMLSelectElement
 	if (listId.value === null || savingDefault.value) return
 	savingDefault.value = true
 	try {
-		await listsStore.setDefaultArea(listId.value, select.value === '' ? null : Number(select.value))
+		await listsStore.setDefaultArea(listId.value, value === '' ? null : Number(value))
 	} finally {
 		savingDefault.value = false
-		// A save that failed leaves the list as it was, so show that again.
-		select.value = String(defaultAreaId.value ?? '')
 	}
 }
 

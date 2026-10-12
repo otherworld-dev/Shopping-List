@@ -14150,14 +14150,15 @@ const useListsStore = defineStore("lists", () => {
     }
   }
   async function setDefaultArea(id, shopAreaId) {
+    const list = lists.value.find((l) => l.id === id);
+    const previous = list?.defaultShopAreaId ?? null;
+    if (list) list.defaultShopAreaId = shopAreaId;
     try {
       const response = await api.lists.setDefaultArea(id, shopAreaId);
       const updated = response.data.ocs.data;
-      const list = lists.value.find((l) => l.id === id);
-      if (list) {
-        list.defaultShopAreaId = updated.defaultShopAreaId ?? null;
-      }
+      if (list) list.defaultShopAreaId = updated.defaultShopAreaId ?? null;
     } catch (e) {
+      if (list) list.defaultShopAreaId = previous;
       showError(translate("shopping_list", "Failed to save setting"));
       console.error(e);
     }
@@ -16861,14 +16862,13 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
       return id !== null && areas.value.some((a) => a.id === id) ? id : null;
     });
     async function onDefaultAreaChange(event) {
-      const select = event.target;
+      const { value } = event.target;
       if (listId.value === null || savingDefault.value) return;
       savingDefault.value = true;
       try {
-        await listsStore.setDefaultArea(listId.value, select.value === "" ? null : Number(select.value));
+        await listsStore.setDefaultArea(listId.value, value === "" ? null : Number(value));
       } finally {
         savingDefault.value = false;
-        select.value = String(defaultAreaId.value ?? "");
       }
     }
     const otherLists = computed(
@@ -17209,7 +17209,7 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const AreaKeywordsSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$a, [["__scopeId", "data-v-e6b96e45"]]);
+const AreaKeywordsSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$a, [["__scopeId", "data-v-03031226"]]);
 const _sfc_main$9 = /* @__PURE__ */ defineComponent({
   __name: "ListSortSettings",
   setup(__props) {
