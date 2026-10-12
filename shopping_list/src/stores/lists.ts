@@ -109,6 +109,21 @@ export const useListsStore = defineStore('lists', () => {
 		}
 	}
 
+	/** The area this list's new items go to when no keyword places them; null for none. */
+	async function setDefaultArea(id: number, shopAreaId: number | null) {
+		try {
+			const response = await api.lists.setDefaultArea(id, shopAreaId)
+			const updated: ShoppingList = response.data.ocs.data
+			const list = lists.value.find(l => l.id === id)
+			if (list) {
+				list.defaultShopAreaId = updated.defaultShopAreaId ?? null
+			}
+		} catch (e) {
+			showError(t('shopping_list', 'Failed to save setting'))
+			console.error(e)
+		}
+	}
+
 	/** Show a new order at once; the server confirms it or the lists are fetched again. */
 	function applyPositions(ids: number[]) {
 		ids.forEach((id, index) => {
@@ -171,6 +186,7 @@ export const useListsStore = defineStore('lists', () => {
 		remove,
 		selectList,
 		setPinned,
+		setDefaultArea,
 		reorderSection,
 		setListSort,
 	}
