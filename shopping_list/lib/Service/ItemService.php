@@ -21,6 +21,7 @@ class ItemService {
 		private ItemImageCleanup $imageCleanup,
 		private ItemImageService $images,
 		private IUserManager $userManager,
+		private AmountMemory $amounts,
 	) {
 	}
 
@@ -46,13 +47,15 @@ class ItemService {
 		string $userId,
 		bool $areaExplicit = false,
 		bool $checked = false,
+		bool $quantityExplicit = false,
 	): Item {
 		$this->listService->assertWriteAccess($listId, $userId);
 
 		$item = new Item();
 		$item->setListId($listId);
 		$item->setName($name);
-		$item->setQuantity($quantity ?? '1');
+		// A name added on its own gets the amount it had last time in this list.
+		$item->setQuantity($quantity ?? $this->amounts->recall($listId, $name) ?? '1');
 		$item->setUnit($unit);
 		$item->setShopAreaId($shopAreaId);
 		// A pasted "[x] Milk" line arrives as already bought, so it lands in the
@@ -71,6 +74,9 @@ class ItemService {
 
 		$item = $this->mapper->insert($item);
 
+		if ($quantityExplicit && $quantity !== null) {
+			$this->amounts->remember($listId, $name, $quantity);
+		}
 		if ($areaExplicit && $shopAreaId !== null) {
 			$this->shopAreaService->learnKeyword($listId, $shopAreaId, $name);
 		}
@@ -114,6 +120,12 @@ class ItemService {
 		$item->setUpdatedAt(new DateTime());
 
 		$item = $this->mapper->update($item);
+
+		// Remember an amount the user typed, not one a duplicate merge added up
+		if (!empty($fields['quantityExplicit']) && array_key_exists('quantity', $fields)) {
+			$quantity = $fields['quantity'];
+			$this->amounts->remember($item->getListId(), $item->getName(), $quantity === null ? null : (string)$quantity);
+		}
 
 		// Learn area assignment from explicit user choice
 		$areaExplicit = !empty($fields['areaExplicit']);

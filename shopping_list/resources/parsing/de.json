@@ -53,7 +53,20 @@
 		"päckchen",
 		"beutel",
 		"tüten",
-		"fl oz"
+		"fl oz",
+		"stk",
+		"stk.",
+		"pkg",
+		"dag",
+		"dkg",
+		"jar",
+		"jars",
+		"tub",
+		"tubs",
+		"pot",
+		"pots",
+		"leaf",
+		"leaves"
 	],
 	"leadingUnits": [
 		"prise",

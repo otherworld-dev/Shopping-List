@@ -1,6 +1,6 @@
 const appName = "shopping_list";
-const appVersion = "1.10.0";
-import { aI as browserStorage, k as defineComponent, aa as translate, aJ as useCollapsedAreas, an as onMounted, aZ as publicApi, C as ref, o as openBlock, c as createElementBlock, b as createBaseVNode, t as toDisplayString, w as withDirectives, as as vModelText, p as unref, l as createCommentVNode, aq as withKeys, ar as withModifiers, d as createVNode, ap as NcLoadingIcon, af as Fragment, ag as renderList, at as normalizeStyle, n as normalizeClass, aM as mdiChevronDown, a as NcIconSvgWrapper, aN as vShow, i as createTextVNode, z as createBlock, aw as ImageViewer, D as computed, a_ as publicItemImageUrl, ay as attribution, ax as Permission, ak as _export_sfc, a7 as loadState, aW as createPinia, aX as offlinePersistPlugin, aY as createApp } from "./useCollapsedAreas-DUF_mKyR.chunk.mjs";
+const appVersion = "1.11.0";
+import { aP as browserStorage, l as defineComponent, ak as translate, aQ as useCollapsedAreas, ay as onMounted, ba as publicApi, J as ref, aL as createIngredientParser, an as getParsingPack, o as openBlock, c as createElementBlock, b as createBaseVNode, t as toDisplayString, w as withDirectives, aC as vModelText, y as unref, k as createCommentVNode, aA as withKeys, aB as withModifiers, d as createVNode, g as NcLoadingIcon, F as Fragment, D as renderList, aD as normalizeStyle, n as normalizeClass, aU as mdiChevronDown, a as NcIconSvgWrapper, aV as vShow, K as createTextVNode, i as createBlock, aG as ImageViewer, I as computed, bb as publicItemImageUrl, aI as attribution, aH as Permission, aw as _export_sfc, ah as loadState, b7 as createPinia, b8 as offlinePersistPlugin, b9 as createApp } from "./useCollapsedAreas-DwJuvbYy.chunk.mjs";
 const KEY = "shopping_list_guest_name";
 function readGuestName(storage = browserStorage()) {
   try {
@@ -177,12 +177,16 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       const names = attribution(item, null, true);
       return item.checked ? names.checked : names.added;
     }
+    const { parseIngredient } = createIngredientParser(getParsingPack());
     async function onAddItem() {
-      const name = newItemName.value.trim();
+      const line = newItemName.value.trim();
+      if (!line) return;
+      const { name, quantity } = parseIngredient(line);
       if (!name) return;
       newItemName.value = "";
       try {
-        const response = await publicApi.createItem(props.token, { name, quantity: "1", guestName: guestName.value.trim() || void 0 });
+        const amount = quantity ? { quantity, quantityExplicit: true } : {};
+        const response = await publicApi.createItem(props.token, { name, ...amount, guestName: guestName.value.trim() || void 0 });
         items.value.push(response.data.ocs.data);
       } catch (e) {
         console.error("Failed to add item", e);
@@ -385,7 +389,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const PublicListView = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-8a752456"]]);
+const PublicListView = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-f699575d"]]);
 const ANDROID_PACKAGE = "dev.otherworld.shoppinglist";
 const APP_WEBSITE = "https://shoppinglist.otherworld.dev/";
 function isAndroid(userAgent) {

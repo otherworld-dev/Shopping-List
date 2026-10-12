@@ -53,7 +53,20 @@
 		"packets",
 		"pytlík",
 		"pytlíků",
-		"fl oz"
+		"fl oz",
+		"pc",
+		"pcs",
+		"pkg",
+		"dag",
+		"dkg",
+		"jar",
+		"jars",
+		"tub",
+		"tubs",
+		"pot",
+		"pots",
+		"leaf",
+		"leaves"
 	],
 	"leadingUnits": [
 		"špetka",

@@ -7,6 +7,7 @@ namespace OCA\Shopping_List\AppInfo;
 use OCA\Shopping_List\Capabilities;
 use OCA\Shopping_List\Listener\UserDeletedListener;
 use OCA\Shopping_List\Notification\Notifier;
+use OCA\Shopping_List\UserMigration\ShoppingListMigrator;
 use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
@@ -22,6 +23,7 @@ class Application extends App implements IBootstrap {
 
 	public function register(IRegistrationContext $context): void {
 		$context->registerNotifierService(Notifier::class);
+		$context->registerUserMigrator(ShoppingListMigrator::class);
 		$context->registerCapability(Capabilities::class);
 		$context->registerEventListener(UserDeletedEvent::class, UserDeletedListener::class);
 	}

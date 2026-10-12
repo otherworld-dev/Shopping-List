@@ -30,8 +30,12 @@ class PublicShareAccess {
 	 */
 	public function resolve(string $token): ListShare {
 		$share = $this->shareService->findValidShare($token);
-		if ($share->getPasswordHash() !== null && !$this->session->get(self::sessionKey($token))) {
-			throw new PasswordRequiredException('Password required');
+		$hash = $share->getPasswordHash();
+		if ($hash !== null) {
+			$unlocked = $this->session->get(self::sessionKey($token));
+			if (!is_string($unlocked) || !hash_equals(self::fingerprint($hash), $unlocked)) {
+				throw new PasswordRequiredException('Password required');
+			}
 		}
 		return $share;
 	}
@@ -43,8 +47,19 @@ class PublicShareAccess {
 		}
 	}
 
-	/** Remember in this session that the link's password was entered. */
-	public function grant(string $token): void {
-		$this->session->set(self::sessionKey($token), true);
+	/**
+	 * Remember in this session that the link's password was entered. What
+	 * is kept is a fingerprint of the password as it is now, so changing or
+	 * removing it locks the link again for everyone who had it open.
+	 */
+	public function grant(ListShare $share): void {
+		$hash = $share->getPasswordHash();
+		if ($hash !== null) {
+			$this->session->set(self::sessionKey((string)$share->getToken()), self::fingerprint($hash));
+		}
+	}
+
+	private static function fingerprint(string $passwordHash): string {
+		return hash('sha256', $passwordHash);
 	}
 }

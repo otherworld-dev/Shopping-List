@@ -13,6 +13,7 @@ use OCA\Shopping_List\Service\NotFoundException;
 use OCA\Shopping_List\Service\PasswordRequiredException;
 use OCA\Shopping_List\Service\ShopAreaService;
 use OCA\Shopping_List\Db\ShopAreaMapper;
+use OCA\Shopping_List\Service\AmountMemory;
 use OCA\Shopping_List\Service\GuestName;
 use OCA\Shopping_List\Service\ItemImageService;
 use OCA\Shopping_List\Service\ItemService;
@@ -41,6 +42,7 @@ class PublicListController extends OCSController {
 		private PublicShareAccess $access,
 		private ItemService $itemService,
 		private ItemImageService $images,
+		private AmountMemory $amounts,
 	) {
 		parent::__construct($appName, $request);
 	}
@@ -69,6 +71,36 @@ class PublicListController extends OCSController {
 			throw new NotFoundException('Item not found');
 		}
 		return $item;
+	}
+
+	/** A name sent through the link, held to the rules for adding an item. Null when it can't be one. */
+	private static function validName(mixed $name): ?string {
+		if (!is_string($name)) {
+			return null;
+		}
+		$name = trim($name);
+		return $name === '' || mb_strlen($name) > 255 ? null : $name;
+	}
+
+	/**
+	 * A shop area id sent through the link, which has to be one of the
+	 * list's own areas.
+	 *
+	 * @throws \InvalidArgumentException
+	 */
+	private function areaFor(ListShare $share, mixed $id): ?int {
+		if ($id === null) {
+			return null;
+		}
+		try {
+			$area = is_numeric($id) ? $this->areaService->find((int)$id) : null;
+		} catch (NotFoundException) {
+			$area = null;
+		}
+		if ($area === null || $area->getListId() !== $share->getListId()) {
+			throw new \InvalidArgumentException('Invalid shop area');
+		}
+		return $area->getId();
 	}
 
 	/**
@@ -112,7 +144,7 @@ class PublicListController extends OCSController {
 	public function auth(string $token): DataResponse {
 		try {
 			$share = $this->shareService->validatePublicAccess($token, $this->request->getParam('password'));
-			$this->access->grant($token);
+			$this->access->grant($share);
 			return new DataResponse([
 				'title' => $this->listMapper->find($share->getListId())->getTitle(),
 				'permission' => $share->getPermission(),
@@ -173,18 +205,21 @@ class PublicListController extends OCSController {
 			$share = $this->authenticate($token);
 			$this->assertWrite($share);
 
-			$name = trim((string)$this->request->getParam('name', ''));
-			if ($name === '' || mb_strlen($name) > 255) {
+			$name = self::validName($this->request->getParam('name', ''));
+			if ($name === null) {
 				return new DataResponse(['message' => 'Invalid name'], Http::STATUS_BAD_REQUEST);
 			}
 
-			$shopAreaId = $this->request->getParam('shopAreaId');
+			$shopAreaId = $this->areaFor($share, $this->request->getParam('shopAreaId'));
+			$quantity = $this->request->getParam('quantity');
+			$quantity = $quantity === null ? null : (string)$quantity;
 			$item = new Item();
 			$item->setListId($share->getListId());
 			$item->setName($name);
-			$item->setQuantity($this->request->getParam('quantity') ?? '1');
+			// A name added on its own gets the amount it had last time in this list.
+			$item->setQuantity($quantity ?? $this->amounts->recall($share->getListId(), $name) ?? '1');
 			$item->setUnit($this->request->getParam('unit'));
-			$item->setShopAreaId($shopAreaId !== null ? (int)$shopAreaId : null);
+			$item->setShopAreaId($shopAreaId);
 			$item->setChecked(false);
 			$item->setSortOrder(0);
 			$item->setImageKey($this->images->rememberedKey($share->getListId(), $name));
@@ -194,7 +229,14 @@ class PublicListController extends OCSController {
 			$item->setCreatedAt($now);
 			$item->setUpdatedAt($now);
 
-			return new DataResponse($this->forLink($share, $this->itemMapper->insert($item)), Http::STATUS_CREATED);
+			$item = $this->itemMapper->insert($item);
+			if ($quantity !== null && $this->request->getParam('quantityExplicit')) {
+				$this->amounts->remember($share->getListId(), $name, $quantity);
+			}
+
+			return new DataResponse($this->forLink($share, $item), Http::STATUS_CREATED);
+		} catch (\InvalidArgumentException $e) {
+			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_BAD_REQUEST);
 		} catch (PasswordRequiredException) {
 			return new DataResponse(['passwordRequired' => true], Http::STATUS_FORBIDDEN);
 		} catch (NoPermissionException $e) {
@@ -216,10 +258,14 @@ class PublicListController extends OCSController {
 
 			$params = $this->request->getParams();
 			if (isset($params['name'])) {
-				$renamed = ItemImageService::nameKey((string)$params['name']) !== ItemImageService::nameKey($item->getName());
-				$item->setName($params['name']);
+				$name = self::validName($params['name']);
+				if ($name === null) {
+					return new DataResponse(['message' => 'Invalid name'], Http::STATUS_BAD_REQUEST);
+				}
+				$renamed = ItemImageService::nameKey($name) !== ItemImageService::nameKey($item->getName());
+				$item->setName($name);
 				if ($renamed) {
-					$remembered = $this->images->rememberedKey($item->getListId(), (string)$params['name']);
+					$remembered = $this->images->rememberedKey($item->getListId(), $name);
 					if ($remembered !== null) {
 						$item->setImageKey($remembered);
 					}
@@ -232,11 +278,20 @@ class PublicListController extends OCSController {
 				$item->setUnit($params['unit']);
 			}
 			if (array_key_exists('shopAreaId', $params)) {
-				$item->setShopAreaId($params['shopAreaId']);
+				$item->setShopAreaId($this->areaFor($share, $params['shopAreaId']));
 			}
 			$item->setUpdatedAt(new DateTime());
+			$item = $this->itemMapper->update($item);
 
-			return new DataResponse($this->forLink($share, $this->itemMapper->update($item)));
+			// Remember an amount the guest typed, not one a duplicate merge added up
+			if (!empty($params['quantityExplicit']) && array_key_exists('quantity', $params)) {
+				$quantity = $params['quantity'];
+				$this->amounts->remember($item->getListId(), $item->getName(), $quantity === null ? null : (string)$quantity);
+			}
+
+			return new DataResponse($this->forLink($share, $item));
+		} catch (\InvalidArgumentException $e) {
+			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_BAD_REQUEST);
 		} catch (PasswordRequiredException) {
 			return new DataResponse(['passwordRequired' => true], Http::STATUS_FORBIDDEN);
 		} catch (NoPermissionException $e) {

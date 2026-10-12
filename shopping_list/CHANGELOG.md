@@ -5,7 +5,82 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.11.0] - 2026-10-12
+
+### Added
+- Lists can be named as you create them. "New list" in the sidebar opens a
+  name field instead of making a list called "New shopping list" straight
+  away. Type a name and press Enter, or confirm an empty field if you want
+  the old default name. Cancelling creates nothing, where before every
+  click left a list behind. Thanks to rostmodern for the idea (#48)
+- "Share list" is in a list's menu in the sidebar as well, next to Rename,
+  Pin and Delete, so you no longer have to open a list before you can share
+  it. It shows on the lists you own, and it shares the list whose menu you
+  used rather than the one you are looking at (#48)
+- Your lists can be backed up and restored. Open Settings at the bottom of
+  the sidebar and choose "Download backup" under Backup to get a JSON file
+  holding your own lists, with their items, areas, tags and pins. "Restore
+  from backup" reads that file back. A restore always adds lists rather than
+  replacing the ones you have, so nothing you already had can be lost, and
+  restoring the same file twice gives you two copies. Shares are not
+  included, so a restored list starts private and you share it again
+  yourself. The same data is carried by Nextcloud's user migration if your
+  administrator has the User Migration app installed. Thanks to rostmodern
+  for the idea (#47)
+- Italian, translated on Crowdin. 171 of the 204 strings are done, the
+  newest ones show in English for now
+- Items remember their amount. Type "500 g Rice" once and next time "Rice"
+  on its own comes back as 500 g Rice, even after the first one was cleared
+  away. The amount belongs to the list, so everyone sharing it gets the same
+  one, guests on the public link included. Changing an item's amount updates
+  what is remembered, and clearing it goes back to the plain default of 1.
+  Typing an item that is already on the list still adds to it as before,
+  without changing the remembered amount (#15)
+- More units are recognised when typed with an amount: pc, pcs, pkg, dag
+  and dkg, jar, tub, pot and leaf, and in German Stk and Stk. as well.
+  Before, "25 dag Schinken" came out as 25 of an item called
+  "Dag Schinken" (#15)
+- A What's new window that shows once after an update, with the main
+  changes since the version you last used. What's new at the bottom of
+  Settings opens it again. Someone who has only just started isn't shown
+  it, and the notes are in English only
+
+### Changed
+- Adding something that is already ticked off brings that item back to the
+  list instead of adding a second one beside it, so the ticked items don't
+  fill up with copies of the same thing. It keeps its shop area and photo,
+  and the amount it had unless you type a new one
+- The settings carry `whatsNewSeen`, the version whose release notes were
+  last shown, so the What's new window shows once per person rather than
+  once per browser
+- Setting a link's password answers 400 with the password policy's own
+  message when the policy refuses it, and adding or changing an item
+  through a public link answers 400 for a shop area that isn't the list's
+  own
+- Adding or changing an item takes `quantityExplicit`, which says the
+  amount was typed and should be remembered, and an item added with no
+  quantity gets the one its list remembers
+
+### Upgrade
+- Database migration: one table is added for the amounts each list
+  remembers
+
+### Fixed
+- Items added on the public link page now read the amount the same way as
+  in the app, so "2 l Milk" is 2 l of Milk rather than 1 of "2 l Milk"
+- A list link's password now has to pass the server's password policy, the
+  same as Nextcloud's own share links, so where the admin has the Password
+  policy app set up a link can no longer be protected by something like
+  1234. The Share dialog shows the policy's reason when it refuses one, and
+  an empty password is refused as well
+- Changing or removing a link's password now locks the list again for
+  anyone who had it open with the old one, where before they kept access
+  until their browser session ended. Anyone with a protected link open is
+  asked for the password once more after this update
+- Renaming an item through a public link is held to the same rules as
+  adding one, so a name over 255 characters or with nothing in it is
+  refused rather than giving a server error. An item added or moved
+  through a link can also only go in one of that list's own shop areas
 
 ## [1.10.0] - 2026-10-05
 

@@ -106,6 +106,13 @@ export function findMatchingItem(items: Item[], name: string): Item | undefined 
 	return items.find(item => !item.checked && normalizeName(item.name) === normalized)
 }
 
+// A ticked-off item of the same name, to bring back rather than add another
+// beside it, so a list doesn't fill up with ticked copies of the same thing.
+export function findCheckedMatch(items: Item[], name: string): Item | undefined {
+	const normalized = normalizeName(name)
+	return items.find(item => item.checked && normalizeName(item.name) === normalized)
+}
+
 interface ParsedQuantity {
 	number: number | null
 	unit: string

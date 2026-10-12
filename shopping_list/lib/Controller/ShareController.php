@@ -80,6 +80,9 @@ class ShareController extends OCSController {
 		try {
 			$share = $this->service->createLinkShare($listId, $permission, $password, $expiresAt, $this->userId);
 			return new DataResponse($share, Http::STATUS_CREATED);
+		} catch (\InvalidArgumentException $e) {
+			// A password the server's password policy refuses, with its hint
+			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_BAD_REQUEST);
 		} catch (NotFoundException $e) {
 			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_NOT_FOUND);
 		} catch (NoPermissionException $e) {
@@ -100,6 +103,8 @@ class ShareController extends OCSController {
 		try {
 			$share = $this->service->updateLinkShare($id, $permission, $password, $removePassword, $expiresAt, $removeExpiry, $this->userId, $showNames);
 			return new DataResponse($share);
+		} catch (\InvalidArgumentException $e) {
+			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_BAD_REQUEST);
 		} catch (NotFoundException $e) {
 			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_NOT_FOUND);
 		} catch (NoPermissionException $e) {

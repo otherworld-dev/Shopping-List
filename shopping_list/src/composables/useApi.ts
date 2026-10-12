@@ -1,5 +1,5 @@
 import axios from '@nextcloud/axios'
-import { generateOcsUrl } from '@nextcloud/router'
+import { generateOcsUrl, generateUrl } from '@nextcloud/router'
 import type { ListSort } from '../utils/listSort'
 
 function url(path: string): string {
@@ -76,7 +76,12 @@ export const api = {
 	},
 	settings: {
 		get: () => axios.get(url('settings')),
-		update: (data: { showImages?: boolean, listSort?: ListSort, showOwnName?: boolean }) => axios.patch(url('settings'), data),
+		update: (data: { showImages?: boolean, listSort?: ListSort, showOwnName?: boolean, whatsNewSeen?: string }) => axios.patch(url('settings'), data),
+	},
+	backup: {
+		download: () => axios.get(generateUrl('/apps/shopping_list/backup/download'), { responseType: 'blob' }),
+		restore: (payload: unknown) =>
+			axios.post(generateUrl('/apps/shopping_list/backup/restore'), payload),
 	},
 }
 

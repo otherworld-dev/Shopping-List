@@ -6,6 +6,7 @@ namespace OCA\Shopping_List\Tests\Unit;
 
 use OCA\Shopping_List\Db\Item;
 use OCA\Shopping_List\Db\ItemMapper;
+use OCA\Shopping_List\Service\AmountMemory;
 use OCA\Shopping_List\Service\ItemImageCleanup;
 use OCA\Shopping_List\Service\ItemImageService;
 use OCA\Shopping_List\Service\ItemService;
@@ -46,6 +47,7 @@ class ItemServiceCleanupTest extends TestCase {
 			$this->cleanup,
 			$this->images,
 			$this->createMock(\OCP\IUserManager::class),
+			$this->createMock(AmountMemory::class),
 		);
 		$this->mapper->method('insert')->willReturnCallback(function (Item $i) {
 			$i->setId(99); // the database hands out the id

@@ -4,6 +4,7 @@ import { api } from '../composables/useApi'
 import type { ListShare } from '../types'
 import { showError } from '@nextcloud/dialogs'
 import { t } from '@nextcloud/l10n'
+import { badRequestMessage } from '../utils/serverMessage'
 
 export const useSharesStore = defineStore('shares', () => {
 	const sharesByList = ref<Record<number, ListShare[]>>({})
@@ -73,7 +74,7 @@ export const useSharesStore = defineStore('shares', () => {
 			sharesByList.value[listId].push(newShare)
 			return newShare
 		} catch (e) {
-			showError(t('shopping_list', 'Failed to create public link'))
+			showError(badRequestMessage(e) ?? t('shopping_list', 'Failed to create public link'))
 			console.error(e)
 		}
 	}
@@ -88,7 +89,7 @@ export const useSharesStore = defineStore('shares', () => {
 				shares[index] = updated
 			}
 		} catch (e) {
-			showError(t('shopping_list', 'Failed to update public link'))
+			showError(badRequestMessage(e) ?? t('shopping_list', 'Failed to update public link'))
 			console.error(e)
 		}
 	}

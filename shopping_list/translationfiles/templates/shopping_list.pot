@@ -199,6 +199,10 @@ msgid "New list"
 msgstr ""
 
 #: src/components/ListSidebar.vue
+msgid "List name"
+msgstr ""
+
+#: src/components/ListSidebar.vue
 msgid "Rename list"
 msgstr ""
 
@@ -316,7 +320,7 @@ msgstr ""
 msgid "Most recent first"
 msgstr ""
 
-#: src/components/ShareDialog.vue
+#: src/components/ListSidebar.vue src/components/ShareDialog.vue
 msgid "Share list"
 msgstr ""
 
@@ -783,6 +787,44 @@ msgstr ""
 msgid "Get it on Google Play"
 msgstr ""
 
+#: src/components/BackupSettings.vue
+msgid "Backup"
+msgstr ""
+
+#: src/components/BackupSettings.vue
+msgid "A backup holds your own lists, their items, areas and tags. Shares are not included, and restoring adds lists rather than replacing the ones you have."
+msgstr ""
+
+#: src/components/BackupSettings.vue
+msgid "Download backup"
+msgstr ""
+
+#: src/components/BackupSettings.vue
+msgid "Restore from backup"
+msgstr ""
+
+#: src/components/BackupSettings.vue
+msgid "Restoring..."
+msgstr ""
+
+#: src/components/BackupSettings.vue
+msgid "That file could not be restored"
+msgstr ""
+
+#: src/components/BackupSettings.vue
+msgid "Restored %n list"
+msgid_plural "Restored %n lists"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/components/BackupSettings.vue
+msgid "Could not download the backup"
+msgstr ""
+
+#: lib/UserMigration/ShoppingListMigrator.php
+msgid "Your shopping lists, their items, areas and tags. Shares are not included."
+msgstr ""
+
 #: src/components/ListSortSettings.vue
 msgid "Sort lists"
 msgstr ""
@@ -797,4 +839,20 @@ msgstr ""
 
 #: src/stores/lists.ts
 msgid "Failed to save the list order"
+msgstr ""
+
+#: src/components/WhatsNewDialog.vue
+msgid "What's new in Shopping List"
+msgstr ""
+
+#: src/components/WhatsNewDialog.vue
+msgid "Read more"
+msgstr ""
+
+#: src/components/WhatsNewDialog.vue
+msgid "Got it"
+msgstr ""
+
+#: src/components/WhatsNewButton.vue
+msgid "What's new"
 msgstr ""

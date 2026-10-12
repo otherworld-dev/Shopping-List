@@ -6,6 +6,8 @@ return [
 	'routes' => [
 		['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
 		['name' => 'public_page#index', 'url' => '/s/{token}', 'verb' => 'GET'],
+		['name' => 'backup#download', 'url' => '/backup/download', 'verb' => 'GET'],
+		['name' => 'backup#restore', 'url' => '/backup/restore', 'verb' => 'POST'],
 
 		// Item photos. Binary, so outside the OCS envelope. {key} is the item's
 		// current imageKey; it changes on every replace, so these cache for good.

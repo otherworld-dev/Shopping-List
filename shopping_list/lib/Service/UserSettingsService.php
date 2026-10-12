@@ -15,6 +15,7 @@ class UserSettingsService {
 	public const SHOW_IMAGES = 'show_images';
 	public const LIST_SORT = 'list_sort';
 	public const SHOW_OWN_NAME = 'show_own_name';
+	public const WHATS_NEW_SEEN = 'whats_new_seen';
 
 	public function __construct(
 		private IConfig $config,
@@ -52,12 +53,26 @@ class UserSettingsService {
 		$this->config->setUserValue($userId, Application::APP_ID, self::SHOW_OWN_NAME, $on ? '1' : '0');
 	}
 
+	/** The app version whose release notes this user last saw. Empty until the first are shown. */
+	public function whatsNewSeen(string $userId): string {
+		return $this->config->getUserValue($userId, Application::APP_ID, self::WHATS_NEW_SEEN, '');
+	}
+
+	/** @throws \InvalidArgumentException for anything not shaped like an app version */
+	public function setWhatsNewSeen(string $userId, string $version): void {
+		if (preg_match('/^\d{1,5}(\.\d{1,5}){0,3}(-[0-9A-Za-z.]{1,20})?$/', $version) !== 1) {
+			throw new \InvalidArgumentException('Not a version');
+		}
+		$this->config->setUserValue($userId, Application::APP_ID, self::WHATS_NEW_SEEN, $version);
+	}
+
 	/** Every setting, in the shape the settings endpoint and the page's initial state share. */
 	public function forUser(string $userId): array {
 		return [
 			'showImages' => $this->showImages($userId),
 			'listSort' => $this->listSort($userId),
 			'showOwnName' => $this->showOwnName($userId),
+			'whatsNewSeen' => $this->whatsNewSeen($userId),
 		];
 	}
 }

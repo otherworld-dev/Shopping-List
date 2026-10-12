@@ -28,13 +28,16 @@ class SettingsController extends OCSController {
 
 	/** PATCH: only the keys sent change. Answers with every setting. */
 	#[NoAdminRequired]
-	public function update(?bool $showImages = null, ?string $listSort = null, ?bool $showOwnName = null): DataResponse {
-		if ($listSort !== null) {
-			try {
+	public function update(?bool $showImages = null, ?string $listSort = null, ?bool $showOwnName = null, ?string $whatsNewSeen = null): DataResponse {
+		try {
+			if ($listSort !== null) {
 				$this->settings->setListSort($this->userId, $listSort);
-			} catch (\InvalidArgumentException $e) {
-				return new DataResponse(['message' => $e->getMessage()], Http::STATUS_BAD_REQUEST);
 			}
+			if ($whatsNewSeen !== null) {
+				$this->settings->setWhatsNewSeen($this->userId, $whatsNewSeen);
+			}
+		} catch (\InvalidArgumentException $e) {
+			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_BAD_REQUEST);
 		}
 		if ($showImages !== null) {
 			$this->settings->setShowImages($this->userId, $showImages);
