@@ -298,4 +298,59 @@ class BackupServiceTest extends TestCase {
 			],
 		]);
 	}
+
+	/** Lists come back as id 99, and areas as 50, 51… in the order they are inserted. */
+	private function importInserts(): void {
+		$this->db->method('beginTransaction');
+		$this->db->method('commit');
+		$this->listMapper->method('insert')->willReturnCallback(function (ShoppingList $list): ShoppingList {
+			$list->setId(99);
+			return $list;
+		});
+		$nextAreaId = 50;
+		$this->areaMapper->method('insert')->willReturnCallback(function (ShopArea $area) use (&$nextAreaId): ShopArea {
+			$area->setId($nextAreaId++);
+			return $area;
+		});
+	}
+
+	public function testImportRestoresTheDefaultAreaByName(): void {
+		$this->importInserts();
+		$this->listMapper->expects(self::once())
+			->method('update')
+			->with(self::callback(fn (ShoppingList $list): bool => $list->getId() === 99 && $list->getDefaultAreaId() === 51));
+
+		$this->service->import('alice', [
+			'version' => 1,
+			'lists' => [[
+				'title' => 'Weekly shop',
+				'defaultArea' => 'Other',
+				'areas' => [['name' => 'Produce'], ['name' => 'Other']],
+			]],
+		]);
+	}
+
+	public function testImportLeavesNoDefaultWhenTheBackupNamesAnAreaItDoesNotHold(): void {
+		$this->importInserts();
+		$this->listMapper->expects(self::never())->method('update');
+
+		$this->service->import('alice', [
+			'version' => 1,
+			'lists' => [[
+				'title' => 'Weekly shop',
+				'defaultArea' => 'Garden',
+				'areas' => [['name' => 'Produce']],
+			]],
+		]);
+	}
+
+	public function testImportOfABackupFromBeforeDefaultAreasSetsNone(): void {
+		$this->importInserts();
+		$this->listMapper->expects(self::never())->method('update');
+
+		$this->service->import('alice', [
+			'version' => 1,
+			'lists' => [['title' => 'Weekly shop', 'areas' => [['name' => 'Produce']]]],
+		]);
+	}
 }

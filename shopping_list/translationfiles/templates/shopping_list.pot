@@ -558,6 +558,18 @@ msgid ""
 "sort correctly. Existing keywords are kept."
 msgstr ""
 
+#: src/components/AreaKeywordsSettings.vue
+msgid "Default area"
+msgstr ""
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "None"
+msgstr ""
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Items that match no keyword go here."
+msgstr ""
+
 #: src/stores/shopAreas.ts
 msgid "Keywords for your language added"
 msgstr ""

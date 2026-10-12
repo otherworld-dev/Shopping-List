@@ -57,7 +57,9 @@ class ItemService {
 		// A name added on its own gets the amount it had last time in this list.
 		$item->setQuantity($quantity ?? $this->amounts->recall($listId, $name) ?? '1');
 		$item->setUnit($unit);
-		$item->setShopAreaId($shopAreaId);
+		// A client sends no area when no keyword matched, and the list's default
+		// area is for exactly those items.
+		$item->setShopAreaId($shopAreaId ?? $this->shopAreaService->defaultAreaFor($listId));
 		// A pasted "[x] Milk" line arrives as already bought, so it lands in the
 		// checked-off section straight away instead of among the open items.
 		$item->setChecked($checked);
@@ -141,7 +143,8 @@ class ItemService {
 	/**
 	 * Move an item to another list. Requires write access to both lists.
 	 * The shop area is re-resolved in the target list (same-name area, else
-	 * keyword detection, else uncategorized) and the item is reset to unchecked.
+	 * keyword detection, else that list's default area, which is uncategorized
+	 * when it has none) and the item is reset to unchecked.
 	 */
 	public function move(int $id, int $targetListId, string $userId): Item {
 		try {

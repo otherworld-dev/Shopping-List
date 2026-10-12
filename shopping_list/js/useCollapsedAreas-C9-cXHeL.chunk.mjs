@@ -44353,7 +44353,8 @@ const api = {
     update: (id, title) => cancelableClient.put(url(`lists/${id}`), { title }),
     delete: (id) => cancelableClient.delete(url(`lists/${id}`)),
     setPinned: (id, isPinned) => cancelableClient.patch(url(`lists/${id}/preferences`), { isPinned }),
-    reorder: (listIds) => cancelableClient.post(url("lists/reorder"), { listIds })
+    reorder: (listIds) => cancelableClient.post(url("lists/reorder"), { listIds }),
+    setDefaultArea: (id, shopAreaId) => cancelableClient.put(url(`lists/${id}/default-area`), { shopAreaId })
   },
   items: {
     getAll: (listId) => cancelableClient.get(url(`lists/${listId}/items`)),
@@ -45337,4 +45338,4 @@ export {
   unref as y,
   resolveDynamicComponent as z
 };
-//# sourceMappingURL=useCollapsedAreas-DwJuvbYy.chunk.mjs.map
+//# sourceMappingURL=useCollapsedAreas-C9-cXHeL.chunk.mjs.map

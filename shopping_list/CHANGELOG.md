@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- A list can have a default area. Open the list's settings and pick one
+  under "Default area", and an item that matches no keyword goes there
+  rather than being left uncategorised. It is a setting of the list itself,
+  so everyone sharing it gets the same, and it applies to items added from a
+  public link and from the Android app as well. A backup carries it too.
+  Thanks to Bloodboy1986 for the idea (otherworld-dev/Shopping-List-Android#16)
+
 ## [1.11.0] - 2026-10-12
 
 ### Added

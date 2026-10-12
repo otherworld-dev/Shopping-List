@@ -24,6 +24,11 @@ export interface ShoppingList {
 	isPinned: boolean | null
 	/** The current user's own place for the list in the Custom order; null until they place it */
 	position: number | null
+	/**
+	 * The area a new item goes to when no keyword places it; null for none.
+	 * Missing from a copy of the list cached before the setting existed.
+	 */
+	defaultShopAreaId?: number | null
 	createdAt: string
 	updatedAt: string
 }

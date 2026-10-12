@@ -98,7 +98,7 @@ import { mdiHelpCircleOutline } from '@mdi/js'
 import { useItemsStore } from '../stores/items'
 import { useShopAreasStore } from '../stores/shopAreas'
 import { useListsStore } from '../stores/lists'
-import { fold } from '../utils/fold'
+import { areaForNewItem } from '../utils/detectArea'
 import { getParsingPack } from '../utils/localePacks'
 import { createIngredientParser } from '../utils/parseIngredient'
 import { INPUT_EXAMPLES } from '../utils/inputExamples'
@@ -219,29 +219,14 @@ const inputExamples = INPUT_EXAMPLES.map(source => {
 	return { input, ...parseIngredient(input) }
 })
 
-// --- Auto-detect shop area from ingredient name (reads keywords from area entities) ---
+// --- The shop area a new item is added with ---
 
-function detectArea(ingredientName: string): number | null {
-	const needle = fold(ingredientName)
+// The one picked in the dropdown, else a keyword match on the name, else the
+// list's default area (see utils/detectArea).
+function areaFor(ingredientName: string): number | null {
 	const areas = shopAreasStore.areasByList[listsStore.currentListId!] ?? []
-	let bestArea: number | null = null
-	let bestLen = 0
-
-	// Prefer the longest (most specific) matching keyword across all areas so a
-	// short early-area token (e.g. "ham") can't shadow a specific later one
-	// (e.g. "shampoo"). Areas are already sort-ordered, so ties keep the earlier.
-	for (const area of areas) {
-		if (!area.keywords) continue
-		for (const keyword of area.keywords) {
-			if (!keyword) continue
-			const k = fold(keyword)
-			if (k.length > bestLen && needle.includes(k)) {
-				bestLen = k.length
-				bestArea = area.id
-			}
-		}
-	}
-	return bestArea
+	const defaultAreaId = listsStore.currentList?.defaultShopAreaId ?? null
+	return areaForNewItem(ingredientName, areas, selectedAreaId.value, defaultAreaId)
 }
 
 // A typed amount is sent as typed and remembered for the name. A name on its
@@ -271,7 +256,7 @@ async function onPaste(e: ClipboardEvent) {
 		if (!parsed.name) continue
 
 		const explicitArea = selectedAreaId.value !== null
-		const areaId = selectedAreaId.value ?? detectArea(parsed.name)
+		const areaId = areaFor(parsed.name)
 		await itemsStore.create(props.listId, {
 			name: parsed.name,
 			...amountFields(parsed.quantity),
@@ -296,7 +281,7 @@ async function onSubmit() {
 	if (!parsed.name) return
 
 	const explicitArea = selectedAreaId.value !== null
-	const areaId = selectedAreaId.value ?? detectArea(parsed.name)
+	const areaId = areaFor(parsed.name)
 	await itemsStore.create(props.listId, {
 		name: parsed.name,
 		...amountFields(parsed.quantity),

@@ -1,7 +1,7 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-DxElMjqw.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/useCollapsedAreas-DwJuvbYy.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/useCollapsedAreas-CX_mg1lj.chunk.css')])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-CtEecqbD.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/useCollapsedAreas-C9-cXHeL.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/useCollapsedAreas-CX_mg1lj.chunk.css')])))=>i.map(i=>d[i]);
 const appName = "shopping_list";
 const appVersion = "1.11.0";
-import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, A as ActionGlobalMixin, a as NcIconSvgWrapper, r as resolveComponent, b as createBaseVNode, w as withDirectives, v as vModelRadio, n as normalizeClass, d as createVNode, m as mdiRadioboxMarked, e as mdiRadioboxBlank, u as useModel, f as createElementId, g as NcLoadingIcon, h as NcInputConfirmCancel, i as createBlock, j as renderSlot, k as createCommentVNode, l as defineComponent, p as useSlots, q as useTemplateRef, s as useElementSize, x as withCtx, y as unref, z as resolveDynamicComponent, B as mergeProps, C as toHandlers, F as Fragment, D as renderList, E as _sfc_main$o, G as NcModal, H as mergeModels, I as computed, J as ref, K as createTextVNode, L as useCssModule, M as provide, O as NC_FORM_BOX_CONTEXT_KEY, P as INSIDE_RADIO_GROUP_KEY, Q as NOOP, R as extend$1, S as isString, T as NO, U as isSymbol, V as isBuiltInDirective, W as capitalize, X as camelize, Y as EMPTY_OBJ, Z as isObject, $ as toHandlerKey, a0 as isArray, a1 as isOn, a2 as isReservedProp, a3 as isVoidTag, a4 as isHTMLTag, a5 as isSVGTag, a6 as isMathMLTag, a7 as parseStringStyle, a8 as makeMap, a9 as generateCodeFrame, aa as getAugmentedNamespace, ab as runtimeDom_esmBundler, ac as shared_esmBundler, ad as getDefaultExportFromCjs, ae as getGettextBuilder, af as getLoggerBuilder, ag as defineStore, ah as loadState, ai as api, aj as markServerFetched, ak as translate, al as getLanguage, am as hasMorphology, an as getParsingPack, ao as loadValue, ap as saveValue, aq as readonly, ar as watch, as as mdiPlus, at as NcAppNavigationCaption, au as NcActionButton, av as NcAppNavigationItem, aw as _export_sfc$1, ax as getCurrentUser, ay as onMounted, az as onUnmounted, aA as withKeys, aB as withModifiers, aC as vModelText, aD as normalizeStyle, aE as Teleport, aF as NcActions, aG as ImageViewer, aH as Permission, aI as attribution, aJ as nextTick, aK as itemImageUrl, aL as createIngredientParser, aM as NcPopover, aN as NcButton, aO as mdiHelpCircleOutline, aP as browserStorage, aQ as useCollapsedAreas, aR as ShareType, aS as NcAvatar, aT as isRef, aU as mdiChevronDown, aV as vShow, aW as shallowRef, aX as vModelSelect, aY as NcCheckboxRadioSwitch, aZ as translatePlural, a_ as Transition, a$ as getRootUrl, b0 as generateOcsUrl, b1 as cancelableClient, b2 as generateUrl, b3 as NcAppNavigation, b4 as NcAppNavigationSettings, b5 as NcAppContent, b6 as NcContent, b7 as createPinia, b8 as offlinePersistPlugin, b9 as createApp } from "./useCollapsedAreas-DwJuvbYy.chunk.mjs";
+import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, A as ActionGlobalMixin, a as NcIconSvgWrapper, r as resolveComponent, b as createBaseVNode, w as withDirectives, v as vModelRadio, n as normalizeClass, d as createVNode, m as mdiRadioboxMarked, e as mdiRadioboxBlank, u as useModel, f as createElementId, g as NcLoadingIcon, h as NcInputConfirmCancel, i as createBlock, j as renderSlot, k as createCommentVNode, l as defineComponent, p as useSlots, q as useTemplateRef, s as useElementSize, x as withCtx, y as unref, z as resolveDynamicComponent, B as mergeProps, C as toHandlers, F as Fragment, D as renderList, E as _sfc_main$o, G as NcModal, H as mergeModels, I as computed, J as ref, K as createTextVNode, L as useCssModule, M as provide, O as NC_FORM_BOX_CONTEXT_KEY, P as INSIDE_RADIO_GROUP_KEY, Q as NOOP, R as extend$1, S as isString, T as NO, U as isSymbol, V as isBuiltInDirective, W as capitalize, X as camelize, Y as EMPTY_OBJ, Z as isObject, $ as toHandlerKey, a0 as isArray, a1 as isOn, a2 as isReservedProp, a3 as isVoidTag, a4 as isHTMLTag, a5 as isSVGTag, a6 as isMathMLTag, a7 as parseStringStyle, a8 as makeMap, a9 as generateCodeFrame, aa as getAugmentedNamespace, ab as runtimeDom_esmBundler, ac as shared_esmBundler, ad as getDefaultExportFromCjs, ae as getGettextBuilder, af as getLoggerBuilder, ag as defineStore, ah as loadState, ai as api, aj as markServerFetched, ak as translate, al as getLanguage, am as hasMorphology, an as getParsingPack, ao as loadValue, ap as saveValue, aq as readonly, ar as watch, as as mdiPlus, at as NcAppNavigationCaption, au as NcActionButton, av as NcAppNavigationItem, aw as _export_sfc$1, ax as getCurrentUser, ay as onMounted, az as onUnmounted, aA as withKeys, aB as withModifiers, aC as vModelText, aD as normalizeStyle, aE as Teleport, aF as NcActions, aG as ImageViewer, aH as Permission, aI as attribution, aJ as nextTick, aK as itemImageUrl, aL as createIngredientParser, aM as NcPopover, aN as NcButton, aO as mdiHelpCircleOutline, aP as browserStorage, aQ as useCollapsedAreas, aR as ShareType, aS as NcAvatar, aT as isRef, aU as mdiChevronDown, aV as vShow, aW as shallowRef, aX as vModelSelect, aY as NcCheckboxRadioSwitch, aZ as translatePlural, a_ as Transition, a$ as getRootUrl, b0 as generateOcsUrl, b1 as cancelableClient, b2 as generateUrl, b3 as NcAppNavigation, b4 as NcAppNavigationSettings, b5 as NcAppContent, b6 as NcContent, b7 as createPinia, b8 as offlinePersistPlugin, b9 as createApp } from "./useCollapsedAreas-C9-cXHeL.chunk.mjs";
 const _sfc_main$n = {
   name: "NcActionCaption",
   inject: {
@@ -14149,6 +14149,20 @@ const useListsStore = defineStore("lists", () => {
       console.error(e);
     }
   }
+  async function setDefaultArea(id, shopAreaId) {
+    const list = lists.value.find((l) => l.id === id);
+    const previous = list?.defaultShopAreaId ?? null;
+    if (list) list.defaultShopAreaId = shopAreaId;
+    try {
+      const response = await api.lists.setDefaultArea(id, shopAreaId);
+      const updated = response.data.ocs.data;
+      if (list) list.defaultShopAreaId = updated.defaultShopAreaId ?? null;
+    } catch (e) {
+      if (list) list.defaultShopAreaId = previous;
+      showError(translate("shopping_list", "Failed to save setting"));
+      console.error(e);
+    }
+  }
   function applyPositions(ids) {
     ids.forEach((id, index2) => {
       const list = lists.value.find((l) => l.id === id);
@@ -14204,6 +14218,7 @@ const useListsStore = defineStore("lists", () => {
     remove,
     selectList,
     setPinned,
+    setDefaultArea,
     reorderSection,
     setListSort
   };
@@ -15868,6 +15883,29 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
   }
 });
 const ItemRow = /* @__PURE__ */ _export_sfc$1(_sfc_main$d, [["__scopeId", "data-v-a20d32c6"]]);
+function detectArea(name, areas) {
+  const needle = fold(name);
+  let bestArea = null;
+  let bestLen = 0;
+  for (const area of areas) {
+    if (!area.keywords) continue;
+    for (const keyword of area.keywords) {
+      if (!keyword) continue;
+      const k = fold(keyword);
+      if (k.length > bestLen && needle.includes(k)) {
+        bestLen = k.length;
+        bestArea = area.id;
+      }
+    }
+  }
+  return bestArea;
+}
+function areaForNewItem(name, areas, pickedAreaId, defaultAreaId) {
+  if (pickedAreaId !== null) return pickedAreaId;
+  const detected = detectArea(name, areas);
+  if (detected !== null) return detected;
+  return defaultAreaId !== null && areas.some((a) => a.id === defaultAreaId) ? defaultAreaId : null;
+}
 const INPUT_EXAMPLES = [
   "- Apples",
   "[ ] 3 Bananas",
@@ -15995,23 +16033,10 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
       const input = translate("shopping_list", source);
       return { input, ...parseIngredient(input) };
     });
-    function detectArea(ingredientName) {
-      const needle = fold(ingredientName);
+    function areaFor(ingredientName) {
       const areas = shopAreasStore.areasByList[listsStore.currentListId] ?? [];
-      let bestArea = null;
-      let bestLen = 0;
-      for (const area of areas) {
-        if (!area.keywords) continue;
-        for (const keyword of area.keywords) {
-          if (!keyword) continue;
-          const k = fold(keyword);
-          if (k.length > bestLen && needle.includes(k)) {
-            bestLen = k.length;
-            bestArea = area.id;
-          }
-        }
-      }
-      return bestArea;
+      const defaultAreaId = listsStore.currentList?.defaultShopAreaId ?? null;
+      return areaForNewItem(ingredientName, areas, selectedAreaId.value, defaultAreaId);
     }
     function amountFields(quantity) {
       return quantity ? { quantity, quantityExplicit: true } : { quantity: null };
@@ -16030,7 +16055,7 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
         const parsed = parseIngredient(line);
         if (!parsed.name) continue;
         const explicitArea = selectedAreaId.value !== null;
-        const areaId = selectedAreaId.value ?? detectArea(parsed.name);
+        const areaId = areaFor(parsed.name);
         await itemsStore.create(props.listId, {
           name: parsed.name,
           ...amountFields(parsed.quantity),
@@ -16050,7 +16075,7 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
       const parsed = parseIngredient(trimmedName);
       if (!parsed.name) return;
       const explicitArea = selectedAreaId.value !== null;
-      const areaId = selectedAreaId.value ?? detectArea(parsed.name);
+      const areaId = areaFor(parsed.name);
       await itemsStore.create(props.listId, {
         name: parsed.name,
         ...amountFields(parsed.quantity),
@@ -16195,7 +16220,7 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ItemEditor = /* @__PURE__ */ _export_sfc$1(_sfc_main$c, [["__scopeId", "data-v-63a57c72"]]);
+const ItemEditor = /* @__PURE__ */ _export_sfc$1(_sfc_main$c, [["__scopeId", "data-v-75587dc1"]]);
 function formatListAsText(items) {
   return items.filter((item) => !item.checked).map((item) => {
     const parts = [];
@@ -16727,48 +16752,60 @@ const _hoisted_4$4 = { class: "area-settings__group-heading" };
 const _hoisted_5$2 = { class: "area-settings__desc" };
 const _hoisted_6$1 = {
   key: 0,
+  class: "area-settings__default"
+};
+const _hoisted_7$1 = {
+  class: "area-settings__default-label",
+  for: "area-settings-default"
+};
+const _hoisted_8$1 = ["value", "disabled"];
+const _hoisted_9$1 = { value: "" };
+const _hoisted_10$1 = ["value"];
+const _hoisted_11$1 = { class: "area-settings__default-hint" };
+const _hoisted_12$1 = {
+  key: 1,
   class: "area-settings__create"
 };
-const _hoisted_7$1 = ["placeholder", "onKeydown"];
-const _hoisted_8$1 = ["title"];
-const _hoisted_9$1 = ["disabled"];
-const _hoisted_10$1 = {
-  key: 1,
+const _hoisted_13$1 = ["placeholder", "onKeydown"];
+const _hoisted_14$1 = ["title"];
+const _hoisted_15$1 = ["disabled"];
+const _hoisted_16$1 = {
+  key: 2,
   class: "area-settings__copy"
 };
-const _hoisted_11$1 = { value: null };
-const _hoisted_12$1 = ["value"];
-const _hoisted_13$1 = ["disabled"];
-const _hoisted_14$1 = {
-  key: 2,
+const _hoisted_17$1 = { value: null };
+const _hoisted_18$1 = ["value"];
+const _hoisted_19$1 = ["disabled"];
+const _hoisted_20$1 = {
+  key: 3,
   class: "area-settings__loadlang"
 };
-const _hoisted_15$1 = ["disabled", "title"];
-const _hoisted_16$1 = { class: "area-settings__search" };
-const _hoisted_17$1 = ["placeholder"];
-const _hoisted_18$1 = ["onClick"];
-const _hoisted_19$1 = { class: "area-settings__section-toggle" };
-const _hoisted_20$1 = ["value", "title", "onInput"];
-const _hoisted_21$1 = ["onKeydown", "onBlur"];
-const _hoisted_22$1 = ["onDblclick"];
-const _hoisted_23$1 = ["title", "onClick"];
-const _hoisted_24$1 = { class: "area-settings__section-count" };
-const _hoisted_25$1 = ["disabled", "title", "onClick"];
-const _hoisted_26$1 = ["disabled", "title", "onClick"];
-const _hoisted_27$1 = ["title", "onClick"];
-const _hoisted_28$1 = {
+const _hoisted_21$1 = ["disabled", "title"];
+const _hoisted_22$1 = { class: "area-settings__search" };
+const _hoisted_23$1 = ["placeholder"];
+const _hoisted_24$1 = ["onClick"];
+const _hoisted_25$1 = { class: "area-settings__section-toggle" };
+const _hoisted_26$1 = ["value", "title", "onInput"];
+const _hoisted_27$1 = ["onKeydown", "onBlur"];
+const _hoisted_28$1 = ["onDblclick"];
+const _hoisted_29$1 = ["title", "onClick"];
+const _hoisted_30$1 = { class: "area-settings__section-count" };
+const _hoisted_31$1 = ["disabled", "title", "onClick"];
+const _hoisted_32$1 = ["disabled", "title", "onClick"];
+const _hoisted_33$1 = ["title", "onClick"];
+const _hoisted_34$1 = {
   key: 0,
   class: "area-settings__section-body"
 };
-const _hoisted_29$1 = {
+const _hoisted_35$1 = {
   key: 0,
   class: "area-settings__add"
 };
-const _hoisted_30$1 = ["onUpdate:modelValue", "placeholder", "onKeydown"];
-const _hoisted_31$1 = ["disabled", "onClick"];
-const _hoisted_32$1 = { class: "area-settings__keywords" };
-const _hoisted_33$1 = ["onClick"];
-const _hoisted_34$1 = {
+const _hoisted_36$1 = ["onUpdate:modelValue", "placeholder", "onKeydown"];
+const _hoisted_37$1 = ["disabled", "onClick"];
+const _hoisted_38$1 = { class: "area-settings__keywords" };
+const _hoisted_39$1 = ["onClick"];
+const _hoisted_40$1 = {
   key: 0,
   class: "area-settings__empty"
 };
@@ -16796,6 +16833,9 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
     const copyText = translate("shopping_list", "Copy");
     const loadLangText = translate("shopping_list", "Load keywords for my language");
     const loadLangHint = translate("shopping_list", "Adds your language's grocery keywords to the default areas, so items auto-sort correctly. Existing keywords are kept.");
+    const defaultAreaText = translate("shopping_list", "Default area");
+    const noDefaultAreaText = translate("shopping_list", "None");
+    const defaultAreaHint = translate("shopping_list", "Items that match no keyword go here.");
     const search = ref("");
     const newKeyword = ref({});
     const openSections = ref({});
@@ -16816,6 +16856,21 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
     const areas = computed(
       () => listId.value !== null ? shopAreasStore.areasByList[listId.value] ?? [] : []
     );
+    const savingDefault = ref(false);
+    const defaultAreaId = computed(() => {
+      const id = listsStore.currentList?.defaultShopAreaId ?? null;
+      return id !== null && areas.value.some((a) => a.id === id) ? id : null;
+    });
+    async function onDefaultAreaChange(event) {
+      const { value } = event.target;
+      if (listId.value === null || savingDefault.value) return;
+      savingDefault.value = true;
+      try {
+        await listsStore.setDefaultArea(listId.value, value === "" ? null : Number(value));
+      } finally {
+        savingDefault.value = false;
+      }
+    }
     const otherLists = computed(
       () => listsStore.lists.filter((l) => l.id !== listId.value).slice().sort((a, b) => a.title.localeCompare(b.title))
     );
@@ -16958,14 +17013,33 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
           createBaseVNode("h3", _hoisted_4$4, toDisplayString(unref(areasTitle)), 1),
           createBaseVNode("p", _hoisted_5$2, toDisplayString(unref(description)), 1)
         ]),
-        canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_6$1, [
+        areas.value.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_6$1, [
+          createBaseVNode("label", _hoisted_7$1, toDisplayString(unref(defaultAreaText)), 1),
+          createBaseVNode("select", {
+            id: "area-settings-default",
+            class: "area-settings__default-select",
+            value: defaultAreaId.value ?? "",
+            disabled: !canEdit.value || savingDefault.value,
+            onChange: onDefaultAreaChange
+          }, [
+            createBaseVNode("option", _hoisted_9$1, toDisplayString(unref(noDefaultAreaText)), 1),
+            (openBlock(true), createElementBlock(Fragment, null, renderList(areas.value, (a) => {
+              return openBlock(), createElementBlock("option", {
+                key: a.id,
+                value: a.id
+              }, toDisplayString(a.name), 9, _hoisted_10$1);
+            }), 128))
+          ], 40, _hoisted_8$1),
+          createBaseVNode("p", _hoisted_11$1, toDisplayString(unref(defaultAreaHint)), 1)
+        ])) : createCommentVNode("", true),
+        canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_12$1, [
           withDirectives(createBaseVNode("input", {
             "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => newAreaName.value = $event),
             type: "text",
             placeholder: unref(newAreaPlaceholder),
             class: "area-settings__create-input",
             onKeydown: withKeys(withModifiers(onCreateArea, ["prevent"]), ["enter"])
-          }, null, 40, _hoisted_7$1), [
+          }, null, 40, _hoisted_13$1), [
             [vModelText, newAreaName.value]
           ]),
           withDirectives(createBaseVNode("input", {
@@ -16973,26 +17047,26 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
             type: "color",
             class: "area-settings__create-color",
             title: unref(colorTitle)
-          }, null, 8, _hoisted_8$1), [
+          }, null, 8, _hoisted_14$1), [
             [vModelText, newAreaColor.value]
           ]),
           createBaseVNode("button", {
             class: "area-settings__create-btn",
             disabled: !newAreaName.value.trim(),
             onClick: onCreateArea
-          }, toDisplayString(unref(addAreaText)), 9, _hoisted_9$1)
+          }, toDisplayString(unref(addAreaText)), 9, _hoisted_15$1)
         ])) : createCommentVNode("", true),
-        canEdit.value && otherLists.value.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_10$1, [
+        canEdit.value && otherLists.value.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_16$1, [
           withDirectives(createBaseVNode("select", {
             "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => copySourceId.value = $event),
             class: "area-settings__copy-select"
           }, [
-            createBaseVNode("option", _hoisted_11$1, toDisplayString(unref(copyFromPlaceholder)), 1),
+            createBaseVNode("option", _hoisted_17$1, toDisplayString(unref(copyFromPlaceholder)), 1),
             (openBlock(true), createElementBlock(Fragment, null, renderList(otherLists.value, (l) => {
               return openBlock(), createElementBlock("option", {
                 key: l.id,
                 value: l.id
-              }, toDisplayString(l.title), 9, _hoisted_12$1);
+              }, toDisplayString(l.title), 9, _hoisted_18$1);
             }), 128))
           ], 512), [
             [vModelSelect, copySourceId.value]
@@ -17001,23 +17075,23 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
             class: "area-settings__copy-btn",
             disabled: copySourceId.value === null || copying.value,
             onClick: onCopyFrom
-          }, toDisplayString(unref(copyText)), 9, _hoisted_13$1)
+          }, toDisplayString(unref(copyText)), 9, _hoisted_19$1)
         ])) : createCommentVNode("", true),
-        canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_14$1, [
+        canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_20$1, [
           createBaseVNode("button", {
             class: "area-settings__loadlang-btn",
             disabled: loadingLang.value,
             title: unref(loadLangHint),
             onClick: onLoadLanguageKeywords
-          }, toDisplayString(unref(loadLangText)), 9, _hoisted_15$1)
+          }, toDisplayString(unref(loadLangText)), 9, _hoisted_21$1)
         ])) : createCommentVNode("", true),
-        createBaseVNode("div", _hoisted_16$1, [
+        createBaseVNode("div", _hoisted_22$1, [
           withDirectives(createBaseVNode("input", {
             "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => search.value = $event),
             type: "text",
             placeholder: unref(searchPlaceholder),
             class: "area-settings__search-input"
-          }, null, 8, _hoisted_17$1), [
+          }, null, 8, _hoisted_23$1), [
             [vModelText, search.value]
           ])
         ]),
@@ -17030,7 +17104,7 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
               class: "area-settings__section-header",
               onClick: ($event) => toggleSection(area.id)
             }, [
-              createBaseVNode("span", _hoisted_19$1, toDisplayString(openSections.value[area.id] ? "▾" : "▸"), 1),
+              createBaseVNode("span", _hoisted_25$1, toDisplayString(openSections.value[area.id] ? "▾" : "▸"), 1),
               canEdit.value ? (openBlock(), createElementBlock("input", {
                 key: 0,
                 type: "color",
@@ -17040,7 +17114,7 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
                 onClick: _cache[5] || (_cache[5] = withModifiers(() => {
                 }, ["stop"])),
                 onInput: ($event) => onColorChange(area.id, $event.target.value)
-              }, null, 40, _hoisted_20$1)) : (openBlock(), createElementBlock("span", {
+              }, null, 40, _hoisted_26$1)) : (openBlock(), createElementBlock("span", {
                 key: 1,
                 class: "area-settings__color-swatch",
                 style: normalizeStyle({ backgroundColor: area.color || "#9E9E9E" })
@@ -17060,59 +17134,59 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
                   withKeys(withModifiers(cancelRename, ["prevent"]), ["escape"])
                 ],
                 onBlur: ($event) => saveRename(area.id)
-              }, null, 40, _hoisted_21$1)), [
+              }, null, 40, _hoisted_27$1)), [
                 [vModelText, renameValue.value]
               ]) : (openBlock(), createElementBlock(Fragment, { key: 3 }, [
                 createBaseVNode("span", {
                   class: "area-settings__section-name",
                   onDblclick: withModifiers(($event) => canEdit.value && startRename(area), ["stop"])
-                }, toDisplayString(area.name), 41, _hoisted_22$1),
+                }, toDisplayString(area.name), 41, _hoisted_28$1),
                 canEdit.value ? (openBlock(), createElementBlock("button", {
                   key: 0,
                   class: "area-settings__action-btn area-settings__action-btn--rename",
                   title: unref(renameText),
                   onClick: withModifiers(($event) => startRename(area), ["stop"])
-                }, " ✎ ", 8, _hoisted_23$1)) : createCommentVNode("", true)
+                }, " ✎ ", 8, _hoisted_29$1)) : createCommentVNode("", true)
               ], 64)),
-              createBaseVNode("span", _hoisted_24$1, toDisplayString(filteredKeywords(area).length), 1),
+              createBaseVNode("span", _hoisted_30$1, toDisplayString(filteredKeywords(area).length), 1),
               canEdit.value ? (openBlock(), createElementBlock(Fragment, { key: 4 }, [
                 createBaseVNode("button", {
                   class: "area-settings__action-btn",
                   disabled: index2 === 0,
                   title: unref(moveUpText),
                   onClick: withModifiers(($event) => moveArea(index2, -1), ["stop"])
-                }, " ▲ ", 8, _hoisted_25$1),
+                }, " ▲ ", 8, _hoisted_31$1),
                 createBaseVNode("button", {
                   class: "area-settings__action-btn",
                   disabled: index2 === areas.value.length - 1,
                   title: unref(moveDownText),
                   onClick: withModifiers(($event) => moveArea(index2, 1), ["stop"])
-                }, " ▼ ", 8, _hoisted_26$1),
+                }, " ▼ ", 8, _hoisted_32$1),
                 createBaseVNode("button", {
                   class: "area-settings__action-btn area-settings__action-btn--delete",
                   title: unref(deleteText),
                   onClick: withModifiers(($event) => onDeleteArea(area), ["stop"])
-                }, " ✕ ", 8, _hoisted_27$1)
+                }, " ✕ ", 8, _hoisted_33$1)
               ], 64)) : createCommentVNode("", true)
-            ], 8, _hoisted_18$1),
-            openSections.value[area.id] ? (openBlock(), createElementBlock("div", _hoisted_28$1, [
-              canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_29$1, [
+            ], 8, _hoisted_24$1),
+            openSections.value[area.id] ? (openBlock(), createElementBlock("div", _hoisted_34$1, [
+              canEdit.value ? (openBlock(), createElementBlock("div", _hoisted_35$1, [
                 withDirectives(createBaseVNode("input", {
                   "onUpdate:modelValue": ($event) => newKeyword.value[area.id] = $event,
                   type: "text",
                   placeholder: unref(addPlaceholder),
                   class: "area-settings__add-input",
                   onKeydown: withKeys(withModifiers(($event) => onAddKeyword(area), ["prevent"]), ["enter"])
-                }, null, 40, _hoisted_30$1), [
+                }, null, 40, _hoisted_36$1), [
                   [vModelText, newKeyword.value[area.id]]
                 ]),
                 createBaseVNode("button", {
                   class: "area-settings__add-btn",
                   disabled: !newKeyword.value[area.id]?.trim(),
                   onClick: ($event) => onAddKeyword(area)
-                }, " + ", 8, _hoisted_31$1)
+                }, " + ", 8, _hoisted_37$1)
               ])) : createCommentVNode("", true),
-              createBaseVNode("div", _hoisted_32$1, [
+              createBaseVNode("div", _hoisted_38$1, [
                 (openBlock(true), createElementBlock(Fragment, null, renderList(filteredKeywords(area), (word) => {
                   return openBlock(), createElementBlock("span", {
                     key: word,
@@ -17123,10 +17197,10 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
                       key: 0,
                       class: "area-settings__keyword-remove",
                       onClick: ($event) => onRemoveKeyword(area, word)
-                    }, "✕", 8, _hoisted_33$1)) : createCommentVNode("", true)
+                    }, "✕", 8, _hoisted_39$1)) : createCommentVNode("", true)
                   ]);
                 }), 128)),
-                filteredKeywords(area).length === 0 ? (openBlock(), createElementBlock("span", _hoisted_34$1, toDisplayString(unref(noKeywordsText)), 1)) : createCommentVNode("", true)
+                filteredKeywords(area).length === 0 ? (openBlock(), createElementBlock("span", _hoisted_40$1, toDisplayString(unref(noKeywordsText)), 1)) : createCommentVNode("", true)
               ])
             ])) : createCommentVNode("", true)
           ]);
@@ -17135,7 +17209,7 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const AreaKeywordsSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$a, [["__scopeId", "data-v-08060dbd"]]);
+const AreaKeywordsSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$a, [["__scopeId", "data-v-03031226"]]);
 const _sfc_main$9 = /* @__PURE__ */ defineComponent({
   __name: "ListSortSettings",
   setup(__props) {
@@ -18907,7 +18981,7 @@ function usePush() {
   if (hasPushServer) {
     try {
       __vitePreload(async () => {
-        const { listen } = await import("./index-DxElMjqw.chunk.mjs").then((n) => n.i);
+        const { listen } = await import("./index-CtEecqbD.chunk.mjs").then((n) => n.i);
         return { listen };
       }, true ? __vite__mapDeps([0,1,2]) : void 0, import.meta.url).then(({ listen }) => {
         listen("shopping_list_item_update", () => {
