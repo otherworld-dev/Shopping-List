@@ -75,6 +75,32 @@ class ListController extends OCSController {
 		}
 	}
 
+	/**
+	 * The area this list's new items go to when no keyword places them;
+	 * shopAreaId null for none. The field has to be there: a request that
+	 * leaves it out is refused rather than read as "clear it".
+	 */
+	#[NoAdminRequired]
+	public function setDefaultArea(int $id): DataResponse {
+		$params = $this->request->getParams();
+		if (!array_key_exists('shopAreaId', $params)) {
+			return new DataResponse(['message' => 'shopAreaId is required (null for none)'], Http::STATUS_BAD_REQUEST);
+		}
+		$areaId = $params['shopAreaId'];
+		if ($areaId !== null && !self::isListId($areaId)) {
+			return new DataResponse(['message' => 'shopAreaId must be a shop area id or null'], Http::STATUS_BAD_REQUEST);
+		}
+		try {
+			return new DataResponse($this->service->setDefaultArea($id, $areaId === null ? null : (int)$areaId, $this->userId));
+		} catch (\InvalidArgumentException $e) {
+			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_BAD_REQUEST);
+		} catch (NotFoundException $e) {
+			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_NOT_FOUND);
+		} catch (NoPermissionException $e) {
+			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_FORBIDDEN);
+		}
+	}
+
 	#[NoAdminRequired]
 	public function destroy(int $id): DataResponse {
 		try {

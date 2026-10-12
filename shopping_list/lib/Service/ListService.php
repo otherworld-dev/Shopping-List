@@ -124,6 +124,38 @@ class ListService {
 	}
 
 	/**
+	 * Choose the area this list's new items go to when no keyword places
+	 * them, or null for none. It is the list's own setting, the same for
+	 * everyone on it, so anyone who can edit the list may change it.
+	 *
+	 * @throws NotFoundException
+	 * @throws NoPermissionException
+	 * @throws \InvalidArgumentException when the area is not one of this list's
+	 */
+	public function setDefaultArea(int $id, ?int $areaId, string $userId): ShoppingList {
+		$this->assertWriteAccess($id, $userId);
+		if ($areaId !== null) {
+			try {
+				$area = $this->shopAreaService->find($areaId);
+			} catch (NotFoundException) {
+				$area = null;
+			}
+			if ($area === null || $area->getListId() !== $id) {
+				throw new \InvalidArgumentException('Invalid shop area');
+			}
+		}
+		$list = $this->mapper->find($id);
+		$list->setDefaultAreaId($areaId);
+		$list->setUpdatedAt(new DateTime());
+		$list = $this->mapper->update($list);
+		$list->setIsOwner($list->getUserId() === $userId);
+		$list->setPermission($list->getIsOwner() ? 1 : $this->getPermission($id, $userId));
+		$this->applyPreference($list, $this->findPreference($id, $userId));
+		$this->pushService->notifyListUpdate($id, $userId);
+		return $list;
+	}
+
+	/**
 	 * Pin or unpin a list for this user only. Anyone who can see the list may
 	 * pin it; the others sharing it are not affected.
 	 *
