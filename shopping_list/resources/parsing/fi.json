@@ -58,7 +58,15 @@
 		"pcs",
 		"pkg",
 		"dag",
-		"dkg"
+		"dkg",
+		"jar",
+		"jars",
+		"tub",
+		"tubs",
+		"pot",
+		"pots",
+		"leaf",
+		"leaves"
 	],
 	"leadingUnits": [
 		"ripaus",

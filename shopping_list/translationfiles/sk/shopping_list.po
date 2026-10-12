@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-10-05 18:20\n"
+"PO-Revision-Date: 2026-10-11 18:12\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "Language: sk_SK\n"
@@ -14,8 +14,8 @@ msgstr ""
 "X-Crowdin-Project: shopping-list-for-nextcloud\n"
 "X-Crowdin-Project-ID: 896886\n"
 "X-Crowdin-Language: sk\n"
-"X-Crowdin-File: /[otherworld-dev.Shopping-List] main/shopping_list/translationfiles/templates/shopping_list.pot\n"
-"X-Crowdin-File-ID: 11\n"
+"X-Crowdin-File: /dev/shopping_list/translationfiles/templates/shopping_list.pot\n"
+"X-Crowdin-File-ID: 46\n"
 
 #: src/App.vue
 msgid "No list selected"
@@ -198,6 +198,10 @@ msgid "New list"
 msgstr "Nový zoznam"
 
 #: src/components/ListSidebar.vue
+msgid "List name"
+msgstr ""
+
+#: src/components/ListSidebar.vue
 msgid "Rename list"
 msgstr "Premenovať zoznam"
 
@@ -315,7 +319,7 @@ msgstr "Od A po Z"
 msgid "Most recent first"
 msgstr "Najnovšie ako prvé"
 
-#: src/components/ShareDialog.vue
+#: src/components/ListSidebar.vue src/components/ShareDialog.vue
 msgid "Share list"
 msgstr "Zdieľať zoznam"
 
@@ -780,6 +784,46 @@ msgstr "Vezmite si zoznamy so sebou na nákup: sprievodná aplikácia pre Androi
 msgid "Get it on Google Play"
 msgstr "Teraz na Google Play"
 
+#: src/components/BackupSettings.vue
+msgid "Backup"
+msgstr ""
+
+#: src/components/BackupSettings.vue
+msgid "A backup holds your own lists, their items, areas and tags. Shares are not included, and restoring adds lists rather than replacing the ones you have."
+msgstr ""
+
+#: src/components/BackupSettings.vue
+msgid "Download backup"
+msgstr ""
+
+#: src/components/BackupSettings.vue
+msgid "Restore from backup"
+msgstr ""
+
+#: src/components/BackupSettings.vue
+msgid "Restoring..."
+msgstr ""
+
+#: src/components/BackupSettings.vue
+msgid "That file could not be restored"
+msgstr ""
+
+#: src/components/BackupSettings.vue
+msgid "Restored %n list"
+msgid_plural "Restored %n lists"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: src/components/BackupSettings.vue
+msgid "Could not download the backup"
+msgstr ""
+
+#: lib/UserMigration/ShoppingListMigrator.php
+msgid "Your shopping lists, their items, areas and tags. Shares are not included."
+msgstr ""
+
 #: src/components/ListSortSettings.vue
 msgid "Sort lists"
 msgstr ""
@@ -794,5 +838,21 @@ msgstr ""
 
 #: src/stores/lists.ts
 msgid "Failed to save the list order"
+msgstr ""
+
+#: src/components/WhatsNewDialog.vue
+msgid "What's new in Shopping List"
+msgstr ""
+
+#: src/components/WhatsNewDialog.vue
+msgid "Read more"
+msgstr ""
+
+#: src/components/WhatsNewDialog.vue
+msgid "Got it"
+msgstr ""
+
+#: src/components/WhatsNewButton.vue
+msgid "What's new"
 msgstr ""
 

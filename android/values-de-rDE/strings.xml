@@ -9,6 +9,7 @@
     <string name="action_set">Set</string>
     <string name="action_share">Share</string>
     <string name="action_rename">Rename</string>
+    <string name="action_leave">Leave</string>
     <!-- Errors and notices -->
     <string name="error_offline">You\'re offline, check your connection and try again.</string>
     <string name="error_no_permission">You don\'t have permission to do that.</string>
@@ -18,6 +19,12 @@
     <string name="error_item_not_synced">This item hasn\'t synced yet, try again in a moment.</string>
     <string name="error_move_offline">You\'re offline, moving items needs a connection.</string>
     <string name="error_move_failed">Couldn\'t move the item.</string>
+    <string name="error_photo_offline">You\'re offline, adding or removing photos needs a connection.</string>
+    <string name="error_photo_too_large">That photo is too large.</string>
+    <string name="error_photo_unsupported">That file isn\'t a picture the server can use.</string>
+    <string name="error_photo_upload_failed">Couldn\'t add the photo.</string>
+    <string name="error_photo_remove_failed">Couldn\'t remove the photo.</string>
+    <string name="error_no_camera">There\'s no camera app on this phone.</string>
     <string name="notice_item_moved">Moved “%1$s” to %2$s</string>
     <string name="notice_keywords_added">Keywords for your language added</string>
     <!-- Content descriptions -->
@@ -25,6 +32,7 @@
     <string name="cd_more">More</string>
     <string name="cd_refresh">Refresh</string>
     <string name="cd_delete">Delete</string>
+    <string name="cd_item_photo">Photo of the item</string>
     <string name="cd_remove">Remove</string>
     <string name="cd_list_options">List options</string>
     <!-- Login -->
@@ -98,14 +106,59 @@
     <string name="join_password_label">Password</string>
     <string name="join_password_wrong">That password isn\'t right.</string>
     <string name="join_open">Open list</string>
+    <string name="join_guest_name_label">Your name (optional)</string>
+    <string name="join_guest_name_hint">Shown to others beside what you add and tick.</string>
     <string name="join_link_invalid">This isn\'t a Shopping List share link.</string>
-    <string name="login_shared_hint">Someone shared a list with you? Tap the link they sent and choose Open in the app.</string>
+    <!-- Beside a name on an item: the person isn't a Nextcloud user, just someone with the link -->
+    <string name="item_by_guest">guest</string>
+    <string name="join_too_many_tries">Too many tries. Wait a minute and try again.</string>
+    <!-- Join a shared list: a link, an invite or a code typed into the app -->
+    <string name="join_entry_title">Join a shared list</string>
+    <string name="join_entry_help">Paste the link or invite you were sent, or type the code.</string>
+    <string name="join_entry_input_label">Link or invite</string>
+    <string name="join_entry_server_label">Server</string>
+    <string name="join_entry_server_placeholder">cloud.example.com</string>
+    <string name="join_entry_continue">Continue</string>
+    <string name="join_entry_invalid">That isn\'t a share link or invite code.</string>
+    <string name="join_entry_insecure">This server uses http, which the app can\'t connect to. Ask for an https link.</string>
+    <string name="join_entry_server_needed">Enter the server the code is for.</string>
+    <string name="join_entry_server_invalid">That isn\'t a server address.</string>
+    <string name="join_entry_codes_unsupported">This server doesn\'t support invite codes yet. Ask for the link instead.</string>
+    <string name="join_entry_code_not_found">That code doesn\'t work. Check it, or ask for a new one.</string>
+    <string name="join_entry_app_missing">Couldn\'t find Shopping List on that server.</string>
+    <!-- Local mode: lists kept on this phone, no account -->
+    <string name="login_use_without_account">Use without an account</string>
+    <string name="list_on_this_phone">On this phone</string>
+    <string name="action_upload_to_account">Upload to account</string>
+    <string name="upload_dialog_title">Add your lists to this account?</string>
+    <plurals name="upload_dialog_body">
+        <item quantity="one">You have one list on this phone. Upload it to your account on %2$s, or keep it on this phone only.</item>
+        <item quantity="other">You have %1$d lists on this phone. Upload them to your account on %2$s, or keep them on this phone only.</item>
+    </plurals>
+    <string name="action_upload">Upload</string>
+    <string name="action_keep_on_phone">Keep on phone</string>
     <!-- Settings -->
     <string name="settings_title">Settings</string>
     <string name="settings_sort_lists">Sort lists</string>
     <string name="sort_recently_updated">Recently updated</string>
     <string name="sort_custom">Custom (drag to reorder)</string>
+    <string name="settings_names">Names on items</string>
+    <string name="settings_show_own_name">Show my name on items</string>
+    <string name="settings_guest_name">Your name on shared lists (optional)</string>
+    <string name="settings_guest_name_hint">Shown to others beside what you add and tick on lists you opened from a link.</string>
     <string name="settings_theme">Theme</string>
+    <string name="settings_item_images">Item images</string>
+    <string name="settings_show_item_images">Show item images</string>
+    <string name="settings_item_images_hint">Add a photo to an item from its edit window. Photos are part of the list, so everyone with access can see them. This switch only changes what you see on this phone.</string>
+    <string name="settings_item_images_old_server">Your server needs Shopping List 1.9.0 or later to add photos.</string>
+    <!-- Item photos -->
+    <string name="photo_take">Take photo</string>
+    <string name="photo_choose">Choose photo</string>
+    <string name="photo_replace">Replace photo</string>
+    <string name="photo_remove">Remove photo</string>
+    <string name="photo_load_failed">Could not load image</string>
+    <string name="dialog_remove_photo_title">Remove photo?</string>
+    <string name="dialog_remove_photo_message">The photo will also be removed from other items called %1$s.</string>
     <!-- Items -->
     <string name="menu_refresh">Refresh</string>
     <string name="menu_manage_areas">Manage areas</string>
@@ -173,10 +226,13 @@
     <string name="label_user">User</string>
     <string name="label_group">Group</string>
     <string name="label_can_edit">Can edit</string>
+    <string name="label_show_member_names">Show members\' names</string>
     <string name="label_edit">Edit</string>
     <string name="link_create">Create public link</string>
     <string name="link_public">Public link</string>
     <string name="link_copy">Copy link</string>
+    <string name="link_code">Code</string>
+    <string name="link_copy_invite">Copy invite</string>
     <string name="link_remove_password">Remove password</string>
     <string name="link_set_password">Set password</string>
     <string name="link_delete">Delete link</string>
