@@ -1,5 +1,14 @@
 [
 	{
+		"version": "1.12.0",
+		"title": "A default area for each list",
+		"items": [
+			"A list can have a default area. Pick one under Default area in the list's settings, and an item that matches no keyword goes there rather than being left uncategorised.",
+			"The default belongs to the list, so everyone sharing it gets the same one, and it applies to items added from a public link and the Android app as well."
+		],
+		"link": "https://github.com/otherworld-dev/Shopping-List/blob/main/shopping_list/CHANGELOG.md"
+	},
+	{
 		"version": "1.11.0",
 		"title": "Backups, named lists and remembered amounts",
 		"items": [
