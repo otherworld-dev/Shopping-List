@@ -197,6 +197,12 @@ OC.L10N.register(
     "Restore from backup": "Obnovit ze zálohy",
     "Restoring...": "Obnovování...",
     "That file could not be restored": "Tento soubor se nepodařilo obnovit",
+    "_Restored %n list_::_Restored %n lists_": [
+        "Obnoven %n seznam",
+        "Obnoveny %n seznamy",
+        "Obnoveno %n seznamů",
+        "Obnoveno %n seznamů"
+    ],
     "Could not download the backup": "Zálohu se nepodařilo stáhnout",
     "Your shopping lists, their items, areas and tags. Shares are not included.": "Vaše nákupní seznamy, jejich položky, oblasti a štítky. Sdílení nejsou zahrnuta.",
     "Sort lists": "Seřadit seznamy",

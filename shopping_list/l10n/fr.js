@@ -197,6 +197,10 @@ OC.L10N.register(
     "Restore from backup": "Restaurer à partir d'une sauvegarde",
     "Restoring...": "Restauration...",
     "That file could not be restored": "Ce fichier n'a pas pu être restauré",
+    "_Restored %n list_::_Restored %n lists_": [
+        "%n liste restaurée",
+        "%n listes restaurées"
+    ],
     "Could not download the backup": "Impossible de télécharger la sauvegarde",
     "Your shopping lists, their items, areas and tags. Shares are not included.": "Vos listes de courses, leurs articles, allées et balises. Les partages ne sont pas inclus.",
     "Sort lists": "Trier les listes",

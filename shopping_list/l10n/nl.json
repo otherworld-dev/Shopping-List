@@ -196,6 +196,10 @@
         "Restore from backup": "Herstellen vanuit back-up",
         "Restoring...": "Herstellen...",
         "That file could not be restored": "Dat bestand kon niet worden hersteld",
+        "_Restored %n list_::_Restored %n lists_": [
+            "%n lijst hersteld",
+            "%n lijsten hersteld"
+        ],
         "Could not download the backup": "Kan de back-up niet downloaden",
         "Your shopping lists, their items, areas and tags. Shares are not included.": "Je boodschappenlijsten met hun items, afdelingen en tags. Delingen zijn niet inbegrepen.",
         "Sort lists": "Lijsten sorteren",

@@ -196,6 +196,12 @@
         "Restore from backup": "Obnoviť zo zálohy",
         "Restoring...": "Obnovuje sa...",
         "That file could not be restored": "Tento súbor sa nepodarilo obnoviť",
+        "_Restored %n list_::_Restored %n lists_": [
+            "Obnovený %n zoznam",
+            "Obnovené %n zoznamy",
+            "Obnovených %n zoznamov",
+            "Obnovených %n zoznamov"
+        ],
         "Could not download the backup": "Zálohu sa nepodarilo stiahnuť",
         "Your shopping lists, their items, areas and tags. Shares are not included.": "Vaše nákupné zoznamy, ich položky, oblasti a značky. Zdieľania nie sú zahrnuté.",
         "Sort lists": "Zoradiť zoznamy",
