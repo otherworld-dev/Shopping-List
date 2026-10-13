@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-10-11 18:12\n"
+"PO-Revision-Date: 2026-10-13 00:17\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -55,7 +55,7 @@ msgstr "Deze gedeelde lijst bestaat niet meer of is verlopen."
 
 #: src/PublicApp.vue
 msgid "Open in the app"
-msgstr ""
+msgstr "Openen in de app"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Back to list"
@@ -123,7 +123,7 @@ msgstr "Voeg een item toe aan de lijst..."
 
 #: src/components/PublicListView.vue
 msgid "Your name (optional)"
-msgstr ""
+msgstr "Je naam (optioneel)"
 
 #: src/components/ItemEditor.vue
 msgid "Add an item or paste a list..."
@@ -199,7 +199,7 @@ msgstr "Nieuwe lijst"
 
 #: src/components/ListSidebar.vue
 msgid "List name"
-msgstr ""
+msgstr "Lijstnaam"
 
 #: src/components/ListSidebar.vue
 msgid "Rename list"
@@ -405,39 +405,39 @@ msgstr "Openbare link verwijderen"
 
 #: src/components/ShareDialog.vue
 msgid "Show QR code"
-msgstr ""
+msgstr "QR-code tonen"
 
 #: src/components/ShareDialog.vue
 msgid "Hide QR code"
-msgstr ""
+msgstr "QR-code verbergen"
 
 #: src/components/ShareDialog.vue
 msgid "QR code of the public link"
-msgstr ""
+msgstr "QR-code van de openbare link"
 
 #: src/components/ShareDialog.vue
 msgid "Invite code"
-msgstr ""
+msgstr "Uitnodigingscode"
 
 #: src/components/ShareDialog.vue
 msgid "Server"
-msgstr ""
+msgstr "Server"
 
 #: src/components/ShareDialog.vue
 msgid "Code"
-msgstr ""
+msgstr "Code"
 
 #: src/components/ShareDialog.vue
 msgid "Copy invite"
-msgstr ""
+msgstr "Uitnodiging kopiëren"
 
 #: src/components/ShareDialog.vue
 msgid "Type these into the Shopping List Android app to join without the link."
-msgstr ""
+msgstr "Voer deze gegevens in de Shopping List Android-app in om zonder de link deel te nemen."
 
 #: src/components/ShareDialog.vue
 msgid "Show members' names"
-msgstr ""
+msgstr "Namen van leden tonen"
 
 #: src/components/TagInput.vue
 msgid "Add tags..."
@@ -555,6 +555,18 @@ msgstr "Trefwoorden voor mijn taal laden"
 msgid "Adds your language's grocery keywords to the default areas, so items auto-sort correctly. Existing keywords are kept."
 msgstr "Voegt de boodschappentrefwoorden van je taal toe aan de standaardafdelingen, zodat items automatisch goed worden ingedeeld. Bestaande trefwoorden blijven behouden."
 
+#: src/components/AreaKeywordsSettings.vue
+msgid "Default area"
+msgstr "Standaardafdeling"
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "None"
+msgstr "Geen"
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Items that match no keyword go here."
+msgstr "Items die bij geen enkel trefwoord passen, komen hier terecht."
+
 #: src/stores/shopAreas.ts
 msgid "Keywords for your language added"
 msgstr "Trefwoorden voor je taal toegevoegd"
@@ -662,7 +674,7 @@ msgstr "Afbeelding bekijken"
 #. Marks a name next to an item as someone without an account on a public link
 #: src/components/ItemRow.vue src/components/PublicListView.vue
 msgid "guest"
-msgstr ""
+msgstr "gast"
 
 #: src/components/ItemRow.vue
 msgid "Uploading image…"
@@ -746,15 +758,15 @@ msgstr "Voeg via het menu van een item een foto toe, of plak of sleep er een op 
 
 #: src/components/NameSettings.vue
 msgid "Names"
-msgstr ""
+msgstr "Namen"
 
 #: src/components/NameSettings.vue
 msgid "Show my name on items"
-msgstr ""
+msgstr "Mijn naam bij items tonen"
 
 #: src/components/NameSettings.vue
 msgid "Your name always shows to everyone else. This switch only changes what you see."
-msgstr ""
+msgstr "Je naam is altijd zichtbaar voor alle anderen. Deze schakelaar verandert alleen wat jij ziet."
 
 #: src/components/ItemImagesSettings.vue src/stores/lists.ts
 msgid "Failed to save setting"
@@ -786,71 +798,71 @@ msgstr "Ontdek het op Google Play"
 
 #: src/components/BackupSettings.vue
 msgid "Backup"
-msgstr ""
+msgstr "Back-up"
 
 #: src/components/BackupSettings.vue
 msgid "A backup holds your own lists, their items, areas and tags. Shares are not included, and restoring adds lists rather than replacing the ones you have."
-msgstr ""
+msgstr "Een back-up bevat je eigen lijsten met hun items, afdelingen en tags. Delingen zijn niet inbegrepen, en bij herstellen worden lijsten toegevoegd in plaats van de bestaande te vervangen."
 
 #: src/components/BackupSettings.vue
 msgid "Download backup"
-msgstr ""
+msgstr "Back-up downloaden"
 
 #: src/components/BackupSettings.vue
 msgid "Restore from backup"
-msgstr ""
+msgstr "Herstellen vanuit back-up"
 
 #: src/components/BackupSettings.vue
 msgid "Restoring..."
-msgstr ""
+msgstr "Herstellen..."
 
 #: src/components/BackupSettings.vue
 msgid "That file could not be restored"
-msgstr ""
+msgstr "Dat bestand kon niet worden hersteld"
 
 #: src/components/BackupSettings.vue
 msgid "Restored %n list"
 msgid_plural "Restored %n lists"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%n lijst hersteld"
+msgstr[1] "%n lijsten hersteld"
 
 #: src/components/BackupSettings.vue
 msgid "Could not download the backup"
-msgstr ""
+msgstr "Kan de back-up niet downloaden"
 
 #: lib/UserMigration/ShoppingListMigrator.php
 msgid "Your shopping lists, their items, areas and tags. Shares are not included."
-msgstr ""
+msgstr "Je boodschappenlijsten met hun items, afdelingen en tags. Delingen zijn niet inbegrepen."
 
 #: src/components/ListSortSettings.vue
 msgid "Sort lists"
-msgstr ""
+msgstr "Lijsten sorteren"
 
 #: src/components/ListSortSettings.vue
 msgid "Recently updated"
-msgstr ""
+msgstr "Recent bijgewerkt"
 
 #: src/components/ListSortSettings.vue
 msgid "Custom (drag to reorder)"
-msgstr ""
+msgstr "Aangepast (sleep om te herschikken)"
 
 #: src/stores/lists.ts
 msgid "Failed to save the list order"
-msgstr ""
+msgstr "Lijstvolgorde opslaan mislukt"
 
 #: src/components/WhatsNewDialog.vue
 msgid "What's new in Shopping List"
-msgstr ""
+msgstr "Wat is er nieuw in Shopping List"
 
 #: src/components/WhatsNewDialog.vue
 msgid "Read more"
-msgstr ""
+msgstr "Meer lezen"
 
 #: src/components/WhatsNewDialog.vue
 msgid "Got it"
-msgstr ""
+msgstr "Begrepen"
 
 #: src/components/WhatsNewButton.vue
 msgid "What's new"
-msgstr ""
+msgstr "Wat is er nieuw"
 
