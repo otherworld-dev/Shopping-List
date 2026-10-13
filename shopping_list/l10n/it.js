@@ -197,6 +197,10 @@ OC.L10N.register(
     "Restore from backup": "Ripristina da backup",
     "Restoring...": "Ripristino in corso...",
     "That file could not be restored": "Impossibile ripristinare questo file",
+    "_Restored %n list_::_Restored %n lists_": [
+        "%n lista ripristinata",
+        "%n liste ripristinate"
+    ],
     "Could not download the backup": "Impossibile scaricare il backup",
     "Your shopping lists, their items, areas and tags. Shares are not included.": "Le tue liste della spesa con i relativi oggetti, aree e tag. Le condivisioni non sono incluse.",
     "Sort lists": "Ordina liste",

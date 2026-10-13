@@ -196,6 +196,10 @@
         "Restore from backup": "Aus Sicherung wiederherstellen",
         "Restoring...": "Wird wiederhergestellt...",
         "That file could not be restored": "Diese Datei konnte nicht wiederhergestellt werden",
+        "_Restored %n list_::_Restored %n lists_": [
+            "%n Liste wiederhergestellt",
+            "%n Listen wiederhergestellt"
+        ],
         "Could not download the backup": "Die Sicherung konnte nicht heruntergeladen werden",
         "Your shopping lists, their items, areas and tags. Shares are not included.": "Deine Einkaufslisten mit ihren Artikeln, Kategorien und Tags. Freigaben sind nicht enthalten.",
         "Sort lists": "Listen sortieren",

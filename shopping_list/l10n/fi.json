@@ -196,6 +196,10 @@
         "Restore from backup": "Palauta varmuuskopiosta",
         "Restoring...": "Palautetaan...",
         "That file could not be restored": "Tiedostoa ei voitu palauttaa",
+        "_Restored %n list_::_Restored %n lists_": [
+            "Palautettiin %n lista",
+            "Palautettiin %n listaa"
+        ],
         "Could not download the backup": "Varmuuskopion lataaminen epäonnistui",
         "Your shopping lists, their items, areas and tags. Shares are not included.": "Ostoslistasi sekä niiden tuotteet, osastot ja tunnisteet. Jaot eivät sisälly.",
         "Sort lists": "Järjestä listat",
