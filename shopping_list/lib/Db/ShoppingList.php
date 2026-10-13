@@ -16,12 +16,16 @@ use OCP\AppFramework\Db\Entity;
  * @method void setCreatedAt(\DateTime $createdAt)
  * @method \DateTime getUpdatedAt()
  * @method void setUpdatedAt(\DateTime $updatedAt)
+ * @method int|null getDefaultAreaId()
+ * @method void setDefaultAreaId(?int $defaultAreaId)
  */
 class ShoppingList extends Entity implements JsonSerializable {
 	protected $userId;
 	protected $title;
 	protected $createdAt;
 	protected $updatedAt;
+	/** The shop area a new item goes to when no keyword puts it anywhere, or null for none. */
+	protected $defaultAreaId;
 
 	/** @var int Computed permission level for current user */
 	private int $permission = 1;
@@ -39,6 +43,7 @@ class ShoppingList extends Entity implements JsonSerializable {
 		$this->addType('id', 'integer');
 		$this->addType('createdAt', 'datetime');
 		$this->addType('updatedAt', 'datetime');
+		$this->addType('defaultAreaId', 'integer');
 	}
 
 	public function setPermission(int $permission): void {
@@ -82,6 +87,7 @@ class ShoppingList extends Entity implements JsonSerializable {
 			'isOwner' => $this->isOwner,
 			'isPinned' => $this->isPinned,
 			'position' => $this->position,
+			'defaultShopAreaId' => $this->defaultAreaId,
 			'createdAt' => $this->createdAt?->format(\DateTimeInterface::ATOM),
 			'updatedAt' => $this->updatedAt?->format(\DateTimeInterface::ATOM),
 		];
