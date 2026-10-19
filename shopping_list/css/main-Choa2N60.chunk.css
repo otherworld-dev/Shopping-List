@@ -730,12 +730,12 @@
 }
 }
 
-.area-settings[data-v-03031226] {
+.area-settings[data-v-696d08c1] {
 	padding: 20px;
 	max-width: 800px;
 	margin: 0 auto;
 }
-.area-settings__back[data-v-03031226] {
+.area-settings__back[data-v-696d08c1] {
 	background: none;
 	border: none;
 	color: var(--color-primary-element);
@@ -744,20 +744,20 @@
 	font-size: 0.9em;
 	margin-bottom: 8px;
 }
-.area-settings__back[data-v-03031226]:hover {
+.area-settings__back[data-v-696d08c1]:hover {
 	text-decoration: underline;
 }
-.area-settings__header[data-v-03031226] {
+.area-settings__header[data-v-696d08c1] {
 	margin-bottom: 16px;
 }
-.area-settings__header h2[data-v-03031226] {
+.area-settings__header h2[data-v-696d08c1] {
 	margin: 0 0 4px;
 	font-size: 1.4em;
 	font-weight: 700;
 }
 
 /* The list this page belongs to, beside the title */
-.area-settings__list[data-v-03031226] {
+.area-settings__list[data-v-696d08c1] {
 	margin-inline-start: 8px;
 	font-size: 0.7em;
 	font-weight: 400;
@@ -765,25 +765,25 @@
 }
 
 /* Heading of a group of settings on this page (area-settings__section is the collapsible area card) */
-.area-settings__group-heading[data-v-03031226] {
+.area-settings__group-heading[data-v-696d08c1] {
 	margin: 12px 0 4px;
 	font-size: 1.1em;
 	font-weight: 600;
 }
-.area-settings__desc[data-v-03031226] {
+.area-settings__desc[data-v-696d08c1] {
 	margin: 0;
 	color: var(--color-text-maxcontrast);
 	font-size: 0.9em;
 }
 
 /* Create new area */
-.area-settings__create[data-v-03031226] {
+.area-settings__create[data-v-696d08c1] {
 	display: flex;
 	gap: 8px;
 	margin-bottom: 16px;
 	align-items: center;
 }
-.area-settings__create-input[data-v-03031226] {
+.area-settings__create-input[data-v-696d08c1] {
 	flex: 1;
 	height: 36px;
 	padding: 0 12px;
@@ -795,14 +795,14 @@
 	outline: none;
 	box-sizing: border-box;
 }
-.area-settings__create-input[data-v-03031226]:focus {
+.area-settings__create-input[data-v-696d08c1]:focus {
 	border-color: var(--color-primary-element);
 }
-.area-settings__create-input[data-v-03031226]::placeholder {
+.area-settings__create-input[data-v-696d08c1]::placeholder {
 	color: var(--color-text-maxcontrast);
 	font-style: italic;
 }
-.area-settings__create-color[data-v-03031226] {
+.area-settings__create-color[data-v-696d08c1] {
 	width: 36px;
 	height: 36px;
 	padding: 2px;
@@ -811,7 +811,7 @@
 	background: var(--color-main-background);
 	cursor: pointer;
 }
-.area-settings__create-btn[data-v-03031226] {
+.area-settings__create-btn[data-v-696d08c1] {
 	height: 36px;
 	padding: 0 16px;
 	border: none;
@@ -823,20 +823,20 @@
 	cursor: pointer;
 	white-space: nowrap;
 }
-.area-settings__create-btn[data-v-03031226]:disabled {
+.area-settings__create-btn[data-v-696d08c1]:disabled {
 	opacity: 0.4;
 	cursor: not-allowed;
 }
-.area-settings__default[data-v-03031226] {
+.area-settings__default[data-v-696d08c1] {
 	margin-bottom: 16px;
 }
-.area-settings__default-label[data-v-03031226] {
+.area-settings__default-label[data-v-696d08c1] {
 	display: block;
 	margin-bottom: 4px;
 	font-size: 0.9em;
 	font-weight: 600;
 }
-.area-settings__default-select[data-v-03031226] {
+.area-settings__default-select[data-v-696d08c1] {
 	width: 100%;
 	height: 36px;
 	padding: 0 12px;
@@ -849,22 +849,22 @@
 	cursor: pointer;
 	box-sizing: border-box;
 }
-.area-settings__default-select[data-v-03031226]:disabled {
+.area-settings__default-select[data-v-696d08c1]:disabled {
 	opacity: 0.6;
 	cursor: not-allowed;
 }
-.area-settings__default-hint[data-v-03031226] {
+.area-settings__default-hint[data-v-696d08c1] {
 	margin: 4px 0 0;
 	color: var(--color-text-maxcontrast);
 	font-size: 0.85em;
 }
-.area-settings__copy[data-v-03031226] {
+.area-settings__copy[data-v-696d08c1] {
 	display: flex;
 	gap: 8px;
 	margin-bottom: 16px;
 	align-items: center;
 }
-.area-settings__copy-select[data-v-03031226] {
+.area-settings__copy-select[data-v-696d08c1] {
 	flex: 1;
 	min-width: 0;
 	height: 36px;
@@ -878,7 +878,7 @@
 	cursor: pointer;
 	box-sizing: border-box;
 }
-.area-settings__copy-btn[data-v-03031226] {
+.area-settings__copy-btn[data-v-696d08c1] {
 	height: 36px;
 	padding: 0 16px;
 	border: 2px solid var(--color-border);
@@ -890,14 +890,14 @@
 	cursor: pointer;
 	white-space: nowrap;
 }
-.area-settings__copy-btn[data-v-03031226]:disabled {
+.area-settings__copy-btn[data-v-696d08c1]:disabled {
 	opacity: 0.4;
 	cursor: not-allowed;
 }
-.area-settings__loadlang[data-v-03031226] {
+.area-settings__loadlang[data-v-696d08c1] {
 	margin-bottom: 16px;
 }
-.area-settings__loadlang-btn[data-v-03031226] {
+.area-settings__loadlang-btn[data-v-696d08c1] {
 	width: 100%;
 	height: 36px;
 	padding: 0 16px;
@@ -909,16 +909,16 @@
 	font-weight: 600;
 	cursor: pointer;
 }
-.area-settings__loadlang-btn[data-v-03031226]:disabled {
+.area-settings__loadlang-btn[data-v-696d08c1]:disabled {
 	opacity: 0.4;
 	cursor: not-allowed;
 }
 
 /* Search */
-.area-settings__search[data-v-03031226] {
+.area-settings__search[data-v-696d08c1] {
 	margin-bottom: 16px;
 }
-.area-settings__search-input[data-v-03031226] {
+.area-settings__search-input[data-v-696d08c1] {
 	width: 100%;
 	height: 36px;
 	padding: 0 12px;
@@ -930,22 +930,22 @@
 	outline: none;
 	box-sizing: border-box;
 }
-.area-settings__search-input[data-v-03031226]:focus {
+.area-settings__search-input[data-v-696d08c1]:focus {
 	border-color: var(--color-primary-element);
 }
-.area-settings__search-input[data-v-03031226]::placeholder {
+.area-settings__search-input[data-v-696d08c1]::placeholder {
 	color: var(--color-text-maxcontrast);
 	font-style: italic;
 }
 
 /* Section */
-.area-settings__section[data-v-03031226] {
+.area-settings__section[data-v-696d08c1] {
 	border: 1px solid var(--color-border);
 	border-radius: var(--border-radius-large);
 	margin-bottom: 8px;
 	overflow: hidden;
 }
-.area-settings__section-header[data-v-03031226] {
+.area-settings__section-header[data-v-696d08c1] {
 	display: flex;
 	align-items: center;
 	gap: 6px;
@@ -954,17 +954,17 @@
 	user-select: none;
 	background: var(--color-background-dark);
 }
-.area-settings__section-header[data-v-03031226]:hover {
+.area-settings__section-header[data-v-696d08c1]:hover {
 	background: var(--color-background-hover);
 }
-.area-settings__section-toggle[data-v-03031226] {
+.area-settings__section-toggle[data-v-696d08c1] {
 	font-size: 0.85em;
 	color: var(--color-text-maxcontrast);
 	flex: 0 0 auto;
 }
 
 /* Color swatch in header */
-.area-settings__color-input[data-v-03031226] {
+.area-settings__color-input[data-v-696d08c1] {
 	width: 24px;
 	height: 24px;
 	padding: 1px;
@@ -974,14 +974,14 @@
 	cursor: pointer;
 	flex: 0 0 auto;
 }
-.area-settings__color-swatch[data-v-03031226] {
+.area-settings__color-swatch[data-v-696d08c1] {
 	width: 24px;
 	height: 24px;
 	border: 1px solid var(--color-border-dark);
 	border-radius: 50%;
 	flex: 0 0 auto;
 }
-.area-settings__section-name[data-v-03031226] {
+.area-settings__section-name[data-v-696d08c1] {
 	font-weight: 600;
 	font-size: 0.9em;
 	flex: 1;
@@ -990,7 +990,7 @@
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
-.area-settings__rename-input[data-v-03031226] {
+.area-settings__rename-input[data-v-696d08c1] {
 	flex: 1;
 	height: 28px;
 	padding: 0 8px;
@@ -1003,14 +1003,14 @@
 	outline: none;
 	min-width: 0;
 }
-.area-settings__section-count[data-v-03031226] {
+.area-settings__section-count[data-v-696d08c1] {
 	font-size: 0.8em;
 	color: var(--color-text-maxcontrast);
 	flex: 0 0 auto;
 }
 
 /* Action buttons in header (rename, reorder, delete) */
-.area-settings__action-btn[data-v-03031226] {
+.area-settings__action-btn[data-v-696d08c1] {
 	background: none;
 	border: none;
 	color: var(--color-text-maxcontrast);
@@ -1023,33 +1023,33 @@
 	flex: 0 0 auto;
 	line-height: 1;
 }
-.area-settings__section-header:hover .area-settings__action-btn[data-v-03031226] {
+.area-settings__section-header:hover .area-settings__action-btn[data-v-696d08c1] {
 	opacity: 1;
 }
-.area-settings__action-btn[data-v-03031226]:disabled {
+.area-settings__action-btn[data-v-696d08c1]:disabled {
 	opacity: 0 !important;
 	cursor: default;
 }
-.area-settings__section-header:hover .area-settings__action-btn[data-v-03031226]:disabled {
+.area-settings__section-header:hover .area-settings__action-btn[data-v-696d08c1]:disabled {
 	opacity: 0.25 !important;
 }
-.area-settings__action-btn--rename[data-v-03031226]:hover {
+.area-settings__action-btn--rename[data-v-696d08c1]:hover {
 	color: var(--color-primary-element);
 }
-.area-settings__action-btn--delete[data-v-03031226]:hover {
+.area-settings__action-btn--delete[data-v-696d08c1]:hover {
 	color: var(--color-error);
 }
 
 /* Section body (keywords) */
-.area-settings__section-body[data-v-03031226] {
+.area-settings__section-body[data-v-696d08c1] {
 	padding: 10px 14px;
 }
-.area-settings__add[data-v-03031226] {
+.area-settings__add[data-v-696d08c1] {
 	display: flex;
 	gap: 6px;
 	margin-bottom: 10px;
 }
-.area-settings__add-input[data-v-03031226] {
+.area-settings__add-input[data-v-696d08c1] {
 	flex: 1;
 	height: 30px;
 	padding: 0 10px;
@@ -1060,14 +1060,14 @@
 	font-size: 0.85em;
 	outline: none;
 }
-.area-settings__add-input[data-v-03031226]:focus {
+.area-settings__add-input[data-v-696d08c1]:focus {
 	border-color: var(--color-primary-element);
 }
-.area-settings__add-input[data-v-03031226]::placeholder {
+.area-settings__add-input[data-v-696d08c1]::placeholder {
 	color: var(--color-text-maxcontrast);
 	font-style: italic;
 }
-.area-settings__add-btn[data-v-03031226] {
+.area-settings__add-btn[data-v-696d08c1] {
 	width: 30px;
 	height: 30px;
 	border: none;
@@ -1078,16 +1078,16 @@
 	font-weight: 700;
 	cursor: pointer;
 }
-.area-settings__add-btn[data-v-03031226]:disabled {
+.area-settings__add-btn[data-v-696d08c1]:disabled {
 	opacity: 0.4;
 	cursor: not-allowed;
 }
-.area-settings__keywords[data-v-03031226] {
+.area-settings__keywords[data-v-696d08c1] {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 6px;
 }
-.area-settings__keyword[data-v-03031226] {
+.area-settings__keyword[data-v-696d08c1] {
 	display: inline-flex;
 	align-items: center;
 	gap: 4px;
@@ -1097,7 +1097,7 @@
 	font-size: 0.8em;
 	color: var(--color-main-text);
 }
-.area-settings__keyword-remove[data-v-03031226] {
+.area-settings__keyword-remove[data-v-696d08c1] {
 	background: none;
 	border: none;
 	color: var(--color-text-maxcontrast);
@@ -1106,10 +1106,10 @@
 	padding: 0 2px;
 	line-height: 1;
 }
-.area-settings__keyword-remove[data-v-03031226]:hover {
+.area-settings__keyword-remove[data-v-696d08c1]:hover {
 	color: var(--color-error);
 }
-.area-settings__empty[data-v-03031226] {
+.area-settings__empty[data-v-696d08c1] {
 	font-size: 0.85em;
 	color: var(--color-text-maxcontrast);
 	font-style: italic;

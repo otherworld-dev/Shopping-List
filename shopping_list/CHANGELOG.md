@@ -18,6 +18,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The "Restored 3 lists" message after restoring a backup is translated.
   Plural strings were left out when the translations were compiled, so it
   always showed in English
+- Moving a shop area up or down in a list's settings moves it one place and
+  leaves the others where they are. Every new area was given the same
+  position, so the arrows could shuffle other areas and the order could
+  change after a reload. New areas now go to the end of the list, and the
+  first move tidies up any areas that were sharing a position (#55)
 
 ## [1.12.0] - 2026-10-13
 
