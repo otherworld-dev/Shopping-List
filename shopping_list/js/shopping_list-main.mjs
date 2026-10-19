@@ -16742,6 +16742,16 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
   }
 });
 const ListView = /* @__PURE__ */ _export_sfc$1(_sfc_main$b, [["__scopeId", "data-v-3e065458"]]);
+function planAreaMove(areas, index2, direction) {
+  const target = index2 + direction;
+  if (index2 < 0 || index2 >= areas.length || target < 0 || target >= areas.length) {
+    return [];
+  }
+  const order = [...areas];
+  order[index2] = areas[target];
+  order[target] = areas[index2];
+  return order.flatMap((area, position) => area.sortOrder === position ? [] : [{ id: area.id, sortOrder: position }]);
+}
 const _hoisted_1$7 = { class: "area-settings" };
 const _hoisted_2$6 = { class: "area-settings__header" };
 const _hoisted_3$4 = {
@@ -16970,19 +16980,10 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
     }
     async function moveArea(index2, direction) {
       if (listId.value === null) return;
-      const targetIndex = index2 + direction;
-      if (targetIndex < 0 || targetIndex >= areas.value.length) return;
-      const current = areas.value[index2];
-      const target = areas.value[targetIndex];
-      const currentOrder = current.sortOrder;
-      const targetOrder = target.sortOrder;
-      const newCurrentOrder = currentOrder === targetOrder ? targetIndex : targetOrder;
-      const newTargetOrder = currentOrder === targetOrder ? index2 : currentOrder;
+      const saves = planAreaMove(areas.value, index2, direction);
+      if (saves.length === 0) return;
       const lid = listId.value;
-      await Promise.all([
-        shopAreasStore.update(lid, current.id, { sortOrder: newCurrentOrder }),
-        shopAreasStore.update(lid, target.id, { sortOrder: newTargetOrder })
-      ]);
+      await Promise.all(saves.map((save2) => shopAreasStore.update(lid, save2.id, { sortOrder: save2.sortOrder })));
       await shopAreasStore.fetchByList(lid);
     }
     async function onCreateArea() {
@@ -17209,7 +17210,7 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const AreaKeywordsSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$a, [["__scopeId", "data-v-03031226"]]);
+const AreaKeywordsSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$a, [["__scopeId", "data-v-696d08c1"]]);
 const _sfc_main$9 = /* @__PURE__ */ defineComponent({
   __name: "ListSortSettings",
   setup(__props) {

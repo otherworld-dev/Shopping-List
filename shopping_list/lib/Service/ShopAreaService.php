@@ -245,12 +245,20 @@ class ShopAreaService {
 		return mb_strtolower($s);
 	}
 
+	/**
+	 * Create an area at the end of the list's order, as copyAreas() does.
+	 */
 	public function create(int $listId, string $name, ?string $color, ?array $keywords): ShopArea {
+		$maxSort = -1;
+		foreach ($this->mapper->findByList($listId) as $existing) {
+			$maxSort = max($maxSort, $existing->getSortOrder());
+		}
+
 		$area = new ShopArea();
 		$area->setListId($listId);
 		$area->setName($name);
 		$area->setColor($color);
-		$area->setSortOrder(0);
+		$area->setSortOrder($maxSort + 1);
 		if ($keywords !== null) {
 			$area->setKeywordsArray($keywords);
 		}
