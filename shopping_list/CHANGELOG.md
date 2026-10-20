@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.13.1] - 2026-10-20
+
+### Fixed
+- Live updates work on servers with notify_push. The app looked for
+  notify_push in a way that never found it, so no update was ever pushed,
+  and the web app, which stops checking for changes when notify_push is
+  installed, only showed other people's changes after a reload. Changes
+  made through an app such as Home Assistant now also reach your own open
+  browser, as that browser didn't make them
+
 ## [1.13.0] - 2026-10-20
 
 ### Added

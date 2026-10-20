@@ -7,6 +7,7 @@ namespace OCA\Shopping_List\Service;
 use OCA\Shopping_List\Db\ListShareMapper;
 use OCA\Shopping_List\Db\ShoppingListMapper;
 use OCP\IGroupManager;
+use OCP\IRequest;
 use Psr\Container\ContainerInterface;
 
 class PushService {
@@ -17,9 +18,11 @@ class PushService {
 		private ListShareMapper $shareMapper,
 		private IGroupManager $groupManager,
 		ContainerInterface $container,
+		private IRequest $request,
 	) {
-		// Optional dependency on notify_push
-		if (class_exists('OCA\NotifyPush\Queue\IQueue')) {
+		// Optional dependency on notify_push. IQueue is an interface, which
+		// class_exists() never finds, so no push was ever sent before 1.13.1.
+		if (interface_exists('OCA\NotifyPush\Queue\IQueue')) {
 			try {
 				$this->queue = $container->get('OCA\NotifyPush\Queue\IQueue');
 			} catch (\Throwable) {
@@ -64,6 +67,11 @@ class PushService {
 		}
 
 		$users = $this->getListParticipants($listId);
+		// A change made through an app (Home Assistant) didn't come from the
+		// account's own browser, so that browser needs telling as well.
+		if (ViaLabel::clean($this->request->getHeader(ViaLabel::HEADER)) !== null) {
+			$excludeUserId = '';
+		}
 
 		foreach ($users as $userId) {
 			if ($userId === $excludeUserId) {
