@@ -1,0 +1,50 @@
+{
+	"normalize": [
+		["Milk", "milk"],
+		["Milks", "milk"],
+		["Apples", "apple"],
+		["Berries", "berry"],
+		["Loaves", "loaf"],
+		["Knives", "knife"],
+		["Tomatoes", "tomato"],
+		["Radishes", "radish"],
+		["Glass", "glass"],
+		["Hummus", "hummus"],
+		["Café au lait", "cafe au lait"],
+		["Red apples (organic)", "red apple"],
+		["Onion, chopped", "onion"],
+		["Jalapeños", "jalapeno"]
+	],
+	"pluralize": [
+		["Apple", "Apples"],
+		["Berry", "Berries"],
+		["Tomato", "Tomatoes"],
+		["Red apple", "Red apples"],
+		["Eggs", "Eggs"],
+		["Milk", "Milk"],
+		["Oat milk", "Oat milk"],
+		["Loaf", "Loaves"],
+		["Knife", "Knives"],
+		["Radish", "Radishes"],
+		["Day", "Days"],
+		["Box", "Boxes"]
+	],
+	"merge": [
+		["3 pcs", "2 pieces", "5 pcs"],
+		["25 dag", "10 dkg", "35 dag"],
+		["2 pkg", "1 pack", "3 pkg"],
+		["500 g", "1", "500 g + 1"],
+		["1 pint", "2 pints", "3 pint"],
+		["1 litre", "1 liter", "2 litre"],
+		["2 tins", "1 tin", "3 tins"],
+		["1", "1", "2"],
+		["2", "1", "3"],
+		["1 1/2 cups", "1/2 cup", "2 cups"],
+		["0.5 kg", "0.25 kg", "0.75 kg"],
+		["0.1", "0.2", "0.3"],
+		["1 kg", "2", "1 kg + 2"],
+		[null, "2", "2"],
+		["2", null, "2"],
+		["", null, ""]
+	]
+}

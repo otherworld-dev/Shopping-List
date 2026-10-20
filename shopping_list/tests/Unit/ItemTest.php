@@ -95,4 +95,38 @@ class ItemTest extends TestCase {
 		self::assertNull($json['checkedByName']);
 		self::assertFalse($json['checkedByGuest']);
 	}
+
+	public function testViaInJson(): void {
+		$json = (new Item())->jsonSerialize();
+		self::assertArrayHasKey('addedVia', $json);
+		self::assertNull($json['addedVia']);
+		self::assertNull($json['checkedVia']);
+
+		$item = new Item();
+		$item->setAddedBy('ben');
+		$item->setAddedVia('Home Assistant');
+		$item->setCheckedBy('ben');
+		$item->setCheckedVia('Kitchen');
+		$json = $item->jsonSerialize();
+		self::assertSame('Home Assistant', $json['addedVia']);
+		self::assertSame('Kitchen', $json['checkedVia']);
+	}
+
+	public function testViaHiddenWithMemberNames(): void {
+		$item = new Item();
+		$item->setAddedBy('ben');
+		$item->setAddedByName('Ben');
+		$item->setAddedVia('Home Assistant');
+		$item->setCheckedBy('ben');
+		$item->setCheckedByName('Ben');
+		$item->setCheckedVia('Home Assistant');
+		$item->forPublic(false);
+
+		$json = $item->jsonSerialize();
+		self::assertNull($json['addedVia']);
+		self::assertNull($json['checkedVia']);
+
+		$item->forPublic(true);
+		self::assertSame('Home Assistant', $item->jsonSerialize()['addedVia']);
+	}
 }

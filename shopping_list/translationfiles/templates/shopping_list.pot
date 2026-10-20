@@ -679,6 +679,14 @@ msgstr ""
 msgid "guest"
 msgstr ""
 
+#: src/components/ItemRow.vue src/components/PublicListView.vue
+msgid "app"
+msgstr ""
+
+#: src/components/ItemRow.vue src/components/PublicListView.vue
+msgid "{account}, through {label}"
+msgstr ""
+
 #: src/components/ItemRow.vue
 msgid "Uploading image…"
 msgstr ""
