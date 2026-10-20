@@ -149,6 +149,8 @@ export const useItemsStore = defineStore('items', () => {
 				addedBy: null,
 				addedByName: null,
 				addedByGuest: false,
+				addedVia: null,
+				checkedVia: null,
 				sortOrder: existingItems.length,
 				imageKey: null,
 				tags: [],

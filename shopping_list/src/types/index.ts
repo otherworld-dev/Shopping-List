@@ -47,6 +47,10 @@ export interface Item {
 	addedBy: string | null
 	addedByName: string | null
 	addedByGuest: boolean
+	/** Server-managed: the app it was added through ("Home Assistant"), as the app named itself */
+	addedVia: string | null
+	/** Server-managed: the app it was ticked through */
+	checkedVia: string | null
 	sortOrder: number
 	/** Server-managed handle for the item's photo, rotated on every replace; null when there is none */
 	imageKey: string | null

@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Apps that talk to the server, such as the coming Home Assistant
+  integration (#52), can add an item by sending one line of text as it was
+  said or typed, for example "two pints of milk". The server reads the
+  amount, puts the item in its shop area and tops up or brings back an item
+  of the same name, the same as typing it in the web app. The same works for
+  changing an item, or only its amount
+- An item added or ticked through an app shows the app's name, for example
+  "Home Assistant", with an "app" mark next to it, so it can't be mistaken
+  for a person. Hovering over it shows whose account the app used
+
 ### Changed
 - The strings added since 1.10.0 are translated in Czech, Dutch, Finnish,
   French, German, Italian and Slovak. Invite codes, names on items, list
@@ -15,6 +26,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   on Crowdin are welcome
 
 ### Fixed
+- Pints, litres, loaves, tins, boxes and cartons are read as amounts.
+  Typing "2 pints of milk" used to add an item called "Pints of milk"
 - The "Restored 3 lists" message after restoring a backup is translated.
   Plural strings were left out when the translations were compiled, so it
   always showed in English

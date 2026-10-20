@@ -44593,7 +44593,7 @@ const __vite_glob_0_6 = {
   prepositions: prepositions$q,
   decimalSeparators: decimalSeparators$q
 };
-const units$p = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg", "jar", "jars", "tub", "tubs", "pot", "pots", "leaf", "leaves"];
+const units$p = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg", "jar", "jars", "tub", "tubs", "pot", "pots", "leaf", "leaves", "pint", "pints", "litre", "litres", "loaf", "loaves", "tin", "tins", "box", "boxes", "carton", "cartons"];
 const leadingUnits$p = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
 const prepositions$p = ["of"];
 const decimalSeparators$p = ["."];
@@ -44888,7 +44888,14 @@ const EN_UNIT_ALIASES = {
   pkg: "pack",
   pinches: "pinch",
   bunches: "bunch",
-  heads: "head"
+  heads: "head",
+  pints: "pint",
+  litre: "liter",
+  litres: "liter",
+  loaves: "loaf",
+  tins: "tin",
+  boxes: "box",
+  cartons: "carton"
 };
 const parsingModules = /* @__PURE__ */ Object.assign({
   "../../resources/parsing/af.json": __vite_glob_0_0,
@@ -45006,16 +45013,17 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
   }
 });
 const ImageViewer = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-ad4d9464"]]);
-function byline(userId, name, guest, me2, showOwn) {
+function byline(userId, name, guest, via, me2, showOwn) {
+  if (via) return { name: via, guest: false, app: true, account: name };
   if (!name) return null;
-  if (guest) return { name, guest: true };
+  if (guest) return { name, guest: true, app: false, account: null };
   if (me2 !== null && userId === me2 && !showOwn) return null;
-  return { name, guest: false };
+  return { name, guest: false, app: false, account: null };
 }
 function attribution(item, me2, showOwn) {
   return {
-    added: byline(item.addedBy, item.addedByName, item.addedByGuest, me2, showOwn),
-    checked: byline(item.checkedBy, item.checkedByName, item.checkedByGuest, me2, showOwn)
+    added: byline(item.addedBy, item.addedByName, item.addedByGuest, item.addedVia, me2, showOwn),
+    checked: byline(item.checkedBy, item.checkedByName, item.checkedByGuest, item.checkedVia, me2, showOwn)
   };
 }
 function segment(size2) {
@@ -45338,4 +45346,4 @@ export {
   unref as y,
   resolveDynamicComponent as z
 };
-//# sourceMappingURL=useCollapsedAreas-BQLGmPX6.chunk.mjs.map
+//# sourceMappingURL=useCollapsedAreas-DD17flXI.chunk.mjs.map

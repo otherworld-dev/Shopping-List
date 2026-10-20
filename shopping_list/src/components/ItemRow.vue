@@ -107,9 +107,10 @@
 			<span class="item-row__name" :class="{ 'item-row__name--checked': item.checked }">
 				{{ item.name }}
 			</span>
-			<span v-if="byline" class="item-row__by" :title="byline.name">
+			<span v-if="byline" class="item-row__by" :title="bylineTitle">
 				<span class="item-row__by-name">{{ byline.name }}</span>
 				<span v-if="byline.guest" class="item-row__by-guest">{{ guestText }}</span>
+				<span v-else-if="byline.app" class="item-row__by-guest item-row__by-app">{{ appText }}</span>
 			</span>
 		</template>
 
@@ -210,12 +211,20 @@ const item = computed(() => {
 const { enabled: showOwnName } = useOwnNamePreference()
 const me = getCurrentUser()?.uid ?? null
 const guestText = t('shopping_list', 'guest')
+const appText = t('shopping_list', 'app')
 
 // Who ticked it once it's ticked, otherwise who added it
 const byline = computed(() => {
 	if (!item.value) return null
 	const names = attribution(item.value, me, showOwnName.value)
 	return item.value.checked ? names.checked : names.added
+})
+
+// An app's label names the person behind it on hover
+const bylineTitle = computed(() => {
+	const by = byline.value
+	if (!by?.app || !by.account) return by?.name
+	return t('shopping_list', '{account}, through {label}', { account: by.account, label: by.name })
 })
 
 const areaOptions = computed(() => {
@@ -668,6 +677,11 @@ function onDrop(e: DragEvent) {
 	border: 1px solid var(--color-border-dark);
 	border-radius: var(--border-radius-pill, 10px);
 	line-height: 1.4;
+}
+
+/* An app's mark, kept apart from a guest's at a glance */
+.item-row__by-app {
+	border-style: dashed;
 }
 
 /* On a phone the person's name goes on its own line under the item, so the

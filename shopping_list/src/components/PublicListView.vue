@@ -83,9 +83,10 @@
 							<span class="public-list__name" :class="{ 'public-list__name--checked': item.checked }">
 								{{ item.name }}
 							</span>
-							<span v-if="byline(item)" class="public-list__by" :title="byline(item)!.name">
+							<span v-if="byline(item)" class="public-list__by" :title="bylineTitle(item)">
 								<span class="public-list__by-name">{{ byline(item)!.name }}</span>
 								<span v-if="byline(item)!.guest" class="public-list__by-guest">{{ guestText }}</span>
+								<span v-else-if="byline(item)!.app" class="public-list__by-guest public-list__by-app">{{ appText }}</span>
 							</span>
 							<span v-if="getAreaName(item.shopAreaId)" class="public-list__area">
 								<span v-if="getAreaColor(item.shopAreaId)"
@@ -131,9 +132,10 @@
 						{{ item.quantity }}{{ item.unit ? ' ' + item.unit : '' }}
 					</span>
 					<span class="public-list__name public-list__name--checked">{{ item.name }}</span>
-					<span v-if="byline(item)" class="public-list__by" :title="byline(item)!.name">
+					<span v-if="byline(item)" class="public-list__by" :title="bylineTitle(item)">
 						<span class="public-list__by-name">{{ byline(item)!.name }}</span>
 						<span v-if="byline(item)!.guest" class="public-list__by-guest">{{ guestText }}</span>
+						<span v-else-if="byline(item)!.app" class="public-list__by-guest public-list__by-app">{{ appText }}</span>
 					</span>
 				</div>
 			</div>
@@ -288,11 +290,19 @@ onMounted(async () => {
 const guestName = ref(readGuestName())
 const yourNameText = t('shopping_list', 'Your name (optional)')
 const guestText = t('shopping_list', 'guest')
+const appText = t('shopping_list', 'app')
 
 /** Who ticked it once it's ticked, otherwise who added it. Nobody is signed in here, so every name shows. */
 function byline(item: Item): Byline | null {
 	const names = attribution(item, null, true)
 	return item.checked ? names.checked : names.added
+}
+
+/** An app's label names the person behind it on hover */
+function bylineTitle(item: Item): string | undefined {
+	const by = byline(item)
+	if (!by?.app || !by.account) return by?.name
+	return t('shopping_list', '{account}, through {label}', { account: by.account, label: by.name })
 }
 
 // Guests type "500 g Rice" the same way members do. A name on its own goes
@@ -378,6 +388,11 @@ async function onToggleCheck(item: Item) {
 	border: 1px solid var(--color-border-dark, rgba(255, 255, 255, 0.3));
 	border-radius: var(--border-radius-pill, 10px);
 	line-height: 1.4;
+}
+
+/* An app's mark, kept apart from a guest's at a glance */
+.public-list__by-app {
+	border-style: dashed;
 }
 
 /* On a phone the person's name goes on its own line under the item, so the
