@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace OCA\Shopping_List\Service;
 
+use OCA\Shopping_List\Db\Item;
 use OCA\Shopping_List\Db\ItemMapper;
 use OCA\Shopping_List\Service\Parsing\IngredientParser;
 use OCA\Shopping_List\Service\Parsing\ItemMerge;
@@ -36,16 +37,8 @@ class TextInputService {
 	public function addFromText(int $listId, string $text, string $userId, ?string $via): TextAddResult {
 		$this->lists->assertWriteAccess($listId, $userId);
 
-		$language = $this->l->getLanguageCode();
-		$pack = ParsingPack::forLanguage($language);
-		$parser = new IngredientParser($pack);
-		$line = SpokenNumbers::normalise($text, $language);
-		$parsed = $parser->parse($line);
-		// The parser falls back to the whole line as the name, so "2" would
-		// otherwise become an item called "2".
-		if ($parsed['name'] === '' || $parser->parseAmount($line) !== null) {
-			throw new \InvalidArgumentException('The line has no item name');
-		}
+		$pack = ParsingPack::forLanguage($this->l->getLanguageCode());
+		$parsed = $this->readLine($pack, $text);
 		$name = $parsed['name'];
 		$quantity = $parsed['quantity'];
 
@@ -97,6 +90,61 @@ class TextInputService {
 			$via,
 		);
 		return new TextAddResult($item, TextAddResult::CREATED);
+	}
+
+	/**
+	 * Change an item's name and amount from one line ("3 pints Milk"), as
+	 * when its text is edited in an app that shows it that way. No amount in
+	 * the line clears the amount. The item's area is left alone.
+	 *
+	 * @throws \InvalidArgumentException when no item name is left after the amount
+	 * @throws NotFoundException
+	 * @throws NoPermissionException
+	 */
+	public function updateFromText(int $id, string $text, string $userId): Item {
+		$parsed = $this->readLine(ParsingPack::forLanguage($this->l->getLanguageCode()), $text);
+		$fields = ['name' => $parsed['name'], 'quantity' => $parsed['quantity']];
+		if ($parsed['quantity'] !== null) {
+			$fields['quantityExplicit'] = true;
+		}
+		return $this->items->update($id, $fields, $userId);
+	}
+
+	/**
+	 * Change only an item's amount ("three pints"). The name is never
+	 * touched, so a word the parser doesn't know can't end up in it: anything
+	 * left over after the amount and its unit refuses the change instead.
+	 *
+	 * @throws \InvalidArgumentException when the text isn't just an amount
+	 * @throws NotFoundException
+	 * @throws NoPermissionException
+	 */
+	public function updateAmount(int $id, string $amountText, string $userId): Item {
+		$language = $this->l->getLanguageCode();
+		$parser = new IngredientParser(ParsingPack::forLanguage($language));
+		$amount = $parser->parseAmount(SpokenNumbers::normalise($amountText, $language));
+		if ($amount === null) {
+			throw new \InvalidArgumentException('That is not an amount');
+		}
+		return $this->items->update($id, ['quantity' => $amount, 'quantityExplicit' => true], $userId);
+	}
+
+	/**
+	 * Spoken numbers, then the parser.
+	 *
+	 * @return array{name: string, quantity: ?string, checked: bool}
+	 * @throws \InvalidArgumentException when no item name is left after the amount
+	 */
+	private function readLine(ParsingPack $pack, string $text): array {
+		$parser = new IngredientParser($pack);
+		$line = SpokenNumbers::normalise($text, $pack->language);
+		$parsed = $parser->parse($line);
+		// The parser falls back to the whole line as the name, so "2" would
+		// otherwise become an item called "2".
+		if ($parsed['name'] === '' || $parser->parseAmount($line) !== null) {
+			throw new \InvalidArgumentException('The line has no item name');
+		}
+		return $parsed;
 	}
 
 	/** The number an amount starts with, as parseFloat reads it in the web app */

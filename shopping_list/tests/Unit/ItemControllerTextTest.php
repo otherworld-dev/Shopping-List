@@ -76,6 +76,42 @@ class ItemControllerTextTest extends TestCase {
 		self::assertSame(Http::STATUS_BAD_REQUEST, $controller->create(1, null, text: '2')->getStatus());
 	}
 
+	public function testUpdateFromText(): void {
+		$controller = $this->controller();
+		$this->params = ['text' => '3 pints Milk'];
+		$this->text->expects(self::once())->method('updateFromText')->with(7, '3 pints Milk', 'ben')->willReturn(self::item());
+		$this->service->expects(self::never())->method('update');
+		self::assertSame(Http::STATUS_OK, $controller->update(1, 7)->getStatus());
+	}
+
+	public function testUpdateAmountOnly(): void {
+		$controller = $this->controller();
+		$this->params = ['amountText' => 'three pints'];
+		$this->text->expects(self::once())->method('updateAmount')->with(7, 'three pints', 'ben')->willReturn(self::item());
+		self::assertSame(Http::STATUS_OK, $controller->update(1, 7)->getStatus());
+	}
+
+	public function testUpdateWithBothIs400(): void {
+		$controller = $this->controller();
+		$this->params = ['text' => 'Milk', 'amountText' => '2'];
+		$this->text->expects(self::never())->method('updateFromText');
+		self::assertSame(Http::STATUS_BAD_REQUEST, $controller->update(1, 7)->getStatus());
+	}
+
+	public function testUnreadableAmountIs400(): void {
+		$controller = $this->controller();
+		$this->params = ['amountText' => 'lots'];
+		$this->text->method('updateAmount')->willThrowException(new \InvalidArgumentException('No amount'));
+		self::assertSame(Http::STATUS_BAD_REQUEST, $controller->update(1, 7)->getStatus());
+	}
+
+	public function testPlainUpdateUnchanged(): void {
+		$controller = $this->controller();
+		$this->params = ['name' => 'Bread', 'imageKey' => 'forged'];
+		$this->service->expects(self::once())->method('update')->with(7, ['name' => 'Bread'], 'ben')->willReturn(self::item());
+		self::assertSame(Http::STATUS_OK, $controller->update(1, 7)->getStatus());
+	}
+
 	public function testViaHeaderIsPassedOn(): void {
 		$controller = $this->controller('Home Assistant');
 		$this->text->expects(self::once())->method('addFromText')->with(1, 'milk', 'ben', 'Home Assistant')

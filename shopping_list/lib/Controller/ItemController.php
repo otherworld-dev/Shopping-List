@@ -79,14 +79,30 @@ class ItemController extends OCSController {
 	#[NoAdminRequired]
 	public function update(int $listId, int $id): DataResponse {
 		try {
-			$fields = [];
 			$params = $this->request->getParams();
+			// A whole line, or only an amount, for the server to read. Inputs,
+			// not fields, so they stay out of the whitelist below.
+			$text = $params['text'] ?? null;
+			$amountText = $params['amountText'] ?? null;
+			if ($text !== null || $amountText !== null) {
+				if (($text !== null && $amountText !== null) || !is_string($text ?? $amountText)) {
+					return new DataResponse(['message' => 'Send either text or amountText'], Http::STATUS_BAD_REQUEST);
+				}
+				$item = $text !== null
+					? $this->textInput->updateFromText($id, $text, $this->userId)
+					: $this->textInput->updateAmount($id, $amountText, $this->userId);
+				return new DataResponse($item);
+			}
+
+			$fields = [];
 			foreach (['name', 'quantity', 'unit', 'shopAreaId', 'sortOrder', 'areaExplicit', 'quantityExplicit'] as $field) {
 				if (array_key_exists($field, $params)) {
 					$fields[$field] = $params[$field];
 				}
 			}
 			return new DataResponse($this->service->update($id, $fields, $this->userId));
+		} catch (\InvalidArgumentException $e) {
+			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_BAD_REQUEST);
 		} catch (NotFoundException $e) {
 			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_NOT_FOUND);
 		} catch (NoPermissionException $e) {
