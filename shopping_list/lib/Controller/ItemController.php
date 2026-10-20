@@ -7,6 +7,7 @@ namespace OCA\Shopping_List\Controller;
 use OCA\Shopping_List\Service\ItemService;
 use OCA\Shopping_List\Service\NoPermissionException;
 use OCA\Shopping_List\Service\NotFoundException;
+use OCA\Shopping_List\Service\ViaLabel;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\Attribute\NoAdminRequired;
 use OCP\AppFramework\Http\DataResponse;
@@ -21,6 +22,11 @@ class ItemController extends OCSController {
 		private string $userId,
 	) {
 		parent::__construct($appName, $request);
+	}
+
+	/** The app this request came through, when it names itself */
+	private function via(): ?string {
+		return ViaLabel::clean($this->request->getHeader(ViaLabel::HEADER));
 	}
 
 	#[NoAdminRequired]
@@ -44,7 +50,7 @@ class ItemController extends OCSController {
 		bool $quantityExplicit = false,
 	): DataResponse {
 		try {
-			$item = $this->service->create($listId, $name, $quantity, $unit, $shopAreaId, $this->userId, $areaExplicit, $checked, $quantityExplicit);
+			$item = $this->service->create($listId, $name, $quantity, $unit, $shopAreaId, $this->userId, $areaExplicit, $checked, $quantityExplicit, $this->via());
 			return new DataResponse($item, Http::STATUS_CREATED);
 		} catch (NotFoundException $e) {
 			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_NOT_FOUND);
@@ -85,7 +91,7 @@ class ItemController extends OCSController {
 	#[NoAdminRequired]
 	public function check(int $listId, int $id, bool $checked): DataResponse {
 		try {
-			return new DataResponse($this->service->check($id, $checked, $this->userId));
+			return new DataResponse($this->service->check($id, $checked, $this->userId, $this->via()));
 		} catch (NotFoundException $e) {
 			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_NOT_FOUND);
 		} catch (NoPermissionException $e) {

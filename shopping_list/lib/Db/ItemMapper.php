@@ -83,6 +83,7 @@ class ItemMapper extends QBMapper {
 			->set('checked', $qb->createNamedParameter(false, IQueryBuilder::PARAM_BOOL))
 			->set('checked_by', $qb->createNamedParameter(null))
 			->set('checked_by_name', $qb->createNamedParameter(null))
+			->set('checked_via', $qb->createNamedParameter(null))
 			->where($qb->expr()->eq('list_id', $qb->createNamedParameter($listId, IQueryBuilder::PARAM_INT)))
 			->executeStatement();
 	}
