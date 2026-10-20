@@ -26,6 +26,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   on Crowdin are welcome
 
 ### Fixed
+- If an update ever leaves one of the app's database columns missing, as
+  happened to the default area on one server, `occ db:add-missing-columns`
+  now adds it back and Nextcloud's admin overview warns about it (#56)
 - Pints, litres, loaves, tins, boxes and cartons are read as amounts.
   Typing "2 pints of milk" used to add an item called "Pints of milk"
 - The "Restored 3 lists" message after restoring a backup is translated.
