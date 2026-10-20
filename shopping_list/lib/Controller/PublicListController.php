@@ -317,6 +317,7 @@ class PublicListController extends OCSController {
 			$item->setChecked($checked);
 			$item->setCheckedBy(null);
 			$item->setCheckedByName($checked ? GuestName::clean($this->request->getParam('guestName')) : null);
+			$item->setCheckedVia(null);
 			$item->setUpdatedAt(new DateTime());
 
 			return new DataResponse($this->forLink($share, $this->itemMapper->update($item)));

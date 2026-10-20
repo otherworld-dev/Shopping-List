@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-10-11 18:12\n"
+"PO-Revision-Date: 2026-10-13 00:17\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Language: fi_FI\n"
@@ -55,7 +55,7 @@ msgstr "Tätä jaettua listaa ei ole olemassa tai se on vanhentunut."
 
 #: src/PublicApp.vue
 msgid "Open in the app"
-msgstr ""
+msgstr "Avaa sovelluksessa"
 
 #: src/components/AreaKeywordsSettings.vue
 msgid "Back to list"
@@ -123,7 +123,7 @@ msgstr "Lisää tuote listalle..."
 
 #: src/components/PublicListView.vue
 msgid "Your name (optional)"
-msgstr ""
+msgstr "Nimesi (valinnainen)"
 
 #: src/components/ItemEditor.vue
 msgid "Add an item or paste a list..."
@@ -199,7 +199,7 @@ msgstr "Uusi lista"
 
 #: src/components/ListSidebar.vue
 msgid "List name"
-msgstr ""
+msgstr "Listan nimi"
 
 #: src/components/ListSidebar.vue
 msgid "Rename list"
@@ -405,39 +405,39 @@ msgstr "Poista julkinen linkki"
 
 #: src/components/ShareDialog.vue
 msgid "Show QR code"
-msgstr ""
+msgstr "Näytä QR-koodi"
 
 #: src/components/ShareDialog.vue
 msgid "Hide QR code"
-msgstr ""
+msgstr "Piilota QR-koodi"
 
 #: src/components/ShareDialog.vue
 msgid "QR code of the public link"
-msgstr ""
+msgstr "Julkisen linkin QR-koodi"
 
 #: src/components/ShareDialog.vue
 msgid "Invite code"
-msgstr ""
+msgstr "Kutsukoodi"
 
 #: src/components/ShareDialog.vue
 msgid "Server"
-msgstr ""
+msgstr "Palvelin"
 
 #: src/components/ShareDialog.vue
 msgid "Code"
-msgstr ""
+msgstr "Koodi"
 
 #: src/components/ShareDialog.vue
 msgid "Copy invite"
-msgstr ""
+msgstr "Kopioi kutsu"
 
 #: src/components/ShareDialog.vue
 msgid "Type these into the Shopping List Android app to join without the link."
-msgstr ""
+msgstr "Syötä nämä Shopping Listin Android-sovellukseen liittyäksesi ilman linkkiä."
 
 #: src/components/ShareDialog.vue
 msgid "Show members' names"
-msgstr ""
+msgstr "Näytä jäsenten nimet"
 
 #: src/components/TagInput.vue
 msgid "Add tags..."
@@ -555,6 +555,18 @@ msgstr "Lataa avainsanat omalle kielelleni"
 msgid "Adds your language's grocery keywords to the default areas, so items auto-sort correctly. Existing keywords are kept."
 msgstr "Lisää kielesi avainsanat oletusalueisiin, jotta kohteet lajitteloituisivat oikein automaattisesti. Olemassa olevat avainsanat säilytetään."
 
+#: src/components/AreaKeywordsSettings.vue
+msgid "Default area"
+msgstr "Oletusosasto"
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "None"
+msgstr "Ei mitään"
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Items that match no keyword go here."
+msgstr "Tuotteet, jotka eivät vastaa mitään avainsanaa, menevät tänne."
+
 #: src/stores/shopAreas.ts
 msgid "Keywords for your language added"
 msgstr "Kielesi avainsanat lisätty"
@@ -662,7 +674,7 @@ msgstr "Näytä kuva"
 #. Marks a name next to an item as someone without an account on a public link
 #: src/components/ItemRow.vue src/components/PublicListView.vue
 msgid "guest"
-msgstr ""
+msgstr "vieras"
 
 #: src/components/ItemRow.vue
 msgid "Uploading image…"
@@ -746,15 +758,15 @@ msgstr "Liitä tuotteeseen valokuva sen valikosta tai liitä tai pudota kuva tuo
 
 #: src/components/NameSettings.vue
 msgid "Names"
-msgstr ""
+msgstr "Nimet"
 
 #: src/components/NameSettings.vue
 msgid "Show my name on items"
-msgstr ""
+msgstr "Näytä nimeni tuotteissa"
 
 #: src/components/NameSettings.vue
 msgid "Your name always shows to everyone else. This switch only changes what you see."
-msgstr ""
+msgstr "Nimesi näkyy aina kaikille muille. Tämä kytkin muuttaa vain sitä, mitä sinä näet."
 
 #: src/components/ItemImagesSettings.vue src/stores/lists.ts
 msgid "Failed to save setting"
@@ -786,71 +798,71 @@ msgstr "Saatavana Google Playssa"
 
 #: src/components/BackupSettings.vue
 msgid "Backup"
-msgstr ""
+msgstr "Varmuuskopio"
 
 #: src/components/BackupSettings.vue
 msgid "A backup holds your own lists, their items, areas and tags. Shares are not included, and restoring adds lists rather than replacing the ones you have."
-msgstr ""
+msgstr "Varmuuskopio sisältää omat listasi sekä niiden tuotteet, osastot ja tunnisteet. Jaot eivät sisälly siihen, ja palautus lisää listoja eikä korvaa nykyisiä."
 
 #: src/components/BackupSettings.vue
 msgid "Download backup"
-msgstr ""
+msgstr "Lataa varmuuskopio"
 
 #: src/components/BackupSettings.vue
 msgid "Restore from backup"
-msgstr ""
+msgstr "Palauta varmuuskopiosta"
 
 #: src/components/BackupSettings.vue
 msgid "Restoring..."
-msgstr ""
+msgstr "Palautetaan..."
 
 #: src/components/BackupSettings.vue
 msgid "That file could not be restored"
-msgstr ""
+msgstr "Tiedostoa ei voitu palauttaa"
 
 #: src/components/BackupSettings.vue
 msgid "Restored %n list"
 msgid_plural "Restored %n lists"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Palautettiin %n lista"
+msgstr[1] "Palautettiin %n listaa"
 
 #: src/components/BackupSettings.vue
 msgid "Could not download the backup"
-msgstr ""
+msgstr "Varmuuskopion lataaminen epäonnistui"
 
 #: lib/UserMigration/ShoppingListMigrator.php
 msgid "Your shopping lists, their items, areas and tags. Shares are not included."
-msgstr ""
+msgstr "Ostoslistasi sekä niiden tuotteet, osastot ja tunnisteet. Jaot eivät sisälly."
 
 #: src/components/ListSortSettings.vue
 msgid "Sort lists"
-msgstr ""
+msgstr "Järjestä listat"
 
 #: src/components/ListSortSettings.vue
 msgid "Recently updated"
-msgstr ""
+msgstr "Viimeksi päivitetty"
 
 #: src/components/ListSortSettings.vue
 msgid "Custom (drag to reorder)"
-msgstr ""
+msgstr "Mukautettu (järjestä vetämällä)"
 
 #: src/stores/lists.ts
 msgid "Failed to save the list order"
-msgstr ""
+msgstr "Listojen järjestyksen tallentaminen epäonnistui"
 
 #: src/components/WhatsNewDialog.vue
 msgid "What's new in Shopping List"
-msgstr ""
+msgstr "Mitä uutta Shopping Listissä"
 
 #: src/components/WhatsNewDialog.vue
 msgid "Read more"
-msgstr ""
+msgstr "Lue lisää"
 
 #: src/components/WhatsNewDialog.vue
 msgid "Got it"
-msgstr ""
+msgstr "Selvä"
 
 #: src/components/WhatsNewButton.vue
 msgid "What's new"
-msgstr ""
+msgstr "Mitä uutta"
 

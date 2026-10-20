@@ -48,6 +48,7 @@ class ItemService {
 		bool $areaExplicit = false,
 		bool $checked = false,
 		bool $quantityExplicit = false,
+		?string $via = null,
 	): Item {
 		$this->listService->assertWriteAccess($listId, $userId);
 
@@ -67,6 +68,8 @@ class ItemService {
 		$item->setCheckedByName($checked ? $this->nameOf($userId) : null);
 		$item->setAddedBy($userId);
 		$item->setAddedByName($this->nameOf($userId));
+		$item->setAddedVia($via);
+		$item->setCheckedVia($checked ? $via : null);
 		$item->setSortOrder(0);
 		// A name that had a photo before gets it back, in any list.
 		$item->setImageKey($this->images->rememberedKey($listId, $name));
@@ -178,6 +181,7 @@ class ItemService {
 		$item->setChecked(false);
 		$item->setCheckedBy(null);
 		$item->setCheckedByName(null);
+		$item->setCheckedVia(null);
 		$item->setSortOrder(0);
 		$item->setUpdatedAt(new DateTime());
 
@@ -189,7 +193,7 @@ class ItemService {
 		return $item;
 	}
 
-	public function check(int $id, bool $checked, string $userId): Item {
+	public function check(int $id, bool $checked, string $userId, ?string $via = null): Item {
 		try {
 			$item = $this->mapper->find($id);
 		} catch (DoesNotExistException) {
@@ -201,6 +205,7 @@ class ItemService {
 		$item->setChecked($checked);
 		$item->setCheckedBy($checked ? $userId : null);
 		$item->setCheckedByName($checked ? $this->nameOf($userId) : null);
+		$item->setCheckedVia($checked ? $via : null);
 		$item->setUpdatedAt(new DateTime());
 
 		$item = $this->mapper->update($item);

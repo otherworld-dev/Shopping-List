@@ -47,6 +47,12 @@ describe('mergeQuantities', () => {
 	it('treats a bare name as one more, as before', () => {
 		expect(mergeQuantities('500 g', '1')).toBe('500 g + 1')
 	})
+
+	it('adds pints, litres and tins across singular and plural', () => {
+		expect(mergeQuantities('1 pint', '2 pints')).toBe('3 pint')
+		expect(mergeQuantities('1 litre', '1 liter')).toBe('2 litre')
+		expect(mergeQuantities('2 tins', '1 tin')).toBe('3 tins')
+	})
 })
 
 describe('findCheckedMatch', () => {

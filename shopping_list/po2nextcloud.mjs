@@ -38,23 +38,42 @@ function parsePo(content) {
 		const lines = entry.trim().split('\n')
 
 		let msgid = ''
+		let msgidPlural = ''
 		let msgstr = ''
+		const plurals = []
 		let current = null
 
 		for (const line of lines) {
 			if (line.startsWith('#')) continue
 
-			if (line.startsWith('msgid ')) {
+			const formMatch = line.match(/^msgstr\[(\d+)\] (.*)$/)
+			if (line.startsWith('msgid_plural ')) {
+				current = 'msgidPlural'
+				msgidPlural = extractQuoted(line.substring(13))
+			} else if (line.startsWith('msgid ')) {
 				current = 'msgid'
 				msgid = extractQuoted(line.substring(6))
+			} else if (formMatch) {
+				current = Number(formMatch[1])
+				plurals[current] = extractQuoted(formMatch[2])
 			} else if (line.startsWith('msgstr ')) {
 				current = 'msgstr'
 				msgstr = extractQuoted(line.substring(7))
-			} else if (line.startsWith('"') && current) {
+			} else if (line.startsWith('"') && current !== null) {
 				const val = extractQuoted(line)
 				if (current === 'msgid') msgid += val
+				else if (current === 'msgidPlural') msgidPlural += val
 				else if (current === 'msgstr') msgstr += val
+				else plurals[current] += val
 			}
+		}
+
+		// A plural entry is keyed the way Nextcloud looks it up, with one string per form
+		if (msgid && msgidPlural) {
+			if (plurals.length > 0 && Array.from(plurals).every(Boolean)) {
+				translations[`_${msgid}_::_${msgidPlural}_`] = plurals
+			}
+			continue
 		}
 
 		// Skip empty msgid (header) and untranslated strings

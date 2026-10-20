@@ -216,6 +216,20 @@ class ShopAreaService {
 			}
 		}
 
+		return $this->keywordArea($areas, $itemName) ?? $this->defaultAreaFor($targetListId);
+	}
+
+	/**
+	 * The area of a list whose keyword the item's name contains, or null when
+	 * none does; the list's default is left to the caller. Mirrors the
+	 * frontend detectArea(): the longest keyword wins, a tie keeps the earlier area.
+	 */
+	public function detectArea(int $listId, string $itemName): ?int {
+		return $this->keywordArea($this->mapper->findByList($listId), $itemName);
+	}
+
+	/** @param ShopArea[] $areas */
+	private function keywordArea(array $areas, string $itemName): ?int {
 		$needle = $this->fold($itemName);
 		$bestId = null;
 		$bestLen = 0;
@@ -229,7 +243,7 @@ class ShopAreaService {
 				}
 			}
 		}
-		return $bestId ?? $this->defaultAreaFor($targetListId);
+		return $bestId;
 	}
 
 	/**
@@ -245,12 +259,20 @@ class ShopAreaService {
 		return mb_strtolower($s);
 	}
 
+	/**
+	 * Create an area at the end of the list's order, as copyAreas() does.
+	 */
 	public function create(int $listId, string $name, ?string $color, ?array $keywords): ShopArea {
+		$maxSort = -1;
+		foreach ($this->mapper->findByList($listId) as $existing) {
+			$maxSort = max($maxSort, $existing->getSortOrder());
+		}
+
 		$area = new ShopArea();
 		$area->setListId($listId);
 		$area->setName($name);
 		$area->setColor($color);
-		$area->setSortOrder(0);
+		$area->setSortOrder($maxSort + 1);
 		if ($keywords !== null) {
 			$area->setKeywordsArray($keywords);
 		}

@@ -1,7 +1,7 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-CazfLdg7.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/useCollapsedAreas-BQLGmPX6.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/useCollapsedAreas-CX_mg1lj.chunk.css')])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-DcJy3ykX.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/useCollapsedAreas-DYw3xwt6.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/useCollapsedAreas-CX_mg1lj.chunk.css')])))=>i.map(i=>d[i]);
 const appName = "shopping_list";
-const appVersion = "1.12.0";
-import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, A as ActionGlobalMixin, a as NcIconSvgWrapper, r as resolveComponent, b as createBaseVNode, w as withDirectives, v as vModelRadio, n as normalizeClass, d as createVNode, m as mdiRadioboxMarked, e as mdiRadioboxBlank, u as useModel, f as createElementId, g as NcLoadingIcon, h as NcInputConfirmCancel, i as createBlock, j as renderSlot, k as createCommentVNode, l as defineComponent, p as useSlots, q as useTemplateRef, s as useElementSize, x as withCtx, y as unref, z as resolveDynamicComponent, B as mergeProps, C as toHandlers, F as Fragment, D as renderList, E as _sfc_main$o, G as NcModal, H as mergeModels, I as computed, J as ref, K as createTextVNode, L as useCssModule, M as provide, O as NC_FORM_BOX_CONTEXT_KEY, P as INSIDE_RADIO_GROUP_KEY, Q as NOOP, R as extend$1, S as isString, T as NO, U as isSymbol, V as isBuiltInDirective, W as capitalize, X as camelize, Y as EMPTY_OBJ, Z as isObject, $ as toHandlerKey, a0 as isArray, a1 as isOn, a2 as isReservedProp, a3 as isVoidTag, a4 as isHTMLTag, a5 as isSVGTag, a6 as isMathMLTag, a7 as parseStringStyle, a8 as makeMap, a9 as generateCodeFrame, aa as getAugmentedNamespace, ab as runtimeDom_esmBundler, ac as shared_esmBundler, ad as getDefaultExportFromCjs, ae as getGettextBuilder, af as getLoggerBuilder, ag as defineStore, ah as loadState, ai as api, aj as markServerFetched, ak as translate, al as getLanguage, am as hasMorphology, an as getParsingPack, ao as loadValue, ap as saveValue, aq as readonly, ar as watch, as as mdiPlus, at as NcAppNavigationCaption, au as NcActionButton, av as NcAppNavigationItem, aw as _export_sfc$1, ax as getCurrentUser, ay as onMounted, az as onUnmounted, aA as withKeys, aB as withModifiers, aC as vModelText, aD as normalizeStyle, aE as Teleport, aF as NcActions, aG as ImageViewer, aH as Permission, aI as attribution, aJ as nextTick, aK as itemImageUrl, aL as createIngredientParser, aM as NcPopover, aN as NcButton, aO as mdiHelpCircleOutline, aP as browserStorage, aQ as useCollapsedAreas, aR as ShareType, aS as NcAvatar, aT as isRef, aU as mdiChevronDown, aV as vShow, aW as shallowRef, aX as vModelSelect, aY as NcCheckboxRadioSwitch, aZ as translatePlural, a_ as Transition, a$ as getRootUrl, b0 as generateOcsUrl, b1 as cancelableClient, b2 as generateUrl, b3 as NcAppNavigation, b4 as NcAppNavigationSettings, b5 as NcAppContent, b6 as NcContent, b7 as createPinia, b8 as offlinePersistPlugin, b9 as createApp } from "./useCollapsedAreas-BQLGmPX6.chunk.mjs";
+const appVersion = "1.13.0";
+import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, A as ActionGlobalMixin, a as NcIconSvgWrapper, r as resolveComponent, b as createBaseVNode, w as withDirectives, v as vModelRadio, n as normalizeClass, d as createVNode, m as mdiRadioboxMarked, e as mdiRadioboxBlank, u as useModel, f as createElementId, g as NcLoadingIcon, h as NcInputConfirmCancel, i as createBlock, j as renderSlot, k as createCommentVNode, l as defineComponent, p as useSlots, q as useTemplateRef, s as useElementSize, x as withCtx, y as unref, z as resolveDynamicComponent, B as mergeProps, C as toHandlers, F as Fragment, D as renderList, E as _sfc_main$o, G as NcModal, H as mergeModels, I as computed, J as ref, K as createTextVNode, L as useCssModule, M as provide, O as NC_FORM_BOX_CONTEXT_KEY, P as INSIDE_RADIO_GROUP_KEY, Q as NOOP, R as extend$1, S as isString, T as NO, U as isSymbol, V as isBuiltInDirective, W as capitalize, X as camelize, Y as EMPTY_OBJ, Z as isObject, $ as toHandlerKey, a0 as isArray, a1 as isOn, a2 as isReservedProp, a3 as isVoidTag, a4 as isHTMLTag, a5 as isSVGTag, a6 as isMathMLTag, a7 as parseStringStyle, a8 as makeMap, a9 as generateCodeFrame, aa as getAugmentedNamespace, ab as runtimeDom_esmBundler, ac as shared_esmBundler, ad as getDefaultExportFromCjs, ae as getGettextBuilder, af as getLoggerBuilder, ag as defineStore, ah as loadState, ai as api, aj as markServerFetched, ak as translate, al as getLanguage, am as hasMorphology, an as getParsingPack, ao as loadValue, ap as saveValue, aq as readonly, ar as NO_TICK, as as tickFrom, at as watch, au as mdiPlus, av as NcAppNavigationCaption, aw as NcActionButton, ax as NcAppNavigationItem, ay as _export_sfc$1, az as getCurrentUser, aA as onMounted, aB as onUnmounted, aC as withKeys, aD as withModifiers, aE as vModelText, aF as normalizeStyle, aG as Teleport, aH as NcActions, aI as ImageViewer, aJ as Permission, aK as attribution, aL as nextTick, aM as itemImageUrl, aN as createIngredientParser, aO as NcPopover, aP as NcButton, aQ as mdiHelpCircleOutline, aR as browserStorage, aS as useCollapsedAreas, aT as ShareType, aU as NcAvatar, aV as isRef, aW as mdiChevronDown, aX as vShow, aY as shallowRef, aZ as vModelSelect, a_ as NcCheckboxRadioSwitch, a$ as translatePlural, b0 as Transition, b1 as getRootUrl, b2 as generateOcsUrl, b3 as cancelableClient, b4 as generateUrl, b5 as NcAppNavigation, b6 as NcAppNavigationSettings, b7 as NcAppContent, b8 as NcContent, b9 as createPinia, ba as offlinePersistPlugin, bb as createApp } from "./useCollapsedAreas-DYw3xwt6.chunk.mjs";
 const _sfc_main$n = {
   name: "NcActionCaption",
   inject: {
@@ -14688,6 +14688,8 @@ const useItemsStore = defineStore("items", () => {
         addedBy: null,
         addedByName: null,
         addedByGuest: false,
+        addedVia: null,
+        checkedVia: null,
         sortOrder: existingItems.length,
         imageKey: null,
         tags: [],
@@ -14764,12 +14766,11 @@ const useItemsStore = defineStore("items", () => {
     const previousUpdatedAt = item.updatedAt;
     const previousCheckedBy = item.checkedBy;
     const previousCheckedByName = item.checkedByName;
+    const previousCheckedVia = item.checkedVia;
     item.checked = !item.checked;
     item.updatedAt = (/* @__PURE__ */ new Date()).toISOString();
     if (!item.checked) {
-      item.checkedBy = null;
-      item.checkedByName = null;
-      item.checkedByGuest = false;
+      Object.assign(item, NO_TICK);
     }
     if (!isOnline2.value) {
       await enqueue({ type: "item.check", listId, itemId: id, payload: { checked: item.checked } });
@@ -14777,10 +14778,7 @@ const useItemsStore = defineStore("items", () => {
     }
     try {
       const response = await api.items.check(listId, id, item.checked);
-      const saved = response.data.ocs.data;
-      item.checkedBy = saved.checkedBy;
-      item.checkedByName = saved.checkedByName;
-      item.checkedByGuest = saved.checkedByGuest;
+      Object.assign(item, tickFrom(response.data.ocs.data));
     } catch (e) {
       if (isNetworkError(e)) {
         await enqueue({ type: "item.check", listId, itemId: id, payload: { checked: item.checked } });
@@ -14789,6 +14787,7 @@ const useItemsStore = defineStore("items", () => {
         item.updatedAt = previousUpdatedAt;
         item.checkedBy = previousCheckedBy;
         item.checkedByName = previousCheckedByName;
+        item.checkedVia = previousCheckedVia;
         showError(translate("shopping_list", "Failed to update item"));
         console.error(e);
       }
@@ -15374,8 +15373,12 @@ const _hoisted_15$3 = {
   key: 0,
   class: "item-row__by-guest"
 };
-const _hoisted_16$3 = ["title"];
-const _hoisted_17$3 = { class: "item-row__area-name" };
+const _hoisted_16$3 = {
+  key: 1,
+  class: "item-row__by-guest item-row__by-app"
+};
+const _hoisted_17$3 = ["title"];
+const _hoisted_18$2 = { class: "item-row__area-name" };
 const _sfc_main$d = /* @__PURE__ */ defineComponent({
   __name: "ItemRow",
   props: {
@@ -15406,10 +15409,16 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
     const { enabled: showOwnName } = useOwnNamePreference();
     const me = getCurrentUser()?.uid ?? null;
     const guestText = translate("shopping_list", "guest");
+    const appText = translate("shopping_list", "app");
     const byline = computed(() => {
       if (!item.value) return null;
       const names = attribution(item.value, me, showOwnName.value);
       return item.value.checked ? names.checked : names.added;
+    });
+    const bylineTitle = computed(() => {
+      const by = byline.value;
+      if (!by?.app || !by.account) return by?.name;
+      return translate("shopping_list", "{account}, through {label}", { account: by.account, label: by.name });
     });
     const areaOptions = computed(() => {
       const areas = shopAreasStore.areasByList[props.listId] ?? [];
@@ -15790,10 +15799,10 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
           byline.value ? (openBlock(), createElementBlock("span", {
             key: 1,
             class: "item-row__by",
-            title: byline.value.name
+            title: bylineTitle.value
           }, [
             createBaseVNode("span", _hoisted_14$4, toDisplayString(byline.value.name), 1),
-            byline.value.guest ? (openBlock(), createElementBlock("span", _hoisted_15$3, toDisplayString(unref(guestText)), 1)) : createCommentVNode("", true)
+            byline.value.guest ? (openBlock(), createElementBlock("span", _hoisted_15$3, toDisplayString(unref(guestText)), 1)) : byline.value.app ? (openBlock(), createElementBlock("span", _hoisted_16$3, toDisplayString(unref(appText)), 1)) : createCommentVNode("", true)
           ], 8, _hoisted_13$4)) : createCommentVNode("", true)
         ], 64)),
         areaName.value && !__props.editing ? (openBlock(), createElementBlock("span", {
@@ -15806,8 +15815,8 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
             class: "item-row__area-dot",
             style: normalizeStyle({ backgroundColor: areaColor.value })
           }, null, 4)) : createCommentVNode("", true),
-          createBaseVNode("span", _hoisted_17$3, toDisplayString(areaName.value), 1)
-        ], 8, _hoisted_16$3)) : createCommentVNode("", true),
+          createBaseVNode("span", _hoisted_18$2, toDisplayString(areaName.value), 1)
+        ], 8, _hoisted_17$3)) : createCommentVNode("", true),
         __props.canEdit && !__props.editing ? (openBlock(), createBlock(unref(NcActions), {
           key: 4,
           class: "item-row__actions"
@@ -15882,7 +15891,7 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ItemRow = /* @__PURE__ */ _export_sfc$1(_sfc_main$d, [["__scopeId", "data-v-a20d32c6"]]);
+const ItemRow = /* @__PURE__ */ _export_sfc$1(_sfc_main$d, [["__scopeId", "data-v-7f692ff4"]]);
 function detectArea(name, areas) {
   const needle = fold(name);
   let bestArea = null;
@@ -16742,6 +16751,16 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
   }
 });
 const ListView = /* @__PURE__ */ _export_sfc$1(_sfc_main$b, [["__scopeId", "data-v-3e065458"]]);
+function planAreaMove(areas, index2, direction) {
+  const target = index2 + direction;
+  if (index2 < 0 || index2 >= areas.length || target < 0 || target >= areas.length) {
+    return [];
+  }
+  const order = [...areas];
+  order[index2] = areas[target];
+  order[target] = areas[index2];
+  return order.flatMap((area, position) => area.sortOrder === position ? [] : [{ id: area.id, sortOrder: position }]);
+}
 const _hoisted_1$7 = { class: "area-settings" };
 const _hoisted_2$6 = { class: "area-settings__header" };
 const _hoisted_3$4 = {
@@ -16970,19 +16989,10 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
     }
     async function moveArea(index2, direction) {
       if (listId.value === null) return;
-      const targetIndex = index2 + direction;
-      if (targetIndex < 0 || targetIndex >= areas.value.length) return;
-      const current = areas.value[index2];
-      const target = areas.value[targetIndex];
-      const currentOrder = current.sortOrder;
-      const targetOrder = target.sortOrder;
-      const newCurrentOrder = currentOrder === targetOrder ? targetIndex : targetOrder;
-      const newTargetOrder = currentOrder === targetOrder ? index2 : currentOrder;
+      const saves = planAreaMove(areas.value, index2, direction);
+      if (saves.length === 0) return;
       const lid = listId.value;
-      await Promise.all([
-        shopAreasStore.update(lid, current.id, { sortOrder: newCurrentOrder }),
-        shopAreasStore.update(lid, target.id, { sortOrder: newTargetOrder })
-      ]);
+      await Promise.all(saves.map((save2) => shopAreasStore.update(lid, save2.id, { sortOrder: save2.sortOrder })));
       await shopAreasStore.fetchByList(lid);
     }
     async function onCreateArea() {
@@ -17209,7 +17219,7 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const AreaKeywordsSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$a, [["__scopeId", "data-v-03031226"]]);
+const AreaKeywordsSettings = /* @__PURE__ */ _export_sfc$1(_sfc_main$a, [["__scopeId", "data-v-696d08c1"]]);
 const _sfc_main$9 = /* @__PURE__ */ defineComponent({
   __name: "ListSortSettings",
   setup(__props) {
@@ -18812,6 +18822,16 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
 const ShareDialog = /* @__PURE__ */ _export_sfc$1(_sfc_main$3, [["__scopeId", "data-v-68c481e8"]]);
 const notes = [
   {
+    version: "1.13.0",
+    title: "Home Assistant, and more units understood",
+    items: [
+      'Pints, litres, loaves, tins, boxes and cartons are understood when typed with an amount, so "2 pints of milk" adds Milk, 2 pints.',
+      `There's a Home Assistant integration that shows your lists as to-do lists, and lets you add, tick off and change items by voice. Anything it adds or ticks shows "Home Assistant" with an "app" mark next to it.`,
+      "Moving a shop area up or down in a list's settings now moves just that area."
+    ],
+    link: "https://github.com/otherworld-dev/Shopping-List/blob/main/shopping_list/CHANGELOG.md"
+  },
+  {
     version: "1.12.0",
     title: "A default area for each list",
     items: [
@@ -18990,7 +19010,7 @@ function usePush() {
   if (hasPushServer) {
     try {
       __vitePreload(async () => {
-        const { listen } = await import("./index-CazfLdg7.chunk.mjs").then((n) => n.i);
+        const { listen } = await import("./index-DcJy3ykX.chunk.mjs").then((n) => n.i);
         return { listen };
       }, true ? __vite__mapDeps([0,1,2]) : void 0, import.meta.url).then(({ listen }) => {
         listen("shopping_list_item_update", () => {

@@ -193,6 +193,7 @@ import { useShopAreasStore } from '../stores/shopAreas'
 import type { ShopArea } from '../types'
 import { Permission } from '../types'
 import { useListsStore } from '../stores/lists'
+import { planAreaMove } from '../utils/areaReorder'
 
 const shopAreasStore = useShopAreasStore()
 const listsStore = useListsStore()
@@ -394,29 +395,11 @@ function onColorChange(areaId: number, color: string) {
 
 async function moveArea(index: number, direction: number) {
 	if (listId.value === null) return
-	const targetIndex = index + direction
-	if (targetIndex < 0 || targetIndex >= areas.value.length) return
-
-	const current = areas.value[index]
-	const target = areas.value[targetIndex]
-
-	// Swap sort orders
-	const currentOrder = current.sortOrder
-	const targetOrder = target.sortOrder
-
-	// If they happen to have the same sortOrder, use index-based values
-	const newCurrentOrder = currentOrder === targetOrder
-		? targetIndex
-		: targetOrder
-	const newTargetOrder = currentOrder === targetOrder
-		? index
-		: currentOrder
+	const saves = planAreaMove(areas.value, index, direction)
+	if (saves.length === 0) return
 
 	const lid = listId.value
-	await Promise.all([
-		shopAreasStore.update(lid, current.id, { sortOrder: newCurrentOrder }),
-		shopAreasStore.update(lid, target.id, { sortOrder: newTargetOrder }),
-	])
+	await Promise.all(saves.map(save => shopAreasStore.update(lid, save.id, { sortOrder: save.sortOrder })))
 
 	// Re-fetch to get correct order
 	await shopAreasStore.fetchByList(lid)

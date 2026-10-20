@@ -5,6 +5,42 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.13.0] - 2026-10-20
+
+### Added
+- Apps that talk to the server, such as the new
+  [Home Assistant integration](https://github.com/otherworld-dev/Shopping-List-HomeAssistant)
+  (#52), can add an item by sending one line of text as it was
+  said or typed, for example "two pints of milk". The server reads the
+  amount, puts the item in its shop area and tops up or brings back an item
+  of the same name, the same as typing it in the web app. The same works for
+  changing an item, or only its amount
+- An item added or ticked through an app shows the app's name, for example
+  "Home Assistant", with an "app" mark next to it, so it can't be mistaken
+  for a person. Hovering over it shows whose account the app used
+
+### Changed
+- The strings added since 1.10.0 are translated in Czech, Dutch, Finnish,
+  French, German, Italian and Slovak. Invite codes, names on items, list
+  sorting, What's new, backups and the default area were showing in English.
+  The translations have not been checked by a native speaker, so corrections
+  on Crowdin are welcome
+
+### Fixed
+- If an update ever leaves one of the app's database columns missing, as
+  happened to the default area on one server, `occ db:add-missing-columns`
+  now adds it back and Nextcloud's admin overview warns about it (#56)
+- Pints, litres, loaves, tins, boxes and cartons are read as amounts.
+  Typing "2 pints of milk" used to add an item called "Pints of milk"
+- The "Restored 3 lists" message after restoring a backup is translated.
+  Plural strings were left out when the translations were compiled, so it
+  always showed in English
+- Moving a shop area up or down in a list's settings moves it one place and
+  leaves the others where they are. Every new area was given the same
+  position, so the arrows could shuffle other areas and the order could
+  change after a reload. New areas now go to the end of the list, and the
+  first move tidies up any areas that were sharing a position (#55)
+
 ## [1.12.0] - 2026-10-13
 
 ### Added
