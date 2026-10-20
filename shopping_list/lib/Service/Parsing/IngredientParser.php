@@ -27,7 +27,22 @@ final class IngredientParser {
 		// languages that use one, so a comma elsewhere in the line is untouched.
 		$this->commaDecimal = in_array(',', $pack->decimalSeparators, true);
 		$dec = $this->commaDecimal ? '[.,]' : '\.';
-		$this->qtyPattern = '/^(\d+(?:\s+\d+\/\d+|\/\d+|' . $dec . '\d+)?(?:\s*-\s*\d+(?:\/\d+|' . $dec . '\d+)?)?)\s*/u';
+		// [0-9], not \d: with the u flag PHP's \d also takes other scripts' digits, JS's never does
+		$this->qtyPattern = '/^([0-9]+(?:\s+[0-9]+\/[0-9]+|\/[0-9]+|' . $dec . '[0-9]+)?(?:\s*-\s*[0-9]+(?:\/[0-9]+|' . $dec . '[0-9]+)?)?)\s*/u';
+	}
+
+	/**
+	 * Trim as JavaScript's String#trim does, so a no-break space or an
+	 * ideographic space from a phone keyboard goes too; PHP's trim() only
+	 * knows ASCII whitespace.
+	 */
+	public static function trim(string $s): string {
+		return (string)preg_replace('/^[\s\x{FEFF}]+|[\s\x{FEFF}]+$/u', '', $s);
+	}
+
+	/** The line without its list markup ("[x] - Milk" gives "Milk") */
+	public function stripListMarkup(string $line): string {
+		return $this->readListMarkup($line)[0];
 	}
 
 	/** @return array{name: string, quantity: ?string, checked: bool} */
@@ -43,12 +58,12 @@ final class IngredientParser {
 	 * end up in the item's name.
 	 */
 	public function parseAmount(string $text): ?string {
-		$trimmed = trim($text);
+		$trimmed = self::trim($text);
 		if ($trimmed === '' || !preg_match($this->qtyPattern, $trimmed, $m)) {
 			return null;
 		}
 		$qty = $this->quantityOf($m[1]);
-		$rest = trim(substr($trimmed, strlen($m[0])));
+		$rest = self::trim(substr($trimmed, strlen($m[0])));
 		if ($rest === '') {
 			return $qty;
 		}
@@ -57,7 +72,7 @@ final class IngredientParser {
 	}
 
 	private function quantityOf(string $match): string {
-		$qty = trim($match);
+		$qty = self::trim($match);
 		return $this->commaDecimal ? str_replace(',', '.', $qty) : $qty;
 	}
 
@@ -90,7 +105,7 @@ final class IngredientParser {
 		$name = (string)preg_replace('/,\s*,/u', ',', $name);
 		$name = (string)preg_replace('/,\s*$/u', '', $name);
 		$name = (string)preg_replace('/^\s*,\s*/u', '', $name);
-		$name = trim((string)preg_replace('/\s+/u', ' ', $name));
+		$name = self::trim((string)preg_replace('/\s+/u', ' ', $name));
 
 		if ($name !== '') {
 			$second = mb_substr($name, 1, 1);
@@ -107,7 +122,7 @@ final class IngredientParser {
 		if ($this->prepositionRe !== null) {
 			$rest = (string)preg_replace($this->prepositionRe, '', $rest);
 		}
-		return trim($rest);
+		return self::trim($rest);
 	}
 
 	/**
@@ -119,7 +134,7 @@ final class IngredientParser {
 	 * @return array{0: string, 1: bool}
 	 */
 	private function readListMarkup(string $line): array {
-		$out = trim($line);
+		$out = self::trim($line);
 		$checked = false;
 		do {
 			$prev = $out;
@@ -129,11 +144,11 @@ final class IngredientParser {
 				}
 				$out = substr($out, strlen($box[0]));
 			}
-			$out = (string)preg_replace('/^\[\s*(\d+(?:[.,]\d+)?)\s*\]\s*/u', '$1 ', $out);
+			$out = (string)preg_replace('/^\[\s*([0-9]+(?:[.,][0-9]+)?)\s*\]\s*/u', '$1 ', $out);
 			$out = (string)preg_replace('/^[-*•]\s+/u', '', $out);
-			$out = (string)preg_replace('/^\d+[.)]\s+/u', '', $out);
+			$out = (string)preg_replace('/^[0-9]+[.)]\s+/u', '', $out);
 		} while ($prev !== $out);
-		return [trim($out), $checked];
+		return [self::trim($out), $checked];
 	}
 
 	/** @return array{name: string, quantity: ?string} */
@@ -146,7 +161,7 @@ final class IngredientParser {
 		$trimmedLower = mb_strtolower($trimmed);
 		foreach ($this->pack->leadingUnits as $unit) {
 			if (str_starts_with($trimmedLower, $unit . ' ') || str_starts_with($trimmedLower, $unit . ',')) {
-				$rest = $this->stripConnector(trim(mb_substr($trimmed, mb_strlen($unit))));
+				$rest = $this->stripConnector(self::trim(mb_substr($trimmed, mb_strlen($unit))));
 				return ['name' => $this->cleanName($rest !== '' ? $rest : $trimmed), 'quantity' => '1 ' . $unit];
 			}
 		}
@@ -157,18 +172,18 @@ final class IngredientParser {
 
 		$qty = $this->quantityOf($m[1]);
 		// The match is all ASCII, so byte offsets and character offsets agree
-		$rest = trim(substr($trimmed, strlen($m[0])));
+		$rest = self::trim(substr($trimmed, strlen($m[0])));
 
 		// "2x Milk" / "2 × Milk": the x counts, it is not part of the name
 		if (preg_match('/^[x×]\s+/iu', $rest, $mult)) {
-			$rest = trim(substr($rest, strlen($mult[0])));
+			$rest = self::trim(substr($rest, strlen($mult[0])));
 			return ['name' => $this->cleanName($rest !== '' ? $rest : $trimmed), 'quantity' => $qty];
 		}
 
 		// Digits glued onto a word only count when the word is a unit: "500ml"
 		// is an amount, "7up" and "3M tape" are names.
-		$next = substr($trimmed, strlen($m[1]), 1);
-		$attached = strlen($trimmed) > strlen($m[1]) && !preg_match('/[\s,]/', $next);
+		$next = mb_substr(substr($trimmed, strlen($m[1])), 0, 1);
+		$attached = $next !== '' && !preg_match('/[\s,]/u', $next);
 		$unit = $this->matchUnit($rest);
 		if ($attached && $unit === '') {
 			return ['name' => $this->cleanName($trimmed), 'quantity' => null];
@@ -176,10 +191,10 @@ final class IngredientParser {
 
 		if ($unit !== '') {
 			$qty .= ' ' . $unit;
-			$rest = $this->stripConnector(trim(mb_substr($rest, mb_strlen($unit))));
+			$rest = $this->stripConnector(self::trim(mb_substr($rest, mb_strlen($unit))));
 		}
 
-		$rest = trim((string)preg_replace('/^,\s*/u', '', $rest));
+		$rest = self::trim((string)preg_replace('/^,\s*/u', '', $rest));
 
 		return ['name' => $this->cleanName($rest !== '' ? $rest : $trimmed), 'quantity' => $qty];
 	}

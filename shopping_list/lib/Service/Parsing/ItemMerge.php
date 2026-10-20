@@ -113,10 +113,10 @@ final class ItemMerge {
 
 	/** The form two names are compared in: folded, notes dropped, English singular. */
 	public function normalizeName(string $name): string {
-		$cleaned = trim(self::fold($name));
+		$cleaned = IngredientParser::trim(self::fold($name));
 		$cleaned = (string)preg_replace('/\s*[(（][^)）]*[)）]\s*/u', ' ', $cleaned);
 		$cleaned = (string)preg_replace('/(?:,\s|，\s*).*$/u', '', $cleaned);
-		$cleaned = trim((string)preg_replace('/\s+/u', ' ', $cleaned));
+		$cleaned = IngredientParser::trim((string)preg_replace('/\s+/u', ' ', $cleaned));
 
 		// Other languages skip this: German "Eis" and "Ei" are different things
 		if (!$this->pack->morphology) {
@@ -158,10 +158,10 @@ final class ItemMerge {
 	}
 
 	private static function evalNumber(string $s): ?float {
-		if (preg_match('/^(\d+)\s+(\d+)\/(\d+)$/', $s, $m)) {
+		if (preg_match('/^([0-9]+)\s+([0-9]+)\/([0-9]+)$/', $s, $m)) {
 			return (int)$m[3] === 0 ? null : (int)$m[1] + (int)$m[2] / (int)$m[3];
 		}
-		if (preg_match('/^(\d+)\/(\d+)$/', $s, $m)) {
+		if (preg_match('/^([0-9]+)\/([0-9]+)$/', $s, $m)) {
 			return (int)$m[2] === 0 ? null : (int)$m[1] / (int)$m[2];
 		}
 		return is_numeric($s) ? (float)$s : null;
@@ -169,11 +169,11 @@ final class ItemMerge {
 
 	/** @return array{number: ?float, unit: string, raw: string} */
 	private static function parseQuantity(?string $qty): array {
-		$trimmed = trim($qty ?? '');
-		if ($trimmed === '' || !preg_match('/^(\d+(?:\s+\d+\/\d+|\.\d+|\/\d+)?)\s*(.*)$/u', $trimmed, $m)) {
+		$trimmed = IngredientParser::trim($qty ?? '');
+		if ($trimmed === '' || !preg_match('/^([0-9]+(?:\s+[0-9]+\/[0-9]+|\.[0-9]+|\/[0-9]+)?)\s*(.*)$/u', $trimmed, $m)) {
 			return ['number' => null, 'unit' => '', 'raw' => $trimmed];
 		}
-		return ['number' => self::evalNumber(trim($m[1])), 'unit' => mb_strtolower(trim($m[2])), 'raw' => $trimmed];
+		return ['number' => self::evalNumber(IngredientParser::trim($m[1])), 'unit' => mb_strtolower(IngredientParser::trim($m[2])), 'raw' => $trimmed];
 	}
 
 	/** Like Number#toString after toFixed(4): "2", "0.75", "0.3" */
@@ -186,8 +186,8 @@ final class ItemMerge {
 
 	/** Two amounts added up when their units agree, otherwise joined with "+". */
 	public function mergeQuantities(?string $existing, ?string $incoming): string {
-		$hasExisting = trim($existing ?? '') !== '';
-		$hasIncoming = trim($incoming ?? '') !== '';
+		$hasExisting = IngredientParser::trim($existing ?? '') !== '';
+		$hasIncoming = IngredientParser::trim($incoming ?? '') !== '';
 		if (!$hasExisting && !$hasIncoming) {
 			return '';
 		}
