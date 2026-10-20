@@ -7,6 +7,8 @@ namespace OCA\Shopping_List\Controller;
 use OCA\Shopping_List\Service\ItemService;
 use OCA\Shopping_List\Service\NoPermissionException;
 use OCA\Shopping_List\Service\NotFoundException;
+use OCA\Shopping_List\Service\TextAddResult;
+use OCA\Shopping_List\Service\TextInputService;
 use OCA\Shopping_List\Service\ViaLabel;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\Attribute\NoAdminRequired;
@@ -19,6 +21,7 @@ class ItemController extends OCSController {
 		string $appName,
 		IRequest $request,
 		private ItemService $service,
+		private TextInputService $textInput,
 		private string $userId,
 	) {
 		parent::__construct($appName, $request);
@@ -41,17 +44,31 @@ class ItemController extends OCSController {
 	#[NoAdminRequired]
 	public function create(
 		int $listId,
-		string $name,
+		?string $name = null,
 		?string $quantity = null,
 		?string $unit = null,
 		?int $shopAreaId = null,
 		bool $areaExplicit = false,
 		bool $checked = false,
 		bool $quantityExplicit = false,
+		?string $text = null,
 	): DataResponse {
+		if (($name === null) === ($text === null)) {
+			return new DataResponse(['message' => 'Send either name or text'], Http::STATUS_BAD_REQUEST);
+		}
 		try {
+			// One line as the user said or typed it; the server does the parsing
+			if ($text !== null) {
+				$result = $this->textInput->addFromText($listId, $text, $this->userId, $this->via());
+				return new DataResponse(
+					$result->item->jsonSerialize() + ['outcome' => $result->outcome],
+					$result->outcome === TextAddResult::CREATED ? Http::STATUS_CREATED : Http::STATUS_OK,
+				);
+			}
 			$item = $this->service->create($listId, $name, $quantity, $unit, $shopAreaId, $this->userId, $areaExplicit, $checked, $quantityExplicit, $this->via());
 			return new DataResponse($item, Http::STATUS_CREATED);
+		} catch (\InvalidArgumentException $e) {
+			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_BAD_REQUEST);
 		} catch (NotFoundException $e) {
 			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_NOT_FOUND);
 		} catch (NoPermissionException $e) {

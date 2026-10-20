@@ -7,6 +7,7 @@ namespace OCA\Shopping_List\Tests\Unit;
 use OCA\Shopping_List\Controller\ItemController;
 use OCA\Shopping_List\Db\Item;
 use OCA\Shopping_List\Service\ItemService;
+use OCA\Shopping_List\Service\TextInputService;
 use OCP\IRequest;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -19,7 +20,7 @@ class ItemControllerViaTest extends TestCase {
 		$request = $this->createMock(IRequest::class);
 		$request->method('getHeader')->willReturnCallback(fn (string $name) => $name === 'X-Shopping-List-Via' ? $header : '');
 		$this->service = $this->createMock(ItemService::class);
-		return new ItemController('shopping_list', $request, $this->service, 'ben');
+		return new ItemController('shopping_list', $request, $this->service, $this->createMock(TextInputService::class), 'ben');
 	}
 
 	public function testAddingPassesTheCleanedLabel(): void {
