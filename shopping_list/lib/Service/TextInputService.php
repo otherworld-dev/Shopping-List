@@ -37,8 +37,9 @@ class TextInputService {
 	public function addFromText(int $listId, string $text, string $userId, ?string $via): TextAddResult {
 		$this->lists->assertWriteAccess($listId, $userId);
 
-		$pack = ParsingPack::forLanguage($this->l->getLanguageCode());
-		$parsed = $this->readLine($pack, $text);
+		$language = $this->l->getLanguageCode();
+		$pack = ParsingPack::forLanguage($language);
+		$parsed = $this->readLine($pack, $language, $text);
 		$name = $parsed['name'];
 		$quantity = $parsed['quantity'];
 
@@ -102,7 +103,8 @@ class TextInputService {
 	 * @throws NoPermissionException
 	 */
 	public function updateFromText(int $id, string $text, string $userId): Item {
-		$parsed = $this->readLine(ParsingPack::forLanguage($this->l->getLanguageCode()), $text);
+		$language = $this->l->getLanguageCode();
+		$parsed = $this->readLine(ParsingPack::forLanguage($language), $language, $text);
 		$fields = ['name' => $parsed['name'], 'quantity' => $parsed['quantity']];
 		if ($parsed['quantity'] !== null) {
 			$fields['quantityExplicit'] = true;
@@ -135,9 +137,10 @@ class TextInputService {
 	 * @return array{name: string, quantity: ?string, checked: bool}
 	 * @throws \InvalidArgumentException when no item name is left after the amount
 	 */
-	private function readLine(ParsingPack $pack, string $text): array {
+	private function readLine(ParsingPack $pack, string $language, string $text): array {
 		$parser = new IngredientParser($pack);
-		$line = SpokenNumbers::normalise($text, $pack->language);
+		// The user's language, not the pack's: English number words are no use to a Bulgarian user
+		$line = SpokenNumbers::normalise($text, $language);
 		$parsed = $parser->parse($line);
 		// The parser falls back to the whole line as the name, so "2" or
 		// "[x] 2" would otherwise become an item called "2".

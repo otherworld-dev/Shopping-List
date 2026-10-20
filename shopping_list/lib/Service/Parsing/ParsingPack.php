@@ -104,6 +104,11 @@ final class ParsingPack {
 		}
 		$candidates[] = 'en';
 
+		// Plurals follow the user's own language, as hasMorphology() does, not
+		// the pack it falls back to: a Bulgarian user reading the English pack
+		// must not get English plurals.
+		$morphology = in_array($norm === '' ? 'en' : explode('_', $norm)[0], self::MORPHOLOGY_LANGS, true);
+
 		$files = self::availablePacks();
 		foreach ($candidates as $cand) {
 			if (!isset($files[$cand])) {
@@ -111,11 +116,15 @@ final class ParsingPack {
 			}
 			$pack = self::load($files[$cand]);
 			if ($pack !== null) {
-				return $pack;
+				return $pack->morphology === $morphology ? $pack : $pack->withMorphology($morphology);
 			}
 		}
 		// Only reachable if en.json itself is broken: parse with no words at all.
-		return new self('en', [], self::EN_UNIT_ALIASES, [], [], ['.'], true);
+		return new self('en', [], self::EN_UNIT_ALIASES, [], [], ['.'], $morphology);
+	}
+
+	private function withMorphology(bool $morphology): self {
+		return new self($this->language, $this->units, $this->unitAliases, $this->leadingUnits, $this->prepositions, $this->decimalSeparators, $morphology);
 	}
 
 	/**

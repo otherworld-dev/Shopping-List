@@ -59,6 +59,11 @@ class ItemMergeTest extends TestCase {
 		self::assertNotSame($de->normalizeName('Eis'), $de->normalizeName('Ei'));
 	}
 
+	public function testALanguageWithNoPackNeverPluralises(): void {
+		$bg = new ItemMerge(ParsingPack::forLanguage('bg'));
+		self::assertSame('Apel', $bg->pluralizeName('Apel'));
+	}
+
 	private static function item(int $id, string $name, bool $checked): Item {
 		$item = new Item();
 		$item->setId($id);

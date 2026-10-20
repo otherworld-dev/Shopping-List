@@ -115,6 +115,15 @@ class TextInputServiceAddTest extends TestCase {
 		$service->addFromText(1, '0,5 kg Mehl', 'ben', null);
 	}
 
+	public function testSpokenNumbersFollowTheUsersLanguage(): void {
+		$service = $this->service();
+		$this->language = 'bg';
+		$this->items->expects(self::once())->method('create')
+			->with(1, 'Two apples', null, null, null, 'ben', false, false, false, null)
+			->willReturn(new Item());
+		$service->addFromText(1, 'two apples', 'ben', null);
+	}
+
 	public static function noName(): array {
 		return [['2'], ['2 pints'], ['[x]'], ['   '], [''], ['[x] 2'], ['- 2 pints'], ['1. 3 pints'], ['* 2']];
 	}

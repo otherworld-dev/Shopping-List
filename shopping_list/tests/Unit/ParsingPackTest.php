@@ -21,6 +21,17 @@ class ParsingPackTest extends TestCase {
 		self::assertSame('en', ParsingPack::forLanguage('')->language);
 	}
 
+	/** As hasMorphology() in the web app: the viewer's language decides, not the pack it falls back to */
+	public function testMorphologyFollowsTheUsersLanguage(): void {
+		$bg = ParsingPack::forLanguage('bg');
+		self::assertSame('en', $bg->language);
+		self::assertFalse($bg->morphology);
+		self::assertTrue(ParsingPack::forLanguage('en_GB')->morphology);
+		self::assertTrue(ParsingPack::forLanguage('')->morphology);
+		// The cached English pack is not changed by a request for another language
+		self::assertTrue(ParsingPack::forLanguage('en')->morphology);
+	}
+
 	public function testOnlyEnglishHasAliasesAndMorphology(): void {
 		$en = ParsingPack::forLanguage('en');
 		self::assertTrue($en->morphology);
