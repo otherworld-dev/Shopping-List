@@ -139,9 +139,9 @@ class TextInputService {
 		$parser = new IngredientParser($pack);
 		$line = SpokenNumbers::normalise($text, $pack->language);
 		$parsed = $parser->parse($line);
-		// The parser falls back to the whole line as the name, so "2" would
-		// otherwise become an item called "2".
-		if ($parsed['name'] === '' || $parser->parseAmount($line) !== null) {
+		// The parser falls back to the whole line as the name, so "2" or
+		// "[x] 2" would otherwise become an item called "2".
+		if ($parsed['name'] === '' || $parser->parseAmount($parser->stripListMarkup($line)) !== null) {
 			throw new \InvalidArgumentException('The line has no item name');
 		}
 		return $parsed;

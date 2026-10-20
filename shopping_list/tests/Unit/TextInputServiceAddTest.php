@@ -116,7 +116,7 @@ class TextInputServiceAddTest extends TestCase {
 	}
 
 	public static function noName(): array {
-		return [['2'], ['2 pints'], ['[x]'], ['   '], ['']];
+		return [['2'], ['2 pints'], ['[x]'], ['   '], [''], ['[x] 2'], ['- 2 pints'], ['1. 3 pints'], ['* 2']];
 	}
 
 	#[DataProvider('noName')]
