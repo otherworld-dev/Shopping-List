@@ -1,6 +1,6 @@
 const appName = "shopping_list";
 const appVersion = "1.12.0";
-import { aP as browserStorage, l as defineComponent, ak as translate, aQ as useCollapsedAreas, ay as onMounted, ba as publicApi, J as ref, aL as createIngredientParser, an as getParsingPack, o as openBlock, c as createElementBlock, b as createBaseVNode, t as toDisplayString, w as withDirectives, aC as vModelText, y as unref, k as createCommentVNode, aA as withKeys, aB as withModifiers, d as createVNode, g as NcLoadingIcon, F as Fragment, D as renderList, aD as normalizeStyle, n as normalizeClass, aU as mdiChevronDown, a as NcIconSvgWrapper, aV as vShow, K as createTextVNode, i as createBlock, aG as ImageViewer, I as computed, bb as publicItemImageUrl, aI as attribution, aH as Permission, aw as _export_sfc, ah as loadState, b7 as createPinia, b8 as offlinePersistPlugin, b9 as createApp } from "./useCollapsedAreas-DD17flXI.chunk.mjs";
+import { aR as browserStorage, l as defineComponent, ak as translate, aS as useCollapsedAreas, aA as onMounted, bc as publicApi, J as ref, aN as createIngredientParser, an as getParsingPack, o as openBlock, c as createElementBlock, b as createBaseVNode, t as toDisplayString, w as withDirectives, aE as vModelText, y as unref, k as createCommentVNode, aC as withKeys, aD as withModifiers, d as createVNode, g as NcLoadingIcon, F as Fragment, D as renderList, aF as normalizeStyle, n as normalizeClass, aW as mdiChevronDown, a as NcIconSvgWrapper, aX as vShow, K as createTextVNode, i as createBlock, aI as ImageViewer, I as computed, bd as publicItemImageUrl, aK as attribution, as as tickFrom, ar as NO_TICK, aJ as Permission, ay as _export_sfc, ah as loadState, b9 as createPinia, ba as offlinePersistPlugin, bb as createApp } from "./useCollapsedAreas-79e8z22Q.chunk.mjs";
 const KEY = "shopping_list_guest_name";
 function readGuestName(storage = browserStorage()) {
   try {
@@ -209,15 +209,17 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     }
     async function onToggleCheck(item) {
       const newChecked = !item.checked;
+      const previousTick = tickFrom(item);
       item.checked = newChecked;
+      if (!newChecked) {
+        Object.assign(item, NO_TICK);
+      }
       try {
         const response = await publicApi.checkItem(props.token, item.id, newChecked, guestName.value.trim() || void 0);
-        const saved = response.data.ocs.data;
-        item.checkedBy = saved.checkedBy;
-        item.checkedByName = saved.checkedByName;
-        item.checkedByGuest = saved.checkedByGuest;
+        Object.assign(item, tickFrom(response.data.ocs.data));
       } catch {
         item.checked = !newChecked;
+        Object.assign(item, previousTick);
       }
     }
     return (_ctx, _cache) => {
@@ -403,7 +405,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const PublicListView = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-a8da098f"]]);
+const PublicListView = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-414cd1f0"]]);
 const ANDROID_PACKAGE = "dev.otherworld.shoppinglist";
 const APP_WEBSITE = "https://shoppinglist.otherworld.dev/";
 function isAndroid(userAgent) {

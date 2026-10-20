@@ -1,7 +1,7 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-g2M8tZKs.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/useCollapsedAreas-DD17flXI.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/useCollapsedAreas-CX_mg1lj.chunk.css')])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-CXwSSGK8.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/useCollapsedAreas-79e8z22Q.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/useCollapsedAreas-CX_mg1lj.chunk.css')])))=>i.map(i=>d[i]);
 const appName = "shopping_list";
 const appVersion = "1.12.0";
-import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, A as ActionGlobalMixin, a as NcIconSvgWrapper, r as resolveComponent, b as createBaseVNode, w as withDirectives, v as vModelRadio, n as normalizeClass, d as createVNode, m as mdiRadioboxMarked, e as mdiRadioboxBlank, u as useModel, f as createElementId, g as NcLoadingIcon, h as NcInputConfirmCancel, i as createBlock, j as renderSlot, k as createCommentVNode, l as defineComponent, p as useSlots, q as useTemplateRef, s as useElementSize, x as withCtx, y as unref, z as resolveDynamicComponent, B as mergeProps, C as toHandlers, F as Fragment, D as renderList, E as _sfc_main$o, G as NcModal, H as mergeModels, I as computed, J as ref, K as createTextVNode, L as useCssModule, M as provide, O as NC_FORM_BOX_CONTEXT_KEY, P as INSIDE_RADIO_GROUP_KEY, Q as NOOP, R as extend$1, S as isString, T as NO, U as isSymbol, V as isBuiltInDirective, W as capitalize, X as camelize, Y as EMPTY_OBJ, Z as isObject, $ as toHandlerKey, a0 as isArray, a1 as isOn, a2 as isReservedProp, a3 as isVoidTag, a4 as isHTMLTag, a5 as isSVGTag, a6 as isMathMLTag, a7 as parseStringStyle, a8 as makeMap, a9 as generateCodeFrame, aa as getAugmentedNamespace, ab as runtimeDom_esmBundler, ac as shared_esmBundler, ad as getDefaultExportFromCjs, ae as getGettextBuilder, af as getLoggerBuilder, ag as defineStore, ah as loadState, ai as api, aj as markServerFetched, ak as translate, al as getLanguage, am as hasMorphology, an as getParsingPack, ao as loadValue, ap as saveValue, aq as readonly, ar as watch, as as mdiPlus, at as NcAppNavigationCaption, au as NcActionButton, av as NcAppNavigationItem, aw as _export_sfc$1, ax as getCurrentUser, ay as onMounted, az as onUnmounted, aA as withKeys, aB as withModifiers, aC as vModelText, aD as normalizeStyle, aE as Teleport, aF as NcActions, aG as ImageViewer, aH as Permission, aI as attribution, aJ as nextTick, aK as itemImageUrl, aL as createIngredientParser, aM as NcPopover, aN as NcButton, aO as mdiHelpCircleOutline, aP as browserStorage, aQ as useCollapsedAreas, aR as ShareType, aS as NcAvatar, aT as isRef, aU as mdiChevronDown, aV as vShow, aW as shallowRef, aX as vModelSelect, aY as NcCheckboxRadioSwitch, aZ as translatePlural, a_ as Transition, a$ as getRootUrl, b0 as generateOcsUrl, b1 as cancelableClient, b2 as generateUrl, b3 as NcAppNavigation, b4 as NcAppNavigationSettings, b5 as NcAppContent, b6 as NcContent, b7 as createPinia, b8 as offlinePersistPlugin, b9 as createApp } from "./useCollapsedAreas-DD17flXI.chunk.mjs";
+import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, A as ActionGlobalMixin, a as NcIconSvgWrapper, r as resolveComponent, b as createBaseVNode, w as withDirectives, v as vModelRadio, n as normalizeClass, d as createVNode, m as mdiRadioboxMarked, e as mdiRadioboxBlank, u as useModel, f as createElementId, g as NcLoadingIcon, h as NcInputConfirmCancel, i as createBlock, j as renderSlot, k as createCommentVNode, l as defineComponent, p as useSlots, q as useTemplateRef, s as useElementSize, x as withCtx, y as unref, z as resolveDynamicComponent, B as mergeProps, C as toHandlers, F as Fragment, D as renderList, E as _sfc_main$o, G as NcModal, H as mergeModels, I as computed, J as ref, K as createTextVNode, L as useCssModule, M as provide, O as NC_FORM_BOX_CONTEXT_KEY, P as INSIDE_RADIO_GROUP_KEY, Q as NOOP, R as extend$1, S as isString, T as NO, U as isSymbol, V as isBuiltInDirective, W as capitalize, X as camelize, Y as EMPTY_OBJ, Z as isObject, $ as toHandlerKey, a0 as isArray, a1 as isOn, a2 as isReservedProp, a3 as isVoidTag, a4 as isHTMLTag, a5 as isSVGTag, a6 as isMathMLTag, a7 as parseStringStyle, a8 as makeMap, a9 as generateCodeFrame, aa as getAugmentedNamespace, ab as runtimeDom_esmBundler, ac as shared_esmBundler, ad as getDefaultExportFromCjs, ae as getGettextBuilder, af as getLoggerBuilder, ag as defineStore, ah as loadState, ai as api, aj as markServerFetched, ak as translate, al as getLanguage, am as hasMorphology, an as getParsingPack, ao as loadValue, ap as saveValue, aq as readonly, ar as NO_TICK, as as tickFrom, at as watch, au as mdiPlus, av as NcAppNavigationCaption, aw as NcActionButton, ax as NcAppNavigationItem, ay as _export_sfc$1, az as getCurrentUser, aA as onMounted, aB as onUnmounted, aC as withKeys, aD as withModifiers, aE as vModelText, aF as normalizeStyle, aG as Teleport, aH as NcActions, aI as ImageViewer, aJ as Permission, aK as attribution, aL as nextTick, aM as itemImageUrl, aN as createIngredientParser, aO as NcPopover, aP as NcButton, aQ as mdiHelpCircleOutline, aR as browserStorage, aS as useCollapsedAreas, aT as ShareType, aU as NcAvatar, aV as isRef, aW as mdiChevronDown, aX as vShow, aY as shallowRef, aZ as vModelSelect, a_ as NcCheckboxRadioSwitch, a$ as translatePlural, b0 as Transition, b1 as getRootUrl, b2 as generateOcsUrl, b3 as cancelableClient, b4 as generateUrl, b5 as NcAppNavigation, b6 as NcAppNavigationSettings, b7 as NcAppContent, b8 as NcContent, b9 as createPinia, ba as offlinePersistPlugin, bb as createApp } from "./useCollapsedAreas-79e8z22Q.chunk.mjs";
 const _sfc_main$n = {
   name: "NcActionCaption",
   inject: {
@@ -14766,12 +14766,11 @@ const useItemsStore = defineStore("items", () => {
     const previousUpdatedAt = item.updatedAt;
     const previousCheckedBy = item.checkedBy;
     const previousCheckedByName = item.checkedByName;
+    const previousCheckedVia = item.checkedVia;
     item.checked = !item.checked;
     item.updatedAt = (/* @__PURE__ */ new Date()).toISOString();
     if (!item.checked) {
-      item.checkedBy = null;
-      item.checkedByName = null;
-      item.checkedByGuest = false;
+      Object.assign(item, NO_TICK);
     }
     if (!isOnline2.value) {
       await enqueue({ type: "item.check", listId, itemId: id, payload: { checked: item.checked } });
@@ -14779,10 +14778,7 @@ const useItemsStore = defineStore("items", () => {
     }
     try {
       const response = await api.items.check(listId, id, item.checked);
-      const saved = response.data.ocs.data;
-      item.checkedBy = saved.checkedBy;
-      item.checkedByName = saved.checkedByName;
-      item.checkedByGuest = saved.checkedByGuest;
+      Object.assign(item, tickFrom(response.data.ocs.data));
     } catch (e) {
       if (isNetworkError(e)) {
         await enqueue({ type: "item.check", listId, itemId: id, payload: { checked: item.checked } });
@@ -14791,6 +14787,7 @@ const useItemsStore = defineStore("items", () => {
         item.updatedAt = previousUpdatedAt;
         item.checkedBy = previousCheckedBy;
         item.checkedByName = previousCheckedByName;
+        item.checkedVia = previousCheckedVia;
         showError(translate("shopping_list", "Failed to update item"));
         console.error(e);
       }
@@ -19003,7 +19000,7 @@ function usePush() {
   if (hasPushServer) {
     try {
       __vitePreload(async () => {
-        const { listen } = await import("./index-g2M8tZKs.chunk.mjs").then((n) => n.i);
+        const { listen } = await import("./index-CXwSSGK8.chunk.mjs").then((n) => n.i);
         return { listen };
       }, true ? __vite__mapDeps([0,1,2]) : void 0, import.meta.url).then(({ listen }) => {
         listen("shopping_list_item_update", () => {

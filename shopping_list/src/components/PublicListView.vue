@@ -164,6 +164,7 @@ import type { Byline } from '../utils/attribution'
 import { readGuestName, writeGuestName } from '../utils/guestName'
 import { createIngredientParser } from '../utils/parseIngredient'
 import { getParsingPack } from '../utils/localePacks'
+import { NO_TICK, tickFrom } from '../utils/tickFields'
 
 const props = defineProps<{
 	token: string
@@ -328,15 +329,17 @@ async function onAddItem() {
 
 async function onToggleCheck(item: Item) {
 	const newChecked = !item.checked
+	const previousTick = tickFrom(item)
 	item.checked = newChecked // optimistic
+	if (!newChecked) {
+		Object.assign(item, NO_TICK)
+	}
 	try {
 		const response = await publicApi.checkItem(props.token, item.id, newChecked, guestName.value.trim() || undefined)
-		const saved = response.data.ocs.data as Item
-		item.checkedBy = saved.checkedBy
-		item.checkedByName = saved.checkedByName
-		item.checkedByGuest = saved.checkedByGuest
+		Object.assign(item, tickFrom(response.data.ocs.data as Item))
 	} catch {
 		item.checked = !newChecked // revert
+		Object.assign(item, previousTick)
 	}
 }
 </script>
