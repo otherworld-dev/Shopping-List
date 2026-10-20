@@ -122,7 +122,7 @@ class TextInputService {
 	public function updateAmount(int $id, string $amountText, string $userId): Item {
 		$language = $this->l->getLanguageCode();
 		$parser = new IngredientParser(ParsingPack::forLanguage($language));
-		$amount = $parser->parseAmount(SpokenNumbers::normalise($amountText, $language));
+		$amount = $parser->parseAmount(SpokenNumbers::normalise($amountText, $language, true));
 		if ($amount === null) {
 			throw new \InvalidArgumentException('That is not an amount');
 		}

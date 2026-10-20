@@ -40,14 +40,20 @@ final class SpokenNumbers {
 		'half' => '0.5',
 	];
 
-	public static function normalise(string $line, string $language): string {
+	/**
+	 * @param bool $amount The text is only an amount ("six", "a dozen"), so
+	 *                     the word may stand alone; on an item line a bare
+	 *                     word is the item's name and is left alone.
+	 */
+	public static function normalise(string $line, string $language, bool $amount = false): string {
 		$base = mb_strtolower(explode('_', str_replace('-', '_', $language))[0]);
 		if ($base !== 'en') {
 			return $line;
 		}
+		$after = $amount ? '(?=\s+\S|\s*$)' : '(?=\s+\S)';
 		foreach (self::ENGLISH as $words => $digits) {
 			// A whole word with something after it: a bare "a" stays, "anchovies" is untouched
-			$pattern = '/^\s*' . str_replace(' ', '\s+', preg_quote($words, '/')) . '(?=\s+\S)/iu';
+			$pattern = '/^\s*' . str_replace(' ', '\s+', preg_quote($words, '/')) . $after . '/iu';
 			if (preg_match($pattern, $line, $m)) {
 				return $digits . substr($line, strlen($m[0]));
 			}

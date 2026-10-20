@@ -30,6 +30,15 @@ class SpokenNumbersTest extends TestCase {
 		self::assertSame($expected, SpokenNumbers::normalise($line, 'en'));
 	}
 
+	public function testAWholeAmountCanBeJustTheWord(): void {
+		self::assertSame('6', SpokenNumbers::normalise('six', 'en', true));
+		self::assertSame('12', SpokenNumbers::normalise('a dozen', 'en', true));
+		self::assertSame('0.5', SpokenNumbers::normalise('half', 'en', true));
+		self::assertSame('3 pints', SpokenNumbers::normalise('three pints', 'en', true));
+		// A line still needs something after the word
+		self::assertSame('six', SpokenNumbers::normalise('six', 'en'));
+	}
+
 	public function testOnlyEnglish(): void {
 		self::assertSame('zwei Eier', SpokenNumbers::normalise('zwei Eier', 'de'));
 		self::assertSame('2 pints of milk', SpokenNumbers::normalise('two pints of milk', 'en_GB'));

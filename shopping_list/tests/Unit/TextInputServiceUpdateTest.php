@@ -66,6 +66,18 @@ class TextInputServiceUpdateTest extends TestCase {
 		$this->service->updateAmount(7, 'three pints', 'ben');
 	}
 
+	public function testABareNumberWordIsAnAmount(): void {
+		$this->items->expects(self::exactly(3))->method('update')
+			->willReturnCallback(function (int $id, array $fields) {
+				static $expected = ['6', '12', '0.5'];
+				self::assertSame(['quantity' => array_shift($expected), 'quantityExplicit' => true], $fields);
+				return new Item();
+			});
+		$this->service->updateAmount(7, 'six', 'ben');
+		$this->service->updateAmount(7, 'a dozen', 'ben');
+		$this->service->updateAmount(7, 'half', 'ben');
+	}
+
 	public function testHalfAPound(): void {
 		$this->items->expects(self::once())->method('update')
 			->with(7, ['quantity' => '0.5 pound', 'quantityExplicit' => true], 'ben')
