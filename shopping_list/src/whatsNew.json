@@ -1,5 +1,15 @@
 [
 	{
+		"version": "1.13.0",
+		"title": "Home Assistant, and more units understood",
+		"items": [
+			"Pints, litres, loaves, tins, boxes and cartons are understood when typed with an amount, so \"2 pints of milk\" adds Milk, 2 pints.",
+			"There's a Home Assistant integration that shows your lists as to-do lists, and lets you add, tick off and change items by voice. Anything it adds or ticks shows \"Home Assistant\" with an \"app\" mark next to it.",
+			"Moving a shop area up or down in a list's settings now moves just that area."
+		],
+		"link": "https://github.com/otherworld-dev/Shopping-List/blob/main/shopping_list/CHANGELOG.md"
+	},
+	{
 		"version": "1.12.0",
 		"title": "A default area for each list",
 		"items": [

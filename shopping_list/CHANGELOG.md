@@ -5,11 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.13.0] - 2026-10-20
 
 ### Added
-- Apps that talk to the server, such as the coming Home Assistant
-  integration (#52), can add an item by sending one line of text as it was
+- Apps that talk to the server, such as the new
+  [Home Assistant integration](https://github.com/otherworld-dev/Shopping-List-HomeAssistant)
+  (#52), can add an item by sending one line of text as it was
   said or typed, for example "two pints of milk". The server reads the
   amount, puts the item in its shop area and tops up or brings back an item
   of the same name, the same as typing it in the web app. The same works for
