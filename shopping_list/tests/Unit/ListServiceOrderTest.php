@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace OCA\Shopping_List\Tests\Unit;
 
 use DateTime;
+use OCA\Shopping_List\Db\ItemMapper;
 use OCA\Shopping_List\Db\ShoppingList;
 use OCA\Shopping_List\Db\ShoppingListMapper;
 use OCA\Shopping_List\Db\UserListPreference;
@@ -26,12 +27,14 @@ class ListServiceOrderTest extends TestCase {
 	private ShoppingListMapper&MockObject $lists;
 	private UserListPreferenceMapper&MockObject $prefs;
 	private UserSettingsService&MockObject $settings;
+	private ItemMapper&MockObject $items;
 	private ListService $service;
 
 	protected function setUp(): void {
 		$this->lists = $this->createMock(ShoppingListMapper::class);
 		$this->prefs = $this->createMock(UserListPreferenceMapper::class);
 		$this->settings = $this->createMock(UserSettingsService::class);
+		$this->items = $this->createMock(ItemMapper::class);
 		$this->lists->method('findSharedWithUser')->willReturn([]);
 		$this->lists->method('findSharedWithGroups')->willReturn([]);
 		$this->lists->method('findByIds')->willReturn([]);
@@ -45,6 +48,7 @@ class ListServiceOrderTest extends TestCase {
 			$this->prefs,
 			$this->createMock(ItemImageCleanup::class),
 			$this->settings,
+			$this->items,
 		);
 	}
 
@@ -104,5 +108,26 @@ class ListServiceOrderTest extends TestCase {
 		$this->prefs->expects(self::once())->method('setPositions')->with('alice', [3, 1]);
 
 		$this->service->reorder([3, 3, 1], 'alice');
+	}
+
+	/** Each list says how many items are still to get, so a client can show it without fetching them. */
+	public function testFindAllCountsEachListsUntickedItems(): void {
+		$this->lists->method('findAllByUser')->willReturn([
+			$this->owned(1, 'Groceries', '2026-09-26 12:00'),
+			$this->owned(2, 'Hardware', '2026-09-01 12:00'),
+		]);
+		$this->prefs->method('findAllByUser')->willReturn([]);
+		$this->settings->method('listSort')->willReturn('custom');
+		$this->items->expects(self::once())->method('countUncheckedByLists')
+			->with([1, 2])
+			->willReturn([1 => 11]);
+
+		$result = $this->service->findAll('alice');
+
+		$counts = [];
+		foreach ($result as $list) {
+			$counts[$list->getId()] = $list->jsonSerialize()['uncheckedCount'];
+		}
+		self::assertSame([1 => 11, 2 => 0], $counts);
 	}
 }

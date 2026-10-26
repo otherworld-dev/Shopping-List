@@ -15047,9 +15047,12 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
       ];
       return all.filter((section) => section.lists.length > 0);
     });
-    function getUncheckedCount(listId) {
-      const items = itemsStore.itemsByList[listId] ?? [];
-      return items.filter((i) => !i.checked).length;
+    function getUncheckedCount(list) {
+      const items = itemsStore.itemsByList[list.id];
+      if (items) {
+        return items.filter((i) => !i.checked).length;
+      }
+      return list.uncheckedCount ?? 0;
     }
     const newItemRef = ref(null);
     watch(() => newItemRef.value?.newItemActive, (active, wasActive) => {
@@ -15112,7 +15115,7 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
                   "onUpdate:name": (name) => onRename(list.id, name)
                 }, {
                   counter: withCtx(() => [
-                    getUncheckedCount(list.id) > 0 ? (openBlock(), createElementBlock("span", _hoisted_1$b, toDisplayString(getUncheckedCount(list.id)), 1)) : createCommentVNode("", true)
+                    getUncheckedCount(list) > 0 ? (openBlock(), createElementBlock("span", _hoisted_1$b, toDisplayString(getUncheckedCount(list)), 1)) : createCommentVNode("", true)
                   ]),
                   actions: withCtx(() => [
                     list.isOwner ? (openBlock(), createBlock(unref(NcActionButton), {
@@ -15170,7 +15173,7 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ListSidebar = /* @__PURE__ */ _export_sfc$1(_sfc_main$e, [["__scopeId", "data-v-87dbfe46"]]);
+const ListSidebar = /* @__PURE__ */ _export_sfc$1(_sfc_main$e, [["__scopeId", "data-v-113c2adc"]]);
 function badRequestMessage(error) {
   const response = error?.response;
   const message = response?.data?.ocs?.data?.message;
