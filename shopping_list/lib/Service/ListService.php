@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace OCA\Shopping_List\Service;
 
 use DateTime;
+use OCA\Shopping_List\Db\ItemMapper;
 use OCA\Shopping_List\Db\ShoppingList;
 use OCA\Shopping_List\Db\ShoppingListMapper;
 use OCA\Shopping_List\Db\UserListPreference;
@@ -26,6 +27,7 @@ class ListService {
 		private UserListPreferenceMapper $preferenceMapper,
 		private ItemImageCleanup $imageCleanup,
 		private UserSettingsService $settings,
+		private ItemMapper $itemMapper,
 	) {
 	}
 
@@ -66,8 +68,10 @@ class ListService {
 
 		$lists = array_merge($ownedLists, $sharedLists);
 		$preferences = $this->preferenceMapper->findAllByUser($userId);
+		$counts = $lists === [] ? [] : $this->itemMapper->countUncheckedByLists(array_map(fn (ShoppingList $l) => $l->getId(), $lists));
 		foreach ($lists as $list) {
 			$this->applyPreference($list, $preferences[$list->getId()] ?? null);
+			$list->setUncheckedCount($counts[$list->getId()] ?? 0);
 		}
 
 		return ListOrder::sort($lists, $this->settings->listSort($userId));

@@ -29,6 +29,11 @@ export interface ShoppingList {
 	 * Missing from a copy of the list cached before the setting existed.
 	 */
 	defaultShopAreaId?: number | null
+	/**
+	 * How many items were unticked when the server sent the list. Only the
+	 * list of lists carries it; missing from older servers and old caches.
+	 */
+	uncheckedCount?: number | null
 	createdAt: string
 	updatedAt: string
 }
