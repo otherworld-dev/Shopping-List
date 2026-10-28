@@ -17,6 +17,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Items added through a public share link are placed by the list's keywords,
   as they are for members. They all went into the list's default area before,
   so a guest's items weren't grouped by area (#58)
+- The delete action on an item has a bin icon. With only one list and item
+  photos switched off, delete is the only action, which Nextcloud shows as a
+  single button rather than a menu, and as it had no icon the button came
+  out blank (#59)
 
 ## [1.13.1] - 2026-10-20
 

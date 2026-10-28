@@ -140,6 +140,9 @@
 				<NcActionSeparator />
 			</template>
 			<NcActionButton :close-after-click="true" @click="onDelete">
+				<template #icon>
+					<NcIconSvgWrapper :path="mdiDeleteOutline" :size="20" />
+				</template>
 				{{ deleteTitle }}
 			</NcActionButton>
 		</NcActions>
@@ -160,7 +163,8 @@
 <script setup lang="ts">
 import { t } from '@nextcloud/l10n'
 import { ref, computed, watch, nextTick, onMounted, onUnmounted } from 'vue'
-import { NcActions, NcActionButton, NcActionCaption, NcActionSeparator, NcLoadingIcon } from '@nextcloud/vue'
+import { NcActions, NcActionButton, NcActionCaption, NcActionSeparator, NcIconSvgWrapper, NcLoadingIcon } from '@nextcloud/vue'
+import { mdiDeleteOutline } from '@mdi/js'
 import { showError } from '@nextcloud/dialogs'
 import ImageViewer from './ImageViewer.vue'
 import { useImagePreference } from '../composables/useImagePreference'
