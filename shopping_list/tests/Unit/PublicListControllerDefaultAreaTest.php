@@ -81,4 +81,23 @@ class PublicListControllerDefaultAreaTest extends TestCase {
 
 		self::assertSame(7, $this->controller->createItem('token')->getData()->getShopAreaId());
 	}
+
+	public function testAKeywordMatchBeatsTheDefault(): void {
+		$this->params(null);
+		$this->areas->method('detectArea')->with(5, 'Batteries')->willReturn(9);
+		$this->areas->method('defaultAreaFor')->willReturn(12);
+
+		self::assertSame(9, $this->controller->createItem('token')->getData()->getShopAreaId());
+	}
+
+	public function testAnAreaSentThroughTheLinkBeatsAKeywordMatch(): void {
+		$this->params(7);
+		$area = new ShopArea();
+		$area->setId(7);
+		$area->setListId(5);
+		$this->areas->method('find')->with(7)->willReturn($area);
+		$this->areas->expects(self::never())->method('detectArea');
+
+		self::assertSame(7, $this->controller->createItem('token')->getData()->getShopAreaId());
+	}
 }
