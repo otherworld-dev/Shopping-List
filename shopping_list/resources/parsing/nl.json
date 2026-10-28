@@ -56,23 +56,23 @@
 		"fl oz",
 		"stuk",
 		"stuks",
-		"pkg",
+		"pakje",
 		"dag",
-		"dkg",
-		"jar",
-		"jars",
-		"tub",
-		"tubs",
+		"dag",
 		"pot",
-		"pots",
+		"potten",
+		"kuipje",
+		"kuipjes",
+		"pot",
+		"potten",
 		"blad",
 		"bladeren",
 		"pint",
-		"pints",
+		"pinten",
 		"liter",
 		"liter",
-		"loaf",
-		"loaves",
+		"brood",
+		"broden",
 		"blik",
 		"blikken",
 		"doos",
@@ -90,9 +90,9 @@
 		"handvol"
 	],
 	"prepositions": [
-		"of"
+		"\"\""
 	],
 	"decimalSeparators": [
-		"\\,."
+		"\\,"
 	]
 }
