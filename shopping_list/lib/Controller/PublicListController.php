@@ -210,9 +210,10 @@ class PublicListController extends OCSController {
 				return new DataResponse(['message' => 'Invalid name'], Http::STATUS_BAD_REQUEST);
 			}
 
-			// The public page sends no area at all, so a guest's item would never
-			// be placed; the list's default area is where it goes.
+			// The public page sends no area at all, so a guest's item is placed
+			// here: by the list's keywords, else in the list's default area.
 			$shopAreaId = $this->areaFor($share, $this->request->getParam('shopAreaId'))
+				?? $this->areaService->detectArea($share->getListId(), $name)
 				?? $this->areaService->defaultAreaFor($share->getListId());
 			$quantity = $this->request->getParam('quantity');
 			$quantity = $quantity === null ? null : (string)$quantity;
