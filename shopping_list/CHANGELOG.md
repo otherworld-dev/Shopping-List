@@ -13,6 +13,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   without loading its items. The sidebar uses it too, so a list you haven't
   opened yet shows its count straight away (#28 on the Android app)
 
+### Fixed
+- Items added through a public share link are placed by the list's keywords,
+  as they are for members. They all went into the list's default area before,
+  so a guest's items weren't grouped by area (#58)
+
 ## [1.13.1] - 2026-10-20
 
 ### Fixed
