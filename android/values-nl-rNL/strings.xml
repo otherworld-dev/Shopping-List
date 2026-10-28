@@ -36,7 +36,7 @@
     <string name="cd_remove">Verwijder</string>
     <string name="cd_list_options">Lijst opties</string>
     <!-- Login -->
-    <string name="header_shopping_list">Winkel lijstje</string>
+    <string name="header_shopping_list">Winkellijstje</string>
     <string name="login_subtitle">Verbind met je Nextcloud instantie</string>
     <string name="login_awaiting">Voltooi het aanmelden in de browser en kom dan terug.</string>
     <string name="login_server_label">Serveradres</string>
@@ -132,8 +132,8 @@
     <string name="action_upload_to_account">Account opladen</string>
     <string name="upload_dialog_title">Jouw lijstjes toevoegen aan deze account?</string>
     <plurals name="upload_dialog_body">
-        <item quantity="one">You have one list on this phone. Upload it to your account on %2$s, or keep it on this phone only.</item>
-        <item quantity="other">You have %1$d lists on this phone. Upload them to your account on %2$s, or keep them on this phone only.</item>
+        <item quantity="one">Je hebt één lijstje op dit toestel. Voeg het toe aan je account op %2$s, of houd het lokaal.</item>
+        <item quantity="other">Je hebt %1$d lijstjes op dit toestel. Voeg ze toe aan je account op %2$s, of houd ze lokaal.</item>
     </plurals>
     <string name="action_upload">Opladen</string>
     <string name="action_keep_on_phone">Op toestel houden</string>
@@ -165,8 +165,8 @@
     <string name="menu_reorder_areas">Afdelingen herschikken</string>
     <string name="menu_restore_checked">Restore checked</string>
     <string name="menu_clear_checked">Clear checked</string>
-    <string name="menu_rows_compact">Compacte rijen</string>
-    <string name="menu_rows_comfortable">Comfortabele rijen</string>
+    <string name="menu_rows_compact">Compact</string>
+    <string name="menu_rows_comfortable">Comfortabel</string>
     <string name="menu_copy_as_text">Lijst als tekst kopiëren</string>
     <string name="list_copied">Lijst naar klembord gekopieerd</string>
     <string name="menu_sort_items">Items sorteren</string>
