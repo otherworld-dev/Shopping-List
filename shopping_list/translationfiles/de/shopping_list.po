@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-10-20 15:57\n"
+"PO-Revision-Date: 2026-11-01 12:37\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -678,11 +678,11 @@ msgstr "Gast"
 
 #: src/components/ItemRow.vue src/components/PublicListView.vue
 msgid "app"
-msgstr ""
+msgstr "App"
 
 #: src/components/ItemRow.vue src/components/PublicListView.vue
 msgid "{account}, through {label}"
-msgstr ""
+msgstr "{account}, durch {label}"
 
 #: src/components/ItemRow.vue
 msgid "Uploading image…"
