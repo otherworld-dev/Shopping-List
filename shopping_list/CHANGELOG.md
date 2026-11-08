@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Restore all and Delete all in the checked-off section now ask before they
   act, so a stray tap can't wipe or reset the whole list (#62)
+- The donate link on the App Store goes to Ko-fi instead of PayPal
 
 ### Fixed
 - Items added through a public share link are placed by the list's keywords,
