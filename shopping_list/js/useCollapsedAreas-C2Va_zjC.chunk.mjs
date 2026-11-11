@@ -45364,4 +45364,4 @@ export {
   unref as y,
   resolveDynamicComponent as z
 };
-//# sourceMappingURL=useCollapsedAreas-T1qRULJd.chunk.mjs.map
+//# sourceMappingURL=useCollapsedAreas-C2Va_zjC.chunk.mjs.map

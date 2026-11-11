@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   without loading its items. The sidebar uses it too, so a list you haven't
   opened yet shows its count straight away (#28 on the Android app)
 
+### Changed
+- Restore all and Delete all in the checked-off section now ask before they
+  act, so a stray tap can't wipe or reset the whole list (#62)
+
 ### Fixed
 - Items added through a public share link are placed by the list's keywords,
   as they are for members. They all went into the list's default area before,
