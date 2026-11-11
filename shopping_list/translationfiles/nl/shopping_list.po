@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-10-28 16:29\n"
+"PO-Revision-Date: 2026-11-11 01:50\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -288,6 +288,16 @@ msgstr "Alles herstellen"
 #: src/components/ListView.vue
 msgid "Delete all"
 msgstr "Alles verwijderen"
+
+#. Asked before "Restore all" puts every checked-off item back on the list.
+#: src/components/ListView.vue
+msgid "Put all checked-off items back on the list?"
+msgstr ""
+
+#. Asked before "Delete all" removes every checked-off item.
+#: src/components/ListView.vue
+msgid "Delete all checked-off items? This cannot be undone."
+msgstr ""
 
 #. Heading in the list's menu, above the three ways to order the open items.
 #: src/components/ListView.vue
