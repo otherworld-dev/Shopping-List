@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace OCA\Shopping_List\Service;
 
 use DateTime;
+use OCA\Shopping_List\Db\ItemMapper;
 use OCA\Shopping_List\Db\ShoppingList;
 use OCA\Shopping_List\Db\ShoppingListMapper;
 use OCA\Shopping_List\Db\UserListPreference;
@@ -26,6 +27,7 @@ class ListService {
 		private UserListPreferenceMapper $preferenceMapper,
 		private ItemImageCleanup $imageCleanup,
 		private UserSettingsService $settings,
+		private ItemMapper $itemMapper,
 	) {
 	}
 
@@ -66,8 +68,10 @@ class ListService {
 
 		$lists = array_merge($ownedLists, $sharedLists);
 		$preferences = $this->preferenceMapper->findAllByUser($userId);
+		$counts = $lists === [] ? [] : $this->itemMapper->countUncheckedByLists(array_map(fn (ShoppingList $l) => $l->getId(), $lists));
 		foreach ($lists as $list) {
 			$this->applyPreference($list, $preferences[$list->getId()] ?? null);
+			$list->setUncheckedCount($counts[$list->getId()] ?? 0);
 		}
 
 		return ListOrder::sort($lists, $this->settings->listSort($userId));
@@ -114,6 +118,38 @@ class ListService {
 		$this->assertWriteAccess($id, $userId);
 		$list = $this->mapper->find($id);
 		$list->setTitle($title);
+		$list->setUpdatedAt(new DateTime());
+		$list = $this->mapper->update($list);
+		$list->setIsOwner($list->getUserId() === $userId);
+		$list->setPermission($list->getIsOwner() ? 1 : $this->getPermission($id, $userId));
+		$this->applyPreference($list, $this->findPreference($id, $userId));
+		$this->pushService->notifyListUpdate($id, $userId);
+		return $list;
+	}
+
+	/**
+	 * Choose the area this list's new items go to when no keyword places
+	 * them, or null for none. It is the list's own setting, the same for
+	 * everyone on it, so anyone who can edit the list may change it.
+	 *
+	 * @throws NotFoundException
+	 * @throws NoPermissionException
+	 * @throws \InvalidArgumentException when the area is not one of this list's
+	 */
+	public function setDefaultArea(int $id, ?int $areaId, string $userId): ShoppingList {
+		$this->assertWriteAccess($id, $userId);
+		if ($areaId !== null) {
+			try {
+				$area = $this->shopAreaService->find($areaId);
+			} catch (NotFoundException) {
+				$area = null;
+			}
+			if ($area === null || $area->getListId() !== $id) {
+				throw new \InvalidArgumentException('Invalid shop area');
+			}
+		}
+		$list = $this->mapper->find($id);
+		$list->setDefaultAreaId($areaId);
 		$list->setUpdatedAt(new DateTime());
 		$list = $this->mapper->update($list);
 		$list->setIsOwner($list->getUserId() === $userId);

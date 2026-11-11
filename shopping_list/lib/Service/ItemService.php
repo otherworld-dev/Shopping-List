@@ -48,6 +48,7 @@ class ItemService {
 		bool $areaExplicit = false,
 		bool $checked = false,
 		bool $quantityExplicit = false,
+		?string $via = null,
 	): Item {
 		$this->listService->assertWriteAccess($listId, $userId);
 
@@ -57,7 +58,9 @@ class ItemService {
 		// A name added on its own gets the amount it had last time in this list.
 		$item->setQuantity($quantity ?? $this->amounts->recall($listId, $name) ?? '1');
 		$item->setUnit($unit);
-		$item->setShopAreaId($shopAreaId);
+		// A client sends no area when no keyword matched, and the list's default
+		// area is for exactly those items.
+		$item->setShopAreaId($shopAreaId ?? $this->shopAreaService->defaultAreaFor($listId));
 		// A pasted "[x] Milk" line arrives as already bought, so it lands in the
 		// checked-off section straight away instead of among the open items.
 		$item->setChecked($checked);
@@ -65,6 +68,8 @@ class ItemService {
 		$item->setCheckedByName($checked ? $this->nameOf($userId) : null);
 		$item->setAddedBy($userId);
 		$item->setAddedByName($this->nameOf($userId));
+		$item->setAddedVia($via);
+		$item->setCheckedVia($checked ? $via : null);
 		$item->setSortOrder(0);
 		// A name that had a photo before gets it back, in any list.
 		$item->setImageKey($this->images->rememberedKey($listId, $name));
@@ -141,7 +146,8 @@ class ItemService {
 	/**
 	 * Move an item to another list. Requires write access to both lists.
 	 * The shop area is re-resolved in the target list (same-name area, else
-	 * keyword detection, else uncategorized) and the item is reset to unchecked.
+	 * keyword detection, else that list's default area, which is uncategorized
+	 * when it has none) and the item is reset to unchecked.
 	 */
 	public function move(int $id, int $targetListId, string $userId): Item {
 		try {
@@ -175,6 +181,7 @@ class ItemService {
 		$item->setChecked(false);
 		$item->setCheckedBy(null);
 		$item->setCheckedByName(null);
+		$item->setCheckedVia(null);
 		$item->setSortOrder(0);
 		$item->setUpdatedAt(new DateTime());
 
@@ -186,7 +193,7 @@ class ItemService {
 		return $item;
 	}
 
-	public function check(int $id, bool $checked, string $userId): Item {
+	public function check(int $id, bool $checked, string $userId, ?string $via = null): Item {
 		try {
 			$item = $this->mapper->find($id);
 		} catch (DoesNotExistException) {
@@ -198,6 +205,7 @@ class ItemService {
 		$item->setChecked($checked);
 		$item->setCheckedBy($checked ? $userId : null);
 		$item->setCheckedByName($checked ? $this->nameOf($userId) : null);
+		$item->setCheckedVia($checked ? $via : null);
 		$item->setUpdatedAt(new DateTime());
 
 		$item = $this->mapper->update($item);

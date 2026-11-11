@@ -1,5 +1,5 @@
 const appName = "shopping_list";
-const appVersion = "1.11.0";
+const appVersion = "1.13.1";
 const global$1 = globalThis || void 0 || self;
 /**
 * @vue/shared v3.5.32
@@ -44340,6 +44340,7 @@ register(t50);
   }
 });
 var mdiChevronDown = "M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z";
+var mdiDeleteOutline = "M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8,9H16V19H8V9M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z";
 var mdiHelpCircleOutline = "M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z";
 var mdiPlus = "M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z";
 function url(path2) {
@@ -44353,7 +44354,8 @@ const api = {
     update: (id, title) => cancelableClient.put(url(`lists/${id}`), { title }),
     delete: (id) => cancelableClient.delete(url(`lists/${id}`)),
     setPinned: (id, isPinned) => cancelableClient.patch(url(`lists/${id}/preferences`), { isPinned }),
-    reorder: (listIds) => cancelableClient.post(url("lists/reorder"), { listIds })
+    reorder: (listIds) => cancelableClient.post(url("lists/reorder"), { listIds }),
+    setDefaultArea: (id, shopAreaId) => cancelableClient.put(url(`lists/${id}/default-area`), { shopAreaId })
   },
   items: {
     getAll: (listId) => cancelableClient.get(url(`lists/${listId}/items`)),
@@ -44592,7 +44594,7 @@ const __vite_glob_0_6 = {
   prepositions: prepositions$q,
   decimalSeparators: decimalSeparators$q
 };
-const units$p = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg", "jar", "jars", "tub", "tubs", "pot", "pots", "leaf", "leaves"];
+const units$p = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg", "jar", "jars", "tub", "tubs", "pot", "pots", "leaf", "leaves", "pint", "pints", "litre", "litres", "loaf", "loaves", "tin", "tins", "box", "boxes", "carton", "cartons"];
 const leadingUnits$p = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
 const prepositions$p = ["of"];
 const decimalSeparators$p = ["."];
@@ -44887,7 +44889,14 @@ const EN_UNIT_ALIASES = {
   pkg: "pack",
   pinches: "pinch",
   bunches: "bunch",
-  heads: "head"
+  heads: "head",
+  pints: "pint",
+  litre: "liter",
+  litres: "liter",
+  loaves: "loaf",
+  tins: "tin",
+  boxes: "box",
+  cartons: "carton"
 };
 const parsingModules = /* @__PURE__ */ Object.assign({
   "../../resources/parsing/af.json": __vite_glob_0_0,
@@ -44952,6 +44961,20 @@ const MORPHOLOGY_LANGS = /* @__PURE__ */ new Set(["en"]);
 function hasMorphology() {
   return MORPHOLOGY_LANGS.has(currentLang());
 }
+function tickFrom(saved) {
+  return {
+    checkedBy: saved.checkedBy,
+    checkedByName: saved.checkedByName,
+    checkedByGuest: saved.checkedByGuest,
+    checkedVia: saved.checkedVia ?? null
+  };
+}
+const NO_TICK = Object.freeze({
+  checkedBy: null,
+  checkedByName: null,
+  checkedByGuest: false,
+  checkedVia: null
+});
 var Permission = /* @__PURE__ */ ((Permission2) => {
   Permission2[Permission2["READ"] = 0] = "READ";
   Permission2[Permission2["WRITE"] = 1] = "WRITE";
@@ -45005,16 +45028,17 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
   }
 });
 const ImageViewer = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-ad4d9464"]]);
-function byline(userId, name, guest, me2, showOwn) {
+function byline(userId, name, guest, via, me2, showOwn) {
+  if (via) return { name: via, guest: false, app: true, account: name };
   if (!name) return null;
-  if (guest) return { name, guest: true };
+  if (guest) return { name, guest: true, app: false, account: null };
   if (me2 !== null && userId === me2 && !showOwn) return null;
-  return { name, guest: false };
+  return { name, guest: false, app: false, account: null };
 }
 function attribution(item, me2, showOwn) {
   return {
-    added: byline(item.addedBy, item.addedByName, item.addedByGuest, me2, showOwn),
-    checked: byline(item.checkedBy, item.checkedByName, item.checkedByGuest, me2, showOwn)
+    added: byline(item.addedBy, item.addedByName, item.addedByGuest, item.addedVia, me2, showOwn),
+    checked: byline(item.checkedBy, item.checkedByName, item.checkedByGuest, item.checkedVia, me2, showOwn)
   };
 }
 function segment(size2) {
@@ -45228,7 +45252,7 @@ export {
   isObject$2 as Z,
   _export_sfc$1 as _,
   NcIconSvgWrapper as a,
-  getRootUrl as a$,
+  NcCheckboxRadioSwitch as a$,
   isArray$1 as a0,
   isOn as a1,
   isReservedProp as a2,
@@ -45239,33 +45263,33 @@ export {
   parseStringStyle as a7,
   makeMap as a8,
   generateCodeFrame as a9,
-  withKeys as aA,
-  withModifiers as aB,
-  vModelText as aC,
-  normalizeStyle as aD,
-  Teleport as aE,
-  NcActions as aF,
-  ImageViewer as aG,
-  Permission as aH,
-  attribution as aI,
-  nextTick as aJ,
-  itemImageUrl as aK,
-  createIngredientParser as aL,
-  NcPopover as aM,
-  NcButton as aN,
-  mdiHelpCircleOutline as aO,
-  browserStorage as aP,
-  useCollapsedAreas as aQ,
-  ShareType as aR,
-  NcAvatar as aS,
-  isRef as aT,
-  mdiChevronDown as aU,
-  vShow as aV,
-  shallowRef as aW,
-  vModelSelect as aX,
-  NcCheckboxRadioSwitch as aY,
-  translatePlural as aZ,
-  Transition as a_,
+  onMounted as aA,
+  onUnmounted as aB,
+  withKeys as aC,
+  withModifiers as aD,
+  vModelText as aE,
+  normalizeStyle as aF,
+  Teleport as aG,
+  mdiDeleteOutline as aH,
+  NcActions as aI,
+  ImageViewer as aJ,
+  Permission as aK,
+  attribution as aL,
+  nextTick as aM,
+  itemImageUrl as aN,
+  createIngredientParser as aO,
+  NcPopover as aP,
+  NcButton as aQ,
+  mdiHelpCircleOutline as aR,
+  browserStorage as aS,
+  useCollapsedAreas as aT,
+  ShareType as aU,
+  NcAvatar as aV,
+  isRef as aW,
+  mdiChevronDown as aX,
+  vShow as aY,
+  shallowRef as aZ,
+  vModelSelect as a_,
   getAugmentedNamespace as aa,
   runtimeDom_esmBundler as ab,
   shared_esmBundler as ac,
@@ -45283,35 +45307,38 @@ export {
   loadValue as ao,
   saveValue as ap,
   readonly as aq,
-  watch as ar,
-  mdiPlus as as,
-  NcAppNavigationCaption as at,
-  NcActionButton as au,
-  NcAppNavigationItem as av,
-  _export_sfc as aw,
-  getCurrentUser as ax,
-  onMounted as ay,
-  onUnmounted as az,
+  NO_TICK as ar,
+  tickFrom as as,
+  watch as at,
+  mdiPlus as au,
+  NcAppNavigationCaption as av,
+  NcActionButton as aw,
+  NcAppNavigationItem as ax,
+  _export_sfc as ay,
+  getCurrentUser as az,
   createBaseVNode as b,
-  generateOcsUrl as b0,
-  cancelableClient as b1,
-  generateUrl as b2,
-  NcAppNavigation as b3,
-  NcAppNavigationSettings as b4,
-  NcAppContent as b5,
-  NcContent as b6,
-  createPinia as b7,
-  offlinePersistPlugin as b8,
-  createApp as b9,
-  publicApi as ba,
-  publicItemImageUrl as bb,
-  dist as bc,
-  requireMajor as bd,
-  requireValid as be,
-  dist$1 as bf,
-  process$1 as bg,
-  commonjsGlobal as bh,
-  Buffer as bi,
+  translatePlural as b0,
+  Transition as b1,
+  getRootUrl as b2,
+  generateOcsUrl as b3,
+  cancelableClient as b4,
+  generateUrl as b5,
+  NcAppNavigation as b6,
+  NcAppNavigationSettings as b7,
+  NcAppContent as b8,
+  NcContent as b9,
+  createPinia as ba,
+  offlinePersistPlugin as bb,
+  createApp as bc,
+  publicApi as bd,
+  publicItemImageUrl as be,
+  dist as bf,
+  requireMajor as bg,
+  requireValid as bh,
+  dist$1 as bi,
+  process$1 as bj,
+  commonjsGlobal as bk,
+  Buffer as bl,
   createElementBlock as c,
   createVNode as d,
   mdiRadioboxBlank as e,
@@ -45337,4 +45364,4 @@ export {
   unref as y,
   resolveDynamicComponent as z
 };
-//# sourceMappingURL=useCollapsedAreas-DwJuvbYy.chunk.mjs.map
+//# sourceMappingURL=useCollapsedAreas-C2Va_zjC.chunk.mjs.map

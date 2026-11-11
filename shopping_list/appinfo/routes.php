@@ -29,6 +29,7 @@ return [
 		['name' => 'list#update', 'url' => '/api/v1/lists/{id}', 'verb' => 'PUT'],
 		['name' => 'list#destroy', 'url' => '/api/v1/lists/{id}', 'verb' => 'DELETE'],
 		['name' => 'preferences#update', 'url' => '/api/v1/lists/{id}/preferences', 'verb' => 'PATCH'],
+		['name' => 'list#setDefaultArea', 'url' => '/api/v1/lists/{id}/default-area', 'verb' => 'PUT'],
 
 		// The user's own settings (not per list)
 		['name' => 'settings#index', 'url' => '/api/v1/settings', 'verb' => 'GET'],

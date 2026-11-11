@@ -57,6 +57,13 @@ const EN_UNIT_ALIASES: Record<string, string> = {
 	pinches: 'pinch',
 	bunches: 'bunch',
 	heads: 'head',
+	pints: 'pint',
+	litre: 'liter',
+	litres: 'liter',
+	loaves: 'loaf',
+	tins: 'tin',
+	boxes: 'box',
+	cartons: 'carton',
 }
 
 // Eagerly bundle every parsing pack under resources/parsing/*.json

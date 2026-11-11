@@ -7,6 +7,9 @@ namespace OCA\Shopping_List\Controller;
 use OCA\Shopping_List\Service\ItemService;
 use OCA\Shopping_List\Service\NoPermissionException;
 use OCA\Shopping_List\Service\NotFoundException;
+use OCA\Shopping_List\Service\TextAddResult;
+use OCA\Shopping_List\Service\TextInputService;
+use OCA\Shopping_List\Service\ViaLabel;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\Attribute\NoAdminRequired;
 use OCP\AppFramework\Http\DataResponse;
@@ -18,9 +21,15 @@ class ItemController extends OCSController {
 		string $appName,
 		IRequest $request,
 		private ItemService $service,
+		private TextInputService $textInput,
 		private string $userId,
 	) {
 		parent::__construct($appName, $request);
+	}
+
+	/** The app this request came through, when it names itself */
+	private function via(): ?string {
+		return ViaLabel::clean($this->request->getHeader(ViaLabel::HEADER));
 	}
 
 	#[NoAdminRequired]
@@ -35,17 +44,31 @@ class ItemController extends OCSController {
 	#[NoAdminRequired]
 	public function create(
 		int $listId,
-		string $name,
+		?string $name = null,
 		?string $quantity = null,
 		?string $unit = null,
 		?int $shopAreaId = null,
 		bool $areaExplicit = false,
 		bool $checked = false,
 		bool $quantityExplicit = false,
+		?string $text = null,
 	): DataResponse {
+		if (($name === null) === ($text === null)) {
+			return new DataResponse(['message' => 'Send either name or text'], Http::STATUS_BAD_REQUEST);
+		}
 		try {
-			$item = $this->service->create($listId, $name, $quantity, $unit, $shopAreaId, $this->userId, $areaExplicit, $checked, $quantityExplicit);
+			// One line as the user said or typed it; the server does the parsing
+			if ($text !== null) {
+				$result = $this->textInput->addFromText($listId, $text, $this->userId, $this->via());
+				return new DataResponse(
+					$result->item->jsonSerialize() + ['outcome' => $result->outcome],
+					$result->outcome === TextAddResult::CREATED ? Http::STATUS_CREATED : Http::STATUS_OK,
+				);
+			}
+			$item = $this->service->create($listId, $name, $quantity, $unit, $shopAreaId, $this->userId, $areaExplicit, $checked, $quantityExplicit, $this->via());
 			return new DataResponse($item, Http::STATUS_CREATED);
+		} catch (\InvalidArgumentException $e) {
+			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_BAD_REQUEST);
 		} catch (NotFoundException $e) {
 			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_NOT_FOUND);
 		} catch (NoPermissionException $e) {
@@ -56,14 +79,30 @@ class ItemController extends OCSController {
 	#[NoAdminRequired]
 	public function update(int $listId, int $id): DataResponse {
 		try {
-			$fields = [];
 			$params = $this->request->getParams();
+			// A whole line, or only an amount, for the server to read. Inputs,
+			// not fields, so they stay out of the whitelist below.
+			$text = $params['text'] ?? null;
+			$amountText = $params['amountText'] ?? null;
+			if ($text !== null || $amountText !== null) {
+				if (($text !== null && $amountText !== null) || !is_string($text ?? $amountText)) {
+					return new DataResponse(['message' => 'Send either text or amountText'], Http::STATUS_BAD_REQUEST);
+				}
+				$item = $text !== null
+					? $this->textInput->updateFromText($id, $text, $this->userId)
+					: $this->textInput->updateAmount($id, $amountText, $this->userId);
+				return new DataResponse($item);
+			}
+
+			$fields = [];
 			foreach (['name', 'quantity', 'unit', 'shopAreaId', 'sortOrder', 'areaExplicit', 'quantityExplicit'] as $field) {
 				if (array_key_exists($field, $params)) {
 					$fields[$field] = $params[$field];
 				}
 			}
 			return new DataResponse($this->service->update($id, $fields, $this->userId));
+		} catch (\InvalidArgumentException $e) {
+			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_BAD_REQUEST);
 		} catch (NotFoundException $e) {
 			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_NOT_FOUND);
 		} catch (NoPermissionException $e) {
@@ -85,7 +124,7 @@ class ItemController extends OCSController {
 	#[NoAdminRequired]
 	public function check(int $listId, int $id, bool $checked): DataResponse {
 		try {
-			return new DataResponse($this->service->check($id, $checked, $this->userId));
+			return new DataResponse($this->service->check($id, $checked, $this->userId, $this->via()));
 		} catch (NotFoundException $e) {
 			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_NOT_FOUND);
 		} catch (NoPermissionException $e) {

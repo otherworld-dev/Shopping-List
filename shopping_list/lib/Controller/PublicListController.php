@@ -210,7 +210,11 @@ class PublicListController extends OCSController {
 				return new DataResponse(['message' => 'Invalid name'], Http::STATUS_BAD_REQUEST);
 			}
 
-			$shopAreaId = $this->areaFor($share, $this->request->getParam('shopAreaId'));
+			// The public page sends no area at all, so a guest's item is placed
+			// here: by the list's keywords, else in the list's default area.
+			$shopAreaId = $this->areaFor($share, $this->request->getParam('shopAreaId'))
+				?? $this->areaService->detectArea($share->getListId(), $name)
+				?? $this->areaService->defaultAreaFor($share->getListId());
 			$quantity = $this->request->getParam('quantity');
 			$quantity = $quantity === null ? null : (string)$quantity;
 			$item = new Item();
@@ -314,6 +318,7 @@ class PublicListController extends OCSController {
 			$item->setChecked($checked);
 			$item->setCheckedBy(null);
 			$item->setCheckedByName($checked ? GuestName::clean($this->request->getParam('guestName')) : null);
+			$item->setCheckedVia(null);
 			$item->setUpdatedAt(new DateTime());
 
 			return new DataResponse($this->forLink($share, $this->itemMapper->update($item)));

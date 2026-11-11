@@ -53,6 +53,8 @@ class BackupSerializer {
 				'createdAt' => $list->getCreatedAt()?->format(DateTimeInterface::ATOM),
 				'updatedAt' => $list->getUpdatedAt()?->format(DateTimeInterface::ATOM),
 				'pinned' => ($pinnedByListId[$listId] ?? false) === true,
+				// By name, like an item's area: ids mean nothing in another install.
+				'defaultArea' => $list->getDefaultAreaId() !== null ? ($areaNamesById[$list->getDefaultAreaId()] ?? null) : null,
 				'areas' => array_map(
 					fn (ShopArea $area): array => [
 						'name' => $area->getName(),
@@ -149,11 +151,16 @@ class BackupSerializer {
 			$items[] = $this->parseItem($rawItem, $index, (int)$itemIndex);
 		}
 
+		// Normalised like the area name it is matched against, as an item's
+		// area is. A backup from before default areas simply has none.
+		$defaultArea = trim($this->stringOrNull($raw, 'defaultArea') ?? '');
+
 		return [
 			'title' => trim($title),
 			'createdAt' => $this->stringOrNull($raw, 'createdAt'),
 			'updatedAt' => $this->stringOrNull($raw, 'updatedAt'),
 			'pinned' => ($raw['pinned'] ?? false) === true,
+			'defaultArea' => $defaultArea === '' ? null : $defaultArea,
 			'areas' => $areas,
 			'items' => $items,
 		];

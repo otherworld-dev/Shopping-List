@@ -16,6 +16,8 @@ export const api = {
 		setPinned: (id: number, isPinned: boolean) =>
 			axios.patch(url(`lists/${id}/preferences`), { isPinned }),
 		reorder: (listIds: number[]) => axios.post(url('lists/reorder'), { listIds }),
+		setDefaultArea: (id: number, shopAreaId: number | null) =>
+			axios.put(url(`lists/${id}/default-area`), { shopAreaId }),
 	},
 	items: {
 		getAll: (listId: number) => axios.get(url(`lists/${listId}/items`)),

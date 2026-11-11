@@ -16,12 +16,16 @@ use OCP\AppFramework\Db\Entity;
  * @method void setCreatedAt(\DateTime $createdAt)
  * @method \DateTime getUpdatedAt()
  * @method void setUpdatedAt(\DateTime $updatedAt)
+ * @method int|null getDefaultAreaId()
+ * @method void setDefaultAreaId(?int $defaultAreaId)
  */
 class ShoppingList extends Entity implements JsonSerializable {
 	protected $userId;
 	protected $title;
 	protected $createdAt;
 	protected $updatedAt;
+	/** The shop area a new item goes to when no keyword puts it anywhere, or null for none. */
+	protected $defaultAreaId;
 
 	/** @var int Computed permission level for current user */
 	private int $permission = 1;
@@ -35,10 +39,14 @@ class ShoppingList extends Entity implements JsonSerializable {
 	/** @var int|null The current user's custom position, null if they never placed this list */
 	private ?int $position = null;
 
+	/** @var int|null How many items are still unticked, null when it wasn't counted */
+	private ?int $uncheckedCount = null;
+
 	public function __construct() {
 		$this->addType('id', 'integer');
 		$this->addType('createdAt', 'datetime');
 		$this->addType('updatedAt', 'datetime');
+		$this->addType('defaultAreaId', 'integer');
 	}
 
 	public function setPermission(int $permission): void {
@@ -73,6 +81,14 @@ class ShoppingList extends Entity implements JsonSerializable {
 		return $this->position;
 	}
 
+	public function setUncheckedCount(?int $uncheckedCount): void {
+		$this->uncheckedCount = $uncheckedCount;
+	}
+
+	public function getUncheckedCount(): ?int {
+		return $this->uncheckedCount;
+	}
+
 	public function jsonSerialize(): array {
 		return [
 			'id' => $this->id,
@@ -82,6 +98,8 @@ class ShoppingList extends Entity implements JsonSerializable {
 			'isOwner' => $this->isOwner,
 			'isPinned' => $this->isPinned,
 			'position' => $this->position,
+			'defaultShopAreaId' => $this->defaultAreaId,
+			'uncheckedCount' => $this->uncheckedCount,
 			'createdAt' => $this->createdAt?->format(\DateTimeInterface::ATOM),
 			'updatedAt' => $this->updatedAt?->format(\DateTimeInterface::ATOM),
 		];

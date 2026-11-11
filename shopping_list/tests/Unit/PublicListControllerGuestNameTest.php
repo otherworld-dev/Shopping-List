@@ -88,6 +88,15 @@ class PublicListControllerGuestNameTest extends TestCase {
 		self::assertSame('Anna', $data['checkedByName']);
 	}
 
+	public function testAGuestTickForgetsAnApp(): void {
+		$this->item(['checked' => true, 'checkedBy' => 'ben', 'checkedByName' => 'Ben', 'checkedVia' => 'Home Assistant']);
+		$this->params = ['guestName' => 'Anna'];
+		self::assertNull($this->controller()->checkItem('tok', 9, true)->getData()->jsonSerialize()['checkedVia']);
+
+		$this->item(['checked' => true, 'checkedBy' => 'ben', 'checkedByName' => 'Ben', 'checkedVia' => 'Home Assistant']);
+		self::assertNull($this->controller()->checkItem('tok', 9, false)->getData()->jsonSerialize()['checkedVia']);
+	}
+
 	public function testUntickingForgetsWhoTickedIt(): void {
 		$this->item(['checked' => true, 'checkedByName' => 'Anna']);
 		$data = $this->controller()->checkItem('tok', 9, false)->getData()->jsonSerialize();

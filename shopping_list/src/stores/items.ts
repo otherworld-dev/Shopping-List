@@ -12,6 +12,7 @@ import { useNetworkStatus, isNetworkError } from '../offline/networkStatus'
 import { markServerFetched } from '../offline/piniaPlugin'
 import { shrinkImage } from '../utils/shrinkImage'
 import { clearImageKeys, spreadImageKey } from '../utils/imageSpread'
+import { NO_TICK, tickFrom } from '../utils/tickFields'
 
 // Ids of items whose photo is being uploaded. Deliberately outside the store's
 // state: the offline plugin snapshots state to IndexedDB as JSON, and a stale
@@ -149,6 +150,8 @@ export const useItemsStore = defineStore('items', () => {
 				addedBy: null,
 				addedByName: null,
 				addedByGuest: false,
+				addedVia: null,
+				checkedVia: null,
 				sortOrder: existingItems.length,
 				imageKey: null,
 				tags: [],
@@ -242,12 +245,11 @@ export const useItemsStore = defineStore('items', () => {
 		const previousUpdatedAt = item.updatedAt
 		const previousCheckedBy = item.checkedBy
 		const previousCheckedByName = item.checkedByName
+		const previousCheckedVia = item.checkedVia
 		item.checked = !item.checked
 		item.updatedAt = new Date().toISOString()
 		if (!item.checked) {
-			item.checkedBy = null
-			item.checkedByName = null
-			item.checkedByGuest = false
+			Object.assign(item, NO_TICK)
 		}
 
 		if (!isOnline.value) {
@@ -258,10 +260,7 @@ export const useItemsStore = defineStore('items', () => {
 		try {
 			const response = await api.items.check(listId, id, item.checked)
 			// Who ticked it comes from the server, with the name as it is now
-			const saved = response.data.ocs.data as Item
-			item.checkedBy = saved.checkedBy
-			item.checkedByName = saved.checkedByName
-			item.checkedByGuest = saved.checkedByGuest
+			Object.assign(item, tickFrom(response.data.ocs.data as Item))
 		} catch (e) {
 			if (isNetworkError(e)) {
 				await enqueue({ type: 'item.check', listId, itemId: id, payload: { checked: item.checked } })
@@ -270,6 +269,7 @@ export const useItemsStore = defineStore('items', () => {
 				item.updatedAt = previousUpdatedAt
 				item.checkedBy = previousCheckedBy
 				item.checkedByName = previousCheckedByName
+				item.checkedVia = previousCheckedVia
 				showError(t('shopping_list', 'Failed to update item'))
 				console.error(e)
 			}

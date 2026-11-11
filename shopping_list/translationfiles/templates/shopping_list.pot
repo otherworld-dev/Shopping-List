@@ -290,6 +290,16 @@ msgstr ""
 msgid "Delete all"
 msgstr ""
 
+#. Asked before "Restore all" puts every checked-off item back on the list.
+#: src/components/ListView.vue
+msgid "Put all checked-off items back on the list?"
+msgstr ""
+
+#. Asked before "Delete all" removes every checked-off item.
+#: src/components/ListView.vue
+msgid "Delete all checked-off items? This cannot be undone."
+msgstr ""
+
 #. Heading in the list's menu, above the three ways to order the open items.
 #: src/components/ListView.vue
 msgid "Sort items"
@@ -558,6 +568,18 @@ msgid ""
 "sort correctly. Existing keywords are kept."
 msgstr ""
 
+#: src/components/AreaKeywordsSettings.vue
+msgid "Default area"
+msgstr ""
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "None"
+msgstr ""
+
+#: src/components/AreaKeywordsSettings.vue
+msgid "Items that match no keyword go here."
+msgstr ""
+
 #: src/stores/shopAreas.ts
 msgid "Keywords for your language added"
 msgstr ""
@@ -665,6 +687,14 @@ msgstr ""
 #. Marks a name next to an item as someone without an account on a public link
 #: src/components/ItemRow.vue src/components/PublicListView.vue
 msgid "guest"
+msgstr ""
+
+#: src/components/ItemRow.vue src/components/PublicListView.vue
+msgid "app"
+msgstr ""
+
+#: src/components/ItemRow.vue src/components/PublicListView.vue
+msgid "{account}, through {label}"
 msgstr ""
 
 #: src/components/ItemRow.vue

@@ -16,6 +16,31 @@
 			</p>
 		</div>
 
+		<!-- Where a new item goes when no keyword places it -->
+		<div v-if="areas.length > 0" class="area-settings__default">
+			<label class="area-settings__default-label"
+				for="area-settings-default">
+				{{ defaultAreaText }}
+			</label>
+			<select id="area-settings-default"
+				class="area-settings__default-select"
+				:value="defaultAreaId ?? ''"
+				:disabled="!canEdit || savingDefault"
+				@change="onDefaultAreaChange">
+				<option value="">
+					{{ noDefaultAreaText }}
+				</option>
+				<option v-for="a in areas"
+					:key="a.id"
+					:value="a.id">
+					{{ a.name }}
+				</option>
+			</select>
+			<p class="area-settings__default-hint">
+				{{ defaultAreaHint }}
+			</p>
+		</div>
+
 		<!-- Add new area -->
 		<div v-if="canEdit" class="area-settings__create">
 			<input v-model="newAreaName"
@@ -168,6 +193,7 @@ import { useShopAreasStore } from '../stores/shopAreas'
 import type { ShopArea } from '../types'
 import { Permission } from '../types'
 import { useListsStore } from '../stores/lists'
+import { planAreaMove } from '../utils/areaReorder'
 
 const shopAreasStore = useShopAreasStore()
 const listsStore = useListsStore()
@@ -192,6 +218,9 @@ const copyFromPlaceholder = t('shopping_list', 'Copy categories from…')
 const copyText = t('shopping_list', 'Copy')
 const loadLangText = t('shopping_list', 'Load keywords for my language')
 const loadLangHint = t('shopping_list', 'Adds your language\'s grocery keywords to the default areas, so items auto-sort correctly. Existing keywords are kept.')
+const defaultAreaText = t('shopping_list', 'Default area')
+const noDefaultAreaText = t('shopping_list', 'None')
+const defaultAreaHint = t('shopping_list', 'Items that match no keyword go here.')
 
 const search = ref('')
 const newKeyword = ref<Record<number, string>>({})
@@ -215,6 +244,27 @@ const canEdit = computed(() =>
 const areas = computed(() =>
 	listId.value !== null ? (shopAreasStore.areasByList[listId.value] ?? []) : [],
 )
+
+// The list's default area. One that is no longer among the areas reads as
+// none: it was just deleted, and the server has cleared it too.
+const savingDefault = ref(false)
+const defaultAreaId = computed(() => {
+	const id = listsStore.currentList?.defaultShopAreaId ?? null
+	return id !== null && areas.value.some(a => a.id === id) ? id : null
+})
+
+// The store shows the choice at once and puts the old one back if the save
+// fails, and the select follows the store, so there is nothing to reset here.
+async function onDefaultAreaChange(event: Event) {
+	const { value } = event.target as HTMLSelectElement
+	if (listId.value === null || savingDefault.value) return
+	savingDefault.value = true
+	try {
+		await listsStore.setDefaultArea(listId.value, value === '' ? null : Number(value))
+	} finally {
+		savingDefault.value = false
+	}
+}
 
 // Other lists to copy categories from
 const otherLists = computed(() =>
@@ -345,29 +395,11 @@ function onColorChange(areaId: number, color: string) {
 
 async function moveArea(index: number, direction: number) {
 	if (listId.value === null) return
-	const targetIndex = index + direction
-	if (targetIndex < 0 || targetIndex >= areas.value.length) return
-
-	const current = areas.value[index]
-	const target = areas.value[targetIndex]
-
-	// Swap sort orders
-	const currentOrder = current.sortOrder
-	const targetOrder = target.sortOrder
-
-	// If they happen to have the same sortOrder, use index-based values
-	const newCurrentOrder = currentOrder === targetOrder
-		? targetIndex
-		: targetOrder
-	const newTargetOrder = currentOrder === targetOrder
-		? index
-		: currentOrder
+	const saves = planAreaMove(areas.value, index, direction)
+	if (saves.length === 0) return
 
 	const lid = listId.value
-	await Promise.all([
-		shopAreasStore.update(lid, current.id, { sortOrder: newCurrentOrder }),
-		shopAreasStore.update(lid, target.id, { sortOrder: newTargetOrder }),
-	])
+	await Promise.all(saves.map(save => shopAreasStore.update(lid, save.id, { sortOrder: save.sortOrder })))
 
 	// Re-fetch to get correct order
 	await shopAreasStore.fetchByList(lid)
@@ -501,6 +533,42 @@ async function onDeleteArea(area: ShopArea) {
 .area-settings__create-btn:disabled {
 	opacity: 0.4;
 	cursor: not-allowed;
+}
+
+.area-settings__default {
+	margin-bottom: 16px;
+}
+
+.area-settings__default-label {
+	display: block;
+	margin-bottom: 4px;
+	font-size: 0.9em;
+	font-weight: 600;
+}
+
+.area-settings__default-select {
+	width: 100%;
+	height: 36px;
+	padding: 0 12px;
+	border: 2px solid var(--color-border);
+	border-radius: var(--border-radius-large);
+	background: var(--color-main-background);
+	color: var(--color-main-text);
+	font-size: 0.9em;
+	outline: none;
+	cursor: pointer;
+	box-sizing: border-box;
+}
+
+.area-settings__default-select:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.area-settings__default-hint {
+	margin: 4px 0 0;
+	color: var(--color-text-maxcontrast);
+	font-size: 0.85em;
 }
 
 .area-settings__copy {

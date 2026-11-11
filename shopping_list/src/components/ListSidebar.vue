@@ -32,8 +32,8 @@
 						@click="listsStore.selectList(list.id)"
 						@update:name="(name: string) => onRename(list.id, name)">
 						<template #counter>
-							<span v-if="getUncheckedCount(list.id) > 0" class="count-bubble">
-								{{ getUncheckedCount(list.id) }}
+							<span v-if="getUncheckedCount(list) > 0" class="count-bubble">
+								{{ getUncheckedCount(list) }}
 							</span>
 						</template>
 						<template #actions>
@@ -124,9 +124,14 @@ const sections = computed(() => {
 	return all.filter(section => section.lists.length > 0)
 })
 
-function getUncheckedCount(listId: number): number {
-	const items = itemsStore.itemsByList[listId] ?? []
-	return items.filter(i => !i.checked).length
+// The items when they're loaded, as they follow every change; otherwise the
+// count the server sent with the list.
+function getUncheckedCount(list: ShoppingList): number {
+	const items = itemsStore.itemsByList[list.id]
+	if (items) {
+		return items.filter(i => !i.checked).length
+	}
+	return list.uncheckedCount ?? 0
 }
 
 // NcAppNavigationNewItem (@nextcloud/vue 9.6.0) clears its input when you

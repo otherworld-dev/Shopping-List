@@ -25,7 +25,8 @@ class ShopAreaMapper extends QBMapper {
 	}
 
 	/**
-	 * Get all areas belonging to a list, ordered by sort_order.
+	 * Get all areas belonging to a list, ordered by sort_order, then id so
+	 * areas sharing a sort_order keep a fixed order.
 	 *
 	 * @return ShopArea[]
 	 */
@@ -34,7 +35,8 @@ class ShopAreaMapper extends QBMapper {
 		$qb->select('*')
 			->from($this->getTableName())
 			->where($qb->expr()->eq('list_id', $qb->createNamedParameter($listId, IQueryBuilder::PARAM_INT)))
-			->orderBy('sort_order', 'ASC');
+			->orderBy('sort_order', 'ASC')
+			->addOrderBy('id', 'ASC');
 		return $this->findEntities($qb);
 	}
 

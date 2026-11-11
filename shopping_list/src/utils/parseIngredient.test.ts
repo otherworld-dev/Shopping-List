@@ -151,6 +151,15 @@ describe('parseIngredient quantity and unit, English', () => {
 		expect(en.parseIngredient('10 dkg cheese')).toEqual({ name: 'Cheese', quantity: '10 dkg', checked: false })
 		expect(en.parseIngredient('25dag ham')).toEqual({ name: 'Ham', quantity: '25 dag', checked: false })
 	})
+
+	it('reads British and everyday units', () => {
+		expect(en.parseIngredient('2 pints of milk')).toEqual({ name: 'Milk', quantity: '2 pints', checked: false })
+		expect(en.parseIngredient('1 litre orange juice')).toEqual({ name: 'Orange juice', quantity: '1 litre', checked: false })
+		expect(en.parseIngredient('2 loaves bread')).toEqual({ name: 'Bread', quantity: '2 loaves', checked: false })
+		expect(en.parseIngredient('3 tins of tomatoes')).toEqual({ name: 'Tomatoes', quantity: '3 tins', checked: false })
+		expect(en.parseIngredient('1 box cereal')).toEqual({ name: 'Cereal', quantity: '1 box', checked: false })
+		expect(en.parseIngredient('2 cartons eggs')).toEqual({ name: 'Eggs', quantity: '2 cartons', checked: false })
+	})
 })
 
 describe('parseIngredient quantity and unit, German', () => {

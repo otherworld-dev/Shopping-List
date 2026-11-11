@@ -310,4 +310,58 @@ class BackupSerializerTest extends TestCase {
 
 		self::assertNull($parsedBlank[0]['items'][0]['area']);
 	}
+
+	private function listWithDefaultArea(?int $areaId): ShoppingList {
+		$list = new ShoppingList();
+		$list->setId(7);
+		$list->setTitle('Weekly shop');
+		$list->setDefaultAreaId($areaId);
+		return $list;
+	}
+
+	private function produce(): ShopArea {
+		$area = new ShopArea();
+		$area->setId(20);
+		$area->setListId(7);
+		$area->setName('Produce');
+		$area->setKeywordsArray([]);
+		return $area;
+	}
+
+	private function exportedList(ShoppingList $list): array {
+		return $this->serializer->serialize([$list], [7 => [$this->produce()]], [], [], [], new DateTime())['lists'][0];
+	}
+
+	public function testAListsDefaultAreaIsExportedByName(): void {
+		self::assertSame('Produce', $this->exportedList($this->listWithDefaultArea(20))['defaultArea']);
+	}
+
+	public function testAListWithNoDefaultAreaExportsNone(): void {
+		$exported = $this->exportedList($this->listWithDefaultArea(null));
+		self::assertArrayHasKey('defaultArea', $exported);
+		self::assertNull($exported['defaultArea']);
+	}
+
+	public function testADefaultAreaThatIsNotOneOfTheListsAreasExportsNone(): void {
+		self::assertNull($this->exportedList($this->listWithDefaultArea(999))['defaultArea']);
+	}
+
+	public function testParseReadsTheDefaultAreaLikeAnAreaName(): void {
+		$parsed = $this->serializer->parse([
+			'version' => 1,
+			'lists' => [
+				['title' => 'Weekly shop', 'defaultArea' => ' Produce ', 'areas' => [['name' => 'Produce']]],
+				['title' => 'Blank', 'defaultArea' => '   '],
+			],
+		]);
+
+		self::assertSame('Produce', $parsed[0]['defaultArea']);
+		self::assertNull($parsed[1]['defaultArea']);
+	}
+
+	public function testABackupFromBeforeDefaultAreasStillParses(): void {
+		$parsed = $this->serializer->parse(['version' => 1, 'lists' => [['title' => 'Weekly shop']]]);
+
+		self::assertNull($parsed[0]['defaultArea']);
+	}
 }

@@ -24,6 +24,16 @@ export interface ShoppingList {
 	isPinned: boolean | null
 	/** The current user's own place for the list in the Custom order; null until they place it */
 	position: number | null
+	/**
+	 * The area a new item goes to when no keyword places it; null for none.
+	 * Missing from a copy of the list cached before the setting existed.
+	 */
+	defaultShopAreaId?: number | null
+	/**
+	 * How many items were unticked when the server sent the list. Only the
+	 * list of lists carries it; missing from older servers and old caches.
+	 */
+	uncheckedCount?: number | null
 	createdAt: string
 	updatedAt: string
 }
@@ -42,6 +52,10 @@ export interface Item {
 	addedBy: string | null
 	addedByName: string | null
 	addedByGuest: boolean
+	/** Server-managed: the app it was added through ("Home Assistant"), as the app named itself */
+	addedVia: string | null
+	/** Server-managed: the app it was ticked through */
+	checkedVia: string | null
 	sortOrder: number
 	/** Server-managed handle for the item's photo, rotated on every replace; null when there is none */
 	imageKey: string | null

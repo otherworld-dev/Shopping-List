@@ -28,6 +28,10 @@ use OCP\AppFramework\Db\Entity;
  * @method void setAddedBy(?string $addedBy)
  * @method ?string getAddedByName()
  * @method void setAddedByName(?string $addedByName)
+ * @method ?string getAddedVia()
+ * @method void setAddedVia(?string $addedVia)
+ * @method ?string getCheckedVia()
+ * @method void setCheckedVia(?string $checkedVia)
  * @method int getSortOrder()
  * @method void setSortOrder(int $sortOrder)
  * @method ?string getImageKey()
@@ -51,6 +55,10 @@ class Item extends Entity implements JsonSerializable {
 	protected $addedBy;
 	/** Display or guest name of whoever added it, captured at the time */
 	protected $addedByName;
+	/** The app it was added through ("Home Assistant"), as the app named itself; null when added directly */
+	protected $addedVia;
+	/** The app it was ticked through; null when ticked directly or not ticked */
+	protected $checkedVia;
 	protected $sortOrder;
 	/** Random 16-hex handle for the item's photo in appdata; rotates on replace, null when there is none */
 	protected $imageKey;
@@ -112,6 +120,9 @@ class Item extends Entity implements JsonSerializable {
 			'addedBy' => $this->publicView ? null : $this->addedBy,
 			'addedByName' => $hideAdder ? null : $this->addedByName,
 			'addedByGuest' => $addedByGuest,
+			// Hidden with the member it stands in for
+			'addedVia' => $hideAdder ? null : $this->addedVia,
+			'checkedVia' => $hideChecker ? null : $this->checkedVia,
 			'sortOrder' => $this->sortOrder,
 			'imageKey' => $this->imageKey,
 			'tags' => $this->tags,

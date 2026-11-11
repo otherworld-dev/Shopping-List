@@ -119,6 +119,14 @@ class BackupService {
 					$areaIdsByName[$parsedArea['name']] ??= $area->getId();
 				}
 
+				// The list's default area, now that its areas have ids here. A
+				// name the backup holds no area for is left out.
+				$defaultAreaId = $parsed['defaultArea'] !== null ? ($areaIdsByName[$parsed['defaultArea']] ?? null) : null;
+				if ($defaultAreaId !== null) {
+					$list->setDefaultAreaId($defaultAreaId);
+					$this->listMapper->update($list);
+				}
+
 				foreach ($parsed['items'] as $parsedItem) {
 					$this->insertItem($userId, $list->getId(), $parsedItem, $areaIdsByName);
 					$counts['items']++;
