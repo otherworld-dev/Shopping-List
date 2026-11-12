@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.14.0] - 2026-11-12
+
 ### Added
 - The lists API now says how many items are still unticked on each list
   (`uncheckedCount`), so an app can show the number next to every list
@@ -17,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Restore all and Delete all in the checked-off section now ask before they
   act, so a stray tap can't wipe or reset the whole list (#62)
 - The donate link on the App Store goes to Ko-fi instead of PayPal
+- Updated German and Dutch translations
 
 ### Fixed
 - Items added through a public share link are placed by the list's keywords,
