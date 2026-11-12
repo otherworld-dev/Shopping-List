@@ -1,7 +1,7 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-Tj9au7wd.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/useCollapsedAreas-BeuwztOl.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/useCollapsedAreas-CX_mg1lj.chunk.css')])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=[window.OC.filePath('shopping_list', '', 'js/index-Bpc_l4Hu.chunk.mjs'),window.OC.filePath('shopping_list', '', 'js/useCollapsedAreas-BrZheP2q.chunk.mjs'),window.OC.filePath('shopping_list', '', 'css/useCollapsedAreas-Bde3_OpS.chunk.css')])))=>i.map(i=>d[i]);
 const appName = "shopping_list";
-const appVersion = "1.13.1";
-import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, A as ActionGlobalMixin, a as NcIconSvgWrapper, r as resolveComponent, b as createBaseVNode, w as withDirectives, v as vModelRadio, n as normalizeClass, d as createVNode, m as mdiRadioboxMarked, e as mdiRadioboxBlank, u as useModel, f as createElementId, g as NcLoadingIcon, h as NcInputConfirmCancel, i as createBlock, j as renderSlot, k as createCommentVNode, l as defineComponent, p as useSlots, q as useTemplateRef, s as useElementSize, x as withCtx, y as unref, z as resolveDynamicComponent, B as mergeProps, C as toHandlers, F as Fragment, D as renderList, E as _sfc_main$o, G as NcModal, H as mergeModels, I as computed, J as ref, K as createTextVNode, L as useCssModule, M as provide, O as NC_FORM_BOX_CONTEXT_KEY, P as INSIDE_RADIO_GROUP_KEY, Q as NOOP, R as extend$1, S as isString, T as NO, U as isSymbol, V as isBuiltInDirective, W as capitalize, X as camelize, Y as EMPTY_OBJ, Z as isObject, $ as toHandlerKey, a0 as isArray, a1 as isOn, a2 as isReservedProp, a3 as isVoidTag, a4 as isHTMLTag, a5 as isSVGTag, a6 as isMathMLTag, a7 as parseStringStyle, a8 as makeMap, a9 as generateCodeFrame, aa as getAugmentedNamespace, ab as runtimeDom_esmBundler, ac as shared_esmBundler, ad as getDefaultExportFromCjs, ae as getGettextBuilder, af as getLoggerBuilder, ag as defineStore, ah as loadState, ai as api, aj as markServerFetched, ak as translate, al as getLanguage, am as hasMorphology, an as getParsingPack, ao as loadValue, ap as saveValue, aq as readonly, ar as NO_TICK, as as tickFrom, at as watch, au as mdiPlus, av as NcAppNavigationCaption, aw as NcActionButton, ax as NcAppNavigationItem, ay as _export_sfc$1, az as getCurrentUser, aA as onMounted, aB as onUnmounted, aC as withKeys, aD as withModifiers, aE as vModelText, aF as normalizeStyle, aG as Teleport, aH as NcActions, aI as ImageViewer, aJ as Permission, aK as attribution, aL as nextTick, aM as itemImageUrl, aN as createIngredientParser, aO as NcPopover, aP as NcButton, aQ as mdiHelpCircleOutline, aR as browserStorage, aS as useCollapsedAreas, aT as ShareType, aU as NcAvatar, aV as isRef, aW as mdiChevronDown, aX as vShow, aY as shallowRef, aZ as vModelSelect, a_ as NcCheckboxRadioSwitch, a$ as translatePlural, b0 as Transition, b1 as getRootUrl, b2 as generateOcsUrl, b3 as cancelableClient, b4 as generateUrl, b5 as NcAppNavigation, b6 as NcAppNavigationSettings, b7 as NcAppContent, b8 as NcContent, b9 as createPinia, ba as offlinePersistPlugin, bb as createApp } from "./useCollapsedAreas-BeuwztOl.chunk.mjs";
+const appVersion = "1.14.0";
+import { _ as _export_sfc, N as NC_ACTIONS_IS_SEMANTIC_MENU, o as openBlock, c as createElementBlock, t as toDisplayString, A as ActionGlobalMixin, a as NcIconSvgWrapper, r as resolveComponent, b as createBaseVNode, w as withDirectives, v as vModelRadio, n as normalizeClass, d as createVNode, m as mdiRadioboxMarked, e as mdiRadioboxBlank, u as useModel, f as createElementId, g as NcLoadingIcon, h as NcInputConfirmCancel, i as createBlock, j as renderSlot, k as createCommentVNode, l as defineComponent, p as useSlots, q as useTemplateRef, s as useElementSize, x as withCtx, y as unref, z as resolveDynamicComponent, B as mergeProps, C as toHandlers, F as Fragment, D as renderList, E as _sfc_main$o, G as NcModal, H as mergeModels, I as computed, J as ref, K as createTextVNode, L as useCssModule, M as provide, O as NC_FORM_BOX_CONTEXT_KEY, P as INSIDE_RADIO_GROUP_KEY, Q as NOOP, R as extend$1, S as isString, T as NO, U as isSymbol, V as isBuiltInDirective, W as capitalize, X as camelize, Y as EMPTY_OBJ, Z as isObject, $ as toHandlerKey, a0 as isArray, a1 as isOn, a2 as isReservedProp, a3 as isVoidTag, a4 as isHTMLTag, a5 as isSVGTag, a6 as isMathMLTag, a7 as parseStringStyle, a8 as makeMap, a9 as generateCodeFrame, aa as getAugmentedNamespace, ab as runtimeDom_esmBundler, ac as shared_esmBundler, ad as getDefaultExportFromCjs, ae as getGettextBuilder, af as getLoggerBuilder, ag as defineStore, ah as loadState, ai as api, aj as markServerFetched, ak as translate, al as getLanguage, am as hasMorphology, an as getParsingPack, ao as loadValue, ap as saveValue, aq as readonly, ar as NO_TICK, as as tickFrom, at as watch, au as mdiPlus, av as NcAppNavigationCaption, aw as NcActionButton, ax as NcAppNavigationItem, ay as _export_sfc$1, az as getCurrentUser, aA as onMounted, aB as onUnmounted, aC as withKeys, aD as withModifiers, aE as vModelText, aF as normalizeStyle, aG as Teleport, aH as mdiDeleteOutline, aI as NcActions, aJ as ImageViewer, aK as Permission, aL as attribution, aM as nextTick, aN as itemImageUrl, aO as createIngredientParser, aP as NcPopover, aQ as NcButton, aR as mdiHelpCircleOutline, aS as browserStorage, aT as useCollapsedAreas, aU as ShareType, aV as NcAvatar, aW as isRef, aX as mdiChevronDown, aY as vShow, aZ as shallowRef, a_ as vModelSelect, a$ as NcCheckboxRadioSwitch, b0 as translatePlural, b1 as Transition, b2 as getRootUrl, b3 as generateOcsUrl, b4 as cancelableClient, b5 as generateUrl, b6 as NcAppNavigation, b7 as NcAppNavigationSettings, b8 as NcAppContent, b9 as NcContent, ba as createPinia, bb as offlinePersistPlugin, bc as createApp } from "./useCollapsedAreas-BrZheP2q.chunk.mjs";
 const _sfc_main$n = {
   name: "NcActionCaption",
   inject: {
@@ -15047,9 +15047,12 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
       ];
       return all.filter((section) => section.lists.length > 0);
     });
-    function getUncheckedCount(listId) {
-      const items = itemsStore.itemsByList[listId] ?? [];
-      return items.filter((i) => !i.checked).length;
+    function getUncheckedCount(list) {
+      const items = itemsStore.itemsByList[list.id];
+      if (items) {
+        return items.filter((i) => !i.checked).length;
+      }
+      return list.uncheckedCount ?? 0;
     }
     const newItemRef = ref(null);
     watch(() => newItemRef.value?.newItemActive, (active, wasActive) => {
@@ -15112,7 +15115,7 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
                   "onUpdate:name": (name) => onRename(list.id, name)
                 }, {
                   counter: withCtx(() => [
-                    getUncheckedCount(list.id) > 0 ? (openBlock(), createElementBlock("span", _hoisted_1$b, toDisplayString(getUncheckedCount(list.id)), 1)) : createCommentVNode("", true)
+                    getUncheckedCount(list) > 0 ? (openBlock(), createElementBlock("span", _hoisted_1$b, toDisplayString(getUncheckedCount(list)), 1)) : createCommentVNode("", true)
                   ]),
                   actions: withCtx(() => [
                     list.isOwner ? (openBlock(), createBlock(unref(NcActionButton), {
@@ -15170,7 +15173,7 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ListSidebar = /* @__PURE__ */ _export_sfc$1(_sfc_main$e, [["__scopeId", "data-v-87dbfe46"]]);
+const ListSidebar = /* @__PURE__ */ _export_sfc$1(_sfc_main$e, [["__scopeId", "data-v-113c2adc"]]);
 function badRequestMessage(error) {
   const response = error?.response;
   const message = response?.data?.ocs?.data?.message;
@@ -15864,8 +15867,14 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
               "close-after-click": true,
               onClick: onDelete
             }, {
+              icon: withCtx(() => [
+                createVNode(unref(NcIconSvgWrapper), {
+                  path: unref(mdiDeleteOutline),
+                  size: 20
+                }, null, 8, ["path"])
+              ]),
               default: withCtx(() => [
-                createTextVNode(toDisplayString(unref(deleteTitle)), 1)
+                createTextVNode(" " + toDisplayString(unref(deleteTitle)), 1)
               ]),
               _: 1
             })
@@ -15891,7 +15900,7 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ItemRow = /* @__PURE__ */ _export_sfc$1(_sfc_main$d, [["__scopeId", "data-v-7f692ff4"]]);
+const ItemRow = /* @__PURE__ */ _export_sfc$1(_sfc_main$d, [["__scopeId", "data-v-8903cab0"]]);
 function detectArea(name, areas) {
   const needle = fold(name);
   let bestArea = null;
@@ -16437,6 +16446,8 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
     const boughtText = translate("shopping_list", "Checked off");
     const uncheckAllText = translate("shopping_list", "Restore all");
     const clearCheckedText = translate("shopping_list", "Delete all");
+    const confirmUncheckAllText = translate("shopping_list", "Put all checked-off items back on the list?");
+    const confirmClearCheckedText = translate("shopping_list", "Delete all checked-off items? This cannot be undone.");
     const sortItemsText = translate("shopping_list", "Sort items");
     const sortCheckedText = translate("shopping_list", "Sort checked-off items");
     const byAreaText = translate("shopping_list", "By area");
@@ -16548,12 +16559,12 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
       }
     }, { immediate: true });
     async function onClearChecked() {
-      if (listsStore.currentListId) {
+      if (listsStore.currentListId && window.confirm(confirmClearCheckedText)) {
         await itemsStore.clearChecked(listsStore.currentListId);
       }
     }
     async function onUncheckAll() {
-      if (listsStore.currentListId) {
+      if (listsStore.currentListId && window.confirm(confirmUncheckAllText)) {
         await itemsStore.uncheckAll(listsStore.currentListId);
       }
     }
@@ -16750,7 +16761,7 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const ListView = /* @__PURE__ */ _export_sfc$1(_sfc_main$b, [["__scopeId", "data-v-3e065458"]]);
+const ListView = /* @__PURE__ */ _export_sfc$1(_sfc_main$b, [["__scopeId", "data-v-634a28c7"]]);
 function planAreaMove(areas, index2, direction) {
   const target = index2 + direction;
   if (index2 < 0 || index2 >= areas.length || target < 0 || target >= areas.length) {
@@ -18822,6 +18833,17 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
 const ShareDialog = /* @__PURE__ */ _export_sfc$1(_sfc_main$3, [["__scopeId", "data-v-68c481e8"]]);
 const notes = [
   {
+    version: "1.14.0",
+    title: "Fewer accidents, and counts on every list",
+    items: [
+      "Restore all and Delete all in the checked-off section now ask before they do anything.",
+      "The sidebar shows how many items are left on every list straight away, including ones you haven't opened yet.",
+      "Items added through a public share link are placed in the right area by the list's keywords.",
+      "The delete button on an item has a bin icon again, where it sometimes showed up blank."
+    ],
+    link: "https://github.com/otherworld-dev/Shopping-List/blob/main/shopping_list/CHANGELOG.md"
+  },
+  {
     version: "1.13.0",
     title: "Home Assistant, and more units understood",
     items: [
@@ -19010,7 +19032,7 @@ function usePush() {
   if (hasPushServer) {
     try {
       __vitePreload(async () => {
-        const { listen } = await import("./index-Tj9au7wd.chunk.mjs").then((n) => n.i);
+        const { listen } = await import("./index-Bpc_l4Hu.chunk.mjs").then((n) => n.i);
         return { listen };
       }, true ? __vite__mapDeps([0,1,2]) : void 0, import.meta.url).then(({ listen }) => {
         listen("shopping_list_item_update", () => {

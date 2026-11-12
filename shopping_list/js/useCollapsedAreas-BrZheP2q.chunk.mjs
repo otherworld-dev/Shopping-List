@@ -1,5 +1,5 @@
 const appName = "shopping_list";
-const appVersion = "1.13.1";
+const appVersion = "1.14.0";
 const global$1 = globalThis || void 0 || self;
 /**
 * @vue/shared v3.5.32
@@ -44340,6 +44340,7 @@ register(t50);
   }
 });
 var mdiChevronDown = "M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z";
+var mdiDeleteOutline = "M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8,9H16V19H8V9M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z";
 var mdiHelpCircleOutline = "M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z";
 var mdiPlus = "M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z";
 function url(path2) {
@@ -44553,7 +44554,7 @@ const __vite_glob_0_2 = {
   prepositions: prepositions$u,
   decimalSeparators: decimalSeparators$u
 };
-const units$t = ["kávová lžička", "kávových lžiček", "lžiček", "polévková lžíce", "polévkových lžic", "lžic", "šálek", "šálky", "unce", "uncí", "oz", "libra", "liber", "lb", "lbs", "gram", "gramů", "g", "kilogram", "kilogramů", "kg", "mililitr", "mililitrů", "ml", "litr", "litrů", "l", "špetka", "špetek", "svazek", "svazků", "clove", "cloves", "plechovka", "plechovek", "láhev", "lahví", "kus", "kusů", "plátek", "plátků", "hlávka", "hlávek", "stalk", "stalks", "sprig", "sprigs", "balíček", "balení", "balík", "packets", "pytlík", "pytlíků", "fl oz", "pc", "pcs", "pkg", "dag", "dkg", "jar", "jars", "tub", "tubs", "pot", "pots", "leaf", "leaves"];
+const units$t = ["kávová lžička", "kávových lžiček", "lžiček", "polévková lžíce", "polévkových lžic", "lžic", "šálek", "šálky", "unce", "uncí", "oz", "libra", "liber", "lb", "lbs", "gram", "gramů", "g", "kilogram", "kilogramů", "kg", "mililitr", "mililitrů", "ml", "litr", "litrů", "l", "špetka", "špetek", "svazek", "svazků", "clove", "cloves", "plechovka", "plechovek", "láhev", "lahví", "kus", "kusů", "plátek", "plátků", "hlávka", "hlávek", "stalk", "stalks", "sprig", "sprigs", "balíček", "balení", "balík", "packets", "pytlík", "pytlíků", "fl oz", "pc", "pcs", "pkg", "dag", "dkg", "jar", "jars", "tub", "tubs", "pot", "pots", "leaf", "leaves", "pint", "pints", "litre", "litres", "loaf", "loaves", "tin", "tins", "box", "boxes", "carton", "cartons"];
 const leadingUnits$t = ["špetka", "špetek", "trs", "trsů", "zest", "dash", "handful"];
 const prepositions$t = ["of"];
 const decimalSeparators$t = [","];
@@ -44573,7 +44574,7 @@ const __vite_glob_0_4 = {
   prepositions: prepositions$s,
   decimalSeparators: decimalSeparators$s
 };
-const units$r = ["teelöffel", "teelöffel", "tl", "esslöffel", "esslöffel", "el", "tasse", "tassen", "unze", "unzen", "oz", "pfund", "pfund", "pfd", "pfd", "gramm", "gramm", "g", "kilogramm", "kilogramm", "kg", "milliliter", "milliliter", "ml", "liter", "liter", "l", "prise", "prisen", "bund", "bünde", "zehe", "zehen", "dose", "dosen", "flasche", "flaschen", "stück", "stücke", "scheibe", "scheiben", "kopf", "köpfe", "stange", "stangen", "zweig", "zweige", "packung", "packungen", "päckchen", "päckchen", "beutel", "tüten", "fl oz", "stk", "stk.", "pkg", "dag", "dkg", "jar", "jars", "tub", "tubs", "pot", "pots", "leaf", "leaves"];
+const units$r = ["teelöffel", "teelöffel", "tl", "esslöffel", "esslöffel", "el", "tasse", "tassen", "unze", "unzen", "oz", "pfund", "pfund", "pfd", "pfd", "gramm", "gramm", "g", "kilogramm", "kilogramm", "kg", "milliliter", "milliliter", "ml", "liter", "liter", "l", "prise", "prisen", "bund", "bünde", "zehe", "zehen", "dose", "dosen", "flasche", "flaschen", "stück", "stücke", "scheibe", "scheiben", "kopf", "köpfe", "stange", "stangen", "zweig", "zweige", "packung", "packungen", "päckchen", "päckchen", "beutel", "tüten", "fl oz", "stk", "stk.", "pkg", "dag", "dkg", "jar", "jars", "tub", "tubs", "pot", "pots", "leaf", "leaves", "pint", "pints", "liter", "liter", "loaf", "loaves", "tin", "tins", "box", "boxes", "carton", "cartons"];
 const leadingUnits$r = ["prise", "prisen", "bund", "bünde", "abrieb", "schuss", "handvoll"];
 const prepositions$r = ["von"];
 const decimalSeparators$r = [","];
@@ -44613,7 +44614,7 @@ const __vite_glob_0_8 = {
   prepositions: prepositions$o,
   decimalSeparators: decimalSeparators$o
 };
-const units$n = ["teelusikka", "teelusikallista", "tl", "ruokalusikallinen", "ruokalusikallista", "rkl", "kupillinen", "kupillista", "unssi", "unssia", "unssi", "pauna", "paunaa", "pauna", "paunaa", "gramma", "grammaa", "g", "kilogramma", "kilogrammaa", "kg", "millilitra", "millilitraa", "ml", "litra", "litraa", "l", "ripaus", "hyppysellistä", "nippu", "nippua", "kynsi", "kynttä", "tölkki", "tölkkiä", "pullo", "pulloa", "kappale", "kappaletta", "viipale", "viipaletta", "pää", "päitä", "varsi", "vartta", "oksa", "oksaa", "pakkaus", "pakkausta", "paketti", "pakkausta", "pussi", "pussia", "fl oz", "pc", "pcs", "pkg", "dag", "dkg", "jar", "jars", "tub", "tubs", "pot", "pots", "leaf", "leaves"];
+const units$n = ["teelusikka", "teelusikallista", "tl", "ruokalusikallinen", "ruokalusikallista", "rkl", "kupillinen", "kupillista", "unssi", "unssia", "unssi", "pauna", "paunaa", "pauna", "paunaa", "gramma", "grammaa", "g", "kilogramma", "kilogrammaa", "kg", "millilitra", "millilitraa", "ml", "litra", "litraa", "l", "ripaus", "hyppysellistä", "nippu", "nippua", "kynsi", "kynttä", "tölkki", "tölkkiä", "pullo", "pulloa", "kappale", "kappaletta", "viipale", "viipaletta", "pää", "päitä", "varsi", "vartta", "oksa", "oksaa", "pakkaus", "pakkausta", "paketti", "pakkausta", "pussi", "pussia", "fl oz", "pc", "pcs", "pkg", "dag", "dkg", "jar", "jars", "tub", "tubs", "pot", "pots", "leaf", "leaves", "pint", "pints", "litre", "litres", "loaf", "loaves", "tin", "tins", "box", "boxes", "carton", "cartons"];
 const leadingUnits$n = ["ripaus", "hyppysellistä", "nippu", "nippua", "kuori", "viiva", "kourallinen"];
 const prepositions$n = ["of"];
 const decimalSeparators$n = ["."];
@@ -44623,7 +44624,7 @@ const __vite_glob_0_9 = {
   prepositions: prepositions$n,
   decimalSeparators: decimalSeparators$n
 };
-const units$m = ["cuillère à café", "cuillères à café", "c.à.c.", "cuillère à soupe", "cuillères à soupe", "c.à.s.", "tasse", "tasses", "once", "onces", "oz", "livre", "livres", "lb", "lbs", "gramme", "grammes", "g", "kilogramme", "kilogrammes", "kg", "millilitre", "millilitres", "ml", "litre", "litres", "l", "pincée", "pincées", "botte", "bottes", "gousse", "gousses", "boîte", "boîtes", "bouteille", "bouteilles", "unité", "unités", "tranche", "tranches", "pièce", "pièces", "tige", "tiges", "brin", "brins", "paquet", "paquets", "sachet", "sachets", "sac", "sacs", "onces liq.", "pc", "pcs", "pkg", "dag", "dkg", "jar", "jars", "tub", "tubs", "pot", "pots", "leaf", "leaves"];
+const units$m = ["cuillère à café", "cuillères à café", "c.à.c.", "cuillère à soupe", "cuillères à soupe", "c.à.s.", "tasse", "tasses", "once", "onces", "oz", "livre", "livres", "lb", "lbs", "gramme", "grammes", "g", "kilogramme", "kilogrammes", "kg", "millilitre", "millilitres", "ml", "litre", "litres", "l", "pincée", "pincées", "botte", "bottes", "gousse", "gousses", "boîte", "boîtes", "bouteille", "bouteilles", "unité", "unités", "tranche", "tranches", "pièce", "pièces", "tige", "tiges", "brin", "brins", "paquet", "paquets", "sachet", "sachets", "sac", "sacs", "onces liq.", "pc", "pcs", "pkg", "dag", "dkg", "jar", "jars", "tub", "tubs", "pot", "pots", "leaf", "leaves", "pint", "pints", "litre", "litres", "loaf", "loaves", "tin", "tins", "box", "boxes", "carton", "cartons"];
 const leadingUnits$m = ["pincée", "pincées", "botte", "bottes", "zeste", "petite quantité", "poignée"];
 const prepositions$m = ["de"];
 const decimalSeparators$m = [","];
@@ -44663,7 +44664,7 @@ const __vite_glob_0_13 = {
   prepositions: prepositions$j,
   decimalSeparators: decimalSeparators$j
 };
-const units$i = ["cucchiaino", "cucchiaini", "tsp", "cucchiaio", "cucchiai", "tbsp", "tazza", "tazze", "oncia", "once", "oz", "libbra", "libbre", "lb", "lbs", "grammo", "grammi", "g", "chilogrammo", "chilogrammi", "kg", "millimetro", "millimetri", "ml", "litro", "litri", "l", "pizzico", "pizzichi", "mazzo", "mazzi", "spicchio", "spicchi", "lattina", "lattine", "bottiglia", "bottiglie", "pezzo", "pezzi", "fetta", "fette", "testa", "teste", "gambo", "gambi", "ramo", "rami", "confezione", "confezioni", "bustina", "bustine", "busta", "buste", "fl oz", "pc", "pcs", "pkg", "dag", "dkg", "jar", "jars", "tub", "tubs", "pot", "pots", "leaf", "leaves"];
+const units$i = ["cucchiaino", "cucchiaini", "tsp", "cucchiaio", "cucchiai", "tbsp", "tazza", "tazze", "oncia", "once", "oz", "libbra", "libbre", "lb", "lbs", "grammo", "grammi", "g", "chilogrammo", "chilogrammi", "kg", "millimetro", "millimetri", "ml", "litro", "litri", "l", "pizzico", "pizzichi", "mazzo", "mazzi", "spicchio", "spicchi", "lattina", "lattine", "bottiglia", "bottiglie", "pezzo", "pezzi", "fetta", "fette", "testa", "teste", "gambo", "gambi", "ramo", "rami", "confezione", "confezioni", "bustina", "bustine", "busta", "buste", "fl oz", "pc", "pcs", "pkg", "dag", "dkg", "jar", "jars", "tub", "tubs", "pot", "pots", "leaf", "leaves", "pint", "pints", "litre", "litres", "loaf", "loaves", "tin", "tins", "box", "boxes", "carton", "cartons"];
 const leadingUnits$i = ["pizzico", "pizzichi", "mazzo", "mazzi", "scorza", "goccio", "pugno"];
 const prepositions$i = ["di"];
 const decimalSeparators$i = [","];
@@ -44693,10 +44694,10 @@ const __vite_glob_0_16 = {
   prepositions: prepositions$g,
   decimalSeparators: decimalSeparators$g
 };
-const units$f = ["teaspoon", "teaspoons", "tsp", "tablespoon", "tablespoons", "tbsp", "cup", "cups", "ounce", "ounces", "oz", "pound", "pounds", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilograms", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "pinches", "bunch", "bunches", "clove", "cloves", "can", "cans", "bottle", "bottles", "piece", "pieces", "slice", "slices", "head", "heads", "stalk", "stalks", "sprig", "sprigs", "pack", "packs", "packet", "packets", "bag", "bags", "fl oz", "pc", "pcs", "pkg", "dag", "dkg", "jar", "jars", "tub", "tubs", "pot", "pots", "leaf", "leaves"];
-const leadingUnits$f = ["pinch", "pinches", "bunch", "bunches", "zest", "dash", "handful"];
-const prepositions$f = ["of"];
-const decimalSeparators$f = ["."];
+const units$f = ["theelepel", "theelepels", "tl", "eetlepel", "eetlepels", "el", "kopje", "kopjes", "ounce", "ounce", "oz", "pond", "pond", "pond", "pond", "gram", "gram", "g", "kilogram", "kilogram", "kg", "milliliter", "milliliter", "ml", "liter", "liter", "l", "snufje", "snufjes", "bos", "bosjes", "teen", "teentjes", "blik", "blikken", "fles", "flessen", "stuk", "stuks", "schijfje", "schijfjes", "head", "volledige", "stengel", "stengels", "scheutje", "scheutjes", "pakje", "pakjes", "zakje", "zakjes", "zakje", "zakjes", "fl oz", "stuk", "stuks", "pakje", "dag", "dag", "pot", "potten", "kuipje", "kuipjes", "pot", "potten", "blad", "bladeren", "pint", "pinten", "liter", "liter", "brood", "broden", "blik", "blikken", "doos", "dozen", "karton", "kartonnen"];
+const leadingUnits$f = ["snufje", "snufjes", "tros", "trosjes", "rasp", "scheutje", "handvol"];
+const prepositions$f = ['""'];
+const decimalSeparators$f = ["\\,"];
 const __vite_glob_0_17 = {
   units: units$f,
   leadingUnits: leadingUnits$f,
@@ -44773,7 +44774,7 @@ const __vite_glob_0_24 = {
   prepositions: prepositions$8,
   decimalSeparators: decimalSeparators$8
 };
-const units$7 = ["teaspoon", "čajové lyžičky", "čajová lyžička", "tablespoon", "polievkové lyžice", "tbsp", "cup", "šálky", "ounce", "ounces", "oz", "pound", "libry", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilogramy", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "štipky", "bunch", "bunches", "clove", "strúčiky", "can", "cans", "bottle", "fľaše", "piece", "kúsky", "slice", "plátky", "head", "hlávky", "stalk", "stonky", "sprig", "vetvičky", "pack", "packs", "paket", "packets", "vrecko", "vrecká", "fl oz", "pc", "pcs", "pkg", "dag", "dkg", "jar", "jars", "tub", "tubs", "pot", "pots", "leaf", "leaves"];
+const units$7 = ["teaspoon", "čajové lyžičky", "čajová lyžička", "tablespoon", "polievkové lyžice", "tbsp", "cup", "šálky", "ounce", "ounces", "oz", "pound", "libry", "lb", "lbs", "gram", "grams", "g", "kilogram", "kilogramy", "kg", "milliliter", "milliliters", "ml", "liter", "liters", "l", "pinch", "štipky", "bunch", "bunches", "clove", "strúčiky", "can", "cans", "bottle", "fľaše", "piece", "kúsky", "slice", "plátky", "head", "hlávky", "stalk", "stonky", "sprig", "vetvičky", "pack", "packs", "paket", "packets", "vrecko", "vrecká", "fl oz", "pc", "pcs", "pkg", "dag", "dkg", "jar", "jars", "tub", "tubs", "pot", "pots", "leaf", "leaves", "pint", "pints", "litre", "litres", "loaf", "loaves", "tin", "tins", "box", "boxes", "carton", "cartons"];
 const leadingUnits$7 = ["štipka", "štipky", "zväzok", "zväzky", "kôra", "trocha", "hrsť"];
 const prepositions$7 = ["of"];
 const decimalSeparators$7 = ["."];
@@ -45251,7 +45252,7 @@ export {
   isObject$2 as Z,
   _export_sfc$1 as _,
   NcIconSvgWrapper as a,
-  translatePlural as a$,
+  NcCheckboxRadioSwitch as a$,
   isArray$1 as a0,
   isOn as a1,
   isReservedProp as a2,
@@ -45269,26 +45270,26 @@ export {
   vModelText as aE,
   normalizeStyle as aF,
   Teleport as aG,
-  NcActions as aH,
-  ImageViewer as aI,
-  Permission as aJ,
-  attribution as aK,
-  nextTick as aL,
-  itemImageUrl as aM,
-  createIngredientParser as aN,
-  NcPopover as aO,
-  NcButton as aP,
-  mdiHelpCircleOutline as aQ,
-  browserStorage as aR,
-  useCollapsedAreas as aS,
-  ShareType as aT,
-  NcAvatar as aU,
-  isRef as aV,
-  mdiChevronDown as aW,
-  vShow as aX,
-  shallowRef as aY,
-  vModelSelect as aZ,
-  NcCheckboxRadioSwitch as a_,
+  mdiDeleteOutline as aH,
+  NcActions as aI,
+  ImageViewer as aJ,
+  Permission as aK,
+  attribution as aL,
+  nextTick as aM,
+  itemImageUrl as aN,
+  createIngredientParser as aO,
+  NcPopover as aP,
+  NcButton as aQ,
+  mdiHelpCircleOutline as aR,
+  browserStorage as aS,
+  useCollapsedAreas as aT,
+  ShareType as aU,
+  NcAvatar as aV,
+  isRef as aW,
+  mdiChevronDown as aX,
+  vShow as aY,
+  shallowRef as aZ,
+  vModelSelect as a_,
   getAugmentedNamespace as aa,
   runtimeDom_esmBundler as ab,
   shared_esmBundler as ac,
@@ -45316,27 +45317,28 @@ export {
   _export_sfc as ay,
   getCurrentUser as az,
   createBaseVNode as b,
-  Transition as b0,
-  getRootUrl as b1,
-  generateOcsUrl as b2,
-  cancelableClient as b3,
-  generateUrl as b4,
-  NcAppNavigation as b5,
-  NcAppNavigationSettings as b6,
-  NcAppContent as b7,
-  NcContent as b8,
-  createPinia as b9,
-  offlinePersistPlugin as ba,
-  createApp as bb,
-  publicApi as bc,
-  publicItemImageUrl as bd,
-  dist as be,
-  requireMajor as bf,
-  requireValid as bg,
-  dist$1 as bh,
-  process$1 as bi,
-  commonjsGlobal as bj,
-  Buffer as bk,
+  translatePlural as b0,
+  Transition as b1,
+  getRootUrl as b2,
+  generateOcsUrl as b3,
+  cancelableClient as b4,
+  generateUrl as b5,
+  NcAppNavigation as b6,
+  NcAppNavigationSettings as b7,
+  NcAppContent as b8,
+  NcContent as b9,
+  createPinia as ba,
+  offlinePersistPlugin as bb,
+  createApp as bc,
+  publicApi as bd,
+  publicItemImageUrl as be,
+  dist as bf,
+  requireMajor as bg,
+  requireValid as bh,
+  dist$1 as bi,
+  process$1 as bj,
+  commonjsGlobal as bk,
+  Buffer as bl,
   createElementBlock as c,
   createVNode as d,
   mdiRadioboxBlank as e,
@@ -45362,4 +45364,4 @@ export {
   unref as y,
   resolveDynamicComponent as z
 };
-//# sourceMappingURL=useCollapsedAreas-BeuwztOl.chunk.mjs.map
+//# sourceMappingURL=useCollapsedAreas-BrZheP2q.chunk.mjs.map

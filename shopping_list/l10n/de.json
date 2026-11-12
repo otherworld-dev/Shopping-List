@@ -160,6 +160,8 @@
         "Remove image": "Bild entfernen",
         "View image": "Bild ansehen",
         "guest": "Gast",
+        "app": "App",
+        "{account}, through {label}": "{account}, durch {label}",
         "Uploading image…": "Bild wird hochgeladen…",
         "Only image files can be attached": "Nur Bilddateien können angehängt werden",
         "Could not load image": "Bild konnte nicht geladen werden",

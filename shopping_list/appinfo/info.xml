@@ -9,7 +9,7 @@
 Official website: [shoppinglist.otherworld.dev](https://shoppinglist.otherworld.dev/)
 
 Official companion Android app: [Google Play](https://play.google.com/store/apps/details?id=dev.otherworld.shoppinglist)]]></description>
-	<version>1.13.1</version>
+	<version>1.14.0</version>
 	<licence>agpl</licence>
 	<author mail="adam@otherworld.dev">Adam Morgan</author>
 	<namespace>Shopping_List</namespace>
@@ -17,7 +17,7 @@ Official companion Android app: [Google Play](https://play.google.com/store/apps
 	<website>https://shoppinglist.otherworld.dev/</website>
 	<bugs>https://github.com/otherworld-dev/Shopping-List/issues</bugs>
 	<screenshot>https://raw.githubusercontent.com/otherworld-dev/Shopping-List/main/screenshots/Nextcloud%20Shopping%20List%20Example.png</screenshot>
-	<donation type="paypal" title="Donate via PayPal">https://www.paypal.com/donate/?hosted_button_id=MA56N6K8FSTQ2</donation>
+	<donation type="other" title="Support on Ko-fi">https://ko-fi.com/P5P31KQRF1</donation>
 	<dependencies>
 		<lib>intl</lib>
 		<nextcloud min-version="30" max-version="35"/>

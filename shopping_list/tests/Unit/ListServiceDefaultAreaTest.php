@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace OCA\Shopping_List\Tests\Unit;
 
+use OCA\Shopping_List\Db\ItemMapper;
 use OCA\Shopping_List\Db\ShopArea;
 use OCA\Shopping_List\Db\ShoppingList;
 use OCA\Shopping_List\Db\ShoppingListMapper;
@@ -45,6 +46,7 @@ class ListServiceDefaultAreaTest extends TestCase {
 			$this->createMock(UserListPreferenceMapper::class),
 			$this->createMock(ItemImageCleanup::class),
 			$this->createMock(UserSettingsService::class),
+			$this->createMock(ItemMapper::class),
 		);
 
 		$this->list = new ShoppingList();

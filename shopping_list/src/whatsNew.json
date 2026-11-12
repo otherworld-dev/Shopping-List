@@ -1,5 +1,16 @@
 [
 	{
+		"version": "1.14.0",
+		"title": "Fewer accidents, and counts on every list",
+		"items": [
+			"Restore all and Delete all in the checked-off section now ask before they do anything.",
+			"The sidebar shows how many items are left on every list straight away, including ones you haven't opened yet.",
+			"Items added through a public share link are placed in the right area by the list's keywords.",
+			"The delete button on an item has a bin icon again, where it sometimes showed up blank."
+		],
+		"link": "https://github.com/otherworld-dev/Shopping-List/blob/main/shopping_list/CHANGELOG.md"
+	},
+	{
 		"version": "1.13.0",
 		"title": "Home Assistant, and more units understood",
 		"items": [

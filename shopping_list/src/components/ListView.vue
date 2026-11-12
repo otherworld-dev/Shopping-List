@@ -287,6 +287,8 @@ const uncategorizedText = t('shopping_list', 'Uncategorized')
 const boughtText = t('shopping_list', 'Checked off')
 const uncheckAllText = t('shopping_list', 'Restore all')
 const clearCheckedText = t('shopping_list', 'Delete all')
+const confirmUncheckAllText = t('shopping_list', 'Put all checked-off items back on the list?')
+const confirmClearCheckedText = t('shopping_list', 'Delete all checked-off items? This cannot be undone.')
 const sortItemsText = t('shopping_list', 'Sort items')
 const sortCheckedText = t('shopping_list', 'Sort checked-off items')
 const byAreaText = t('shopping_list', 'By area')
@@ -446,13 +448,13 @@ watch(() => listsStore.currentListId, async (newId) => {
 }, { immediate: true })
 
 async function onClearChecked() {
-	if (listsStore.currentListId) {
+	if (listsStore.currentListId && window.confirm(confirmClearCheckedText)) {
 		await itemsStore.clearChecked(listsStore.currentListId)
 	}
 }
 
 async function onUncheckAll() {
-	if (listsStore.currentListId) {
+	if (listsStore.currentListId && window.confirm(confirmUncheckAllText)) {
 		await itemsStore.uncheckAll(listsStore.currentListId)
 	}
 }

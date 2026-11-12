@@ -5,6 +5,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+## [1.14.0] - 2026-11-12
+
+### Added
+- The lists API now says how many items are still unticked on each list
+  (`uncheckedCount`), so an app can show the number next to every list
+  without loading its items. The sidebar uses it too, so a list you haven't
+  opened yet shows its count straight away (#28 on the Android app)
+
+### Changed
+- Restore all and Delete all in the checked-off section now ask before they
+  act, so a stray tap can't wipe or reset the whole list (#62)
+- The donate link on the App Store goes to Ko-fi instead of PayPal
+- Updated German and Dutch translations
+
+### Fixed
+- Items added through a public share link are placed by the list's keywords,
+  as they are for members. They all went into the list's default area before,
+  so a guest's items weren't grouped by area (#58)
+- The delete action on an item has a bin icon. With only one list and item
+  photos switched off, delete is the only action, which Nextcloud shows as a
+  single button rather than a menu, and as it had no icon the button came
+  out blank (#59)
+
 ## [1.13.1] - 2026-10-20
 
 ### Fixed

@@ -117,6 +117,32 @@ class ItemMapper extends QBMapper {
 		return $ids;
 	}
 
+	/**
+	 * How many unticked items each of these lists has. Lists with none are left out.
+	 *
+	 * @param int[] $listIds
+	 * @return array<int, int> list id => count
+	 */
+	public function countUncheckedByLists(array $listIds): array {
+		$counts = [];
+		// Some databases cap how many values an IN list can hold.
+		foreach (array_chunk($listIds, 1000) as $chunk) {
+			$qb = $this->db->getQueryBuilder();
+			$qb->select('list_id')
+				->selectAlias($qb->func()->count('id'), 'unchecked')
+				->from($this->getTableName())
+				->where($qb->expr()->in('list_id', $qb->createNamedParameter($chunk, IQueryBuilder::PARAM_INT_ARRAY)))
+				->andWhere($qb->expr()->eq('checked', $qb->createNamedParameter(false, IQueryBuilder::PARAM_BOOL)))
+				->groupBy('list_id');
+			$result = $qb->executeQuery();
+			while ($row = $result->fetch()) {
+				$counts[(int)$row['list_id']] = (int)$row['unchecked'];
+			}
+			$result->closeCursor();
+		}
+		return $counts;
+	}
+
 	public function updateSortOrder(int $id, int $sortOrder): void {
 		$qb = $this->db->getQueryBuilder();
 		$qb->update($this->getTableName())

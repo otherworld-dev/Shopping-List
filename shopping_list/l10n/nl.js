@@ -161,6 +161,8 @@ OC.L10N.register(
     "Remove image": "Afbeelding verwijderen",
     "View image": "Afbeelding bekijken",
     "guest": "gast",
+    "app": "app",
+    "{account}, through {label}": "{account}\\, via {label}",
     "Uploading image…": "Afbeelding uploaden…",
     "Only image files can be attached": "Alleen afbeeldingsbestanden kunnen worden toegevoegd",
     "Could not load image": "Kan de afbeelding niet laden",

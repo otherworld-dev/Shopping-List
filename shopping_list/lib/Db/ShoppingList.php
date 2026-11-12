@@ -39,6 +39,9 @@ class ShoppingList extends Entity implements JsonSerializable {
 	/** @var int|null The current user's custom position, null if they never placed this list */
 	private ?int $position = null;
 
+	/** @var int|null How many items are still unticked, null when it wasn't counted */
+	private ?int $uncheckedCount = null;
+
 	public function __construct() {
 		$this->addType('id', 'integer');
 		$this->addType('createdAt', 'datetime');
@@ -78,6 +81,14 @@ class ShoppingList extends Entity implements JsonSerializable {
 		return $this->position;
 	}
 
+	public function setUncheckedCount(?int $uncheckedCount): void {
+		$this->uncheckedCount = $uncheckedCount;
+	}
+
+	public function getUncheckedCount(): ?int {
+		return $this->uncheckedCount;
+	}
+
 	public function jsonSerialize(): array {
 		return [
 			'id' => $this->id,
@@ -88,6 +99,7 @@ class ShoppingList extends Entity implements JsonSerializable {
 			'isPinned' => $this->isPinned,
 			'position' => $this->position,
 			'defaultShopAreaId' => $this->defaultAreaId,
+			'uncheckedCount' => $this->uncheckedCount,
 			'createdAt' => $this->createdAt?->format(\DateTimeInterface::ATOM),
 			'updatedAt' => $this->updatedAt?->format(\DateTimeInterface::ATOM),
 		];

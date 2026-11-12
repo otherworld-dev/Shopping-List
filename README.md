@@ -6,12 +6,14 @@
 
 A shared shopping list app for [Nextcloud](https://nextcloud.com). Create multiple lists, categorize items by shop area, and collaborate with your household in real-time.
 
+This is a server app: it is installed on your Nextcloud server (by you, or by whoever runs your server) and your lists are stored there. You use it in your browser through Nextcloud, or on your phone with the Android app, which connects to it.
+
 ## Official app & website
 
 Shopping List is developed by Otherworld Dev. These are the **official** links — accept no substitutes:
 
 - **Website** — <https://shoppinglist.otherworld.dev/>
-- **Android app** — the official companion app on [Google Play](https://play.google.com/store/apps/details?id=dev.otherworld.shoppinglist) (coming soon to [F-Droid](https://f-droid.org/))
+- **Android app** — the official companion app on [Google Play](https://play.google.com/store/apps/details?id=dev.otherworld.shoppinglist) (coming soon to [F-Droid](https://f-droid.org/)). The Android app needs this app installed on your Nextcloud server first, as that is where your lists are kept, synced and shared from
 
 [<img src="https://play.google.com/intro/images/badges/static/generic/en_badge_web_generic.png" alt="Get it on Google Play" height="60">](https://play.google.com/store/apps/details?id=dev.otherworld.shoppinglist)
 
@@ -33,7 +35,7 @@ Shopping List is developed by Otherworld Dev. These are the **official** links �
 - **Offline mode** — data persists locally so the app works without network; changes queue and sync automatically when connectivity returns
 - **Real-time sync** — changes from other users appear via Nextcloud's notify_push or polling fallback
 - **Check off items** — tick items as you shop; checked items collapse into a separate section, sorted by area, A to Z, or most recent first
-- **Bulk actions** — restore all checked items or delete them in one click
+- **Bulk actions** — restore all checked items or delete them in one go, with a prompt first so a stray tap can't clear the list
 
 ## Requirements
 
