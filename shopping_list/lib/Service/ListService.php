@@ -318,6 +318,13 @@ class ListService {
 			->where($qb->expr()->eq('list_id', $qb->createNamedParameter($listId)))
 			->executeStatement();
 
+		// Drop adds still waiting to be notified; the notifications already
+		// sent go when they are next shown, as the list is gone
+		$qb = $this->db->getQueryBuilder();
+		$qb->delete('shopping_list_added')
+			->where($qb->expr()->eq('list_id', $qb->createNamedParameter($listId)))
+			->executeStatement();
+
 		// Delete every user's preferences for the list
 		$this->preferenceMapper->deleteByList($listId);
 

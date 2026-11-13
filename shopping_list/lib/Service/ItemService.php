@@ -202,9 +202,10 @@ class ItemService {
 	 * write access to both lists. The copy lands as if the user had added it
 	 * by hand there: an open item of the same name takes the amount on top,
 	 * a ticked-off one comes back with this amount, otherwise a new item is
-	 * added with the area resolved as for a move and the same photo.
+	 * added with the area resolved as for a move and the same photo. The
+	 * outcome says which, so only a new item tells the others on the list.
 	 */
-	public function copy(int $id, int $targetListId, string $userId, ?string $via = null): Item {
+	public function copy(int $id, int $targetListId, string $userId, ?string $via = null): TextAddResult {
 		try {
 			$source = $this->mapper->find($id);
 		} catch (DoesNotExistException) {
@@ -216,7 +217,7 @@ class ItemService {
 		$this->listService->assertWriteAccess($targetListId, $userId);
 
 		if ($targetListId === $sourceListId) {
-			return $source;
+			return new TextAddResult($source, TextAddResult::UNCHANGED);
 		}
 
 		$name = $source->getName();
@@ -238,7 +239,7 @@ class ItemService {
 					$fields['name'] = $plural;
 				}
 			}
-			return $this->update($open->getId(), $fields, $userId);
+			return new TextAddResult($this->update($open->getId(), $fields, $userId), TextAddResult::MERGED);
 		}
 
 		// Ticked off already: bring that one back with this amount rather
@@ -255,7 +256,7 @@ class ItemService {
 			$ticked->setUpdatedAt(new DateTime());
 			$ticked = $this->mapper->update($ticked);
 			$this->pushService->notifyItemUpdate($targetListId, $ticked->getId(), 'updated', $userId);
-			return $ticked;
+			return new TextAddResult($ticked, TextAddResult::RESTORED);
 		}
 
 		$sourceAreaName = null;
@@ -288,7 +289,7 @@ class ItemService {
 		$item = $this->mapper->insert($item);
 
 		$this->pushService->notifyItemUpdate($targetListId, $item->getId(), 'created', $userId);
-		return $item;
+		return new TextAddResult($item, TextAddResult::CREATED);
 	}
 
 	/** The number an amount starts with, as parseFloat reads it in the web app */

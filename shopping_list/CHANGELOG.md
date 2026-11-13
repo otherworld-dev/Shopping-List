@@ -13,6 +13,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   amount and photo and finds its area by name in the other list, and if that
   list already has the item the amounts add up the same as adding it by hand
   (#29 on the Android app)
+- Nextcloud notifications when someone else adds items to a list you are on,
+  for example "Sam added 3 items to Weekly shop" with the item names
+  underneath. Items added within a couple of minutes of each other arrive as
+  one notification, and while it is still unread the next ones are added to
+  it rather than stacking up. They show in the bell and reach your phone
+  through the Nextcloud app, and tapping one opens the list. Adds by guests
+  on a public link count too. They can be turned off under Notifications in
+  the app's settings (#30 on the Android app)
 
 ## [1.14.0] - 2026-11-12
 

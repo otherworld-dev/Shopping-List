@@ -5,8 +5,13 @@ declare(strict_types=1);
 namespace OCA\Shopping_List\Notification;
 
 use OCA\Shopping_List\AppInfo\Application;
+use OCA\Shopping_List\Service\AddedItemNotifications;
+use OCA\Shopping_List\Service\ListService;
+use OCA\Shopping_List\Service\NotFoundException;
+use OCP\IL10N;
 use OCP\IURLGenerator;
 use OCP\L10N\IFactory;
+use OCP\Notification\AlreadyProcessedException;
 use OCP\Notification\INotification;
 use OCP\Notification\INotifier;
 use OCP\Notification\UnknownNotificationException;
@@ -21,6 +26,7 @@ class Notifier implements INotifier {
 	public function __construct(
 		private IFactory $l10nFactory,
 		private IURLGenerator $urlGenerator,
+		private ListService $listService,
 	) {
 	}
 
@@ -60,8 +66,64 @@ class Notifier implements INotifier {
 
 				return $notification;
 
+			case AddedItemNotifications::SUBJECT:
+				return $this->prepareItemsAdded($notification, $l);
+
 			default:
 				throw new UnknownNotificationException();
 		}
+	}
+
+	/**
+	 * "Sam added 3 items to Weekly shop", with the first few item names
+	 * underneath, opening the list in the web app. The list's title is read
+	 * now, so a rename shows; a list that has gone, or that the user can no
+	 * longer see, takes the notification away.
+	 */
+	private function prepareItemsAdded(INotification $notification, IL10N $l): INotification {
+		$listId = (int)$notification->getObjectId();
+		try {
+			$title = $this->listService->find($listId, $notification->getUser())->getTitle();
+		} catch (NotFoundException) {
+			throw new AlreadyProcessedException();
+		}
+
+		$params = $notification->getSubjectParameters();
+		$count = max(1, (int)($params['count'] ?? 1));
+		$actorCount = (int)($params['actorCount'] ?? 1);
+		// A guest on a link can type any name, so it is always marked as a guest's
+		$actors = array_map(function ($actor) use ($l): string {
+			$name = (string)($actor['name'] ?? '');
+			if (empty($actor['guest'])) {
+				return $name !== '' ? $name : $l->t('Someone');
+			}
+			return $name !== '' ? $l->t('%s (guest)', [$name]) : $l->t('A guest');
+		}, (array)($params['actors'] ?? []));
+		$first = $actors[0] ?? $l->t('Someone');
+
+		if ($actorCount <= 1) {
+			$subject = $l->n('%1$s added an item to %2$s', '%1$s added %n items to %2$s', $count, [$first, $title]);
+		} elseif ($actorCount === 2 && isset($actors[1])) {
+			$subject = $l->n('%1$s and %2$s added an item to %3$s', '%1$s and %2$s added %n items to %3$s', $count, [$first, $actors[1], $title]);
+		} else {
+			$subject = $l->n('%1$s and others added an item to %2$s', '%1$s and others added %n items to %2$s', $count, [$first, $title]);
+		}
+		$notification->setParsedSubject($subject);
+
+		$items = array_map('strval', (array)($params['items'] ?? []));
+		if ($items !== []) {
+			$message = implode(', ', $items);
+			$more = $count - count($items);
+			if ($more > 0) {
+				$message .= ' ' . $l->n('and %n more', 'and %n more', $more);
+			}
+			$notification->setParsedMessage($message);
+		}
+
+		$notification->setIcon($this->urlGenerator->getAbsoluteURL(
+			$this->urlGenerator->imagePath(Application::APP_ID, 'app.svg'),
+		));
+		$notification->setLink($this->urlGenerator->linkToRouteAbsolute('shopping_list.page.index', ['list' => $listId]));
+		return $notification;
 	}
 }

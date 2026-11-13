@@ -1142,6 +1142,15 @@
 	font-weight: 600;
 }
 
+.notification-settings[data-v-c77dc29c] {
+	padding: 0 0 4px;
+}
+.notification-settings__title[data-v-c77dc29c] {
+	margin: 0 0 4px;
+	font-size: 1em;
+	font-weight: 600;
+}
+
 .backup[data-v-78e2f22c] {
 	display: flex;
 	flex-direction: column;

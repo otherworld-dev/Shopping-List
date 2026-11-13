@@ -16,6 +16,7 @@ use OCA\Shopping_List\Service\NoPermissionException;
 use OCA\Shopping_List\Service\NotFoundException;
 use OCA\Shopping_List\Service\PushService;
 use OCA\Shopping_List\Service\ShopAreaService;
+use OCA\Shopping_List\Service\TextAddResult;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\IDBConnection;
 use OCP\IL10N;
@@ -117,7 +118,9 @@ class ItemServiceCopyTest extends TestCase {
 		$this->mapper->expects(self::once())->method('insert');
 		$this->push->expects(self::once())->method('notifyItemUpdate')->with(6, 99, 'created', 'ben');
 
-		$copy = $this->service->copy(42, 6, 'ben', 'Android');
+		$result = $this->service->copy(42, 6, 'ben', 'Android');
+		self::assertSame(TextAddResult::CREATED, $result->outcome);
+		$copy = $result->item;
 
 		self::assertSame(99, $copy->getId());
 		self::assertSame(6, $copy->getListId());
@@ -150,7 +153,7 @@ class ItemServiceCopyTest extends TestCase {
 		$this->areas->method('find')->willThrowException(new NotFoundException('gone'));
 		$this->areas->expects(self::once())->method('findAreaForMove')->with(6, null, 'Milk')->willReturn(8);
 
-		self::assertSame(8, $this->service->copy(42, 6, 'ben')->getShopAreaId());
+		self::assertSame(8, $this->service->copy(42, 6, 'ben')->item->getShopAreaId());
 	}
 
 	public function testAnItemWithNoAreaUsesKeywordDetection(): void {
@@ -158,21 +161,21 @@ class ItemServiceCopyTest extends TestCase {
 		$this->areas->expects(self::never())->method('find');
 		$this->areas->expects(self::once())->method('findAreaForMove')->with(6, null, 'Milk')->willReturn(null);
 
-		self::assertNull($this->service->copy(42, 6, 'ben')->getShopAreaId());
+		self::assertNull($this->service->copy(42, 6, 'ben')->item->getShopAreaId());
 	}
 
 	public function testTheCopySharesThePhoto(): void {
 		$this->source();
 		$this->images->expects(self::never())->method('rememberedKey');
 
-		self::assertSame(self::KEY, $this->service->copy(42, 6, 'ben')->getImageKey());
+		self::assertSame(self::KEY, $this->service->copy(42, 6, 'ben')->item->getImageKey());
 	}
 
 	public function testAnItemWithoutAPhotoPicksUpTheTargetListsPhoto(): void {
 		$this->source()->setImageKey(null);
 		$this->images->method('rememberedKey')->with(6, 'Milk')->willReturn('2222222222222222');
 
-		self::assertSame('2222222222222222', $this->service->copy(42, 6, 'ben')->getImageKey());
+		self::assertSame('2222222222222222', $this->service->copy(42, 6, 'ben')->item->getImageKey());
 	}
 
 	public function testNoWriteAccessToTheTargetCopiesNothing(): void {
@@ -215,7 +218,9 @@ class ItemServiceCopyTest extends TestCase {
 		$this->mapper->expects(self::never())->method('update');
 		$this->push->expects(self::never())->method('notifyItemUpdate');
 
-		self::assertSame($source, $this->service->copy(42, 5, 'ben'));
+		$result = $this->service->copy(42, 5, 'ben');
+		self::assertSame($source, $result->item);
+		self::assertSame(TextAddResult::UNCHANGED, $result->outcome);
 	}
 
 	public function testAnOpenItemOfTheSameNameTakesTheAmountOnTop(): void {
@@ -229,7 +234,9 @@ class ItemServiceCopyTest extends TestCase {
 		// A sum, not something typed, so it isn't remembered for the name
 		$this->amounts->expects(self::never())->method('remember');
 
-		$merged = $this->service->copy(42, 6, 'ben');
+		$result = $this->service->copy(42, 6, 'ben');
+		self::assertSame(TextAddResult::MERGED, $result->outcome);
+		$merged = $result->item;
 
 		self::assertSame(50, $merged->getId());
 		self::assertSame('3', $merged->getQuantity());
@@ -246,7 +253,9 @@ class ItemServiceCopyTest extends TestCase {
 		$this->mapper->expects(self::never())->method('insert');
 		$this->push->expects(self::once())->method('notifyItemUpdate')->with(6, 51, 'updated', 'ben');
 
-		$restored = $this->service->copy(42, 6, 'ben');
+		$result = $this->service->copy(42, 6, 'ben');
+		self::assertSame(TextAddResult::RESTORED, $result->outcome);
+		$restored = $result->item;
 
 		self::assertSame(51, $restored->getId());
 		self::assertFalse($restored->getChecked());

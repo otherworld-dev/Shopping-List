@@ -49,6 +49,7 @@ class PublicListControllerPhotoTest extends TestCase {
 			$this->createMock(ItemService::class),
 			$this->images,
 			$this->createMock(AmountMemory::class),
+			$this->createMock(\OCA\Shopping_List\Service\AddedItemNotifications::class),
 		);
 		$this->items->method('insert')->willReturnArgument(0);
 		$this->items->method('update')->willReturnArgument(0);

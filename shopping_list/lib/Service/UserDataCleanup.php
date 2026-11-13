@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace OCA\Shopping_List\Service;
 
 use OCA\Shopping_List\AppInfo\Application;
+use OCA\Shopping_List\Db\AddedItemMapper;
 use OCA\Shopping_List\Db\ItemMapper;
 use OCA\Shopping_List\Db\ListShareMapper;
 use OCA\Shopping_List\Db\PhotoMapper;
@@ -32,6 +33,7 @@ class UserDataCleanup {
 		private ItemImageCleanup $imageCleanup,
 		private ItemMapper $items,
 		private LoggerInterface $logger,
+		private AddedItemMapper $added,
 	) {
 	}
 
@@ -57,6 +59,7 @@ class UserDataCleanup {
 		});
 		$this->step('clear checked by', fn () => $this->items->clearCheckedBy($userId));
 		$this->step('clear added by', fn () => $this->items->clearAddedBy($userId));
+		$this->step('drop pending notifications', fn () => $this->added->deleteByUser($userId));
 	}
 
 	private function step(string $what, callable $run): void {

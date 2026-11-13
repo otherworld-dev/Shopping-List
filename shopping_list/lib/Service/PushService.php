@@ -66,7 +66,7 @@ class PushService {
 			return;
 		}
 
-		$users = $this->getListParticipants($listId);
+		$users = $this->listParticipants($listId);
 		// A change made through an app (Home Assistant) didn't come from the
 		// account's own browser, so that browser needs telling as well.
 		if (ViaLabel::clean($this->request->getHeader(ViaLabel::HEADER)) !== null) {
@@ -94,7 +94,7 @@ class PushService {
 	 *
 	 * @return string[]
 	 */
-	private function getListParticipants(int $listId): array {
+	public function listParticipants(int $listId): array {
 		$users = [];
 
 		// Owner
