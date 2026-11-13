@@ -346,6 +346,30 @@ export const useItemsStore = defineStore('items', () => {
 		}
 	}
 
+	async function copy(listId: number, id: number, targetListId: number) {
+		const item = (itemsByList.value[listId] ?? []).find(i => i.id === id)
+		if (!item) return
+
+		// The server decides whether the copy merges into an item already there,
+		// so there is nothing to show until it answers
+		if (!isOnline.value) {
+			showError(t('shopping_list', 'You\'re offline — copying items requires a connection'))
+			return
+		}
+
+		try {
+			await api.items.copy(listId, id, targetListId)
+			if (targetListId in itemsByList.value) {
+				await fetchByList(targetListId)
+			}
+			const targetTitle = listsStore.lists.find(l => l.id === targetListId)?.title ?? ''
+			showSuccess(t('shopping_list', 'Copied "{name}" to {list}', { name: item.name, list: targetTitle }))
+		} catch (e) {
+			showError(t('shopping_list', 'Failed to copy item'))
+			console.error(e)
+		}
+	}
+
 	async function reorder(listId: number, sortedIds: number[]) {
 		// Optimistic: update local sort orders
 		const items = itemsByList.value[listId] ?? []
@@ -524,6 +548,7 @@ export const useItemsStore = defineStore('items', () => {
 		toggleCheck,
 		remove,
 		move,
+		copy,
 		reorder,
 		clearChecked,
 		uncheckAll,

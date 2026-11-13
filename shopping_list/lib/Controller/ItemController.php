@@ -122,6 +122,17 @@ class ItemController extends OCSController {
 	}
 
 	#[NoAdminRequired]
+	public function copy(int $listId, int $id, int $targetListId): DataResponse {
+		try {
+			return new DataResponse($this->service->copy($id, $targetListId, $this->userId, $this->via()));
+		} catch (NotFoundException $e) {
+			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_NOT_FOUND);
+		} catch (NoPermissionException $e) {
+			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_FORBIDDEN);
+		}
+	}
+
+	#[NoAdminRequired]
 	public function check(int $listId, int $id, bool $checked): DataResponse {
 		try {
 			return new DataResponse($this->service->check($id, $checked, $this->userId, $this->via()));

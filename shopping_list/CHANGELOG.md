@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Copy to list in an item's menu, next to Move to list, puts a copy of the item
+  on another list and leaves the original where it is. The copy keeps its
+  amount and photo and finds its area by name in the other list, and if that
+  list already has the item the amounts add up the same as adding it by hand
+  (#29 on the Android app)
+
 ## [1.14.0] - 2026-11-12
 
 ### Added

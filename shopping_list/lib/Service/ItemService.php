@@ -7,8 +7,11 @@ namespace OCA\Shopping_List\Service;
 use DateTime;
 use OCA\Shopping_List\Db\Item;
 use OCA\Shopping_List\Db\ItemMapper;
+use OCA\Shopping_List\Service\Parsing\ItemMerge;
+use OCA\Shopping_List\Service\Parsing\ParsingPack;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\IDBConnection;
+use OCP\IL10N;
 use OCP\IUserManager;
 
 class ItemService {
@@ -22,6 +25,7 @@ class ItemService {
 		private ItemImageService $images,
 		private IUserManager $userManager,
 		private AmountMemory $amounts,
+		private IL10N $l,
 	) {
 	}
 
@@ -191,6 +195,105 @@ class ItemService {
 		$this->pushService->notifyItemUpdate($sourceListId, $id, 'deleted', $userId);
 		$this->pushService->notifyItemUpdate($targetListId, $id, 'created', $userId);
 		return $item;
+	}
+
+	/**
+	 * Copy an item to another list, leaving the original as it is. Requires
+	 * write access to both lists. The copy lands as if the user had added it
+	 * by hand there: an open item of the same name takes the amount on top,
+	 * a ticked-off one comes back with this amount, otherwise a new item is
+	 * added with the area resolved as for a move and the same photo.
+	 */
+	public function copy(int $id, int $targetListId, string $userId, ?string $via = null): Item {
+		try {
+			$source = $this->mapper->find($id);
+		} catch (DoesNotExistException) {
+			throw new NotFoundException('Item not found');
+		}
+
+		$sourceListId = $source->getListId();
+		$this->listService->assertWriteAccess($sourceListId, $userId);
+		$this->listService->assertWriteAccess($targetListId, $userId);
+
+		if ($targetListId === $sourceListId) {
+			return $source;
+		}
+
+		$name = $source->getName();
+		$merge = new ItemMerge(ParsingPack::forLanguage($this->l->getLanguageCode()));
+		$onTarget = $this->mapper->findAllByList($targetListId);
+
+		$open = $merge->findOpenMatch($onTarget, $name);
+		if ($open !== null) {
+			// Same rule as the add box: the amounts add up, and a name going
+			// from one to more than one is pluralised. The total isn't typed,
+			// so it is not remembered.
+			$merged = $merge->mergeQuantities($open->getQuantity(), $source->getQuantity() ?? '1');
+			$fields = ['quantity' => $merged];
+			$before = self::leadingNumber($open->getQuantity());
+			$after = self::leadingNumber($merged);
+			if ($before !== null && $after !== null && $before <= 1 && $after > 1) {
+				$plural = $merge->pluralizeName($open->getName());
+				if ($plural !== $open->getName()) {
+					$fields['name'] = $plural;
+				}
+			}
+			return $this->update($open->getId(), $fields, $userId);
+		}
+
+		// Ticked off already: bring that one back with this amount rather
+		// than add another beside it.
+		$ticked = $merge->findCheckedMatch($onTarget, $name);
+		if ($ticked !== null) {
+			if ($source->getQuantity() !== null) {
+				$ticked->setQuantity($source->getQuantity());
+			}
+			$ticked->setChecked(false);
+			$ticked->setCheckedBy(null);
+			$ticked->setCheckedByName(null);
+			$ticked->setCheckedVia(null);
+			$ticked->setUpdatedAt(new DateTime());
+			$ticked = $this->mapper->update($ticked);
+			$this->pushService->notifyItemUpdate($targetListId, $ticked->getId(), 'updated', $userId);
+			return $ticked;
+		}
+
+		$sourceAreaName = null;
+		if ($source->getShopAreaId() !== null) {
+			try {
+				$sourceAreaName = $this->shopAreaService->find($source->getShopAreaId())->getName();
+			} catch (NotFoundException) {
+				// area gone — fall back to keyword detection
+			}
+		}
+
+		$item = new Item();
+		$item->setListId($targetListId);
+		$item->setName($name);
+		$item->setQuantity($source->getQuantity());
+		$item->setUnit($source->getUnit());
+		$item->setShopAreaId($this->shopAreaService->findAreaForMove($targetListId, $sourceAreaName, $name));
+		$item->setChecked(false);
+		$item->setAddedBy($userId);
+		$item->setAddedByName($this->nameOf($userId));
+		$item->setAddedVia($via);
+		$item->setSortOrder(0);
+		// Photos are shared by key and only deleted once nothing shows them,
+		// so the copy can show the same one.
+		$item->setImageKey($source->getImageKey() ?? $this->images->rememberedKey($targetListId, $name));
+		$now = new DateTime();
+		$item->setCreatedAt($now);
+		$item->setUpdatedAt($now);
+
+		$item = $this->mapper->insert($item);
+
+		$this->pushService->notifyItemUpdate($targetListId, $item->getId(), 'created', $userId);
+		return $item;
+	}
+
+	/** The number an amount starts with, as parseFloat reads it in the web app */
+	private static function leadingNumber(?string $quantity): ?float {
+		return preg_match('/^\s*(\d+(?:\.\d+)?)/', $quantity ?? '', $m) ? (float)$m[1] : null;
 	}
 
 	public function check(int $id, bool $checked, string $userId, ?string $via = null): Item {

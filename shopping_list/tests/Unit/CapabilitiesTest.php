@@ -31,6 +31,7 @@ class CapabilitiesTest extends TestCase {
 		self::assertContains('default-area', $caps['features']);
 		self::assertContains('via-label', $caps['features']);
 		self::assertContains('text-input', $caps['features']);
+		self::assertContains('copy-item', $caps['features']);
 		self::assertSame(1280, $caps['itemImages']['maxSide']);
 		self::assertSame(160, $caps['itemImages']['thumbSide']);
 		self::assertGreaterThan(0, $caps['itemImages']['maxUploadBytes']);
@@ -43,7 +44,7 @@ class CapabilitiesTest extends TestCase {
 
 		self::assertInstanceOf(IPublicCapability::class, $capabilities);
 		self::assertSame(
-			['shopping_list' => ['features' => ['item-images', 'list-order', 'invite-codes', 'guest-names', 'default-area', 'via-label', 'text-input']]],
+			['shopping_list' => ['features' => ['item-images', 'list-order', 'invite-codes', 'guest-names', 'default-area', 'via-label', 'text-input', 'copy-item']]],
 			$capabilities->getCapabilities(),
 		);
 	}

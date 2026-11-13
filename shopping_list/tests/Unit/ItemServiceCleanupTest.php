@@ -48,6 +48,7 @@ class ItemServiceCleanupTest extends TestCase {
 			$this->images,
 			$this->createMock(\OCP\IUserManager::class),
 			$this->createMock(AmountMemory::class),
+			$this->createMock(\OCP\IL10N::class),
 		);
 		$this->mapper->method('insert')->willReturnCallback(function (Item $i) {
 			$i->setId(99); // the database hands out the id

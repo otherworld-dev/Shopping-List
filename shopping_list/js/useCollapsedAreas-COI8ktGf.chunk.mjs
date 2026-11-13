@@ -44363,6 +44363,7 @@ const api = {
     update: (listId, id, data) => cancelableClient.put(url(`lists/${listId}/items/${id}`), data),
     check: (listId, id, checked) => cancelableClient.put(url(`lists/${listId}/items/${id}/check`), { checked }),
     move: (listId, id, targetListId) => cancelableClient.post(url(`lists/${listId}/items/${id}/move`), { targetListId }),
+    copy: (listId, id, targetListId) => cancelableClient.post(url(`lists/${listId}/items/${id}/copy`), { targetListId }),
     delete: (listId, id) => cancelableClient.delete(url(`lists/${listId}/items/${id}`)),
     reorder: (listId, sortedIds) => cancelableClient.post(url(`lists/${listId}/items/reorder`), { sortedIds }),
     clearChecked: (listId) => cancelableClient.delete(url(`lists/${listId}/items/checked`)),
@@ -45364,4 +45365,4 @@ export {
   unref as y,
   resolveDynamicComponent as z
 };
-//# sourceMappingURL=useCollapsedAreas-BrZheP2q.chunk.mjs.map
+//# sourceMappingURL=useCollapsedAreas-COI8ktGf.chunk.mjs.map
