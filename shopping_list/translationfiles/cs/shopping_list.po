@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: shopping-list-for-nextcloud\n"
 "Report-Msgid-Bugs-To: translations\\@example.com\n"
 "POT-Creation-Date: 2026-05-11 21:00+0000\n"
-"PO-Revision-Date: 2026-10-20 15:57\n"
+"PO-Revision-Date: 2026-11-13 14:37\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "Language: cs_CZ\n"
@@ -288,6 +288,16 @@ msgstr "Obnovit vše"
 #: src/components/ListView.vue
 msgid "Delete all"
 msgstr "Smazat vše"
+
+#. Asked before "Restore all" puts every checked-off item back on the list.
+#: src/components/ListView.vue
+msgid "Put all checked-off items back on the list?"
+msgstr ""
+
+#. Asked before "Delete all" removes every checked-off item.
+#: src/components/ListView.vue
+msgid "Delete all checked-off items? This cannot be undone."
+msgstr ""
 
 #. Heading in the list's menu, above the three ways to order the open items.
 #: src/components/ListView.vue
@@ -656,6 +666,10 @@ msgid "Move to list"
 msgstr "Přesunout do seznamu"
 
 #: src/components/ItemRow.vue
+msgid "Copy to list"
+msgstr ""
+
+#: src/components/ItemRow.vue
 msgid "Add image"
 msgstr "Přidat obrázek"
 
@@ -707,6 +721,18 @@ msgstr "Přesunuto \"{name}\" do {list}"
 #: src/stores/items.ts
 msgid "You're offline — moving items requires a connection"
 msgstr "Jste offline — přesouvání položek vyžaduje připojení"
+
+#: src/stores/items.ts
+msgid "Failed to copy item"
+msgstr ""
+
+#: src/stores/items.ts
+msgid "Copied \"{name}\" to {list}"
+msgstr ""
+
+#: src/stores/items.ts
+msgid "You're offline — copying items requires a connection"
+msgstr ""
 
 #: src/components/ItemRow.vue src/stores/items.ts
 msgid "You're offline — adding images requires a connection"
@@ -776,7 +802,19 @@ msgstr "Zobrazit mé jméno u položek"
 msgid "Your name always shows to everyone else. This switch only changes what you see."
 msgstr "Vaše jméno se ostatním zobrazuje vždy. Tento přepínač mění pouze to, co vidíte vy."
 
-#: src/components/ItemImagesSettings.vue src/stores/lists.ts
+#: src/components/NotificationSettings.vue
+msgid "Notifications"
+msgstr ""
+
+#: src/components/NotificationSettings.vue
+msgid "Notify me when someone else adds items to a list"
+msgstr ""
+
+#: src/components/NotificationSettings.vue
+msgid "Items added close together arrive as one notification, in Nextcloud and on your phone through the Nextcloud app."
+msgstr ""
+
+#: src/components/ItemImagesSettings.vue src/components/NotificationSettings.vue src/stores/lists.ts
 msgid "Failed to save setting"
 msgstr "Nastavení se nepodařilo uložit"
 
@@ -803,6 +841,56 @@ msgstr "Vezměte si svůj nákupní seznam sebou - aplikace pro Android je nyní
 #: lib/Notification/Notifier.php
 msgid "Get it on Google Play"
 msgstr "Stáhněte z Google Play"
+
+#. Shown in a notification in place of the name of someone on a public link who gave none
+#: lib/Notification/Notifier.php
+msgid "A guest"
+msgstr ""
+
+#: lib/Notification/Notifier.php
+msgid "Someone"
+msgstr ""
+
+#. A name typed by someone on a public link, who has no account
+#: lib/Notification/Notifier.php
+msgid "%s (guest)"
+msgstr ""
+
+#. %1$s is who added the items, %2$s the list's name
+#: lib/Notification/Notifier.php
+msgid "%1$s added an item to %2$s"
+msgid_plural "%1$s added %n items to %2$s"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#. %1$s and %2$s are the two people who added the items, %3$s the list's name
+#: lib/Notification/Notifier.php
+msgid "%1$s and %2$s added an item to %3$s"
+msgid_plural "%1$s and %2$s added %n items to %3$s"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#. %1$s is the most recent of three or more people who added the items, %2$s the list's name
+#: lib/Notification/Notifier.php
+msgid "%1$s and others added an item to %2$s"
+msgid_plural "%1$s and others added %n items to %2$s"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#. Follows the first few item names in a notification: "Milk, Eggs, Bread and 3 more"
+#: lib/Notification/Notifier.php
+msgid "and %n more"
+msgid_plural "and %n more"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/components/BackupSettings.vue
 msgid "Backup"

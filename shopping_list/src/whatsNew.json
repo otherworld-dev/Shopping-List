@@ -1,5 +1,15 @@
 [
 	{
+		"version": "1.15.0",
+		"title": "Copy to another list, and notifications",
+		"items": [
+			"An item's menu has Copy to list next to Move to list. The original stays where it is, and if the other list already has the item the amounts add up.",
+			"When someone else adds items to a list you share, you get a Nextcloud notification, in the bell and on your phone through the Nextcloud app. Items added close together arrive as one notification, and tapping it opens the list.",
+			"You can turn these notifications off under Notifications in the app's settings."
+		],
+		"link": "https://github.com/otherworld-dev/Shopping-List/blob/main/shopping_list/CHANGELOG.md"
+	},
+	{
 		"version": "1.14.0",
 		"title": "Fewer accidents, and counts on every list",
 		"items": [

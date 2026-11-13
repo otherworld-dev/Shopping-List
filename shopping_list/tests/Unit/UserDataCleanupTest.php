@@ -45,6 +45,7 @@ class UserDataCleanupTest extends TestCase {
 		$this->cleanup = new UserDataCleanup(
 			$this->lists, $this->listService, $this->shares, $this->prefs, $this->tags,
 			$this->photos, $this->imageCleanup, $this->items, $this->logger,
+			$this->createMock(\OCA\Shopping_List\Db\AddedItemMapper::class),
 		);
 	}
 

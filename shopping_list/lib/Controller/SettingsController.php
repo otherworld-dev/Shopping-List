@@ -28,7 +28,7 @@ class SettingsController extends OCSController {
 
 	/** PATCH: only the keys sent change. Answers with every setting. */
 	#[NoAdminRequired]
-	public function update(?bool $showImages = null, ?string $listSort = null, ?bool $showOwnName = null, ?string $whatsNewSeen = null): DataResponse {
+	public function update(?bool $showImages = null, ?string $listSort = null, ?bool $showOwnName = null, ?string $whatsNewSeen = null, ?bool $notifyAdds = null): DataResponse {
 		try {
 			if ($listSort !== null) {
 				$this->settings->setListSort($this->userId, $listSort);
@@ -44,6 +44,9 @@ class SettingsController extends OCSController {
 		}
 		if ($showOwnName !== null) {
 			$this->settings->setShowOwnName($this->userId, $showOwnName);
+		}
+		if ($notifyAdds !== null) {
+			$this->settings->setNotifyAdds($this->userId, $notifyAdds);
 		}
 		return new DataResponse($this->settings->forUser($this->userId));
 	}

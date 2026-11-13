@@ -13,6 +13,7 @@ use OCA\Shopping_List\Service\NotFoundException;
 use OCA\Shopping_List\Service\PasswordRequiredException;
 use OCA\Shopping_List\Service\ShopAreaService;
 use OCA\Shopping_List\Db\ShopAreaMapper;
+use OCA\Shopping_List\Service\AddedItemNotifications;
 use OCA\Shopping_List\Service\AmountMemory;
 use OCA\Shopping_List\Service\GuestName;
 use OCA\Shopping_List\Service\ItemImageService;
@@ -43,6 +44,7 @@ class PublicListController extends OCSController {
 		private ItemService $itemService,
 		private ItemImageService $images,
 		private AmountMemory $amounts,
+		private AddedItemNotifications $added,
 	) {
 		parent::__construct($appName, $request);
 	}
@@ -237,6 +239,7 @@ class PublicListController extends OCSController {
 			if ($quantity !== null && $this->request->getParam('quantityExplicit')) {
 				$this->amounts->remember($share->getListId(), $name, $quantity);
 			}
+			$this->added->itemAdded($share->getListId(), $name, null, $item->getAddedByName());
 
 			return new DataResponse($this->forLink($share, $item), Http::STATUS_CREATED);
 		} catch (\InvalidArgumentException $e) {

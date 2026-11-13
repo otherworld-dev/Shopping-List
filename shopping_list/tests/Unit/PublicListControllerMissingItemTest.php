@@ -46,6 +46,7 @@ class PublicListControllerMissingItemTest extends TestCase {
 			$this->createMock(ItemService::class),
 			$this->createMock(ItemImageService::class),
 			$this->createMock(AmountMemory::class),
+			$this->createMock(\OCA\Shopping_List\Service\AddedItemNotifications::class),
 		);
 	}
 

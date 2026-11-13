@@ -44,6 +44,7 @@ return [
 		['name' => 'item#update', 'url' => '/api/v1/lists/{listId}/items/{id}', 'verb' => 'PUT'],
 		['name' => 'item#check', 'url' => '/api/v1/lists/{listId}/items/{id}/check', 'verb' => 'PUT'],
 		['name' => 'item#move', 'url' => '/api/v1/lists/{listId}/items/{id}/move', 'verb' => 'POST'],
+		['name' => 'item#copy', 'url' => '/api/v1/lists/{listId}/items/{id}/copy', 'verb' => 'POST'],
 		['name' => 'item#destroy', 'url' => '/api/v1/lists/{listId}/items/{id}', 'verb' => 'DELETE'],
 
 		// Item photos (upload and removal; the bytes are served by the plain routes above)

@@ -53,6 +53,7 @@ class PublicListControllerAmountTest extends TestCase {
 			$this->createMock(ItemService::class),
 			$this->createMock(ItemImageService::class),
 			$this->amounts,
+			$this->createMock(\OCA\Shopping_List\Service\AddedItemNotifications::class),
 		);
 	}
 

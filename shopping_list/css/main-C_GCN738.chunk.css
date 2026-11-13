@@ -37,7 +37,7 @@
 	opacity: 0.5;
 }
 
-.item-row[data-v-8903cab0] {
+.item-row[data-v-ba3c1004] {
 	display: flex !important;
 	flex-direction: row !important;
 	flex-wrap: nowrap !important;
@@ -53,26 +53,26 @@
 	gap: 0;
 	position: relative;
 }
-.item-row[data-v-8903cab0]:last-child {
+.item-row[data-v-ba3c1004]:last-child {
 	border-bottom: none;
 }
-.item-row[data-v-8903cab0]:hover {
+.item-row[data-v-ba3c1004]:hover {
 	background-color: var(--color-background-hover);
 }
 
 /* Invisible overlay to capture clicks — bypasses Nextcloud's click
    interception on non-interactive elements. The document-level capture
    listener in ListView detects which row was clicked. */
-.item-row[data-item-id][data-v-8903cab0]::after {
+.item-row[data-item-id][data-v-ba3c1004]::after {
 	content: '';
 	position: absolute;
 	inset: 0;
 	cursor: pointer;
 }
-.item-row--editing[data-v-8903cab0]::after {
+.item-row--editing[data-v-ba3c1004]::after {
 	display: none;
 }
-.item-row__check[data-v-8903cab0] {
+.item-row__check[data-v-ba3c1004] {
 	flex: 0 0 auto;
 	display: flex;
 	align-items: center;
@@ -81,7 +81,7 @@
 	position: relative;
 	z-index: 1;
 }
-.item-row__check input[type="checkbox"][data-v-8903cab0] {
+.item-row__check input[type="checkbox"][data-v-ba3c1004] {
 	width: 18px;
 	height: 18px;
 	cursor: pointer;
@@ -92,8 +92,8 @@
 /* Thumbnail. Nextcloud styles every button globally, so the row class in
    front keeps these rules ahead of its :hover, :focus and :active without
    !important. z-index lifts it above the row's click overlay. */
-.item-row > button.item-row__thumb[data-v-8903cab0],
-.item-row > .item-row__thumb--loading[data-v-8903cab0] {
+.item-row > button.item-row__thumb[data-v-ba3c1004],
+.item-row > .item-row__thumb--loading[data-v-ba3c1004] {
 	flex: 0 0 auto;
 	display: flex;
 	align-items: center;
@@ -110,38 +110,38 @@
 	position: relative;
 	z-index: 1;
 }
-.item-row > button.item-row__thumb[data-v-8903cab0] {
+.item-row > button.item-row__thumb[data-v-ba3c1004] {
 	cursor: zoom-in;
 }
-.item-row > button.item-row__thumb[data-v-8903cab0]:is(:hover, :focus, :active) {
+.item-row > button.item-row__thumb[data-v-ba3c1004]:is(:hover, :focus, :active) {
 	background-color: var(--color-background-dark);
 }
-.item-row > button.item-row__thumb[data-v-8903cab0]:focus-visible {
+.item-row > button.item-row__thumb[data-v-ba3c1004]:focus-visible {
 	outline: 2px solid var(--color-main-text);
 	outline-offset: 1px;
 }
-.item-row__thumb img[data-v-8903cab0] {
+.item-row__thumb img[data-v-ba3c1004] {
 	display: block;
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 }
-.item-row--drop-target[data-v-8903cab0] {
+.item-row--drop-target[data-v-ba3c1004] {
 	outline: 2px dashed var(--color-primary-element);
 	outline-offset: -2px;
 	background-color: var(--color-primary-element-light);
 }
-.item-row__file-input[data-v-8903cab0] {
+.item-row__file-input[data-v-ba3c1004] {
 	display: none;
 }
-.item-row__quantity[data-v-8903cab0] {
+.item-row__quantity[data-v-ba3c1004] {
 	flex: 0 0 auto;
 	color: var(--color-text-maxcontrast);
 	font-size: 0.85em;
 	white-space: nowrap;
 	padding-inline-end: 8px;
 }
-.item-row__name[data-v-8903cab0] {
+.item-row__name[data-v-ba3c1004] {
 	flex: 1 1 0%;
 	min-width: 0;
 	font-size: 0.95em;
@@ -150,7 +150,7 @@
 	   item can shrink — a long no-space name wraps instead of overflowing. */
 	overflow-wrap: anywhere;
 }
-.item-row__by[data-v-8903cab0] {
+.item-row__by[data-v-ba3c1004] {
 	display: inline-flex;
 	align-items: center;
 	gap: 4px;
@@ -163,13 +163,13 @@
 }
 
 /* Only the name gets cut short; the guest mark always stays in view */
-.item-row__by-name[data-v-8903cab0] {
+.item-row__by-name[data-v-ba3c1004] {
 	min-width: 0;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
-.item-row__by-guest[data-v-8903cab0] {
+.item-row__by-guest[data-v-ba3c1004] {
 	flex: 0 0 auto;
 	padding: 0 5px;
 	border: 1px solid var(--color-border-dark);
@@ -178,17 +178,17 @@
 }
 
 /* An app's mark, kept apart from a guest's at a glance */
-.item-row__by-app[data-v-8903cab0] {
+.item-row__by-app[data-v-ba3c1004] {
 	border-style: dashed;
 }
 
 /* On a phone the person's name goes on its own line under the item, so the
    item's own name keeps its room next to the quantity, area and menu */
 @media (max-width: 600px) {
-.item-row.item-row--with-by[data-v-8903cab0] {
+.item-row.item-row--with-by[data-v-ba3c1004] {
 		flex-wrap: wrap !important;
 }
-.item-row--with-by .item-row__by[data-v-8903cab0] {
+.item-row--with-by .item-row__by[data-v-ba3c1004] {
 		order: 1;
 		flex: 0 0 100%;
 		max-width: none;
@@ -197,11 +197,11 @@
 		padding-inline-start: 32px;
 }
 }
-.item-row__name--checked[data-v-8903cab0] {
+.item-row__name--checked[data-v-ba3c1004] {
 	text-decoration: line-through;
 	color: var(--color-text-maxcontrast);
 }
-.item-row__area[data-v-8903cab0] {
+.item-row__area[data-v-ba3c1004] {
 	display: inline-flex;
 	align-items: center;
 	gap: 5px;
@@ -219,13 +219,13 @@
 	z-index: 1;
 	pointer-events: none;
 }
-.item-row__area-dot[data-v-8903cab0] {
+.item-row__area-dot[data-v-ba3c1004] {
 	width: 6px;
 	height: 6px;
 	border-radius: 50%;
 	flex-shrink: 0;
 }
-.item-row__area-name[data-v-8903cab0] {
+.item-row__area-name[data-v-ba3c1004] {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -233,14 +233,14 @@
 }
 
 /* Actions (⋮) kebab — sits above the row's click overlay so the menu opens */
-.item-row__actions[data-v-8903cab0] {
+.item-row__actions[data-v-ba3c1004] {
 	flex: 0 0 auto;
 	position: relative;
 	z-index: 1;
 }
 
 /* Inline editing */
-.item-row__edit-input[data-v-8903cab0] {
+.item-row__edit-input[data-v-ba3c1004] {
 	height: 30px;
 	border: 1px solid var(--color-primary-element);
 	border-radius: var(--border-radius);
@@ -252,39 +252,39 @@
 	position: relative;
 	z-index: 1;
 }
-.item-row__edit-name[data-v-8903cab0] {
+.item-row__edit-name[data-v-ba3c1004] {
 	flex: 1 1 0%;
 	min-width: 0;
 }
-.item-row__edit-qty[data-v-8903cab0] {
+.item-row__edit-qty[data-v-ba3c1004] {
 	flex: 0 0 70px;
 	width: 70px;
 	font-size: 0.85em;
 	text-align: center;
 }
-.item-row__edit-qty[data-v-8903cab0]::placeholder {
+.item-row__edit-qty[data-v-ba3c1004]::placeholder {
 	color: var(--color-text-maxcontrast);
 	font-style: italic;
 }
 
 /* Area picker in edit mode */
-.item-row__area-wrapper[data-v-8903cab0] {
+.item-row__area-wrapper[data-v-ba3c1004] {
 	flex: 0 0 auto;
 	position: relative;
 	display: flex;
 	align-items: center;
 	z-index: 10;
 }
-.item-row__edit-area[data-v-8903cab0] {
+.item-row__edit-area[data-v-ba3c1004] {
 	width: 90px;
 	font-size: 0.85em;
 	padding-inline-end: 20px !important;
 }
-.item-row__edit-area[data-v-8903cab0]::placeholder {
+.item-row__edit-area[data-v-ba3c1004]::placeholder {
 	color: var(--color-text-maxcontrast);
 	font-style: italic;
 }
-.item-row__area-clear[data-v-8903cab0] {
+.item-row__area-clear[data-v-ba3c1004] {
 	position: absolute;
 	inset-inline-end: 4px;
 	top: 50%;
@@ -298,7 +298,7 @@
 	line-height: 1;
 	z-index: 2;
 }
-.item-row__area-clear[data-v-8903cab0]:hover {
+.item-row__area-clear[data-v-ba3c1004]:hover {
 	color: var(--color-error);
 }
 
@@ -1137,6 +1137,15 @@
 	padding: 0 0 4px;
 }
 .name-settings__title[data-v-172906c9] {
+	margin: 0 0 4px;
+	font-size: 1em;
+	font-weight: 600;
+}
+
+.notification-settings[data-v-c77dc29c] {
+	padding: 0 0 4px;
+}
+.notification-settings__title[data-v-c77dc29c] {
 	margin: 0 0 4px;
 	font-size: 1em;
 	font-weight: 600;

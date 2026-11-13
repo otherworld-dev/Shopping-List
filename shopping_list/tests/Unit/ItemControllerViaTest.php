@@ -20,7 +20,7 @@ class ItemControllerViaTest extends TestCase {
 		$request = $this->createMock(IRequest::class);
 		$request->method('getHeader')->willReturnCallback(fn (string $name) => $name === 'X-Shopping-List-Via' ? $header : '');
 		$this->service = $this->createMock(ItemService::class);
-		return new ItemController('shopping_list', $request, $this->service, $this->createMock(TextInputService::class), 'ben');
+		return new ItemController('shopping_list', $request, $this->service, $this->createMock(TextInputService::class), 'ben', $this->createMock(\OCA\Shopping_List\Service\AddedItemNotifications::class));
 	}
 
 	public function testAddingPassesTheCleanedLabel(): void {
@@ -29,6 +29,14 @@ class ItemControllerViaTest extends TestCase {
 			->with(1, 'Milk', null, null, null, 'ben', false, false, false, 'Home Assistant')
 			->willReturn(new Item());
 		$controller->create(1, 'Milk');
+	}
+
+	public function testCopyingPassesTheLabel(): void {
+		$controller = $this->controller('Android');
+		$copy = new Item();
+		$copy->setName('Milk');
+		$this->service->expects(self::once())->method('copy')->with(7, 63, 'ben', 'Android')->willReturn(new \OCA\Shopping_List\Service\TextAddResult($copy, \OCA\Shopping_List\Service\TextAddResult::CREATED));
+		$controller->copy(1, 7, 63);
 	}
 
 	public function testTickingPassesTheLabel(): void {

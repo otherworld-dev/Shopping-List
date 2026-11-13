@@ -51,6 +51,13 @@ class SettingsControllerTest extends TestCase {
 		self::assertSame(Http::STATUS_OK, $this->controller->update(null, null, null, '1.10.0')->getStatus());
 	}
 
+	public function testSavesTheAddNotificationSwitch(): void {
+		$this->settings->expects(self::once())->method('setNotifyAdds')->with('alice', false);
+		$this->settings->expects(self::never())->method('setShowOwnName');
+
+		self::assertSame(Http::STATUS_OK, $this->controller->update(null, null, null, null, false)->getStatus());
+	}
+
 	public function testASeenVersionThatIsNotAVersionIsABadRequest(): void {
 		$this->settings->method('setWhatsNewSeen')->willThrowException(new \InvalidArgumentException('Not a version'));
 

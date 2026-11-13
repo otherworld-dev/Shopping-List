@@ -42,6 +42,7 @@ class ItemServiceAmountTest extends TestCase {
 			$this->createMock(ItemImageService::class),
 			$this->createMock(IUserManager::class),
 			$this->amounts,
+			$this->createMock(\OCP\IL10N::class),
 		);
 	}
 

@@ -26,7 +26,7 @@ class ItemControllerTextTest extends TestCase {
 		$request->method('getParams')->willReturnCallback(fn () => $this->params);
 		$this->service = $this->createMock(ItemService::class);
 		$this->text = $this->createMock(TextInputService::class);
-		return new ItemController('shopping_list', $request, $this->service, $this->text, 'ben');
+		return new ItemController('shopping_list', $request, $this->service, $this->text, 'ben', $this->createMock(\OCA\Shopping_List\Service\AddedItemNotifications::class));
 	}
 
 	private static function item(): Item {

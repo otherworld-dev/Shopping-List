@@ -16,6 +16,7 @@ class UserSettingsService {
 	public const LIST_SORT = 'list_sort';
 	public const SHOW_OWN_NAME = 'show_own_name';
 	public const WHATS_NEW_SEEN = 'whats_new_seen';
+	public const NOTIFY_ADDS = 'notify_adds';
 
 	public function __construct(
 		private IConfig $config,
@@ -53,6 +54,15 @@ class UserSettingsService {
 		$this->config->setUserValue($userId, Application::APP_ID, self::SHOW_OWN_NAME, $on ? '1' : '0');
 	}
 
+	/** Whether this user is notified when someone else adds to a list they are on. On until they say otherwise. */
+	public function notifyAdds(string $userId): bool {
+		return $this->config->getUserValue($userId, Application::APP_ID, self::NOTIFY_ADDS, '1') === '1';
+	}
+
+	public function setNotifyAdds(string $userId, bool $on): void {
+		$this->config->setUserValue($userId, Application::APP_ID, self::NOTIFY_ADDS, $on ? '1' : '0');
+	}
+
 	/** The app version whose release notes this user last saw. Empty until the first are shown. */
 	public function whatsNewSeen(string $userId): string {
 		return $this->config->getUserValue($userId, Application::APP_ID, self::WHATS_NEW_SEEN, '');
@@ -73,6 +83,7 @@ class UserSettingsService {
 			'listSort' => $this->listSort($userId),
 			'showOwnName' => $this->showOwnName($userId),
 			'whatsNewSeen' => $this->whatsNewSeen($userId),
+			'notifyAdds' => $this->notifyAdds($userId),
 		];
 	}
 }
