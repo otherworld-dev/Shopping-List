@@ -20,7 +20,7 @@ class ItemControllerViaTest extends TestCase {
 		$request = $this->createMock(IRequest::class);
 		$request->method('getHeader')->willReturnCallback(fn (string $name) => $name === 'X-Shopping-List-Via' ? $header : '');
 		$this->service = $this->createMock(ItemService::class);
-		return new ItemController('shopping_list', $request, $this->service, $this->createMock(TextInputService::class), 'ben');
+		return new ItemController('shopping_list', $request, $this->service, $this->createMock(TextInputService::class), 'ben', $this->createMock(\OCA\Shopping_List\Service\AddedItemNotifications::class));
 	}
 
 	public function testAddingPassesTheCleanedLabel(): void {

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace OCA\Shopping_List\Controller;
 
+use OCA\Shopping_List\Service\AddedItemNotifications;
 use OCA\Shopping_List\Service\ItemService;
 use OCA\Shopping_List\Service\NoPermissionException;
 use OCA\Shopping_List\Service\NotFoundException;
@@ -23,6 +24,7 @@ class ItemController extends OCSController {
 		private ItemService $service,
 		private TextInputService $textInput,
 		private string $userId,
+		private AddedItemNotifications $added,
 	) {
 		parent::__construct($appName, $request);
 	}
@@ -60,12 +62,19 @@ class ItemController extends OCSController {
 			// One line as the user said or typed it; the server does the parsing
 			if ($text !== null) {
 				$result = $this->textInput->addFromText($listId, $text, $this->userId, $this->via());
+				if ($result->outcome === TextAddResult::CREATED && !$result->item->getChecked()) {
+					$this->added->itemAdded($listId, $result->item->getName(), $this->userId);
+				}
 				return new DataResponse(
 					$result->item->jsonSerialize() + ['outcome' => $result->outcome],
 					$result->outcome === TextAddResult::CREATED ? Http::STATUS_CREATED : Http::STATUS_OK,
 				);
 			}
 			$item = $this->service->create($listId, $name, $quantity, $unit, $shopAreaId, $this->userId, $areaExplicit, $checked, $quantityExplicit, $this->via());
+			// A line pasted as already bought ("[x] Milk") is a record, not something to buy
+			if (!$checked) {
+				$this->added->itemAdded($listId, $name, $this->userId);
+			}
 			return new DataResponse($item, Http::STATUS_CREATED);
 		} catch (\InvalidArgumentException $e) {
 			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_BAD_REQUEST);
@@ -113,7 +122,12 @@ class ItemController extends OCSController {
 	#[NoAdminRequired]
 	public function move(int $listId, int $id, int $targetListId): DataResponse {
 		try {
-			return new DataResponse($this->service->move($id, $targetListId, $this->userId));
+			$item = $this->service->move($id, $targetListId, $this->userId);
+			// To the people on the target list, a moved-in item is a new one
+			if ($targetListId !== $listId) {
+				$this->added->itemAdded($targetListId, $item->getName(), $this->userId);
+			}
+			return new DataResponse($item);
 		} catch (NotFoundException $e) {
 			return new DataResponse(['message' => $e->getMessage()], Http::STATUS_NOT_FOUND);
 		} catch (NoPermissionException $e) {

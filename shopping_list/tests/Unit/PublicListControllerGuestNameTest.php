@@ -10,6 +10,7 @@ use OCA\Shopping_List\Db\ItemMapper;
 use OCA\Shopping_List\Db\ListShare;
 use OCA\Shopping_List\Db\ShoppingListMapper;
 use OCA\Shopping_List\Db\ShopAreaMapper;
+use OCA\Shopping_List\Service\AddedItemNotifications;
 use OCA\Shopping_List\Service\AmountMemory;
 use OCA\Shopping_List\Service\ItemImageService;
 use OCA\Shopping_List\Service\ItemService;
@@ -23,6 +24,7 @@ class PublicListControllerGuestNameTest extends TestCase {
 	private array $params = [];
 	private ListShare $share;
 	private ?Item $stored = null;
+	private ?AddedItemNotifications $added = null;
 
 	private function controller(): PublicListController {
 		$request = $this->createMock(IRequest::class);
@@ -52,6 +54,7 @@ class PublicListControllerGuestNameTest extends TestCase {
 			$this->createMock(ItemService::class),
 			$this->createMock(ItemImageService::class),
 			$this->createMock(AmountMemory::class),
+			$this->added ?? $this->createMock(AddedItemNotifications::class),
 		);
 	}
 
@@ -72,6 +75,13 @@ class PublicListControllerGuestNameTest extends TestCase {
 		$data = $this->controller()->createItem('tok')->getData()->jsonSerialize();
 		self::assertNull($data['addedBy']);
 		self::assertSame('Anna', $data['addedByName']);
+	}
+
+	public function testTheOthersOnTheListAreToldWhoAddedIt(): void {
+		$this->added = $this->createMock(AddedItemNotifications::class);
+		$this->added->expects(self::once())->method('itemAdded')->with(5, 'Milk', null, 'Anna');
+		$this->params = ['name' => 'Milk', 'guestName' => 'Anna'];
+		$this->controller()->createItem('tok');
 	}
 
 	public function testAGuestCanStayAnonymous(): void {

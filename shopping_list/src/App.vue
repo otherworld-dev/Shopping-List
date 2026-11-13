@@ -10,6 +10,7 @@
 					<ListSortSettings />
 					<ItemImagesSettings />
 					<NameSettings />
+					<NotificationSettings />
 					<BackupSettings />
 					<WhatsNewButton />
 				</NcAppNavigationSettings>
@@ -54,6 +55,7 @@ import AreaKeywordsSettings from './components/AreaKeywordsSettings.vue'
 import ListSortSettings from './components/ListSortSettings.vue'
 import ItemImagesSettings from './components/ItemImagesSettings.vue'
 import NameSettings from './components/NameSettings.vue'
+import NotificationSettings from './components/NotificationSettings.vue'
 import BackupSettings from './components/BackupSettings.vue'
 import AndroidAppLink from './components/AndroidAppLink.vue'
 import OfflineIndicator from './components/OfflineIndicator.vue'
@@ -63,6 +65,7 @@ import WhatsNewDialog from './components/WhatsNewDialog.vue'
 import { useListsStore } from './stores/lists'
 import { usePush } from './composables/usePush'
 import { useWhatsNew } from './composables/useWhatsNew'
+import { listIdFromSearch, withoutListParam } from './utils/listLink'
 
 const listsStore = useListsStore()
 const showSettings = ref(false)
@@ -81,7 +84,15 @@ const cartIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><p
 
 onMounted(async () => {
 	await listsStore.fetchAll()
-	if (listsStore.lists.length > 0 && !listsStore.currentListId) {
+	// A notification opens its list with ?list=<id>; the parameter is taken
+	// off again so a reload stays on whatever list is open by then
+	const linked = listIdFromSearch(window.location.search)
+	if (linked !== null) {
+		window.history.replaceState(window.history.state, '', withoutListParam(window.location.href))
+	}
+	if (linked !== null && listsStore.lists.some(l => l.id === linked)) {
+		listsStore.selectList(linked)
+	} else if (listsStore.lists.length > 0 && !listsStore.currentListId) {
 		listsStore.selectList(listsStore.lists[0].id)
 	}
 	useWhatsNew().showIfUpdated(listsStore.lists.length === 0)

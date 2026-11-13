@@ -78,7 +78,7 @@ export const api = {
 	},
 	settings: {
 		get: () => axios.get(url('settings')),
-		update: (data: { showImages?: boolean, listSort?: ListSort, showOwnName?: boolean, whatsNewSeen?: string }) => axios.patch(url('settings'), data),
+		update: (data: { showImages?: boolean, listSort?: ListSort, showOwnName?: boolean, whatsNewSeen?: string, notifyAdds?: boolean }) => axios.patch(url('settings'), data),
 	},
 	backup: {
 		download: () => axios.get(generateUrl('/apps/shopping_list/backup/download'), { responseType: 'blob' }),

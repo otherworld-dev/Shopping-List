@@ -25,10 +25,11 @@ class UserSettingsServiceTest extends TestCase {
 			['alice', 'shopping_list', 'list_sort', 'updated', 'updated'],
 			['alice', 'shopping_list', 'show_own_name', '0', '0'],
 			['alice', 'shopping_list', 'whats_new_seen', '', ''],
+			['alice', 'shopping_list', 'notify_adds', '1', '1'],
 		]);
 
 		self::assertFalse($this->settings->showImages('alice'));
-		self::assertSame(['showImages' => false, 'listSort' => 'updated', 'showOwnName' => false, 'whatsNewSeen' => ''], $this->settings->forUser('alice'));
+		self::assertSame(['showImages' => false, 'listSort' => 'updated', 'showOwnName' => false, 'whatsNewSeen' => '', 'notifyAdds' => true], $this->settings->forUser('alice'));
 	}
 
 	public function testOnlyTheStoredOneCountsAsOn(): void {
@@ -37,6 +38,20 @@ class UserSettingsServiceTest extends TestCase {
 		self::assertTrue($this->settings->showImages('alice'));
 		self::assertFalse($this->settings->showImages('alice'));
 		self::assertFalse($this->settings->showImages('alice'));
+	}
+
+	public function testAddNotificationsAreOnUntilTheUserTurnsThemOff(): void {
+		$this->config->method('getUserValue')->with('alice', 'shopping_list', 'notify_adds', '1')
+			->willReturnOnConsecutiveCalls('1', '0');
+
+		self::assertTrue($this->settings->notifyAdds('alice'));
+		self::assertFalse($this->settings->notifyAdds('alice'));
+	}
+
+	public function testTurningAddNotificationsOffWritesZero(): void {
+		$this->config->expects(self::once())->method('setUserValue')->with('alice', 'shopping_list', 'notify_adds', '0');
+
+		$this->settings->setNotifyAdds('alice', false);
 	}
 
 	public function testSettingWritesOneOrZero(): void {
