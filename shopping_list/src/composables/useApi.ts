@@ -29,6 +29,8 @@ export const api = {
 			axios.put(url(`lists/${listId}/items/${id}/check`), { checked }),
 		move: (listId: number, id: number, targetListId: number) =>
 			axios.post(url(`lists/${listId}/items/${id}/move`), { targetListId }),
+		copy: (listId: number, id: number, targetListId: number) =>
+			axios.post(url(`lists/${listId}/items/${id}/copy`), { targetListId }),
 		delete: (listId: number, id: number) =>
 			axios.delete(url(`lists/${listId}/items/${id}`)),
 		reorder: (listId: number, sortedIds: number[]) =>

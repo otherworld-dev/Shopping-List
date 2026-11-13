@@ -42,6 +42,7 @@ class ItemServiceAttributionTest extends TestCase {
 			$this->createMock(ItemImageService::class),
 			$this->users,
 			$this->createMock(AmountMemory::class),
+			$this->createMock(\OCP\IL10N::class),
 		);
 	}
 

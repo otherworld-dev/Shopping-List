@@ -31,6 +31,12 @@ class ItemControllerViaTest extends TestCase {
 		$controller->create(1, 'Milk');
 	}
 
+	public function testCopyingPassesTheLabel(): void {
+		$controller = $this->controller('Android');
+		$this->service->expects(self::once())->method('copy')->with(7, 63, 'ben', 'Android')->willReturn(new Item());
+		$controller->copy(1, 7, 63);
+	}
+
 	public function testTickingPassesTheLabel(): void {
 		$controller = $this->controller('Kitchen');
 		$this->service->expects(self::once())->method('check')->with(7, true, 'ben', 'Kitchen')->willReturn(new Item());

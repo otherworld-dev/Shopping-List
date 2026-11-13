@@ -138,6 +138,14 @@
 					{{ l.title }}
 				</NcActionButton>
 				<NcActionSeparator />
+				<NcActionCaption :name="copyToLabel" />
+				<NcActionButton v-for="l in otherLists"
+					:key="`copy-${l.id}`"
+					:close-after-click="true"
+					@click="onCopy(l.id)">
+					{{ l.title }}
+				</NcActionButton>
+				<NcActionSeparator />
 			</template>
 			<NcActionButton :close-after-click="true" @click="onDelete">
 				<template #icon>
@@ -198,8 +206,9 @@ const qtyLabel = t('shopping_list', 'Qty')
 const areaPlaceholder = t('shopping_list', 'Area')
 const noMatchText = t('shopping_list', 'No match')
 const moveToLabel = t('shopping_list', 'Move to list')
+const copyToLabel = t('shopping_list', 'Copy to list')
 
-// Other lists the user can write to (move targets), sorted by title
+// Other lists the user can write to (move and copy targets), sorted by title
 const otherLists = computed(() =>
 	listsStore.lists
 		.filter(l => l.id !== props.listId && (l.isOwner || l.permission >= Permission.WRITE))
@@ -427,6 +436,10 @@ async function onDelete() {
 
 async function onMove(targetListId: number) {
 	await itemsStore.move(props.listId, props.itemId, targetListId)
+}
+
+async function onCopy(targetListId: number) {
+	await itemsStore.copy(props.listId, props.itemId, targetListId)
 }
 
 // --- Photo ---

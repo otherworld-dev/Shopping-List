@@ -42,6 +42,7 @@ class ItemServiceDefaultAreaTest extends TestCase {
 			$this->createMock(ItemImageService::class),
 			$this->createMock(IUserManager::class),
 			$this->createMock(AmountMemory::class),
+			$this->createMock(\OCP\IL10N::class),
 		);
 	}
 

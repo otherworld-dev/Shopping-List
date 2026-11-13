@@ -669,6 +669,10 @@ msgid "Move to list"
 msgstr ""
 
 #: src/components/ItemRow.vue
+msgid "Copy to list"
+msgstr ""
+
+#: src/components/ItemRow.vue
 msgid "Add image"
 msgstr ""
 
@@ -719,6 +723,18 @@ msgstr ""
 
 #: src/stores/items.ts
 msgid "You're offline — moving items requires a connection"
+msgstr ""
+
+#: src/stores/items.ts
+msgid "Failed to copy item"
+msgstr ""
+
+#: src/stores/items.ts
+msgid "Copied \"{name}\" to {list}"
+msgstr ""
+
+#: src/stores/items.ts
+msgid "You're offline — copying items requires a connection"
 msgstr ""
 
 #: src/components/ItemRow.vue src/stores/items.ts
