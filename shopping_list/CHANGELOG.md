@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.15.0] - 2026-11-13
+
 ### Added
 - Copy to list in an item's menu, next to Move to list, puts a copy of the item
   on another list and leaves the original where it is. The copy keeps its
