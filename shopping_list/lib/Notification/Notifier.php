@@ -91,11 +91,14 @@ class Notifier implements INotifier {
 		$params = $notification->getSubjectParameters();
 		$count = max(1, (int)($params['count'] ?? 1));
 		$actorCount = (int)($params['actorCount'] ?? 1);
-		// A guest on a link who gave no name is stored with an empty one
-		$actors = array_map(
-			fn ($name) => (string)$name !== '' ? (string)$name : $l->t('A guest'),
-			(array)($params['actors'] ?? []),
-		);
+		// A guest on a link can type any name, so it is always marked as a guest's
+		$actors = array_map(function ($actor) use ($l): string {
+			$name = (string)($actor['name'] ?? '');
+			if (empty($actor['guest'])) {
+				return $name !== '' ? $name : $l->t('Someone');
+			}
+			return $name !== '' ? $l->t('%s (guest)', [$name]) : $l->t('A guest');
+		}, (array)($params['actors'] ?? []));
 		$first = $actors[0] ?? $l->t('Someone');
 
 		if ($actorCount <= 1) {

@@ -97,12 +97,13 @@ class AddedItemNotificationsTest extends TestCase {
 		return $n;
 	}
 
-	private static function row(int $id, string $user, string $actor, string $item, bool $notified = false): AddedItem {
+	private static function row(int $id, string $user, string $actor, string $item, bool $notified = false, bool $guest = false): AddedItem {
 		$row = new AddedItem();
 		$row->setId($id);
 		$row->setListId(5);
 		$row->setUserId($user);
 		$row->setActor($actor);
+		$row->setActorGuest($guest);
 		$row->setItemName($item);
 		$row->setNotified($notified);
 		return $row;
@@ -110,26 +111,26 @@ class AddedItemNotificationsTest extends TestCase {
 
 	public function testAnAddIsNotedForEveryoneElseOnTheList(): void {
 		$noted = [];
-		$this->added->method('add')->willReturnCallback(function (int $list, string $user, string $actor, string $item) use (&$noted) {
-			$noted[] = [$list, $user, $actor, $item];
+		$this->added->method('add')->willReturnCallback(function (int $list, string $user, string $actor, bool $guest, string $item) use (&$noted) {
+			$noted[] = [$list, $user, $actor, $guest, $item];
 			return new AddedItem();
 		});
 
 		$this->service->itemAdded(5, 'Milk', 'ben');
 
-		self::assertSame([[5, 'adam', 'Ben Jones', 'Milk'], [5, 'cara', 'Ben Jones', 'Milk']], $noted);
+		self::assertSame([[5, 'adam', 'Ben Jones', false, 'Milk'], [5, 'cara', 'Ben Jones', false, 'Milk']], $noted);
 	}
 
 	public function testSomeoneWhoTurnedThemOffIsLeftOut(): void {
 		$this->optedOut = ['cara'];
-		$this->added->expects(self::once())->method('add')->with(5, 'adam', 'Ben Jones', 'Milk');
+		$this->added->expects(self::once())->method('add')->with(5, 'adam', 'Ben Jones', false, 'Milk');
 
 		$this->service->itemAdded(5, 'Milk', 'ben');
 	}
 
 	public function testAGuestIsSomeoneElseToEveryone(): void {
 		$this->added->expects(self::exactly(3))->method('add')
-			->with(5, self::anything(), 'Anna', 'Milk');
+			->with(5, self::anything(), 'Anna', true, 'Milk');
 
 		$this->service->itemAdded(5, 'Milk', null, 'Anna');
 	}
@@ -170,7 +171,7 @@ class AddedItemNotificationsTest extends TestCase {
 
 		$this->service->send(5);
 
-		$expected = ['actors' => ['Ben Jones'], 'actorCount' => 1, 'items' => ['Milk', 'Eggs'], 'count' => 2];
+		$expected = ['actors' => [['name' => 'Ben Jones', 'guest' => false]], 'actorCount' => 1, 'items' => ['Milk', 'Eggs'], 'count' => 2];
 		self::assertSame([['adam', $expected], ['cara', $expected]], $this->sent);
 		// Each replaces whatever that person had for the list
 		self::assertSame(['adam', 'cara'], $this->processed);
@@ -188,7 +189,7 @@ class AddedItemNotificationsTest extends TestCase {
 
 		$this->service->send(5);
 
-		self::assertSame([['adam', ['actors' => ['Anna', 'Ben Jones'], 'actorCount' => 2, 'items' => ['Milk', 'Eggs'], 'count' => 2]]], $this->sent);
+		self::assertSame([['adam', ['actors' => [['name' => 'Anna', 'guest' => false], ['name' => 'Ben Jones', 'guest' => false]], 'actorCount' => 2, 'items' => ['Milk', 'Eggs'], 'count' => 2]]], $this->sent);
 	}
 
 	public function testAReadNotificationStartsAFreshOne(): void {
@@ -202,7 +203,7 @@ class AddedItemNotificationsTest extends TestCase {
 
 		$this->service->send(5);
 
-		self::assertSame([['adam', ['actors' => ['Anna'], 'actorCount' => 1, 'items' => ['Eggs'], 'count' => 1]]], $this->sent);
+		self::assertSame([['adam', ['actors' => [['name' => 'Anna', 'guest' => false]], 'actorCount' => 1, 'items' => ['Eggs'], 'count' => 1]]], $this->sent);
 	}
 
 	public function testNothingNewSendsNothing(): void {
@@ -240,6 +241,15 @@ class AddedItemNotificationsTest extends TestCase {
 		$this->service->send(5);
 	}
 
+	public function testAGuestIsNeverMistakenForAnAccountOfTheSameName(): void {
+		$rows = [self::row(1, 'adam', 'Ben Jones', 'Milk'), self::row(2, 'adam', 'Ben Jones', 'Eggs', false, true)];
+
+		self::assertSame(
+			[['name' => 'Ben Jones', 'guest' => true], ['name' => 'Ben Jones', 'guest' => false]],
+			AddedItemNotifications::parameters($rows)['actors'],
+		);
+	}
+
 	public function testTheNotificationCarriesAFewNamesAndTheTotals(): void {
 		$rows = [];
 		foreach (['Milk', 'Eggs', 'Bread', 'Jam', 'Tea', 'Rice', 'Oats'] as $i => $item) {
@@ -247,7 +257,7 @@ class AddedItemNotificationsTest extends TestCase {
 		}
 
 		self::assertSame([
-			'actors' => ['Cara', 'Anna', 'Ben'],
+			'actors' => [['name' => 'Cara', 'guest' => false], ['name' => 'Anna', 'guest' => false], ['name' => 'Ben', 'guest' => false]],
 			'actorCount' => 4,
 			'items' => ['Milk', 'Eggs', 'Bread', 'Jam', 'Tea'],
 			'count' => 7,

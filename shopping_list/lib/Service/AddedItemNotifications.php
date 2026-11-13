@@ -69,7 +69,7 @@ class AddedItemNotifications {
 				? ($guestName ?? '')
 				: ($this->userManager->getDisplayName($actorId) ?? $actorId);
 			foreach ($recipients as $userId) {
-				$this->added->add($listId, $userId, $actor, $itemName);
+				$this->added->add($listId, $userId, $actor, $actorId === null, $itemName);
 			}
 
 			// The first add sets the time; later ones join that batch
@@ -151,15 +151,16 @@ class AddedItemNotifications {
 
 	/**
 	 * The adders, newest first, the first few item names in the order they
-	 * were added, and the totals.
+	 * were added, and the totals. A guest and an account with the same name
+	 * are different adders.
 	 *
 	 * @param AddedItem[] $rows
-	 * @return array{actors: string[], actorCount: int, items: string[], count: int}
+	 * @return array{actors: list<array{name: string, guest: bool}>, actorCount: int, items: string[], count: int}
 	 */
 	public static function parameters(array $rows): array {
 		$actors = [];
 		foreach (array_reverse($rows) as $row) {
-			$actor = (string)$row->getActor();
+			$actor = ['name' => (string)$row->getActor(), 'guest' => (bool)$row->getActorGuest()];
 			if (!in_array($actor, $actors, true)) {
 				$actors[] = $actor;
 			}

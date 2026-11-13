@@ -838,6 +838,11 @@ msgstr ""
 msgid "Someone"
 msgstr ""
 
+#. A name typed by someone on a public link, who has no account
+#: lib/Notification/Notifier.php
+msgid "%s (guest)"
+msgstr ""
+
 #. %1$s is who added the items, %2$s the list's name
 #: lib/Notification/Notifier.php
 msgid "%1$s added an item to %2$s"

@@ -16,11 +16,12 @@ class AddedItemMapper extends QBMapper {
 		parent::__construct($db, 'shopping_list_added', AddedItem::class);
 	}
 
-	public function add(int $listId, string $userId, string $actor, string $itemName): AddedItem {
+	public function add(int $listId, string $userId, string $actor, bool $actorGuest, string $itemName): AddedItem {
 		$row = new AddedItem();
 		$row->setListId($listId);
 		$row->setUserId($userId);
 		$row->setActor(mb_substr($actor, 0, 64));
+		$row->setActorGuest($actorGuest);
 		$row->setItemName(mb_substr($itemName, 0, 255));
 		$row->setNotified(false);
 		return $this->insert($row);

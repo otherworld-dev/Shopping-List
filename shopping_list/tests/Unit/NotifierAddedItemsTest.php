@@ -66,7 +66,7 @@ class NotifierAddedItemsTest extends TestCase {
 
 	public function testOnePersonOneItem(): void {
 		$this->list('Weekly shop');
-		$this->notifier->prepare($this->notification(['actors' => ['Sam'], 'actorCount' => 1, 'items' => ['Milk'], 'count' => 1]), 'en');
+		$this->notifier->prepare($this->notification(['actors' => [['name' => 'Sam', 'guest' => false]], 'actorCount' => 1, 'items' => ['Milk'], 'count' => 1]), 'en');
 
 		self::assertSame('Sam added an item to Weekly shop', $this->parsed['subject']);
 		self::assertSame('Milk', $this->parsed['message']);
@@ -74,7 +74,7 @@ class NotifierAddedItemsTest extends TestCase {
 
 	public function testOnePersonSeveralItems(): void {
 		$this->list('Weekly shop');
-		$this->notifier->prepare($this->notification(['actors' => ['Sam'], 'actorCount' => 1, 'items' => ['Milk', 'Eggs', 'Bread'], 'count' => 3]), 'en');
+		$this->notifier->prepare($this->notification(['actors' => [['name' => 'Sam', 'guest' => false]], 'actorCount' => 1, 'items' => ['Milk', 'Eggs', 'Bread'], 'count' => 3]), 'en');
 
 		self::assertSame('Sam added 3 items to Weekly shop', $this->parsed['subject']);
 		self::assertSame('Milk, Eggs, Bread', $this->parsed['message']);
@@ -82,7 +82,7 @@ class NotifierAddedItemsTest extends TestCase {
 
 	public function testTwoPeople(): void {
 		$this->list('Weekly shop');
-		$this->notifier->prepare($this->notification(['actors' => ['Sam', 'Anna'], 'actorCount' => 2, 'items' => ['Milk', 'Eggs'], 'count' => 2]), 'en');
+		$this->notifier->prepare($this->notification(['actors' => [['name' => 'Sam', 'guest' => false], ['name' => 'Anna', 'guest' => false]], 'actorCount' => 2, 'items' => ['Milk', 'Eggs'], 'count' => 2]), 'en');
 
 		self::assertSame('Sam and Anna added 2 items to Weekly shop', $this->parsed['subject']);
 	}
@@ -90,7 +90,7 @@ class NotifierAddedItemsTest extends TestCase {
 	public function testMorePeopleAndMoreItemsThanItNames(): void {
 		$this->list('Weekly shop');
 		$this->notifier->prepare($this->notification([
-			'actors' => ['Sam', 'Anna', 'Ben'], 'actorCount' => 4,
+			'actors' => [['name' => 'Sam', 'guest' => false], ['name' => 'Anna', 'guest' => false], ['name' => 'Ben', 'guest' => false]], 'actorCount' => 4,
 			'items' => ['Milk', 'Eggs', 'Bread', 'Jam', 'Tea'], 'count' => 8,
 		]), 'en');
 
@@ -100,14 +100,21 @@ class NotifierAddedItemsTest extends TestCase {
 
 	public function testAGuestWithNoName(): void {
 		$this->list('Weekly shop');
-		$this->notifier->prepare($this->notification(['actors' => [''], 'actorCount' => 1, 'items' => ['Milk'], 'count' => 1]), 'en');
+		$this->notifier->prepare($this->notification(['actors' => [['name' => '', 'guest' => true]], 'actorCount' => 1, 'items' => ['Milk'], 'count' => 1]), 'en');
 
 		self::assertSame('A guest added an item to Weekly shop', $this->parsed['subject']);
 	}
 
+	public function testANamedGuestIsMarkedAsAGuest(): void {
+		$this->list('Weekly shop');
+		$this->notifier->prepare($this->notification(['actors' => [['name' => 'Adam', 'guest' => true]], 'actorCount' => 1, 'items' => ['Milk'], 'count' => 1]), 'en');
+
+		self::assertSame('Adam (guest) added an item to Weekly shop', $this->parsed['subject']);
+	}
+
 	public function testItOpensTheList(): void {
 		$this->list('Weekly shop');
-		$this->notifier->prepare($this->notification(['actors' => ['Sam'], 'actorCount' => 1, 'items' => ['Milk'], 'count' => 1]), 'en');
+		$this->notifier->prepare($this->notification(['actors' => [['name' => 'Sam', 'guest' => false]], 'actorCount' => 1, 'items' => ['Milk'], 'count' => 1]), 'en');
 
 		self::assertSame('https://cloud.example/apps/shopping_list/?list=5', $this->parsed['link']);
 	}
@@ -116,6 +123,6 @@ class NotifierAddedItemsTest extends TestCase {
 		$this->lists->method('find')->willThrowException(new NotFoundException('List not found'));
 
 		$this->expectException(AlreadyProcessedException::class);
-		$this->notifier->prepare($this->notification(['actors' => ['Sam'], 'actorCount' => 1, 'items' => ['Milk'], 'count' => 1]), 'en');
+		$this->notifier->prepare($this->notification(['actors' => [['name' => 'Sam', 'guest' => false]], 'actorCount' => 1, 'items' => ['Milk'], 'count' => 1]), 'en');
 	}
 }

@@ -40,6 +40,12 @@ class Version1015Date20261113000000 extends SimpleMigrationStep {
 				'notnull' => false,
 				'length' => 64,
 			]);
+			// A guest on a link types any name they like, so the notification
+			// marks theirs as a guest's rather than pass it off as an account
+			$table->addColumn('actor_guest', Types::BOOLEAN, [
+				'notnull' => false,
+				'default' => false,
+			]);
 			$table->addColumn('item_name', Types::STRING, [
 				'notnull' => true,
 				'length' => 255,
